@@ -1,10 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>AH Cyber Solutions | Paka Srikanth</title>
+
+<meta name="description" content="AH Cyber Solutions - Learn Ethical Hacking, Cyber Security, Digital Investigation and Penetration Testing.">
 
 <style>
 
@@ -17,17 +21,20 @@ scroll-behavior:smooth;
 }
 
 body{
-background:#f5f9ff;
-color:#222;
+background:#0B1120;
+color:white;
 }
 
+/* NAVBAR */
+
 nav{
-background:#001b44;
-padding:15px;
 position:sticky;
 top:0;
 z-index:1000;
+background:#111827;
+padding:18px;
 text-align:center;
+border-bottom:2px solid #00FF88;
 }
 
 nav a{
@@ -35,78 +42,168 @@ color:white;
 text-decoration:none;
 margin:12px;
 font-weight:bold;
+transition:.3s;
 }
 
+nav a:hover{
+color:#00FF88;
+}
+
+/* HERO */
+
 .hero{
-background:linear-gradient(135deg,#0077ff,#00d4ff);
-color:white;
-padding:60px 20px;
+padding:70px 20px;
 text-align:center;
+background:
+linear-gradient(rgba(11,17,32,.85),
+rgba(11,17,32,.90));
 }
 
 .logo{
-width:150px;
+width:160px;
 background:white;
 padding:10px;
 border-radius:20px;
+box-shadow:0 0 25px #00FF88;
+animation:glow 3s infinite;
 }
 
 .profile{
-width:200px;
-height:200px;
-border-radius:50%;
+width:220px;
+height:220px;
 object-fit:cover;
-border:5px solid white;
-margin-top:20px;
+border-radius:50%;
+margin-top:25px;
+border:5px solid #00FF88;
+box-shadow:0 0 30px #00FF88;
+animation:glow 3s infinite;
 }
 
 .hero h1{
-font-size:45px;
-margin-top:15px;
+font-size:55px;
+margin-top:20px;
+color:#00FF88;
 }
 
-.hero p{
-font-size:20px;
+.tagline{
+font-size:24px;
+color:#00D9FF;
 margin-top:10px;
 }
 
-.btn{
-display:inline-block;
-padding:14px 28px;
-background:white;
-color:#0077ff;
-text-decoration:none;
-border-radius:30px;
-font-weight:bold;
-margin-top:20px;
+.hero h2{
+margin-top:25px;
+font-size:32px;
 }
+
+.hero p{
+margin-top:10px;
+font-size:18px;
+color:#d1d5db;
+}
+
+.hero-btn{
+display:inline-block;
+margin-top:25px;
+padding:15px 35px;
+background:#00FF88;
+color:#0B1120;
+text-decoration:none;
+font-weight:bold;
+border-radius:40px;
+transition:.3s;
+}
+
+.hero-btn:hover{
+background:#00D9FF;
+color:white;
+}
+
+/* CARDS */
 
 .section{
 max-width:1100px;
 margin:40px auto;
-padding:30px;
-background:white;
+padding:35px;
+background:#111827;
 border-radius:20px;
-box-shadow:0 5px 20px rgba(0,0,0,.1);
-text-align:center;
+border:1px solid #00FF88;
+box-shadow:0 0 15px rgba(0,255,136,.15);
 }
 
 .section h2{
-color:#0077ff;
-margin-bottom:15px;
+text-align:center;
+color:#00FF88;
+margin-bottom:20px;
+font-size:35px;
+}
+
+.section p{
+line-height:1.8;
+font-size:18px;
+color:#d1d5db;
+}
+
+/* STATS */
+
+.stats{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:20px;
+margin-top:30px;
+}
+
+.stat-box{
+background:#0B1120;
+padding:25px;
+width:220px;
+border-radius:15px;
+border:1px solid #00FF88;
+}
+
+.stat-box h3{
+color:#00FF88;
+font-size:35px;
+}
+
+.stat-box p{
+color:white;
+margin-top:10px;
+}
+
+/* GLOW */
+
+@keyframes glow{
+
+0%{
+box-shadow:0 0 10px #00FF88;
+}
+
+50%{
+box-shadow:0 0 30px #00FF88;
+}
+
+100%{
+box-shadow:0 0 10px #00FF88;
+}
+
 }
 
 </style>
+
 </head>
 
 <body>
 
 <nav>
+
 <a href="#home">Home</a>
 <a href="#about">About</a>
 <a href="#courses">Courses</a>
 <a href="#services">Services</a>
 <a href="#contact">Contact</a>
+
 </nav>
 
 <section class="hero" id="home">
@@ -115,18 +212,19 @@ margin-bottom:15px;
 
 <h1>AH Cyber Solutions</h1>
 
-<p>Learn • Hack • Secure</p>
+<p class="tagline">
+Learn • Hack • Secure
+</p>
 
 <img src="20251229_193801 (1).jpg" class="profile">
 
 <h2>Paka Srikanth</h2>
 
 <p>
-Young Certified Ethical Hacker &
-Cyber Security Analyst
+Young Ethical Hacker & Cyber Security Analyst
 </p>
 
-<a href="#courses" class="btn">
+<a href="#courses" class="hero-btn">
 Explore Courses
 </a>
 
@@ -137,147 +235,365 @@ Explore Courses
 <h2>👨‍💻 About Founder</h2>
 
 <p>
-I am <b>Paka Srikanth</b>, founder of
+
+I am <b>Paka Srikanth</b>, Founder of
 <b>AH Cyber Solutions</b>.
 
-I am passionate about Ethical Hacking,
-Cyber Security, Digital Investigation,
-Penetration Testing and Digital Protection.
+A passionate Cyber Security enthusiast focused on
+Ethical Hacking, Digital Investigation,
+Penetration Testing, Web Security and
+Cyber Security Awareness.
 
-My mission is to help students and individuals
-learn cyber security and stay safe online.
+My goal is to help students learn practical
+Cyber Security skills and build a safer digital world.
+
 </p>
 
+<div class="stats">
+
+<div class="stat-box">
+<h3>6+</h3>
+<p>Courses</p>
+</div>
+
+<div class="stat-box">
+<h3>24/7</h3>
+<p>Support</p>
+</div>
+
+<div class="stat-box">
+<h3>100%</h3>
+<p>Practical Learning</p>
+</div>
+
+</div>
+
+</section><section class="section" id="courses">
+
+<h2>📚 Our Premium Courses</h2>
+
+<div class="stats">
+
+<div class="stat-box">
+<h3>🛡 Ethical Hacking</h3>
+
+<p style="color:red;">
+<del>₹5000</del>
+</p>
+
+<p style="color:#00FF88;font-size:28px;">
+₹999
+</p>
+
+<a href="#payment" class="hero-btn">
+Enroll Now
+</a>
+
+</div>
+
+
+<div class="stat-box">
+<h3>🌐 Web Penetration Testing</h3>
+
+<p style="color:red;">
+<del>₹5000</del>
+</p>
+
+<p style="color:#00FF88;font-size:28px;">
+₹999
+</p>
+
+<a href="#payment" class="hero-btn">
+Enroll Now
+</a>
+
+</div>
+
+
+<div class="stat-box">
+<h3>🐞 Bug Bounty Training</h3>
+
+<p style="color:red;">
+<del>₹3000</del>
+</p>
+
+<p style="color:#00FF88;font-size:28px;">
+₹499
+</p>
+
+<a href="#payment" class="hero-btn">
+Enroll Now
+</a>
+
+</div>
+
+
+<div class="stat-box">
+<h3>📡 Networking Basics</h3>
+
+<p style="color:#00FF88;font-size:28px;">
+₹499
+</p>
+
+<a href="#payment" class="hero-btn">
+Enroll Now
+</a>
+
+</div>
+
+
+<div class="stat-box">
+<h3>🐧 Linux For Hackers</h3>
+
+<p style="color:#00FF88;font-size:28px;">
+₹499
+</p>
+
+<a href="#payment" class="hero-btn">
+Enroll Now
+</a>
+
+</div>
+
+
+<div class="stat-box">
+<h3>🔐 Cyber Security Awareness</h3>
+
+<p style="color:#00FF88;font-size:28px;">
+₹499
+</p>
+
+<a href="#payment" class="hero-btn">
+Enroll Now
+</a>
+
+</div>
+
+</div>
+
 </section>
-<section class="section" id="courses">
 
-<h2>📚 Our Courses</h2>
-
-<div style="display:flex;flex-wrap:wrap;justify-content:center;gap:20px;">
-
-<div style="background:#f8f8f8;padding:20px;border-radius:15px;width:250px;">
-<h3>Ethical Hacking Beginner</h3>
-<p style="color:red;"><del>₹5000</del></p>
-<p style="color:green;font-size:24px;"><b>₹999</b></p>
-<a href="#payment" class="btn">Enroll Now</a>
-</div>
-
-<div style="background:#f8f8f8;padding:20px;border-radius:15px;width:250px;">
-<h3>Web Penetration Testing</h3>
-<p style="color:red;"><del>₹5000</del></p>
-<p style="color:green;font-size:24px;"><b>₹999</b></p>
-<a href="#payment" class="btn">Enroll Now</a>
-</div>
-
-<div style="background:#f8f8f8;padding:20px;border-radius:15px;width:250px;">
-<h3>Bug Bounty Training</h3>
-<p style="color:red;"><del>₹3000</del></p>
-<p style="color:green;font-size:24px;"><b>₹499</b></p>
-<a href="#payment" class="btn">Enroll Now</a>
-</div>
-
-<div style="background:#f8f8f8;padding:20px;border-radius:15px;width:250px;">
-<h3>Networking Basics</h3>
-<p style="color:green;font-size:24px;"><b>₹499</b></p>
-<a href="#payment" class="btn">Enroll Now</a>
-</div>
-
-<div style="background:#f8f8f8;padding:20px;border-radius:15px;width:250px;">
-<h3>Linux For Hackers</h3>
-<p style="color:green;font-size:24px;"><b>₹499</b></p>
-<a href="#payment" class="btn">Enroll Now</a>
-</div>
-
-<div style="background:#f8f8f8;padding:20px;border-radius:15px;width:250px;">
-<h3>Cyber Security Awareness</h3>
-<p style="color:green;font-size:24px;"><b>₹499</b></p>
-<a href="#payment" class="btn">Enroll Now</a>
-</div>
-
-</div>
-
-</section>
 
 
 <section class="section" id="services">
 
 <h2>🛡 Our Services</h2>
 
+<div class="stats">
+
+<div class="stat-box">
+<h3>🌐 Website Security Testing</h3>
 <p>
-✔ Website Security Testing<br><br>
-✔ Ethical Hacking Training<br><br>
-✔ Penetration Testing<br><br>
-✔ Digital Investigation<br><br>
-✔ Cyber Security Awareness<br><br>
-✔ Security Research
+Identify security weaknesses and improve website protection.
 </p>
+</div>
 
-</section>
-
-
-<section class="section" id="payment">
-
-<h2>💳 Payment</h2>
-
+<div class="stat-box">
+<h3>⚔ Penetration Testing</h3>
 <p>
+Simulated attacks to evaluate security posture.
+</p>
+</div>
+
+<div class="stat-box">
+<h3>🔎 Digital Investigation</h3>
+<p>
+Digital evidence collection and investigation support.
+</p>
+</div>
+
+<div class="stat-box">
+<h3>📚 Cyber Security Awareness</h3>
+<p>
+Training and awareness for individuals and students.
+</p>
+</div>
+
+<div class="stat-box">
+<h3>🧠 Security Research</h3>
+<p>
+Research and learning focused cyber security solutions.
+</p>
+</div>
+
+<div class="stat-box">
+<h3>🎓 Training Programs</h3>
+<p>
+Beginner friendly cyber security learning programs.
+</p>
+</div>
+
+</div>
+
+</section><section class="section" id="payment">
+
+<h2>💳 Enroll & Payment</h2>
+
+<p style="text-align:center;font-size:20px;">
 Scan QR Code and complete payment
 </p>
 
-<img src="qr.jpg" width="250" style="border-radius:15px;">
+<div style="text-align:center;">
+
+<img src="Screenshot_20260529_225849.jpg"
+style="
+width:280px;
+max-width:90%;
+border-radius:20px;
+border:3px solid #00FF88;
+box-shadow:0 0 25px #00FF88;
+">
+
+</div>
+
+<br>
+
+<p style="text-align:center;font-size:20px;">
+
+UPI ID:
 
 <br><br>
 
-<p>
-UPI ID:<br>
-<b>9640724438@pthdfc</b>
+<b style="color:#00FF88;">
+9640724438@pthdfc
+</b>
+
 </p>
 
-<a href="https://wa.me/919640724438?text=Hi%20I%20completed%20payment"
-class="btn">
+<div style="text-align:center;">
+
+<a href="https://wa.me/919640724438?text=Hi%20I%20have%20completed%20payment"
+class="hero-btn">
+
 Send Payment Screenshot
+
 </a>
 
+</div>
+
 </section>
+
 
 
 <section class="section" id="contact">
 
-<h2>📞 Contact</h2>
+<h2>📞 Contact Us</h2>
 
 <p>
-WhatsApp: 9640724438
-</p>
 
-<p>
-Phone: 9703724438
-</p>
+<b>Founder:</b> Paka Srikanth
 
-<p>
-Instagram: @ah_cyber_solutions
-</p>
+<br><br>
 
-<p>
-BN Reddy Nagar - 500079<br>
-Ranga Reddy District<br>
+📱 WhatsApp:
+9640724438
+
+<br><br>
+
+☎ Phone:
+9703724438
+
+<br><br>
+
+📸 Instagram:
+@ah_cyber_solutions
+
+<br><br>
+
+📍 BN Reddy Nagar - 500079
+
+<br>
+
+Ranga Reddy District
+
+<br>
+
 Hyderabad, Telangana
+
 </p>
 
 </section>
 
 
-<footer style="background:#001b44;color:white;text-align:center;padding:25px;">
 
-<h3>AH Cyber Solutions</h3>
+<section class="section">
+
+<h2>⭐ Why Choose AH Cyber Solutions?</h2>
+
+<div class="stats">
+
+<div class="stat-box">
+<h3>🎯 Practical Learning</h3>
+<p>Real world cyber security concepts.</p>
+</div>
+
+<div class="stat-box">
+<h3>💰 Affordable Pricing</h3>
+<p>Premium courses at low cost.</p>
+</div>
+
+<div class="stat-box">
+<h3>🚀 Beginner Friendly</h3>
+<p>Designed for students and beginners.</p>
+</div>
+
+</div>
+
+</section>
+
+
+
+<a href="https://wa.me/919640724438"
+
+style="
+position:fixed;
+bottom:20px;
+right:20px;
+background:#00FF88;
+color:#0B1120;
+padding:15px 20px;
+border-radius:50px;
+font-weight:bold;
+text-decoration:none;
+box-shadow:0 0 20px #00FF88;
+z-index:999;
+">
+
+WhatsApp
+
+</a>
+
+
+
+<footer
+style="
+background:#111827;
+padding:35px;
+text-align:center;
+border-top:2px solid #00FF88;
+">
+
+<h2 style="color:#00FF88;">
+AH Cyber Solutions
+</h2>
 
 <p>
+
 Learn • Hack • Secure
-</p>
 
-<p>
-© 2026 AH Cyber Solutions. All Rights Reserved.
+<br><br>
+
+Young Ethical Hacker &
+Cyber Security Analyst
+
+<br><br>
+
+© 2026 AH Cyber Solutions
+
 </p>
 
 </footer>
 
 </body>
 </html>
+  
