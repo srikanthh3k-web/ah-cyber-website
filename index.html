@@ -3,272 +3,530 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AH Cyber Solutions | Ethical Hacking & Cyber Security Training</title>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-:root{
-  --bg:#f8fafc;--bg2:#f1f5f9;--white:#ffffff;
-  --blue:#1a56db;--blue2:#3b82f6;--blue-light:#eff6ff;--blue-mid:#dbeafe;--navy:#0f2d6e;
-  --text:#0f172a;--text2:#475569;--text3:#94a3b8;
-  --border:#e2e8f0;--border2:#cbd5e1;
-  --green:#059669;--red:#dc2626;--orange:#d97706;
-  --shadow:0 1px 3px rgba(0,0,0,0.07),0 1px 2px rgba(0,0,0,0.04);
-  --shadow-md:0 4px 12px rgba(0,0,0,0.08);
-  --shadow-lg:0 10px 30px rgba(0,0,0,0.09);
-  --shadow-blue:0 6px 24px rgba(26,86,219,0.2);
-}
-body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased}
-::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--blue);border-radius:10px}
-a{text-decoration:none;color:inherit}
+<title>AH Cyber Solutions</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
 
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,0.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);height:68px;padding:0 6%;display:flex;align-items:center;justify-content:space-between;box-shadow:var(--shadow)}
-.nav-brand{display:flex;align-items:center;gap:12px}
-.nav-logo-img{height:46px;width:auto;object-fit:contain;filter:drop-shadow(0 2px 10px rgba(26,86,219,0.3))}
-.nav-brand-text{display:flex;flex-direction:column;line-height:1}
-.nav-brand-name{font-family:'Space Grotesk',sans-serif;font-size:1.05rem;font-weight:700;color:var(--navy)}
-.nav-brand-tag{font-size:0.6rem;color:var(--blue);font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-top:2px}
-.nav-links{display:flex;align-items:center;gap:2px;list-style:none}
-.nav-links a{font-size:0.82rem;font-weight:600;color:var(--text2);padding:7px 13px;border-radius:8px;transition:all 0.2s;white-space:nowrap}
-.nav-links a:hover{color:var(--blue);background:var(--blue-light)}
-.nav-enroll{background:var(--blue)!important;color:#fff!important;border-radius:8px!important;padding:8px 18px!important;font-weight:700!important;box-shadow:var(--shadow-blue)}
-.nav-enroll:hover{background:var(--navy)!important;transform:translateY(-1px)!important}
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="logo">AH Cyber Solutions</div>
+
+  <ul>
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#courses">Courses</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="home" class="hero">
+
+  <div class="hero-content">
+
+    <span class="badge">Cyber Security Training</span>
+
+    <h1>
+      Learn <span>Ethical Hacking</span><br>
+      Like A Professional
+    </h1>
+
+    <p>
+      Practical Cyber Security Training,
+      Bug Bounty Hunting, Kali Linux,
+      OSINT and Digital Safety Programs.
+    </p>
+
+    <div class="hero-btns">
+      <a href="#courses" class="btn-primary">
+        Explore Courses
+      </a>
+
+      <a href="https://wa.me/919640724438"
+         class="btn-outline"
+         target="_blank">
+        WhatsApp
+      </a>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="section">
+
+  <div class="container">
+
+    <h2>About AH Cyber Solutions</h2>
+
+    <p>
+      AH Cyber Solutions is focused on
+      Cyber Security Education,
+      Ethical Hacking Training,
+      Bug Bounty Programs and
+      Digital Awareness.
+    </p>
+
+    <div class="about-box">
+
+      <h3>Founder</h3>
+
+      <p>
+        Shrikanth Paka
+      </p>
+
+      <p>
+        Cyber Security Enthusiast &
+        Ethical Hacking Trainer
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- COURSES -->
+<section id="courses" class="section">
+
+  <div class="container">
+
+    <h2>Our Courses</h2>
+
+    <div class="course-grid">
+
+      <div class="card">
+        <h3>Ethical Hacking</h3>
+
+        <ul>
+          <li>Networking Basics</li>
+          <li>Linux Fundamentals</li>
+          <li>Reconnaissance</li>
+          <li>Web Security</li>
+          <li>Practical Labs</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Bug Bounty</h3>
+
+        <ul>
+          <li>Finding Vulnerabilities</li>
+          <li>Recon Techniques</li>
+          <li>Report Writing</li>
+          <li>Real Practice</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Kali Linux</h3>
+
+        <ul>
+          <li>Nmap</li>
+          <li>Wireshark</li>
+          <li>Burp Suite</li>
+          <li>Metasploit Basics</li>
+        </ul>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  background:#f8fafc;
+  color:#0f172a;
+}
+
+/* NAVBAR */
+
+nav{
+  position:fixed;
+  top:0;
+  width:100%;
+  background:#fff;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px 8%;
+  box-shadow:0 2px 12px rgba(0,0,0,.08);
+  z-index:1000;
+}
+
+.logo{
+  font-size:1.4rem;
+  font-weight:800;
+  color:#2563eb;
+}
+
+nav ul{
+  display:flex;
+  gap:25px;
+  list-style:none;
+}
+
+nav a{
+  text-decoration:none;
+  color:#475569;
+  font-weight:600;
+  transition:.3s;
+}
+
+nav a:hover{
+  color:#2563eb;
+}
 
 /* HERO */
-#home{min-height:100vh;padding:100px 6% 70px;display:flex;align-items:center;background:linear-gradient(150deg,#eef5ff 0%,#fff 45%,#f8fafc 100%);position:relative;overflow:hidden}
-.hero-glow{position:absolute;border-radius:50%;pointer-events:none;filter:blur(80px)}
-.glow1{width:600px;height:600px;background:rgba(59,130,246,0.07);top:-150px;right:-150px}
-.glow2{width:350px;height:350px;background:rgba(26,86,219,0.05);bottom:-50px;left:5%}
-.hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;max-width:1200px;margin:0 auto;width:100%;position:relative;z-index:1}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--blue-light);border:1px solid var(--blue-mid);color:var(--blue);font-size:0.75rem;font-weight:700;padding:6px 16px;border-radius:100px;letter-spacing:0.3px;margin-bottom:1.5rem}
-.live-dot{width:7px;height:7px;background:var(--green);border-radius:50%;animation:livepulse 2s infinite}
-@keyframes livepulse{0%,100%{box-shadow:0 0 0 0 rgba(5,150,105,0.5)}60%{box-shadow:0 0 0 7px rgba(5,150,105,0)}}
-.hero-h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(2.2rem,3.8vw,3.3rem);font-weight:700;line-height:1.12;color:var(--text);margin-bottom:1.25rem;letter-spacing:-0.8px}
-.hero-h1 .hl{color:var(--blue);position:relative;display:inline-block}
-.hero-h1 .hl::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--blue2));border-radius:2px}
-.hero-desc{font-size:1rem;color:var(--text2);line-height:1.8;margin-bottom:2.5rem;max-width:480px}
-.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:2.5rem}
-.btn-primary{background:var(--blue);color:#fff;font-weight:700;font-size:0.9rem;padding:13px 28px;border-radius:10px;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:all 0.25s;box-shadow:var(--shadow-blue)}
-.btn-primary:hover{background:var(--navy);transform:translateY(-2px);box-shadow:0 12px 32px rgba(26,86,219,0.3)}
-.btn-outline{background:transparent;color:var(--red);font-weight:700;font-size:0.9rem;padding:12px 28px;border-radius:10px;border:2px solid #fecaca;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:all 0.25s}
-.btn-outline:hover{background:#fef2f2;border-color:var(--red)}
-.trust-row{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap}
-.trust-item{display:flex;align-items:center;gap:6px;font-size:0.8rem;font-weight:600;color:var(--text2)}
 
-/* LOGO CARD */
-.logo-card{background:var(--white);border-radius:24px;padding:2.5rem;box-shadow:0 20px 60px rgba(26,86,219,0.1),0 4px 16px rgba(0,0,0,0.05);border:1px solid var(--border);position:relative;overflow:hidden}
-.logo-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--blue),var(--blue2),#93c5fd)}
-.logo-showcase{background:linear-gradient(135deg,#eff6ff,#dbeafe);border-radius:16px;padding:2.25rem;display:flex;align-items:center;justify-content:center;margin-bottom:1.5rem;border:1px solid var(--blue-mid);position:relative;overflow:hidden}
-.logo-showcase::after{content:'';position:absolute;width:220px;height:220px;background:radial-gradient(circle,rgba(59,130,246,0.12),transparent);top:50%;left:50%;transform:translate(-50%,-50%)}
-.logo-showcase img{height:115px;width:auto;object-fit:contain;position:relative;z-index:1;filter:drop-shadow(0 6px 20px rgba(26,86,219,0.28))}
-.founder-row{display:flex;align-items:center;gap:12px;padding:1rem;background:var(--bg);border-radius:12px;margin-bottom:1.25rem}
-.f-avatar{width:46px;height:46px;background:linear-gradient(135deg,var(--blue),var(--blue2));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0}
-.f-name{font-weight:700;font-size:0.92rem;color:var(--text)}
-.f-role{font-size:0.73rem;color:var(--text2);margin-top:2px}
-.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:0.75rem}
-.stat-box{text-align:center;padding:0.85rem 0.5rem;background:var(--blue-light);border-radius:10px;border:1px solid var(--blue-mid)}
-.stat-n{font-family:'Space Grotesk',sans-serif;font-size:1.55rem;font-weight:700;color:var(--blue)}
-.stat-l{font-size:0.68rem;color:var(--text2);font-weight:600;margin-top:2px}
+.hero{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:120px 8%;
+  background:linear-gradient(
+    135deg,
+    #eff6ff,
+    #ffffff
+  );
+}
 
-/* SECTION COMMONS */
-.sec{padding:88px 6%}
-.sec-alt{padding:88px 6%;background:var(--white)}
-.wrap{max-width:1200px;margin:0 auto}
-.sec-eye{display:inline-block;background:var(--blue-light);color:var(--blue);font-size:0.7rem;font-weight:700;padding:5px 14px;border-radius:100px;letter-spacing:1px;text-transform:uppercase;margin-bottom:0.75rem;border:1px solid var(--blue-mid)}
-.sec-title{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.7rem,2.8vw,2.3rem);font-weight:700;color:var(--text);margin-bottom:0.75rem;letter-spacing:-0.4px}
-.sec-title span{color:var(--blue)}
-.sec-sub{font-size:0.97rem;color:var(--text2);line-height:1.75;max-width:560px}
-.sec-center{text-align:center;margin-bottom:3.5rem}
-.sec-center .sec-sub{margin:0 auto}
+.hero-content{
+  max-width:850px;
+}
+
+.badge{
+  display:inline-block;
+  background:#dbeafe;
+  color:#2563eb;
+  padding:8px 18px;
+  border-radius:50px;
+  font-size:.8rem;
+  font-weight:700;
+  margin-bottom:20px;
+}
+
+.hero h1{
+  font-size:3.5rem;
+  font-weight:800;
+  margin-bottom:20px;
+  line-height:1.2;
+}
+
+.hero h1 span{
+  color:#2563eb;
+}
+
+.hero p{
+  font-size:1.1rem;
+  color:#64748b;
+  line-height:1.8;
+  margin-bottom:30px;
+}
+
+.hero-btns{
+  display:flex;
+  justify-content:center;
+  gap:15px;
+  flex-wrap:wrap;
+}
+
+.btn-primary{
+  background:#2563eb;
+  color:white;
+  padding:14px 28px;
+  border-radius:10px;
+  text-decoration:none;
+  font-weight:700;
+}
+
+.btn-primary:hover{
+  background:#1d4ed8;
+}
+
+.btn-outline{
+  border:2px solid #2563eb;
+  color:#2563eb;
+  padding:14px 28px;
+  border-radius:10px;
+  text-decoration:none;
+  font-weight:700;
+}
+
+.btn-outline:hover{
+  background:#2563eb;
+  color:white;
+}
+
+/* SECTION */
+
+.section{
+  padding:90px 8%;
+}
+
+.container{
+  max-width:1200px;
+  margin:auto;
+}
+
+.section h2{
+  text-align:center;
+  margin-bottom:25px;
+  font-size:2.2rem;
+}
+
+.section p{
+  text-align:center;
+  color:#64748b;
+  line-height:1.8;
+}
 
 /* ABOUT */
-.about-grid{display:grid;grid-template-columns:1fr 1.65fr;gap:4rem;align-items:center}
-.about-logo-card{background:var(--white);border-radius:24px;padding:2.5rem;border:1px solid var(--border);box-shadow:var(--shadow-lg);text-align:center}
-.about-logo-glow{background:linear-gradient(135deg,#eff6ff,#dbeafe);border-radius:16px;padding:2rem;margin-bottom:1.5rem;border:1px solid var(--blue-mid);display:flex;align-items:center;justify-content:center}
-.about-logo-glow img{height:105px;width:auto;filter:drop-shadow(0 6px 20px rgba(26,86,219,0.28))}
-.founder-name{font-family:'Space Grotesk',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text)}
-.founder-role-tag{font-size:0.78rem;color:var(--blue);font-weight:600;margin:5px 0 1.25rem;letter-spacing:0.3px}
-.chips{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
-.chip{background:var(--blue-light);color:var(--blue);border:1px solid var(--blue-mid);font-size:0.7rem;font-weight:700;padding:4px 11px;border-radius:100px}
-.about-content h3{font-family:'Space Grotesk',sans-serif;font-size:1.35rem;font-weight:700;color:var(--text);margin-bottom:1rem}
-.about-content p{font-size:0.95rem;color:var(--text2);line-height:1.8;margin-bottom:1rem}
-.exp-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:1.1rem}
-.exp-item{display:flex;align-items:center;gap:7px;font-size:0.85rem;color:var(--text2);font-weight:500}
-.exp-item::before{content:'✓';color:var(--green);font-weight:800;font-size:0.85rem}
+
+.about-box{
+  margin-top:35px;
+  background:white;
+  padding:30px;
+  border-radius:16px;
+  box-shadow:0 4px 15px rgba(0,0,0,.08);
+  text-align:center;
+}
 
 /* COURSES */
-.courses-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.5rem}
-.course-card{background:var(--white);border-radius:16px;padding:1.75rem;border:1px solid var(--border);box-shadow:var(--shadow);transition:all 0.3s;position:relative;overflow:hidden}
-.course-card::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--blue2));transform:scaleX(0);transform-origin:left;transition:transform 0.3s}
-.course-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg);border-color:var(--blue-mid)}
-.course-card:hover::after{transform:scaleX(1)}
-.cbadge{display:inline-flex;align-items:center;gap:5px;font-size:0.68rem;font-weight:700;padding:4px 10px;border-radius:100px;margin-bottom:1rem;letter-spacing:0.3px}
-.cb-blue{background:var(--blue-light);color:var(--blue);border:1px solid var(--blue-mid)}
-.cb-green{background:#ecfdf5;color:var(--green);border:1px solid #a7f3d0}
-.cb-orange{background:#fffbeb;color:var(--orange);border:1px solid #fde68a}
-.c-icon{font-size:2.2rem;margin-bottom:0.75rem}
-.c-name{font-family:'Space Grotesk',sans-serif;font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:0.5rem}
-.c-desc{font-size:0.88rem;color:var(--text2);line-height:1.65;margin-bottom:1.1rem}
-.c-list{list-style:none;margin-bottom:1.4rem;display:flex;flex-direction:column;gap:5px}
-.c-list li{font-size:0.82rem;color:var(--text2);display:flex;align-items:center;gap:7px}
-.c-list li::before{content:'✓';color:var(--green);font-weight:800;flex-shrink:0}
-.price-row{display:flex;align-items:center;gap:0.75rem;margin-bottom:1.25rem}
-.p-now{font-family:'Space Grotesk',sans-serif;font-size:1.6rem;font-weight:700;color:var(--blue)}
-.p-old{font-size:0.88rem;color:var(--text3);text-decoration:line-through}
-.p-save{background:#fef2f2;color:var(--red);font-size:0.67rem;font-weight:700;padding:3px 8px;border-radius:100px;border:1px solid #fecaca}
-.enroll-btn{display:block;width:100%;background:var(--blue);color:#fff;font-weight:700;font-size:0.85rem;padding:11px;border-radius:10px;border:none;cursor:pointer;text-align:center;transition:all 0.2s}
-.enroll-btn:hover{background:var(--navy)}
 
-/* SERVICES */
-.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem}
-.srv-card{background:var(--white);border-radius:14px;padding:1.6rem;border:1px solid var(--border);box-shadow:var(--shadow);display:flex;gap:1.2rem;align-items:flex-start;transition:all 0.2s}
-.srv-card:hover{border-color:var(--blue-mid);box-shadow:var(--shadow-md);transform:translateY(-2px)}
-.srv-icon{width:48px;height:48px;border-radius:12px;background:var(--blue-light);border:1px solid var(--blue-mid);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
-.srv-name{font-weight:700;font-size:0.95rem;color:var(--text);margin-bottom:0.35rem}
-.srv-desc{font-size:0.85rem;color:var(--text2);line-height:1.6}
+.course-grid{
+  margin-top:40px;
+  display:grid;
+  grid-template-columns:
+  repeat(auto-fit,minmax(280px,1fr));
+  gap:25px;
+}
 
-/* RESOURCES */
-.res-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem}
-.res-card{background:var(--white);border-radius:14px;padding:1.5rem;border:1px solid var(--border);box-shadow:var(--shadow);display:flex;flex-direction:column;gap:0.7rem;transition:all 0.2s}
-.res-card:hover{border-color:var(--blue-mid);box-shadow:var(--shadow-md);transform:translateY(-2px)}
-.res-icon{font-size:2rem}
-.rtag{font-size:0.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3px 10px;border-radius:100px;display:inline-block;width:fit-content}
-.rt-blue{background:var(--blue-light);color:var(--blue);border:1px solid var(--blue-mid)}
-.rt-green{background:#ecfdf5;color:var(--green);border:1px solid #a7f3d0}
-.rt-orange{background:#fffbeb;color:var(--orange);border:1px solid #fde68a}
-.rt-red{background:#fef2f2;color:var(--red);border:1px solid #fecaca}
-.res-name{font-weight:700;font-size:0.95rem;color:var(--text)}
-.res-desc{font-size:0.83rem;color:var(--text2);line-height:1.6;flex:1}
-.res-btn{display:flex;align-items:center;justify-content:center;gap:6px;background:var(--blue-light);color:var(--blue);font-weight:700;font-size:0.8rem;padding:9px;border-radius:8px;border:1px solid var(--blue-mid);transition:all 0.2s}
-.res-btn:hover{background:var(--blue);color:#fff}
+.card{
+  background:white;
+  padding:25px;
+  border-radius:16px;
+  box-shadow:0 4px 15px rgba(0,0,0,.08);
+  transition:.3s;
+}
 
-/* CYBER NEWS */
-.news-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
-.news-card{background:var(--white);border-radius:14px;padding:1.5rem;border:1px solid var(--border);box-shadow:var(--shadow);transition:all 0.2s}
-.news-card:hover{border-color:var(--blue-mid);box-shadow:var(--shadow-md)}
-.ntag{font-size:0.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3px 10px;border-radius:100px;display:inline-block;margin-bottom:0.75rem}
-.news-title{font-weight:700;font-size:0.92rem;color:var(--text);margin-bottom:0.4rem;line-height:1.4}
-.news-body{font-size:0.83rem;color:var(--text2);line-height:1.6}
-.news-sev{display:inline-flex;align-items:center;gap:5px;font-size:0.7rem;font-weight:700;margin-top:0.75rem}
-.sev-r{color:var(--red)}.sev-o{color:var(--orange)}.sev-y{color:#ca8a04}.sev-b{color:var(--blue)}
+.card:hover{
+  transform:translateY(-6px);
+}
 
-/* COMPLAINT */
-.cpl-wrap{max-width:880px;margin:0 auto}
-.fraud-chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:2rem}
-.fchip{display:flex;align-items:center;gap:6px;background:var(--white);border:1.5px solid var(--border);padding:8px 16px;border-radius:100px;font-size:0.82rem;font-weight:600;color:var(--text2);cursor:pointer;transition:all 0.2s;user-select:none}
-.fchip:hover,.fchip.on{background:var(--blue-light);border-color:var(--blue);color:var(--blue)}
-.form-card{background:var(--white);border-radius:20px;padding:2.5rem;border:1px solid var(--border);box-shadow:var(--shadow-lg)}
-.fg{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
-.full{grid-column:1/-1}
-.grp{display:flex;flex-direction:column;gap:6px}
-label{font-size:0.8rem;font-weight:700;color:var(--text)}
-label .req{color:var(--red)}
-input,select,textarea{background:var(--bg);border:1.5px solid var(--border);color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;font-size:0.92rem;padding:10px 14px;border-radius:10px;outline:none;transition:all 0.2s;width:100%}
-input:focus,select:focus,textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(26,86,219,0.08);background:var(--white)}
-textarea{resize:vertical;min-height:110px}
-select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath fill='%231a56db' d='M6 8L0 0h12z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
-.hint{font-size:0.75rem;color:var(--text3)}
-.sub-row{display:flex;justify-content:space-between;align-items:center;margin-top:2rem;flex-wrap:wrap;gap:1rem}
-.priv{font-size:0.8rem;color:var(--text2);display:flex;align-items:center;gap:6px}
-.sub-btn{background:var(--red);color:#fff;font-weight:700;font-size:0.88rem;padding:13px 32px;border-radius:10px;border:none;cursor:pointer;display:flex;align-items:center;gap:8px;transition:all 0.2s;box-shadow:0 4px 14px rgba(220,38,38,0.28)}
-.sub-btn:hover{background:#b91c1c;transform:translateY(-1px)}
-.success{display:none;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:16px;padding:2rem;text-align:center;margin-top:1.5rem}
-.success.on{display:block;animation:fadeUp 0.4s ease}
-@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.card h3{
+  color:#2563eb;
+  margin-bottom:15px;
+}
 
-/* PAYMENT */
-.pay-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;max-width:880px;margin:0 auto}
-.pay-card{background:var(--white);border-radius:20px;padding:2rem;border:1px solid var(--border);box-shadow:var(--shadow-lg);text-align:center}
-.qr-frame{width:190px;height:190px;margin:0 auto 1.25rem;border-radius:16px;overflow:hidden;border:3px solid var(--blue-mid);box-shadow:0 4px 20px rgba(26,86,219,0.15)}
-.qr-frame img{width:100%;height:100%;object-fit:contain}
-.upi-pill{display:inline-flex;align-items:center;gap:8px;background:var(--blue-light);border:1.5px solid var(--blue-mid);color:var(--blue);font-family:'JetBrains Mono',monospace;font-size:0.85rem;font-weight:600;padding:9px 16px;border-radius:10px;cursor:pointer;margin:0.75rem 0;transition:all 0.2s}
-.upi-pill:hover{background:var(--blue);color:#fff}
-.app-pills{display:flex;justify-content:center;gap:6px;flex-wrap:wrap;margin-top:0.75rem}
-.apill{background:var(--bg);border:1px solid var(--border);padding:5px 12px;border-radius:8px;font-size:0.75rem;font-weight:600;color:var(--text2)}
-.pay-steps{background:var(--white);border-radius:20px;padding:2rem;border:1px solid var(--border);box-shadow:var(--shadow)}
-.step{display:flex;gap:1rem;margin-bottom:1.25rem;align-items:flex-start}
-.snum{width:28px;height:28px;background:var(--blue);color:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.8rem;flex-shrink:0;font-family:'Space Grotesk',sans-serif}
-.stxt{font-size:0.9rem;color:var(--text2);line-height:1.6;padding-top:3px}
+.card ul{
+  padding-left:20px;
+}
+
+.card li{
+  margin-bottom:10px;
+  color:#475569;
+}
 
 /* CONTACT */
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;max-width:1000px;margin:0 auto}
-.c-item{display:flex;gap:1rem;align-items:flex-start;margin-bottom:1.5rem}
-.c-icon{width:46px;height:46px;background:var(--blue-light);border:1px solid var(--blue-mid);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
-.c-lbl{font-size:0.72rem;font-weight:700;color:var(--text3);letter-spacing:0.5px;text-transform:uppercase;margin-bottom:3px}
-.c-val{font-size:0.95rem;font-weight:600;color:var(--text)}
-.c-val a{color:var(--blue)}
-.map-card{background:var(--white);border-radius:16px;border:1px solid var(--border);overflow:hidden;box-shadow:var(--shadow)}
-.map-head{padding:1rem 1.25rem;border-bottom:1px solid var(--border);font-weight:700;font-size:0.88rem;display:flex;align-items:center;gap:6px;color:var(--text)}
-.map-body{height:190px;background:linear-gradient(135deg,#eff6ff,#f0f7ff);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px}
+
+.contact-box{
+  background:white;
+  padding:30px;
+  border-radius:16px;
+  text-align:center;
+  box-shadow:0 4px 15px rgba(0,0,0,.08);
+}
 
 /* FOOTER */
-footer{background:var(--navy);padding:2.25rem 6%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
-.f-brand{display:flex;align-items:center;gap:10px}
-.f-logo{height:36px;width:auto;filter:brightness(0) invert(1) opacity(0.9)}
-.f-name{font-family:'Space Grotesk',sans-serif;font-weight:700;color:#fff;font-size:0.95rem}
-.f-copy{font-size:0.8rem;color:rgba(255,255,255,0.5)}
-.f-links{display:flex;gap:1.5rem}
-.f-links a{font-size:0.8rem;color:rgba(255,255,255,0.6);transition:color 0.2s}
-.f-links a:hover{color:#fff}
 
-<!-- WHATSAPP HELP BUTTON -->
-<div id="wa-help">
-  <a href="https://wa.me/919640724438?text=Hi%20I%20need%20help" target="_blank" class="wa-fab" title="Chat on WhatsApp">💬</a>
-  <div class="wa-label">Need Help?</div>
-</div>
+footer{
+  background:#0f172a;
+  color:white;
+  text-align:center;
+  padding:25px;
+  margin-top:50px;
+}
+
+/* WHATSAPP BUTTON */
+
+.whatsapp{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  width:60px;
+  height:60px;
+  border-radius:50%;
+  background:#25D366;
+  color:white;
+  text-decoration:none;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:28px;
+  box-shadow:0 5px 15px rgba(0,0,0,.2);
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+  nav{
+    flex-direction:column;
+    gap:15px;
+  }
+
+  nav ul{
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+
+  .hero h1{
+    font-size:2.2rem;
+  }
+
+  .section h2{
+    font-size:1.8rem;
+  }
+
+}<!-- CONTACT -->
+<section id="contact" class="section">
+
+  <div class="container">
+
+    <h2>Contact Us</h2>
+
+    <div class="contact-box">
+
+      <h3>AH Cyber Solutions</h3>
+
+      <p>📞 +91 9640724438</p>
+      <br>
+
+      <p>📧 ahcybersolutions@gmail.com</p>
+      <br>
+
+      <p>📍 Telangana, India</p>
+      <br>
+
+      <a href="https://wa.me/919640724438"
+         target="_blank"
+         class="btn-primary">
+         Chat on WhatsApp
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- CYBER SECURITY TIPS -->
+<section class="section">
+
+  <div class="container">
+
+    <h2>Cyber Security Tips</h2>
+
+    <div class="course-grid">
+
+      <div class="card">
+        <h3>🔒 Enable 2FA</h3>
+        <p>
+          Always enable Two-Factor Authentication
+          for important accounts.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>⚠️ Avoid Unknown Links</h3>
+        <p>
+          Never click suspicious links received
+          through SMS, WhatsApp or Email.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>💾 Backup Data</h3>
+        <p>
+          Keep regular backups of important files
+          to stay protected from ransomware.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- WHATSAPP FLOATING BUTTON -->
+
+<a href="https://wa.me/919640724438"
+   target="_blank"
+   class="whatsapp">
+   💬
+</a>
+
+<!-- FOOTER -->
+
+<footer>
+
+  <h3>AH Cyber Solutions</h3>
+
+  <br>
+
+  <p>
+    Ethical Hacking • Bug Bounty • Kali Linux • Cyber Security
+  </p>
+
+  <br>
+
+  <p>
+    © 2026 AH Cyber Solutions.
+    All Rights Reserved.
+  </p>
+
+</footer>
+
+<!-- OPTIONAL JAVASCRIPT -->
 
 <script>
-function pickChip(el,t){
-  document.querySelectorAll('.fchip').forEach(x=>x.classList.remove('on'));
-  el.classList.add('on');
-  document.getElementById('ftype').value=t;
-}
-function copyUPI(el){
-  navigator.clipboard.writeText('9640724438@pthdfc').then(()=>{
-    const h=el.innerHTML;el.innerHTML='✅ Copied!';
-    setTimeout(()=>el.innerHTML=h,1500);
+
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+
+  link.addEventListener('click', function(e){
+
+    e.preventDefault();
+
+    document.querySelector(
+      this.getAttribute('href')
+    ).scrollIntoView({
+      behavior:'smooth'
+    });
+
   });
-}
-function submitCpl(){
-  const n=document.getElementById('fname').value.trim();
-  const m=document.getElementById('fmobile').value.trim();
-  const c=document.getElementById('fcity').value.trim();
-  const t=document.getElementById('ftype').value;
-  const d=document.getElementById('fdate').value;
-  const desc=document.getElementById('fdesc').value.trim();
-  if(!n||!m||!c||!t||!d||!desc){alert('Please fill all required (*) fields');return;}
-  if(!/^[6-9]\d{9}$/.test(m)){alert('Enter valid 10-digit mobile number');return;}
-  const id='AHC-'+Date.now().toString().slice(-8).toUpperCase();
-  document.getElementById('cid').textContent='Complaint ID: '+id;
-  document.getElementById('successBox').classList.add('on');
-  document.getElementById('successBox').scrollIntoView({behavior:'smooth',block:'center'});
-  const amt=document.getElementById('famount').value;
-  const sus=document.getElementById('fsuspect').value;
-  const pol=document.getElementById('fpolice').value;
-  const msg=`🚨 CYBER FRAUD COMPLAINT\nID: ${id}\nName: ${n}\nMobile: ${m}\nCity: ${c}\nType: ${t}\nDate: ${d}\nLoss: ₹${amt||'N/A'}\nDescription: ${desc}\nSuspect: ${sus||'Unknown'}\nPolice: ${pol||'Not reported'}`;
-  setTimeout(()=>window.open('https://wa.me/919640724438?text='+encodeURIComponent(msg),'_blank'),1500);
-}
-const tips=[
-  {t:"Enable 2-Factor Authentication",d:"అన్ని important accounts లో 2FA enable చేయండి. SMS కంటే Authenticator app ఎక్కువ secure."},
-  {t:"Avoid Public WiFi for Banking",d:"Public WiFi లో banking చేయకండి. Same network లో hacker ఉంటే data steal చేయగలరు."},
-  {t:"Keep Software Updated",d:"Phone మరియు computer software update గా ఉంచండి. Updates లో security patches ఉంటాయి."},
-  {t:"Use Strong Passwords",d:"Password minimum 12 characters — uppercase, lowercase, numbers, symbols mix చేయండి."},
-  {t:"Don't Click Unknown Links",d:"Unknown messages లో links click చేయకండి. Bank ఎప్పుడూ WhatsApp లో OTP అడగదు."},
-  {t:"Beware of Social Engineering",d:"Phone లో 'bank officer' అని OTP అడిగితే — అది scam! Call disconnect చేయండి."},
-  {t:"Backup Your Data Regularly",d:"Important files regular గా backup చేయండి. Ransomware నుండి data safe గా ఉంటుంది."}
-];
-const td=new Date();const tip=tips[td.getDay()%tips.length];
-document.getElementById('tipTitle').textContent=tip.t;
-document.getElementById('tipBody').textContent=tip.d;
-document.getElementById('tipDate').innerHTML='⬤ '+td.toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'});
-document.querySelectorAll('a[href^="#"]').forEach(a=>{
-  a.addEventListener('click',e=>{
-    const el=document.querySelector(a.getAttribute('href'));
-    if(el){e.preventDefault();el.scrollIntoView({behavior:'smooth'});}
-  });
+
 });
+
 </script>
+
 </body>
 </html>
+  
