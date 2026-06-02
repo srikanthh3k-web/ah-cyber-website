@@ -18,7 +18,6 @@ html{scroll-behavior:smooth}
 body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
 a{text-decoration:none;color:inherit}
 ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:var(--blue);border-radius:4px}
-
 nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);height:66px;padding:0 6%;display:flex;align-items:center;justify-content:space-between;box-shadow:var(--sh)}
 .nav-brand{display:flex;align-items:center;gap:11px}
 .nav-logo{height:44px;width:auto;filter:drop-shadow(0 2px 8px rgba(26,86,219,0.25))}
@@ -29,13 +28,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,
 .nav-links a:hover{color:var(--blue);background:var(--blight)}
 .nav-cta{background:var(--blue)!important;color:#fff!important;border-radius:8px!important;font-weight:700!important;box-shadow:var(--shb)}
 .nav-cta:hover{background:var(--navy)!important}
-
 #home{min-height:100vh;padding:100px 6% 70px;display:flex;align-items:center;background:linear-gradient(150deg,#eef5ff 0%,#fff 50%,#f8fafc 100%);position:relative;overflow:hidden}
 #home::before{content:'';position:absolute;top:-200px;right:-200px;width:600px;height:600px;background:radial-gradient(circle,rgba(59,130,246,0.08),transparent 70%);border-radius:50%;pointer-events:none}
 .hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;max-width:1200px;margin:0 auto;width:100%;position:relative;z-index:1}
 .eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--blight);border:1px solid var(--bmid);color:var(--blue);font-size:0.75rem;font-weight:700;padding:6px 16px;border-radius:100px;margin-bottom:1.5rem}
-.dot{width:7px;height:7px;background:var(--green);border-radius:50%;animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(5,150,105,0.5)}60%{box-shadow:0 0 0 7px transparent}}
 h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(2.2rem,3.8vw,3.3rem);font-weight:700;line-height:1.12;color:var(--text);margin-bottom:1.2rem;letter-spacing:-0.8px}
 h1 .hl{color:var(--blue);position:relative}
 h1 .hl::after{content:'';position:absolute;bottom:-3px;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--blue2));border-radius:2px}
@@ -46,9 +42,6 @@ h1 .hl::after{content:'';position:absolute;bottom:-3px;left:0;right:0;height:3px
 .btn-b:hover{background:var(--navy);transform:translateY(-2px)}
 .btn-r{background:transparent;color:var(--red);border:2px solid #fecaca}
 .btn-r:hover{background:#fef2f2;border-color:var(--red)}
-.trust{display:flex;flex-wrap:wrap;gap:1.5rem}
-.ti{font-size:0.8rem;font-weight:600;color:var(--t2)}
-
 .logo-card{background:var(--white);border-radius:24px;padding:2.5rem;box-shadow:0 20px 60px rgba(26,86,219,0.1),0 4px 16px rgba(0,0,0,0.05);border:1px solid var(--border);position:relative;overflow:hidden}
 .logo-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--blue),var(--blue2),#93c5fd)}
 .logo-box{background:linear-gradient(135deg,#eff6ff,#dbeafe);border-radius:16px;padding:2.25rem;display:flex;align-items:center;justify-content:center;margin-bottom:1.5rem;border:1px solid var(--bmid)}
@@ -61,7 +54,6 @@ h1 .hl::after{content:'';position:absolute;bottom:-3px;left:0;right:0;height:3px
 .stat{text-align:center;padding:0.85rem 0.5rem;background:var(--blight);border-radius:10px;border:1px solid var(--bmid)}
 .sn{font-family:'Space Grotesk',sans-serif;font-size:1.55rem;font-weight:700;color:var(--blue)}
 .sl{font-size:0.68rem;color:var(--t2);font-weight:600;margin-top:2px}
-
 .sec{padding:88px 6%}
 .sec-alt{padding:88px 6%;background:var(--white)}
 .wrap{max-width:1200px;margin:0 auto}
@@ -71,7 +63,6 @@ h2 span{color:var(--blue)}
 .sub{font-size:0.97rem;color:var(--t2);line-height:1.75;max-width:560px}
 .sec-c{text-align:center;margin-bottom:3.5rem}
 .sec-c .sub{margin:0 auto}
-
 .about-grid{display:grid;grid-template-columns:1fr 1.6fr;gap:4rem;align-items:center}
 .al-card{background:var(--white);border-radius:24px;padding:2.5rem;border:1px solid var(--border);box-shadow:var(--shl);text-align:center}
 .al-glow{background:linear-gradient(135deg,#eff6ff,#dbeafe);border-radius:16px;padding:2rem;margin-bottom:1.5rem;border:1px solid var(--bmid);display:flex;align-items:center;justify-content:center}
@@ -85,7 +76,6 @@ h2 span{color:var(--blue)}
 .exp-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:1rem}
 .exp-item{display:flex;align-items:center;gap:7px;font-size:0.85rem;color:var(--t2);font-weight:500}
 .exp-item::before{content:'✓';color:var(--green);font-weight:800}
-
 .cg{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.5rem}
 .cc{background:var(--white);border-radius:16px;padding:1.75rem;border:1px solid var(--border);box-shadow:var(--sh);transition:all 0.3s;position:relative;overflow:hidden}
 .cc::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--blue2));transform:scaleX(0);transform-origin:left;transition:transform 0.3s}
@@ -107,14 +97,12 @@ h2 span{color:var(--blue)}
 .psave{background:#fef2f2;color:var(--red);font-size:0.67rem;font-weight:700;padding:3px 8px;border-radius:100px;border:1px solid #fecaca}
 .ebtn{display:block;width:100%;background:var(--blue);color:#fff;font-weight:700;font-size:0.85rem;padding:11px;border-radius:10px;border:none;cursor:pointer;text-align:center;transition:all 0.2s}
 .ebtn:hover{background:var(--navy)}
-
 .sg{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem}
 .sc{background:var(--white);border-radius:14px;padding:1.6rem;border:1px solid var(--border);box-shadow:var(--sh);display:flex;gap:1.2rem;align-items:flex-start;transition:all 0.2s}
 .sc:hover{border-color:var(--bmid);box-shadow:var(--shm);transform:translateY(-2px)}
 .si{width:48px;height:48px;border-radius:12px;background:var(--blight);border:1px solid var(--bmid);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
 .sname{font-weight:700;font-size:0.95rem;color:var(--text);margin-bottom:0.35rem}
 .sdesc{font-size:0.85rem;color:var(--t2);line-height:1.6}
-
 .rg{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem}
 .rc{background:var(--white);border-radius:14px;padding:1.5rem;border:1px solid var(--border);box-shadow:var(--sh);display:flex;flex-direction:column;gap:0.7rem;transition:all 0.2s}
 .rc:hover{border-color:var(--bmid);box-shadow:var(--shm);transform:translateY(-2px)}
@@ -128,7 +116,6 @@ h2 span{color:var(--blue)}
 .rdesc{font-size:0.83rem;color:var(--t2);line-height:1.6;flex:1}
 .rbtn{display:flex;align-items:center;justify-content:center;gap:6px;background:var(--blight);color:var(--blue);font-weight:700;font-size:0.8rem;padding:9px;border-radius:8px;border:1px solid var(--bmid);transition:all 0.2s}
 .rbtn:hover{background:var(--blue);color:#fff}
-
 .ng{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
 .nc{background:var(--white);border-radius:14px;padding:1.5rem;border:1px solid var(--border);box-shadow:var(--sh);transition:all 0.2s}
 .nc:hover{border-color:var(--bmid);box-shadow:var(--shm)}
@@ -136,7 +123,6 @@ h2 span{color:var(--blue)}
 .ntitle{font-weight:700;font-size:0.92rem;color:var(--text);margin-bottom:0.4rem;line-height:1.4}
 .nbody{font-size:0.83rem;color:var(--t2);line-height:1.6}
 .nsev{font-size:0.7rem;font-weight:700;margin-top:0.75rem}
-
 .fchips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:2rem}
 .fchip{display:flex;align-items:center;gap:6px;background:var(--white);border:1.5px solid var(--border);padding:8px 16px;border-radius:100px;font-size:0.82rem;font-weight:600;color:var(--t2);cursor:pointer;transition:all 0.2s}
 .fchip:hover,.fchip.on{background:var(--blight);border-color:var(--blue);color:var(--blue)}
@@ -157,11 +143,9 @@ select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%
 .sbtn:hover{background:#b91c1c;transform:translateY(-1px)}
 .success{display:none;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:16px;padding:2rem;text-align:center;margin-top:1.5rem}
 .success.on{display:block}
-
 .pgrid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;max-width:880px;margin:0 auto}
 .pcard{background:var(--white);border-radius:20px;padding:2rem;border:1px solid var(--border);box-shadow:var(--shl);text-align:center}
 .qr-box{width:200px;height:200px;margin:0 auto 1.25rem;border-radius:16px;background:linear-gradient(135deg,var(--blight),var(--bmid));border:3px solid var(--bmid);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px}
-.qr-box .qr-text{font-family:'JetBrains Mono',monospace;font-size:0.75rem;font-weight:600;color:var(--blue)}
 .upi{display:inline-flex;align-items:center;gap:8px;background:var(--blight);border:1.5px solid var(--bmid);color:var(--blue);font-family:'JetBrains Mono',monospace;font-size:0.85rem;font-weight:600;padding:9px 16px;border-radius:10px;cursor:pointer;margin:0.75rem 0;transition:all 0.2s}
 .upi:hover{background:var(--blue);color:#fff}
 .apills{display:flex;justify-content:center;gap:6px;flex-wrap:wrap;margin-top:0.75rem}
@@ -170,7 +154,6 @@ select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%
 .step{display:flex;gap:1rem;margin-bottom:1.25rem;align-items:flex-start}
 .snum{width:28px;height:28px;background:var(--blue);color:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.8rem;flex-shrink:0}
 .stxt{font-size:0.9rem;color:var(--t2);line-height:1.6;padding-top:3px}
-
 .cgrid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;max-width:1000px;margin:0 auto}
 .ci{display:flex;gap:1rem;align-items:flex-start;margin-bottom:1.5rem}
 .cico{width:46px;height:46px;background:var(--blight);border:1px solid var(--bmid);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
@@ -180,7 +163,6 @@ select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%
 .mcard{background:var(--white);border-radius:16px;border:1px solid var(--border);overflow:hidden;box-shadow:var(--sh)}
 .mhead{padding:1rem 1.25rem;border-bottom:1px solid var(--border);font-weight:700;font-size:0.88rem;color:var(--text);display:flex;align-items:center;gap:6px}
 .mbody{height:190px;background:linear-gradient(135deg,#eff6ff,#f0f7ff);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px}
-
 footer{background:var(--navy);padding:2.25rem 6%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
 .flogo{height:36px;filter:brightness(0) invert(1) opacity(0.9)}
 .fbrand{display:flex;align-items:center;gap:10px}
@@ -189,12 +171,10 @@ footer{background:var(--navy);padding:2.25rem 6%;display:flex;align-items:center
 .flinks{display:flex;gap:1.5rem}
 .flinks a{font-size:0.8rem;color:rgba(255,255,255,0.6);transition:color 0.2s}
 .flinks a:hover{color:#fff}
-
 #wa{position:fixed;bottom:28px;right:28px;z-index:999;display:flex;flex-direction:column;align-items:center;gap:6px}
 .wabtn{width:56px;height:56px;background:#25d366;border-radius:50%;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.5rem;box-shadow:0 4px 20px rgba(37,211,102,0.45);transition:transform 0.2s}
 .wabtn:hover{transform:scale(1.1)}
 .walbl{font-size:0.62rem;font-weight:700;color:var(--t2);background:var(--white);padding:2px 8px;border-radius:100px;border:1px solid var(--border)}
-
 @media(max-width:900px){
   .hero-inner,.about-grid,.pgrid,.cgrid{grid-template-columns:1fr;gap:2rem}
   .logo-card{display:none}
@@ -206,10 +186,9 @@ footer{background:var(--navy);padding:2.25rem 6%;display:flex;align-items:center
 </style>
 </head>
 <body>
-
 <nav>
   <div class="nav-brand">
-    <img src="IMG_20260527_215224_201.jpg" class="nav-logo" alt="AH Cyber">
+    <img src="file_00000000d568720bb94605cdf6d9e49e.png" class="nav-logo" alt="AH Cyber">
     <div class="brand-text">
       <div class="bname">AH Cyber Solutions</div>
       <div class="btag">Learn · Hack · Secure</div>
@@ -226,11 +205,9 @@ footer{background:var(--navy);padding:2.25rem 6%;display:flex;align-items:center
     <li><a href="#payment" class="nav-cta">Enroll Now</a></li>
   </ul>
 </nav>
-
 <section id="home">
   <div class="hero-inner">
     <div>
-      <div class="eyebrow"><div class="dot"></div>Hyderabad's Cyber Security Experts</div>
       <h1>Learn Ethical Hacking.<br><span class="hl">Secure the Future.</span></h1>
       <p class="hero-desc">Practical, affordable, beginner-friendly Cyber Security training by Paka Srikanth — Certified Ethical Hacker from Hyderabad, Telangana.</p>
       <div class="btns">
@@ -245,8 +222,8 @@ footer{background:var(--navy);padding:2.25rem 6%;display:flex;align-items:center
       </div>
     </div>
     <div class="logo-card">
-      <div class="logo-box"><img src="IMG_20260527_215224_201.jpg" alt="Logo"></div>
-div class="founder-row">
+      <div class="logo-box"><img src="file_00000000d568720bb94605cdf6d9e49e.png" alt="Logo"></div>
+      <div class="founder-row">
         <div class="f-av">👨‍💻</div>
         <div><div class="f-name">Paka Srikanth</div><div class="f-role">Founder · Ethical Hacker · Cyber Security Analyst</div></div>
       </div>
@@ -258,12 +235,11 @@ div class="founder-row">
     </div>
   </div>
 </section>
-
 <section id="about" class="sec-alt">
   <div class="wrap">
     <div class="about-grid">
       <div class="al-card">
-        <div class="al-glow"><img src="IMG_20260527_215224_201.jpg" alt="Logo"></div>
+        <div class="al-glow"><img src="file_00000000d568720bb94605cdf6d9e49e.png" alt="Logo"></div>
         <div class="aname">Paka Srikanth</div>
         <div class="arole">Ethical Hacker &amp; Cyber Security Analyst</div>
         <div class="chips">
@@ -285,7 +261,6 @@ div class="founder-row">
     </div>
   </div>
 </section>
-
 <section id="courses" class="sec">
   <div class="wrap">
     <div class="sec-c"><div class="eye">Premium Courses</div><h2>Our <span>Training</span> Programs</h2><p class="sub">Beginner నుండి Advanced వరకు — 100% practical, industry-ready skills.</p></div>
@@ -299,7 +274,6 @@ div class="founder-row">
     </div>
   </div>
 </section>
-
 <section id="services" class="sec-alt">
   <div class="wrap">
     <div class="sec-c"><div class="eye">Professional Services</div><h2>What We <span>Offer</span></h2><p class="sub">Individuals మరియు organizations కోసం professional cyber security services.</p></div>
@@ -313,7 +287,6 @@ div class="founder-row">
     </div>
   </div>
 </section>
-
 <section id="resources" class="sec">
   <div class="wrap">
     <div class="sec-c"><div class="eye">Free Downloads</div><h2>Free <span>Cheat Sheets</span> &amp; Resources</h2><p class="sub">100% Free — WhatsApp చేస్తే immediately share చేస్తాము 🎁</p></div>
@@ -327,14 +300,10 @@ div class="founder-row">
     </div>
   </div>
 </section>
-
 <section id="threats" class="sec-alt">
   <div class="wrap">
     <div class="sec-c"><div class="eye">Stay Informed</div><h2>Cyber <span>Threat</span> News</h2><p class="sub">Latest alerts, vulnerabilities &amp; India cyber crime updates.</p></div>
-    <div style="background:#fef2f2;border:1px solid #fecaca;border-left:4px solid var(--red);border-radius:12px;padding:1rem 1.5rem;margin-bottom:2rem;display:flex;gap:1rem;align-items:center">
-      <span style="font-size:1.3rem">🔴</span>
-      <div><strong style="font-size:0.85rem;color:var(--red)">INDIA CYBER ALERT:</strong> <span style="font-size:0.85rem;color:#7f1d1d"> UPI Fraud మరియు KYC Scam cases Telangana లో increase అవుతున్నాయి. National Helpline: <strong>1930</strong></span></div>
-    </div>
+    <div style="background:#fef2f2;border:1px solid #fecaca;border-left:4px solid var(--red);border-radius:12px;padding:1rem 1.5rem;margin-bottom:2rem;display:flex;gap:1rem;align-items:center"><span style="font-size:1.3rem">🔴</span><div><strong style="font-size:0.85rem;color:var(--red)">INDIA CYBER ALERT:</strong> <span style="font-size:0.85rem;color:#7f1d1d"> UPI Fraud మరియు KYC Scam cases Telangana లో increase అవుతున్నాయి. National Helpline: <strong>1930</strong></span></div></div>
     <div class="ng">
       <div class="nc"><span class="ntag rt4">Critical</span><div class="ntitle">Windows Zero-Day Vulnerability Patched</div><div class="nbody">Microsoft Windows లో critical zero-day patch చేయబడింది. CERT-In అన్ని users ని వెంటనే update చేసుకోమని advised చేసింది.</div><div class="nsev" style="color:var(--red)">⬤ SEVERITY: CRITICAL</div></div>
       <div class="nc"><span class="ntag rt3">High</span><div class="ntitle">Fake Job Offer Scams Rising in Telangana</div><div class="nbody">WhatsApp లో "Work from home ₹50,000/month" fake job offers పెరిగాయి. Report: cybercrime.gov.in</div><div class="nsev" style="color:var(--orange)">⬤ SEVERITY: HIGH</div></div>
@@ -344,26 +313,12 @@ div class="founder-row">
     <div style="text-align:center;margin-top:2rem"><a href="https://wa.me/919640724438?text=Hi%20subscribe%20me%20to%20cyber%20alerts" target="_blank" class="btn btn-b" style="display:inline-flex">🔔 Subscribe to Free Cyber Alerts</a></div>
   </div>
 </section>
-
 <section id="complaint" class="sec">
   <div class="wrap">
     <div class="sec-c"><div class="eye">Cyber Crime Help</div><h2>Report <span>Cyber Fraud</span></h2><p class="sub">Cyber fraud victim అయ్యారా? మా team guidance మరియు complaint assistance provide చేస్తుంది.</p></div>
     <div style="max-width:880px;margin:0 auto">
-      <div style="background:#fef2f2;border:1px solid #fecaca;border-left:4px solid var(--red);border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:2rem;display:flex;gap:1rem">
-        <span style="font-size:1.4rem">🚨</span>
-        <div><strong style="font-size:0.88rem;color:var(--red)">URGENT?</strong> <span style="font-size:0.88rem;color:var(--t2)">Directly WhatsApp చేయండి: <a href="https://wa.me/919640724438" target="_blank" style="color:var(--blue);font-weight:700">+91 9640724438</a> · National Helpline: <strong>1930</strong> · <a href="https://cybercrime.gov.in" target="_blank" style="color:var(--blue);font-weight:700">cybercrime.gov.in</a></span></div>
-      </div>
-      <div style="margin-bottom:1.5rem">
-        <div style="font-size:0.8rem;font-weight:700;color:var(--t2);margin-bottom:0.75rem">SELECT FRAUD TYPE:</div>
-        <div class="fchips">
-          <div class="fchip" onclick="pc(this,'UPI/Payment Fraud')">💸 UPI / Payment</div>
-          <div class="fchip" onclick="pc(this,'Phishing / Fake Website')">🎣 Phishing</div>
-          <div class="fchip" onclick="pc(this,'Social Media Fraud')">📱 Social Media</div>
-          <div class="fchip" onclick="pc(this,'Job / Loan Fraud')">💼 Job / Loan Fraud</div>
-          <div class="fchip" onclick="pc(this,'Sextortion / Blackmail')">🔒 Sextortion</div>
-          <div class="fchip" onclick="pc(this,'Other Cyber Crime')">⚠️ Other</div>
-        </div>
-      </div>
+      <div style="background:#fef2f2;border:1px solid #fecaca;border-left:4px solid var(--red);border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:2rem;display:flex;gap:1rem"><span style="font-size:1.4rem">🚨</span><div><strong style="font-size:0.88rem;color:var(--red)">URGENT?</strong> <span style="font-size:0.88rem;color:var(--t2)">Directly WhatsApp చేయండి: <a href="https://wa.me/919640724438" target="_blank" style="color:var(--blue);font-weight:700">+91 9640724438</a> · National Helpline: <strong>1930</strong> · <a href="https://cybercrime.gov.in" target="_blank" style="color:var(--blue);font-weight:700">cybercrime.gov.in</a></span></div></div>
+      <div style="margin-bottom:1.5rem"><div style="font-size:0.8rem;font-weight:700;color:var(--t2);margin-bottom:0.75rem">SELECT FRAUD TYPE:</div><div class="fchips"><div class="fchip" onclick="pc(this,'UPI/Payment Fraud')">💸 UPI / Payment</div><div class="fchip" onclick="pc(this,'Phishing / Fake Website')">🎣 Phishing</div><div class="fchip" onclick="pc(this,'Social Media Fraud')">📱 Social Media</div><div class="fchip" onclick="pc(this,'Job / Loan Fraud')">💼 Job / Loan Fraud</div><div class="fchip" onclick="pc(this,'Sextortion / Blackmail')">🔒 Sextortion</div><div class="fchip" onclick="pc(this,'Other Cyber Crime')">⚠️ Other</div></div></div>
       <div class="form-card">
         <div class="fg">
           <div class="grp"><label>Full Name <span class="req">*</span></label><input type="text" id="fn" placeholder="మీ పేరు"></div>
@@ -386,45 +341,19 @@ div class="founder-row">
         <div id="cid" style="font-family:'JetBrains Mono',monospace;color:var(--blue);font-size:0.85rem;font-weight:600;margin-top:0.75rem"></div>
         <a href="https://wa.me/919640724438" target="_blank" class="btn btn-b" style="margin-top:1.25rem;display:inline-flex">📲 WhatsApp for Urgent Help</a>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-top:2.5rem">
-        <a href="https://cybercrime.gov.in" target="_blank" style="background:var(--white);border:1px solid var(--border);border-radius:12px;padding:1rem;display:flex;gap:0.75rem;transition:border-color 0.2s" onmouseover="this.style.borderColor='var(--blue)'" onmouseout="this.style.borderColor='var(--border)'"><span style="font-size:1.4rem">🏛️</span><div><div style="font-weight:700;font-size:0.85rem;color:var(--blue)">cybercrime.gov.in</div><div style="font-size:0.78rem;color:var(--t2)">National Cyber Crime Portal</div></div></a>
-        <a href="tel:1930" style="background:var(--white);border:1px solid var(--border);border-radius:12px;padding:1rem;display:flex;gap:0.75rem;transition:border-color 0.2s" onmouseover="this.style.borderColor='var(--green)'" onmouseout="this.style.borderColor='var(--border)'"><span style="font-size:1.4rem">📞</span><div><div style="font-weight:700;font-size:0.85rem;color:var(--green)">Call 1930</div><div style="font-size:0.78rem;color:var(--t2)">National Cyber Crime Helpline</div></div></a>
-        <a href="https://wa.me/919640724438" target="_blank" style="background:var(--white);border:1px solid var(--border);border-radius:12px;padding:1rem;display:flex;gap:0.75rem;transition:border-color 0.2s" onmouseover="this.style.borderColor='#25d366'" onmouseout="this.style.borderColor='var(--border)'"><span style="font-size:1.4rem">💬</span><div><div style="font-weight:700;font-size:0.85rem;color:#25d366">WhatsApp Us</div><div style="font-size:0.78rem;color:var(--t2)">Direct expert guidance</div></div></a>
-      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-top:2.5rem"><a href="https://cybercrime.gov.in" target="_blank" style="background:var(--white);border:1px solid var(--border);border-radius:12px;padding:1rem;display:flex;gap:0.75rem;transition:border-color 0.2s" onmouseover="this.style.borderColor='var(--blue)'" onmouseout="this.style.borderColor='var(--border)'"><span style="font-size:1.4rem">🏛️</span><div><div style="font-weight:700;font-size:0.85rem;color:var(--blue)">cybercrime.gov.in</div><div style="font-size:0.78rem;color:var(--t2)">National Cyber Crime Portal</div></div></a><a href="tel:1930" style="background:var(--white);border:1px solid var(--border);border-radius:12px;padding:1rem;display:flex;gap:0.75rem;transition:border-color 0.2s" onmouseover="this.style.borderColor='var(--green)'" onmouseout="this.style.borderColor='var(--border)'"><span style="font-size:1.4rem">📞</span><div><div style="font-weight:700;font-size:0.85rem;color:var(--green)">Call 1930</div><div style="font-size:0.78rem;color:var(--t2)">National Cyber Crime Helpline</div></div></a><a href="https://wa.me/919640724438" target="_blank" style="background:var(--white);border:1px solid var(--border);border-radius:12px;padding:1rem;display:flex;gap:0.75rem;transition:border-color 0.2s" onmouseover="this.style.borderColor='#25d366'" onmouseout="this.style.borderColor='var(--border)'"><span style="font-size:1.4rem">💬</span><div><div style="font-weight:700;font-size:0.85rem;color:#25d366">WhatsApp Us</div><div style="font-size:0.78rem;color:var(--t2)">Direct expert guidance</div></div></a></div>
     </div>
   </div>
 </section>
-
 <section id="payment" class="sec-alt">
   <div class="wrap">
     <div class="sec-c"><div class="eye">Enroll Now</div><h2>Payment &amp; <span>Enrollment</span></h2></div>
     <div class="pgrid">
-      <div class="pcard">
-        <div style="font-weight:700;font-size:0.92rem;color:var(--text);margin-bottom:1rem">📲 Scan &amp; Pay</div>
-        <div class="qr-box">
-          <div style="font-size:3rem">📱</div>
-          <div class="qr-text">Scan QR to Pay</div>
-          <div style="font-size:0.7rem;color:var(--t2);font-family:'JetBrains Mono',monospace">9640724438@pthdfc</div>
-        </div>
-        <div style="font-size:0.78rem;color:var(--t2);margin-bottom:4px">UPI ID — click to copy</div>
-        <div class="upi" onclick="cu(this)">📋 9640724438@pthdfc</div>
-        <div style="font-size:0.75rem;color:var(--green);font-weight:600;margin-bottom:1rem">✓ Paka Srikanth · Verified</div>
-        <div style="font-size:0.72rem;font-weight:700;color:var(--t2);margin-bottom:0.5rem">ACCEPTED PAYMENTS</div>
-        <div class="apills"><span class="ap">G Pay</span><span class="ap">PhonePe</span><span class="ap">Paytm</span><span class="ap">BHIM</span></div>
-      </div>
-      <div class="psteps">
-        <div style="font-family:'Space Grotesk',sans-serif;font-size:1rem;font-weight:700;color:var(--text);margin-bottom:1.5rem">How to Enroll — 5 Easy Steps</div>
-        <div class="step"><div class="snum">1</div><div class="stxt">Courses section నుండి course choose చేసుకుని fee note చేయండి.</div></div>
-        <div class="step"><div class="snum">2</div><div class="stxt">QR scan చేయండి లేదా UPI ID <strong>9640724438@pthdfc</strong> కి pay చేయండి.</div></div>
-        <div class="step"><div class="snum">3</div><div class="stxt">Payment confirmation screenshot తీసుకోండి.</div></div>
-        <div class="step"><div class="snum">4</div><div class="stxt">Screenshot + course name WhatsApp కి send చేయండి: <strong style="color:var(--blue)">+91 9640724438</strong></div></div>
-        <div class="step"><div class="snum">5</div><div class="stxt">24 hours లో enrollment confirm అవుతుంది &amp; course access share అవుతుంది.</div></div>
-        <a href="https://wa.me/919640724438?text=Hi%20I%20want%20to%20enroll" target="_blank" class="btn btn-b" style="width:100%;justify-content:center;margin-top:1.25rem">📲 WhatsApp to Enroll</a>
-      </div>
+      <div class="pcard"><div style="font-weight:700;font-size:0.92rem;color:var(--text);margin-bottom:1rem">📲 Scan &amp; Pay</div><div class="qr-box" style="background:#fff;padding:8px;border-radius:12px"><img src="Screenshot_20260602_161938.jpg" style="width:100%;height:100%;object-fit:contain"></div><div style="font-size:0.78rem;color:var(--t2);margin-bottom:4px">UPI ID — click to copy</div><div class="upi" onclick="cu(this)">📋 9640724438@pthdfc</div><div style="font-size:0.75rem;color:var(--green);font-weight:600;margin-bottom:1rem">✓ Paka Srikanth · Verified</div><div style="font-size:0.72rem;font-weight:700;color:var(--t2);margin-bottom:0.5rem">ACCEPTED PAYMENTS</div><div class="apills"><span class="ap">G Pay</span><span class="ap">PhonePe</span><span class="ap">Paytm</span><span class="ap">BHIM</span></div></div>
+      <div class="psteps"><div style="font-family:'Space Grotesk',sans-serif;font-size:1rem;font-weight:700;color:var(--text);margin-bottom:1.5rem">How to Enroll — 5 Easy Steps</div><div class="step"><div class="snum">1</div><div class="stxt">Courses section నుండి course choose చేసుకుని fee note చేయండి.</div></div><div class="step"><div class="snum">2</div><div class="stxt">QR scan చేయండి లేదా UPI ID <strong>9640724438@pthdfc</strong> కి pay చేయండి.</div></div><div class="step"><div class="snum">3</div><div class="stxt">Payment confirmation screenshot తీసుకోండి.</div></div><div class="step"><div class="snum">4</div><div class="stxt">Screenshot + course name WhatsApp కి send చేయండి: <strong style="color:var(--blue)">+91 9640724438</strong></div></div><div class="step"><div class="snum">5</div><div class="stxt">24 hours లో enrollment confirm అవుతుంది &amp; course access share అవుతుంది.</div></div><a href="https://wa.me/919640724438?text=Hi%20I%20want%20to%20enroll" target="_blank" class="btn btn-b" style="width:100%;justify-content:center;margin-top:1.25rem">📲 WhatsApp to Enroll</a></div>
     </div>
   </div>
 </section>
-
 <section id="contact" class="sec">
   <div class="wrap">
     <div class="sec-c"><div class="eye">Get In Touch</div><h2>Contact <span>Us</span></h2></div>
@@ -432,63 +361,32 @@ div class="founder-row">
       <div>
         <div class="ci"><div class="cico">📱</div><div><div class="clbl">WhatsApp</div><div class="cval"><a href="https://wa.me/919640724438">+91 9640724438</a></div></div></div>
         <div class="ci"><div class="cico">☎️</div><div><div class="clbl">Phone</div><div class="cval"><a href="tel:9703724438">+91 9703724438</a></div></div></div>
+        <div class="ci"><div class="cico">✉️</div><div><div class="clbl">Email</div><div class="cval"><a href="mailto:ahcybersolutions119@gmail.com">ahcybersolutions119@gmail.com</a></div></div></div>
         <div class="ci"><div class="cico">📸</div><div><div class="clbl">Instagram</div><div class="cval"><a href="https://instagram.com/ah_cyber_solutions" target="_blank">@ah_cyber_solutions</a></div></div></div>
+        <div class="ci"><div class="cico">💼</div><div><div class="clbl">LinkedIn</div><div class="cval"><a href="https://linkedin.com/in/paka-srikanth" target="_blank">Paka Srikanth</a></div></div></div>
         <div class="ci"><div class="cico">📍</div><div><div class="clbl">Location</div><div class="cval">BN Reddy Nagar, Hyderabad<br><span style="font-size:0.85rem;color:var(--t2)">Ranga Reddy Dist., Telangana — 500079</span></div></div></div>
       </div>
       <div class="mcard">
         <div class="mhead">📍 Our Location</div>
-        <div class="mbody">
-          <div style="font-size:3rem">📍</div>
-          <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--blue)">BN Reddy Nagar</div>
-          <div style="font-size:0.82rem;color:var(--t2)">Hyderabad, Telangana 500079</div>
-          <a href="https://maps.google.com/?q=BN+Reddy+Nagar+Hyderabad" target="_blank" class="btn btn-b" style="font-size:0.8rem;padding:9px 20px;margin-top:0.5rem">Open in Google Maps</a>
-        </div>
+        <div class="mbody"><div style="font-size:3rem">📍</div><div style="font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--blue)">BN Reddy Nagar</div><div style="font-size:0.82rem;color:var(--t2)">Hyderabad, Telangana 500079</div><a href="https://maps.google.com/?q=BN+Reddy+Nagar+Hyderabad" target="_blank" class="btn btn-b" style="font-size:0.8rem;padding:9px 20px;margin-top:0.5rem">Open in Google Maps</a></div>
       </div>
     </div>
   </div>
 </section>
-
 <footer>
-  <div class="fbrand"><img src="IMG_20260527_215224_201.jpg" class="flogo" alt="Logo"><span class="fname">AH Cyber Solutions</span></div>
+  <div class="fbrand"><img src="file_00000000d568720bb94605cdf6d9e49e.png" class="flogo" alt="Logo"><span class="fname">AH Cyber Solutions</span></div>
   <div class="fcopy">© 2026 AH Cyber Solutions · Paka Srikanth · Hyderabad</div>
   <div class="flinks"><a href="#courses">Courses</a><a href="#resources">Resources</a><a href="#complaint">Report Fraud</a><a href="#contact">Contact</a></div>
 </footer>
-
 <div id="wa">
   <a href="https://wa.me/919640724438?text=Hi%20I%20need%20help" target="_blank" class="wabtn" title="WhatsApp Help">💬</a>
   <div class="walbl">Need Help?</div>
 </div>
-
 <script>
 function pc(el,t){document.querySelectorAll('.fchip').forEach(x=>x.classList.remove('on'));el.classList.add('on');document.getElementById('ft').value=t;}
 function cu(el){navigator.clipboard.writeText('9640724438@pthdfc').then(()=>{const h=el.innerHTML;el.innerHTML='✅ Copied!';setTimeout(()=>el.innerHTML=h,1500);});}
-function sub(){
-  const n=document.getElementById('fn').value.trim(),m=document.getElementById('fm').value.trim(),c=document.getElementById('fc').value.trim(),t=document.getElementById('ft').value,d=document.getElementById('fd').value,desc=document.getElementById('fdesc').value.trim();
-  if(!n||!m||!c||!t||!d||!desc){alert('Please fill all required (*) fields');return;}
-  if(!/^[6-9]\d{9}$/.test(m)){alert('Enter valid 10-digit mobile number');return;}
-  const id='AHC-'+Date.now().toString().slice(-8).toUpperCase();
-  document.getElementById('cid').textContent='Complaint ID: '+id;
-  const s=document.getElementById('sbox');s.classList.add('on');s.scrollIntoView({behavior:'smooth',block:'center'});
-  const msg=`Complaint ID: ${id}
-Name: ${n}
-Mobile: ${m}
-City: ${c}
-Type: ${t}
-Date: ${d}
-Loss: Rs.${document.getElementById('fa').value||'N/A'}
-Desc: ${desc}
-Suspect: ${document.getElementById('fs').value||'Unknown'}`;
-  setTimeout(()=>window.open('https://wa.me/919640724438?text='+encodeURIComponent(msg),'_blank'),1500);
-}
-const tips=[
-  {t:"Enable 2-Factor Authentication",d:"అన్ని important accounts లో 2FA enable చేయండి. Authenticator app use చేయండి."},
-  {t:"Avoid Public WiFi for Banking",d:"Public WiFi లో banking చేయకండి. Hacker same network లో data steal చేయగలరు."},
-  {t:"Keep Software Updated",d:"Phone మరియు computer software update గా ఉంచండి. Security patches ముఖ్యమైనవి."},
-  {t:"Use Strong Passwords",d:"Password minimum 12 characters — uppercase, lowercase, numbers, symbols కలిపి use చేయండి."},
-  {t:"Don't Click Unknown Links",d:"Unknown messages లో links click చేయకండి. Bank ఎప్పుడూ WhatsApp లో OTP అడగదు."},
-  {t:"Beware of Social Engineering",d:"Phone లో 'bank officer' అని OTP అడిగితే — అది scam! Immediately cut చేయండి."},
-  {t:"Backup Your Data Regularly",d:"Important files regular గా backup చేయండి. Ransomware నుండి safe గా ఉంటుంది."}
-];
+function sub(){const n=document.getElementById('fn').value.trim(),m=document.getElementById('fm').value.trim(),c=document.getElementById('fc').value.trim(),t=document.getElementById('ft').value,d=document.getElementById('fd').value,desc=document.getElementById('fdesc').value.trim();if(!n||!m||!c||!t||!d||!desc){alert('Please fill all required (*) fields');return;}if(!/^[6-9]\d{9}$/.test(m)){alert('Enter valid 10-digit mobile number');return;}const id='AHC-'+Date.now().toString().slice(-8).toUpperCase();document.getElementById('cid').textContent='Complaint ID: '+id;const s=document.getElementById('sbox');s.classList.add('on');s.scrollIntoView({behavior:'smooth',block:'center'});const msg=`Complaint ID: ${id}\nName: ${n}\nMobile: ${m}\nCity: ${c}\nType: ${t}\nDate: ${d}\nLoss: Rs.${document.getElementById('fa').value||'N/A'}\nDesc: ${desc}\nSuspect: ${document.getElementById('fs').value||'Unknown'}`;setTimeout(()=>window.open('https://wa.me/919640724438?text='+encodeURIComponent(msg),'_blank'),1500);}
+const tips=[{t:"Enable 2-Factor Authentication",d:"అన్ని important accounts లో 2FA enable చేయండి. Authenticator app use చేయండి."},{t:"Avoid Public WiFi for Banking",d:"Public WiFi లో banking చేయకండి. Hacker same network లో data steal చేయగలరు."},{t:"Keep Software Updated",d:"Phone మరియు computer software update గా ఉంచండి. Security patches ముఖ్యమైనవి."},{t:"Use Strong Passwords",d:"Password minimum 12 characters — uppercase, lowercase, numbers, symbols కలిపి use చేయండి."},{t:"Don't Click Unknown Links",d:"Unknown messages లో links click చేయకండి. Bank ఎప్పుడూ WhatsApp లో OTP అడగదు."},{t:"Beware of Social Engineering",d:"Phone లో 'bank officer' అని OTP అడిగితే — అది scam! Immediately cut చేయండి."},{t:"Backup Your Data Regularly",d:"Important files regular గా backup చేయండి. Ransomware నుండి safe గా ఉంటుంది."}];
 const td=new Date(),tip=tips[td.getDay()%tips.length];
 document.getElementById('tt').textContent=tip.t;
 document.getElementById('tb').textContent=tip.d;
