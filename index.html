@@ -3,3291 +3,497 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>AH Cyber Solutions | Ethical Hacking & Cyber Security Training</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
-
-html{
-scroll-behavior:smooth;
-}
-
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
 :root{
---bg:#f8fafc;
---bg2:#f1f5f9;
---white:#ffffff;
-
---blue:#1a56db;
---blue2:#3b82f6;
---blue-light:#eff6ff;
---blue-mid:#dbeafe;
---navy:#0f2d6e;
-
---text:#0f172a;
---text2:#475569;
---text3:#94a3b8;
-
---border:#e2e8f0;
---border2:#cbd5e1;
-
---green:#059669;
---red:#dc2626;
---orange:#d97706;
-
---shadow:0 1px 3px rgba(0,0,0,0.07),
-0 1px 2px rgba(0,0,0,0.04);
-
---shadow-md:0 4px 12px rgba(0,0,0,0.08);
-
---shadow-lg:0 10px 30px rgba(0,0,0,0.09);
-
---shadow-blue:0 6px 24px rgba(26,86,219,0.2);
-}
-
-body{
-font-family:'Plus Jakarta Sans',sans-serif;
-background:var(--bg);
-color:var(--text);
-overflow-x:hidden;
--webkit-font-smoothing:antialiased;
-}
-
-::-webkit-scrollbar{
-width:4px;
-}
-
-::-webkit-scrollbar-track{
-background:var(--bg);
-}
-
-::-webkit-scrollbar-thumb{
-background:var(--blue);
-border-radius:10px;
-}
-
-a{
-text-decoration:none;
-color:inherit;
-}
-
-/* NAV */
-
-nav{
-position:fixed;
-top:0;
-left:0;
-right:0;
-z-index:1000;
-background:rgba(255,255,255,0.95);
-backdrop-filter:blur(20px);
-border-bottom:1px solid var(--border);
-height:68px;
-padding:0 6%;
-display:flex;
-align-items:center;
-justify-content:space-between;
-box-shadow:var(--shadow);
-}
-
-.nav-brand{
-display:flex;
-align-items:center;
-gap:12px;
-}
-
-.nav-logo-img{
-height:46px;
-width:auto;
-object-fit:contain;
-filter:drop-shadow(0 2px 10px rgba(26,86,219,0.3));
-}
-
-.nav-brand-text{
-display:flex;
-flex-direction:column;
-line-height:1;
-}
-
-.nav-brand-name{
-font-family:'Space Grotesk',sans-serif;
-font-size:1.05rem;
-font-weight:700;
-color:var(--navy);
-}
-
-.nav-brand-tag{
-font-size:0.6rem;
-color:var(--blue);
-font-weight:700;
-letter-spacing:2px;
-text-transform:uppercase;
-margin-top:2px;
-}
-  .nav-links{
-display:flex;
-align-items:center;
-gap:2px;
-list-style:none;
-}
-
-.nav-links a{
-font-size:0.82rem;
-font-weight:600;
-color:var(--text2);
-padding:7px 13px;
-border-radius:8px;
-transition:all 0.2s;
-white-space:nowrap;
-}
-
-.nav-links a:hover{
-color:var(--blue);
-background:var(--blue-light);
-}
-
-.nav-enroll{
-background:var(--blue)!important;
-color:#fff!important;
-border-radius:8px!important;
-padding:8px 18px!important;
-font-weight:700!important;
-box-shadow:var(--shadow-blue);
-}
-
-.nav-enroll:hover{
-background:var(--navy)!important;
-transform:translateY(-1px)!important;
-}
-
-/* HERO */
-
-#home{
-min-height:100vh;
-padding:100px 6% 70px;
-display:flex;
-align-items:center;
-background:linear-gradient(
-150deg,
-#eef5ff 0%,
-#fff 45%,
-#f8fafc 100%
-);
-position:relative;
-overflow:hidden;
-}
-
-.hero-glow{
-position:absolute;
-border-radius:50%;
-pointer-events:none;
-filter:blur(80px);
-}
-
-.glow1{
-width:600px;
-height:600px;
-background:rgba(59,130,246,0.07);
-top:-150px;
-right:-150px;
-}
-
-.glow2{
-width:350px;
-height:350px;
-background:rgba(26,86,219,0.05);
-bottom:-50px;
-left:5%;
-}
-
-.hero-inner{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:5rem;
-align-items:center;
-max-width:1200px;
-margin:0 auto;
-width:100%;
-position:relative;
-z-index:1;
-}
-
-.hero-badge{
-display:inline-flex;
-align-items:center;
-gap:8px;
-background:var(--blue-light);
-border:1px solid var(--blue-mid);
-color:var(--blue);
-font-size:0.75rem;
-font-weight:700;
-padding:6px 16px;
-border-radius:100px;
-letter-spacing:0.3px;
-margin-bottom:1.5rem;
-}
-
-.live-dot{
-width:7px;
-height:7px;
-background:var(--green);
-border-radius:50%;
-animation:livepulse 2s infinite;
-}
-
-@keyframes livepulse{
-0%,100%{
-box-shadow:0 0 0 0 rgba(5,150,105,0.5);
-}
-60%{
-box-shadow:0 0 0 7px rgba(5,150,105,0);
-}
-}
-
-.hero-h1{
-font-family:'Space Grotesk',sans-serif;
-font-size:clamp(2.2rem,3.8vw,3.3rem);
-font-weight:700;
-line-height:1.12;
-color:var(--text);
-margin-bottom:1.25rem;
-letter-spacing:-0.8px;
-}
-
-.hero-h1 .hl{
-color:var(--blue);
-position:relative;
-display:inline-block;
-}
-
-.hero-h1 .hl::after{
-content:'';
-position:absolute;
-bottom:-4px;
-left:0;
-right:0;
-height:3px;
-background:linear-gradient(
-90deg,
-var(--blue),
-var(--blue2)
-);
-border-radius:2px;
-}
-
-.hero-desc{
-font-size:1rem;
-color:var(--text2);
-line-height:1.8;
-margin-bottom:2.5rem;
-max-width:480px;
-}
-  /* HERO BUTTONS */
-
-.hero-btns{
-display:flex;
-gap:1rem;
-flex-wrap:wrap;
-margin-bottom:2.5rem;
-}
-
-.btn-primary{
-background:var(--blue);
-color:#fff;
-font-weight:700;
-font-size:0.9rem;
-padding:13px 28px;
-border-radius:10px;
-border:none;
-cursor:pointer;
-display:inline-flex;
-align-items:center;
-gap:8px;
-transition:all 0.25s;
-box-shadow:var(--shadow-blue);
-}
-
-.btn-primary:hover{
-background:var(--navy);
-transform:translateY(-2px);
-box-shadow:0 12px 32px rgba(26,86,219,0.3);
-}
-
-.btn-outline{
-background:transparent;
-color:var(--red);
-font-weight:700;
-font-size:0.9rem;
-padding:12px 28px;
-border-radius:10px;
-border:2px solid #fecaca;
-cursor:pointer;
-display:inline-flex;
-align-items:center;
-gap:8px;
-transition:all 0.25s;
-}
-
-.btn-outline:hover{
-background:#fef2f2;
-border-color:var(--red);
-}
-
-.trust-row{
-display:flex;
-align-items:center;
-gap:1.5rem;
-flex-wrap:wrap;
-}
-
-.trust-item{
-display:flex;
-align-items:center;
-gap:6px;
-font-size:0.8rem;
-font-weight:600;
-color:var(--text2);
-}
-
-/* LOGO CARD */
-
-.logo-card{
-background:var(--white);
-border-radius:24px;
-padding:2.5rem;
-box-shadow:
-0 20px 60px rgba(26,86,219,0.1),
-0 4px 16px rgba(0,0,0,0.05);
-border:1px solid var(--border);
-position:relative;
-overflow:hidden;
-}
-
-.logo-card::before{
-content:'';
-position:absolute;
-top:0;
-left:0;
-right:0;
-height:4px;
-background:linear-gradient(
-90deg,
-var(--blue),
-var(--blue2),
-#93c5fd
-);
-}
-
-.logo-showcase{
-background:linear-gradient(
-135deg,
-#eff6ff,
-#dbeafe
-);
-border-radius:16px;
-padding:2.25rem;
-display:flex;
-align-items:center;
-justify-content:center;
-margin-bottom:1.5rem;
-border:1px solid var(--blue-mid);
-position:relative;
-overflow:hidden;
-}
-
-.logo-showcase::after{
-content:'';
-position:absolute;
-width:220px;
-height:220px;
-background:radial-gradient(
-circle,
-rgba(59,130,246,0.12),
-transparent
-);
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-}
-
-.logo-showcase img{
-height:115px;
-width:auto;
-object-fit:contain;
-position:relative;
-z-index:1;
-filter:drop-shadow(
-0 6px 20px rgba(26,86,219,0.28)
-);
-}
-
-.founder-row{
-display:flex;
-align-items:center;
-gap:12px;
-padding:1rem;
-background:var(--bg);
-border-radius:12px;
-margin-bottom:1.25rem;
-}
-
-.f-avatar{
-width:46px;
-height:46px;
-background:linear-gradient(
-135deg,
-var(--blue),
-var(--blue2)
-);
-border-radius:12px;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:1.4rem;
-flex-shrink:0;
-}
-
-.f-name{
-font-weight:700;
-font-size:0.92rem;
-color:var(--text);
-}
-
-.f-role{
-font-size:0.73rem;
-color:var(--text2);
-margin-top:2px;
-}
-
-.stats-row{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:0.75rem;
-}
-
-.stat-box{
-text-align:center;
-padding:0.85rem 0.5rem;
-background:var(--blue-light);
-border-radius:10px;
-border:1px solid var(--blue-mid);
-}
-
-.stat-n{
-font-family:'Space Grotesk',sans-serif;
-font-size:1.55rem;
-font-weight:700;
-color:var(--blue);
-}
-
-.stat-l{
-font-size:0.68rem;
-color:var(--text2);
-font-weight:600;
-margin-top:2px;
-}
-  /* SECTION COMMONS */
-
-.sec{
-padding:88px 6%;
-}
-
-.sec-alt{
-padding:88px 6%;
-background:var(--white);
-}
-
-.wrap{
-max-width:1200px;
-margin:0 auto;
-}
-
-.sec-eye{
-display:inline-block;
-background:var(--blue-light);
-color:var(--blue);
-font-size:0.7rem;
-font-weight:700;
-padding:5px 14px;
-border-radius:100px;
-letter-spacing:1px;
-text-transform:uppercase;
-margin-bottom:0.75rem;
-border:1px solid var(--blue-mid);
-}
-
-.sec-title{
-font-family:'Space Grotesk',sans-serif;
-font-size:clamp(1.7rem,2.8vw,2.3rem);
-font-weight:700;
-color:var(--text);
-margin-bottom:0.75rem;
-letter-spacing:-0.4px;
-}
-
-.sec-title span{
-color:var(--blue);
-}
-
-.sec-sub{
-font-size:0.97rem;
-color:var(--text2);
-line-height:1.75;
-max-width:560px;
-}
-
-.sec-center{
-text-align:center;
-margin-bottom:3.5rem;
-}
-
-.sec-center .sec-sub{
-margin:0 auto;
-}
-
-/* ABOUT */
-
-.about-grid{
-display:grid;
-grid-template-columns:1fr 1.65fr;
-gap:4rem;
-align-items:center;
-}
-
-.about-logo-card{
-background:var(--white);
-border-radius:24px;
-padding:2.5rem;
-border:1px solid var(--border);
-box-shadow:var(--shadow-lg);
-text-align:center;
-}
-
-.about-logo-glow{
-background:linear-gradient(
-135deg,
-#eff6ff,
-#dbeafe
-);
-border-radius:16px;
-padding:2rem;
-margin-bottom:1.5rem;
-border:1px solid var(--blue-mid);
-display:flex;
-align-items:center;
-justify-content:center;
-}
-
-.about-logo-glow img{
-height:105px;
-width:auto;
-filter:drop-shadow(
-0 6px 20px rgba(26,86,219,0.28)
-);
-}
-
-.founder-name{
-font-family:'Space Grotesk',sans-serif;
-font-size:1.2rem;
-font-weight:700;
-color:var(--text);
-}
-
-.founder-role-tag{
-font-size:0.78rem;
-color:var(--blue);
-font-weight:600;
-margin:5px 0 1.25rem;
-letter-spacing:0.3px;
-}
-
-.chips{
-display:flex;
-flex-wrap:wrap;
-gap:6px;
-justify-content:center;
-}
-
-.chip{
-background:var(--blue-light);
-color:var(--blue);
-border:1px solid var(--blue-mid);
-font-size:0.7rem;
-font-weight:700;
-padding:4px 11px;
-border-radius:100px;
-}
-
-.about-content h3{
-font-family:'Space Grotesk',sans-serif;
-font-size:1.35rem;
-font-weight:700;
-color:var(--text);
-margin-bottom:1rem;
-}
-
-.about-content p{
-font-size:0.95rem;
-color:var(--text2);
-line-height:1.8;
-margin-bottom:1rem;
-}
-
-.exp-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:7px;
-margin-top:1.1rem;
-}
-
-.exp-item{
-display:flex;
-align-items:center;
-gap:7px;
-font-size:0.85rem;
-color:var(--text2);
-font-weight:500;
-}
-
-.exp-item::before{
-content:'✓';
-color:var(--green);
-font-weight:800;
-font-size:0.85rem;
-}
-  /* COURSES */
-
-.courses-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-gap:1.5rem;
-}
-
-.course-card{
-background:var(--white);
-border-radius:16px;
-padding:1.75rem;
-border:1px solid var(--border);
-box-shadow:var(--shadow);
-transition:all 0.3s;
-position:relative;
-overflow:hidden;
-}
-
-.course-card::after{
-content:'';
-position:absolute;
-top:0;
-left:0;
-right:0;
-height:3px;
-background:linear-gradient(
-90deg,
-var(--blue),
-var(--blue2)
-);
-transform:scaleX(0);
-transform-origin:left;
-transition:transform 0.3s;
-}
-
-.course-card:hover{
-transform:translateY(-5px);
-box-shadow:var(--shadow-lg);
-border-color:var(--blue-mid);
-}
-
-.course-card:hover::after{
-transform:scaleX(1);
-}
-
-.cbadge{
-display:inline-flex;
-align-items:center;
-gap:5px;
-font-size:0.68rem;
-font-weight:700;
-padding:4px 10px;
-border-radius:100px;
-margin-bottom:1rem;
-letter-spacing:0.3px;
-}
-
-.cb-blue{
-background:var(--blue-light);
-color:var(--blue);
-border:1px solid var(--blue-mid);
-}
-
-.cb-green{
-background:#ecfdf5;
-color:var(--green);
-border:1px solid #a7f3d0;
-}
-
-.cb-orange{
-background:#fffbeb;
-color:var(--orange);
-border:1px solid #fde68a;
-}
-
-.c-icon{
-font-size:2.2rem;
-margin-bottom:0.75rem;
-}
-
-.c-name{
-font-family:'Space Grotesk',sans-serif;
-font-size:1.05rem;
-font-weight:700;
-color:var(--text);
-margin-bottom:0.5rem;
-}
-
-.c-desc{
-font-size:0.88rem;
-color:var(--text2);
-line-height:1.65;
-margin-bottom:1.1rem;
-}
-
-.c-list{
-list-style:none;
-margin-bottom:1.4rem;
-display:flex;
-flex-direction:column;
-gap:5px;
-}
-
-.c-list li{
-font-size:0.82rem;
-color:var(--text2);
-display:flex;
-align-items:center;
-gap:7px;
-}
-
-.c-list li::before{
-content:'✓';
-color:var(--green);
-font-weight:800;
-flex-shrink:0;
-}
-
-.price-row{
-display:flex;
-align-items:center;
-gap:0.75rem;
-margin-bottom:1.25rem;
-}
-
-.p-now{
-font-family:'Space Grotesk',sans-serif;
-font-size:1.6rem;
-font-weight:700;
-color:var(--blue);
-}
-
-.p-old{
-font-size:0.88rem;
-color:var(--text3);
-text-decoration:line-through;
-}
-
-.p-save{
-background:#fef2f2;
-color:var(--red);
-font-size:0.67rem;
-font-weight:700;
-padding:3px 8px;
-border-radius:100px;
-border:1px solid #fecaca;
-}
-
-.enroll-btn{
-display:block;
-width:100%;
-background:var(--blue);
-color:#fff;
-font-weight:700;
-font-size:0.85rem;
-padding:11px;
-border-radius:10px;
-border:none;
-cursor:pointer;
-text-align:center;
-transition:all 0.2s;
-}
-
-.enroll-btn:hover{
-background:var(--navy);
-}
-  /* SERVICES */
-
-.services-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:1.25rem;
-}
-
-.srv-card{
-background:var(--white);
-border-radius:14px;
-padding:1.6rem;
-border:1px solid var(--border);
-box-shadow:var(--shadow);
-display:flex;
-gap:1.2rem;
-align-items:flex-start;
-transition:all 0.2s;
-}
-
-.srv-card:hover{
-border-color:var(--blue-mid);
-box-shadow:var(--shadow-md);
-transform:translateY(-2px);
-}
-
-.srv-icon{
-width:48px;
-height:48px;
-border-radius:12px;
-background:var(--blue-light);
-border:1px solid var(--blue-mid);
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:1.3rem;
-flex-shrink:0;
-}
-
-.srv-name{
-font-weight:700;
-font-size:0.95rem;
-color:var(--text);
-margin-bottom:0.35rem;
-}
-
-.srv-desc{
-font-size:0.85rem;
-color:var(--text2);
-line-height:1.6;
-}
-
-/* RESOURCES */
-
-.res-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:1.25rem;
-}
-
-.res-card{
-background:var(--white);
-border-radius:14px;
-padding:1.5rem;
-border:1px solid var(--border);
-box-shadow:var(--shadow);
-display:flex;
-flex-direction:column;
-gap:0.7rem;
-transition:all 0.2s;
-}
-
-.res-card:hover{
-border-color:var(--blue-mid);
-box-shadow:var(--shadow-md);
-transform:translateY(-2px);
-}
-
-.res-icon{
-font-size:2rem;
-}
-
-.rtag{
-font-size:0.65rem;
-font-weight:700;
-letter-spacing:1px;
-text-transform:uppercase;
-padding:3px 10px;
-border-radius:100px;
-display:inline-block;
-width:fit-content;
-}
-
-.rt-blue{
-background:var(--blue-light);
-color:var(--blue);
-border:1px solid var(--blue-mid);
-}
-
-.rt-green{
-background:#ecfdf5;
-color:var(--green);
-border:1px solid #a7f3d0;
-}
-
-.rt-orange{
-background:#fffbeb;
-color:var(--orange);
-border:1px solid #fde68a;
-}
-
-.rt-red{
-background:#fef2f2;
-color:var(--red);
-border:1px solid #fecaca;
-}
-
-.res-name{
-font-weight:700;
-font-size:0.95rem;
-color:var(--text);
-}
-
-.res-desc{
-font-size:0.83rem;
-color:var(--text2);
-line-height:1.6;
-flex:1;
-}
-
-.res-btn{
-display:flex;
-align-items:center;
-justify-content:center;
-gap:6px;
-background:var(--blue-light);
-color:var(--blue);
-font-weight:700;
-font-size:0.8rem;
-padding:9px;
-border-radius:8px;
-border:1px solid var(--blue-mid);
-transition:all 0.2s;
-}
-
-.res-btn:hover{
-background:var(--blue);
-color:#fff;
-}
-  /* CYBER NEWS */
-
-.news-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:1.25rem;
-}
-
-.news-card{
-background:var(--white);
-border-radius:14px;
-padding:1.5rem;
-border:1px solid var(--border);
-box-shadow:var(--shadow);
-transition:all 0.2s;
-}
-
-.news-card:hover{
-border-color:var(--blue-mid);
-box-shadow:var(--shadow-md);
-}
-
-.ntag{
-font-size:0.65rem;
-font-weight:700;
-letter-spacing:1px;
-text-transform:uppercase;
-padding:3px 10px;
-border-radius:100px;
-display:inline-block;
-margin-bottom:0.75rem;
-}
-
-.news-title{
-font-weight:700;
-font-size:0.92rem;
-color:var(--text);
-margin-bottom:0.4rem;
-line-height:1.4;
-}
-
-.news-body{
-font-size:0.83rem;
-color:var(--text2);
-line-height:1.6;
-}
-
-.news-sev{
-display:inline-flex;
-align-items:center;
-gap:5px;
-font-size:0.7rem;
-font-weight:700;
-margin-top:0.75rem;
-}
-
-.sev-r{color:var(--red);}
-.sev-o{color:var(--orange);}
-.sev-y{color:#ca8a04;}
-.sev-b{color:var(--blue);}
-
-/* COMPLAINT PORTAL */
-
-.cpl-wrap{
-max-width:880px;
-margin:0 auto;
-}
-
-.fraud-chips{
-display:flex;
-flex-wrap:wrap;
-gap:8px;
-margin-bottom:2rem;
-}
-
-.fchip{
-display:flex;
-align-items:center;
-gap:6px;
-background:var(--white);
-border:1.5px solid var(--border);
-padding:8px 16px;
-border-radius:100px;
-font-size:0.82rem;
-font-weight:600;
-color:var(--text2);
-cursor:pointer;
-transition:all 0.2s;
-user-select:none;
-}
-
-.fchip:hover,
-.fchip.on{
-background:var(--blue-light);
-border-color:var(--blue);
-color:var(--blue);
-}
-
-.form-card{
-background:var(--white);
-border-radius:20px;
-padding:2.5rem;
-border:1px solid var(--border);
-box-shadow:var(--shadow-lg);
-}
-
-.fg{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:1.25rem;
-}
-
-.full{
-grid-column:1/-1;
-}
-
-.grp{
-display:flex;
-flex-direction:column;
-gap:6px;
-}
-
-label{
-font-size:0.8rem;
-font-weight:700;
-color:var(--text);
-}
-
-label .req{
-color:var(--red);
-}
-
-input,
-select,
-textarea{
-background:var(--bg);
-border:1.5px solid var(--border);
-color:var(--text);
-font-family:'Plus Jakarta Sans',sans-serif;
-font-size:0.92rem;
-padding:10px 14px;
-border-radius:10px;
-outline:none;
-transition:all 0.2s;
-width:100%;
-}
-
-input:focus,
-select:focus,
-textarea:focus{
-border-color:var(--blue);
-box-shadow:0 0 0 3px rgba(26,86,219,0.08);
-background:var(--white);
-}
-
-textarea{
-resize:vertical;
-min-height:110px;
-}
-
-select{
-cursor:pointer;
-appearance:none;
-padding-right:36px;
-}
-
-.hint{
-font-size:0.75rem;
-color:var(--text3);
-}
-
-.sub-row{
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-top:2rem;
-flex-wrap:wrap;
-gap:1rem;
-}
-
-.priv{
-font-size:0.8rem;
-color:var(--text2);
-display:flex;
-align-items:center;
-gap:6px;
-}
-
-.sub-btn{
-background:var(--red);
-color:#fff;
-font-weight:700;
-font-size:0.88rem;
-padding:13px 32px;
-border-radius:10px;
-border:none;
-cursor:pointer;
-display:flex;
-align-items:center;
-gap:8px;
-transition:all 0.2s;
-box-shadow:0 4px 14px rgba(220,38,38,0.28);
-}
-
-.sub-btn:hover{
-background:#b91c1c;
-transform:translateY(-1px);
-}
-
-.success{
-display:none;
-background:#f0fdf4;
-border:1px solid #bbf7d0;
-border-radius:16px;
-padding:2rem;
-text-align:center;
-margin-top:1.5rem;
-}
-
-.success.on{
-display:block;
-animation:fadeUp 0.4s ease;
-}
-
-@keyframes fadeUp{
-from{
-opacity:0;
-transform:translateY(10px);
-}
-to{
-opacity:1;
-transform:translateY(0);
-}
-}
-  /* PAYMENT */
-
-.pay-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:3rem;
-align-items:start;
-max-width:880px;
-margin:0 auto;
-}
-
-.pay-card{
-background:var(--white);
-border-radius:20px;
-padding:2rem;
-border:1px solid var(--border);
-box-shadow:var(--shadow-lg);
-text-align:center;
-}
-
-.qr-frame{
-width:190px;
-height:190px;
-margin:0 auto 1.25rem;
-border-radius:16px;
-overflow:hidden;
-border:3px solid var(--blue-mid);
-box-shadow:0 4px 20px rgba(26,86,219,0.15);
-}
-
-.qr-frame img{
-width:100%;
-height:100%;
-object-fit:contain;
-}
-
-.upi-pill{
-display:inline-flex;
-align-items:center;
-gap:8px;
-background:var(--blue-light);
-border:1.5px solid var(--blue-mid);
-color:var(--blue);
-font-family:'JetBrains Mono',monospace;
-font-size:0.85rem;
-font-weight:600;
-padding:9px 16px;
-border-radius:10px;
-cursor:pointer;
-margin:0.75rem 0;
-transition:all 0.2s;
-}
-
-.upi-pill:hover{
-background:var(--blue);
-color:#fff;
-}
-
-.app-pills{
-display:flex;
-justify-content:center;
-gap:6px;
-flex-wrap:wrap;
-margin-top:0.75rem;
-}
-
-.apill{
-background:var(--bg);
-border:1px solid var(--border);
-padding:5px 12px;
-border-radius:8px;
-font-size:0.75rem;
-font-weight:600;
-color:var(--text2);
-}
-
-.pay-steps{
-background:var(--white);
-border-radius:20px;
-padding:2rem;
-border:1px solid var(--border);
-box-shadow:var(--shadow);
-}
-
-.step{
-display:flex;
-gap:1rem;
-margin-bottom:1.25rem;
-align-items:flex-start;
-}
-
-.snum{
-width:28px;
-height:28px;
-background:var(--blue);
-color:#fff;
-border-radius:8px;
-display:flex;
-align-items:center;
-justify-content:center;
-font-weight:800;
-font-size:0.8rem;
-flex-shrink:0;
-font-family:'Space Grotesk',sans-serif;
-}
-
-.stxt{
-font-size:0.9rem;
-color:var(--text2);
-line-height:1.6;
-padding-top:3px;
-}
-
-/* CONTACT */
-
-.contact-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:3rem;
-align-items:start;
-max-width:1000px;
-margin:0 auto;
-}
-
-.c-item{
-display:flex;
-gap:1rem;
-align-items:flex-start;
-margin-bottom:1.5rem;
-}
-
-.c-icon{
-width:46px;
-height:46px;
-background:var(--blue-light);
-border:1px solid var(--blue-mid);
-border-radius:12px;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:1.2rem;
-flex-shrink:0;
-}
-
-.c-lbl{
-font-size:0.72rem;
-font-weight:700;
-color:var(--text3);
-letter-spacing:0.5px;
-text-transform:uppercase;
-margin-bottom:3px;
-}
-
-.c-val{
-font-size:0.95rem;
-font-weight:600;
-color:var(--text);
-}
-
-.c-val a{
-color:var(--blue);
-}
-
-.map-card{
-background:var(--white);
-border-radius:16px;
-border:1px solid var(--border);
-overflow:hidden;
-box-shadow:var(--shadow);
-}
-
-.map-head{
-padding:1rem 1.25rem;
-border-bottom:1px solid var(--border);
-font-weight:700;
-font-size:0.88rem;
-display:flex;
-align-items:center;
-gap:6px;
-color:var(--text);
-}
-
-.map-body{
-height:190px;
-background:linear-gradient(
-135deg,
-#eff6ff,
-#f0f7ff
-);
-display:flex;
-flex-direction:column;
-align-items:center;
-justify-content:center;
-gap:6px;
-}
-  /* FOOTER */
-
-footer{
-background:var(--navy);
-padding:2.25rem 6%;
-display:flex;
-align-items:center;
-justify-content:space-between;
-flex-wrap:wrap;
-gap:1rem;
-}
-
-.f-brand{
-display:flex;
-align-items:center;
-gap:10px;
-}
-
-.f-logo{
-height:36px;
-width:auto;
-filter:brightness(0) invert(1) opacity(0.9);
-}
-
-.f-name{
-font-family:'Space Grotesk',sans-serif;
-font-weight:700;
-color:#fff;
-font-size:0.95rem;
-}
-
-.f-copy{
-font-size:0.8rem;
-color:rgba(255,255,255,0.5);
-}
-
-.f-links{
-display:flex;
-gap:1.5rem;
-}
-
-.f-links a{
-font-size:0.8rem;
-color:rgba(255,255,255,0.6);
-transition:color 0.2s;
-}
-
-.f-links a:hover{
-color:#fff;
-}
-
-/* WHATSAPP HELP BUTTON */
-
-#wa-help{
-position:fixed;
-bottom:28px;
-right:28px;
-z-index:9999;
-display:flex;
-flex-direction:column;
-align-items:center;
-gap:6px;
-}
-
-.wa-fab{
-width:58px;
-height:58px;
-background:#25d366;
-border-radius:50%;
-border:none;
-cursor:pointer;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:1.6rem;
-box-shadow:0 4px 20px rgba(37,211,102,0.45);
-transition:transform 0.2s,box-shadow 0.2s;
-}
-
-.wa-fab:hover{
-transform:scale(1.1);
-box-shadow:0 8px 28px rgba(37,211,102,0.5);
-}
-
-.wa-label{
-font-size:0.62rem;
-font-weight:700;
-color:var(--text2);
-letter-spacing:0.5px;
-background:var(--white);
-padding:2px 8px;
-border-radius:100px;
-border:1px solid var(--border);
-box-shadow:var(--shadow);
-}
-
-/* MOBILE RESPONSIVE */
+  --bg:#f8fafc;--white:#fff;
+  --blue:#1a56db;--blue2:#3b82f6;--blight:#eff6ff;--bmid:#dbeafe;--navy:#0f2d6e;
+  --text:#0f172a;--t2:#475569;--t3:#94a3b8;
+  --border:#e2e8f0;--green:#059669;--red:#dc2626;--orange:#d97706;
+  --sh:0 1px 3px rgba(0,0,0,0.07);--shm:0 4px 12px rgba(0,0,0,0.08);--shl:0 10px 30px rgba(0,0,0,0.09);--shb:0 6px 24px rgba(26,86,219,0.2);
+}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:var(--blue);border-radius:4px}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);height:66px;padding:0 6%;display:flex;align-items:center;justify-content:space-between;box-shadow:var(--sh)}
+.nav-brand{display:flex;align-items:center;gap:11px}
+.nav-logo{height:44px;width:auto;filter:drop-shadow(0 2px 8px rgba(26,86,219,0.25))}
+.brand-text .bname{font-family:'Space Grotesk',sans-serif;font-size:1.05rem;font-weight:700;color:var(--navy)}
+.brand-text .btag{font-size:0.6rem;color:var(--blue);font-weight:700;letter-spacing:2px;text-transform:uppercase}
+.nav-links{display:flex;align-items:center;gap:2px;list-style:none}
+.nav-links a{font-size:0.82rem;font-weight:600;color:var(--t2);padding:7px 12px;border-radius:8px;transition:all 0.2s}
+.nav-links a:hover{color:var(--blue);background:var(--blight)}
+.nav-cta{background:var(--blue)!important;color:#fff!important;border-radius:8px!important;font-weight:700!important;box-shadow:var(--shb)}
+.nav-cta:hover{background:var(--navy)!important}
+
+#home{min-height:100vh;padding:100px 6% 70px;display:flex;align-items:center;background:linear-gradient(150deg,#eef5ff 0%,#fff 50%,#f8fafc 100%);position:relative;overflow:hidden}
+#home::before{content:'';position:absolute;top:-200px;right:-200px;width:600px;height:600px;background:radial-gradient(circle,rgba(59,130,246,0.08),transparent 70%);border-radius:50%;pointer-events:none}
+.hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;max-width:1200px;margin:0 auto;width:100%;position:relative;z-index:1}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--blight);border:1px solid var(--bmid);color:var(--blue);font-size:0.75rem;font-weight:700;padding:6px 16px;border-radius:100px;margin-bottom:1.5rem}
+.dot{width:7px;height:7px;background:var(--green);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(5,150,105,0.5)}60%{box-shadow:0 0 0 7px transparent}}
+h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(2.2rem,3.8vw,3.3rem);font-weight:700;line-height:1.12;color:var(--text);margin-bottom:1.2rem;letter-spacing:-0.8px}
+h1 .hl{color:var(--blue);position:relative}
+h1 .hl::after{content:'';position:absolute;bottom:-3px;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--blue2));border-radius:2px}
+.hero-desc{font-size:1rem;color:var(--t2);line-height:1.8;margin-bottom:2.5rem;max-width:480px}
+.btns{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:2.5rem}
+.btn{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:0.9rem;padding:13px 28px;border-radius:10px;border:none;cursor:pointer;transition:all 0.25s}
+.btn-b{background:var(--blue);color:#fff;box-shadow:var(--shb)}
+.btn-b:hover{background:var(--navy);transform:translateY(-2px)}
+.btn-r{background:transparent;color:var(--red);border:2px solid #fecaca}
+.btn-r:hover{background:#fef2f2;border-color:var(--red)}
+.trust{display:flex;flex-wrap:wrap;gap:1.5rem}
+.ti{font-size:0.8rem;font-weight:600;color:var(--t2)}
+
+.logo-card{background:var(--white);border-radius:24px;padding:2.5rem;box-shadow:0 20px 60px rgba(26,86,219,0.1),0 4px 16px rgba(0,0,0,0.05);border:1px solid var(--border);position:relative;overflow:hidden}
+.logo-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--blue),var(--blue2),#93c5fd)}
+.logo-box{background:linear-gradient(135deg,#eff6ff,#dbeafe);border-radius:16px;padding:2.25rem;display:flex;align-items:center;justify-content:center;margin-bottom:1.5rem;border:1px solid var(--bmid)}
+.logo-box img{height:110px;filter:drop-shadow(0 6px 20px rgba(26,86,219,0.28))}
+.founder-row{display:flex;align-items:center;gap:12px;padding:1rem;background:var(--bg);border-radius:12px;margin-bottom:1.25rem}
+.f-av{width:44px;height:44px;background:linear-gradient(135deg,var(--blue),var(--blue2));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
+.f-name{font-weight:700;font-size:0.92rem;color:var(--text)}
+.f-role{font-size:0.73rem;color:var(--t2);margin-top:2px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:0.75rem}
+.stat{text-align:center;padding:0.85rem 0.5rem;background:var(--blight);border-radius:10px;border:1px solid var(--bmid)}
+.sn{font-family:'Space Grotesk',sans-serif;font-size:1.55rem;font-weight:700;color:var(--blue)}
+.sl{font-size:0.68rem;color:var(--t2);font-weight:600;margin-top:2px}
+
+.sec{padding:88px 6%}
+.sec-alt{padding:88px 6%;background:var(--white)}
+.wrap{max-width:1200px;margin:0 auto}
+.eye{display:inline-block;background:var(--blight);color:var(--blue);font-size:0.7rem;font-weight:700;padding:5px 14px;border-radius:100px;letter-spacing:1px;text-transform:uppercase;margin-bottom:0.75rem;border:1px solid var(--bmid)}
+h2{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.7rem,2.8vw,2.3rem);font-weight:700;color:var(--text);margin-bottom:0.75rem;letter-spacing:-0.4px}
+h2 span{color:var(--blue)}
+.sub{font-size:0.97rem;color:var(--t2);line-height:1.75;max-width:560px}
+.sec-c{text-align:center;margin-bottom:3.5rem}
+.sec-c .sub{margin:0 auto}
+
+.about-grid{display:grid;grid-template-columns:1fr 1.6fr;gap:4rem;align-items:center}
+.al-card{background:var(--white);border-radius:24px;padding:2.5rem;border:1px solid var(--border);box-shadow:var(--shl);text-align:center}
+.al-glow{background:linear-gradient(135deg,#eff6ff,#dbeafe);border-radius:16px;padding:2rem;margin-bottom:1.5rem;border:1px solid var(--bmid);display:flex;align-items:center;justify-content:center}
+.al-glow img{height:100px;filter:drop-shadow(0 6px 20px rgba(26,86,219,0.28))}
+.aname{font-family:'Space Grotesk',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text)}
+.arole{font-size:0.78rem;color:var(--blue);font-weight:600;margin:5px 0 1.25rem}
+.chips{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
+.chip{background:var(--blight);color:var(--blue);border:1px solid var(--bmid);font-size:0.7rem;font-weight:700;padding:4px 11px;border-radius:100px}
+.about-text h3{font-family:'Space Grotesk',sans-serif;font-size:1.3rem;font-weight:700;color:var(--text);margin-bottom:1rem}
+.about-text p{font-size:0.95rem;color:var(--t2);line-height:1.8;margin-bottom:1rem}
+.exp-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:1rem}
+.exp-item{display:flex;align-items:center;gap:7px;font-size:0.85rem;color:var(--t2);font-weight:500}
+.exp-item::before{content:'✓';color:var(--green);font-weight:800}
+
+.cg{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.5rem}
+.cc{background:var(--white);border-radius:16px;padding:1.75rem;border:1px solid var(--border);box-shadow:var(--sh);transition:all 0.3s;position:relative;overflow:hidden}
+.cc::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--blue2));transform:scaleX(0);transform-origin:left;transition:transform 0.3s}
+.cc:hover{transform:translateY(-5px);box-shadow:var(--shl);border-color:var(--bmid)}
+.cc:hover::after{transform:scaleX(1)}
+.cbadge{display:inline-flex;align-items:center;gap:5px;font-size:0.68rem;font-weight:700;padding:4px 10px;border-radius:100px;margin-bottom:1rem}
+.cb1{background:var(--blight);color:var(--blue);border:1px solid var(--bmid)}
+.cb2{background:#ecfdf5;color:var(--green);border:1px solid #a7f3d0}
+.cb3{background:#fffbeb;color:var(--orange);border:1px solid #fde68a}
+.cicon{font-size:2.2rem;margin-bottom:0.75rem}
+.cname{font-family:'Space Grotesk',sans-serif;font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:0.5rem}
+.cdesc{font-size:0.88rem;color:var(--t2);line-height:1.65;margin-bottom:1.1rem}
+.clist{list-style:none;margin-bottom:1.4rem;display:flex;flex-direction:column;gap:5px}
+.clist li{font-size:0.82rem;color:var(--t2);display:flex;align-items:center;gap:7px}
+.clist li::before{content:'✓';color:var(--green);font-weight:800;flex-shrink:0}
+.prow{display:flex;align-items:center;gap:0.75rem;margin-bottom:1.25rem}
+.pnow{font-family:'Space Grotesk',sans-serif;font-size:1.6rem;font-weight:700;color:var(--blue)}
+.pold{font-size:0.88rem;color:var(--t3);text-decoration:line-through}
+.psave{background:#fef2f2;color:var(--red);font-size:0.67rem;font-weight:700;padding:3px 8px;border-radius:100px;border:1px solid #fecaca}
+.ebtn{display:block;width:100%;background:var(--blue);color:#fff;font-weight:700;font-size:0.85rem;padding:11px;border-radius:10px;border:none;cursor:pointer;text-align:center;transition:all 0.2s}
+.ebtn:hover{background:var(--navy)}
+
+.sg{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem}
+.sc{background:var(--white);border-radius:14px;padding:1.6rem;border:1px solid var(--border);box-shadow:var(--sh);display:flex;gap:1.2rem;align-items:flex-start;transition:all 0.2s}
+.sc:hover{border-color:var(--bmid);box-shadow:var(--shm);transform:translateY(-2px)}
+.si{width:48px;height:48px;border-radius:12px;background:var(--blight);border:1px solid var(--bmid);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
+.sname{font-weight:700;font-size:0.95rem;color:var(--text);margin-bottom:0.35rem}
+.sdesc{font-size:0.85rem;color:var(--t2);line-height:1.6}
+
+.rg{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem}
+.rc{background:var(--white);border-radius:14px;padding:1.5rem;border:1px solid var(--border);box-shadow:var(--sh);display:flex;flex-direction:column;gap:0.7rem;transition:all 0.2s}
+.rc:hover{border-color:var(--bmid);box-shadow:var(--shm);transform:translateY(-2px)}
+.ri{font-size:2rem}
+.rtag{font-size:0.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3px 10px;border-radius:100px;display:inline-block;width:fit-content}
+.rt1{background:var(--blight);color:var(--blue);border:1px solid var(--bmid)}
+.rt2{background:#ecfdf5;color:var(--green);border:1px solid #a7f3d0}
+.rt3{background:#fffbeb;color:var(--orange);border:1px solid #fde68a}
+.rt4{background:#fef2f2;color:var(--red);border:1px solid #fecaca}
+.rname{font-weight:700;font-size:0.95rem;color:var(--text)}
+.rdesc{font-size:0.83rem;color:var(--t2);line-height:1.6;flex:1}
+.rbtn{display:flex;align-items:center;justify-content:center;gap:6px;background:var(--blight);color:var(--blue);font-weight:700;font-size:0.8rem;padding:9px;border-radius:8px;border:1px solid var(--bmid);transition:all 0.2s}
+.rbtn:hover{background:var(--blue);color:#fff}
+
+.ng{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+.nc{background:var(--white);border-radius:14px;padding:1.5rem;border:1px solid var(--border);box-shadow:var(--sh);transition:all 0.2s}
+.nc:hover{border-color:var(--bmid);box-shadow:var(--shm)}
+.ntag{font-size:0.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3px 10px;border-radius:100px;display:inline-block;margin-bottom:0.75rem}
+.ntitle{font-weight:700;font-size:0.92rem;color:var(--text);margin-bottom:0.4rem;line-height:1.4}
+.nbody{font-size:0.83rem;color:var(--t2);line-height:1.6}
+.nsev{font-size:0.7rem;font-weight:700;margin-top:0.75rem}
+
+.fchips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:2rem}
+.fchip{display:flex;align-items:center;gap:6px;background:var(--white);border:1.5px solid var(--border);padding:8px 16px;border-radius:100px;font-size:0.82rem;font-weight:600;color:var(--t2);cursor:pointer;transition:all 0.2s}
+.fchip:hover,.fchip.on{background:var(--blight);border-color:var(--blue);color:var(--blue)}
+.form-card{background:var(--white);border-radius:20px;padding:2.5rem;border:1px solid var(--border);box-shadow:var(--shl)}
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+.full{grid-column:1/-1}
+.grp{display:flex;flex-direction:column;gap:6px}
+label{font-size:0.8rem;font-weight:700;color:var(--text)}
+.req{color:var(--red)}
+input,select,textarea{background:#f8fafc;border:1.5px solid var(--border);color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;font-size:0.92rem;padding:10px 14px;border-radius:10px;outline:none;transition:all 0.2s;width:100%}
+input:focus,select:focus,textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(26,86,219,0.08);background:#fff}
+textarea{resize:vertical;min-height:110px}
+select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath fill='%231a56db' d='M6 8L0 0h12z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
+.hint{font-size:0.75rem;color:var(--t3)}
+.srow{display:flex;justify-content:space-between;align-items:center;margin-top:2rem;flex-wrap:wrap;gap:1rem}
+.priv{font-size:0.8rem;color:var(--t2)}
+.sbtn{background:var(--red);color:#fff;font-weight:700;font-size:0.88rem;padding:13px 32px;border-radius:10px;border:none;cursor:pointer;display:flex;align-items:center;gap:8px;transition:all 0.2s;box-shadow:0 4px 14px rgba(220,38,38,0.28)}
+.sbtn:hover{background:#b91c1c;transform:translateY(-1px)}
+.success{display:none;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:16px;padding:2rem;text-align:center;margin-top:1.5rem}
+.success.on{display:block}
+
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;max-width:880px;margin:0 auto}
+.pcard{background:var(--white);border-radius:20px;padding:2rem;border:1px solid var(--border);box-shadow:var(--shl);text-align:center}
+.qr-box{width:200px;height:200px;margin:0 auto 1.25rem;border-radius:16px;background:linear-gradient(135deg,var(--blight),var(--bmid));border:3px solid var(--bmid);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px}
+.qr-box .qr-text{font-family:'JetBrains Mono',monospace;font-size:0.75rem;font-weight:600;color:var(--blue)}
+.upi{display:inline-flex;align-items:center;gap:8px;background:var(--blight);border:1.5px solid var(--bmid);color:var(--blue);font-family:'JetBrains Mono',monospace;font-size:0.85rem;font-weight:600;padding:9px 16px;border-radius:10px;cursor:pointer;margin:0.75rem 0;transition:all 0.2s}
+.upi:hover{background:var(--blue);color:#fff}
+.apills{display:flex;justify-content:center;gap:6px;flex-wrap:wrap;margin-top:0.75rem}
+.ap{background:var(--bg);border:1px solid var(--border);padding:5px 12px;border-radius:8px;font-size:0.75rem;font-weight:600;color:var(--t2)}
+.psteps{background:var(--white);border-radius:20px;padding:2rem;border:1px solid var(--border);box-shadow:var(--sh)}
+.step{display:flex;gap:1rem;margin-bottom:1.25rem;align-items:flex-start}
+.snum{width:28px;height:28px;background:var(--blue);color:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.8rem;flex-shrink:0}
+.stxt{font-size:0.9rem;color:var(--t2);line-height:1.6;padding-top:3px}
+
+.cgrid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;max-width:1000px;margin:0 auto}
+.ci{display:flex;gap:1rem;align-items:flex-start;margin-bottom:1.5rem}
+.cico{width:46px;height:46px;background:var(--blight);border:1px solid var(--bmid);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+.clbl{font-size:0.72rem;font-weight:700;color:var(--t3);letter-spacing:0.5px;text-transform:uppercase;margin-bottom:3px}
+.cval{font-size:0.95rem;font-weight:600;color:var(--text)}
+.cval a{color:var(--blue)}
+.mcard{background:var(--white);border-radius:16px;border:1px solid var(--border);overflow:hidden;box-shadow:var(--sh)}
+.mhead{padding:1rem 1.25rem;border-bottom:1px solid var(--border);font-weight:700;font-size:0.88rem;color:var(--text);display:flex;align-items:center;gap:6px}
+.mbody{height:190px;background:linear-gradient(135deg,#eff6ff,#f0f7ff);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px}
+
+footer{background:var(--navy);padding:2.25rem 6%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.flogo{height:36px;filter:brightness(0) invert(1) opacity(0.9)}
+.fbrand{display:flex;align-items:center;gap:10px}
+.fname{font-family:'Space Grotesk',sans-serif;font-weight:700;color:#fff;font-size:0.95rem}
+.fcopy{font-size:0.8rem;color:rgba(255,255,255,0.5)}
+.flinks{display:flex;gap:1.5rem}
+.flinks a{font-size:0.8rem;color:rgba(255,255,255,0.6);transition:color 0.2s}
+.flinks a:hover{color:#fff}
+
+#wa{position:fixed;bottom:28px;right:28px;z-index:999;display:flex;flex-direction:column;align-items:center;gap:6px}
+.wabtn{width:56px;height:56px;background:#25d366;border-radius:50%;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.5rem;box-shadow:0 4px 20px rgba(37,211,102,0.45);transition:transform 0.2s}
+.wabtn:hover{transform:scale(1.1)}
+.walbl{font-size:0.62rem;font-weight:700;color:var(--t2);background:var(--white);padding:2px 8px;border-radius:100px;border:1px solid var(--border)}
 
 @media(max-width:900px){
-
-.hero-inner,
-.about-grid,
-.pay-grid,
-.contact-grid{
-grid-template-columns:1fr;
-gap:2rem;
+  .hero-inner,.about-grid,.pgrid,.cgrid{grid-template-columns:1fr;gap:2rem}
+  .logo-card{display:none}
+  .ng,.fg{grid-template-columns:1fr}
+  nav .nav-links{display:none}
+  footer{flex-direction:column;text-align:center}
+  .flinks{justify-content:center}
 }
-
-.logo-card{
-display:none;
-}
-
-.news-grid{
-grid-template-columns:1fr;
-}
-
-.fg{
-grid-template-columns:1fr;
-}
-
-nav .nav-links{
-display:none;
-}
-
-footer{
-flex-direction:column;
-text-align:center;
-}
-
-.f-links{
-justify-content:center;
-}
-
-}
-
 </style>
 </head>
 <body>
 
 <nav>
   <div class="nav-brand">
-
-    <img src="logo.png"
-         alt="AH Cyber Solutions"
-         class="nav-logo-img">
-
-    <
-      <body>
-
-<nav>
-
-<div class="nav-brand">
-
-<img src="logo.png"
-     class="nav-logo-img"
-     alt="AH Cyber Solutions">
-
-<div class="nav-brand-text">
-
-<div class="nav-brand-name">
-AH Cyber Solutions
-</div>
-
-<div class="nav-brand-tag">
-Cyber Security
-</div>
-
-</div>
-</div>
-
-<ul class="nav-links">
-
-<li><a href="#home">Home</a></li>
-<li><a href="#about">About</a></li>
-<li><a href="#courses">Courses</a></li>
-<li><a href="#services">Services</a></li>
-<li><a href="#complaint">Complaint</a></li>
-<li><a href="#contact">Contact</a></li>
-
-<li>
-<a href="#payment" class="nav-enroll">
-Enroll Now
-</a>
-</li>
-
-</ul>
-
+    <img src="IMG_20260527_215224_201.jpg" class="nav-logo" alt="AH Cyber">
+    <div class="brand-text">
+      <div class="bname">AH Cyber Solutions</div>
+      <div class="btag">Learn · Hack · Secure</div>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#courses">Courses</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#resources">Resources</a></li>
+    <li><a href="#threats">Cyber News</a></li>
+    <li><a href="#complaint">Report Fraud</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#payment" class="nav-cta">Enroll Now</a></li>
+  </ul>
 </nav>
-<!-- HERO -->
 
 <section id="home">
-
-<div class="hero-glow glow1"></div>
-<div class="hero-glow glow2"></div>
-
-<div class="hero-inner">
-
-<!-- LEFT SIDE -->
-
-<div>
-
-<div class="hero-badge">
-
-<span class="live-dot"></span>
-
-ETHICAL HACKING • CYBER SECURITY
-
-</div>
-
-<h1 class="hero-h1">
-
-Learn
-<span class="hl">
-Cyber Security
-</span>
-
-With Practical Training
-
-</h1>
-
-<p class="hero-desc">
-
-Master Ethical Hacking, Penetration Testing,
-Cyber Security Fundamentals and Digital Safety
-through hands-on practical learning experiences.
-
-</p>
-
-<div class="hero-btns">
-
-<a href="#courses" class="btn-primary">
-
-🚀 Explore Courses
-
-</a>
-
-<a href="#complaint" class="btn-outline">
-
-🚨 Report Fraud
-
-</a>
-
-</div>
-
-<div class="trust-row">
-
-<div class="trust-item">
-🛡️ Cyber Security
-</div>
-
-<div class="trust-item">
-💻 Practical Learning
-</div>
-
-<div class="trust-item">
-🎯 Career Focused
-</div>
-
-</div>
-
-</div>
-
-<!-- RIGHT SIDE -->
-
-<div class="logo-card">
-
-<div class="logo-showcase">
-
-<img
-src="logo.png"
-alt="AH Cyber Solutions Logo">
-
-</div>
-
-<div class="founder-row">
-
-<div class="f-avatar">
-👨‍💻
-</div>
-
-<div>
-
-<div class="f-name">
-Srikanth Paka
-</div>
-
-<div class="f-role">
-Founder & Cyber Security Enthusiast
-</div>
-
-</div>
-
-</div>
-
-<div class="stats-row">
-
-<div class="stat-box">
-
-<div class="stat-n">
-100+
-</div>
-
-<div class="stat-l">
-Students
-</div>
-
-</div>
-
-<div class="stat-box">
-
-<div class="stat-n">
-5+
-</div>
-
-<div class="stat-l">
-Courses
-</div>
-
-</div>
-
-<div class="stat-box">
-
-<div class="stat-n">
-24/7
-</div>
-
-<div class="stat-l">
-Support
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
+  <div class="hero-inner">
+    <div>
+      <div class="eyebrow"><div class="dot"></div>Hyderabad's Cyber Security Experts</div>
+      <h1>Learn Ethical Hacking.<br><span class="hl">Secure the Future.</span></h1>
+      <p class="hero-desc">Practical, affordable, beginner-friendly Cyber Security training by Paka Srikanth — Certified Ethical Hacker from Hyderabad, Telangana.</p>
+      <div class="btns">
+        <a href="#courses" class="btn btn-b">🎓 Explore Courses</a>
+        <a href="#complaint" class="btn btn-r">🚨 Report Fraud</a>
+      </div>
+      <div class="trust">
+        <span class="ti">✅ 100% Practical</span>
+        <span class="ti">💰 From ₹499</span>
+        <span class="ti">📱 WhatsApp Support</span>
+        <span class="ti">🏆 Certified Trainer</span>
+      </div>
+    </div>
+    <div class="logo-card">
+      <div class="logo-box"><img src="IMG_20260527_215224_201.jpg" alt="Logo"></div>
+div class="founder-row">
+        <div class="f-av">👨‍💻</div>
+        <div><div class="f-name">Paka Srikanth</div><div class="f-role">Founder · Ethical Hacker · Cyber Security Analyst</div></div>
+      </div>
+      <div class="stats">
+        <div class="stat"><div class="sn">6+</div><div class="sl">Courses</div></div>
+        <div class="stat"><div class="sn">100%</div><div class="sl">Practical</div></div>
+        <div class="stat"><div class="sn">24/7</div><div class="sl">Support</div></div>
+      </div>
+    </div>
+  </div>
 </section>
-<!-- ABOUT -->
 
-<section class="sec sec-alt" id="about">
-
-<div class="wrap">
-
-<div class="sec-center">
-
-<div class="sec-eye">
-ABOUT US
-</div>
-
-<h2 class="sec-title">
-About <span>AH Cyber Solutions</span>
-</h2>
-
-<p class="sec-sub">
-
-Empowering students and professionals with
-Cyber Security knowledge, Ethical Hacking skills
-and digital safety awareness.
-
-</p>
-
-</div>
-
-<div class="about-grid">
-
-<!-- LEFT -->
-
-<div class="about-logo-card">
-
-<div class="about-logo-glow">
-
-<img
-src="founder.jpg"
-alt="Founder">
-
-</div>
-
-<div class="founder-name">
-Srikanth Paka
-</div>
-
-<div class="founder-role-tag">
-Founder & Cyber Security Enthusiast
-</div>
-
-<div class="chips">
-
-<span class="chip">
-Cyber Security
-</span>
-
-<span class="chip">
-Ethical Hacking
-</span>
-
-<span class="chip">
-Networking
-</span>
-
-<span class="chip">
-Web Security
-</span>
-
-<span class="chip">
-OSINT
-</span>
-
-</div>
-
-</div>
-
-<!-- RIGHT -->
-
-<div class="about-content">
-
-<h3>
-Building a Safer Digital Future
-</h3>
-
-<p>
-
-AH Cyber Solutions is focused on delivering
-practical cyber security education and awareness.
-
-Our mission is to help students understand
-modern cyber threats, digital investigations,
-ethical hacking techniques and secure online practices.
-
-</p>
-
-<p>
-
-We provide structured learning resources,
-hands-on practice and cyber awareness guidance
-to help learners build real-world skills.
-
-</p>
-
-<div class="exp-grid">
-
-<div class="exp-item">
-Ethical Hacking Training
-</div>
-
-<div class="exp-item">
-Cyber Awareness Programs
-</div>
-
-<div class="exp-item">
-Network Security Basics
-</div>
-
-<div class="exp-item">
-Digital Investigation Skills
-</div>
-
-<div class="exp-item">
-Practical Labs
-</div>
-
-<div class="exp-item">
-Career Guidance
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
+<section id="about" class="sec-alt">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="al-card">
+        <div class="al-glow"><img src="IMG_20260527_215224_201.jpg" alt="Logo"></div>
+        <div class="aname">Paka Srikanth</div>
+        <div class="arole">Ethical Hacker &amp; Cyber Security Analyst</div>
+        <div class="chips">
+          <span class="chip">CEH</span><span class="chip">Penetration Testing</span>
+          <span class="chip">Digital Forensics</span><span class="chip">Bug Bounty</span><span class="chip">OSINT</span>
+        </div>
+      </div>
+      <div class="about-text">
+        <div class="eye">About the Founder</div>
+        <h3>Making Cyber Security Accessible to Everyone</h3>
+        <p>I am Paka Srikanth, Founder of AH Cyber Solutions — a passionate Cyber Security professional from Hyderabad. My mission is to make quality cyber security education affordable for every student.</p>
+        <p>With hands-on, practical training at student-friendly pricing, we bridge the gap between theory and real-world security skills.</p>
+        <div class="exp-grid">
+          <div class="exp-item">Ethical Hacking</div><div class="exp-item">Web Penetration Testing</div>
+          <div class="exp-item">Digital Investigation</div><div class="exp-item">Bug Bounty Hunting</div>
+          <div class="exp-item">Network Security</div><div class="exp-item">Cyber Fraud Analysis</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
-<!-- COURSES -->
 
 <section id="courses" class="sec">
-
-<div class="wrap">
-
-<div class="sec-center">
-
-<div class="sec-eye">
-Premium Training Programs
-</div>
-
-<h2 class="sec-title">
-Our <span>Courses</span>
-</h2>
-
-<p class="sec-sub">
-Practical cyber security training designed for beginners and aspiring professionals.
-</p>
-
-</div>
-
-<div class="courses-grid">
-
-<div class="course-card">
-
-<div class="cbadge cb-blue">
-Most Popular
-</div>
-
-<div class="c-icon">🛡️</div>
-
-<div class="c-name">
-Ethical Hacking Masterclass
-</div>
-
-<div class="c-desc">
-Learn ethical hacking from basics to advanced practical techniques.
-</div>
-
-<ul class="c-list">
-<li>Reconnaissance</li>
-<li>Network Scanning</li>
-<li>Web Security</li>
-<li>Hands-on Labs</li>
-</ul>
-
-<div class="price-row">
-<span class="p-now">₹999</span>
-<span class="p-old">₹5000</span>
-<span class="p-save">80% OFF</span>
-</div>
-
-<a href="#payment" class="enroll-btn">
-Enroll Now →
-</a>
-
-</div>
-
-<div class="course-card">
-
-<div class="cbadge cb-green">
-Advanced
-</div>
-
-<div class="c-icon">🌐</div>
-
-<div class="c-name">
-Web Penetration Testing
-</div>
-
-<div class="c-desc">
-OWASP Top 10, SQL Injection, XSS, CSRF and modern web exploitation.
-</div>
-
-<ul class="c-list">
-<li>OWASP Top 10</li>
-<li>SQL Injection</li>
-<li>XSS Attacks</li>
-<li>Burp Suite</li>
-</ul>
-
-<div class="price-row">
-<span class="p-now">₹999</span>
-<span class="p-old">₹5000</span>
-<span class="p-save">80% OFF</span>
-</div>
-
-<a href="#payment" class="enroll-btn">
-Enroll Now →
-</a>
-
-</div>
-<div class="course-card">
-
-<div class="cbadge cb-orange">
-Trending
-</div>
-
-<div class="c-icon">🐞</div>
-
-<div class="c-name">
-Bug Bounty Training
-</div>
-
-<div class="c-desc">
-Learn to find vulnerabilities in real applications and earn rewards through bug bounty programs.
-</div>
-
-<ul class="c-list">
-<li>Bug Hunting Methodology</li>
-<li>Recon Techniques</li>
-<li>Report Writing</li>
-<li>Live Targets</li>
-</ul>
-
-<div class="price-row">
-<span class="p-now">₹499</span>
-<span class="p-old">₹3000</span>
-<span class="p-save">83% OFF</span>
-</div>
-
-<a href="#payment" class="enroll-btn">
-Enroll Now →
-</a>
-
-</div>
-
-<div class="course-card">
-
-<div class="cbadge cb-blue">
-Beginner
-</div>
-
-<div class="c-icon">📡</div>
-
-<div class="c-name">
-Networking Basics
-</div>
-
-<div class="c-desc">
-Learn TCP/IP, DNS, Routing, Firewalls, VPNs and networking fundamentals for cyber security.
-</div>
-
-<ul class="c-list">
-<li>TCP/IP</li>
-<li>DNS</li>
-<li>Routing</li>
-<li>Network Security</li>
-</ul>
-
-<div class="price-row">
-<span class="p-now">₹499</span>
-</div>
-
-<a href="#payment" class="enroll-btn">
-Enroll Now →
-</a>
-
-</div>
-
-<div class="course-card">
-
-<div class="cbadge cb-green">
-Practical
-</div>
-
-<div class="c-icon">🐧</div>
-
-<div class="c-name">
-Linux For Hackers
-</div>
-
-<div class="c-desc">
-Master Linux command line, scripting and security tools used by cyber security professionals.
-</div>
-
-<ul class="c-list">
-<li>Linux Commands</li>
-<li>Bash Scripting</li>
-<li>Security Tools</li>
-<li>Kali Linux</li>
-</ul>
-
-<div class="price-row">
-<span class="p-now">₹499</span>
-</div>
-
-<a href="#payment" class="enroll-btn">
-Enroll Now →
-</a>
-
-</div>
-
-<div class="course-card">
-
-<div class="cbadge cb-orange">
-Awareness
-</div>
-
-<div class="c-icon">🔐</div>
-
-<div class="c-name">
-Cyber Safety Awareness
-</div>
-
-<div class="c-desc">
-Learn phishing awareness, social engineering, UPI safety and digital protection techniques.
-</div>
-
-<ul class="c-list">
-<li>Identifying Phishing</li>
-<li>Safe Browsing</li>
-<li>Social Media Security</li>
-<li>UPI Safety</li>
-</ul>
-
-<div class="price-row">
-<span class="p-now">₹499</span>
-</div>
-
-<a href="#payment" class="enroll-btn">
-Enroll Now →
-</a>
-
-</div>
-
-</div>
-</div>
+  <div class="wrap">
+    <div class="sec-c"><div class="eye">Premium Courses</div><h2>Our <span>Training</span> Programs</h2><p class="sub">Beginner నుండి Advanced వరకు — 100% practical, industry-ready skills.</p></div>
+    <div class="cg">
+      <div class="cc"><div class="cbadge cb1">🔥 Most Popular</div><div class="cicon">🛡️</div><div class="cname">Ethical Hacking</div><div class="cdesc">Complete ethical hacking from zero to advanced. Real tools, real labs, real skills.</div><ul class="clist"><li>Kali Linux setup &amp; tools</li><li>Network scanning &amp; exploitation</li><li>Password cracking techniques</li><li>Real-world lab practice</li></ul><div class="prow"><span class="pnow">₹999</span><span class="pold">₹5,000</span><span class="psave">80% OFF</span></div><a href="#payment" class="ebtn">Enroll Now →</a></div>
+      <div class="cc"><div class="cbadge cb1">⭐ Top Rated</div><div class="cicon">🌐</div><div class="cname">Web Penetration Testing</div><div class="cdesc">OWASP Top 10, SQL Injection, XSS, CSRF — full hands-on web security course.</div><ul class="clist"><li>OWASP Top 10 vulnerabilities</li><li>Burp Suite mastery</li><li>Real website testing labs</li><li>Professional reporting</li></ul><div class="prow"><span class="pnow">₹999</span><span class="pold">₹5,000</span><span class="psave">80% OFF</span></div><a href="#payment" class="ebtn">Enroll Now →</a></div>
+      <div class="cc"><div class="cbadge cb2">💰 Earn Money</div><div class="cicon">🐞</div><div class="cname">Bug Bounty Training</div><div class="cdesc">Find vulnerabilities in real apps, earn rewards from HackerOne &amp; Bugcrowd.</div><ul class="clist"><li>Bug bounty platforms guide</li><li>Recon &amp; enumeration</li><li>Writing winning reports</li><li>Getting your first bounty</li></ul><div class="prow"><span class="pnow">₹499</span><span class="pold">₹3,000</span><span class="psave">83% OFF</span></div><a href="#payment" class="ebtn">Enroll Now →</a></div>
+      <div class="cc"><div class="cbadge cb3">🆕 Beginner</div><div class="cicon">📡</div><div class="cname">Networking Basics</div><div class="cdesc">TCP/IP, DNS, Firewalls, VPNs — foundation every security professional needs.</div><ul class="clist"><li>OSI &amp; TCP/IP model</li><li>Subnetting &amp; routing</li><li>Firewall &amp; VPN concepts</li><li>Wireshark packet analysis</li></ul><div class="prow"><span class="pnow">₹499</span></div><a href="#payment" class="ebtn">Enroll Now →</a></div>
+      <div class="cc"><div class="cbadge cb3">🐧 Essential</div><div class="cicon">🐧</div><div class="cname">Linux For Hackers</div><div class="cdesc">Master Linux command line, scripting &amp; tools used by security pros every day.</div><ul class="clist"><li>File system &amp; permissions</li><li>Bash scripting basics</li><li>Hacking tools in Linux</li><li>System hardening</li></ul><div class="prow"><span class="pnow">₹499</span></div><a href="#payment" class="ebtn">Enroll Now →</a></div>
+      <div class="cc"><div class="cbadge cb2">👨‍👩‍👧 For Everyone</div><div class="cicon">🔐</div><div class="cname">Cyber Security Awareness</div><div class="cdesc">Protect yourself online — phishing, social engineering, UPI safety &amp; more.</div><ul class="clist"><li>Identifying phishing &amp; scams</li><li>Safe browsing habits</li><li>Social media security</li><li>UPI &amp; payment safety</li></ul><div class="prow"><span class="pnow">₹499</span></div><a href="#payment" class="ebtn">Enroll Now →</a></div>
+    </div>
+  </div>
 </section>
-<!-- SERVICES -->
 
 <section id="services" class="sec-alt">
-
-<div class="wrap">
-
-<div class="sec-center">
-
-<div class="sec-eye">
-Professional Services
-</div>
-
-<h2 class="sec-title">
-What We <span>Offer</span>
-</h2>
-
-<p class="sec-sub">
-Individuals మరియు organizations కోసం professional cyber security services.
-</p>
-
-</div>
-
-<div class="services-grid">
-
-<div class="srv-card">
-
-<div class="srv-icon">🌐</div>
-
-<div>
-
-<div class="srv-name">
-Website Security Testing
-</div>
-
-<div class="srv-desc">
-మీ website vulnerabilities identify చేసి fix చేయడానికి comprehensive audit.
-</div>
-
-</div>
-
-</div>
-
-<div class="srv-card">
-
-<div class="srv-icon">⚔️</div>
-
-<div>
-
-<div class="srv-name">
-Penetration Testing
-</div>
-
-<div class="srv-desc">
-Real-world simulated attacks తో మీ security posture evaluate చేయడం.
-</div>
-
-</div>
-
-</div>
-
-<div class="srv-card">
-
-<div class="srv-icon">🔎</div>
-
-<div>
-
-<div class="srv-name">
-Digital Investigation
-</div>
-
-<div class="srv-desc">
-Electronic evidence collection మరియు analysis for cyber crime cases.
-</div>
-
-</div>
-
-</div>
-
-<div class="srv-card">
-
-<div class="srv-icon">🧠</div>
-
-<div>
-
-<div class="srv-name">
-Security Research
-</div>
-
-<div class="srv-desc">
-Emerging threats మరియు vulnerabilities పై research-focused solutions.
-</div>
-
-</div>
-
-</div>
-
-<div class="srv-card">
-
-<div class="srv-icon">📚</div>
-
-<div>
-
-<div class="srv-name">
-Corporate Training
-</div>
-
-<div class="srv-desc">
-Organizations కోసం employee cyber security awareness programs.
-</div>
-
-</div>
-
-</div>
-
-<div class="srv-card">
-
-<div class="srv-icon">🛡️</div>
-
-<div>
-
-<div class="srv-name">
-Cyber Fraud Assistance
-</div>
-
-<div class="srv-desc">
-Fraud victims కి complaint filing మరియు investigation guidance.
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
+  <div class="wrap">
+    <div class="sec-c"><div class="eye">Professional Services</div><h2>What We <span>Offer</span></h2><p class="sub">Individuals మరియు organizations కోసం professional cyber security services.</p></div>
+    <div class="sg">
+      <div class="sc"><div class="si">🌐</div><div><div class="sname">Website Security Testing</div><div class="sdesc">మీ website vulnerabilities identify చేసి fix చేయడానికి comprehensive audit.</div></div></div>
+      <div class="sc"><div class="si">⚔️</div><div><div class="sname">Penetration Testing</div><div class="sdesc">Real-world simulated attacks తో మీ security posture evaluate చేయడం.</div></div></div>
+      <div class="sc"><div class="si">🔎</div><div><div class="sname">Digital Investigation</div><div class="sdesc">Electronic evidence collection మరియు analysis for cyber crime cases.</div></div></div>
+      <div class="sc"><div class="si">🧠</div><div><div class="sname">Security Research</div><div class="sdesc">Emerging threats మరియు vulnerabilities పై research-focused solutions.</div></div></div>
+      <div class="sc"><div class="si">📚</div><div><div class="sname">Corporate Training</div><div class="sdesc">Organizations కోసం employee cyber security awareness programs.</div></div></div>
+      <div class="sc"><div class="si">🛡️</div><div><div class="sname">Cyber Fraud Assistance</div><div class="sdesc">Fraud victims కి complaint filing మరియు investigation guidance.</div></div></div>
+    </div>
+  </div>
 </section>
-<!-- FREE RESOURCES -->
 
 <section id="resources" class="sec">
-
-<div class="wrap">
-
-<div class="sec-center">
-
-<div class="sec-eye">
-Free Downloads
-</div>
-
-<h2 class="sec-title">
-Free <span>Cheat Sheets</span> & Resources
-</h2>
-
-<p class="sec-sub">
-Cyber Security learners కోసం useful cheat sheets, notes and quick references.
-</p>
-
-</div>
-
-<div class="res-grid">
-
-<div class="res-card">
-
-<div class="res-icon">🛡️</div>
-
-<span class="rtag rt-blue">
-Security
-</span>
-
-<div class="res-name">
-Cyber Security Basics
-</div>
-
-<div class="res-desc">
-Beginner friendly notes covering cyber security fundamentals and best practices.
-</div>
-
-<a href="#" class="res-btn">
-Download →
-</a>
-
-</div>
-
-<div class="res-card">
-
-<div class="res-icon">🌐</div>
-
-<span class="rtag rt-green">
-Networking
-</span>
-
-<div class="res-name">
-Networking Cheat Sheet
-</div>
-
-<div class="res-desc">
-TCP/IP, DNS, Ports, Protocols and networking concepts explained simply.
-</div>
-
-<a href="#" class="res-btn">
-Download →
-</a>
-
-</div>
-
-<div class="res-card">
-
-<div class="res-icon">🐧</div>
-
-<span class="rtag rt-orange">
-Linux
-</span>
-
-<div class="res-name">
-Linux Commands Guide
-</div>
-
-<div class="res-desc">
-Most commonly used Linux commands for cyber security professionals.
-</div>
-
-<a href="#" class="res-btn">
-Download →
-</a>
-
-</div>
-
-<div class="res-card">
-
-<div class="res-icon">⚔️</div>
-
-<span class="rtag rt-red">
-Ethical Hacking
-</span>
-
-<div class="res-name">
-Penetration Testing Notes
-</div>
-
-<div class="res-desc">
-Quick reference guide for penetration testing phases and methodologies.
-</div>
-
-<a href="#" class="res-btn">
-Download →
-</a>
-
-</div>
-
-</div>
-
-</div>
-
+  <div class="wrap">
+    <div class="sec-c"><div class="eye">Free Downloads</div><h2>Free <span>Cheat Sheets</span> &amp; Resources</h2><p class="sub">100% Free — WhatsApp చేస్తే immediately share చేస్తాము 🎁</p></div>
+    <div class="rg">
+      <div class="rc"><div class="ri">📋</div><div class="rtag rt1">Linux</div><div class="rname">Linux Commands Cheat Sheet</div><div class="rdesc">Essential commands for hackers — filesystem, networking, permissions, process management.</div><a href="https://wa.me/919640724438?text=Hi%20I%20want%20FREE%20Linux%20Cheat%20Sheet" target="_blank" class="rbtn">📥 Get Free PDF</a></div>
+      <div class="rc"><div class="ri">🌐</div><div class="rtag rt2">Web Security</div><div class="rname">OWASP Top 10 Guide</div><div class="rdesc">Web app top 10 vulnerabilities — SQLi, XSS, CSRF, IDOR with examples &amp; fixes.</div><a href="https://wa.me/919640724438?text=Hi%20I%20want%20FREE%20OWASP%20Guide" target="_blank" class="rbtn">📥 Get Free PDF</a></div>
+      <div class="rc"><div class="ri">🔍</div><div class="rtag rt3">Recon</div><div class="rname">Nmap &amp; Recon Cheat Sheet</div><div class="rdesc">Scanning techniques, port flags, OS detection, service enumeration — daily toolkit.</div><a href="https://wa.me/919640724438?text=Hi%20I%20want%20FREE%20Nmap%20Sheet" target="_blank" class="rbtn">📥 Get Free PDF</a></div>
+      <div class="rc"><div class="ri">🔐</div><div class="rtag rt4">Security</div><div class="rname">Password Security Guide</div><div class="rdesc">Strong passwords, attack types, password managers — everyone ki useful!</div><a href="https://wa.me/919640724438?text=Hi%20I%20want%20FREE%20Password%20Guide" target="_blank" class="rbtn">📥 Get Free PDF</a></div>
+      <div class="rc"><div class="ri">🎯</div><div class="rtag rt1">Bug Bounty</div><div class="rname">Bug Bounty Roadmap</div><div class="rdesc">Step-by-step roadmap — platforms, what to hunt, reporting tips for beginners.</div><a href="https://wa.me/919640724438?text=Hi%20I%20want%20FREE%20Bug%20Bounty%20Roadmap" target="_blank" class="rbtn">📥 Get Free PDF</a></div>
+      <div class="rc" style="background:linear-gradient(135deg,var(--blight),var(--bmid));border-color:var(--bmid)"><div class="ri">💬</div><div class="rtag rt1">All Resources</div><div class="rname">Inka Chala Resources!</div><div class="rdesc">Metasploit guide, CTF writeups, Networking sheets — WhatsApp చేస్తే free share!</div><a href="https://wa.me/919640724438?text=Hi%20I%20want%20all%20free%20cyber%20resources" target="_blank" class="rbtn">📲 WhatsApp for More</a></div>
+    </div>
+  </div>
 </section>
-<!-- CYBER NEWS -->
 
 <section id="threats" class="sec-alt">
-
-<div class="wrap">
-
-<div class="sec-center">
-
-<div class="sec-eye">
-Threat Intelligence
-</div>
-
-<h2 class="sec-title">
-Latest <span>Cyber News</span>
-</h2>
-
-<p class="sec-sub">
-Stay informed about cyber attacks, fraud trends and emerging security threats.
-</p>
-
-</div>
-
-<div class="news-grid">
-
-<div class="news-card">
-
-<span class="ntag rt-red">
-High Risk
-</span>
-
-<div class="news-title">
-UPI Fraud Attacks Increasing Across India
-</div>
-
-<div class="news-body">
-Fraudsters are using fake payment links, QR code scams and social engineering techniques to steal money from victims.
-</div>
-
-<div class="news-sev sev-r">
-🔴 High Severity
-</div>
-
-</div>
-
-<div class="news-card">
-
-<span class="ntag rt-orange">
-Alert
-</span>
-
-<div class="news-title">
-Phishing Emails Targeting Students
-</div>
-
-<div class="news-body">
-Cyber criminals are sending fake internship and scholarship emails to collect personal information and credentials.
-</div>
-
-<div class="news-sev sev-o">
-🟠 Medium Severity
-</div>
-
-</div>
-
-<div class="news-card">
-
-<span class="ntag rt-blue">
-Research
-</span>
-
-<div class="news-title">
-AI Powered Cyber Attacks Emerging
-</div>
-
-<div class="news-body">
-Threat actors are increasingly leveraging artificial intelligence to automate phishing and reconnaissance activities.
-</div>
-
-<div class="news-sev sev-b">
-🔵 Research Update
-</div>
-
-</div>
-
-<div class="news-card">
-
-<span class="ntag rt-green">
-Awareness
-</span>
-
-<div class="news-title">
-Enable MFA On All Accounts
-</div>
-
-<div class="news-body">
-Multi-factor authentication remains one of the most effective protections against account compromise.
-</div>
-
-<div class="news-sev sev-b">
-🛡️ Recommended
-</div>
-
-</div>
-
-</div>
-
-</div>
-
+  <div class="wrap">
+    <div class="sec-c"><div class="eye">Stay Informed</div><h2>Cyber <span>Threat</span> News</h2><p class="sub">Latest alerts, vulnerabilities &amp; India cyber crime updates.</p></div>
+    <div style="background:#fef2f2;border:1px solid #fecaca;border-left:4px solid var(--red);border-radius:12px;padding:1rem 1.5rem;margin-bottom:2rem;display:flex;gap:1rem;align-items:center">
+      <span style="font-size:1.3rem">🔴</span>
+      <div><strong style="font-size:0.85rem;color:var(--red)">INDIA CYBER ALERT:</strong> <span style="font-size:0.85rem;color:#7f1d1d"> UPI Fraud మరియు KYC Scam cases Telangana లో increase అవుతున్నాయి. National Helpline: <strong>1930</strong></span></div>
+    </div>
+    <div class="ng">
+      <div class="nc"><span class="ntag rt4">Critical</span><div class="ntitle">Windows Zero-Day Vulnerability Patched</div><div class="nbody">Microsoft Windows లో critical zero-day patch చేయబడింది. CERT-In అన్ని users ని వెంటనే update చేసుకోమని advised చేసింది.</div><div class="nsev" style="color:var(--red)">⬤ SEVERITY: CRITICAL</div></div>
+      <div class="nc"><span class="ntag rt3">High</span><div class="ntitle">Fake Job Offer Scams Rising in Telangana</div><div class="nbody">WhatsApp లో "Work from home ₹50,000/month" fake job offers పెరిగాయి. Report: cybercrime.gov.in</div><div class="nsev" style="color:var(--orange)">⬤ SEVERITY: HIGH</div></div>
+      <div class="nc"><span class="ntag rt3">Awareness</span><div class="ntitle">AI-Powered Phishing Attacks Increasing</div><div class="nbody">Hackers AI వాడి realistic fake bank emails create చేస్తున్నారు. Sender address verify చేయండి before clicking any link.</div><div class="nsev" style="color:#ca8a04">⬤ SEVERITY: MEDIUM</div></div>
+      <div class="nc"><span class="ntag rt1">Daily Tip</span><div class="ntitle" id="tt">Loading...</div><div class="nbody" id="tb">Loading...</div><div class="nsev" style="color:var(--blue)" id="td">⬤ TODAY</div></div>
+    </div>
+    <div style="text-align:center;margin-top:2rem"><a href="https://wa.me/919640724438?text=Hi%20subscribe%20me%20to%20cyber%20alerts" target="_blank" class="btn btn-b" style="display:inline-flex">🔔 Subscribe to Free Cyber Alerts</a></div>
+  </div>
 </section>
-<!-- CYBER FRAUD COMPLAINT PORTAL -->
 
 <section id="complaint" class="sec">
-
-<div class="wrap">
-
-<div class="sec-center">
-
-<div class="sec-eye">
-Cyber Fraud Reporting
-</div>
-
-<h2 class="sec-title">
-Report <span>Cyber Fraud</span>
-</h2>
-
-<p class="sec-sub">
-If you have been affected by cyber fraud, submit details below for guidance and assistance.
-</p>
-
-</div>
-
-<div class="cpl-wrap">
-
-<div class="fraud-chips">
-
-<div class="fchip on">💳 UPI Fraud</div>
-<div class="fchip">📱 OTP Scam</div>
-<div class="fchip">🎣 Phishing</div>
-<div class="fchip">🛒 Online Shopping Fraud</div>
-<div class="fchip">📞 Fake Calls</div>
-<div class="fchip">💼 Job Scam</div>
-
-</div>
-
-<div class="form-card">
-
-<form id="complaintForm">
-
-<div class="fg">
-
-<div class="grp">
-
-<label>
-Full Name <span class="req">*</span>
-</label>
-
-<input
-type="text"
-placeholder="Enter your full name"
-required>
-
-</div>
-
-<div class="grp">
-
-<label>
-Phone Number <span class="req">*</span>
-</label>
-
-<input
-type="tel"
-placeholder="Enter mobile number"
-required>
-
-</div>
-
-<div class="grp">
-
-<label>
-Email Address
-</label>
-
-<input
-type="email"
-placeholder="Enter email address">
-
-</div>
-
-<div class="grp">
-
-<label>
-Fraud Type <span class="req">*</span>
-</label>
-
-<select required>
-
-<option>Select Fraud Type</option>
-<option>UPI Fraud</option>
-<option>OTP Scam</option>
-<option>Phishing Attack</option>
-<option>Fake Call</option>
-<option>Job Scam</option>
-<option>Other</option>
-
-</select>
-
-</div>
-
-<div class="grp full">
-
-<label>
-Incident Description <span class="req">*</span>
-</label>
-
-<textarea
-placeholder="Describe the fraud incident in detail..."
-required>
-</textarea>
-
-</div>
-
-<div class="grp full">
-
-<label>
-Loss Amount (Optional)
-</label>
-
-<input
-type="text"
-placeholder="₹ Amount Lost">
-
-</div>
-
-</div>
-
-<div class="sub-row">
-
-<div class="priv">
-🔒 Information remains confidential
-</div>
-
-<button
-type="submit"
-class="sub-btn">
-
-🚨 Submit Complaint
-
-</button>
-
-</div>
-
-</form>
-
-<div class="success">
-
-<h3>
-✅ Complaint Submitted
-</h3>
-
-<p>
-Thank you for reporting the incident. Our team will review the information.
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</section><!-- CYBER FRAUD COMPLAINT PORTAL -->
-
-<section id="complaint" class="sec">
-
-<div class="wrap">
-
-<div class="sec-center">
-
-<div class="sec-eye">
-Cyber Fraud Reporting
-</div>
-
-<h2 class="sec-title">
-Report <span>Cyber Fraud</span>
-</h2>
-
-<p class="sec-sub">
-If you have been affected by cyber fraud, submit details below for guidance and assistance.
-</p>
-
-</div>
-
-<div class="cpl-wrap">
-
-<div class="fraud-chips">
-
-<div class="fchip on">💳 UPI Fraud</div>
-<div class="fchip">📱 OTP Scam</div>
-<div class="fchip">🎣 Phishing</div>
-<div class="fchip">🛒 Online Shopping Fraud</div>
-<div class="fchip">📞 Fake Calls</div>
-<div class="fchip">💼 Job Scam</div>
-
-</div>
-
-<div class="form-card">
-
-<form id="complaintForm">
-
-<div class="fg">
-
-<div class="grp">
-
-<label>
-Full Name <span class="req">*</span>
-</label>
-
-<input
-type="text"
-placeholder="Enter your full name"
-required>
-
-</div>
-
-<div class="grp">
-
-<label>
-Phone Number <span class="req">*</span>
-</label>
-
-<input
-type="tel"
-placeholder="Enter mobile number"
-required>
-
-</div>
-
-<div class="grp">
-
-<label>
-Email Address
-</label>
-
-<input
-type="email"
-placeholder="Enter email address">
-
-</div>
-
-<div class="grp">
-
-<label>
-Fraud Type <span class="req">*</span>
-</label>
-
-<select required>
-
-<option>Select Fraud Type</option>
-<option>UPI Fraud</option>
-<option>OTP Scam</option>
-<option>Phishing Attack</option>
-<option>Fake Call</option>
-<option>Job Scam</option>
-<option>Other</option>
-
-</select>
-
-</div>
-
-<div class="grp full">
-
-<label>
-Incident Description <span class="req">*</span>
-</label>
-
-<textarea
-placeholder="Describe the fraud incident in detail..."
-required>
-</textarea>
-
-</div>
-
-<div class="grp full">
-
-<label>
-Loss Amount (Optional)
-</label>
-
-<input
-type="text"
-placeholder="₹ Amount Lost">
-
-</div>
-
-</div>
-
-<div class="sub-row">
-
-<div class="priv">
-🔒 Information remains confidential
-</div>
-
-<button
-type="submit"
-class="sub-btn">
-
-🚨 Submit Complaint
-
-</button>
-
-</div>
-
-</form>
-
-<div class="success">
-
-<h3>
-✅ Complaint Submitted
-</h3>
-
-<p>
-Thank you for reporting the incident. Our team will review the information.
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
+  <div class="wrap">
+    <div class="sec-c"><div class="eye">Cyber Crime Help</div><h2>Report <span>Cyber Fraud</span></h2><p class="sub">Cyber fraud victim అయ్యారా? మా team guidance మరియు complaint assistance provide చేస్తుంది.</p></div>
+    <div style="max-width:880px;margin:0 auto">
+      <div style="background:#fef2f2;border:1px solid #fecaca;border-left:4px solid var(--red);border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:2rem;display:flex;gap:1rem">
+        <span style="font-size:1.4rem">🚨</span>
+        <div><strong style="font-size:0.88rem;color:var(--red)">URGENT?</strong> <span style="font-size:0.88rem;color:var(--t2)">Directly WhatsApp చేయండి: <a href="https://wa.me/919640724438" target="_blank" style="color:var(--blue);font-weight:700">+91 9640724438</a> · National Helpline: <strong>1930</strong> · <a href="https://cybercrime.gov.in" target="_blank" style="color:var(--blue);font-weight:700">cybercrime.gov.in</a></span></div>
+      </div>
+      <div style="margin-bottom:1.5rem">
+        <div style="font-size:0.8rem;font-weight:700;color:var(--t2);margin-bottom:0.75rem">SELECT FRAUD TYPE:</div>
+        <div class="fchips">
+          <div class="fchip" onclick="pc(this,'UPI/Payment Fraud')">💸 UPI / Payment</div>
+          <div class="fchip" onclick="pc(this,'Phishing / Fake Website')">🎣 Phishing</div>
+          <div class="fchip" onclick="pc(this,'Social Media Fraud')">📱 Social Media</div>
+          <div class="fchip" onclick="pc(this,'Job / Loan Fraud')">💼 Job / Loan Fraud</div>
+          <div class="fchip" onclick="pc(this,'Sextortion / Blackmail')">🔒 Sextortion</div>
+          <div class="fchip" onclick="pc(this,'Other Cyber Crime')">⚠️ Other</div>
+        </div>
+      </div>
+      <div class="form-card">
+        <div class="fg">
+          <div class="grp"><label>Full Name <span class="req">*</span></label><input type="text" id="fn" placeholder="మీ పేరు"></div>
+          <div class="grp"><label>Mobile Number <span class="req">*</span></label><input type="tel" id="fm" placeholder="10-digit mobile"></div>
+          <div class="grp"><label>Email</label><input type="email" id="fe" placeholder="email@example.com"></div>
+          <div class="grp"><label>City <span class="req">*</span></label><input type="text" id="fc" placeholder="Hyderabad..."></div>
+          <div class="grp"><label>Fraud Type <span class="req">*</span></label><select id="ft"><option value="">-- Select --</option><option>UPI / Payment Fraud</option><option>Phishing / Fake Website</option><option>Social Media Fraud</option><option>Job / Loan Fraud</option><option>Sextortion / Blackmail</option><option>Online Shopping Fraud</option><option>KYC / Bank Fraud</option><option>Investment / Crypto Fraud</option><option>Other Cyber Crime</option></select></div>
+          <div class="grp"><label>Loss Amount (₹)</label><input type="number" id="fa" placeholder="e.g. 50000"></div>
+          <div class="grp"><label>Date of Incident <span class="req">*</span></label><input type="date" id="fd"></div>
+          <div class="grp"><label>Reported to Police?</label><select id="fp"><option value="">-- Select --</option><option>No, not yet</option><option>Yes, FIR filed</option><option>Complaint given, no action</option><option>Police refused to file</option></select></div>
+          <div class="grp full"><label>What Happened <span class="req">*</span></label><textarea id="fdesc" placeholder="Detailed గా చెప్పండి — phone calls, messages, payment details, suspect info..."></textarea><div class="hint">More details = better assistance. Include phone numbers, UPI IDs, URLs.</div></div>
+          <div class="grp full"><label>Suspect Info (if known)</label><input type="text" id="fs" placeholder="Phone, UPI ID, social media profile..."></div>
+        </div>
+        <div class="srow"><div class="priv">🔒 Your information is confidential</div><button class="sbtn" onclick="sub()">🚨 Submit Complaint</button></div>
+      </div>
+      <div class="success" id="sbox">
+        <div style="font-size:3rem;margin-bottom:0.75rem">✅</div>
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:700;color:var(--green);margin-bottom:0.5rem">Complaint Received!</div>
+        <div style="font-size:0.9rem;color:var(--t2)">మా team 24 hours లో contact చేస్తుంది.</div>
+        <div id="cid" style="font-family:'JetBrains Mono',monospace;color:var(--blue);font-size:0.85rem;font-weight:600;margin-top:0.75rem"></div>
+        <a href="https://wa.me/919640724438" target="_blank" class="btn btn-b" style="margin-top:1.25rem;display:inline-flex">📲 WhatsApp for Urgent Help</a>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-top:2.5rem">
+        <a href="https://cybercrime.gov.in" target="_blank" style="background:var(--white);border:1px solid var(--border);border-radius:12px;padding:1rem;display:flex;gap:0.75rem;transition:border-color 0.2s" onmouseover="this.style.borderColor='var(--blue)'" onmouseout="this.style.borderColor='var(--border)'"><span style="font-size:1.4rem">🏛️</span><div><div style="font-weight:700;font-size:0.85rem;color:var(--blue)">cybercrime.gov.in</div><div style="font-size:0.78rem;color:var(--t2)">National Cyber Crime Portal</div></div></a>
+        <a href="tel:1930" style="background:var(--white);border:1px solid var(--border);border-radius:12px;padding:1rem;display:flex;gap:0.75rem;transition:border-color 0.2s" onmouseover="this.style.borderColor='var(--green)'" onmouseout="this.style.borderColor='var(--border)'"><span style="font-size:1.4rem">📞</span><div><div style="font-weight:700;font-size:0.85rem;color:var(--green)">Call 1930</div><div style="font-size:0.78rem;color:var(--t2)">National Cyber Crime Helpline</div></div></a>
+        <a href="https://wa.me/919640724438" target="_blank" style="background:var(--white);border:1px solid var(--border);border-radius:12px;padding:1rem;display:flex;gap:0.75rem;transition:border-color 0.2s" onmouseover="this.style.borderColor='#25d366'" onmouseout="this.style.borderColor='var(--border)'"><span style="font-size:1.4rem">💬</span><div><div style="font-weight:700;font-size:0.85rem;color:#25d366">WhatsApp Us</div><div style="font-size:0.78rem;color:var(--t2)">Direct expert guidance</div></div></a>
+      </div>
+    </div>
+  </div>
 </section>
-        <!-- PAYMENT -->
 
 <section id="payment" class="sec-alt">
-
-<div class="wrap">
-
-<div class="sec-center">
-
-<div class="sec-eye">
-Course Enrollment
-</div>
-
-<h2 class="sec-title">
-Secure <span>Payment</span>
-</h2>
-
-<p class="sec-sub">
-Scan the QR code below and complete your course payment securely.
-</p>
-
-</div>
-
-<div class="pay-grid">
-
-<!-- QR CARD -->
-
-<div class="pay-card">
-
-<div class="qr-frame">
-
-<img
-src="qr.jpg"
-alt="Payment QR">
-
-</div>
-
-<h3>
-Scan & Pay
-</h3>
-
-<p style="margin-top:10px;color:var(--text2);">
-
-Use any UPI application such as
-PhonePe, Google Pay, Paytm or BHIM.
-
-</p>
-
-<div class="upi-pill">
-
-📱 UPI PAYMENT
-
-</div>
-
-<div class="app-pills">
-
-<div class="apill">
-PhonePe
-</div>
-
-<div class="apill">
-Google Pay
-</div>
-
-<div class="apill">
-Paytm
-</div>
-
-<div class="apill">
-BHIM
-</div>
-
-</div>
-
-</div>
-
-<!-- STEPS -->
-
-<div class="pay-steps">
-
-<h3 style="margin-bottom:1.5rem;">
-Enrollment Steps
-</h3>
-
-<div class="step">
-
-<div class="snum">
-1
-</div>
-
-<div class="stxt">
-Choose your preferred course.
-</div>
-
-</div>
-
-<div class="step">
-
-<div class="snum">
-2
-</div>
-
-<div class="stxt">
-Scan the QR code and complete payment.
-</div>
-
-</div>
-
-<div class="step">
-
-<div class="snum">
-3
-</div>
-
-<div class="stxt">
-Share payment screenshot through WhatsApp or Email.
-</div>
-
-</div>
-
-<div class="step">
-
-<div class="snum">
-4
-</div>
-
-<div class="stxt">
-Receive course access and study material.
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
+  <div class="wrap">
+    <div class="sec-c"><div class="eye">Enroll Now</div><h2>Payment &amp; <span>Enrollment</span></h2></div>
+    <div class="pgrid">
+      <div class="pcard">
+        <div style="font-weight:700;font-size:0.92rem;color:var(--text);margin-bottom:1rem">📲 Scan &amp; Pay</div>
+        <div class="qr-box">
+          <div style="font-size:3rem">📱</div>
+          <div class="qr-text">Scan QR to Pay</div>
+          <div style="font-size:0.7rem;color:var(--t2);font-family:'JetBrains Mono',monospace">9640724438@pthdfc</div>
+        </div>
+        <div style="font-size:0.78rem;color:var(--t2);margin-bottom:4px">UPI ID — click to copy</div>
+        <div class="upi" onclick="cu(this)">📋 9640724438@pthdfc</div>
+        <div style="font-size:0.75rem;color:var(--green);font-weight:600;margin-bottom:1rem">✓ Paka Srikanth · Verified</div>
+        <div style="font-size:0.72rem;font-weight:700;color:var(--t2);margin-bottom:0.5rem">ACCEPTED PAYMENTS</div>
+        <div class="apills"><span class="ap">G Pay</span><span class="ap">PhonePe</span><span class="ap">Paytm</span><span class="ap">BHIM</span></div>
+      </div>
+      <div class="psteps">
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:1rem;font-weight:700;color:var(--text);margin-bottom:1.5rem">How to Enroll — 5 Easy Steps</div>
+        <div class="step"><div class="snum">1</div><div class="stxt">Courses section నుండి course choose చేసుకుని fee note చేయండి.</div></div>
+        <div class="step"><div class="snum">2</div><div class="stxt">QR scan చేయండి లేదా UPI ID <strong>9640724438@pthdfc</strong> కి pay చేయండి.</div></div>
+        <div class="step"><div class="snum">3</div><div class="stxt">Payment confirmation screenshot తీసుకోండి.</div></div>
+        <div class="step"><div class="snum">4</div><div class="stxt">Screenshot + course name WhatsApp కి send చేయండి: <strong style="color:var(--blue)">+91 9640724438</strong></div></div>
+        <div class="step"><div class="snum">5</div><div class="stxt">24 hours లో enrollment confirm అవుతుంది &amp; course access share అవుతుంది.</div></div>
+        <a href="https://wa.me/919640724438?text=Hi%20I%20want%20to%20enroll" target="_blank" class="btn btn-b" style="width:100%;justify-content:center;margin-top:1.25rem">📲 WhatsApp to Enroll</a>
+      </div>
+    </div>
+  </div>
 </section>
-        <!-- PAYMENT -->
-
-<section id="payment" class="sec-alt">
-
-<div class="wrap">
-
-<div class="sec-center">
-
-<div class="sec-eye">
-Course Enrollment
-</div>
-
-<h2 class="sec-title">
-Secure <span>Payment</span>
-</h2>
-
-<p class="sec-sub">
-Scan the QR code below and complete your course payment securely.
-</p>
-
-</div>
-
-<div class="pay-grid">
-
-<!-- QR CARD -->
-
-<div class="pay-card">
-
-<div class="qr-frame">
-
-<img
-src="qr.jpg"
-alt="Payment QR">
-
-</div>
-
-<h3>
-Scan & Pay
-</h3>
-
-<p style="margin-top:10px;color:var(--text2);">
-
-Use any UPI application such as
-PhonePe, Google Pay, Paytm or BHIM.
-
-</p>
-
-<div class="upi-pill">
-
-📱 UPI PAYMENT
-
-</div>
-
-<div class="app-pills">
-
-<div class="apill">
-PhonePe
-</div>
-
-<div class="apill">
-Google Pay
-</div>
-
-<div class="apill">
-Paytm
-</div>
-
-<div class="apill">
-BHIM
-</div>
-
-</div>
-
-</div>
-
-<!-- STEPS -->
-
-<div class="pay-steps">
-
-<h3 style="margin-bottom:1.5rem;">
-Enrollment Steps
-</h3>
-
-<div class="step">
-
-<div class="snum">
-1
-</div>
-
-<div class="stxt">
-Choose your preferred course.
-</div>
-
-</div>
-
-<div class="step">
-
-<div class="snum">
-2
-</div>
-
-<div class="stxt">
-Scan the QR code and complete payment.
-</div>
-
-</div>
-
-<div class="step">
-
-<div class="snum">
-3
-</div>
-
-<div class="stxt">
-Share payment screenshot through WhatsApp or Email.
-</div>
-
-</div>
-
-<div class="step">
-
-<div class="snum">
-4
-</div>
-
-<div class="stxt">
-Receive course access and study material.
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-       <!-- CONTACT -->
 
 <section id="contact" class="sec">
-
-<div class="wrap">
-
-<div class="sec-center">
-
-<div class="sec-eye">
-Get In Touch
-</div>
-
-<h2 class="sec-title">
-Contact <span>AH Cyber Solutions</span>
-</h2>
-
-<p class="sec-sub">
-Connect with us for training, guidance and cyber security assistance.
-</p>
-
-</div>
-
-<div class="contact-grid">
-
-<div>
-
-<div class="c-item">
-
-<div class="c-icon">📧</div>
-
-<div>
-
-<div class="c-lbl">
-Email
-</div>
-
-<div class="c-val">
-
-<a href="mailto:ahcybersolutions119@gmail.com">
-ahcybersolutions119@gmail.com
-</a>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="c-item">
-
-<div class="c-icon">💼</div>
-
-<div>
-
-<div class="c-lbl">
-LinkedIn
-</div>
-
-<div class="c-val">
-
-<a href="#" target="_blank">
-Srikanth Paka
-</a>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="c-item">
-
-<div class="c-icon">📍</div>
-
-<div>
-
-<div class="c-lbl">
-Location
-</div>
-
-<div class="c-val">
-Hyderabad, Telangana, India
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="map-card">
-
-<div class="map-head">
-📍 AH Cyber Solutions
-</div>
-
-<div class="map-body">
-
-<h3>
-AH Cyber Solutions
-</h3>
-
-<p>
-Cyber Security Training & Awareness
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
+  <div class="wrap">
+    <div class="sec-c"><div class="eye">Get In Touch</div><h2>Contact <span>Us</span></h2></div>
+    <div class="cgrid">
+      <div>
+        <div class="ci"><div class="cico">📱</div><div><div class="clbl">WhatsApp</div><div class="cval"><a href="https://wa.me/919640724438">+91 9640724438</a></div></div></div>
+        <div class="ci"><div class="cico">☎️</div><div><div class="clbl">Phone</div><div class="cval"><a href="tel:9703724438">+91 9703724438</a></div></div></div>
+        <div class="ci"><div class="cico">📸</div><div><div class="clbl">Instagram</div><div class="cval"><a href="https://instagram.com/ah_cyber_solutions" target="_blank">@ah_cyber_solutions</a></div></div></div>
+        <div class="ci"><div class="cico">📍</div><div><div class="clbl">Location</div><div class="cval">BN Reddy Nagar, Hyderabad<br><span style="font-size:0.85rem;color:var(--t2)">Ranga Reddy Dist., Telangana — 500079</span></div></div></div>
+      </div>
+      <div class="mcard">
+        <div class="mhead">📍 Our Location</div>
+        <div class="mbody">
+          <div style="font-size:3rem">📍</div>
+          <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;color:var(--blue)">BN Reddy Nagar</div>
+          <div style="font-size:0.82rem;color:var(--t2)">Hyderabad, Telangana 500079</div>
+          <a href="https://maps.google.com/?q=BN+Reddy+Nagar+Hyderabad" target="_blank" class="btn btn-b" style="font-size:0.8rem;padding:9px 20px;margin-top:0.5rem">Open in Google Maps</a>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- FOOTER -->
-
 <footer>
-
-<div class="f-brand">
-
-<img
-src="logo.png"
-class="f-logo"
-alt="AH Cyber Solutions">
-
-<div>
-
-<div class="f-name">
-AH Cyber Solutions
-</div>
-
-<div class="f-copy">
-Learn • Hack • Secure
-</div>
-
-</div>
-
-</div>
-
-<div class="f-links">
-
-<a href="#about">About</a>
-<a href="#courses">Courses</a>
-<a href="#services">Services</a>
-<a href="#contact">Contact</a>
-
-</div>
-
-<div class="f-copy">
-
-© 2026 AH Cyber Solutions.
-All Rights Reserved.
-
-</div>
-
+  <div class="fbrand"><img src="IMG_20260527_215224_201.jpg" class="flogo" alt="Logo"><span class="fname">AH Cyber Solutions</span></div>
+  <div class="fcopy">© 2026 AH Cyber Solutions · Paka Srikanth · Hyderabad</div>
+  <div class="flinks"><a href="#courses">Courses</a><a href="#resources">Resources</a><a href="#complaint">Report Fraud</a><a href="#contact">Contact</a></div>
 </footer>
 
-<!-- WHATSAPP BUTTON -->
-
-<div id="wa-help">
-
-<div class="wa-label">
-Chat With Us
-</div>
-
-<a
-href="https://wa.me/919999999999"
-target="_blank">
-
-<button class="wa-fab">
-💬
-</button>
-
-</a>
-
+<div id="wa">
+  <a href="https://wa.me/919640724438?text=Hi%20I%20need%20help" target="_blank" class="wabtn" title="WhatsApp Help">💬</a>
+  <div class="walbl">Need Help?</div>
 </div>
 
 <script>
-
-document
-.getElementById("complaintForm")
-.addEventListener("submit",function(e){
-
-e.preventDefault();
-
-document
-.querySelector(".success")
-.classList.add("on");
-
-this.reset();
-
-});
-
-document
-.querySelectorAll(".fchip")
-.forEach(chip=>{
-
-chip.addEventListener("click",()=>{
-
-document
-.querySelectorAll(".fchip")
-.forEach(c=>c.classList.remove("on"));
-
-chip.classList.add("on");
-
-});
-
-});
-
+function pc(el,t){document.querySelectorAll('.fchip').forEach(x=>x.classList.remove('on'));el.classList.add('on');document.getElementById('ft').value=t;}
+function cu(el){navigator.clipboard.writeText('9640724438@pthdfc').then(()=>{const h=el.innerHTML;el.innerHTML='✅ Copied!';setTimeout(()=>el.innerHTML=h,1500);});}
+function sub(){
+  const n=document.getElementById('fn').value.trim(),m=document.getElementById('fm').value.trim(),c=document.getElementById('fc').value.trim(),t=document.getElementById('ft').value,d=document.getElementById('fd').value,desc=document.getElementById('fdesc').value.trim();
+  if(!n||!m||!c||!t||!d||!desc){alert('Please fill all required (*) fields');return;}
+  if(!/^[6-9]\d{9}$/.test(m)){alert('Enter valid 10-digit mobile number');return;}
+  const id='AHC-'+Date.now().toString().slice(-8).toUpperCase();
+  document.getElementById('cid').textContent='Complaint ID: '+id;
+  const s=document.getElementById('sbox');s.classList.add('on');s.scrollIntoView({behavior:'smooth',block:'center'});
+  const msg=`Complaint ID: ${id}
+Name: ${n}
+Mobile: ${m}
+City: ${c}
+Type: ${t}
+Date: ${d}
+Loss: Rs.${document.getElementById('fa').value||'N/A'}
+Desc: ${desc}
+Suspect: ${document.getElementById('fs').value||'Unknown'}`;
+  setTimeout(()=>window.open('https://wa.me/919640724438?text='+encodeURIComponent(msg),'_blank'),1500);
+}
+const tips=[
+  {t:"Enable 2-Factor Authentication",d:"అన్ని important accounts లో 2FA enable చేయండి. Authenticator app use చేయండి."},
+  {t:"Avoid Public WiFi for Banking",d:"Public WiFi లో banking చేయకండి. Hacker same network లో data steal చేయగలరు."},
+  {t:"Keep Software Updated",d:"Phone మరియు computer software update గా ఉంచండి. Security patches ముఖ్యమైనవి."},
+  {t:"Use Strong Passwords",d:"Password minimum 12 characters — uppercase, lowercase, numbers, symbols కలిపి use చేయండి."},
+  {t:"Don't Click Unknown Links",d:"Unknown messages లో links click చేయకండి. Bank ఎప్పుడూ WhatsApp లో OTP అడగదు."},
+  {t:"Beware of Social Engineering",d:"Phone లో 'bank officer' అని OTP అడిగితే — అది scam! Immediately cut చేయండి."},
+  {t:"Backup Your Data Regularly",d:"Important files regular గా backup చేయండి. Ransomware నుండి safe గా ఉంటుంది."}
+];
+const td=new Date(),tip=tips[td.getDay()%tips.length];
+document.getElementById('tt').textContent=tip.t;
+document.getElementById('tb').textContent=tip.d;
+document.getElementById('td').innerHTML='⬤ '+td.toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'});
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{const el=document.querySelector(a.getAttribute('href'));if(el){e.preventDefault();el.scrollIntoView({behavior:'smooth'});}}));
 </script>
-
 </body>
-</html> 
+</html>
