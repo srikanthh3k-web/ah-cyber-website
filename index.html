@@ -3,185 +3,149 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aurexa | Empowering the Next Generation of Cybersecurity & Technology</title>
+    <title>AUREXA | Empowering the Next Generation of Cybersecurity & Technology</title>
     <style>
+        /* CSS RESET & VARIABLES */
         :root {
-            --primary: #0f172a;      /* Navy */
-            --secondary: #1e3a8a;    /* Professional Blue */
-            --accent: #2563eb;       /* Bright Blue */
-            --bg: #f8fafc;           /* Off-white/Light Gray */
-            --surface: #ffffff;      /* White */
-            --text-main: #0f172a;
-            --text-muted: #64748b;
-            --border: #e2e8f0;
-            --success: #10b981;
-            --warning: #f59e0b;
-            --danger: #ef4444;
-            --radius: 12px;
+            --primary: #0f172a; --secondary: #1e3a8a; --accent: #2563eb; --accent-hover: #1d4ed8;
+            --bg: #f8fafc; --surface: #ffffff; --text: #334155; --text-light: #64748b;
+            --border: #e2e8f0; --success: #10b981; --warning: #f59e0b; --danger: #ef4444; --info: #3b82f6;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
             --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
             --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-            --transition: all 0.3s ease;
+            --radius: 12px; --radius-sm: 8px; --transition: all 0.3s ease;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
         }
-        
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
-        body { background-color: var(--bg); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--bg); color: var(--text); line-height: 1.6; font-size: 16px; overflow-x: hidden; scroll-behavior: smooth; }
         a { text-decoration: none; color: inherit; }
-        button { cursor: pointer; border: none; outline: none; background: none; font-family: inherit; }
         ul { list-style: none; }
-        img { max-width: 100%; height: auto; display: block; border-radius: 8px; }
-
-        /* Utility Classes */
-        .container { max-width: 1280px; margin: 0 auto; padding: 0 20px; }
+        button, input, textarea, select { font-family: inherit; border: none; outline: none; }
+        button { cursor: pointer; background: transparent; transition: var(--transition); }
+        
+        /* UTILITIES */
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; }
         .flex { display: flex; } .col { flex-direction: column; }
         .items-center { align-items: center; } .justify-between { justify-content: space-between; } .justify-center { justify-content: center; }
         .gap-2 { gap: 0.5rem; } .gap-4 { gap: 1rem; } .gap-6 { gap: 1.5rem; } .gap-8 { gap: 2rem; }
-        .grid { display: grid; }
-        .grid-cols-1 { grid-template-columns: repeat(1, 1fr); }
-        .grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
-        .grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
-        .grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
-        .p-4 { padding: 1rem; } .p-8 { padding: 2rem; } .py-16 { padding-top: 4rem; padding-bottom: 4rem; }
-        .text-center { text-align: center; } .font-bold { font-weight: 700; } .font-semibold { font-weight: 600; }
-        .text-sm { font-size: 0.875rem; } .text-lg { font-size: 1.125rem; } .text-xl { font-size: 1.25rem; }
-        .text-2xl { font-size: 1.5rem; } .text-4xl { font-size: 2.25rem; } .text-5xl { font-size: 3rem; }
-        .text-muted { color: var(--text-muted); } .text-accent { color: var(--accent); } .text-white { color: white; }
-        .bg-white { background-color: var(--surface); } .bg-primary { background-color: var(--primary); }
-        .rounded { border-radius: var(--radius); } .shadow { box-shadow: var(--shadow); }
+        .grid { display: grid; } .grid-cols-1 { grid-template-columns: 1fr; } 
+        .grid-cols-2 { grid-template-columns: repeat(2, 1fr); } .grid-cols-3 { grid-template-columns: repeat(3, 1fr); } .grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
+        .text-center { text-align: center; } .text-primary { color: var(--primary); } .text-accent { color: var(--accent); } .text-white { color: #fff; }
+        .font-bold { font-weight: 700; } .font-semibold { font-weight: 600; }
+        .text-sm { font-size: 0.875rem; } .text-lg { font-size: 1.125rem; } .text-xl { font-size: 1.25rem; } .text-2xl { font-size: 1.5rem; } .text-4xl { font-size: 2.25rem; }
+        .p-4 { padding: 1rem; } .p-6 { padding: 1.5rem; } .p-8 { padding: 2rem; } .py-16 { padding: 4rem 0; } .my-8 { margin: 2rem 0; }
         .hidden { display: none !important; }
         
-        /* Components */
-        .btn { padding: 0.75rem 1.5rem; border-radius: 8px; font-weight: 600; transition: var(--transition); text-align: center; display: inline-block; }
-        .btn-primary { background-color: var(--accent); color: white; box-shadow: 0 4px 14px 0 rgba(37, 99, 235, 0.39); }
-        .btn-primary:hover { background-color: var(--secondary); transform: translateY(-2px); }
-        .btn-outline { border: 2px solid var(--border); color: var(--text-main); }
+        /* COMPONENTS */
+        .btn { padding: 0.75rem 1.5rem; border-radius: var(--radius-sm); font-weight: 600; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; }
+        .btn-primary { background: var(--accent); color: #fff; box-shadow: 0 4px 14px 0 rgba(37,99,235,0.39); }
+        .btn-primary:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37,99,235,0.4); }
+        .btn-outline { border: 2px solid var(--border); color: var(--primary); background: var(--surface); }
         .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
-        .btn-danger { background-color: var(--danger); color: white; }
+        .btn-danger { background: var(--danger); color: #fff; }
         
-        .card { background: var(--surface); border-radius: var(--radius); padding: 1.5rem; box-shadow: var(--shadow); transition: var(--transition); border: 1px solid var(--border); }
+        .card { background: var(--surface); border-radius: var(--radius); padding: 1.5rem; box-shadow: var(--shadow); border: 1px solid var(--border); transition: var(--transition); }
         .card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); border-color: var(--accent); }
-        
-        .badge { padding: 0.25rem 0.75rem; border-radius: 999px; font-size: 0.75rem; font-weight: 600; background: #e0e7ff; color: var(--secondary); display: inline-block; }
+        .badge { padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 600; background: #eff6ff; color: var(--secondary); display: inline-block; }
         
         .input-group { margin-bottom: 1rem; display: flex; flex-direction: column; gap: 0.5rem; }
-        .input-group label { font-size: 0.875rem; font-weight: 600; }
-        .input-group input, .input-group textarea, .input-group select { width: 100%; padding: 0.75rem; border: 1px solid var(--border); border-radius: 8px; font-family: inherit; transition: var(--transition); }
-        .input-group input:focus, .input-group textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(37,99,235,0.1); }
+        .input-group label { font-size: 0.875rem; font-weight: 600; color: var(--primary); }
+        .input-control { width: 100%; padding: 0.75rem; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--bg); transition: var(--transition); }
+        .input-control:focus { border-color: var(--accent); background: var(--surface); box-shadow: 0 0 0 3px rgba(37,99,235,0.1); }
         
-        /* Layout Specifics */
-        #announcement-bar { background: var(--primary); color: white; text-align: center; padding: 0.5rem; font-size: 0.875rem; }
+        /* LAYOUT & SPECIFICS */
+        #announcement { background: linear-gradient(90deg, var(--primary), var(--secondary)); color: #fff; text-align: center; padding: 0.5rem; font-size: 0.875rem; font-weight: 500; }
+        header { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--border); }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; height: 70px; }
+        .logo { font-size: 1.5rem; font-weight: 800; color: var(--primary); letter-spacing: 0.5px; display: flex; align-items: center; gap: 0.5rem; }
+        .nav-links { display: flex; gap: 1.5rem; } .nav-links a { font-weight: 500; color: var(--text-light); } .nav-links a:hover { color: var(--accent); }
         
-        header { background: rgba(255,255,255,0.9); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--border); transition: var(--transition); }
-        .navbar { display: flex; justify-content: space-between; align-items: center; height: 70px; }
-        .logo { font-size: 1.5rem; font-weight: 800; letter-spacing: 1px; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
-        .nav-links { display: flex; gap: 1.5rem; align-items: center; }
-        .nav-links a { font-weight: 500; font-size: 0.9rem; color: var(--text-muted); transition: var(--transition); }
-        .nav-links a:hover, .nav-links a.active { color: var(--accent); }
-        .nav-actions { display: flex; gap: 1rem; align-items: center; }
+        .hero { position: relative; padding: 6rem 0; overflow: hidden; background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%); text-align: center; }
+        .hero::before { content:''; position:absolute; top:0;left:0; right:0;bottom:0; background: radial-gradient(circle at center, rgba(37,99,235,0.05) 0%, transparent 70%); pointer-events: none; }
+        .trust-strip { background: var(--surface); padding: 1.5rem 0; border-y: 1px solid var(--border); display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; font-weight: 600; color: var(--text-light); }
         
-        .hero-section { text-align: center; padding: 6rem 20px; background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%); position: relative; overflow: hidden; }
-        .hero-bg-elements { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; opacity: 0.05; background-image: radial-gradient(var(--accent) 1px, transparent 1px); background-size: 30px 30px; }
+        .section-header { text-align: center; margin-bottom: 3rem; }
+        .section-header h2 { font-size: 2.5rem; color: var(--primary); margin-bottom: 1rem; }
+        .section-header p { color: var(--text-light); max-width: 600px; margin: 0 auto; font-size: 1.125rem; }
         
-        .trust-strip { background: var(--surface); padding: 1.5rem 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-        .trust-strip .flex { justify-content: space-around; flex-wrap: wrap; gap: 1rem; }
-        .trust-item { display: flex; align-items: center; gap: 0.5rem; font-weight: 600; color: var(--secondary); }
+        .course-img { width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius-sm); margin-bottom: 1rem; }
+        .founder-img { width: 300px; height: 300px; border-radius: var(--radius); object-fit: cover; border: 4px solid #fff; box-shadow: var(--shadow-lg); }
         
-        .section-title { text-align: center; margin-bottom: 3rem; }
-        .section-title h2 { font-size: 2.25rem; color: var(--primary); margin-bottom: 0.5rem; }
-        .section-title p { color: var(--text-muted); max-width: 600px; margin: 0 auto; }
+        footer { background: var(--primary); color: #cbd5e1; padding: 4rem 0 2rem; margin-top: 4rem; }
+        footer h3 { color: #fff; margin-bottom: 1.5rem; font-size: 1.25rem; }
+        footer a { transition: var(--transition); } footer a:hover { color: #fff; }
         
-        footer { background: var(--primary); color: white; padding: 4rem 20px 2rem; margin-top: 4rem; }
-        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2rem; margin-bottom: 2rem; }
-        .footer-col h4 { margin-bottom: 1.5rem; font-size: 1.1rem; }
-        .footer-col ul { display: flex; flex-direction: column; gap: 0.75rem; }
-        .footer-col a { color: #cbd5e1; transition: var(--transition); }
-        .footer-col a:hover { color: white; }
-        .footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); color: #94a3b8; font-size: 0.875rem; }
-
-        /* Modals & Alerts */
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(4px); z-index: 1000; display: flex; justify-content: center; align-items: center; opacity: 0; visibility: hidden; transition: var(--transition); }
-        .modal-overlay.active { opacity: 1; visibility: visible; }
-        .modal-content { background: var(--surface); border-radius: var(--radius); width: 90%; max-width: 600px; max-height: 90vh; overflow-y: auto; padding: 2rem; position: relative; transform: translateY(20px); transition: var(--transition); }
+        /* MODALS & TOASTS */
+        .modal-overlay { position: fixed; inset: 0; background: rgba(15,23,42,0.6); backdrop-filter: blur(4px); z-index: 1000; display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: var(--transition); }
+        .modal-overlay.active { opacity: 1; pointer-events: auto; }
+        .modal-content { background: var(--surface); padding: 2rem; border-radius: var(--radius); width: 100%; max-width: 600px; max-height: 90vh; overflow-y: auto; transform: translateY(20px); transition: var(--transition); position: relative; }
         .modal-overlay.active .modal-content { transform: translateY(0); }
-        .modal-close { position: absolute; top: 1rem; right: 1rem; font-size: 1.5rem; cursor: pointer; color: var(--text-muted); }
+        .modal-close { position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.5rem; color: var(--text-light); cursor: pointer; }
         
-        #toast-container { position: fixed; bottom: 20px; right: 20px; z-index: 9999; display: flex; flex-direction: column; gap: 10px; }
-        .toast { background: var(--surface); border-left: 4px solid var(--accent); box-shadow: var(--shadow-lg); padding: 1rem; border-radius: 4px; display: flex; align-items: center; gap: 10px; min-width: 250px; animation: slideInRight 0.3s forwards; }
-        .toast.success { border-left-color: var(--success); } .toast.error { border-left-color: var(--danger); }
+        .toast-container { position: fixed; bottom: 2rem; right: 2rem; z-index: 2000; display: flex; flex-direction: column; gap: 1rem; }
+        .toast { background: var(--surface); border-left: 4px solid var(--accent); padding: 1rem 1.5rem; border-radius: var(--radius-sm); box-shadow: var(--shadow-lg); display: flex; align-items: center; gap: 1rem; animation: slideIn 0.3s ease forwards; }
+        .toast.success { border-left-color: var(--success); } .toast.error { border-left-color: var(--danger); } .toast.warning { border-left-color: var(--warning); }
         
-        /* Admin Layout */
+        /* ADMIN UI */
         .admin-layout { display: flex; min-height: 100vh; background: var(--bg); }
-        .admin-sidebar { width: 250px; background: var(--primary); color: white; display: flex; flex-direction: column; }
-        .admin-sidebar .logo { color: white; padding: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .admin-sidebar { width: 260px; background: var(--primary); color: #fff; display: flex; flex-direction: column; }
+        .admin-sidebar .logo { padding: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); color: #fff; }
         .admin-nav { flex: 1; overflow-y: auto; padding: 1rem 0; }
-        .admin-nav a { display: block; padding: 0.75rem 1.5rem; color: #cbd5e1; transition: var(--transition); }
-        .admin-nav a:hover, .admin-nav a.active { background: rgba(255,255,255,0.1); color: white; border-left: 3px solid var(--accent); }
-        .admin-main { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+        .admin-nav a { display: block; padding: 0.75rem 1.5rem; color: #cbd5e1; transition: var(--transition); border-left: 3px solid transparent; }
+        .admin-nav a:hover, .admin-nav a.active { background: rgba(255,255,255,0.1); color: #fff; border-left-color: var(--accent); }
+        .admin-main { flex: 1; display: flex; flex-direction: column; height: 100vh; overflow: hidden; }
         .admin-header { background: var(--surface); padding: 1rem 2rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
-        .admin-content { flex: 1; overflow-y: auto; padding: 2rem; }
+        .admin-content { flex: 1; padding: 2rem; overflow-y: auto; }
         
-        table { width: 100%; border-collapse: collapse; background: var(--surface); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+        table { width: 100%; border-collapse: collapse; background: var(--surface); border-radius: var(--radius-sm); overflow: hidden; box-shadow: var(--shadow-sm); }
         th, td { padding: 1rem; text-align: left; border-bottom: 1px solid var(--border); }
-        th { background: #f1f5f9; font-weight: 600; font-size: 0.875rem; text-transform: uppercase; color: var(--text-muted); }
-        tr:hover { background: #f8fafc; }
-        .action-btns { display: flex; gap: 0.5rem; }
+        th { background: var(--bg); font-weight: 600; color: var(--text-light); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.5px; }
+        tr:hover { background: var(--bg); }
+        
+        .chart-bar { background: var(--accent); border-radius: 4px 4px 0 0; transition: height 1s ease; width: 40px; }
+        .chart-container { height: 200px; display: flex; align-items: flex-end; gap: 1rem; padding-top: 1rem; border-bottom: 1px solid var(--border); }
 
-        @keyframes slideInRight { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .grid-cols-4 { grid-template-columns: repeat(2, 1fr); }
-            .footer-grid { grid-template-columns: repeat(2, 1fr); }
-        }
+        
+        /* RESPONSIVE */
+        @media (max-width: 1024px) { .grid-cols-4 { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 768px) {
-            .grid-cols-3, .grid-cols-4 { grid-template-columns: 1fr; }
-            .grid-cols-2 { grid-template-columns: 1fr; }
-            .nav-links, .nav-actions .btn { display: none; }
-            .mobile-menu-btn { display: block; }
-            .footer-grid { grid-template-columns: 1fr; }
-            .admin-layout { flex-direction: column; }
-            .admin-sidebar { width: 100%; height: auto; }
-            .hero-section { padding: 4rem 1rem; }
-            .text-5xl { font-size: 2.25rem; }
+            .grid-cols-3, .grid-cols-4 { grid-template-columns: 1fr; } .grid-cols-2 { grid-template-columns: 1fr; }
+            .nav-links { display: none; } /* Simplified mobile for demo */
+            .hero { padding: 4rem 1rem; } .text-4xl { font-size: 2rem; }
+            .admin-layout { flex-direction: column; } .admin-sidebar { width: 100%; height: auto; } .admin-main { height: auto; overflow: visible; }
         }
-        .mobile-menu-btn { display: none; font-size: 1.5rem; background: none; border: none; cursor: pointer; }
     </style>
 </head>
 <body>
 
     <div id="app"></div>
-
-    <div id="modal-container"></div>
-    <div id="toast-container"></div>
+    <div id="modal-root"></div>
+    <div class="toast-container" id="toast-root"></div>
 
     <script>
-        /************************************************************************
-         * 1. CONFIGURATION & DEMO SECURITY
-         ************************************************************************/
-        // NOTE: This is a frontend demo authentication system. 
-        // Production applications require server-side authentication and secure databases.
-        const CONFIG = {
-            adminUser: "admin",
-            adminPass: "Aurexa@2026",
-            brandName: "AUREXA"
-        };
-
+        /*******************************************************
+         * 1. SYSTEM CONFIG & DATABASE (localStorage)
+         *******************************************************/
+        // IMPORTANT: Demo frontend authentication only. Production requires secure server-side authentication.
+        const ADMIN_CREDS = { user: "admin", pass: "Aurexa@2026" };
+        
+        // NO INTERNSHIPS INCLUDED.
         const DB_KEYS = [
-            "aurexa_courses", "aurexa_workshops", "aurexa_internships", "aurexa_applications",
-            "aurexa_projects", "aurexa_team", "aurexa_testimonials", "aurexa_faqs",
-            "aurexa_messages", "aurexa_subscribers", "aurexa_notifications", "aurexa_alerts",
-            "aurexa_settings", "aurexa_audit_logs"
+            'aurexa_users', 'aurexa_courses', 'aurexa_workshops', 'aurexa_workshop_registrations', 
+            'aurexa_projects', 'aurexa_project_submissions', 'aurexa_team', 'aurexa_testimonials', 
+            'aurexa_faqs', 'aurexa_messages', 'aurexa_subscribers', 'aurexa_notifications', 
+            'aurexa_alerts', 'aurexa_settings', 'aurexa_audit_logs', 'aurexa_certificates'
         ];
 
-        /************************************************************************
-         * 2. LOCALSTORAGE DATABASE ENGINE
-         ************************************************************************/
         const DB = {
-            get: (key) => JSON.parse(localStorage.getItem(key) || "[]"),
-            set: (key, data) => localStorage.setItem(key, JSON.stringify(data)),
+            get: (key) => JSON.parse(localStorage.getItem(key) || '[]'),
+            getObj: (key) => JSON.parse(localStorage.getItem(key) || '{}'),
+            set: (key, val) => localStorage.setItem(key, JSON.stringify(val)),
             add: (key, item) => {
                 const data = DB.get(key);
-                item.id = Date.now().toString() + Math.random().toString(36).substr(2, 5);
+                item.id = Date.now().toString(36) + Math.random().toString(36).substr(2);
                 item.createdAt = new Date().toISOString();
                 data.push(item);
                 DB.set(key, data);
@@ -190,478 +154,357 @@
             update: (key, id, updates) => {
                 const data = DB.get(key);
                 const index = data.findIndex(i => i.id === id);
-                if (index !== -1) {
-                    data[index] = { ...data[index], ...updates, updatedAt: new Date().toISOString() };
-                    DB.set(key, data);
-                }
+                if(index > -1) { data[index] = { ...data[index], ...updates, updatedAt: new Date().toISOString() }; DB.set(key, data); }
             },
-            delete: (key, id) => {
-                const data = DB.get(key);
-                DB.set(key, data.filter(i => i.id !== id));
-            },
-            logAudit: (action, details) => {
-                DB.add("aurexa_audit_logs", { action, details, timestamp: new Date().toLocaleString() });
-            },
-            notifyAdmin: (message) => {
-                DB.add("aurexa_notifications", { message, read: false, type: 'admin' });
-            }
+            remove: (key, id) => DB.set(key, DB.get(key).filter(i => i.id !== id)),
+            log: (action, user = 'System') => DB.add('aurexa_audit_logs', { action, user, date: new Date().toLocaleString() })
         };
 
-        /************************************************************************
-         * 3. INITIALIZE DEMO DATA
-         ************************************************************************/
+        /*******************************************************
+         * 2. INITIALIZE DEMO DATA
+         *******************************************************/
         function initDemoData() {
-            if (!localStorage.getItem("aurexa_settings")) {
-                DB.set("aurexa_settings", { announcement: "🚀 Applications are now open for upcoming Aurexa programs.", announcementActive: true });
+            if(!localStorage.getItem('aurexa_settings')) {
+                DB.set('aurexa_settings', {
+                    siteName: 'Aurexa', 
+                    founderName: 'Srikanth Paka',
+                    founderRole: 'Founder & CEO — Aurexa',
+                    founderBio: 'Passionate about bridging the gap between theoretical knowledge and practical industry requirements. Srikanth founded Aurexa to empower students with real-world cybersecurity and technology skills.',
+                    founderMsg: '“Aurexa is built with a vision to make practical technology and cybersecurity learning more accessible, meaningful and career-focused for the next generation.”',
+                    email: 'hello@aurexa.space', phone: '+91 98765 43210', location: 'Hyderabad, India',
+                    announcement: { active: true, msg: '🚀 New cybersecurity learning programs are now available.', type: 'info' }
+                });
+
+                DB.add('aurexa_courses', { title: 'Ethical Hacking Fundamentals', category: 'Cybersecurity', level: 'Beginner', duration: '4 Weeks', price: 'Free', rating: 4.8, students: 1250, instructor: 'Srikanth Paka', desc: 'Learn the core concepts of offensive security, networking, and vulnerability assessment.', img: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=500' });
+                DB.add('aurexa_courses', { title: 'Advanced SOC Operations', category: 'SOC', level: 'Advanced', duration: '8 Weeks', price: '$49', rating: 4.9, students: 840, instructor: 'Aurexa Team', desc: 'Master SIEM tools, log analysis, threat hunting, and incident response.', img: 'https://images.unsplash.com/photo-1551808525-51a94da548ce?w=500' });
                 
-                DB.add("aurexa_courses", { title: "Ethical Hacking Fundamentals", category: "Cybersecurity", level: "Beginner", duration: "4 Weeks", price: "Free", rating: 4.8, students: 1240, instructor: "Srikanth Paka", desc: "Learn the basics of ethical hacking, networking, and security protocols.", thumbnail: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=500&q=80" });
-                DB.add("aurexa_courses", { title: "Advanced SOC Analyst Path", category: "SOC", level: "Advanced", duration: "8 Weeks", price: "$49", rating: 4.9, students: 850, instructor: "Aurexa Team", desc: "Master SIEM tools, log analysis, and incident response.", thumbnail: "https://images.unsplash.com/photo-1551808525-51a94da548ce?w=500&q=80" });
+                DB.add('aurexa_workshops', { title: 'Web App PenTesting Bootcamp', speaker: 'Srikanth Paka', date: '2026-09-15', time: '10:00 AM', location: 'Online', seats: 100, status: 'Open', desc: 'Hands-on live session finding and exploiting common web vulnerabilities.' });
                 
-                DB.add("aurexa_workshops", { title: "Web Application Penetration Testing", date: "2026-09-15", time: "10:00 AM IST", location: "Online", speaker: "Srikanth Paka", seats: 100, status: "Open", desc: "Hands-on workshop on finding and exploiting web vulnerabilities." });
+                DB.add('aurexa_projects', { title: 'AI Phishing Detector', category: 'AI Security', tech: 'Python, Scikit-learn', status: 'Approved', desc: 'Machine learning model to classify malicious URLs with 98% accuracy.', img: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=500' });
                 
-                DB.add("aurexa_internships", { title: "Cybersecurity Analyst Intern", department: "Cybersecurity", duration: "3 Months", mode: "Remote", deadline: "2026-09-01", status: "Open", skills: "Networking, Linux, Basic Security", desc: "Join our team to monitor, analyze, and secure infrastructure." });
+                DB.add('aurexa_faqs', { q: 'Do I get a certificate?', a: 'Yes, all completed courses come with a verifiable digital certificate.' });
                 
-                DB.add("aurexa_projects", { title: "Automated Phishing Detector", category: "AI", tech: "Python, ML", github: "#", demo: "#", desc: "An AI-powered tool to detect malicious URLs and emails.", image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=500&q=80" });
+                DB.add('aurexa_users', { name: 'Demo Student', email: 'student@example.com', role: 'Student', password: 'demo' });
                 
-                DB.add("aurexa_testimonials", { name: "Aditi Rao", role: "Student", org: "NIT Warangal", rating: 5, text: "Aurexa's practical approach helped me land my first infosec internship!" });
-                
-                DB.add("aurexa_faqs", { q: "Do I get a certificate?", a: "Yes, all completed courses and internships come with a verified certificate." });
-                
-                DB.set("aurexa_founder", { name: "Srikanth Paka", title: "Founder & CEO, Aurexa", bio: "Srikanth is passionate about building accessible, practical education in cybersecurity. With years of experience exploring technology, he founded Aurexa to bridge the gap between theoretical knowledge and industry skills.", quote: "Aurexa is built with a vision to make practical technology and cybersecurity learning more accessible, meaningful and career-focused for the next generation." });
+                DB.log('System initialized with demo data');
             }
         }
 
-        /************************************************************************
-         * 4. UI UTILITIES (Toasts, Modals)
-         ************************************************************************/
-        function showToast(message, type = "success") {
-            const container = document.getElementById("toast-container");
-            const toast = document.createElement("div");
+        /*******************************************************
+         * 3. UI UTILITIES
+         *******************************************************/
+        function showToast(msg, type = 'success') {
+            const root = document.getElementById('toast-root');
+            const toast = document.createElement('div');
             toast.className = `toast ${type}`;
-            toast.innerHTML = `<strong>${type === 'success' ? '✅' : type === 'error' ? '❌' : 'ℹ️'}</strong> ${message}`;
-            container.appendChild(toast);
-            setTimeout(() => { toast.style.opacity = '0'; setTimeout(() => toast.remove(), 300); }, 3000);
+            toast.innerHTML = `<span style="font-size:1.5rem">${type==='success'?'✅':type==='error'?'❌':'ℹ️'}</span> <div>${msg}</div>`;
+            root.appendChild(toast);
+            setTimeout(() => { toast.style.opacity = 0; setTimeout(() => toast.remove(), 300); }, 3000);
         }
 
-        function openModal(htmlContent) {
-            const container = document.getElementById("modal-container");
-            container.innerHTML = `
-                <div class="modal-overlay active" id="overlay" onclick="if(event.target.id==='overlay') closeModal()">
+        function openModal(content) {
+            const root = document.getElementById('modal-root');
+            root.innerHTML = `
+                <div class="modal-overlay active" id="modal-overlay" onclick="if(event.target.id==='modal-overlay') closeModal()">
                     <div class="modal-content">
-                        <span class="modal-close" onclick="closeModal()">&times;</span>
-                        ${htmlContent}
+                        <button class="modal-close" onclick="closeModal()">×</button>
+                        ${content}
                     </div>
                 </div>
             `;
             document.body.style.overflow = 'hidden';
         }
+        function closeModal() { document.getElementById('modal-root').innerHTML = ''; document.body.style.overflow = 'auto'; }
 
-        function closeModal() {
-            const container = document.getElementById("modal-container");
-            container.innerHTML = "";
-            document.body.style.overflow = 'auto';
-        }
-
-        /************************************************************************
-         * 5. PUBLIC WEBSITE RENDERER
-         ************************************************************************/
-        function renderPublicHeader() {
-            const settings = DB.get("aurexa_settings");
-            let annBar = '';
-            if (settings && settings.announcementActive) {
-                annBar = `<div id="announcement-bar">${settings.announcement}</div>`;
+        // Ctrl+K Search
+        document.addEventListener('keydown', e => {
+            if((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                e.preventDefault();
+                openModal(`
+                    <h3 class="text-2xl font-bold mb-4">Global Search</h3>
+                    <input type="text" class="input-control" placeholder="Search courses, workshops, projects..." onkeyup="handleSearch(this.value)" id="searchInput" autocomplete="off">
+                    <div id="searchResults" class="mt-4 flex col gap-2"></div>
+                `);
+                setTimeout(() => document.getElementById('searchInput').focus(), 100);
             }
+        });
 
+        window.handleSearch = (query) => {
+            const res = document.getElementById('searchResults');
+            if(query.length < 2) { res.innerHTML = ''; return; }
+            const q = query.toLowerCase();
+            let html = '';
+            
+            DB.get('aurexa_courses').filter(c => c.title.toLowerCase().includes(q)).forEach(c => html += `<div class="p-2 border rounded bg-bg text-sm"><strong>Course:</strong> ${c.title}</div>`);
+            DB.get('aurexa_workshops').filter(w => w.title.toLowerCase().includes(q)).forEach(w => html += `<div class="p-2 border rounded bg-bg text-sm"><strong>Workshop:</strong> ${w.title}</div>`);
+            DB.get('aurexa_projects').filter(p => p.title.toLowerCase().includes(q)).forEach(p => html += `<div class="p-2 border rounded bg-bg text-sm"><strong>Project:</strong> ${p.title}</div>`);
+            
+            res.innerHTML = html || '<p class="text-text-light text-sm">No results found.</p>';
+        };
+
+        /*******************************************************
+         * 4. RENDERERS: PUBLIC WEBSITE
+         *******************************************************/
+        function renderNavbar() {
+            const settings = DB.getObj('aurexa_settings');
+            const ann = settings.announcement;
+            const bar = ann && ann.active ? `<div id="announcement">${ann.msg}</div>` : '';
+            const isStudent = sessionStorage.getItem('aurexa_student');
+            
             return `
-                ${annBar}
+                ${bar}
                 <header>
-                    <div class="container navbar">
-                        <a href="#" class="logo">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-                            ${CONFIG.brandName}
+                    <div class="container nav-container">
+                        <a href="#home" class="logo">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                            AUREXA
                         </a>
                         <nav class="nav-links">
-                            <a href="#about">About</a>
-                            <a href="#services">Services</a>
-                            <a href="#courses">Courses</a>
-                            <a href="#workshops">Workshops</a>
-                            <a href="#internships">Internships</a>
+                            <a href="#home">Home</a> <a href="#courses">Courses</a> <a href="#workshops">Workshops</a> 
+                            <a href="#projects">Projects</a> <a href="#founder">Founder</a>
                         </nav>
-                        <div class="nav-actions">
-                            <button onclick="openSearchModal()" title="Search (Ctrl+K)">🔍</button>
-                            <a href="#admin" class="text-sm font-semibold text-muted">Admin</a>
-                            <a href="#courses" class="btn btn-primary text-sm">Get Started</a>
+                        <div class="flex gap-4 items-center">
+                            <button onclick="alert('Press Ctrl+K to search')" class="text-text-light" title="Search">🔍</button>
+                            ${isStudent ? 
+                                `<a href="#dashboard" class="btn btn-outline text-sm">Dashboard</a>
+                                 <button onclick="logoutStudent()" class="text-text-light text-sm">Logout</button>` : 
+                                `<button onclick="openLoginModal()" class="text-text-light font-semibold">Login</button>
+                                 <a href="#courses" class="btn btn-primary text-sm">Get Started</a>`
+                            }
+                            <a href="#admin" class="text-sm text-text-light ml-2 border-l pl-4 border-border">Admin</a>
                         </div>
-                        <button class="mobile-menu-btn">☰</button>
                     </div>
                 </header>
             `;
         }
 
-        function renderHero() {
+        function renderFooter() {
             return `
-                <section class="hero-section">
-                    <div class="hero-bg-elements"></div>
-                    <div class="container relative z-10">
-                        <span class="badge">CYBERSECURITY • TECHNOLOGY • INNOVATION</span>
-                        <h1 class="text-5xl font-bold mt-6 mb-6 text-primary" style="max-width: 800px; margin-left: auto; margin-right: auto;">
-                            Empowering the Next Generation of Cybersecurity & Technology
-                        </h1>
-                        <p class="text-xl text-muted mb-8" style="max-width: 700px; margin: 0 auto;">
-                            Aurexa is a technology and cybersecurity-focused initiative dedicated to helping students and aspiring professionals build practical skills, real-world experience and career-ready expertise.
-                        </p>
+                <footer>
+                    <div class="container grid grid-cols-4 gap-8">
+                        <div class="col-span-1">
+                            <h3 class="logo text-white"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> AUREXA</h3>
+                            <p class="text-sm text-text-light mb-4">Empowering the Next Generation of Cybersecurity & Technology.</p>
+                            <form onsubmit="submitNewsletter(event)" class="flex gap-2">
+                                <input type="email" id="nlEmail" placeholder="Email address" class="input-control text-sm" required style="padding:0.5rem">
+                                <button class="btn btn-primary text-sm" style="padding:0.5rem 1rem">Subscribe</button>
+                            </form>
+                        </div>
+                        <div><h3>Explore</h3><ul><li><a href="#courses">Courses</a></li><li><a href="#workshops">Workshops</a></li><li><a href="#projects">Projects</a></li></ul></div>
+                        <div><h3>Company</h3><ul><li><a href="#founder">Founder</a></li><li><a href="#about">About Us</a></li><li><a href="#contact">Contact</a></li></ul></div>
+                        <div><h3>Legal</h3><ul><li><a href="#" onclick="alert('Demo Privacy Policy')">Privacy Policy</a></li><li><a href="#" onclick="alert('Demo Terms')">Terms of Service</a></li></ul></div>
+                    </div>
+                    <div class="container text-center text-sm text-text-light mt-8 pt-8" style="border-top: 1px solid rgba(255,255,255,0.1)">
+                        &copy; 2026 Aurexa. All rights reserved. Built by Srikanth Paka.
+                    </div>
+                </footer>
+            `;
+        }
+
+        function renderHome() {
+            const courses = DB.get('aurexa_courses').slice(0, 3);
+            const settings = DB.getObj('aurexa_settings');
+            
+            return `
+                <section class="hero" id="home">
+                    <div class="container relative" style="z-index: 10;">
+                        <span class="badge mb-4">CYBERSECURITY • TECHNOLOGY • INNOVATION</span>
+                        <h1 class="text-4xl font-bold text-primary mb-6 mx-auto" style="max-width: 800px; line-height:1.2">Empowering the Next Generation of Cybersecurity & Technology</h1>
+                        <p class="text-lg text-text-light mx-auto mb-8" style="max-width: 700px;">Aurexa is a technology and cybersecurity-focused initiative dedicated to helping students and aspiring professionals build practical skills, real-world experience and career-ready expertise.</p>
                         <div class="flex justify-center gap-4">
                             <a href="#courses" class="btn btn-primary">Explore Courses</a>
-                            <a href="#internships" class="btn btn-outline bg-white">Join Aurexa</a>
-                        </div>
-                        <div class="flex justify-center gap-6 mt-6 text-sm text-muted">
-                            <a href="#internships">Explore Internships →</a>
-                            <a href="#workshops">Upcoming Workshops →</a>
+                            <a href="#workshops" class="btn btn-outline">Explore Workshops</a>
                         </div>
                     </div>
                 </section>
                 <div class="trust-strip">
-                    <div class="container flex">
-                        <div class="trust-item">🛡️ Practical Learning</div>
-                        <div class="trust-item">⚡ Industry-Relevant Skills</div>
-                        <div class="trust-item">💻 Real-World Projects</div>
-                        <div class="trust-item">🚀 Career-Focused Growth</div>
-                    </div>
+                    <span>🛡️ Practical Learning</span>
+                    <span>💻 Real-World Projects</span>
+                    <span>📈 Industry-Relevant Skills</span>
+                    <span>🚀 Career-Focused Growth</span>
                 </div>
-            `;
-        }
+                
+                <section class="py-16 bg-white" id="stats">
+                    <div class="container grid grid-cols-4 gap-6 text-center">
+                        <div><div class="text-4xl font-bold text-accent mb-2">5000+</div><div class="text-sm text-text-light font-semibold">Students Reached</div></div>
+                        <div><div class="text-4xl font-bold text-accent mb-2">${DB.get('aurexa_courses').length}+</div><div class="text-sm text-text-light font-semibold">Courses</div></div>
+                        <div><div class="text-4xl font-bold text-accent mb-2">${DB.get('aurexa_projects').length}+</div><div class="text-sm text-text-light font-semibold">Projects Built</div></div>
+                        <div><div class="text-4xl font-bold text-accent mb-2">10k+</div><div class="text-sm text-text-light font-semibold">Community Members</div></div>
+                    </div>
+                </section>
 
-        function renderStats() {
-            return `
-                <section class="py-16 bg-white">
+                <section class="py-16" id="services">
                     <div class="container">
-                        <div class="grid grid-cols-4 gap-6 text-center">
-                            <div><h3 class="text-4xl font-bold text-accent">5,000+</h3><p class="text-muted">Students Reached</p></div>
-                            <div><h3 class="text-4xl font-bold text-accent">12+</h3><p class="text-muted">Courses</p></div>
-                            <div><h3 class="text-4xl font-bold text-accent">50+</h3><p class="text-muted">Projects Built</p></div>
-                            <div><h3 class="text-4xl font-bold text-accent">10k+</h3><p class="text-muted">Community Members</p></div>
+                        <div class="section-header"><h2>Core Services</h2><p>Comprehensive tech & security education.</p></div>
+                        <div class="grid grid-cols-4 gap-6">
+                            ${['Cybersecurity Training', 'Ethical Hacking', 'Cybersecurity Awareness', 'Workshops & Bootcamps', 'Real-World Projects', 'Career Development', 'Technology Education', 'Security Consulting'].map((s,i) => `
+                                <div class="card text-center"><div class="text-4xl mb-4">💠</div><h3 class="font-bold text-lg mb-2">${s}</h3><p class="text-sm text-text-light">Practical, industry-aligned modules.</p></div>
+                            `).join('')}
                         </div>
                     </div>
                 </section>
-            `;
-        }
 
-        function renderServices() {
-            const services = [
-                {icon: '🛡️', title: 'Cybersecurity Training', desc: 'Practical, lab-based training.'},
-                {icon: '🏴‍☠️', title: 'Ethical Hacking', desc: 'Learn offensive security techniques.'},
-                {icon: '🧠', title: 'Cybersecurity Awareness', desc: 'Building secure digital habits.'},
-                {icon: '🛠️', title: 'Workshops & Bootcamps', desc: 'Intensive short-term learning.'},
-                {icon: '💻', title: 'Real-World Projects', desc: 'Build your technical portfolio.'},
-                {icon: '🎓', title: 'Internship Programs', desc: 'Gain industry experience.'},
-                {icon: '📈', title: 'Career Development', desc: 'Resume building and interview prep.'},
-                {icon: '🌐', title: 'Technology Education', desc: 'Web dev, AI, and IT basics.'}
-            ];
-            
-            let cards = services.map(s => `
-                <div class="card text-center">
-                    <div class="text-4xl mb-4">${s.icon}</div>
-                    <h3 class="text-lg font-bold mb-2">${s.title}</h3>
-                    <p class="text-muted text-sm">${s.desc}</p>
-                </div>
-            `).join('');
-
-            return `
-                <section id="services" class="py-16">
+                <section class="py-16 bg-white" id="courses">
                     <div class="container">
-                        <div class="section-title">
-                            <h2>Our Services</h2>
-                            <p>Comprehensive programs designed for your tech journey.</p>
+                        <div class="section-header"><h2>Featured Courses</h2><p>Learn from industry experts with hands-on labs.</p></div>
+                        <div class="grid grid-cols-3 gap-6">
+                            ${courses.map(c => `
+                                <div class="card" style="padding:0; overflow:hidden;">
+                                    <img src="${c.img}" class="course-img" style="margin:0; border-radius:0;">
+                                    <div class="p-6">
+                                        <div class="flex gap-2 mb-2"><span class="badge">${c.category}</span><span class="badge">${c.level}</span></div>
+                                        <h3 class="font-bold text-xl mb-2">${c.title}</h3>
+                                        <p class="text-sm text-text-light mb-4" style="height: 40px; overflow:hidden;">${c.desc}</p>
+                                        <div class="flex justify-between items-center mt-4 pt-4 border-t border-border">
+                                            <span class="font-bold text-lg">${c.price}</span>
+                                            <button onclick="viewCourse('${c.id}')" class="text-accent font-semibold text-sm">View Details →</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            `).join('')}
                         </div>
-                        <div class="grid grid-cols-4 gap-6">${cards}</div>
                     </div>
                 </section>
-            `;
-        }
 
-        function renderCourses() {
-            const courses = DB.get("aurexa_courses");
-            let cards = courses.map(c => `
-                <div class="card" style="padding:0; overflow:hidden;">
-                    <img src="${c.thumbnail}" alt="${c.title}" style="height: 180px; width: 100%; object-fit: cover; border-radius: 0;">
-                    <div class="p-4">
-                        <span class="badge mb-2">${c.category} • ${c.level}</span>
-                        <h3 class="font-bold text-lg mb-2">${c.title}</h3>
-                        <p class="text-sm text-muted mb-4 line-clamp-2">${c.desc}</p>
-                        <div class="flex justify-between items-center mt-4 border-t pt-4 border-gray-100">
-                            <span class="font-bold text-primary">${c.price}</span>
-                            <button onclick="viewCourse('${c.id}')" class="text-accent font-semibold text-sm">View Details &rarr;</button>
+                <section class="py-16" id="founder">
+                    <div class="container flex gap-8 items-center bg-primary text-white rounded p-8" style="border-radius:24px;">
+                        <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?w=500" alt="Founder" class="founder-img" style="flex-shrink:0">
+                        <div>
+                            <h2 class="text-4xl font-bold mb-2">Meet the Founder</h2>
+                            <h3 class="text-xl text-info mb-4">${settings.founderName} <span class="text-sm text-gray-400 font-normal">| ${settings.founderRole}</span></h3>
+                            <p class="mb-6 text-gray-300">${settings.founderBio}</p>
+                            <blockquote class="p-4 border-l-4 border-accent bg-secondary rounded text-sm italic">
+                                ${settings.founderMsg}
+                            </blockquote>
                         </div>
                     </div>
-                </div>
-            `).join('');
+                </section>
 
-            return `
-                <section id="courses" class="py-16 bg-white">
-                    <div class="container">
-                        <div class="section-title">
-                            <h2>Explore Courses</h2>
-                            <p>Practical, hands-on learning modules.</p>
-                        </div>
-                        <div class="grid grid-cols-3 gap-6">${cards || '<p class="text-center col-span-3 text-muted">No courses available yet.</p>'}</div>
+                <section class="py-16 bg-white" id="contact">
+                    <div class="container max-w-2xl" style="max-width: 600px; margin: 0 auto;">
+                        <div class="section-header"><h2>Contact Us</h2><p>Have questions? Reach out to the Aurexa team.</p></div>
+                        <form class="card" onsubmit="submitContact(event)">
+                            <div class="input-group"><label>Name</label><input type="text" id="cName" class="input-control" required></div>
+                            <div class="input-group"><label>Email</label><input type="email" id="cEmail" class="input-control" required></div>
+                            <div class="input-group"><label>Message</label><textarea id="cMsg" class="input-control" rows="4" required></textarea></div>
+                            <button type="submit" class="btn btn-primary w-full" style="width:100%">Send Message</button>
+                        </form>
                     </div>
                 </section>
             `;
         }
 
         window.viewCourse = (id) => {
-            const course = DB.get("aurexa_courses").find(c => c.id === id);
-            if(!course) return;
+            const c = DB.get('aurexa_courses').find(x => x.id === id);
+            if(!c) return;
             openModal(`
-                <h2 class="text-2xl font-bold mb-2">${course.title}</h2>
-                <div class="flex gap-2 mb-4"><span class="badge">${course.category}</span> <span class="badge">${course.level}</span></div>
-                <img src="${course.thumbnail}" class="mb-4" style="width:100%; height:200px; object-fit:cover;">
-                <p class="mb-4">${course.desc}</p>
-                <ul class="mb-4 text-sm text-muted">
-                    <li>⏱️ Duration: ${course.duration}</li>
-                    <li>👨‍🏫 Instructor: ${course.instructor}</li>
-                    <li>⭐ Rating: ${course.rating} (${course.students} students)</li>
-                </ul>
-                <div class="flex justify-between items-center mt-6">
-                    <span class="text-xl font-bold">${course.price}</span>
-                    <button class="btn btn-primary" onclick="enroll('${course.id}')">Enroll Now</button>
+                <span class="badge mb-2">${c.category}</span>
+                <h2 class="text-2xl font-bold mb-4">${c.title}</h2>
+                <img src="${c.img}" style="width:100%; height:250px; object-fit:cover; border-radius:8px; margin-bottom:1rem;">
+                <p class="mb-4">${c.desc}</p>
+                <div class="grid grid-cols-2 gap-4 text-sm mb-6 bg-bg p-4 rounded">
+                    <div><strong>Level:</strong> ${c.level}</div>
+                    <div><strong>Duration:</strong> ${c.duration}</div>
+                    <div><strong>Instructor:</strong> ${c.instructor}</div>
+                    <div><strong>Rating:</strong> ⭐ ${c.rating} (${c.students} students)</div>
+                </div>
+                <div class="flex justify-between items-center">
+                    <span class="text-2xl font-bold">${c.price}</span>
+                    <button class="btn btn-primary" onclick="enrollCourse('${c.id}')">Enroll Now</button>
                 </div>
             `);
-        };
+        }
 
-        window.enroll = (id) => {
-            showToast("Successfully enrolled! Check your email.");
-            DB.notifyAdmin(`New enrollment for course ID: ${id}`);
+        window.enrollCourse = (id) => {
+            if(!sessionStorage.getItem('aurexa_student')) {
+                closeModal(); showToast('Please login to enroll', 'warning'); openLoginModal(); return;
+            }
+            DB.add('aurexa_notifications', { type: 'enrollment', message: `New enrollment for course ${id}` });
+            showToast('Successfully enrolled in the course!');
             closeModal();
-        };
-
-        function renderInternships() {
-            const internships = DB.get("aurexa_internships");
-            let cards = internships.map(i => `
-                <div class="card">
-                    <div class="flex justify-between items-start mb-4">
-                        <h3 class="font-bold text-lg">${i.title}</h3>
-                        <span class="badge" style="background:${i.status==='Open'?'#dcfce7':'#fee2e2'}; color:${i.status==='Open'?'#166534':'#991b1b'}">${i.status}</span>
-                    </div>
-                    <div class="text-sm text-muted mb-4">
-                        <p>🏢 Dept: ${i.department} | ⏳ ${i.duration} | 📍 ${i.mode}</p>
-                        <p class="mt-2"><strong>Skills:</strong> ${i.skills}</p>
-                    </div>
-                    <p class="text-sm mb-4">${i.desc}</p>
-                    ${i.status === 'Open' ? `<button onclick="openApplicationForm('${i.title}')" class="btn btn-primary w-full" style="width:100%">Apply Now</button>` : ''}
-                </div>
-            `).join('');
-
-            return `
-                <section id="internships" class="py-16">
-                    <div class="container">
-                        <div class="section-title">
-                            <h2>Internship Programs</h2>
-                            <p>Kickstart your career with real-world experience.</p>
-                        </div>
-                        <div class="grid grid-cols-2 gap-6">${cards || '<p class="text-center col-span-2 text-muted">No open internships currently.</p>'}</div>
-                    </div>
-                </section>
-            `;
+            window.location.hash = '#dashboard';
         }
 
-        window.openApplicationForm = (internshipTitle) => {
-            openModal(`
-                <h3 class="text-xl font-bold mb-4">Apply for ${internshipTitle}</h3>
-                <form id="appForm" onsubmit="submitApplication(event, '${internshipTitle}')">
-                    <div class="input-group">
-                        <label>Full Name</label>
-                        <input type="text" id="appName" required>
-                    </div>
-                    <div class="input-group">
-                        <label>Email</label>
-                        <input type="email" id="appEmail" required>
-                    </div>
-                    <div class="input-group">
-                        <label>College/University</label>
-                        <input type="text" id="appCollege" required>
-                    </div>
-                    <div class="input-group">
-                        <label>Why join Aurexa?</label>
-                        <textarea id="appWhy" rows="3" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary" style="width:100%">Submit Application</button>
-                </form>
-            `);
-        };
-
-        window.submitApplication = (e, title) => {
-            e.preventDefault();
-            const data = {
-                name: document.getElementById("appName").value,
-                email: document.getElementById("appEmail").value,
-                college: document.getElementById("appCollege").value,
-                internship: title,
-                status: "New"
-            };
-            DB.add("aurexa_applications", data);
-            DB.notifyAdmin(`New application received for ${title} from ${data.name}`);
-            closeModal();
-            showToast("Application submitted successfully! Application ID: " + Math.random().toString(36).substr(2,8).toUpperCase(), "success");
-        };
-
-        function renderFounder() {
-            const founder = DB.get("aurexa_founder") || localStorage.getItem("aurexa_founder") ? JSON.parse(localStorage.getItem("aurexa_founder")) : {name: 'Srikanth Paka', title: 'Founder & CEO', bio: '', quote: ''};
-            return `
-                <section id="founder" class="py-16 bg-primary text-white">
-                    <div class="container flex items-center justify-between gap-8 flex-wrap">
-                        <div style="flex:1; min-width:300px;">
-                            <h2 class="text-3xl font-bold mb-2">Meet the Founder</h2>
-                            <h3 class="text-xl text-accent mb-4">${founder.name} <span class="text-sm font-normal text-gray-300">- ${founder.title}</span></h3>
-                            <p class="mb-6 text-gray-300">${founder.bio}</p>
-                            <blockquote style="border-left: 4px solid var(--accent); padding-left: 1rem; font-style: italic; color: #e2e8f0;">
-                                "${founder.quote}"
-                            </blockquote>
-                        </div>
-                        <div style="flex:1; display:flex; justify-content:center; min-width:300px;">
-                            <div style="width:300px; height:300px; background:#1e293b; border-radius:50%; display:flex; align-items:center; justify-content:center; border: 4px solid var(--accent); box-shadow: 0 0 20px rgba(37,99,235,0.3);">
-                                <span class="text-6xl">👨‍💻</span>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            `;
-        }
-
-        function renderContact() {
-            return `
-                <section id="contact" class="py-16 bg-white">
-                    <div class="container">
-                        <div class="section-title">
-                            <h2>Contact Us</h2>
-                            <p>Have questions? We'd love to hear from you.</p>
-                        </div>
-                        <div style="max-width:600px; margin:0 auto;">
-                            <form onsubmit="submitContact(event)" class="card">
-                                <div class="input-group">
-                                    <label>Name</label><input type="text" id="contactName" required>
-                                </div>
-                                <div class="input-group">
-                                    <label>Email</label><input type="email" id="contactEmail" required>
-                                </div>
-                                <div class="input-group">
-                                    <label>Message</label><textarea id="contactMessage" rows="4" required></textarea>
-                                </div>
-                                <button type="submit" class="btn btn-primary w-full" style="width:100%">Send Message</button>
-                            </form>
-                        </div>
-                    </div>
-                </section>
-            `;
-        }
-
+        // Form Submissions
         window.submitContact = (e) => {
             e.preventDefault();
-            DB.add("aurexa_messages", {
-                name: document.getElementById("contactName").value,
-                email: document.getElementById("contactEmail").value,
-                message: document.getElementById("contactMessage").value
-            });
-            DB.notifyAdmin("New contact message received.");
-            showToast("Message sent successfully!");
+            DB.add('aurexa_messages', { name: document.getElementById('cName').value, email: document.getElementById('cEmail').value, msg: document.getElementById('cMsg').value, status: 'New' });
+            showToast('Message sent successfully!');
             e.target.reset();
-        };
+        }
+        window.submitNewsletter = (e) => {
+            e.preventDefault();
+            DB.add('aurexa_subscribers', { email: document.getElementById('nlEmail').value });
+            showToast('Subscribed successfully!');
+            e.target.reset();
+        }
 
-        function renderFooter() {
+        // Mock Auth
+        window.openLoginModal = () => {
+            openModal(`
+                <h2 class="text-2xl font-bold mb-6 text-center">Student Login</h2>
+                <form onsubmit="handleStudentLogin(event)">
+                    <div class="input-group"><label>Email</label><input type="email" id="lEmail" class="input-control" value="student@example.com" required></div>
+                    <div class="input-group"><label>Password</label><input type="password" id="lPass" class="input-control" value="demo" required></div>
+                    <button class="btn btn-primary w-full mt-4" style="width:100%">Login</button>
+                </form>
+                <p class="text-center text-xs text-text-light mt-4">Demo accounts: student@example.com / demo</p>
+            `);
+        }
+        window.handleStudentLogin = (e) => {
+            e.preventDefault();
+            sessionStorage.setItem('aurexa_student', document.getElementById('lEmail').value);
+            showToast('Logged in successfully');
+            closeModal();
+            renderApp();
+        }
+        window.logoutStudent = () => { sessionStorage.removeItem('aurexa_student'); renderApp(); showToast('Logged out'); }
+
+        /*******************************************************
+         * 5. STUDENT DASHBOARD
+         *******************************************************/
+        function renderStudentDashboard() {
+            if(!sessionStorage.getItem('aurexa_student')) { window.location.hash = '#home'; return ''; }
+            const courses = DB.get('aurexa_courses').slice(0, 2); // mock enrolled
             return `
-                <footer>
-                    <div class="container">
-                        <div class="footer-grid">
-                            <div class="footer-col">
-                                <h3 class="text-2xl font-bold mb-4">${CONFIG.brandName}</h3>
-                                <p class="text-sm text-gray-300 mb-4">Cybersecurity • Technology • Innovation</p>
-                                <form onsubmit="submitNewsletter(event)" class="flex gap-2">
-                                    <input type="email" id="nlEmail" placeholder="Enter your email" style="padding:0.5rem; border-radius:4px; border:none; flex:1;" required>
-                                    <button type="submit" class="btn btn-primary" style="padding:0.5rem 1rem;">Subscribe</button>
-                                </form>
-                            </div>
-                            <div class="footer-col">
-                                <h4>Quick Links</h4>
-                                <ul><li><a href="#about">About Us</a></li><li><a href="#services">Services</a></li><li><a href="#faq">FAQ</a></li></ul>
-                            </div>
-                            <div class="footer-col">
-                                <h4>Programs</h4>
-                                <ul><li><a href="#courses">Courses</a></li><li><a href="#workshops">Workshops</a></li><li><a href="#internships">Internships</a></li></ul>
-                            </div>
-                            <div class="footer-col">
-                                <h4>Legal</h4>
-                                <ul><li><a href="#" onclick="showLegal('privacy')">Privacy Policy</a></li><li><a href="#" onclick="showLegal('terms')">Terms & Conditions</a></li></ul>
-                            </div>
-                        </div>
-                        <div class="footer-bottom">
-                            &copy; 2026 Aurexa. All rights reserved. (Demo Application)
-                        </div>
+                <div class="container py-16">
+                    <h2 class="text-3xl font-bold mb-8">Student Dashboard</h2>
+                    <div class="grid grid-cols-3 gap-6 mb-8">
+                        <div class="card text-center"><div class="text-3xl text-accent font-bold">2</div><div class="text-sm text-text-light">Enrolled Courses</div></div>
+                        <div class="card text-center"><div class="text-3xl text-success font-bold">1</div><div class="text-sm text-text-light">Certificates</div></div>
+                        <div class="card text-center"><div class="text-3xl text-info font-bold">3</div><div class="text-sm text-text-light">Projects Submitted</div></div>
                     </div>
-                </footer>
+                    <h3 class="text-xl font-bold mb-4">My Learning</h3>
+                    <div class="grid grid-cols-2 gap-6">
+                        ${courses.map(c => `
+                            <div class="card flex gap-4 items-center">
+                                <img src="${c.img}" style="width:100px; height:100px; object-fit:cover; border-radius:8px;">
+                                <div style="flex:1">
+                                    <h4 class="font-bold">${c.title}</h4>
+                                    <div class="w-full bg-bg rounded h-2 mt-2 mb-2"><div class="bg-accent h-2 rounded" style="width: 45%"></div></div>
+                                    <div class="flex justify-between text-xs text-text-light"><span>45% Complete</span> <button class="text-accent font-bold">Continue</button></div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
             `;
         }
 
-        window.submitNewsletter = (e) => {
-            e.preventDefault();
-            DB.add("aurexa_subscribers", { email: document.getElementById("nlEmail").value });
-            DB.notifyAdmin("New newsletter subscriber.");
-            showToast("Subscribed successfully!");
-            e.target.reset();
-        };
-
-        window.showLegal = (type) => {
-            const title = type === 'privacy' ? 'Privacy Policy' : 'Terms & Conditions';
-            openModal(`<h2>${title}</h2><p class="mt-4 text-sm text-muted">[Placeholder for legal text. Needs final legal review.]</p>`);
-        }
-
-        /* Search Functionality */
-        window.openSearchModal = () => {
-            openModal(`
-                <input type="text" id="searchInput" placeholder="Search courses, internships, projects..." class="w-full p-4 border rounded text-lg mb-4" style="width:100%; box-sizing:border-box;" onkeyup="performSearch(this.value)">
-                <div id="searchResults" class="flex col gap-2"></div>
-            `);
-            setTimeout(() => document.getElementById('searchInput').focus(), 100);
-        };
-
-        window.performSearch = (query) => {
-            query = query.toLowerCase();
-            const resContainer = document.getElementById("searchResults");
-            if(query.length < 2) { resContainer.innerHTML = ''; return; }
-            
-            const results = [];
-            DB.get("aurexa_courses").forEach(c => { if(c.title.toLowerCase().includes(query)) results.push({type:'Course', title: c.title}); });
-            DB.get("aurexa_internships").forEach(i => { if(i.title.toLowerCase().includes(query)) results.push({type:'Internship', title: i.title}); });
-            
-            resContainer.innerHTML = results.map(r => `<div class="p-2 bg-gray-50 border rounded text-sm"><strong>${r.type}:</strong> ${r.title}</div>`).join('') || '<p class="text-sm text-muted">No results found.</p>';
-        };
-
-        document.addEventListener('keydown', (e) => {
-            if (e.ctrlKey && e.key === 'k') { e.preventDefault(); openSearchModal(); }
-        });
-
-
-        /************************************************************************
+        /*******************************************************
          * 6. ADMIN PANEL
-         ************************************************************************/
-        let currentAdminView = 'dashboard';
-
+         *******************************************************/
         function renderAdminLogin() {
             return `
-                <div style="min-height: 100vh; display:flex; align-items:center; justify-content:center; background: var(--bg);">
-                    <div class="card" style="width: 100%; max-width: 400px;">
-                        <h2 class="text-2xl font-bold text-center mb-6 text-primary">Aurexa Admin Demo</h2>
+                <div class="flex items-center justify-center" style="min-height:100vh; background:var(--bg)">
+                    <div class="card" style="width:100%; max-width:400px;">
+                        <h2 class="text-2xl font-bold text-center mb-2">Admin Access</h2>
+                        <p class="text-center text-sm text-danger mb-6">Demo Frontend Authentication Only</p>
                         <form onsubmit="handleAdminLogin(event)">
-                            <div class="input-group">
-                                <label>Username</label>
-                                <input type="text" id="adminUser" required value="admin">
-                            </div>
-                            <div class="input-group">
-                                <label>Password</label>
-                                <input type="password" id="adminPass" required value="Aurexa@2026">
-                            </div>
-                            <button type="submit" class="btn btn-primary w-full mt-4" style="width:100%">Login</button>
+                            <div class="input-group"><label>Username</label><input type="text" id="aUser" class="input-control" value="admin" required></div>
+                            <div class="input-group"><label>Password</label><input type="password" id="aPass" class="input-control" value="Aurexa@2026" required></div>
+                            <button class="btn btn-primary mt-4 w-full" style="width:100%">Secure Login</button>
                         </form>
-                        <p class="text-xs text-center text-muted mt-4">Frontend demo authentication system.</p>
                     </div>
                 </div>
             `;
@@ -669,226 +512,188 @@
 
         window.handleAdminLogin = (e) => {
             e.preventDefault();
-            if(document.getElementById("adminUser").value === CONFIG.adminUser && document.getElementById("adminPass").value === CONFIG.adminPass) {
-                sessionStorage.setItem("aurexa_admin_auth", "true");
-                DB.logAudit("Login", "Admin logged in");
+            if(document.getElementById('aUser').value === ADMIN_CREDS.user && document.getElementById('aPass').value === ADMIN_CREDS.pass) {
+                sessionStorage.setItem('aurexa_admin', 'true');
+                DB.log('Admin Login');
+                window.location.hash = '#admin/dashboard';
                 renderApp();
-                showToast("Logged in successfully");
-            } else {
-                showToast("Invalid credentials", "error");
-            }
-        };
-
-        window.logoutAdmin = () => {
-            sessionStorage.removeItem("aurexa_admin_auth");
-            DB.logAudit("Logout", "Admin logged out");
-            window.location.hash = "";
-            renderApp();
-        };
-
-        function switchAdminView(view) {
-            currentAdminView = view;
-            renderAdminContent();
+                showToast('Admin logged in');
+            } else { showToast('Invalid credentials', 'error'); }
         }
+        window.logoutAdmin = () => { sessionStorage.removeItem('aurexa_admin'); DB.log('Admin Logout'); window.location.hash = '#home'; renderApp(); }
 
-        function renderAdminLayout() {
-            const navItems = [
-                {id: 'dashboard', label: 'Dashboard', icon: '📊'},
-                {id: 'courses', label: 'Courses', icon: '📚'},
-                {id: 'internships', label: 'Internships', icon: '🎓'},
-                {id: 'applications', label: 'Applications', icon: '📝'},
-                {id: 'messages', label: 'Messages', icon: '✉️'},
-                {id: 'settings', label: 'Settings & Data', icon: '⚙️'}
+        function renderAdminLayout(content, activeRoute) {
+            const nav = [
+                { id: 'dashboard', label: '📊 Dashboard' }, { id: 'courses', label: '📚 Courses' },
+                { id: 'workshops', label: '🛠️ Workshops' }, { id: 'projects', label: '💻 Projects' },
+                { id: 'users', label: '👥 Users' }, { id: 'messages', label: '✉️ Messages' },
+                { id: 'settings', label: '⚙️ Settings & Backup' }
             ];
-
-            const sidebar = navItems.map(item => `
-                <a href="javascript:void(0)" onclick="switchAdminView('${item.id}')" class="${currentAdminView === item.id ? 'active' : ''}">
-                    ${item.icon} ${item.label}
-                </a>
-            `).join('');
-
             return `
                 <div class="admin-layout">
                     <aside class="admin-sidebar">
                         <div class="logo">Aurexa Admin</div>
-                        <nav class="admin-nav" id="adminNav">${sidebar}</nav>
+                        <nav class="admin-nav">
+                            ${nav.map(n => `<a href="#admin/${n.id}" class="${activeRoute === n.id ? 'active' : ''}">${n.label}</a>`).join('')}
+                        </nav>
                     </aside>
                     <main class="admin-main">
                         <header class="admin-header">
-                            <h2 class="text-xl font-bold capitalize" id="adminViewTitle">${currentAdminView}</h2>
+                            <h2 class="font-bold text-xl capitalize">${activeRoute}</h2>
                             <div class="flex gap-4 items-center">
-                                <a href="#" class="btn btn-outline text-sm py-1">View Site</a>
-                                <button onclick="logoutAdmin()" class="btn btn-danger py-1">Logout</button>
+                                <a href="#home" class="btn btn-outline text-sm py-1">View Site</a>
+                                <button onclick="logoutAdmin()" class="btn btn-danger text-sm py-1">Logout</button>
                             </div>
                         </header>
-                        <div class="admin-content" id="adminContent"></div>
+                        <div class="admin-content">${content}</div>
                     </main>
                 </div>
             `;
         }
 
-        function renderAdminContent() {
-            const contentDiv = document.getElementById("adminContent");
-            const titleEl = document.getElementById("adminViewTitle");
-            if(!contentDiv) return;
-            
-            titleEl.innerText = currentAdminView;
-            
-            // Update active state in sidebar
-            document.querySelectorAll('.admin-nav a').forEach(a => a.classList.remove('active'));
-            const activeLink = Array.from(document.querySelectorAll('.admin-nav a')).find(a => a.innerText.toLowerCase().includes(currentAdminView.toLowerCase()));
-            if(activeLink) activeLink.classList.add('active');
-
-            if (currentAdminView === 'dashboard') {
-                const apps = DB.get("aurexa_applications").length;
-                const msgs = DB.get("aurexa_messages").length;
-                const courses = DB.get("aurexa_courses").length;
-                contentDiv.innerHTML = `
-                    <div class="grid grid-cols-3 gap-6 mb-8">
-                        <div class="card bg-primary text-white"><h3>Total Applications</h3><p class="text-4xl font-bold mt-2">${apps}</p></div>
-                        <div class="card bg-accent text-white"><h3>Total Messages</h3><p class="text-4xl font-bold mt-2">${msgs}</p></div>
-                        <div class="card bg-white"><h3>Active Courses</h3><p class="text-4xl font-bold mt-2 text-primary">${courses}</p></div>
+        function renderAdminDashboard() {
+            return `
+                <div class="grid grid-cols-4 gap-6 mb-8">
+                    <div class="card text-center"><div class="text-3xl font-bold text-primary">${DB.get('aurexa_users').length}</div><div class="text-sm text-text-light">Total Users</div></div>
+                    <div class="card text-center"><div class="text-3xl font-bold text-accent">${DB.get('aurexa_courses').length}</div><div class="text-sm text-text-light">Active Courses</div></div>
+                    <div class="card text-center"><div class="text-3xl font-bold text-success">${DB.get('aurexa_projects').length}</div><div class="text-sm text-text-light">Projects</div></div>
+                    <div class="card text-center"><div class="text-3xl font-bold text-warning">${DB.get('aurexa_messages').length}</div><div class="text-sm text-text-light">Messages</div></div>
+                </div>
+                <div class="card mb-8">
+                    <h3 class="font-bold mb-4">Engagement Overview (Demo Chart)</h3>
+                    <div class="chart-container">
+                        ${[40, 70, 45, 90, 65, 80, 100].map(h => `<div class="chart-bar" style="height:${h}%" title="${h} units"></div>`).join('')}
                     </div>
-                    <div class="card">
-                        <h3 class="font-bold mb-4">Security UI Status</h3>
-                        <p class="text-sm">🛡️ Authentication: <strong>Demo (Session Storage)</strong></p>
-                        <p class="text-sm">💾 Data storage: <strong>Browser LocalStorage</strong></p>
-                        <p class="text-sm text-danger mt-2"><em>Note: Production security requires backend architecture.</em></p>
+                    <div class="flex gap-4 mt-4 text-xs text-text-light justify-center"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span></div>
+                </div>
+                <div class="card">
+                    <h3 class="font-bold mb-4">Recent Audit Logs</h3>
+                    <div style="max-height: 200px; overflow-y:auto; font-size:0.875rem;">
+                        ${DB.get('aurexa_audit_logs').reverse().slice(0, 10).map(l => `<div class="p-2 border-b border-border flex justify-between"><span><strong>${l.action}</strong> by ${l.user}</span> <span class="text-text-light">${l.date}</span></div>`).join('')}
                     </div>
-                `;
-            } else if (currentAdminView === 'courses') {
-                renderCRUD('aurexa_courses', ['title', 'category', 'price', 'level']);
-            } else if (currentAdminView === 'internships') {
-                renderCRUD('aurexa_internships', ['title', 'department', 'status']);
-            } else if (currentAdminView === 'applications') {
-                renderCRUD('aurexa_applications', ['name', 'internship', 'status']);
-            } else if (currentAdminView === 'messages') {
-                renderCRUD('aurexa_messages', ['name', 'email', 'message']);
-            } else if (currentAdminView === 'settings') {
-                contentDiv.innerHTML = `
-                    <div class="card mb-6">
-                        <h3 class="font-bold mb-4">Data Management (JSON/CSV)</h3>
-                        <div class="flex gap-4">
-                            <button onclick="exportData()" class="btn btn-primary">Download All Data (JSON)</button>
-                            <button onclick="resetData()" class="btn btn-danger">Reset Demo Data</button>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <h3 class="font-bold mb-4">Audit Logs</h3>
-                        <div style="max-height: 300px; overflow-y:auto; font-size:0.875rem;">
-                            ${DB.get('aurexa_audit_logs').reverse().map(l => `<p class="border-b py-2"><strong>[${l.timestamp}]</strong> ${l.action}: ${l.details}</p>`).join('')}
-                        </div>
-                    </div>
-                `;
-            }
+                </div>
+            `;
         }
 
-        function renderCRUD(key, columns) {
+        // Generic DataTable Generator to save space
+        function renderAdminTable(title, key, columns, canAdd = true) {
             const data = DB.get(key);
-            const contentDiv = document.getElementById("adminContent");
+            let html = `<div class="flex justify-between items-center mb-6"><h3 class="font-bold text-xl">${title}</h3>`;
+            if(canAdd) html += `<button class="btn btn-primary text-sm" onclick="alert('Demo: Form builder would open here.')">+ Add New</button>`;
+            html += `</div><div style="overflow-x:auto;"><table><thead><tr>`;
+            columns.forEach(c => html += `<th>${c.label}</th>`);
+            html += `<th>Actions</th></tr></thead><tbody>`;
             
-            let tableHTML = `
-                <div class="flex justify-between mb-4">
-                    <input type="text" placeholder="Search..." class="p-2 border rounded" style="width:300px;" onkeyup="filterTable(this.value)">
-                    <button class="btn btn-primary" onclick="alert('Demo: Add functionality implemented via main site for messages/applications. Courses can be added programmatically.')">+ Add New</button>
-                </div>
-                <table id="crudTable">
-                    <thead><tr>${columns.map(c => `<th>${c}</th>`).join('')}<th>Actions</th></tr></thead>
-                    <tbody>
-                        ${data.map(row => `
-                            <tr>
-                                ${columns.map(c => `<td>${row[c] || ''}</td>`).join('')}
-                                <td class="action-btns">
-                                    <button class="btn btn-outline py-1 px-2 text-sm" onclick="alert('Edit clicked for ID: ${row.id}')">Edit</button>
-                                    <button class="btn btn-danger py-1 px-2 text-sm" onclick="deleteRecord('${key}', '${row.id}')">Del</button>
-                                </td>
-                            </tr>
-                        `).join('')}
-                    </tbody>
-                </table>
-                ${data.length === 0 ? '<p class="text-center py-4 text-muted">No records found.</p>' : ''}
-            `;
-            contentDiv.innerHTML = tableHTML;
+            if(data.length === 0) html += `<tr><td colspan="${columns.length+1}" class="text-center py-4">No records found.</td></tr>`;
+            
+            data.forEach(row => {
+                html += `<tr>`;
+                columns.forEach(c => html += `<td>${c.format ? c.format(row[c.key]) : (row[c.key] || '-')}</td>`);
+                html += `<td>
+                    <button class="text-info font-bold text-sm mr-2" onclick="alert('Edit ${row.id}')">Edit</button>
+                    <button class="text-danger font-bold text-sm" onclick="deleteRecord('${key}', '${row.id}')">Del</button>
+                </td></tr>`;
+            });
+            html += `</tbody></table></div>`;
+            return html;
         }
 
         window.deleteRecord = (key, id) => {
-            if(confirm("Are you sure you want to delete this record?")) {
-                DB.delete(key, id);
-                DB.logAudit("Delete", `Deleted record from ${key}`);
-                showToast("Record deleted");
-                renderAdminContent(); // refresh
-            }
-        };
-
-        window.filterTable = (val) => {
-            const rows = document.querySelectorAll("#crudTable tbody tr");
-            val = val.toLowerCase();
-            rows.forEach(row => {
-                row.style.display = row.innerText.toLowerCase().includes(val) ? '' : 'none';
-            });
-        };
-
-        window.exportData = () => {
-            const allData = {};
-            DB_KEYS.forEach(key => allData[key] = DB.get(key));
-            const blob = new Blob([JSON.stringify(allData, null, 2)], {type: "application/json"});
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement("a");
-            a.href = url;
-            a.download = "aurexa_backup.json";
-            a.click();
-            DB.logAudit("Export", "Exported all data");
-        };
-
-        window.resetData = () => {
-            if(confirm("DANGER: This will delete all local data and restore defaults. Proceed?")) {
-                localStorage.clear();
-                initDemoData();
-                showToast("Data reset to defaults.");
-                setTimeout(() => window.location.reload(), 1000);
-            }
-        };
-
-
-        /************************************************************************
-         * 7. ROUTING & INITIALIZATION
-         ************************************************************************/
-        function renderApp() {
-            const app = document.getElementById("app");
-            const hash = window.location.hash;
-
-            if (hash === "#admin") {
-                const isAuthenticated = sessionStorage.getItem("aurexa_admin_auth") === "true";
-                if (isAuthenticated) {
-                    app.innerHTML = renderAdminLayout();
-                    renderAdminContent(); // Initial render of dashboard
-                } else {
-                    app.innerHTML = renderAdminLogin();
-                }
-            } else {
-                // Public View
-                app.innerHTML = `
-                    ${renderPublicHeader()}
-                    <main>
-                        ${renderHero()}
-                        ${renderStats()}
-                        ${renderServices()}
-                        ${renderCourses()}
-                        ${renderInternships()}
-                        ${renderFounder()}
-                        ${renderContact()}
-                    </main>
-                    ${renderFooter()}
-                `;
+            if(confirm('Are you sure you want to delete this record?')) {
+                DB.remove(key, id);
+                DB.log(`Deleted record from ${key}`);
+                showToast('Record deleted');
+                renderApp();
             }
         }
 
-        // Initialize App
-        window.addEventListener("hashchange", renderApp);
-        window.addEventListener("load", () => {
-            initDemoData();
-            renderApp();
-        });
+        function renderAdminSettings() {
+            return `
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="card">
+                        <h3 class="font-bold mb-4">Data Management</h3>
+                        <p class="text-sm text-text-light mb-4">Export all database records as JSON, or export specific tables to CSV.</p>
+                        <div class="flex col gap-2">
+                            <button class="btn btn-primary w-full" onclick="exportDataJSON()">Download Full JSON Backup</button>
+                            <button class="btn btn-outline w-full" onclick="exportCSV('aurexa_users')">Export Users CSV</button>
+                            <button class="btn btn-outline w-full" onclick="exportCSV('aurexa_courses')">Export Courses CSV</button>
+                        </div>
+                    </div>
+                    <div class="card border-danger">
+                        <h3 class="font-bold mb-4 text-danger">Danger Zone</h3>
+                        <p class="text-sm text-text-light mb-4">Resetting data will erase all current local storage keys and re-initialize demo data.</p>
+                        <button class="btn btn-danger" onclick="resetSystemData()">Reset Demo Data</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        window.exportDataJSON = () => {
+            let backup = {};
+            DB_KEYS.forEach(k => backup[k] = DB.get(k));
+            const blob = new Blob([JSON.stringify(backup, null, 2)], {type: 'application/json'});
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a'); a.href = url; a.download = `aurexa_backup_${Date.now()}.json`; a.click();
+            DB.log('Exported Full JSON Backup');
+        }
+        
+        window.exportCSV = (key) => {
+            const data = DB.get(key);
+            if(!data.length) { showToast('No data to export', 'warning'); return; }
+            const headers = Object.keys(data[0]).join(',');
+            const rows = data.map(obj => Object.values(obj).map(v => `"${String(v).replace(/"/g, '""')}"`).join(',')).join('\n');
+            const blob = new Blob([headers + '\n' + rows], {type: 'text/csv'});
+            const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `${key}.csv`; a.click();
+            DB.log(`Exported CSV for ${key}`);
+        }
+
+        window.resetSystemData = () => {
+            if(confirm('WARNING: All data will be lost. Proceed?')) {
+                localStorage.clear();
+                showToast('System reset. Reloading...');
+                setTimeout(() => window.location.reload(), 1000);
+            }
+        }
+
+        /*******************************************************
+         * 7. ROUTING & CORE RENDER LOOP
+         *******************************************************/
+        function renderApp() {
+            const app = document.getElementById('app');
+            const hash = window.location.hash || '#home';
+            
+            if(hash.startsWith('#admin')) {
+                if(!sessionStorage.getItem('aurexa_admin')) { app.innerHTML = renderAdminLogin(); return; }
+                
+                const route = hash.split('/')[1] || 'dashboard';
+                let content = '';
+                
+                if(route === 'dashboard') content = renderAdminDashboard();
+                else if(route === 'courses') content = renderAdminTable('Course Management', 'aurexa_courses', [{label:'Title', key:'title'}, {label:'Category', key:'category'}, {label:'Price', key:'price'}]);
+                else if(route === 'workshops') content = renderAdminTable('Workshop Management', 'aurexa_workshops', [{label:'Title', key:'title'}, {label:'Date', key:'date'}, {label:'Status', key:'status'}]);
+                else if(route === 'projects') content = renderAdminTable('Project Submissions', 'aurexa_projects', [{label:'Title', key:'title'}, {label:'Category', key:'category'}, {label:'Status', key:'status'}]);
+                else if(route === 'users') content = renderAdminTable('User Management', 'aurexa_users', [{label:'Name', key:'name'}, {label:'Email', key:'email'}, {label:'Role', key:'role'}], false);
+                else if(route === 'messages') content = renderAdminTable('Contact Messages', 'aurexa_messages', [{label:'Name', key:'name'}, {label:'Email', key:'email'}, {label:'Status', key:'status'}], false);
+                else if(route === 'settings') content = renderAdminSettings();
+                
+                app.innerHTML = renderAdminLayout(content, route);
+            } 
+            else if(hash === '#dashboard') {
+                app.innerHTML = renderNavbar() + renderStudentDashboard() + renderFooter();
+            }
+            else {
+                // Public SPA Pages
+                app.innerHTML = renderNavbar() + renderHome() + renderFooter();
+                // Handle scroll if hash corresponds to an ID in home
+                if(hash !== '#home' && document.querySelector(hash)) {
+                    setTimeout(() => document.querySelector(hash).scrollIntoView({behavior: 'smooth'}), 100);
+                }
+            }
+        }
+
+        // Init
+        window.addEventListener('hashchange', renderApp);
+        window.addEventListener('load', () => { initDemoData(); renderApp(); });
 
     </script>
 </body>
