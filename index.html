@@ -69,7 +69,7 @@
         .section-header p { color: var(--text-light); max-width: 600px; margin: 0 auto; font-size: 1.125rem; }
         
         .course-img { width: 100%; height: 200px; object-fit: cover; border-radius: var(--radius-sm); margin-bottom: 1rem; }
-        .founder-img { width: 300px; height: 300px; border-radius: var(--radius); object-fit: cover; border: 4px solid #fff; box-shadow: var(--shadow-lg); }
+        .founder-img { width: 320px; height: 320px; border-radius: var(--radius); object-fit: cover; box-shadow: var(--shadow-lg); border: 1px solid var(--border); }
         
         footer { background: var(--primary); color: #cbd5e1; padding: 4rem 0 2rem; margin-top: 4rem; }
         footer h3 { color: #fff; margin-bottom: 1.5rem; font-size: 1.25rem; }
@@ -106,13 +106,17 @@
         .chart-container { height: 200px; display: flex; align-items: flex-end; gap: 1rem; padding-top: 1rem; border-bottom: 1px solid var(--border); }
 
         @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         
         /* RESPONSIVE */
-        @media (max-width: 1024px) { .grid-cols-4 { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 1024px) { 
+            .grid-cols-4 { grid-template-columns: repeat(2, 1fr); }
+            .founder-layout { flex-direction: column; text-align: center; }
+            .founder-layout .badge-list { justify-content: center; }
+            .founder-img { width: 100%; max-width: 400px; height: auto; }
+        }
         @media (max-width: 768px) {
             .grid-cols-3, .grid-cols-4 { grid-template-columns: 1fr; } .grid-cols-2 { grid-template-columns: 1fr; }
-            .nav-links { display: none; } /* Simplified mobile for demo */
+            .nav-links { display: none; }
             .hero { padding: 4rem 1rem; } .text-4xl { font-size: 2rem; }
             .admin-layout { flex-direction: column; } .admin-sidebar { width: 100%; height: auto; } .admin-main { height: auto; overflow: visible; }
         }
@@ -128,10 +132,8 @@
         /*******************************************************
          * 1. SYSTEM CONFIG & DATABASE (localStorage)
          *******************************************************/
-        // IMPORTANT: Demo frontend authentication only. Production requires secure server-side authentication.
         const ADMIN_CREDS = { user: "admin", pass: "Aurexa@2026" };
         
-        // NO INTERNSHIPS INCLUDED.
         const DB_KEYS = [
             'aurexa_users', 'aurexa_courses', 'aurexa_workshops', 'aurexa_workshop_registrations', 
             'aurexa_projects', 'aurexa_project_submissions', 'aurexa_team', 'aurexa_testimonials', 
@@ -160,6 +162,27 @@
             log: (action, user = 'System') => DB.add('aurexa_audit_logs', { action, user, date: new Date().toLocaleString() })
         };
 
+        // Form Schemas for Dynamic Admin CRUD Modals
+        const FORM_SCHEMAS = {
+            'aurexa_courses': [
+                {name: 'title', label: 'Course Title', type: 'text'},
+                {name: 'category', label: 'Category', type: 'text'},
+                {name: 'originalPrice', label: 'Original Price (e.g., ₹5,000)', type: 'text'},
+                {name: 'price', label: 'Offer Price (e.g., ₹1,000)', type: 'text'},
+                {name: 'desc', label: 'Description', type: 'textarea'}
+            ],
+            'aurexa_workshops': [
+                {name: 'title', label: 'Workshop Title', type: 'text'},
+                {name: 'date', label: 'Date', type: 'date'},
+                {name: 'status', label: 'Status (Open/Closed)', type: 'text'}
+            ],
+            'aurexa_projects': [
+                {name: 'title', label: 'Project Title', type: 'text'},
+                {name: 'category', label: 'Category', type: 'text'},
+                {name: 'status', label: 'Status (Approved/Pending)', type: 'text'}
+            ]
+        };
+
         /*******************************************************
          * 2. INITIALIZE DEMO DATA
          *******************************************************/
@@ -167,16 +190,12 @@
             if(!localStorage.getItem('aurexa_settings')) {
                 DB.set('aurexa_settings', {
                     siteName: 'Aurexa', 
-                    founderName: 'Srikanth Paka',
-                    founderRole: 'Founder & CEO — Aurexa',
-                    founderBio: 'Passionate about bridging the gap between theoretical knowledge and practical industry requirements. Srikanth founded Aurexa to empower students with real-world cybersecurity and technology skills.',
-                    founderMsg: '“Aurexa is built with a vision to make practical technology and cybersecurity learning more accessible, meaningful and career-focused for the next generation.”',
                     email: 'hello@aurexa.space', phone: '+91 98765 43210', location: 'Hyderabad, India',
                     announcement: { active: true, msg: '🚀 New cybersecurity learning programs are now available.', type: 'info' }
                 });
 
-                DB.add('aurexa_courses', { title: 'Ethical Hacking Fundamentals', category: 'Cybersecurity', level: 'Beginner', duration: '4 Weeks', price: 'Free', rating: 4.8, students: 1250, instructor: 'Srikanth Paka', desc: 'Learn the core concepts of offensive security, networking, and vulnerability assessment.', img: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=500' });
-                DB.add('aurexa_courses', { title: 'Advanced SOC Operations', category: 'SOC', level: 'Advanced', duration: '8 Weeks', price: '$49', rating: 4.9, students: 840, instructor: 'Aurexa Team', desc: 'Master SIEM tools, log analysis, threat hunting, and incident response.', img: 'https://images.unsplash.com/photo-1551808525-51a94da548ce?w=500' });
+                DB.add('aurexa_courses', { title: 'Ethical Hacking Fundamentals', category: 'Cybersecurity', level: 'Beginner', duration: '4 Weeks', originalPrice: '₹5,000', price: '₹1,000', rating: 4.8, students: 1250, instructor: 'Srikanth Paka', desc: 'Learn the core concepts of offensive security, networking, and vulnerability assessment.', img: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=500' });
+                DB.add('aurexa_courses', { title: 'Advanced SOC Operations', category: 'SOC', level: 'Advanced', duration: '8 Weeks', originalPrice: '₹5,000', price: '₹1,000', rating: 4.9, students: 840, instructor: 'Aurexa Team', desc: 'Master SIEM tools, log analysis, threat hunting, and incident response.', img: 'https://images.unsplash.com/photo-1551808525-51a94da548ce?w=500' });
                 
                 DB.add('aurexa_workshops', { title: 'Web App PenTesting Bootcamp', speaker: 'Srikanth Paka', date: '2026-09-15', time: '10:00 AM', location: 'Online', seats: 100, status: 'Open', desc: 'Hands-on live session finding and exploiting common web vulnerabilities.' });
                 
@@ -295,7 +314,7 @@
                         <div><h3>Legal</h3><ul><li><a href="#" onclick="alert('Demo Privacy Policy')">Privacy Policy</a></li><li><a href="#" onclick="alert('Demo Terms')">Terms of Service</a></li></ul></div>
                     </div>
                     <div class="container text-center text-sm text-text-light mt-8 pt-8" style="border-top: 1px solid rgba(255,255,255,0.1)">
-                        &copy; 2026 Aurexa. All rights reserved. Built by Srikanth Paka.
+                        &copy; 2026 Aurexa. All rights reserved.
                     </div>
                 </footer>
             `;
@@ -303,7 +322,6 @@
 
         function renderHome() {
             const courses = DB.get('aurexa_courses').slice(0, 3);
-            const settings = DB.getObj('aurexa_settings');
             
             return `
                 <section class="hero" id="home">
@@ -350,14 +368,17 @@
                         <div class="grid grid-cols-3 gap-6">
                             ${courses.map(c => `
                                 <div class="card" style="padding:0; overflow:hidden;">
-                                    <img src="${c.img}" class="course-img" style="margin:0; border-radius:0;">
+                                    <img src="${c.img || 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=500'}" class="course-img" style="margin:0; border-radius:0;">
                                     <div class="p-6">
                                         <div class="flex gap-2 mb-2"><span class="badge">${c.category}</span><span class="badge">${c.level}</span></div>
                                         <h3 class="font-bold text-xl mb-2">${c.title}</h3>
-                                        <p class="text-sm text-text-light mb-4" style="height: 40px; overflow:hidden;">${c.desc}</p>
+                                        <p class="text-sm text-text-light mb-4" style="height: 40px; overflow:hidden;">${c.desc || 'Comprehensive industry-aligned course.'}</p>
                                         <div class="flex justify-between items-center mt-4 pt-4 border-t border-border">
-                                            <span class="font-bold text-lg">${c.price}</span>
-                                            <button onclick="viewCourse('${c.id}')" class="text-accent font-semibold text-sm">View Details →</button>
+                                            <div>
+                                                ${c.originalPrice ? `<del class="text-text-light text-sm mr-2">${c.originalPrice}</del>` : ''}
+                                                <span class="font-bold text-lg text-accent">${c.price || 'Free'}</span>
+                                            </div>
+                                            <button onclick="viewCourse('${c.id}')" class="text-primary font-semibold text-sm hover:text-accent transition">View Details →</button>
                                         </div>
                                     </div>
                                 </div>
@@ -366,16 +387,41 @@
                     </div>
                 </section>
 
-                <section class="py-16" id="founder">
-                    <div class="container flex gap-8 items-center bg-primary text-white rounded p-8" style="border-radius:24px;">
-                        <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?w=500" alt="Founder" class="founder-img" style="flex-shrink:0">
-                        <div>
-                            <h2 class="text-4xl font-bold mb-2">Meet the Founder</h2>
-                            <h3 class="text-xl text-info mb-4">${settings.founderName} <span class="text-sm text-gray-400 font-normal">| ${settings.founderRole}</span></h3>
-                            <p class="mb-6 text-gray-300">${settings.founderBio}</p>
-                            <blockquote class="p-4 border-l-4 border-accent bg-secondary rounded text-sm italic">
-                                ${settings.founderMsg}
-                            </blockquote>
+                <section class="py-16 bg-bg" id="founder">
+                    <div class="container">
+                        <div class="card p-8 shadow-lg bg-surface">
+                            <div class="flex founder-layout gap-10 items-center">
+                                <img src="1000033527.jpg" alt="Srikanth Paka" class="founder-img" onerror="this.src='https://images.unsplash.com/photo-1556157382-97eda2d62296?w=500'">
+                                <div>
+                                    <div class="flex items-center gap-4 mb-2">
+                                        <h2 class="text-4xl font-bold text-primary">Srikanth Paka</h2>
+                                        <span class="badge bg-primary text-white">Founder</span>
+                                    </div>
+                                    <h3 class="text-xl text-accent font-semibold mb-4">Founder, Aurexa</h3>
+                                    
+                                    <div class="mb-4">
+                                        <p class="text-text mb-2"><strong>Field:</strong> Cybersecurity & Technology</p>
+                                        <p class="text-text"><strong>Education:</strong> B.Tech – Computer Science & Engineering (Cyber Security)</p>
+                                    </div>
+                                    
+                                    <p class="text-text-light mb-6 leading-relaxed">
+                                        Srikanth Paka is the Founder of Aurexa, a technology-focused initiative dedicated to cybersecurity, artificial intelligence, digital safety, and innovation. He is focused on transforming technology ideas into practical solutions that help people and organizations navigate the digital world more securely.
+                                    </p>
+
+                                    <blockquote class="p-4 border-l-4 border-accent bg-bg rounded italic text-text mb-6">
+                                        “To build Aurexa into a trusted technology and cybersecurity organization driven by innovation, security, and real-world impact.”
+                                    </blockquote>
+
+                                    <div class="flex flex-wrap gap-2 badge-list mb-6">
+                                        ${['Cybersecurity', 'Artificial Intelligence', 'Digital Security', 'Technology', 'Innovation', 'Entrepreneurship'].map(tag => `<span class="badge" style="background:var(--border); color:var(--text);">${tag}</span>`).join('')}
+                                    </div>
+
+                                    <div class="flex gap-4">
+                                        <a href="#" class="btn btn-primary text-sm" onclick="alert('Demo: Redirect to LinkedIn')">Connect on LinkedIn</a>
+                                        <a href="#contact" class="btn btn-outline text-sm">Contact Founder</a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -400,16 +446,19 @@
             openModal(`
                 <span class="badge mb-2">${c.category}</span>
                 <h2 class="text-2xl font-bold mb-4">${c.title}</h2>
-                <img src="${c.img}" style="width:100%; height:250px; object-fit:cover; border-radius:8px; margin-bottom:1rem;">
+                <img src="${c.img || 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=500'}" style="width:100%; height:250px; object-fit:cover; border-radius:8px; margin-bottom:1rem;">
                 <p class="mb-4">${c.desc}</p>
                 <div class="grid grid-cols-2 gap-4 text-sm mb-6 bg-bg p-4 rounded">
-                    <div><strong>Level:</strong> ${c.level}</div>
-                    <div><strong>Duration:</strong> ${c.duration}</div>
-                    <div><strong>Instructor:</strong> ${c.instructor}</div>
-                    <div><strong>Rating:</strong> ⭐ ${c.rating} (${c.students} students)</div>
+                    <div><strong>Level:</strong> ${c.level || 'Beginner'}</div>
+                    <div><strong>Duration:</strong> ${c.duration || 'Flexible'}</div>
+                    <div><strong>Instructor:</strong> ${c.instructor || 'Aurexa Team'}</div>
+                    <div><strong>Rating:</strong> ⭐ ${c.rating || '4.9'} (${c.students || '0'} students)</div>
                 </div>
                 <div class="flex justify-between items-center">
-                    <span class="text-2xl font-bold">${c.price}</span>
+                    <div>
+                        ${c.originalPrice ? `<del class="text-text-light text-lg mr-2">${c.originalPrice}</del>` : ''}
+                        <span class="text-2xl font-bold text-accent">${c.price || 'Free'}</span>
+                    </div>
                     <button class="btn btn-primary" onclick="enrollCourse('${c.id}')">Enroll Now</button>
                 </div>
             `);
@@ -465,7 +514,7 @@
          *******************************************************/
         function renderStudentDashboard() {
             if(!sessionStorage.getItem('aurexa_student')) { window.location.hash = '#home'; return ''; }
-            const courses = DB.get('aurexa_courses').slice(0, 2); // mock enrolled
+            const courses = DB.get('aurexa_courses').slice(0, 2); 
             return `
                 <div class="container py-16">
                     <h2 class="text-3xl font-bold mb-8">Student Dashboard</h2>
@@ -478,7 +527,7 @@
                     <div class="grid grid-cols-2 gap-6">
                         ${courses.map(c => `
                             <div class="card flex gap-4 items-center">
-                                <img src="${c.img}" style="width:100px; height:100px; object-fit:cover; border-radius:8px;">
+                                <img src="${c.img || 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=500'}" style="width:100px; height:100px; object-fit:cover; border-radius:8px;">
                                 <div style="flex:1">
                                     <h4 class="font-bold">${c.title}</h4>
                                     <div class="w-full bg-bg rounded h-2 mt-2 mb-2"><div class="bg-accent h-2 rounded" style="width: 45%"></div></div>
@@ -492,7 +541,7 @@
         }
 
         /*******************************************************
-         * 6. ADMIN PANEL
+         * 6. ADMIN PANEL & CRUD LOGIC
          *******************************************************/
         function renderAdminLogin() {
             return `
@@ -559,13 +608,6 @@
                     <div class="card text-center"><div class="text-3xl font-bold text-success">${DB.get('aurexa_projects').length}</div><div class="text-sm text-text-light">Projects</div></div>
                     <div class="card text-center"><div class="text-3xl font-bold text-warning">${DB.get('aurexa_messages').length}</div><div class="text-sm text-text-light">Messages</div></div>
                 </div>
-                <div class="card mb-8">
-                    <h3 class="font-bold mb-4">Engagement Overview (Demo Chart)</h3>
-                    <div class="chart-container">
-                        ${[40, 70, 45, 90, 65, 80, 100].map(h => `<div class="chart-bar" style="height:${h}%" title="${h} units"></div>`).join('')}
-                    </div>
-                    <div class="flex gap-4 mt-4 text-xs text-text-light justify-center"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span></div>
-                </div>
                 <div class="card">
                     <h3 class="font-bold mb-4">Recent Audit Logs</h3>
                     <div style="max-height: 200px; overflow-y:auto; font-size:0.875rem;">
@@ -575,11 +617,57 @@
             `;
         }
 
-        // Generic DataTable Generator to save space
+        // Fully functional CRUD Form Modals
+        window.openAdminForm = (key, id = null) => {
+            const schema = FORM_SCHEMAS[key];
+            if(!schema) { showToast('Form schema not found', 'error'); return; }
+            
+            let data = {};
+            if(id) { data = DB.get(key).find(item => item.id === id) || {}; }
+            
+            let formHtml = schema.map(field => {
+                if(field.type === 'textarea') {
+                    return `<div class="input-group"><label>${field.label}</label><textarea id="f_${field.name}" class="input-control" rows="3">${data[field.name] || ''}</textarea></div>`;
+                }
+                return `<div class="input-group"><label>${field.label}</label><input type="${field.type}" id="f_${field.name}" class="input-control" value="${data[field.name] || ''}"></div>`;
+            }).join('');
+            
+            openModal(`
+                <h3 class="text-2xl font-bold mb-4">${id ? 'Edit' : 'Add New'} Record</h3>
+                <form onsubmit="saveAdminForm(event, '${key}', '${id || ''}')">
+                    ${formHtml}
+                    <button type="submit" class="btn btn-primary w-full mt-4" style="width:100%">Save Changes</button>
+                </form>
+            `);
+        }
+
+        window.saveAdminForm = (e, key, id) => {
+            e.preventDefault();
+            const schema = FORM_SCHEMAS[key];
+            let newData = {};
+            schema.forEach(field => {
+                newData[field.name] = document.getElementById(`f_${field.name}`).value;
+            });
+
+            if(id) {
+                DB.update(key, id, newData);
+                DB.log(`Updated record in ${key}`);
+                showToast('Record updated successfully');
+            } else {
+                DB.add(key, newData);
+                DB.log(`Added new record to ${key}`);
+                showToast('Record created successfully');
+            }
+            closeModal();
+            renderApp(); // Refresh table
+        }
+
         function renderAdminTable(title, key, columns, canAdd = true) {
             const data = DB.get(key);
             let html = `<div class="flex justify-between items-center mb-6"><h3 class="font-bold text-xl">${title}</h3>`;
-            if(canAdd) html += `<button class="btn btn-primary text-sm" onclick="alert('Demo: Form builder would open here.')">+ Add New</button>`;
+            if(canAdd && FORM_SCHEMAS[key]) {
+                html += `<button class="btn btn-primary text-sm" onclick="openAdminForm('${key}')">+ Add New</button>`;
+            }
             html += `</div><div style="overflow-x:auto;"><table><thead><tr>`;
             columns.forEach(c => html += `<th>${c.label}</th>`);
             html += `<th>Actions</th></tr></thead><tbody>`;
@@ -588,10 +676,12 @@
             
             data.forEach(row => {
                 html += `<tr>`;
-                columns.forEach(c => html += `<td>${c.format ? c.format(row[c.key]) : (row[c.key] || '-')}</td>`);
-                html += `<td>
-                    <button class="text-info font-bold text-sm mr-2" onclick="alert('Edit ${row.id}')">Edit</button>
-                    <button class="text-danger font-bold text-sm" onclick="deleteRecord('${key}', '${row.id}')">Del</button>
+                columns.forEach(c => html += `<td>${row[c.key] || '-'}</td>`);
+                html += `<td>`;
+                if(FORM_SCHEMAS[key]) {
+                    html += `<button class="text-info font-bold text-sm mr-2" onclick="openAdminForm('${key}', '${row.id}')">Edit</button>`;
+                }
+                html += `<button class="text-danger font-bold text-sm" onclick="deleteRecord('${key}', '${row.id}')">Del</button>
                 </td></tr>`;
             });
             html += `</tbody></table></div>`;
@@ -669,7 +759,7 @@
                 let content = '';
                 
                 if(route === 'dashboard') content = renderAdminDashboard();
-                else if(route === 'courses') content = renderAdminTable('Course Management', 'aurexa_courses', [{label:'Title', key:'title'}, {label:'Category', key:'category'}, {label:'Price', key:'price'}]);
+                else if(route === 'courses') content = renderAdminTable('Course Management', 'aurexa_courses', [{label:'Title', key:'title'}, {label:'Original', key:'originalPrice'}, {label:'Offer', key:'price'}]);
                 else if(route === 'workshops') content = renderAdminTable('Workshop Management', 'aurexa_workshops', [{label:'Title', key:'title'}, {label:'Date', key:'date'}, {label:'Status', key:'status'}]);
                 else if(route === 'projects') content = renderAdminTable('Project Submissions', 'aurexa_projects', [{label:'Title', key:'title'}, {label:'Category', key:'category'}, {label:'Status', key:'status'}]);
                 else if(route === 'users') content = renderAdminTable('User Management', 'aurexa_users', [{label:'Name', key:'name'}, {label:'Email', key:'email'}, {label:'Role', key:'role'}], false);
@@ -684,7 +774,6 @@
             else {
                 // Public SPA Pages
                 app.innerHTML = renderNavbar() + renderHome() + renderFooter();
-                // Handle scroll if hash corresponds to an ID in home
                 if(hash !== '#home' && document.querySelector(hash)) {
                     setTimeout(() => document.querySelector(hash).scrollIntoView({behavior: 'smooth'}), 100);
                 }
