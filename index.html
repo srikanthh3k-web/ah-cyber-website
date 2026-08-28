@@ -2,4840 +2,2835 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#f7f9fc">
-<meta name="description" content="AUREXA Enterprise Cyber Security & AI-SOC Platform">
-<title>AUREXA — Enterprise Cyber Defense</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ffffff">
+<meta name="description" content="AUREXA Enterprise Cyber Security Operations Platform">
+<title>AUREXA — Enterprise Security Operations</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
-
 :root{
- --bg:#f5f7fb;
- --surface:#fff;
- --surface2:#f8fafc;
- --text:#101828;
- --muted:#667085;
- --line:#e4e7ec;
- --blue:#155eef;
- --blue2:#004eeb;
- --purple:#6941c6;
- --green:#079455;
- --orange:#dc6803;
- --red:#d92d20;
- --cyan:#0891b2;
- --shadow:0 18px 55px rgba(16,24,40,.08);
- --radius:20px;
+  --navy:#101828;
+  --navy2:#17233a;
+  --blue:#1463ff;
+  --purple:#6547ed;
+  --cyan:#00a8e8;
+  --green:#079455;
+  --red:#d92d20;
+  --orange:#dc6803;
+  --bg:#f5f7fb;
+  --card:#ffffff;
+  --line:#e4e7ec;
+  --muted:#667085;
+  --text:#101828;
+  --shadow:0 18px 50px rgba(16,24,40,.08);
+  --radius:24px;
 }
 
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
- margin:0;
- background:
- radial-gradient(circle at 0 0,rgba(21,94,239,.055),transparent 25%),
- radial-gradient(circle at 100% 0,rgba(105,65,198,.05),transparent 25%),
- var(--bg);
- color:var(--text);
- font-family:"DM Sans",sans-serif;
+  margin:0;
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(circle at 90% 0%,rgba(20,99,255,.08),transparent 30%),
+    linear-gradient(180deg,#fff 0,#f5f7fb 100%);
 }
+
 button,input,select,textarea{font:inherit}
 button{cursor:pointer}
-a{text-decoration:none;color:inherit}
 
-::-webkit-scrollbar{width:8px}
-::-webkit-scrollbar-thumb{background:#c9d2df;border-radius:20px}
-
-.top{
- height:34px;
- background:#101828;
- color:#d0d5dd;
- display:flex;
- align-items:center;
- font-size:11px;
-}
-.top .wrap{
- display:flex;
- justify-content:space-between;
- width:min(1440px,calc(100% - 30px));
- margin:auto;
+.topbar{
+  height:38px;
+  background:#0d1729;
+  color:#d0d5dd;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 28px;
+  font-size:12px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
 }
 
-header{
- height:74px;
- position:sticky;
- top:0;
- z-index:100;
- background:rgba(255,255,255,.9);
- backdrop-filter:blur(18px);
- border-bottom:1px solid var(--line);
-}
+.topbar strong{color:#fff}
 
-.wrap{
- width:min(1440px,calc(100% - 30px));
- margin:auto;
-}
-
-.nav{
- height:100%;
- display:flex;
- align-items:center;
- justify-content:space-between;
- gap:20px;
-}
-
-.logo{
- width:44px;
- height:44px;
- display:grid;
- place-items:center;
- border-radius:13px;
- background:linear-gradient(135deg,#155eef,#6941c6);
- color:white;
- font:700 25px "Space Grotesk";
- box-shadow:0 10px 25px rgba(21,94,239,.22);
+.header{
+  height:82px;
+  background:rgba(255,255,255,.96);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--line);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 28px;
+  position:sticky;
+  top:0;
+  z-index:1000;
 }
 
 .brand{
- display:flex;
- align-items:center;
- gap:11px;
+  display:flex;
+  align-items:center;
+  gap:14px;
+  min-width:220px;
 }
 
-.brand-name{
- font:700 21px "Space Grotesk";
- letter-spacing:.1em;
+.logo{
+  width:58px;
+  height:58px;
+  border-radius:18px;
+  background:linear-gradient(135deg,#1769ff,#7044ee);
+  color:#fff;
+  display:grid;
+  place-items:center;
+  font-size:34px;
+  font-weight:900;
+  box-shadow:0 12px 30px rgba(55,80,240,.25);
+  position:relative;
+  overflow:hidden;
+}
+
+.logo:after{
+  content:"";
+  position:absolute;
+  width:70px;
+  height:70px;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,.25);
+  transform:translate(25px,-25px);
+}
+
+.brand-title{
+  font-size:27px;
+  font-weight:900;
+  letter-spacing:.08em;
 }
 
 .brand-sub{
- font-size:8px;
- color:var(--muted);
- letter-spacing:.18em;
- font-weight:700;
-}
-
-.navlinks{
- display:flex;
- gap:20px;
- color:#475467;
- font-size:13px;
- font-weight:700;
-}
-
-.navlinks a:hover{color:var(--blue)}
-
-.nav-right{
- display:flex;
- align-items:center;
- gap:9px;
-}
-
-.btn{
- border:1px solid var(--line);
- background:#fff;
- color:var(--text);
- padding:11px 15px;
- border-radius:11px;
- font-weight:700;
- transition:.2s;
-}
-
-.btn:hover{
- transform:translateY(-1px);
- box-shadow:0 8px 20px rgba(16,24,40,.08);
-}
-
-.btn.primary{
- color:#fff;
- border:0;
- background:linear-gradient(100deg,#155eef,#6941c6);
-}
-
-.btn.dark{
- background:#101828;
- color:#fff;
- border-color:#101828;
-}
-
-.menu{
- display:none;
- border:1px solid var(--line);
- background:#fff;
- border-radius:11px;
- padding:10px 12px;
- font-size:20px;
-}
-
-.page{
- display:grid;
- grid-template-columns:245px 1fr;
- min-height:calc(100vh - 108px);
-}
-
-.sidebar{
- border-right:1px solid var(--line);
- background:rgba(255,255,255,.72);
- padding:20px 13px;
- position:sticky;
- top:108px;
- height:calc(100vh - 108px);
- overflow:auto;
-}
-
-.side-label{
- font-size:10px;
- font-weight:800;
- color:#98a2b3;
- letter-spacing:.13em;
- margin:15px 10px 8px;
-}
-
-.side-btn{
- width:100%;
- border:0;
- background:transparent;
- padding:11px 12px;
- border-radius:10px;
- color:#475467;
- text-align:left;
- display:flex;
- align-items:center;
- gap:11px;
- font-size:13px;
- font-weight:700;
- margin:2px 0;
-}
-
-.side-btn:hover,
-.side-btn.active{
- background:#eef4ff;
- color:var(--blue);
-}
-
-.side-icon{
- width:20px;
- text-align:center;
- font-size:16px;
-}
-
-.content{
- min-width:0;
- padding:28px;
-}
-
-.view{display:none}
-.view.active{display:block}
-
-.hero{
- display:grid;
- grid-template-columns:1.2fr .8fr;
- gap:18px;
- margin-bottom:20px;
-}
-
-.hero-card{
- min-height:300px;
- border:1px solid var(--line);
- border-radius:27px;
- background:linear-gradient(135deg,#fff,#f3f7ff);
- padding:34px;
- position:relative;
- overflow:hidden;
- box-shadow:var(--shadow);
-}
-
-.hero-card:after{
- content:"";
- position:absolute;
- width:320px;
- height:320px;
- right:-120px;
- top:-130px;
- border-radius:50%;
- background:radial-gradient(circle,rgba(21,94,239,.13),transparent 70%);
-}
-
-.eyebrow{
- display:inline-flex;
- align-items:center;
- gap:7px;
- background:#eef4ff;
- border:1px solid #dbe5ff;
- color:#155eef;
- padding:7px 10px;
- border-radius:50px;
- font-size:10px;
- font-weight:800;
- letter-spacing:.1em;
-}
-
-.live-dot{
- width:7px;
- height:7px;
- border-radius:50%;
- background:#12b76a;
- box-shadow:0 0 0 5px rgba(18,183,106,.1);
-}
-
-h1,h2,h3,h4{font-family:"Space Grotesk",sans-serif}
-
-.hero h1{
- font-size:clamp(37px,4vw,62px);
- line-height:1;
- letter-spacing:-.055em;
- margin:20px 0 13px;
- max-width:720px;
-}
-
-.gradient{
- background:linear-gradient(90deg,#155eef,#6941c6);
- color:transparent;
- background-clip:text;
-}
-
-.hero p{
- color:var(--muted);
- line-height:1.7;
- max-width:670px;
-}
-
-.hero-actions{
- display:flex;
- gap:9px;
- flex-wrap:wrap;
- margin-top:23px;
-}
-
-.core{
- min-height:300px;
- border-radius:27px;
- border:1px solid var(--line);
- background:#101828;
- position:relative;
- overflow:hidden;
- display:grid;
- place-items:center;
- box-shadow:var(--shadow);
-}
-
-.core-orbit{
- width:190px;
- height:190px;
- border-radius:50%;
- border:1px solid rgba(123,157,255,.45);
- box-shadow:
- 0 0 0 25px rgba(21,94,239,.035),
- 0 0 0 55px rgba(21,94,239,.025),
- inset 0 0 50px rgba(21,94,239,.16);
- display:grid;
- place-items:center;
- animation:spin 18s linear infinite;
-}
-
-.core-ball{
- width:105px;
- height:105px;
- border-radius:30%;
- transform:rotate(45deg);
- background:linear-gradient(135deg,#155eef,#6941c6);
- box-shadow:
- 0 0 40px rgba(79,120,255,.5),
- inset 0 0 25px rgba(255,255,255,.15);
- animation:pulse 3s ease-in-out infinite;
-}
-
-.core-ball span{
- display:block;
- transform:rotate(-45deg);
- color:white;
- font:700 52px "Space Grotesk";
- text-align:center;
- line-height:105px;
-}
-
-.core-label{
- position:absolute;
- bottom:25px;
- left:0;
- right:0;
- text-align:center;
- color:#98a2b3;
- font-size:11px;
- letter-spacing:.12em;
- font-weight:800;
-}
-
-@keyframes spin{to{transform:rotate(360deg)}}
-@keyframes pulse{50%{transform:rotate(45deg) scale(1.07)}}
-
-.metrics{
- display:grid;
- grid-template-columns:repeat(5,1fr);
- gap:12px;
- margin-bottom:20px;
-}
-
-.metric{
- background:#fff;
- border:1px solid var(--line);
- border-radius:17px;
- padding:17px;
- box-shadow:0 8px 30px rgba(16,24,40,.035);
-}
-
-.metric small{
- color:var(--muted);
- font-size:11px;
- font-weight:700;
-}
-
-.metric strong{
- display:block;
- margin-top:6px;
- font:700 26px "Space Grotesk";
-}
-
-.metric .up{color:var(--green);font-size:11px}
-
-.grid{
- display:grid;
- gap:16px;
-}
-
-.grid-2{grid-template-columns:1fr 1fr}
-.grid-3{grid-template-columns:repeat(3,1fr)}
-.grid-4{grid-template-columns:repeat(4,1fr)}
-
-.panel{
- background:rgba(255,255,255,.9);
- border:1px solid var(--line);
- border-radius:21px;
- padding:20px;
- box-shadow:0 8px 35px rgba(16,24,40,.045);
-}
-
-.panel-title{
- display:flex;
- justify-content:space-between;
- align-items:center;
- gap:10px;
- margin-bottom:16px;
-}
-
-.panel-title h3{
- margin:0;
- font-size:17px;
-}
-
-.panel-title small{
- color:var(--muted);
-}
-
-.chart{
- height:220px;
- border-radius:15px;
- background:
- repeating-linear-gradient(
-  0deg,
-  #f8fafc 0,
-  #f8fafc 43px,
-  #edf1f6 44px
- );
- position:relative;
- overflow:hidden;
-}
-
-.chart svg{
- width:100%;
- height:100%;
-}
-
-.severity{
- display:grid;
- gap:12px;
-}
-
-.sev-row{
- display:grid;
- grid-template-columns:80px 1fr 50px;
- gap:9px;
- align-items:center;
- font-size:12px;
-}
-
-.bar{
- height:9px;
- background:#edf0f5;
- border-radius:30px;
- overflow:hidden;
-}
-
-.bar i{
- display:block;
- height:100%;
- border-radius:30px;
-}
-
-.red{background:#f04438}
-.orange{background:#f79009}
-.yellow{background:#fdb022}
-.green{background:#12b76a}
-.blue{background:#155eef}
-
-.table-wrap{overflow:auto}
-
-table{
- width:100%;
- border-collapse:collapse;
- font-size:12px;
- min-width:650px;
-}
-
-th,td{
- padding:13px 10px;
- text-align:left;
- border-bottom:1px solid var(--line);
-}
-
-th{
- color:#667085;
- font-size:10px;
- text-transform:uppercase;
- letter-spacing:.08em;
-}
-
-.badge{
- display:inline-flex;
- align-items:center;
- padding:5px 8px;
- border-radius:30px;
- font-size:10px;
- font-weight:900;
-}
-
-.badge.low{background:#ecfdf3;color:#067647}
-.badge.medium{background:#fffaeb;color:#b54708}
-.badge.high{background:#fef3f2;color:#b42318}
-.badge.info{background:#eef4ff;color:#155eef}
-.badge.dark{background:#f2f4f7;color:#344054}
-
-.searchbar{
- display:flex;
- gap:9px;
- flex-wrap:wrap;
- margin-bottom:16px;
-}
-
-.input,
-.select,
-textarea{
- width:100%;
- border:1px solid #d0d5dd;
- border-radius:11px;
- background:#fff;
- padding:12px 13px;
- outline:none;
-}
-
-.input:focus,
-.select:focus,
-textarea:focus{
- border-color:#84adff;
- box-shadow:0 0 0 4px rgba(21,94,239,.08);
-}
-
-.searchbar .input{flex:1;min-width:200px}
-
-.tabs{
- display:flex;
- gap:7px;
- flex-wrap:wrap;
- margin-bottom:16px;
-}
-
-.tab{
- padding:10px 12px;
- border:1px solid var(--line);
- background:#fff;
- border-radius:10px;
- color:#475467;
- font-size:12px;
- font-weight:800;
-}
-
-.tab.active{
- background:#eef4ff;
- border-color:#c7d7fe;
- color:#155eef;
-}
-
-.scanner{
- display:grid;
- grid-template-columns:1fr 1fr;
- gap:17px;
-}
-
-.drop{
- min-height:220px;
- border:1.5px dashed #b8c5d9;
- border-radius:17px;
- display:grid;
- place-items:center;
- text-align:center;
- padding:25px;
- background:#fbfcff;
- transition:.2s;
-}
-
-.drop:hover{
- border-color:#155eef;
- background:#f6f9ff;
-}
-
-.drop input{display:none}
-
-.drop-icon{
- font-size:42px;
- margin-bottom:8px;
-}
-
-.result{
- min-height:420px;
- background:#f8fafc;
- border:1px solid var(--line);
- border-radius:18px;
- padding:21px;
-}
-
-.score-circle{
- width:145px;
- height:145px;
- margin:10px auto 17px;
- border-radius:50%;
- display:grid;
- place-items:center;
- background:
- conic-gradient(
- #155eef var(--score),
- #e7ebf1 0
- );
- position:relative;
-}
-
-.score-circle:after{
- content:"";
- position:absolute;
- inset:10px;
- border-radius:50%;
- background:#fff;
-}
-
-.score-circle b{
- position:relative;
- z-index:2;
- font:700 37px "Space Grotesk";
-}
-
-.finding{
- padding:12px;
- border:1px solid var(--line);
- border-radius:12px;
- background:#fff;
- margin-top:8px;
- font-size:12px;
-}
-
-.finding b{display:block;margin-bottom:4px}
-
-.timeline{
- position:relative;
- padding-left:28px;
-}
-
-.timeline:before{
- content:"";
- position:absolute;
- left:7px;
- top:0;
- bottom:0;
- width:2px;
- background:#dbe5f0;
-}
-
-.event{
- position:relative;
- padding:0 0 19px;
-}
-
-.event:before{
- content:"";
- position:absolute;
- left:-25px;
- top:3px;
- width:10px;
- height:10px;
- border-radius:50%;
- background:#155eef;
- border:3px solid #eef4ff;
-}
-
-.event strong{font-size:13px}
-.event p{
- color:var(--muted);
- font-size:12px;
- margin:4px 0;
- line-height:1.5;
-}
-
-.ai{
- display:grid;
- grid-template-columns:280px 1fr;
- gap:15px;
- min-height:600px;
-}
-
-.ai-menu{
- background:#101828;
- color:#d0d5dd;
- border-radius:19px;
- padding:15px;
-}
-
-.ai-menu h3{
- color:#fff;
- margin:5px 8px 20px;
-}
-
-.ai-prompt{
- width:100%;
- text-align:left;
- border:0;
- background:rgba(255,255,255,.05);
- color:#d0d5dd;
- border-radius:10px;
- padding:11px;
- margin:3px 0;
- font-size:12px;
-}
-
-.ai-prompt:hover{
- background:rgba(255,255,255,.1);
- color:#fff;
-}
-
-.chat{
- display:flex;
- flex-direction:column;
- min-height:600px;
-}
-
-.messages{
- flex:1;
- overflow:auto;
- padding:4px;
-}
-
-.message{
- max-width:82%;
- padding:13px 15px;
- border-radius:15px;
- margin:8px 0;
- font-size:13px;
- line-height:1.6;
- white-space:pre-wrap;
-}
-
-.message.ai-msg{
- background:#eef4ff;
- border:1px solid #dbe5ff;
-}
-
-.message.user-msg{
- margin-left:auto;
- background:#101828;
- color:#fff;
-}
-
-.chat-input{
- display:flex;
- gap:8px;
- border-top:1px solid var(--line);
- padding-top:13px;
-}
-
-.chat-input input{flex:1}
-
-.ioc-search{
- display:grid;
- grid-template-columns:150px 1fr auto;
- gap:8px;
-}
-
-.ioc-card{
- margin-top:15px;
- padding:18px;
- border-radius:16px;
- background:#f8fafc;
- border:1px solid var(--line);
-}
-
-.ioc-value{
- font:600 18px "Space Grotesk";
- word-break:break-all;
-}
-
-.profile{
- display:flex;
- align-items:center;
- gap:14px;
-}
-
-.avatar{
- width:72px;
- height:72px;
- border-radius:20px;
- background:linear-gradient(135deg,#155eef,#6941c6);
- color:#fff;
- display:grid;
- place-items:center;
- font:700 28px "Space Grotesk";
-}
-
-.admin{
- display:grid;
- grid-template-columns:220px 1fr;
- gap:16px;
-}
-
-.admin-nav{
- background:#101828;
- border-radius:19px;
- padding:12px;
- color:#d0d5dd;
-}
-
-.admin-nav button{
- width:100%;
- border:0;
- background:transparent;
- color:#d0d5dd;
- text-align:left;
- padding:11px;
- border-radius:9px;
-}
-
-.admin-nav button:hover,
-.admin-nav button.active{
- background:rgba(255,255,255,.09);
- color:#fff;
-}
-
-.admin-content{
- min-width:0;
-}
-
-.setting{
- display:flex;
- justify-content:space-between;
- gap:20px;
- align-items:center;
- padding:14px 0;
- border-bottom:1px solid var(--line);
-}
-
-.switch{
- width:45px;
- height:25px;
- border-radius:30px;
- background:#d0d5dd;
- padding:3px;
- border:0;
-}
-
-.switch i{
- display:block;
- width:19px;
- height:19px;
- border-radius:50%;
- background:#fff;
- transition:.2s;
-}
-
-.switch.on{
- background:#155eef;
-}
-
-.switch.on i{
- transform:translateX(20px);
-}
-
-.founder{
- display:grid;
- grid-template-columns:250px 1fr;
- gap:25px;
- align-items:center;
-}
-
-.founder-photo{
- min-height:270px;
- border-radius:22px;
- background:
- linear-gradient(135deg,#eef4ff,#f4f0ff);
- display:grid;
- place-items:center;
- overflow:hidden;
- border:1px solid #dbe5ff;
-}
-
-.founder-photo img{
- width:100%;
- height:100%;
- object-fit:cover;
- display:none;
-}
-
-.founder-placeholder{
- text-align:center;
- color:#155eef;
-}
-
-.contact-grid{
- display:grid;
- grid-template-columns:1fr 1fr;
- gap:16px;
-}
-
-.contact-link{
- display:block;
- padding:14px;
- background:#fff;
- border:1px solid var(--line);
- border-radius:12px;
- margin-top:8px;
- font-weight:700;
-}
-
-.empty{
- text-align:center;
- padding:50px 15px;
- color:var(--muted);
-}
-
-.footer{
- border-top:1px solid var(--line);
- padding:25px 0;
- color:#667085;
- font-size:12px;
- margin-top:30px;
-}
-
-.toast{
- position:fixed;
- right:18px;
- bottom:18px;
- z-index:500;
- display:none;
- max-width:370px;
- background:#101828;
- color:#fff;
- padding:14px 17px;
- border-radius:13px;
- box-shadow:0 25px 70px rgba(16,24,40,.25);
- font-size:13px;
-}
-
-.modal{
- position:fixed;
- inset:0;
- background:rgba(16,24,40,.45);
- backdrop-filter:blur(8px);
- display:none;
- align-items:center;
- justify-content:center;
- z-index:400;
- padding:15px;
-}
-
-.modal-box{
- width:min(650px,100%);
- max-height:90vh;
- overflow:auto;
- background:#fff;
- border-radius:22px;
- padding:23px;
- box-shadow:0 35px 100px rgba(16,24,40,.25);
-}
-
-.close{
- float:right;
- border:0;
- background:#f2f4f7;
- border-radius:9px;
- padding:7px 10px;
-}
-
-.notification{
- position:relative;
+  color:#667085;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.28em;
+  margin-top:4px;
+}
+
+.header-actions{
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+
+.icon-btn,.admin-btn{
+  height:52px;
+  min-width:52px;
+  border:1px solid var(--line);
+  background:#fff;
+  border-radius:16px;
+  position:relative;
+  transition:.2s;
+}
+
+.icon-btn:hover,.admin-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 8px 22px rgba(16,24,40,.1);
+}
+
+.admin-btn{
+  padding:0 25px;
+  background:#101828;
+  color:#fff;
+  font-weight:800;
 }
 
 .notification-count{
- position:absolute;
- top:-5px;
- right:-4px;
- background:#d92d20;
- color:#fff;
- width:16px;
- height:16px;
- border-radius:50%;
- display:grid;
- place-items:center;
- font-size:9px;
- font-weight:900;
+  position:absolute;
+  right:-4px;
+  top:-7px;
+  width:23px;
+  height:23px;
+  border-radius:50%;
+  background:#d92d20;
+  color:#fff;
+  display:grid;
+  place-items:center;
+  font-size:11px;
+  font-weight:800;
 }
 
-@media(max-width:1150px){
- .navlinks{display:none}
- .menu{display:block}
- .page{grid-template-columns:210px 1fr}
- .metrics{grid-template-columns:repeat(3,1fr)}
- .grid-4{grid-template-columns:repeat(2,1fr)}
+.hamburger{
+  font-size:27px;
+  line-height:1;
+}
+
+/* APP */
+
+.app{
+  display:flex;
+  min-height:calc(100vh - 120px);
+}
+
+.sidebar{
+  width:285px;
+  flex-shrink:0;
+  background:#fff;
+  border-right:1px solid var(--line);
+  padding:25px 16px;
+  position:sticky;
+  top:120px;
+  height:calc(100vh - 120px);
+  overflow:auto;
+  z-index:900;
+}
+
+.sidebar-title{
+  color:#98a2b3;
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:.18em;
+  padding:0 14px 10px;
+}
+
+.nav-section{margin-bottom:22px}
+
+.nav-item{
+  width:100%;
+  border:0;
+  background:transparent;
+  min-height:50px;
+  border-radius:15px;
+  display:flex;
+  align-items:center;
+  gap:13px;
+  padding:0 14px;
+  color:#475467;
+  font-weight:750;
+  text-align:left;
+  transition:.2s;
+  margin:3px 0;
+}
+
+.nav-item:hover{
+  background:#f3f6fc;
+  color:var(--blue);
+}
+
+.nav-item.active{
+  background:linear-gradient(100deg,#eaf3ff,#f1ecff);
+  color:#1463d9;
+  box-shadow:inset 3px 0 0 #1463ff;
+}
+
+.nav-icon{
+  width:25px;
+  text-align:center;
+  font-size:18px;
+}
+
+.main{
+  flex:1;
+  min-width:0;
+  padding:34px;
+  max-width:1600px;
+}
+
+.page{display:none}
+.page.active{display:block;animation:pageIn .25s ease}
+
+@keyframes pageIn{
+  from{opacity:0;transform:translateY(8px)}
+  to{opacity:1;transform:none}
+}
+
+/* HERO */
+
+.hero{
+  min-height:410px;
+  border-radius:30px;
+  overflow:hidden;
+  padding:45px;
+  color:#fff;
+  background:
+    radial-gradient(circle at 85% 20%,rgba(87,113,255,.5),transparent 28%),
+    radial-gradient(circle at 65% 90%,rgba(0,190,255,.2),transparent 30%),
+    linear-gradient(120deg,#0d1830,#182d54 52%,#111a32);
+  position:relative;
+  box-shadow:0 30px 80px rgba(15,31,63,.2);
+}
+
+.hero:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  opacity:.25;
+  background-image:
+    linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);
+  background-size:40px 40px;
+}
+
+.hero-content{
+  position:relative;
+  z-index:2;
+  max-width:760px;
+}
+
+.eyebrow{
+  color:#7eb4ff;
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+}
+
+.hero h1{
+  font-size:clamp(36px,5vw,72px);
+  line-height:.98;
+  margin:18px 0;
+  letter-spacing:-.05em;
+}
+
+.gradient-text{
+  background:linear-gradient(90deg,#62b1ff,#8e6cff);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+.hero p{
+  color:#c7d2e5;
+  font-size:17px;
+  line-height:1.7;
+  max-width:690px;
+}
+
+.hero-buttons{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-top:28px;
+}
+
+.btn{
+  border:0;
+  border-radius:14px;
+  padding:14px 20px;
+  font-weight:800;
+  transition:.2s;
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 10px 24px rgba(16,24,40,.13);
+}
+
+.btn-primary{
+  color:#fff;
+  background:linear-gradient(100deg,#1463ff,#6843ed);
+}
+
+.btn-white{
+  color:#101828;
+  background:#fff;
+}
+
+.btn-danger{
+  color:#fff;
+  background:#d92d20;
+}
+
+.btn-success{
+  color:#fff;
+  background:#079455;
+}
+
+.btn-small{
+  padding:9px 13px;
+  border-radius:10px;
+  font-size:12px;
+}
+
+.hero-orb{
+  position:absolute;
+  right:7%;
+  bottom:-120px;
+  width:330px;
+  height:330px;
+  border-radius:50%;
+  border:1px solid rgba(111,164,255,.4);
+  box-shadow:
+    0 0 80px rgba(51,114,255,.22),
+    inset 0 0 80px rgba(51,114,255,.1);
+}
+
+.hero-orb:before,
+.hero-orb:after{
+  content:"";
+  position:absolute;
+  inset:28px;
+  border-radius:50%;
+  border:1px solid rgba(111,164,255,.25);
+}
+
+.hero-orb:after{inset:70px}
+
+.hero-founder{
+  position:absolute;
+  right:7%;
+  top:55px;
+  z-index:3;
+  width:175px;
+  height:210px;
+  border-radius:100px 100px 25px 25px;
+  background:linear-gradient(145deg,#dce9ff,#aebfe0);
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  overflow:hidden;
+  border:4px solid rgba(255,255,255,.2);
+}
+
+.hero-founder img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:none;
+}
+
+.founder-placeholder{
+  font-size:70px;
+  font-weight:900;
+  color:#17315f;
+}
+
+/* CARDS */
+
+.grid{
+  display:grid;
+  gap:20px;
+}
+
+.grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.grid-4{grid-template-columns:repeat(4,minmax(0,1fr))}
+
+.card{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:25px;
+  box-shadow:var(--shadow);
+}
+
+.card h2,.card h3{
+  margin:0 0 10px;
+}
+
+.section-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  margin:35px 0 18px;
+}
+
+.section-head h2{
+  margin:0;
+  font-size:25px;
+}
+
+.muted{color:var(--muted)}
+
+.metric{
+  position:relative;
+  overflow:hidden;
+}
+
+.metric:after{
+  content:"";
+  position:absolute;
+  right:-30px;
+  bottom:-45px;
+  width:110px;
+  height:110px;
+  border-radius:50%;
+  background:linear-gradient(135deg,rgba(20,99,255,.12),rgba(103,69,237,.05));
+}
+
+.metric-label{
+  color:#667085;
+  font-size:12px;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+}
+
+.metric-value{
+  font-size:36px;
+  font-weight:900;
+  margin:8px 0;
+}
+
+.metric-change{
+  color:#079455;
+  font-size:12px;
+  font-weight:800;
+}
+
+/* SCANNER */
+
+.scanner-tabs{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-bottom:20px;
+}
+
+.tab{
+  border:1px solid var(--line);
+  background:#fff;
+  border-radius:14px;
+  padding:13px 17px;
+  font-weight:800;
+}
+
+.tab.active{
+  background:linear-gradient(100deg,#eaf3ff,#f1edff);
+  color:#1463ff;
+  border-color:#c8d9ff;
+}
+
+.field{
+  margin-bottom:17px;
+}
+
+.field label{
+  display:block;
+  font-weight:800;
+  margin-bottom:8px;
+  font-size:13px;
+}
+
+input,select,textarea{
+  width:100%;
+  border:1px solid #d0d5dd;
+  background:#fff;
+  color:#101828;
+  border-radius:14px;
+  padding:15px;
+  outline:none;
+  transition:.2s;
+}
+
+input:focus,select:focus,textarea:focus{
+  border-color:#6192ff;
+  box-shadow:0 0 0 4px rgba(20,99,255,.08);
+}
+
+.scan-button{
+  width:100%;
+  padding:17px;
+  border:0;
+  border-radius:15px;
+  color:#fff;
+  font-weight:900;
+  font-size:16px;
+  background:linear-gradient(100deg,#0769ee,#7540ee);
+}
+
+.scan-button:disabled{
+  opacity:.65;
+  cursor:wait;
+}
+
+.result{
+  margin-top:20px;
+  border-radius:20px;
+  padding:24px;
+  border:1px solid #d0d5dd;
+  background:#fff;
+}
+
+.result.low{
+  background:#effbf5;
+  border-color:#a6e5c5;
+}
+
+.result.medium{
+  background:#fff8eb;
+  border-color:#f5d28a;
+}
+
+.result.high{
+  background:#fff2f0;
+  border-color:#f2aaa2;
+}
+
+.score-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+}
+
+.score{
+  font-size:52px;
+  font-weight:950;
+}
+
+.badge{
+  display:inline-flex;
+  align-items:center;
+  border-radius:999px;
+  padding:7px 12px;
+  font-size:11px;
+  font-weight:900;
+  text-transform:uppercase;
+}
+
+.badge-low{background:#d1fadf;color:#027a48}
+.badge-medium{background:#fef0c7;color:#b54708}
+.badge-high{background:#fee4e2;color:#b42318}
+
+.progress{
+  height:10px;
+  background:#e7ecf4;
+  border-radius:99px;
+  overflow:hidden;
+  margin:18px 0;
+}
+
+.progress-bar{
+  height:100%;
+  width:0;
+  border-radius:99px;
+  background:linear-gradient(90deg,#12b76a,#f79009,#f04438);
+  transition:width .8s ease;
+}
+
+.analysis-list{
+  margin:15px 0 0;
+  padding-left:20px;
+  line-height:1.9;
+}
+
+.disclaimer{
+  color:#667085;
+  font-size:12px;
+  line-height:1.6;
+}
+
+/* DROP */
+
+.dropzone{
+  border:2px dashed #cbd5e1;
+  border-radius:20px;
+  padding:40px 20px;
+  text-align:center;
+  background:#fafcff;
+  transition:.2s;
+}
+
+.dropzone.drag{
+  border-color:#1463ff;
+  background:#eef5ff;
+}
+
+.drop-icon{
+  font-size:42px;
+  margin-bottom:10px;
+}
+
+/* AI */
+
+.ai-box{
+  background:linear-gradient(135deg,#101b32,#1c2d54);
+  color:#fff;
+  border-radius:24px;
+  padding:25px;
+  min-height:530px;
+  display:flex;
+  flex-direction:column;
+}
+
+.chat{
+  flex:1;
+  overflow:auto;
+  max-height:420px;
+  padding:10px 0;
+}
+
+.message{
+  max-width:82%;
+  padding:13px 15px;
+  border-radius:15px;
+  margin:10px 0;
+  line-height:1.55;
+  font-size:14px;
+}
+
+.message.ai{
+  background:rgba(255,255,255,.09);
+  border:1px solid rgba(255,255,255,.08);
+}
+
+.message.user{
+  margin-left:auto;
+  background:#2167ff;
+}
+
+.chat-input{
+  display:flex;
+  gap:8px;
+  margin-top:10px;
+}
+
+.chat-input input{
+  background:#fff;
+}
+
+/* TABLE */
+
+.table-wrap{
+  overflow:auto;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:650px;
+}
+
+th,td{
+  text-align:left;
+  padding:14px;
+  border-bottom:1px solid var(--line);
+  font-size:13px;
+}
+
+th{
+  color:#667085;
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:.06em;
+}
+
+/* MITRE */
+
+.technique{
+  border:1px solid var(--line);
+  padding:18px;
+  border-radius:16px;
+  background:#fff;
+}
+
+.technique strong{display:block;margin-bottom:5px}
+
+/* FOUNDER */
+
+.founder-card{
+  display:flex;
+  gap:30px;
+  align-items:center;
+}
+
+.founder-photo{
+  width:170px;
+  height:200px;
+  border-radius:25px;
+  background:linear-gradient(135deg,#e9f1ff,#e9e4ff);
+  overflow:hidden;
+  display:grid;
+  place-items:center;
+  flex-shrink:0;
+}
+
+.founder-photo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:none;
+}
+
+.initial{
+  font-size:58px;
+  font-weight:950;
+  color:#284e9b;
+}
+
+/* TOAST */
+
+.toast{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  background:#101828;
+  color:#fff;
+  padding:15px 18px;
+  border-radius:14px;
+  box-shadow:0 20px 50px rgba(0,0,0,.2);
+  z-index:5000;
+  transform:translateY(120px);
+  opacity:0;
+  transition:.3s;
+  max-width:350px;
+}
+
+.toast.show{
+  transform:none;
+  opacity:1;
+}
+
+/* MOBILE DRAWER */
+
+.mobile-backdrop{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(15,23,42,.45);
+  backdrop-filter:blur(3px);
+  z-index:1998;
+}
+
+.mobile-backdrop.show{display:block}
+
+.mobile-drawer{
+  display:none;
+  position:fixed;
+  top:0;
+  left:0;
+  bottom:0;
+  width:min(330px,88vw);
+  background:#fff;
+  z-index:1999;
+  box-shadow:25px 0 70px rgba(0,0,0,.2);
+  overflow-y:auto;
+  transform:translateX(-105%);
+  transition:transform .28s ease;
+}
+
+.mobile-drawer.open{
+  transform:none;
+}
+
+.drawer-head{
+  padding:22px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-bottom:1px solid var(--line);
+}
+
+.drawer-close{
+  border:1px solid var(--line);
+  background:#fff;
+  width:43px;
+  height:43px;
+  border-radius:12px;
+  font-size:23px;
+}
+
+.drawer-nav{padding:20px 15px}
+
+/* MODAL */
+
+.modal-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(15,23,42,.5);
+  backdrop-filter:blur(5px);
+  z-index:3000;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.modal-overlay.show{display:flex}
+
+.modal{
+  width:min(800px,100%);
+  max-height:90vh;
+  overflow:auto;
+  background:#fff;
+  border-radius:25px;
+  padding:28px;
+  box-shadow:0 30px 100px rgba(0,0,0,.25);
+}
+
+.modal-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px;
+}
+
+/* FOOTER */
+
+footer{
+  margin-top:45px;
+  padding:30px 0 10px;
+  border-top:1px solid var(--line);
+  color:#667085;
+  font-size:12px;
+}
+
+.footer-grid{
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr;
+  gap:25px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1100px){
+  .sidebar{width:245px}
+  .main{padding:24px}
+  .grid-4{grid-template-columns:repeat(2,1fr)}
+  .hero-founder{opacity:.5}
 }
 
 @media(max-width:850px){
- .page{display:block}
- .sidebar{
-  position:fixed;
-  top:108px;
-  bottom:0;
-  left:-270px;
-  width:250px;
-  z-index:90;
-  transition:.25s;
-  box-shadow:20px 0 60px rgba(16,24,40,.12);
- }
- .sidebar.open{left:0}
- .content{padding:18px}
- .hero,.scanner,.contact-grid,.founder,.ai,.admin{grid-template-columns:1fr}
- .hero-card{min-height:280px}
- .core{min-height:300px}
- .ai-menu{display:none}
- .grid-3{grid-template-columns:1fr}
+  .sidebar{display:none}
+  .mobile-drawer{display:block}
+  .main{padding:18px}
+  .grid-3,.grid-2{grid-template-columns:1fr}
+  .hero{padding:30px 24px}
+  .hero-founder,.hero-orb{display:none}
+  .header{padding:0 16px;height:76px}
+  .brand-title{font-size:22px}
+  .brand-sub{font-size:8px}
+  .logo{width:50px;height:50px}
+  .admin-btn{display:none}
+  .topbar{padding:0 16px}
+  .founder-card{flex-direction:column;align-items:flex-start}
+  .footer-grid{grid-template-columns:1fr}
 }
 
 @media(max-width:600px){
- .wrap{width:calc(100% - 20px)}
- .top .wrap span:last-child{display:none}
- header{height:68px}
- .page{min-height:calc(100vh - 102px)}
- .sidebar{top:102px;height:calc(100vh - 102px)}
- .content{padding:12px}
- .metrics{grid-template-columns:1fr 1fr}
- .grid-2,.grid-3,.grid-4{grid-template-columns:1fr}
- .hero-card{padding:23px}
- .hero h1{font-size:42px}
- .panel{padding:16px}
- .ioc-search{grid-template-columns:1fr}
- .metric strong{font-size:22px}
- .brand-sub{display:none}
+  .topbar{height:34px;font-size:9px}
+  .header{height:72px}
+  .main{padding:13px}
+  .card{padding:18px;border-radius:20px}
+  .hero{border-radius:22px;min-height:450px}
+  .hero h1{font-size:42px}
+  .hero p{font-size:14px}
+  .grid-4{grid-template-columns:1fr 1fr}
+  .metric-value{font-size:28px}
+  .section-head{margin-top:25px}
+  .section-head h2{font-size:21px}
+  .brand{gap:9px}
+  .brand-title{font-size:20px}
+  .brand-sub{letter-spacing:.18em}
+  .header-actions{gap:5px}
+  .icon-btn{min-width:45px;height:45px}
+  .scanner-tabs .tab{flex:1;min-width:140px}
+  .score{font-size:42px}
 }
 </style>
 </head>
 
 <body>
 
-<div class="top">
-<div class="wrap">
-<span><b>AUREXA</b> • ENTERPRISE SECURITY OPERATIONS</span>
-<span>AI • THREAT INTELLIGENCE • INCIDENT RESPONSE</span>
-</div>
+<div class="topbar">
+  <span><strong>AUREXA</strong> • ENTERPRISE SECURITY OPERATIONS</span>
+  <span id="systemStatus">● SYSTEM OPERATIONAL</span>
 </div>
 
-<header>
-<div class="wrap nav">
+<header class="header">
+  <div class="brand">
+    <div class="logo">A</div>
+    <div>
+      <div class="brand-title">AUREXA</div>
+      <div class="brand-sub">CYBER SECURITY SOLUTIONS</div>
+    </div>
+  </div>
 
-<a class="brand" href="#" onclick="showView('dashboard')">
-<div class="logo">A</div>
-<div>
-<div class="brand-name">AUREXA</div>
-<div class="brand-sub">CYBER SECURITY SOLUTIONS</div>
-</div>
-</a>
+  <div class="header-actions">
+    <button class="icon-btn" onclick="showNotifications()" aria-label="Notifications">
+      🔔
+      <span class="notification-count" id="notificationCount">3</span>
+    </button>
 
-<div class="navlinks">
-<a href="#" onclick="showView('dashboard')">Dashboard</a>
-<a href="#" onclick="showView('scanner')">Scanner</a>
-<a href="#" onclick="showView('ai')">AI Copilot</a>
-<a href="#" onclick="showView('incidents')">Incidents</a>
-<a href="#" onclick="showView('intel')">Threat Intel</a>
-</div>
+    <button class="admin-btn" onclick="openAdmin()">Admin</button>
 
-<div class="nav-right">
-
-<button class="btn notification"
-onclick="showNotifications()">
-🔔
-<span class="notification-count" id="notificationCount">3</span>
-</button>
-
-<button class="btn dark" onclick="showView('admin')">
-Admin
-</button>
-
-<button class="menu" onclick="toggleSidebar()">☰</button>
-
-</div>
-
-</div>
+    <button class="icon-btn hamburger" onclick="openMenu()" aria-label="Open menu">
+      ☰
+    </button>
+  </div>
 </header>
 
+<!-- MOBILE MENU -->
+<div class="mobile-backdrop" id="mobileBackdrop" onclick="closeMenu()"></div>
 
-<div class="page">
+<aside class="mobile-drawer" id="mobileDrawer">
+  <div class="drawer-head">
+    <div>
+      <strong style="font-size:20px">AUREXA</strong>
+      <div class="muted" style="font-size:10px;margin-top:4px">COMMAND CENTER</div>
+    </div>
+    <button class="drawer-close" onclick="closeMenu()">×</button>
+  </div>
 
-<aside class="sidebar" id="sidebar">
+  <nav class="drawer-nav">
+    <div class="sidebar-title">COMMAND CENTER</div>
+    <button class="nav-item" onclick="navigate('dashboard')">▦ <span>Dashboard</span></button>
+    <button class="nav-item" onclick="navigate('scanner')">⌕ <span>Security Scanner</span></button>
+    <button class="nav-item" onclick="navigate('copilot')">✦ <span>AI Copilot</span></button>
+    <button class="nav-item" onclick="navigate('threats')">◉ <span>Threat Intelligence</span></button>
+    <button class="nav-item" onclick="navigate('ioc')">◇ <span>IOC Intelligence</span></button>
+    <button class="nav-item" onclick="navigate('mitre')">▦ <span>MITRE ATT&CK</span></button>
 
-<div class="side-label">COMMAND CENTER</div>
+    <div class="sidebar-title" style="margin-top:20px">OPERATIONS</div>
+    <button class="nav-item" onclick="navigate('incidents')">! <span>Incidents</span></button>
+    <button class="nav-item" onclick="navigate('alerts')">● <span>Alert Queue</span></button>
+    <button class="nav-item" onclick="navigate('reports')">▤ <span>Reports</span></button>
 
-<button class="side-btn active" data-view="dashboard" onclick="showView('dashboard')">
-<span class="side-icon">▦</span> Dashboard
-</button>
+    <div class="sidebar-title" style="margin-top:20px">PLATFORM</div>
+    <button class="nav-item" onclick="navigate('founder')">♙ <span>Founder</span></button>
+    <button class="nav-item" onclick="openAdmin()">⚙ <span>Admin Panel</span></button>
+  </nav>
+</aside>
 
-<button class="side-btn" data-view="scanner" onclick="showView('scanner')">
-<span class="side-icon">⌕</span> Security Scanner
-</button>
+<div class="app">
 
-<button class="side-btn" data-view="ai" onclick="showView('ai')">
-<span class="side-icon">✦</span> AI Copilot
-</button>
+<!-- DESKTOP SIDEBAR -->
+<aside class="sidebar">
 
-<div class="side-label">INTELLIGENCE</div>
+  <div class="nav-section">
+    <div class="sidebar-title">COMMAND CENTER</div>
 
-<button class="side-btn" data-view="intel" onclick="showView('intel')">
-<span class="side-icon">◎</span> Threat Intelligence
-</button>
+    <button class="nav-item active" data-page="dashboard" onclick="navigate('dashboard')">
+      <span class="nav-icon">▦</span> Dashboard
+    </button>
 
-<button class="side-btn" data-view="ioc" onclick="showView('ioc')">
-<span class="side-icon">⌁</span> IOC Intelligence
-</button>
+    <button class="nav-item" data-page="scanner" onclick="navigate('scanner')">
+      <span class="nav-icon">⌕</span> Security Scanner
+    </button>
 
-<button class="side-btn" data-view="mitre" onclick="showView('mitre')">
-<span class="side-icon">◈</span> MITRE ATT&CK
-</button>
+    <button class="nav-item" data-page="copilot" onclick="navigate('copilot')">
+      <span class="nav-icon">✦</span> AI Copilot
+    </button>
 
-<div class="side-label">OPERATIONS</div>
+    <button class="nav-item" data-page="threats" onclick="navigate('threats')">
+      <span class="nav-icon">◉</span> Threat Intelligence
+    </button>
 
-<button class="side-btn" data-view="incidents" onclick="showView('incidents')">
-<span class="side-icon">!</span> Incidents
-</button>
+    <button class="nav-item" data-page="ioc" onclick="navigate('ioc')">
+      <span class="nav-icon">◇</span> IOC Intelligence
+    </button>
 
-<button class="side-btn" data-view="alerts" onclick="showView('alerts')">
-<span class="side-icon">◉</span> Alert Queue
-</button>
+    <button class="nav-item" data-page="mitre" onclick="navigate('mitre')">
+      <span class="nav-icon">▦</span> MITRE ATT&CK
+    </button>
+  </div>
 
-<button class="side-btn" data-view="reports" onclick="showView('reports')">
-<span class="side-icon">▤</span> Reports
-</button>
+  <div class="nav-section">
+    <div class="sidebar-title">OPERATIONS</div>
 
-<div class="side-label">PLATFORM</div>
+    <button class="nav-item" data-page="incidents" onclick="navigate('incidents')">
+      <span class="nav-icon">!</span> Incidents
+    </button>
 
-<button class="side-btn" data-view="founder" onclick="showView('founder')">
-<span class="side-icon">♙</span> Founder
-</button>
+    <button class="nav-item" data-page="alerts" onclick="navigate('alerts')">
+      <span class="nav-icon">●</span> Alert Queue
+    </button>
 
-<button class="side-btn" data-view="admin" onclick="showView('admin')">
-<span class="side-icon">⚙</span> Admin
-</button>
+    <button class="nav-item" data-page="reports" onclick="navigate('reports')">
+      <span class="nav-icon">▤</span> Reports
+    </button>
+  </div>
+
+  <div class="nav-section">
+    <div class="sidebar-title">PLATFORM</div>
+
+    <button class="nav-item" data-page="founder" onclick="navigate('founder')">
+      <span class="nav-icon">♙</span> Founder
+    </button>
+
+    <button class="nav-item" onclick="openAdmin()">
+      <span class="nav-icon">⚙</span> Admin
+    </button>
+  </div>
 
 </aside>
 
-
-<main class="content">
-
+<main class="main">
 
 <!-- DASHBOARD -->
+<section class="page active" id="dashboard">
 
-<section class="view active" id="dashboard">
+  <div class="hero">
+    <div class="hero-content">
+      <div class="eyebrow">AUREXA SECURITY PLATFORM</div>
 
-<div class="hero">
+      <h1>
+        Defend smarter.<br>
+        <span class="gradient-text">Respond faster.</span>
+      </h1>
 
-<div class="hero-card">
+      <p>
+        Enterprise-grade security operations with intelligent threat
+        screening, incident analysis, IOC intelligence and AI-assisted
+        security workflows.
+      </p>
 
-<span class="eyebrow">
-<span class="live-dot"></span>
-AUREXA AI-SOC ONLINE
-</span>
+      <div class="hero-buttons">
+        <button class="btn btn-primary" onclick="navigate('scanner')">
+          🔍 Launch Security Scanner
+        </button>
 
-<h1>
-Intelligence that turns
-<span class="gradient">security signals</span>
-into decisions.
-</h1>
+        <button class="btn btn-white" onclick="navigate('copilot')">
+          ✦ Ask AI Copilot
+        </button>
+      </div>
+    </div>
 
-<p>
-A modern enterprise security workspace for URL screening,
-file analysis, IOC intelligence, incident response and
-AI-assisted security operations.
-</p>
+    <div class="hero-founder">
+      <img id="heroFounderImage" alt="Founder">
+      <div class="founder-placeholder" id="heroFounderPlaceholder">SP</div>
+    </div>
 
-<div class="hero-actions">
+    <div class="hero-orb"></div>
+  </div>
 
-<button class="btn primary" onclick="showView('scanner')">
-Launch Security Scanner →
-</button>
+  <div class="section-head">
+    <h2>Security Operations Overview</h2>
+    <button class="btn btn-primary btn-small" onclick="refreshDashboard()">↻ Refresh</button>
+  </div>
 
-<button class="btn" onclick="showView('ai')">
-Ask Aurexa AI
-</button>
+  <div class="grid grid-4">
 
-</div>
+    <div class="card metric">
+      <div class="metric-label">Total Alerts</div>
+      <div class="metric-value" id="metricAlerts">2,486</div>
+      <div class="metric-change">↑ 26% vs previous period</div>
+    </div>
 
-</div>
+    <div class="card metric">
+      <div class="metric-label">Critical Alerts</div>
+      <div class="metric-value">137</div>
+      <div style="color:#d92d20;font-size:12px;font-weight:800">Requires attention</div>
+    </div>
 
+    <div class="card metric">
+      <div class="metric-label">Active Incidents</div>
+      <div class="metric-value">23</div>
+      <div class="metric-change">↑ 4 today</div>
+    </div>
 
-<div class="core">
+    <div class="card metric">
+      <div class="metric-label">Risk Score</div>
+      <div class="metric-value">94<span style="font-size:18px">/100</span></div>
+      <div style="color:#d92d20;font-size:12px;font-weight:800">Critical environment</div>
+    </div>
 
-<div class="core-orbit">
-<div class="core-ball">
-<span>A</span>
-</div>
-</div>
+  </div>
 
-<div class="core-label">
-AUREXA SECURITY CORE • OPERATIONAL
-</div>
+  <div class="section-head">
+    <h2>Security Capabilities</h2>
+  </div>
 
-</div>
+  <div class="grid grid-4">
 
-</div>
+    <div class="card">
+      <div style="font-size:30px">🌐</div>
+      <h3>Multi-Source Ingestion</h3>
+      <p class="muted">URLs, domains, files, screenshots, logs and security indicators.</p>
+    </div>
 
+    <div class="card">
+      <div style="font-size:30px">🧠</div>
+      <h3>AI Threat Detection</h3>
+      <p class="muted">Intelligent analysis workflows for suspicious indicators.</p>
+    </div>
 
-<div class="metrics">
+    <div class="card">
+      <div style="font-size:30px">🎯</div>
+      <h3>MITRE ATT&CK</h3>
+      <p class="muted">Map suspicious activity to tactics and techniques.</p>
+    </div>
 
-<div class="metric">
-<small>Security Events</small>
-<strong id="mEvents">2,486</strong>
-<span class="up">↑ 12.4%</span>
-</div>
+    <div class="card">
+      <div style="font-size:30px">⚡</div>
+      <h3>Response Automation</h3>
+      <p class="muted">Generate incident response recommendations quickly.</p>
+    </div>
 
-<div class="metric">
-<small>Critical Alerts</small>
-<strong id="mCritical">137</strong>
-<span class="up">↓ 8.2%</span>
-</div>
+  </div>
 
-<div class="metric">
-<small>Active Incidents</small>
-<strong id="mIncidents">23</strong>
-<span class="up">↑ 4.8%</span>
-</div>
+  <div class="section-head">
+    <h2>Operational Health</h2>
+  </div>
 
-<div class="metric">
-<small>Protected Assets</small>
-<strong>1,284</strong>
-<span class="up">↑ 18.1%</span>
-</div>
+  <div class="grid grid-3">
 
-<div class="metric">
-<small>Risk Posture</small>
-<strong>94</strong>
-<span class="up">Strong monitoring</span>
-</div>
+    <div class="card">
+      <h3>Detection Engine</h3>
+      <div class="progress"><div class="progress-bar" style="width:96%"></div></div>
+      <strong>96%</strong>
+      <p class="muted">Healthy</p>
+    </div>
 
-</div>
+    <div class="card">
+      <h3>AI Analysis Engine</h3>
+      <div class="progress"><div class="progress-bar" style="width:91%"></div></div>
+      <strong>91%</strong>
+      <p class="muted">Operational</p>
+    </div>
 
+    <div class="card">
+      <h3>Response Pipeline</h3>
+      <div class="progress"><div class="progress-bar" style="width:98%"></div></div>
+      <strong>98%</strong>
+      <p class="muted">Healthy</p>
+    </div>
 
-<div class="grid grid-2">
-
-<div class="panel">
-
-<div class="panel-title">
-<h3>Threat activity</h3>
-<small>Last 24 hours</small>
-</div>
-
-<div class="chart">
-
-<svg viewBox="0 0 800 220" preserveAspectRatio="none">
-
-<polyline
-fill="none"
-stroke="#155eef"
-stroke-width="4"
-points="
-0,180
-55,165
-110,174
-165,130
-220,150
-275,100
-330,122
-385,84
-440,110
-495,68
-550,94
-605,52
-660,73
-720,35
-800,45"/>
-
-<polyline
-fill="none"
-stroke="#6941c6"
-stroke-width="2"
-opacity=".55"
-points="
-0,195
-80,188
-160,180
-240,171
-320,158
-400,143
-480,150
-560,125
-640,130
-720,109
-800,98"/>
-
-</svg>
-
-</div>
-
-</div>
-
-
-<div class="panel">
-
-<div class="panel-title">
-<h3>Severity distribution</h3>
-<small>Current queue</small>
-</div>
-
-<div class="severity">
-
-<div class="sev-row">
-<span>Critical</span>
-<div class="bar"><i class="red" style="width:87%"></i></div>
-<b>137</b>
-</div>
-
-<div class="sev-row">
-<span>High</span>
-<div class="bar"><i class="orange" style="width:73%"></i></div>
-<b>284</b>
-</div>
-
-<div class="sev-row">
-<span>Medium</span>
-<div class="bar"><i class="yellow" style="width:58%"></i></div>
-<b>516</b>
-</div>
-
-<div class="sev-row">
-<span>Low</span>
-<div class="bar"><i class="green" style="width:36%"></i></div>
-<b>842</b>
-</div>
-
-<div class="sev-row">
-<span>Info</span>
-<div class="bar"><i class="blue" style="width:23%"></i></div>
-<b>707</b>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-
-<div class="panel" style="margin-top:16px">
-
-<div class="panel-title">
-<h3>Priority alert queue</h3>
-<button class="btn" onclick="showView('alerts')">
-View all
-</button>
-</div>
-
-<div class="table-wrap">
-
-<table>
-
-<thead>
-<tr>
-<th>Alert</th>
-<th>Source</th>
-<th>Severity</th>
-<th>Time</th>
-<th>Status</th>
-</tr>
-</thead>
-
-<tbody id="dashboardAlerts"></tbody>
-
-</table>
-
-</div>
-
-</div>
-
+  </div>
 </section>
 
 
 <!-- SCANNER -->
+<section class="page" id="scanner">
 
-<section class="view" id="scanner">
+  <div class="section-head">
+    <div>
+      <h2>Security Scanner</h2>
+      <p class="muted">Analyze URLs, APKs and suspicious screenshots.</p>
+    </div>
+  </div>
 
-<div class="panel-title">
-<div>
-<h2>Security Scanner</h2>
-<small>Multi-surface preliminary security analysis</small>
-</div>
-</div>
+  <div class="card">
 
-<div class="scanner">
+    <div class="scanner-tabs">
+      <button class="tab active" id="tab-url" onclick="scannerTab('url')">🌐 Website / URL</button>
+      <button class="tab" id="tab-apk" onclick="scannerTab('apk')">📱 APK Screening</button>
+      <button class="tab" id="tab-shot" onclick="scannerTab('shot')">🖼️ Screenshot Check</button>
+    </div>
 
-<div class="panel">
+    <!-- URL -->
+    <div id="scanner-url">
 
-<div class="tabs">
+      <div class="field">
+        <label>URL / Domain</label>
+        <input id="urlInput"
+          value="https://www.amtso.org/feature-settings-check-phishing-page/"
+          placeholder="https://example.com">
+      </div>
 
-<button class="tab active" onclick="scannerTab('url',this)">
-🌐 URL Intelligence
-</button>
+      <div class="grid grid-2">
 
-<button class="tab" onclick="scannerTab('apk',this)">
-📱 APK Lab
-</button>
+        <div class="field">
+          <label>Analysis Mode</label>
+          <select id="analysisMode">
+            <option>Quick Risk Analysis</option>
+            <option>Standard Intelligence Analysis</option>
+            <option>Deep Security Analysis</option>
+          </select>
+        </div>
 
-<button class="tab" onclick="scannerTab('image',this)">
-🖼 Screenshot
-</button>
+        <div class="field">
+          <label>Scan Depth</label>
+          <select id="scanDepth">
+            <option>Deep</option>
+            <option>Standard</option>
+            <option>Fast</option>
+          </select>
+        </div>
 
-</div>
+      </div>
 
+      <button class="scan-button" id="urlScanButton" onclick="scanURL()">
+        🔎 Analyze URL
+      </button>
 
-<div id="urlScanner">
+      <div id="urlResult" style="display:none"></div>
 
-<label><b>URL / Domain</b></label>
+      <div class="card" style="margin-top:18px;background:#f8fafc;box-shadow:none">
+        <strong>Privacy-first browser analysis</strong>
+        <p class="muted">
+          No password, OTP, payment information or account credentials are
+          collected by this interface. Real reputation, DNS, sandbox and
+          malware intelligence should be connected through a secure backend.
+        </p>
+      </div>
+    </div>
 
-<input
-class="input"
-id="url"
-placeholder="https://example.com"
-style="margin-top:7px">
+    <!-- APK -->
+    <div id="scanner-apk" style="display:none">
 
-<div class="grid grid-2" style="margin-top:12px">
+      <div class="dropzone" id="apkDrop">
+        <div class="drop-icon">📱</div>
+        <h3>APK Malware Screening</h3>
+        <p class="muted">Upload an APK for preliminary local metadata screening.</p>
 
-<div>
-<label>Analysis mode</label>
-<select class="select" id="urlMode">
-<option>Quick Risk Analysis</option>
-<option>Phishing Heuristics</option>
-<option>Enterprise Screening</option>
-</select>
-</div>
+        <input type="file" id="apkInput" accept=".apk,application/vnd.android.package-archive" hidden>
 
-<div>
-<label>Scan depth</label>
-<select class="select">
-<option>Standard</option>
-<option>Deep</option>
-</select>
-</div>
+        <button class="btn btn-primary" onclick="document.getElementById('apkInput').click()">
+          Select APK
+        </button>
 
-</div>
+        <p id="apkFileName" class="muted"></p>
+      </div>
 
-<button class="btn primary"
-style="width:100%;margin-top:12px"
-onclick="analyzeURL()">
-🔎 Analyze URL
-</button>
+      <div id="apkResult"></div>
 
-<div class="finding" style="margin-top:13px">
-<b>Privacy-first browser analysis</b>
-No password, OTP or account information should be submitted.
-Real reputation/DNS analysis requires the backend connectors.
-</div>
+      <p class="disclaimer">
+        Browser-only mode cannot decompile an APK or reliably detect malware.
+        Production malware analysis should send the file to an isolated
+        backend sandbox/reputation engine.
+      </p>
+    </div>
 
-</div>
+    <!-- SCREENSHOT -->
+    <div id="scanner-shot" style="display:none">
 
+      <div class="dropzone">
+        <div class="drop-icon">🖼️</div>
+        <h3>Suspicious Screenshot Analysis</h3>
+        <p class="muted">
+          Upload a screenshot of a suspicious message, website, payment page
+          or social-engineering attempt.
+        </p>
 
-<div id="apkScanner" style="display:none">
+        <input type="file" id="shotInput" accept="image/*" hidden>
 
-<label><b>APK file</b></label>
+        <button class="btn btn-primary" onclick="document.getElementById('shotInput').click()">
+          Upload Screenshot
+        </button>
+      </div>
 
-<label class="drop" style="margin-top:8px">
+      <div id="shotPreview"></div>
+    </div>
 
-<input
-type="file"
-accept=".apk,application/vnd.android.package-archive"
-id="apkFile"
-onchange="analyzeAPK(this)">
-
-<div>
-
-<div class="drop-icon">📱</div>
-
-<b>Drop APK or tap to select</b>
-
-<p style="color:#667085;font-size:12px">
-SHA-256 + metadata + preliminary risk checks.
-The file is never executed in this browser.
-</p>
-
-</div>
-
-</label>
-
-</div>
-
-
-<div id="imageScanner" style="display:none">
-
-<label><b>Suspicious screenshot</b></label>
-
-<label class="drop" style="margin-top:8px">
-
-<input
-type="file"
-accept="image/*"
-id="screenFile"
-onchange="analyzeScreenshot(this)">
-
-<div>
-
-<div class="drop-icon">🖼</div>
-
-<b>Upload screenshot</b>
-
-<p style="color:#667085;font-size:12px">
-Prepare visual phishing/OCR analysis.
-Connect your AI/OCR backend for full detection.
-</p>
-
-</div>
-
-</label>
-
-<img
-id="screenPreview"
-style="display:none;width:100%;max-height:260px;object-fit:contain;border-radius:15px;margin-top:12px">
-
-</div>
-
-</div>
-
-
-<div class="result" id="scanResult">
-
-<div class="empty">
-
-<div style="font-size:45px">🛡️</div>
-
-<h3>Ready for analysis</h3>
-
-<p>
-Run a scanner to generate an explainable security result.
-</p>
-
-</div>
-
-</div>
-
-</div>
-
+  </div>
 </section>
 
 
-<!-- AI -->
+<!-- AI COPILOT -->
+<section class="page" id="copilot">
 
-<section class="view" id="ai">
+  <div class="section-head">
+    <div>
+      <h2>Aurexa AI Security Copilot</h2>
+      <p class="muted">Ask security questions and generate analysis guidance.</p>
+    </div>
+  </div>
 
-<div class="panel-title">
+  <div class="ai-box">
 
-<div>
-<h2>Aurexa AI Copilot</h2>
-<small>AI-assisted security investigation workspace</small>
-</div>
+    <div>
+      <div class="eyebrow">AI SECURITY ASSISTANT</div>
+      <h2>How can Aurexa help?</h2>
+    </div>
 
-<span class="badge info">AI READY</span>
+    <div class="chat" id="chat">
 
-</div>
+      <div class="message ai">
+        👋 I'm Aurexa Copilot. Ask me about phishing,
+        malware, suspicious URLs, IOCs, incident response,
+        MITRE ATT&CK or security best practices.
+      </div>
 
+    </div>
 
-<div class="ai">
+    <div class="chat-input">
+      <input id="aiInput" placeholder="Ask a cybersecurity question..."
+        onkeydown="if(event.key==='Enter')askAI()">
+      <button class="btn btn-primary" onclick="askAI()">Send</button>
+    </div>
 
-<div class="ai-menu">
+  </div>
 
-<h3>Investigation</h3>
+  <div class="section-head"><h2>Quick Security Questions</h2></div>
 
-<button class="ai-prompt" onclick="askQuick('Explain this security alert and identify the most important indicators.')">
-Explain Alert
-</button>
+  <div class="grid grid-3">
 
-<button class="ai-prompt" onclick="askQuick('Extract possible IOCs from this investigation.')">
-Extract IOCs
-</button>
+    <button class="card" onclick="quickAI('How do I identify a phishing URL?')">
+      🎣 How do I identify phishing?
+    </button>
 
-<button class="ai-prompt" onclick="askQuick('Create a SOC triage checklist for a critical phishing alert.')">
-SOC Triage
-</button>
+    <button class="card" onclick="quickAI('What should I do after downloading a suspicious APK?')">
+      📱 Suspicious APK response
+    </button>
 
-<button class="ai-prompt" onclick="askQuick('Map this security incident to MITRE ATT&CK techniques.')">
-MITRE Mapping
-</button>
+    <button class="card" onclick="quickAI('Explain ransomware incident response')">
+      🛡️ Ransomware response
+    </button>
 
-<button class="ai-prompt" onclick="askQuick('Create an incident response plan for a suspected malware infection.')">
-Response Plan
-</button>
-
-<button class="ai-prompt" onclick="askQuick('Generate an executive security summary.')">
-Executive Summary
-</button>
-
-</div>
-
-
-<div class="panel chat">
-
-<div class="messages" id="messages">
-
-<div class="message ai-msg">
-<b>Aurexa AI</b><br><br>
-Welcome to the Aurexa Security Copilot.
-
-Ask me about phishing, suspicious URLs, malware,
-SOC triage, incident response, IOCs, MITRE ATT&CK,
-security awareness or remediation.
-</div>
-
-</div>
-
-
-<div class="chat-input">
-
-<input
-class="input"
-id="aiInput"
-placeholder="Ask a cybersecurity question..."
-onkeydown="if(event.key==='Enter')sendAI()">
-
-<button class="btn primary"
-onclick="sendAI()">
-Send
-</button>
-
-</div>
-
-</div>
-
-</div>
-
+  </div>
 </section>
 
 
-<!-- INCIDENTS -->
-
-<section class="view" id="incidents">
-
-<div class="panel-title">
-
-<div>
-<h2>Incident Response</h2>
-<small>Case management and investigation workflow</small>
-</div>
-
-<button class="btn primary" onclick="newIncident()">
-+ New Incident
-</button>
-
-</div>
-
-
-<div class="grid grid-4">
-
-<div class="metric">
-<small>New</small>
-<strong>8</strong>
-</div>
-
-<div class="metric">
-<small>Investigating</small>
-<strong>11</strong>
-</div>
-
-<div class="metric">
-<small>Contained</small>
-<strong>4</strong>
-</div>
-
-<div class="metric">
-<small>Resolved</small>
-<strong>76</strong>
-</div>
-
-</div>
-
-
-<div class="panel" style="margin-top:16px">
-
-<div class="searchbar">
-
-<input
-class="input"
-placeholder="Search incident ID, title or asset..."
-oninput="filterIncidents(this.value)">
-
-<select class="select" style="max-width:180px">
-<option>All severity</option>
-<option>Critical</option>
-<option>High</option>
-<option>Medium</option>
-</select>
-
-</div>
-
-
-<div class="table-wrap">
-
-<table>
-
-<thead>
-<tr>
-<th>Incident</th>
-<th>Severity</th>
-<th>Asset</th>
-<th>Owner</th>
-<th>Status</th>
-<th>Updated</th>
-</tr>
-</thead>
-
-<tbody id="incidentTable"></tbody>
-
-</table>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- ALERTS -->
-
-<section class="view" id="alerts">
-
-<div class="panel-title">
-
-<div>
-<h2>Alert Queue</h2>
-<small>Prioritized security events</small>
-</div>
-
-<button class="btn" onclick="refreshAlerts()">
-↻ Refresh
-</button>
-
-</div>
-
-
-<div class="panel">
-
-<div class="searchbar">
-
-<input
-class="input"
-id="alertSearch"
-placeholder="Search alerts..."
-oninput="renderAlerts()">
-
-<select class="select" id="severityFilter" onchange="renderAlerts()" style="max-width:180px">
-
-<option value="all">All severity</option>
-<option value="Critical">Critical</option>
-<option value="High">High</option>
-<option value="Medium">Medium</option>
-
-</select>
-
-</div>
-
-
-<div class="table-wrap">
-
-<table>
-
-<thead>
-<tr>
-<th>ID</th>
-<th>Alert</th>
-<th>Source</th>
-<th>Severity</th>
-<th>MITRE</th>
-<th>Status</th>
-<th>Action</th>
-</tr>
-</thead>
-
-<tbody id="alertTable"></tbody>
-
-</table>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- INTEL -->
-
-<section class="view" id="intel">
-
-<div class="panel-title">
-
-<div>
-<h2>Threat Intelligence</h2>
-<small>IOC reputation and investigation workspace</small>
-</div>
-
-<span class="badge info">API READY</span>
-
-</div>
-
-
-<div class="panel">
-
-<div class="ioc-search">
-
-<select class="select" id="intelType">
-
-<option>Domain</option>
-<option>IP Address</option>
-<option>URL</option>
-<option>SHA-256</option>
-
-</select>
-
-<input
-class="input"
-id="intelValue"
-placeholder="Enter indicator...">
-
-<button class="btn primary"
-onclick="lookupIntel()">
-Lookup
-</button>
-
-</div>
-
-
-<div id="intelResult" class="empty">
-
-<div style="font-size:40px">◎</div>
-
-<h3>Threat intelligence lookup</h3>
-
-<p>
-Enter a domain, IP, URL or hash.
-</p>
-
-</div>
-
-</div>
+<!-- THREATS -->
+<section class="page" id="threats">
+
+  <div class="section-head">
+    <div>
+      <h2>Threat Intelligence</h2>
+      <p class="muted">Security intelligence workspace.</p>
+    </div>
+    <button class="btn btn-primary btn-small" onclick="toast('Threat intelligence refreshed')">↻ Refresh Feed</button>
+  </div>
+
+  <div class="grid grid-3">
+
+    <div class="card">
+      <span class="badge badge-high">Critical</span>
+      <h3>Credential Phishing</h3>
+      <p class="muted">Identity theft campaigns targeting enterprise accounts.</p>
+      <strong>HIGH PRIORITY</strong>
+    </div>
+
+    <div class="card">
+      <span class="badge badge-medium">Medium</span>
+      <h3>Malicious Documents</h3>
+      <p class="muted">Office documents containing suspicious macro behaviour.</p>
+      <strong>MONITOR</strong>
+    </div>
+
+    <div class="card">
+      <span class="badge badge-low">Low</span>
+      <h3>Reconnaissance</h3>
+      <p class="muted">Automated scanning activity detected across internet-facing assets.</p>
+      <strong>OBSERVING</strong>
+    </div>
+
+  </div>
+
+  <div class="section-head"><h2>Threat Activity</h2></div>
+
+  <div class="card">
+    <div class="progress"><div class="progress-bar" style="width:72%"></div></div>
+    <p class="muted">Phishing activity</p>
+
+    <div class="progress"><div class="progress-bar" style="width:48%"></div></div>
+    <p class="muted">Malware delivery</p>
+
+    <div class="progress"><div class="progress-bar" style="width:34%"></div></div>
+    <p class="muted">Credential attacks</p>
+  </div>
 
 </section>
 
 
 <!-- IOC -->
+<section class="page" id="ioc">
 
-<section class="view" id="ioc">
+  <div class="section-head">
+    <div>
+      <h2>IOC Intelligence</h2>
+      <p class="muted">Analyze domains, IPs, hashes and URLs.</p>
+    </div>
+  </div>
 
-<div class="panel-title">
+  <div class="card">
 
-<div>
-<h2>IOC Intelligence</h2>
-<small>Indicators of compromise workspace</small>
-</div>
+    <div class="field">
+      <label>Indicator of Compromise</label>
+      <input id="iocInput" placeholder="IP / Domain / URL / SHA256 hash">
+    </div>
 
-<button class="btn primary" onclick="extractDemoIOC()">
-Extract IOCs
-</button>
+    <button class="btn btn-primary" onclick="analyzeIOC()">Analyze IOC</button>
 
-</div>
+    <div id="iocResult"></div>
 
-
-<div class="grid grid-4">
-
-<div class="metric">
-<small>Domains</small>
-<strong>482</strong>
-</div>
-
-<div class="metric">
-<small>IPs</small>
-<strong>291</strong>
-</div>
-
-<div class="metric">
-<small>Hashes</small>
-<strong>1,840</strong>
-</div>
-
-<div class="metric">
-<small>URLs</small>
-<strong>624</strong>
-</div>
-
-</div>
-
-
-<div class="panel" style="margin-top:16px">
-
-<textarea
-id="iocInput"
-rows="8"
-placeholder="Paste incident text, alert data or investigation notes here..."></textarea>
-
-<button class="btn primary"
-style="margin-top:10px"
-onclick="extractIOC()">
-Extract Indicators
-</button>
-
-<div id="iocOutput"></div>
-
-</div>
+  </div>
 
 </section>
 
 
 <!-- MITRE -->
+<section class="page" id="mitre">
 
-<section class="view" id="mitre">
+  <div class="section-head">
+    <div>
+      <h2>MITRE ATT&CK Mapping</h2>
+      <p class="muted">Security technique reference workspace.</p>
+    </div>
+  </div>
 
-<div class="panel-title">
+  <div class="grid grid-3">
 
-<div>
-<h2>MITRE ATT&CK</h2>
-<small>Technique mapping workspace</small>
-</div>
+    <div class="technique">
+      <strong>T1566 — Phishing</strong>
+      <span class="muted">Initial Access</span>
+    </div>
 
-</div>
+    <div class="technique">
+      <strong>T1059 — Command and Scripting Interpreter</strong>
+      <span class="muted">Execution</span>
+    </div>
+
+    <div class="technique">
+      <strong>T1078 — Valid Accounts</strong>
+      <span class="muted">Defense Evasion / Persistence</span>
+    </div>
+
+    <div class="technique">
+      <strong>T1204 — User Execution</strong>
+      <span class="muted">Execution</span>
+    </div>
+
+    <div class="technique">
+      <strong>T1486 — Data Encrypted for Impact</strong>
+      <span class="muted">Impact</span>
+    </div>
+
+    <div class="technique">
+      <strong>T1046 — Network Service Scanning</strong>
+      <span class="muted">Discovery</span>
+    </div>
+
+  </div>
+
+</section>
 
 
-<div class="grid grid-3">
+<!-- INCIDENTS -->
+<section class="page" id="incidents">
 
-<div class="card">
-<span class="badge high">TA0001</span>
-<h3>Initial Access</h3>
-<p style="color:#667085">
-Phishing, exploit public-facing application,
-valid accounts and external remote services.
-</p>
-</div>
+  <div class="section-head">
+    <div>
+      <h2>Incident Management</h2>
+      <p class="muted">Track and prioritize security incidents.</p>
+    </div>
+    <button class="btn btn-danger" onclick="createIncident()">+ Create Incident</button>
+  </div>
 
-<div class="card">
-<span class="badge medium">TA0003</span>
-<h3>Persistence</h3>
-<p style="color:#667085">
-Account manipulation, scheduled tasks,
-startup mechanisms and service persistence.
-</p>
-</div>
+  <div class="card table-wrap">
 
-<div class="card">
-<span class="badge info">TA0009</span>
-<h3>Collection</h3>
-<p style="color:#667085">
-Screen capture, archive collected data,
-email and clipboard collection.
-</p>
-</div>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Incident</th>
+          <th>Severity</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
 
-<div class="card">
-<span class="badge high">T1566</span>
-<h3>Phishing</h3>
-<p style="color:#667085">
-Analyze suspicious messages, malicious links
-and attachment-based delivery.
-</p>
-</div>
+      <tbody id="incidentTable">
 
-<div class="card">
-<span class="badge medium">T1059</span>
-<h3>Command & Scripting</h3>
-<p style="color:#667085">
-PowerShell, shell, Python and other
-command interpreters.
-</p>
-</div>
+        <tr>
+          <td>INC-001</td>
+          <td>Suspicious authentication activity</td>
+          <td><span class="badge badge-high">Critical</span></td>
+          <td>Investigating</td>
+          <td><button class="btn btn-small btn-primary" onclick="toast('Incident opened')">Open</button></td>
+        </tr>
 
-<div class="card">
-<span class="badge info">T1071</span>
-<h3>Application Layer Protocol</h3>
-<p style="color:#667085">
-Web protocols and other application-layer
-communication patterns.
-</p>
-</div>
+        <tr>
+          <td>INC-002</td>
+          <td>Malicious URL reported</td>
+          <td><span class="badge badge-medium">Medium</span></td>
+          <td>Triaged</td>
+          <td><button class="btn btn-small btn-primary" onclick="toast('Incident opened')">Open</button></td>
+        </tr>
 
-</div>
+      </tbody>
+    </table>
+
+  </div>
+
+</section>
+
+
+<!-- ALERTS -->
+<section class="page" id="alerts">
+
+  <div class="section-head">
+    <div>
+      <h2>Alert Queue</h2>
+      <p class="muted">Prioritized security events.</p>
+    </div>
+    <button class="btn btn-primary btn-small" onclick="clearAlerts()">Clear Resolved</button>
+  </div>
+
+  <div class="card table-wrap">
+
+    <table>
+      <thead>
+        <tr>
+          <th>Time</th>
+          <th>Alert</th>
+          <th>Source</th>
+          <th>Risk</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+
+      <tbody id="alertTable">
+
+        <tr>
+          <td>09:30</td>
+          <td>Potential phishing domain</td>
+          <td>URL Scanner</td>
+          <td><span class="badge badge-high">91</span></td>
+          <td>Open</td>
+        </tr>
+
+        <tr>
+          <td>09:14</td>
+          <td>Suspicious APK upload</td>
+          <td>File Scanner</td>
+          <td><span class="badge badge-high">87</span></td>
+          <td>Investigating</td>
+        </tr>
+
+        <tr>
+          <td>08:52</td>
+          <td>Unusual login indicator</td>
+          <td>Identity</td>
+          <td><span class="badge badge-medium">61</span></td>
+          <td>Triaged</td>
+        </tr>
+
+      </tbody>
+    </table>
+
+  </div>
 
 </section>
 
 
 <!-- REPORTS -->
+<section class="page" id="reports">
 
-<section class="view" id="reports">
+  <div class="section-head">
+    <div>
+      <h2>Security Reports</h2>
+      <p class="muted">Export scan and incident intelligence.</p>
+    </div>
 
-<div class="panel-title">
+    <button class="btn btn-primary" onclick="exportReport()">↓ Export Report</button>
+  </div>
 
-<div>
-<h2>Security Reports</h2>
-<small>Export scan and incident intelligence</small>
-</div>
+  <div class="grid grid-3">
 
-</div>
+    <div class="card">
+      <div style="font-size:30px">📄</div>
+      <h3>URL Security Report</h3>
+      <p class="muted">Recent URL screening results.</p>
+      <button class="btn btn-small btn-primary" onclick="exportReport()">Generate</button>
+    </div>
 
+    <div class="card">
+      <div style="font-size:30px">📱</div>
+      <h3>APK Analysis Report</h3>
+      <p class="muted">File screening metadata and findings.</p>
+      <button class="btn btn-small btn-primary" onclick="toast('APK report generator ready')">Generate</button>
+    </div>
 
-<div class="grid grid-3">
+    <div class="card">
+      <div style="font-size:30px">🚨</div>
+      <h3>Incident Report</h3>
+      <p class="muted">Incident timeline and response notes.</p>
+      <button class="btn btn-small btn-primary" onclick="toast('Incident report generator ready')">Generate</button>
+    </div>
 
-<div class="card">
-<div class="icon">▤</div>
-<h3>Scan Report</h3>
-<p>Export recent URL/APK/screenshot screening activity.</p>
-<button class="btn primary" style="margin-top:15px" onclick="exportJSON()">
-Export JSON
-</button>
-</div>
+  </div>
 
-<div class="card">
-<div class="icon">▦</div>
-<h3>CSV Events</h3>
-<p>Export operational events for spreadsheet analysis.</p>
-<button class="btn primary" style="margin-top:15px" onclick="exportCSV()">
-Export CSV
-</button>
-</div>
+  <div class="section-head"><h2>Recent Scan History</h2></div>
 
-<div class="card">
-<div class="icon">✦</div>
-<h3>Executive Summary</h3>
-<p>Generate a browser-side security summary.</p>
-<button class="btn primary" style="margin-top:15px" onclick="executiveReport()">
-Generate
-</button>
-</div>
+  <div class="card table-wrap">
 
-</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Time</th>
+          <th>Target</th>
+          <th>Type</th>
+          <th>Score</th>
+          <th>Risk</th>
+        </tr>
+      </thead>
 
+      <tbody id="historyTable"></tbody>
 
-<div class="panel" style="margin-top:16px">
+    </table>
 
-<h3>Recent scan history</h3>
-
-<div class="table-wrap">
-
-<table>
-
-<thead>
-<tr>
-<th>Time</th>
-<th>Type</th>
-<th>Target</th>
-<th>Risk</th>
-</tr>
-</thead>
-
-<tbody id="reportTable"></tbody>
-
-</table>
-
-</div>
-
-</div>
+  </div>
 
 </section>
 
 
 <!-- FOUNDER -->
+<section class="page" id="founder">
 
-<section class="view" id="founder">
+  <div class="section-head">
+    <div>
+      <h2>Founder & Executive</h2>
+      <p class="muted">Aurexa leadership profile.</p>
+    </div>
+  </div>
 
-<div class="panel founder">
+  <div class="card founder-card">
 
-<div class="founder-photo">
+    <div class="founder-photo">
+      <img id="founderImage" alt="Srikanth Paka">
+      <div class="initial" id="founderInitial">SP</div>
+    </div>
 
-<div class="founder-placeholder">
+    <div>
+      <div class="eyebrow">FOUNDER & CEO</div>
+      <h1 style="margin:8px 0">Srikanth Paka</h1>
 
-<div class="avatar" style="margin:auto">
-SP
-</div>
+      <p class="muted" style="max-width:700px;line-height:1.7">
+        Founder and CEO of AUREXA, focused on building modern,
+        intelligent and accessible cybersecurity solutions.
+      </p>
 
-<h3>Srikanth Paka</h3>
+      <div class="grid grid-2" style="margin-top:20px">
 
-<small>Founder & CEO</small>
+        <div class="card" style="box-shadow:none">
+          <strong>📧 Email</strong>
+          <p class="muted">srikanthh3k@gmail.com</p>
+          <button class="btn btn-small btn-primary"
+            onclick="copyText('srikanthh3k@gmail.com')">Copy</button>
+        </div>
 
-</div>
+        <div class="card" style="box-shadow:none">
+          <strong>📱 Mobile</strong>
+          <p class="muted">9703724438</p>
+          <button class="btn btn-small btn-primary"
+            onclick="window.location.href='tel:9703724438'">Call</button>
+        </div>
 
-<!--
-If you have a founder image, replace the placeholder with:
+        <div class="card" style="box-shadow:none">
+          <strong>💬 WhatsApp</strong>
+          <p class="muted">9640724438</p>
+          <button class="btn btn-small btn-success"
+            onclick="window.open('https://wa.me/919640724438','_blank')">Open WhatsApp</button>
+        </div>
 
-<img src="founder.png" alt="Srikanth Paka">
+        <div class="card" style="box-shadow:none">
+          <strong>📸 Social</strong>
+          <p class="muted">Aurexa_space</p>
+          <button class="btn btn-small btn-primary"
+            onclick="window.open('https://instagram.com/Aurexa_space','_blank')">Instagram</button>
+        </div>
 
--->
+      </div>
 
-</div>
+    </div>
+  </div>
 
+  <div class="section-head"><h2>Founder Vision</h2></div>
 
-<div>
+  <div class="grid grid-3">
 
-<span class="eyebrow">FOUNDER & CEO</span>
+    <div class="card">
+      <h3>Security for Everyone</h3>
+      <p class="muted">Make practical cybersecurity intelligence easier to access.</p>
+    </div>
 
-<h1 style="font-size:48px;margin:15px 0 8px">
-Srikanth Paka
-</h1>
+    <div class="card">
+      <h3>AI-Assisted Defense</h3>
+      <p class="muted">Combine security expertise with intelligent automation.</p>
+    </div>
 
-<h3 style="color:#155eef">
-Building Aurexa — Cyber Security Solutions
-</h3>
+    <div class="card">
+      <h3>Enterprise Thinking</h3>
+      <p class="muted">Build systems designed around real operational security workflows.</p>
+    </div>
 
-<p style="color:#667085;line-height:1.8;max-width:720px">
-
-Aurexa is designed around practical cybersecurity:
-security screening, AI-assisted investigation,
-threat intelligence and modern SOC workflows.
-
-The platform architecture is designed to grow from
-security awareness tooling into a production-grade
-security operations ecosystem.
-
-</p>
-
-<div class="hero-actions">
-
-<a class="btn primary"
-href="mailto:srikanthh3k@gmail.com">
-✉ Contact Founder
-</a>
-
-<a class="btn"
-href="https://wa.me/919640724438"
-target="_blank">
-💬 WhatsApp
-</a>
-
-<a class="btn"
-href="https://instagram.com/aurexa_space"
-target="_blank">
-◎ Aurexa_space
-</a>
-
-</div>
-
-</div>
-
-</div>
+  </div>
 
 </section>
 
 
-<!-- ADMIN -->
-
-<section class="view" id="admin">
-
-<div class="panel-title">
-
-<div>
-<h2>Administration</h2>
-<small>Platform configuration and audit controls</small>
-</div>
-
-<span class="badge high">PRODUCTION AUTH REQUIRED</span>
-
-</div>
-
-
-<div class="admin">
-
-<div class="admin-nav">
-
-<button class="active" onclick="adminSection('overview',this)">
-Overview
-</button>
-
-<button onclick="adminSection('users',this)">
-Users & RBAC
-</button>
-
-<button onclick="adminSection('settings',this)">
-Settings
-</button>
-
-<button onclick="adminSection('audit',this)">
-Audit Logs
-</button>
-
-<button onclick="adminSection('api',this)">
-API Connections
-</button>
-
-</div>
-
-
-<div class="admin-content">
-
-
-<div id="adminOverview">
-
-<div class="grid grid-3">
-
-<div class="metric">
-<small>Scans</small>
-<strong id="adminScans">0</strong>
-</div>
-
-<div class="metric">
-<small>High Risk</small>
-<strong id="adminHigh">0</strong>
-</div>
-
-<div class="metric">
-<small>Audit Events</small>
-<strong id="adminEvents">0</strong>
-</div>
-
-</div>
-
-<div class="panel" style="margin-top:15px">
-
-<h3>System health</h3>
-
-<div class="finding">
-<b>Frontend</b>
-<span class="badge low">OPERATIONAL</span>
-</div>
-
-<div class="finding">
-<b>Local storage</b>
-<span class="badge low">AVAILABLE</span>
-</div>
-
-<div class="finding">
-<b>AI backend</b>
-<span class="badge medium">NOT CONNECTED</span>
-</div>
-
-<div class="finding">
-<b>Threat intelligence</b>
-<span class="badge medium">API READY</span>
-</div>
-
-</div>
-
-</div>
-
-
-<div id="adminUsers" style="display:none">
-
-<div class="panel">
-
-<h3>Role-based access control</h3>
-
-<div class="setting">
-<div>
-<b>Administrator</b>
-<div style="color:#667085;font-size:12px">
-Full platform access
-</div>
-</div>
-<span class="badge high">FULL</span>
-</div>
-
-<div class="setting">
-<div>
-<b>Security Analyst</b>
-<div style="color:#667085;font-size:12px">
-Incidents, alerts, scanners and intelligence
-</div>
-</div>
-<span class="badge info">ANALYST</span>
-</div>
-
-<div class="setting">
-<div>
-<b>Viewer</b>
-<div style="color:#667085;font-size:12px">
-Read-only dashboards and reports
-</div>
-</div>
-<span class="badge dark">READ ONLY</span>
-</div>
-
-</div>
-
-</div>
-
-
-<div id="adminSettings" style="display:none">
-
-<div class="panel">
-
-<h3>Security settings</h3>
-
-<div class="setting">
-<div>
-<b>Security notifications</b>
-<div style="color:#667085;font-size:12px">
-Show browser-side security notifications
-</div>
-</div>
-
-<button class="switch on" onclick="toggleSwitch(this)">
-<i></i>
-</button>
-</div>
-
-<div class="setting">
-<div>
-<b>Local scan history</b>
-<div style="color:#667085;font-size:12px">
-Store screening results in this browser
-</div>
-</div>
-
-<button class="switch on" onclick="toggleSwitch(this)">
-<i></i>
-</button>
-</div>
-
-<div class="setting">
-<div>
-<b>Auto refresh dashboard</b>
-<div style="color:#667085;font-size:12px">
-Refresh simulated dashboard metrics
-</div>
-</div>
-
-<button class="switch" onclick="toggleSwitch(this)">
-<i></i>
-</button>
-</div>
-
-</div>
-
-</div>
-
-
-<div id="adminAudit" style="display:none">
-
-<div class="panel">
-
-<h3>Audit log</h3>
-
-<div class="table-wrap">
-
-<table>
-
-<thead>
-<tr>
-<th>Time</th>
-<th>Action</th>
-<th>Module</th>
-<th>Status</th>
-</tr>
-</thead>
-
-<tbody id="auditTable"></tbody>
-
-</table>
-
-</div>
-
-</div>
-
-</div>
-
-
-<div id="adminApi" style="display:none">
-
-<div class="panel">
-
-<h3>Backend integrations</h3>
-
-<label>AI API endpoint</label>
-
-<input
-class="input"
-id="aiEndpoint"
-placeholder="https://api.yourdomain.com/ai"
-style="margin-top:7px">
-
-<label style="display:block;margin-top:15px">
-Threat Intelligence endpoint
-</label>
-
-<input
-class="input"
-id="tiEndpoint"
-placeholder="https://api.yourdomain.com/intel"
-style="margin-top:7px">
-
-<button class="btn primary"
-style="margin-top:13px"
-onclick="saveAPISettings()">
-Save Integration Settings
-</button>
-
-<div class="finding">
-
-<b>Security rule</b>
-
-Never place secret API keys in this HTML.
-Use server-side authentication and secret storage.
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
+<footer>
+
+  <div class="footer-grid">
+
+    <div>
+      <strong style="font-size:20px;color:#101828">AUREXA</strong>
+      <p>
+        Enterprise Cyber Security Solutions.<br>
+        Protect today. Prepare tomorrow.
+      </p>
+    </div>
+
+    <div>
+      <strong>Contact</strong>
+      <p>srikanthh3k@gmail.com</p>
+      <p>9640724438</p>
+      <p>WhatsApp: 9640724438</p>
+    </div>
+
+    <div>
+      <strong>Social</strong>
+      <p>
+        <button class="btn btn-small btn-primary"
+          onclick="window.open('https://instagram.com/Aurexa_space','_blank')">
+          @Aurexa_space
+        </button>
+      </p>
+    </div>
+
+  </div>
+
+  <p style="text-align:center;margin-top:30px">
+    © <span id="year"></span> AUREXA. All rights reserved.
+  </p>
+
+</footer>
 
 </main>
 </div>
 
 
-<footer class="footer">
+<!-- ADMIN MODAL -->
+<div class="modal-overlay" id="adminModal" onclick="if(event.target===this)closeAdmin()">
 
-<div class="wrap" style="
-display:flex;
-justify-content:space-between;
-gap:15px;
-flex-wrap:wrap">
+  <div class="modal">
 
-<span>
-© 2026 AUREXA • Cyber Security Solutions
-</span>
+    <div class="modal-head">
+      <div>
+        <div class="eyebrow">CONTROL PLANE</div>
+        <h2>Admin Console</h2>
+      </div>
 
-<span>
-Founder & CEO — Srikanth Paka
-</span>
+      <button class="drawer-close" onclick="closeAdmin()">×</button>
+    </div>
 
-<span>
-AUREXA_SPACE
-</span>
+    <div class="grid grid-2">
 
+      <div class="card" style="box-shadow:none">
+        <h3>Platform Status</h3>
+        <p>Scanner Engine <strong style="color:#079455">● Online</strong></p>
+        <p>AI Interface <strong style="color:#079455">● Online</strong></p>
+        <p>Incident Engine <strong style="color:#079455">● Online</strong></p>
+      </div>
+
+      <div class="card" style="box-shadow:none">
+        <h3>Notifications</h3>
+        <p class="muted">Current alerts: <strong id="adminAlertCount">3</strong></p>
+        <button class="btn btn-small btn-primary" onclick="showNotifications()">View Notifications</button>
+      </div>
+
+    </div>
+
+    <div class="section-head"><h3>Founder Profile Photo</h3></div>
+
+    <div class="dropzone">
+
+      <p class="muted">
+        Upload your founder photo. It is stored locally in this browser
+        for this frontend demo.
+      </p>
+
+      <input type="file" id="founderUpload" accept="image/*" hidden>
+
+      <button class="btn btn-primary"
+        onclick="document.getElementById('founderUpload').click()">
+        Upload Founder Photo
+      </button>
+
+    </div>
+
+    <div class="section-head"><h3>Contact Information</h3></div>
+
+    <div class="grid grid-2">
+
+      <div class="field">
+        <label>Founder</label>
+        <input value="Srikanth Paka" id="adminFounder">
+      </div>
+
+      <div class="field">
+        <label>Email</label>
+        <input value="srikanthh3k@gmail.com" id="adminEmail">
+      </div>
+
+      <div class="field">
+        <label>Mobile</label>
+        <input value="9703724438" id="adminMobile">
+      </div>
+
+      <div class="field">
+        <label>WhatsApp</label>
+        <input value="9640724438" id="adminWhatsapp">
+      </div>
+
+      <div class="field">
+        <label>Social Handle</label>
+        <input value="Aurexa_space" id="adminSocial">
+      </div>
+
+      <div class="field">
+        <label>Company</label>
+        <input value="AUREXA" id="adminCompany">
+      </div>
+
+    </div>
+
+    <button class="btn btn-primary" onclick="saveAdmin()">Save Configuration</button>
+
+  </div>
 </div>
 
-</footer>
+
+<!-- NOTIFICATION MODAL -->
+<div class="modal-overlay" id="notificationModal" onclick="if(event.target===this)closeNotifications()">
+
+  <div class="modal">
+
+    <div class="modal-head">
+      <h2>🔔 Security Notifications</h2>
+      <button class="drawer-close" onclick="closeNotifications()">×</button>
+    </div>
+
+    <div class="card" style="box-shadow:none;margin-bottom:10px">
+      <span class="badge badge-high">Critical</span>
+      <h3>Potential phishing activity</h3>
+      <p class="muted">A suspicious URL requires analyst review.</p>
+    </div>
+
+    <div class="card" style="box-shadow:none;margin-bottom:10px">
+      <span class="badge badge-medium">Medium</span>
+      <h3>APK submitted for screening</h3>
+      <p class="muted">A file requires additional sandbox analysis.</p>
+    </div>
+
+    <div class="card" style="box-shadow:none">
+      <span class="badge badge-low">Low</span>
+      <h3>Daily security report ready</h3>
+      <p class="muted">Your operational summary is available.</p>
+    </div>
+
+  </div>
+</div>
 
 
 <div class="toast" id="toast"></div>
 
 
-<div class="modal" id="modal">
-
-<div class="modal-box">
-
-<button class="close" onclick="closeModal()">✕</button>
-
-<div id="modalContent"></div>
-
-</div>
-
-</div>
-
-
 <script>
 
 /* =========================================================
-   AUREXA ENTERPRISE FRONTEND ENGINE
-========================================================= */
+   AUREXA FRONTEND ENGINE
+   ========================================================= */
 
-
-/* ---------------------------------------------------------
-   CONFIGURATION
---------------------------------------------------------- */
-
-const API = {
-
-AI: "",
-
-THREAT_INTEL: "",
-
-MALWARE: "",
-
-OCR: "",
-
-INCIDENTS: ""
-
+const state = {
+  scans: JSON.parse(localStorage.getItem("aurexa_scans") || "[]"),
+  founderPhoto: localStorage.getItem("aurexa_founder_photo") || ""
 };
 
-
-/* ---------------------------------------------------------
-   STORAGE
---------------------------------------------------------- */
-
-const STORAGE_KEY = "aurexa_enterprise_state_v1";
-
-let state =
-JSON.parse(
-localStorage.getItem(STORAGE_KEY) || "null"
-) || {
-
-scans:[],
-
-incidents:[],
-
-audit:[],
-
-alerts:[]
-
-};
+document.getElementById("year").textContent = new Date().getFullYear();
 
 
-function save(){
+/* ================= MENU ================= */
 
-localStorage.setItem(
-STORAGE_KEY,
-JSON.stringify(state)
-);
+function openMenu(){
+  document.getElementById("mobileDrawer").classList.add("open");
+  document.getElementById("mobileBackdrop").classList.add("show");
+  document.body.style.overflow="hidden";
+}
 
-updateAdmin();
-
-renderReports();
-
+function closeMenu(){
+  document.getElementById("mobileDrawer").classList.remove("open");
+  document.getElementById("mobileBackdrop").classList.remove("show");
+  document.body.style.overflow="";
 }
 
 
-/* ---------------------------------------------------------
-   UTILITIES
---------------------------------------------------------- */
+/* ================= NAVIGATION ================= */
 
-function $(id){
+function navigate(page){
 
-return document.getElementById(id);
+  document.querySelectorAll(".page").forEach(p=>{
+    p.classList.remove("active");
+  });
 
+  const target=document.getElementById(page);
+
+  if(target){
+    target.classList.add("active");
+  }
+
+  document.querySelectorAll(".nav-item").forEach(n=>{
+    n.classList.remove("active");
+  });
+
+  document.querySelectorAll(`[data-page="${page}"]`)
+    .forEach(n=>n.classList.add("active"));
+
+  closeMenu();
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+}
+
+
+/* ================= TOAST ================= */
+
+let toastTimer;
+
+function toast(message){
+
+  const box=document.getElementById("toast");
+
+  box.textContent=message;
+  box.classList.add("show");
+
+  clearTimeout(toastTimer);
+
+  toastTimer=setTimeout(()=>{
+    box.classList.remove("show");
+  },2800);
+}
+
+
+/* ================= SCANNER TABS ================= */
+
+function scannerTab(type){
+
+  document.getElementById("scanner-url").style.display =
+    type==="url" ? "block" : "none";
+
+  document.getElementById("scanner-apk").style.display =
+    type==="apk" ? "block" : "none";
+
+  document.getElementById("scanner-shot").style.display =
+    type==="shot" ? "block" : "none";
+
+  document.querySelectorAll(".tab")
+    .forEach(t=>t.classList.remove("active"));
+
+  document.getElementById("tab-"+type)
+    .classList.add("active");
+}
+
+
+/* ================= URL ANALYSIS ================= */
+
+function normalizeURL(value){
+
+  value=value.trim();
+
+  if(!value) return null;
+
+  try{
+    if(!/^https?:\/\//i.test(value)){
+      value="https://"+value;
+    }
+
+    return new URL(value);
+
+  }catch{
+    return null;
+  }
+}
+
+
+function scanURL(){
+
+  const input=document.getElementById("urlInput");
+  const button=document.getElementById("urlScanButton");
+  const result=document.getElementById("urlResult");
+
+  const raw=input.value.trim();
+  const url=normalizeURL(raw);
+
+  if(!url){
+    toast("Please enter a valid URL.");
+    input.focus();
+    return;
+  }
+
+  button.disabled=true;
+  button.textContent="⏳ Analyzing security indicators...";
+
+  result.style.display="none";
+
+  setTimeout(()=>{
+
+    const analysis=heuristicURLAnalysis(url);
+
+    renderURLResult(analysis);
+
+    saveScan({
+      target:url.href,
+      type:"URL",
+      score:analysis.score,
+      risk:analysis.level
+    });
+
+    button.disabled=false;
+    button.textContent="🔎 Analyze URL";
+
+  },850);
+}
+
+
+function heuristicURLAnalysis(url){
+
+  let score=5;
+  const findings=[];
+
+  const host=url.hostname.toLowerCase();
+  const full=url.href.toLowerCase();
+
+  if(url.protocol==="https:"){
+    findings.push("✓ HTTPS connection detected");
+    score-=2;
+  }else{
+    findings.push("⚠ No HTTPS transport detected");
+    score+=18;
+  }
+
+  const suspiciousWords=[
+    "login",
+    "verify",
+    "verification",
+    "secure",
+    "account",
+    "update",
+    "password",
+    "wallet",
+    "payment",
+    "signin",
+    "confirm",
+    "unlock",
+    "bonus",
+    "free"
+  ];
+
+  const hits=suspiciousWords.filter(w=>full.includes(w));
+
+  if(hits.length){
+    score += Math.min(35,hits.length*6);
+    findings.push("⚠ Suspicious keywords: "+hits.join(", "));
+  }
+
+  if(host.split(".").length>=4){
+    score+=12;
+    findings.push("⚠ Deep subdomain structure detected");
+  }
+
+  if(url.username){
+    score+=20;
+    findings.push("⚠ Username component detected in URL");
+  }
+
+  if(url.port && !["80","443"].includes(url.port)){
+    score+=8;
+    findings.push("⚠ Non-standard port detected");
+  }
+
+  if(url.href.length>150){
+    score+=10;
+    findings.push("⚠ Unusually long URL");
+  }
+
+  if((url.pathname.match(/@/g)||[]).length){
+    score+=8;
+    findings.push("⚠ Obfuscation-like character detected");
+  }
+
+  if(full.includes("xn--")){
+    score+=18;
+    findings.push("⚠ Internationalized/punycode domain detected");
+  }
+
+  /* Recognize security testing domains */
+  if(host==="www.amtso.org" || host==="amtso.org"){
+    score=2;
+    findings.push("✓ Recognized AMTSO security testing domain");
+    findings.push("✓ This is a security test resource, not proof of real malware");
+  }
+
+  score=Math.max(0,Math.min(100,score));
+
+  let level="LOW";
+
+  if(score>=65) level="HIGH";
+  else if(score>=30) level="MEDIUM";
+
+  return {
+    score,
+    level,
+    host,
+    findings
+  };
+}
+
+
+function renderURLResult(data){
+
+  const result=document.getElementById("urlResult");
+
+  const css=data.level==="LOW"
+    ?"low"
+    :data.level==="MEDIUM"
+    ?"medium"
+    :"high";
+
+  const badge=data.level==="LOW"
+    ?"badge-low"
+    :data.level==="MEDIUM"
+    ?"badge-medium"
+    :"badge-high";
+
+  const title=data.level==="LOW"
+    ?"LOW RISK INDICATORS"
+    :data.level==="MEDIUM"
+    ?"MEDIUM RISK INDICATORS"
+    :"HIGH RISK INDICATORS";
+
+  result.innerHTML=`
+
+    <div class="result ${css}">
+
+      <div class="score-row">
+
+        <div>
+          <span class="badge ${badge}">${title}</span>
+          <h2 style="margin-top:15px">${escapeHTML(data.host)}</h2>
+        </div>
+
+        <div class="score">${data.score}<span style="font-size:17px">/100</span></div>
+
+      </div>
+
+      <div class="progress">
+        <div class="progress-bar" style="width:${data.score}%"></div>
+      </div>
+
+      <h3>Aurexa Preliminary Risk Analysis</h3>
+
+      <ul class="analysis-list">
+        ${data.findings.map(x=>`<li>${escapeHTML(x)}</li>`).join("")}
+      </ul>
+
+      <div class="card" style="margin-top:20px;box-shadow:none">
+
+        <strong>Assessment</strong>
+
+        <p class="muted">
+          ${data.level==="LOW"
+            ?"No major suspicious indicators were identified by this browser-side heuristic analysis."
+            :data.level==="MEDIUM"
+            ?"Several indicators deserve additional investigation before trusting this destination."
+            :"Multiple suspicious indicators were identified. Treat the destination as potentially unsafe until verified through trusted reputation and sandbox services."
+          }
+        </p>
+
+      </div>
+
+      <p class="disclaimer">
+        ⚠ This is preliminary heuristic screening. A low score does not prove
+        that a website is safe. Production reputation, DNS, certificate,
+        redirect and malware intelligence should be obtained through a
+        secure backend.
+      </p>
+
+    </div>
+  `;
+
+  result.style.display="block";
+}
+
+
+/* ================= APK ================= */
+
+document.getElementById("apkInput").addEventListener("change",function(){
+
+  const file=this.files[0];
+
+  if(!file)return;
+
+  document.getElementById("apkFileName").textContent=
+    `Selected: ${file.name} • ${formatBytes(file.size)}`;
+
+  const ext=file.name.toLowerCase().endsWith(".apk");
+
+  let risk=10;
+  let findings=[];
+
+  if(ext){
+    findings.push("✓ APK file extension detected");
+  }else{
+    risk+=40;
+    findings.push("⚠ File does not appear to be an APK");
+  }
+
+  if(file.size>150*1024*1024){
+    risk+=15;
+    findings.push("⚠ Very large APK file");
+  }
+
+  if(file.name.match(/crack|mod|premium|hack|free|cheat/i)){
+    risk+=25;
+    findings.push("⚠ Suspicious filename pattern");
+  }
+
+  risk=Math.min(100,risk);
+
+  const level=risk>=65?"HIGH":risk>=30?"MEDIUM":"LOW";
+
+  document.getElementById("apkResult").innerHTML=`
+
+    <div class="result ${level==="LOW"?"low":level==="MEDIUM"?"medium":"high"}">
+
+      <div class="score-row">
+        <div>
+          <span class="badge ${level==="LOW"?"badge-low":level==="MEDIUM"?"badge-medium":"badge-high"}">
+            ${level} RISK
+          </span>
+          <h3>${escapeHTML(file.name)}</h3>
+        </div>
+
+        <div class="score">${risk}<span style="font-size:17px">/100</span></div>
+      </div>
+
+      <div class="progress">
+        <div class="progress-bar" style="width:${risk}%"></div>
+      </div>
+
+      <h3>File Screening</h3>
+
+      <ul class="analysis-list">
+        ${findings.map(x=>`<li>${escapeHTML(x)}</li>`).join("")}
+      </ul>
+
+      <p class="disclaimer">
+        Client-side APK screening cannot inspect Android bytecode,
+        permissions, native libraries or runtime behaviour. Use an isolated
+        malware sandbox for production verdicts.
+      </p>
+
+    </div>
+  `;
+
+  saveScan({
+    target:file.name,
+    type:"APK",
+    score:risk,
+    risk:level
+  });
+
+});
+
+
+/* ================= SCREENSHOT ================= */
+
+document.getElementById("shotInput").addEventListener("change",function(){
+
+  const file=this.files[0];
+
+  if(!file)return;
+
+  const reader=new FileReader();
+
+  reader.onload=e=>{
+
+    document.getElementById("shotPreview").innerHTML=`
+
+      <div class="result medium">
+
+        <h3>Screenshot Received</h3>
+
+        <img
+          src="${e.target.result}"
+          style="max-width:100%;max-height:500px;border-radius:15px;margin-top:10px"
+          alt="Uploaded security screenshot">
+
+        <h3 style="margin-top:20px">Preliminary Screening</h3>
+
+        <ul class="analysis-list">
+
+          <li>✓ Image successfully loaded</li>
+          <li>✓ Screenshot can be reviewed by an analyst</li>
+          <li>⚠ Automated OCR/vision reputation requires backend AI integration</li>
+
+        </ul>
+
+        <p class="disclaimer">
+          Do not rely on a screenshot alone to determine whether a website,
+          payment request or message is legitimate.
+        </p>
+
+      </div>
+    `;
+  };
+
+  reader.readAsDataURL(file);
+
+});
+
+
+/* ================= IOC ================= */
+
+function analyzeIOC(){
+
+  const value=document.getElementById("iocInput").value.trim();
+
+  if(!value){
+    toast("Enter an IOC first.");
+    return;
+  }
+
+  let type="Unknown";
+
+  if(/^https?:\/\//i.test(value))type="URL";
+  else if(/^[0-9a-f]{64}$/i.test(value))type="SHA-256";
+  else if(/^\d{1,3}(\.\d{1,3}){3}$/.test(value))type="IPv4";
+  else if(value.includes("."))type="Domain";
+
+  document.getElementById("iocResult").innerHTML=`
+
+    <div class="result medium">
+
+      <span class="badge badge-medium">PRELIMINARY</span>
+
+      <h2>${escapeHTML(type)}</h2>
+
+      <p><strong>Indicator:</strong> ${escapeHTML(value)}</p>
+
+      <div class="progress">
+        <div class="progress-bar" style="width:32%"></div>
+      </div>
+
+      <ul class="analysis-list">
+        <li>✓ Indicator format recognized</li>
+        <li>✓ Normalization completed</li>
+        <li>⚠ External reputation lookup not connected</li>
+        <li>⚠ Sandbox intelligence not connected</li>
+      </ul>
+
+      <p class="disclaimer">
+        Connect this module to your server-side threat intelligence providers
+        for authoritative IOC reputation.
+      </p>
+
+    </div>
+  `;
+}
+
+
+/* ================= AI COPILOT ================= */
+
+function quickAI(text){
+
+  document.getElementById("aiInput").value=text;
+  askAI();
+}
+
+
+function askAI(){
+
+  const input=document.getElementById("aiInput");
+  const question=input.value.trim();
+
+  if(!question)return;
+
+  addChat("user",question);
+
+  input.value="";
+
+  setTimeout(()=>{
+
+    const answer=getAIResponse(question);
+
+    addChat("ai",answer);
+
+  },450);
+}
+
+
+function addChat(type,text){
+
+  const chat=document.getElementById("chat");
+
+  const div=document.createElement("div");
+
+  div.className="message "+type;
+
+  div.textContent=text;
+
+  chat.appendChild(div);
+
+  chat.scrollTop=chat.scrollHeight;
+}
+
+
+function getAIResponse(q){
+
+  const x=q.toLowerCase();
+
+  if(x.includes("phishing") || x.includes("url")){
+    return "For phishing analysis, inspect the domain, HTTPS, redirects, spelling, punycode, URL structure, brand impersonation and reputation. Never enter credentials simply because a page uses HTTPS. For production detection, combine multiple reputation and sandbox sources.";
+  }
+
+  if(x.includes("apk") || x.includes("android")){
+    return "Treat an unexpected APK as untrusted. Do not install it. Production analysis should inspect permissions, package metadata, signing certificate, DEX/native code and dynamic behaviour inside an isolated sandbox.";
+  }
+
+  if(x.includes("ransomware")){
+    return "Priorities are containment, evidence preservation, identification of affected hosts, credential protection, backup validation and coordinated incident response. Avoid destroying forensic evidence before investigation.";
+  }
+
+  if(x.includes("mitre") || x.includes("attack")){
+    return "MITRE ATT&CK can help map observed behaviours to adversary tactics and techniques. For phishing, T1566 is a common Initial Access technique; User Execution is T1204.";
+  }
+
+  if(x.includes("ioc")){
+    return "An IOC may be an IP, domain, URL, file hash, email address or other indicator. Validate its format first, then enrich it with trusted reputation sources and correlate it with your telemetry.";
+  }
+
+  if(x.includes("malware")){
+    return "Do not execute suspicious files on your normal computer. Use an isolated analysis environment and combine static analysis, reputation, sandbox telemetry and behavioural indicators.";
+  }
+
+  return "I can help with URL security, phishing, APK safety, malware triage, IOC analysis, incident response and MITRE ATT&CK. For authoritative live intelligence, Aurexa should connect this interface to a secure backend.";
+}
+
+
+/* ================= HISTORY ================= */
+
+function saveScan(scan){
+
+  state.scans.unshift({
+    ...scan,
+    time:new Date().toLocaleString()
+  });
+
+  state.scans=state.scans.slice(0,30);
+
+  localStorage.setItem(
+    "aurexa_scans",
+    JSON.stringify(state.scans)
+  );
+
+  renderHistory();
+}
+
+
+function renderHistory(){
+
+  const table=document.getElementById("historyTable");
+
+  if(!state.scans.length){
+    table.innerHTML=`
+      <tr>
+        <td colspan="5" class="muted">No scans yet.</td>
+      </tr>
+    `;
+    return;
+  }
+
+  table.innerHTML=state.scans.map(s=>`
+
+    <tr>
+      <td>${escapeHTML(s.time)}</td>
+      <td>${escapeHTML(s.target)}</td>
+      <td>${escapeHTML(s.type)}</td>
+      <td>${s.score}/100</td>
+      <td>
+        <span class="badge ${
+          s.risk==="LOW"
+          ?"badge-low"
+          :s.risk==="MEDIUM"
+          ?"badge-medium"
+          :"badge-high"
+        }">${escapeHTML(s.risk)}</span>
+      </td>
+    </tr>
+
+  `).join("");
+}
+
+
+/* ================= REPORT ================= */
+
+function exportReport(){
+
+  const report={
+    platform:"AUREXA",
+    generatedAt:new Date().toISOString(),
+    founder:"Srikanth Paka",
+    email:"srikanthh3k@gmail.com",
+    mobile:"9703724438",
+    whatsapp:"9640724438",
+    scans:state.scans
+  };
+
+  const blob=new Blob(
+    [JSON.stringify(report,null,2)],
+    {type:"application/json"}
+  );
+
+  const url=URL.createObjectURL(blob);
+
+  const a=document.createElement("a");
+
+  a.href=url;
+  a.download="aurexa-security-report.json";
+
+  a.click();
+
+  URL.revokeObjectURL(url);
+
+  toast("Security report exported.");
+}
+
+
+/* ================= INCIDENT ================= */
+
+function createIncident(){
+
+  const id="INC-"+String(
+    document.querySelectorAll("#incidentTable tr").length+3
+  ).padStart(3,"0");
+
+  const row=document.createElement("tr");
+
+  row.innerHTML=`
+    <td>${id}</td>
+    <td>New analyst-created security incident</td>
+    <td><span class="badge badge-medium">Medium</span></td>
+    <td>Open</td>
+    <td>
+      <button class="btn btn-small btn-primary"
+        onclick="toast('Incident ${id} opened')">
+        Open
+      </button>
+    </td>
+  `;
+
+  document.getElementById("incidentTable").prepend(row);
+
+  toast(id+" created.");
+}
+
+
+/* ================= ALERTS ================= */
+
+function clearAlerts(){
+
+  document.getElementById("alertTable").innerHTML=`
+    <tr>
+      <td colspan="5" class="muted">No unresolved alerts.</td>
+    </tr>
+  `;
+
+  document.getElementById("notificationCount").textContent="0";
+  document.getElementById("adminAlertCount").textContent="0";
+
+  toast("Resolved alerts cleared.");
+}
+
+
+/* ================= NOTIFICATIONS ================= */
+
+function showNotifications(){
+  document.getElementById("notificationModal").classList.add("show");
+}
+
+function closeNotifications(){
+  document.getElementById("notificationModal").classList.remove("show");
+}
+
+
+/* ================= ADMIN ================= */
+
+function openAdmin(){
+  closeMenu();
+  document.getElementById("adminModal").classList.add("show");
+}
+
+function closeAdmin(){
+  document.getElementById("adminModal").classList.remove("show");
+}
+
+
+function saveAdmin(){
+
+  const founder=document.getElementById("adminFounder").value;
+  const email=document.getElementById("adminEmail").value;
+  const mobile=document.getElementById("adminMobile").value;
+  const whatsapp=document.getElementById("adminWhatsapp").value;
+  const social=document.getElementById("adminSocial").value;
+
+  localStorage.setItem("aurexa_founder",founder);
+  localStorage.setItem("aurexa_email",email);
+  localStorage.setItem("aurexa_mobile",mobile);
+  localStorage.setItem("aurexa_whatsapp",whatsapp);
+  localStorage.setItem("aurexa_social",social);
+
+  toast("Aurexa configuration saved.");
+
+  setTimeout(()=>{
+    closeAdmin();
+  },700);
+}
+
+
+/* ================= FOUNDER IMAGE ================= */
+
+document.getElementById("founderUpload").addEventListener("change",function(){
+
+  const file=this.files[0];
+
+  if(!file)return;
+
+  const reader=new FileReader();
+
+  reader.onload=e=>{
+
+    state.founderPhoto=e.target.result;
+
+    localStorage.setItem(
+      "aurexa_founder_photo",
+      e.target.result
+    );
+
+    applyFounderPhoto();
+
+    toast("Founder photo updated.");
+
+  };
+
+  reader.readAsDataURL(file);
+
+});
+
+
+function applyFounderPhoto(){
+
+  if(!state.founderPhoto)return;
+
+  const img=document.getElementById("founderImage");
+  const heroImg=document.getElementById("heroFounderImage");
+
+  img.src=state.founderPhoto;
+  img.style.display="block";
+
+  document.getElementById("founderInitial").style.display="none";
+
+  heroImg.src=state.founderPhoto;
+  heroImg.style.display="block";
+
+  document.getElementById("heroFounderPlaceholder").style.display="none";
+}
+
+
+/* ================= DASHBOARD ================= */
+
+function refreshDashboard(){
+
+  const el=document.getElementById("metricAlerts");
+
+  const current=parseInt(
+    el.textContent.replace(/,/g,"")
+  )||2486;
+
+  el.textContent=(current+Math.floor(Math.random()*12))
+    .toLocaleString();
+
+  toast("Dashboard refreshed.");
+}
+
+
+/* ================= UTILS ================= */
+
+function formatBytes(bytes){
+
+  if(bytes===0)return "0 Bytes";
+
+  const units=["Bytes","KB","MB","GB"];
+
+  const i=Math.floor(
+    Math.log(bytes)/Math.log(1024)
+  );
+
+  return(
+    parseFloat((bytes/Math.pow(1024,i)).toFixed(2))
+    +" "+units[i]
+  );
 }
 
 
 function escapeHTML(value){
 
-return String(value ?? "").replace(
-/[&<>"']/g,
-m=>({
-
-"&":"&amp;",
-"<":"&lt;",
-">":"&gt;",
-'"':"&quot;",
-"'":"&#039;"
-
-}[m])
-);
-
+  return String(value)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
 }
 
 
-function toast(message){
+function copyText(text){
 
-const el=$("toast");
-
-el.textContent=message;
-
-el.style.display="block";
-
-clearTimeout(window.toastTimer);
-
-window.toastTimer=setTimeout(
-()=>el.style.display="none",
-3500
-);
-
+  navigator.clipboard.writeText(text)
+    .then(()=>toast("Copied to clipboard."))
+    .catch(()=>toast("Copy failed. Please copy manually."));
 }
 
 
-function addAudit(
-action,
-module,
-status="SUCCESS"
-){
+/* ================= KEYBOARD ================= */
 
-state.audit.unshift({
+document.addEventListener("keydown",function(e){
 
-time:new Date().toLocaleString(),
-
-action,
-
-module,
-
-status
+  if(e.key==="Escape"){
+    closeMenu();
+    closeAdmin();
+    closeNotifications();
+  }
 
 });
 
-state.audit=
-state.audit.slice(0,100);
 
-save();
+/* ================= DRAG & DROP ================= */
 
-renderAudit();
+const apkDrop=document.getElementById("apkDrop");
 
-}
+["dragenter","dragover"].forEach(eventName=>{
 
-
-function showModal(html){
-
-$("modalContent").innerHTML=html;
-
-$("modal").style.display="flex";
-
-}
-
-
-function closeModal(){
-
-$("modal").style.display="none";
-
-}
-
-
-/* ---------------------------------------------------------
-   NAVIGATION
---------------------------------------------------------- */
-
-function showView(view){
-
-document
-.querySelectorAll(".view")
-.forEach(x=>x.classList.remove("active"));
-
-const target=$(view);
-
-if(target)
-target.classList.add("active");
-
-document
-.querySelectorAll(".side-btn")
-.forEach(btn=>{
-
-btn.classList.toggle(
-"active",
-btn.dataset.view===view
-);
+  apkDrop.addEventListener(eventName,e=>{
+    e.preventDefault();
+    apkDrop.classList.add("drag");
+  });
 
 });
 
-window.scrollTo({
-top:0,
-behavior:"smooth"
+["dragleave","drop"].forEach(eventName=>{
+
+  apkDrop.addEventListener(eventName,e=>{
+    e.preventDefault();
+    apkDrop.classList.remove("drag");
+  });
+
 });
 
-if(window.innerWidth<850)
-$("sidebar").classList.remove("open");
+apkDrop.addEventListener("drop",e=>{
 
-if(view==="reports")
-renderReports();
+  const file=e.dataTransfer.files[0];
 
-if(view==="alerts")
-renderAlerts();
+  if(!file)return;
 
-if(view==="incidents")
-renderIncidents();
+  const dt=new DataTransfer();
+  dt.items.add(file);
 
-if(view==="admin")
-updateAdmin();
+  document.getElementById("apkInput").files=dt.files;
 
-}
-
-
-function toggleSidebar(){
-
-$("sidebar").classList.toggle("open");
-
-}
-
-
-/* ---------------------------------------------------------
-   DASHBOARD ALERTS
---------------------------------------------------------- */
-
-const demoAlerts=[
-
-{
-id:"AL-10482",
-alert:"Credential phishing campaign",
-source:"Email Gateway",
-severity:"Critical",
-mitre:"T1566",
-status:"Investigating",
-time:"2m ago"
-},
-
-{
-id:"AL-10481",
-alert:"Suspicious PowerShell activity",
-source:"Endpoint",
-severity:"High",
-mitre:"T1059.001",
-status:"New",
-time:"8m ago"
-},
-
-{
-id:"AL-10479",
-alert:"Malicious domain indicator",
-source:"Threat Intel",
-severity:"High",
-mitre:"T1071",
-status:"Investigating",
-time:"15m ago"
-},
-
-{
-id:"AL-10476",
-alert:"Unusual login location",
-source:"Identity",
-severity:"Medium",
-mitre:"T1078",
-status:"Review",
-time:"31m ago"
-},
-
-{
-id:"AL-10471",
-alert:"Potential data staging",
-source:"Endpoint",
-severity:"Medium",
-mitre:"T1074",
-status:"New",
-time:"42m ago"
-}
-
-];
-
-
-function severityClass(s){
-
-if(s==="Critical"||s==="High")
-return "high";
-
-if(s==="Medium")
-return "medium";
-
-return "low";
-
-}
-
-
-function renderDashboardAlerts(){
-
-$("dashboardAlerts").innerHTML=
-demoAlerts.map(a=>`
-
-<tr>
-
-<td><b>${a.alert}</b></td>
-
-<td>${a.source}</td>
-
-<td>
-<span class="badge ${severityClass(a.severity)}">
-${a.severity}
-</span>
-</td>
-
-<td>${a.time}</td>
-
-<td>
-<span class="badge info">
-${a.status}
-</span>
-</td>
-
-</tr>
-
-`).join("");
-
-}
-
-
-function renderAlerts(){
-
-const query=
-($("alertSearch")?.value||"")
-.toLowerCase();
-
-const severity=
-$("severityFilter")?.value||"all";
-
-const rows=
-demoAlerts
-.filter(a=>{
-
-const match=
-!query ||
-(
-a.id+
-a.alert+
-a.source+
-a.mitre
-)
-.toLowerCase()
-.includes(query);
-
-const sev=
-severity==="all" ||
-a.severity===severity;
-
-return match&&sev;
-
-})
-.map(a=>`
-
-<tr>
-
-<td><b>${a.id}</b></td>
-
-<td>${a.alert}</td>
-
-<td>${a.source}</td>
-
-<td>
-<span class="badge ${severityClass(a.severity)}">
-${a.severity}
-</span>
-</td>
-
-<td>${a.mitre}</td>
-
-<td>${a.status}</td>
-
-<td>
-<button
-class="btn"
-onclick="investigateAlert('${a.id}')">
-Investigate
-</button>
-</td>
-
-</tr>
-
-`)
-.join("");
-
-$("alertTable").innerHTML=
-rows ||
-`
-<tr>
-<td colspan="7">
-<div class="empty">No matching alerts.</div>
-</td>
-</tr>
-`;
-
-}
-
-
-function investigateAlert(id){
-
-const a=
-demoAlerts.find(x=>x.id===id);
-
-if(!a)return;
-
-showModal(`
-
-<h2>Alert Investigation</h2>
-
-<p>
-<b>${escapeHTML(a.id)}</b>
-</p>
-
-<div class="finding">
-<b>Detection</b>
-${escapeHTML(a.alert)}
-</div>
-
-<div class="finding">
-<b>Source</b>
-${escapeHTML(a.source)}
-</div>
-
-<div class="finding">
-<b>MITRE ATT&CK</b>
-${escapeHTML(a.mitre)}
-</div>
-
-<div class="finding">
-<b>Recommended analyst workflow</b>
-
-<ul>
-<li>Validate the detection.</li>
-<li>Identify affected assets and users.</li>
-<li>Collect relevant IOCs.</li>
-<li>Determine scope and severity.</li>
-<li>Contain when appropriate.</li>
-<li>Document evidence and timeline.</li>
-</ul>
-
-</div>
-
-<button
-class="btn primary"
-onclick="closeModal();showView('ai');askQuick('Investigate alert ${a.id}: ${a.alert}')">
-Ask Aurexa AI
-</button>
-
-`);
-
-}
-
-
-/* ---------------------------------------------------------
-   URL ANALYZER
---------------------------------------------------------- */
-
-function scannerTab(type,button){
-
-$("urlScanner").style.display=
-type==="url"?"block":"none";
-
-$("apkScanner").style.display=
-type==="apk"?"block":"none";
-
-$("imageScanner").style.display=
-type==="image"?"block":"none";
-
-document
-.querySelectorAll(".tabs .tab")
-.forEach(x=>x.classList.remove("active"));
-
-button.classList.add("active");
-
-}
-
-
-function normalizeURL(raw){
-
-let value=raw.trim();
-
-if(!/^https?:\/\//i.test(value))
-value="https://"+value;
-
-return new URL(value);
-
-}
-
-
-function analyzeURL(){
-
-const raw=$("url").value.trim();
-
-if(!raw){
-
-toast("Enter a URL first.");
-
-return;
-
-}
-
-
-let u;
-
-try{
-
-u=normalizeURL(raw);
-
-}catch{
-
-toast("Invalid URL format.");
-
-return;
-
-}
-
-
-let risk=5;
-
-let findings=[];
-
-const host=u.hostname.toLowerCase();
-
-const full=u.href.toLowerCase();
-
-
-if(u.protocol==="https:"){
-
-findings.push([
-"HTTPS",
-"Encrypted transport detected.",
-"positive"
-]);
-
-}else{
-
-risk+=22;
-
-findings.push([
-"Transport",
-"No HTTPS transport detected.",
-"negative"
-]);
-
-}
-
-
-if(/^\d{1,3}(\.\d{1,3}){3}$/.test(host)){
-
-risk+=22;
-
-findings.push([
-"IP hostname",
-"Destination uses a raw IP address.",
-"negative"
-]);
-
-}
-
-
-if(host.includes("xn--")){
-
-risk+=24;
-
-findings.push([
-"Punycode",
-"Internationalized hostname requires additional review.",
-"negative"
-]);
-
-}
-
-
-const shorteners=[
-"bit.ly",
-"tinyurl.com",
-"t.co",
-"cutt.ly",
-"is.gd",
-"rb.gy",
-"shorturl.at"
-];
-
-
-if(shorteners.includes(host)){
-
-risk+=18;
-
-findings.push([
-"URL shortener",
-"Shortened destination should be expanded and reputation checked server-side.",
-"negative"
-]);
-
-}
-
-
-const keywords=[
-"login",
-"signin",
-"verify",
-"verification",
-"account",
-"secure",
-"update",
-"password",
-"wallet",
-"payment",
-"bank",
-"bonus",
-"claim",
-"gift",
-"unlock",
-"support"
-];
-
-
-const hits=
-keywords.filter(k=>full.includes(k));
-
-
-if(hits.length){
-
-risk+=Math.min(30,hits.length*5);
-
-findings.push([
-"Suspicious keywords",
-hits.join(", "),
-"negative"
-]);
-
-}
-
-
-if(u.username){
-
-risk+=15;
-
-findings.push([
-"Credential component",
-"URL contains a username component.",
-"negative"
-]);
-
-}
-
-
-if(u.port){
-
-risk+=10;
-
-findings.push([
-"Non-standard port",
-`Port ${u.port} is explicitly specified.`,
-"negative"
-]);
-
-}
-
-
-if(u.href.length>180){
-
-risk+=8;
-
-findings.push([
-"URL length",
-"Unusually long URL.",
-"warning"
-]);
-
-}
-
-
-if((u.pathname.match(/\/\//g)||[]).length){
-
-risk+=5;
-
-findings.push([
-"Path structure",
-"Repeated separators detected.",
-"warning"
-]);
-
-}
-
-
-risk=Math.max(
-0,
-Math.min(
-100,
-risk
-)
-);
-
-
-const label=
-risk>=70
-?"HIGH RISK"
-:
-risk>=40
-?"MEDIUM RISK"
-:"LOW RISK";
-
-
-const target=
-u.hostname;
-
-
-renderScanResult(
-risk,
-label,
-target,
-findings
-);
-
-
-state.scans.unshift({
-
-time:new Date().toLocaleString(),
-
-type:"URL",
-
-target,
-
-risk,
-
-findings
+  document.getElementById("apkInput")
+    .dispatchEvent(new Event("change"));
 
 });
 
 
-save();
+/* ================= STARTUP ================= */
 
-addAudit(
-"URL analysis",
-"Security Scanner"
-);
-
-toast(
-`URL analyzed — ${label}`
-);
-
-}
-
-
-function renderScanResult(
-risk,
-label,
-target,
-findings
-){
-
-const color=
-risk>=70
-?"#d92d20"
-:
-risk>=40
-?"#dc6803"
-:"#079455";
-
-
-$("scanResult").innerHTML=`
-
-<div style="text-align:center">
-
-<span class="badge ${
-risk>=70
-?"high"
-:risk>=40
-?"medium"
-:"low"
-}">
-${label}
-</span>
-
-<div
-class="score-circle"
-style="--score:${risk}%;margin-top:20px">
-<b>${risk}</b>
-</div>
-
-<h2 style="margin:0">
-Security risk score
-</h2>
-
-<p style="color:#667085">
-${escapeHTML(target)}
-</p>
-
-</div>
-
-<div style="margin-top:20px">
-
-<h3>Security findings</h3>
-
-${findings.map(f=>`
-
-<div class="finding">
-
-<b>
-${escapeHTML(f[0])}
-</b>
-
-<span style="color:${
-f[2]==="negative"
-?"#d92d20"
-:
-f[2]==="warning"
-?"#dc6803"
-:"#079455"
-}">
-${escapeHTML(f[1])}
-</span>
-
-</div>
-
-`).join("")}
-
-</div>
-
-<div class="finding">
-
-<b>Important</b>
-
-This is a heuristic browser-side screening result.
-A production verdict should combine DNS, WHOIS,
-redirect-chain, reputation, sandbox and threat-intelligence
-signals from a secure backend.
-
-</div>
-
-`;
-
-}
-
-
-/* ---------------------------------------------------------
-   APK ANALYZER
---------------------------------------------------------- */
-
-async function analyzeAPK(input){
-
-const file=input.files[0];
-
-if(!file)return;
-
-
-let risk=7;
-
-let findings=[];
-
-
-if(
-file.type &&
-file.type!=="application/vnd.android.package-archive" &&
-!file.name.toLowerCase().endsWith(".apk")
-){
-
-risk+=25;
-
-findings.push([
-"File type",
-"File does not appear to be a standard APK.",
-"negative"
-]);
-
-}else{
-
-findings.push([
-"File type",
-"APK extension detected.",
-"positive"
-]);
-
-}
-
-
-if(file.size>150*1024*1024){
-
-risk+=15;
-
-findings.push([
-"File size",
-"Large APK requires additional backend analysis.",
-"warning"
-]);
-
-}
-
-
-if(
-/crack|mod|premium|hack|free|update|verify/i
-.test(file.name)
-){
-
-risk+=25;
-
-findings.push([
-"Filename",
-"Filename contains words frequently associated with suspicious distribution.",
-"negative"
-]);
-
-}
-
-
-let hash="";
-
-
-try{
-
-const buffer=
-await file.arrayBuffer();
-
-const digest=
-await crypto.subtle.digest(
-"SHA-256",
-buffer
-);
-
-hash=
-Array
-.from(new Uint8Array(digest))
-.map(x=>x.toString(16).padStart(2,"0"))
-.join("");
-
-findings.push([
-"SHA-256",
-hash,
-"positive"
-]);
-
-}catch{
-
-findings.push([
-"Hash",
-"Browser could not calculate SHA-256.",
-"warning"
-]);
-
-}
-
-
-risk=Math.min(
-100,
-risk
-);
-
-
-renderScanResult(
-risk,
-risk>=70?"HIGH RISK":risk>=40?"MEDIUM RISK":"LOW RISK",
-file.name,
-findings
-);
-
-
-state.scans.unshift({
-
-time:new Date().toLocaleString(),
-
-type:"APK",
-
-target:file.name,
-
-risk,
-
-hash,
-
-findings
-
-});
-
-
-save();
-
-addAudit(
-"APK screening",
-"Security Scanner"
-);
-
-toast("APK screening completed.");
-
-}
-
-
-/* ---------------------------------------------------------
-   SCREENSHOT
---------------------------------------------------------- */
-
-function analyzeScreenshot(input){
-
-const file=input.files[0];
-
-if(!file)return;
-
-
-const preview=$("screenPreview");
-
-preview.src=
-URL.createObjectURL(file);
-
-preview.style.display="block";
-
-
-let risk=10;
-
-const findings=[
-
-[
-"Image loaded",
-`${file.name} • ${(file.size/1024).toFixed(1)} KB`,
-"positive"
-],
-
-[
-"OCR",
-"Connect an OCR/vision backend for extracted text.",
-"warning"
-],
-
-[
-"URL extraction",
-"Connect a vision/OCR backend for links and QR codes.",
-"warning"
-],
-
-[
-"Phishing detection",
-"Brand impersonation and visual analysis require AI backend.",
-"warning"
-]
-
-];
-
-
-renderScanResult(
-risk,
-"PRELIMINARY",
-file.name,
-findings
-);
-
-
-state.scans.unshift({
-
-time:new Date().toLocaleString(),
-
-type:"Screenshot",
-
-target:file.name,
-
-risk,
-
-findings
-
-});
-
-
-save();
-
-addAudit(
-"Screenshot screening",
-"Security Scanner"
-);
-
-toast("Screenshot loaded for analysis.");
-
-}
-
-
-/* ---------------------------------------------------------
-   AI COPILOT
---------------------------------------------------------- */
-
-function addMessage(
-text,
-type="ai-msg"
-){
-
-const el=document.createElement("div");
-
-el.className=
-"message "+type;
-
-el.innerHTML=
-escapeHTML(text)
-.replace(/\n/g,"<br>");
-
-$("messages").appendChild(el);
-
-$("messages").scrollTop=
-$("messages").scrollHeight;
-
-}
-
-
-function askQuick(q){
-
-showView("ai");
-
-$("aiInput").value=q;
-
-sendAI();
-
-}
-
-
-function localAI(q){
-
-const x=q.toLowerCase();
-
-
-if(
-x.includes("phish")||
-x.includes("url")||
-x.includes("link")
-){
-
-return `PHISHING TRIAGE
-
-1. Verify the complete domain.
-2. Check for look-alike spelling and punycode.
-3. Inspect redirects and destination reputation.
-4. Look for urgency, credential or payment requests.
-5. Do not enter passwords or OTPs.
-6. Preserve the message and URL as evidence.
-7. Escalate suspicious results to the security team.
-
-HTTPS by itself does NOT prove that a website is legitimate.`;
-
-
-}
-
-
-if(
-x.includes("apk")||
-x.includes("malware")
-){
-
-return `MALWARE TRIAGE
-
-Do not execute an unknown APK.
-
-Recommended workflow:
-
-• Calculate SHA-256.
-• Record filename and source.
-• Inspect package metadata.
-• Review permissions and manifest.
-• Check certificate/signing information.
-• Submit hash/file to an approved malware-analysis service.
-• Use a sandbox for behavioral analysis.
-• Preserve evidence.
-
-A browser-only scanner cannot provide a reliable malware verdict.`;
-
-
-}
-
-
-if(
-x.includes("ioc")||
-x.includes("indicator")
-){
-
-return `IOC WORKFLOW
-
-Look for:
-
-• IPv4/IPv6 addresses
-• Domains
-• URLs
-• SHA-256/SHA-1/MD5
-• Email addresses
-• File paths
-• Registry keys
-• User agents
-• Commands
-• Malware family names
-
-Validate indicators against trusted threat-intelligence sources before blocking.`;
-
-
-}
-
-
-if(
-x.includes("mitre")||
-x.includes("attack")
-){
-
-return `MITRE ATT&CK MAPPING
-
-Start with observed behavior rather than guessing the technique.
-
-Example:
-
-Phishing link → T1566
-Command execution → T1059
-Valid account abuse → T1078
-Application-layer communication → T1071
-
-Record evidence supporting each mapping.`;
-
-
-}
-
-
-if(
-x.includes("incident")||
-x.includes("response")||
-x.includes("breach")
-){
-
-return `INCIDENT RESPONSE
-
-1. Validate the incident.
-2. Determine affected users/assets.
-3. Preserve evidence.
-4. Establish a timeline.
-5. Identify IOCs.
-6. Contain affected systems.
-7. Eradicate the root cause.
-8. Recover safely.
-9. Monitor for recurrence.
-10. Document lessons learned.`;
-
-
-}
-
-
-if(
-x.includes("password")||
-x.includes("otp")
-){
-
-return `ACCOUNT SECURITY
-
-Never share passwords, OTPs, PINs or recovery codes.
-
-Use unique passwords, MFA/passkeys and a reputable
-password manager.
-
-Treat unexpected login or verification requests as suspicious.`;
-
-
-}
-
-
-return `AUREXA SECURITY COPILOT
-
-I can help with:
-
-• URL/phishing investigation
-• APK/malware triage
-• IOC extraction
-• MITRE ATT&CK mapping
-• SOC alert triage
-• Incident response
-• Security awareness
-• Risk analysis
-• Remediation planning
-
-For organization-specific intelligence, connect the AI API
-through the secure backend configuration.`;
-
-
-}
-
-
-async function sendAI(){
-
-const input=$("aiInput");
-
-const q=input.value.trim();
-
-if(!q)return;
-
-input.value="";
-
-addMessage(q,"user-msg");
-
-const thinking=document.createElement("div");
-
-thinking.className="message ai-msg";
-
-thinking.textContent="Aurexa AI is analyzing…";
-
-$("messages").appendChild(thinking);
-
-
-try{
-
-if(API.AI){
-
-const controller=
-new AbortController();
-
-const timer=
-setTimeout(
-()=>controller.abort(),
-15000
-);
-
-const response=
-await fetch(
-API.AI,
-{
-
-method:"POST",
-
-headers:{
-"Content-Type":"application/json"
-},
-
-body:JSON.stringify({
-message:q,
-source:"aurexa-web"
-}),
-
-signal:controller.signal
-
-}
-);
-
-clearTimeout(timer);
-
-if(!response.ok)
-throw new Error("AI request failed");
-
-const data=
-await response.json();
-
-thinking.remove();
-
-addMessage(
-data.answer||
-data.message||
-"No AI response returned."
-);
-
-}else{
-
-await new Promise(
-r=>setTimeout(r,450)
-);
-
-thinking.remove();
-
-addMessage(
-localAI(q)
-);
-
-}
-
-addAudit(
-"AI Copilot query",
-"Artificial Intelligence"
-);
-
-}catch(e){
-
-thinking.remove();
-
-addMessage(
-"AI backend unavailable.\n\n"+
-localAI(q)
-);
-
-}
-
-}
-
-
-/* ---------------------------------------------------------
-   INCIDENTS
---------------------------------------------------------- */
-
-if(!state.incidents.length){
-
-state.incidents=[
-
-{
-id:"INC-2408",
-title:"Credential phishing campaign",
-severity:"Critical",
-asset:"Identity Portal",
-owner:"SOC Team",
-status:"Investigating",
-updated:"5 min ago"
-},
-
-{
-id:"INC-2407",
-title:"Suspicious endpoint execution",
-severity:"High",
-asset:"WS-284",
-owner:"Analyst 01",
-status:"Contained",
-updated:"22 min ago"
-},
-
-{
-id:"INC-2405",
-title:"Malicious domain communication",
-severity:"High",
-asset:"FIN-Server-03",
-owner:"SOC Team",
-status:"Investigating",
-updated:"1 hr ago"
-},
-
-{
-id:"INC-2402",
-title:"Unusual account activity",
-severity:"Medium",
-asset:"User Identity",
-owner:"Analyst 02",
-status:"Resolved",
-updated:"3 hr ago"
-}
-
-];
-
-save();
-
-}
-
-
-function renderIncidents(){
-
-$("incidentTable").innerHTML=
-state.incidents.map(i=>`
-
-<tr>
-
-<td>
-<b>${i.id}</b>
-<br>
-${escapeHTML(i.title)}
-</td>
-
-<td>
-<span class="badge ${severityClass(i.severity)}">
-${i.severity}
-</span>
-</td>
-
-<td>${escapeHTML(i.asset)}</td>
-
-<td>${escapeHTML(i.owner)}</td>
-
-<td>
-<span class="badge info">
-${escapeHTML(i.status)}
-</span>
-</td>
-
-<td>${escapeHTML(i.updated)}</td>
-
-</tr>
-
-`).join("");
-
-}
-
-
-function filterIncidents(q){
-
-const rows=
-state.incidents.filter(i=>
-(
-i.id+
-i.title+
-i.asset+
-i.owner+
-i.status
-)
-.toLowerCase()
-.includes(q.toLowerCase())
-);
-
-$("incidentTable").innerHTML=
-rows.map(i=>`
-
-<tr>
-
-<td><b>${i.id}</b><br>${escapeHTML(i.title)}</td>
-
-<td>
-<span class="badge ${severityClass(i.severity)}">
-${i.severity}
-</span>
-</td>
-
-<td>${escapeHTML(i.asset)}</td>
-
-<td>${escapeHTML(i.owner)}</td>
-
-<td>${escapeHTML(i.status)}</td>
-
-<td>${escapeHTML(i.updated)}</td>
-
-</tr>
-
-`).join("");
-
-}
-
-
-function newIncident(){
-
-showModal(`
-
-<h2>Create Incident</h2>
-
-<label>Incident title</label>
-
-<input class="input"
-id="newIncidentTitle"
-placeholder="Suspicious activity...">
-
-<label style="display:block;margin-top:12px">
-Severity
-</label>
-
-<select class="select" id="newIncidentSeverity">
-
-<option>Critical</option>
-<option>High</option>
-<option>Medium</option>
-<option>Low</option>
-
-</select>
-
-<label style="display:block;margin-top:12px">
-Affected asset
-</label>
-
-<input class="input"
-id="newIncidentAsset"
-placeholder="Asset / user / system">
-
-<button class="btn primary"
-style="margin-top:15px"
-onclick="createIncident()">
-Create Incident
-</button>
-
-`);
-
-}
-
-
-function createIncident(){
-
-const title=
-$("newIncidentTitle").value.trim();
-
-const severity=
-$("newIncidentSeverity").value;
-
-const asset=
-$("newIncidentAsset").value.trim() ||
-"Unassigned";
-
-
-if(!title){
-
-toast("Enter an incident title.");
-
-return;
-
-}
-
-
-const id=
-"INC-"+Math.floor(
-1000+Math.random()*8999
-);
-
-
-state.incidents.unshift({
-
-id,
-
-title,
-
-severity,
-
-asset,
-
-owner:"Unassigned",
-
-status:"New",
-
-updated:"Just now"
-
-});
-
-
-save();
-
-renderIncidents();
-
-addAudit(
-"Incident created",
-"Incident Response"
-);
-
-closeModal();
-
-toast(
-`${id} created successfully`
-);
-
-}
-
-
-/* ---------------------------------------------------------
-   IOC EXTRACTION
---------------------------------------------------------- */
-
-function extractIOC(){
-
-const text=
-$("iocInput").value;
-
-if(!text.trim()){
-
-toast("Paste investigation text first.");
-
-return;
-
-}
-
-
-const ips=
-text.match(
-/\b(?:\d{1,3}\.){3}\d{1,3}\b/g
-)||[];
-
-const urls=
-text.match(
-/https?:\/\/[^\s"'<>]+/gi
-)||[];
-
-const hashes=
-text.match(
-/\b[a-fA-F0-9]{32,64}\b/g
-)||[];
-
-const domains=
-text.match(
-/\b(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}\b/g
-)||[];
-
-
-$("iocOutput").innerHTML=`
-
-<div class="grid grid-4"
-style="margin-top:16px">
-
-<div class="metric">
-<small>IPs</small>
-<strong>${ips.length}</strong>
-</div>
-
-<div class="metric">
-<small>URLs</small>
-<strong>${urls.length}</strong>
-</div>
-
-<div class="metric">
-<small>Hashes</small>
-<strong>${hashes.length}</strong>
-</div>
-
-<div class="metric">
-<small>Domains</small>
-<strong>${domains.length}</strong>
-</div>
-
-</div>
-
-<div class="ioc-card">
-
-<h3>Extracted indicators</h3>
-
-${
-[...new Set([
-...ips,
-...urls,
-...hashes
-])]
-.map(x=>
-`<div class="finding">
-<div class="ioc-value">${escapeHTML(x)}</div>
-</div>`
-)
-.join("")
-||
-"<p style='color:#667085'>No obvious indicators found.</p>"
-}
-
-</div>
-
-`;
-
-addAudit(
-"IOC extraction",
-"Threat Intelligence"
-);
-
-}
-
-
-function extractDemoIOC(){
-
-$("iocInput").value=
-`
-Suspicious connection from 185.22.91.17
-to https://secure-login-example.com/update
-SHA256:
-d41d8cd98f00b204e9800998ecf8427e
-`;
-
-extractIOC();
-
-}
-
-
-/* ---------------------------------------------------------
-   THREAT INTEL
---------------------------------------------------------- */
-
-async function lookupIntel(){
-
-const type=
-$("intelType").value;
-
-const value=
-$("intelValue").value.trim();
-
-if(!value){
-
-toast("Enter an indicator.");
-
-return;
-
-}
-
-
-if(API.THREAT_INTEL){
-
-try{
-
-const response=
-await fetch(
-API.THREAT_INTEL,
-{
-
-method:"POST",
-
-headers:{
-"Content-Type":"application/json"
-},
-
-body:JSON.stringify({
-type,
-value
-})
-
-}
-);
-
-if(!response.ok)
-throw new Error();
-
-const data=
-await response.json();
-
-renderIntel(
-type,
-value,
-data
-);
-
-return;
-
-}catch{
-
-toast(
-"Threat intelligence backend unavailable."
-);
-
-}
-
-}
-
-
-let risk=10;
-
-if(type==="Domain"){
-
-if(
-/login|verify|secure|account|update/i
-.test(value)
-)
-risk=55;
-
-}
-
-if(type==="IP Address"){
-
-if(
-/^(10\.|192\.168\.|172\.(1[6-9]|2\d|3[0-1])\.)/
-.test(value)
-)
-risk=4;
-
-}
-
-
-renderIntel(
-type,
-value,
-{
-
-risk,
-
-reputation:
-risk>50
-?"Suspicious indicators"
-:"No local reputation finding",
-
-firstSeen:"Backend required",
-
-source:"Aurexa heuristic engine",
-
-recommendation:
-"Connect a production threat-intelligence provider for verified reputation."
-
-}
-);
-
-
-addAudit(
-"IOC lookup",
-"Threat Intelligence"
-);
-
-}
-
-
-function renderIntel(
-type,
-value,
-data
-){
-
-const risk=
-Number(data.risk||0);
-
-$("intelResult").innerHTML=`
-
-<div class="ioc-card">
-
-<div style="
-display:flex;
-justify-content:space-between;
-align-items:center;
-gap:10px;
-flex-wrap:wrap">
-
-<div>
-
-<small>${escapeHTML(type)}</small>
-
-<div class="ioc-value">
-${escapeHTML(value)}
-</div>
-
-</div>
-
-<span class="badge ${
-risk>=70
-?"high"
-:
-risk>=40
-?"medium"
-:"low"
-}">
-Risk ${risk}/100
-</span>
-
-</div>
-
-<div class="grid grid-3"
-style="margin-top:15px">
-
-<div class="finding">
-<b>Reputation</b>
-${escapeHTML(data.reputation||"Unknown")}
-</div>
-
-<div class="finding">
-<b>First seen</b>
-${escapeHTML(data.firstSeen||"Unknown")}
-</div>
-
-<div class="finding">
-<b>Source</b>
-${escapeHTML(data.source||"Aurexa")}
-</div>
-
-</div>
-
-<div class="finding">
-
-<b>Recommendation</b>
-
-${escapeHTML(
-data.recommendation||
-"Perform additional investigation."
-)}
-
-</div>
-
-</div>
-
-`;
-
-}
-
-
-/* ---------------------------------------------------------
-   REPORTS
---------------------------------------------------------- */
-
-function renderReports(){
-
-$("reportTable").innerHTML=
-state.scans
-.slice(0,30)
-.map(s=>`
-
-<tr>
-
-<td>${escapeHTML(s.time)}</td>
-
-<td>${escapeHTML(s.type)}</td>
-
-<td>${escapeHTML(s.target)}</td>
-
-<td>
-<span class="badge ${
-s.risk>=70
-?"high"
-:
-s.risk>=40
-?"medium"
-:"low"
-}">
-${s.risk}/100
-</span>
-</td>
-
-</tr>
-
-`)
-.join("")
-||
-`
-<tr>
-<td colspan="4">
-<div class="empty">No scans recorded yet.</div>
-</td>
-</tr>
-`;
-
-}
-
-
-function downloadFile(
-filename,
-content,
-type
-){
-
-const blob=
-new Blob(
-[content],
-{type}
-);
-
-const url=
-URL.createObjectURL(blob);
-
-const a=
-document.createElement("a");
-
-a.href=url;
-
-a.download=filename;
-
-a.click();
-
-URL.revokeObjectURL(url);
-
-}
-
-
-function exportJSON(){
-
-downloadFile(
-"aurexa-security-report.json",
-JSON.stringify(
-state.scans,
-null,
-2
-),
-"application/json"
-);
-
-addAudit(
-"JSON report exported",
-"Reports"
-);
-
-toast("JSON report exported.");
-
-}
-
-
-function exportCSV(){
-
-const header=
-"time,type,target,risk\n";
-
-const rows=
-state.scans.map(s=>
-[
-s.time,
-s.type,
-`"${String(s.target).replace(/"/g,'""')}"`,
-s.risk
-].join(",")
-).join("\n");
-
-
-downloadFile(
-"aurexa-security-events.csv",
-header+rows,
-"text/csv"
-);
-
-addAudit(
-"CSV report exported",
-"Reports"
-);
-
-toast("CSV report exported.");
-
-}
-
-
-function executiveReport(){
-
-const total=
-state.scans.length;
-
-const high=
-state.scans.filter(
-x=>x.risk>=70
-).length;
-
-const medium=
-state.scans.filter(
-x=>x.risk>=40&&x.risk<70
-).length;
-
-
-showModal(`
-
-<h2>AUREXA Executive Security Summary</h2>
-
-<p>
-Generated:
-${new Date().toLocaleString()}
-</p>
-
-<div class="grid grid-3">
-
-<div class="metric">
-<small>Total Screenings</small>
-<strong>${total}</strong>
-</div>
-
-<div class="metric">
-<small>High Risk</small>
-<strong>${high}</strong>
-</div>
-
-<div class="metric">
-<small>Medium Risk</small>
-<strong>${medium}</strong>
-</div>
-
-</div>
-
-<div class="finding">
-
-<b>Executive assessment</b>
-
-AUREXA recorded ${total} browser-side screening events.
-${high} events reached the high-risk threshold and
-${medium} reached the medium-risk threshold.
-
-Production deployment should combine these preliminary
-signals with verified threat-intelligence, DNS, reputation,
-sandbox and AI services.
-
-</div>
-
-`);
-
-}
-
-
-/* ---------------------------------------------------------
-   ADMIN
---------------------------------------------------------- */
-
-function updateAdmin(){
-
-$("adminScans").textContent=
-state.scans.length;
-
-$("adminHigh").textContent=
-state.scans.filter(
-x=>x.risk>=70
-).length;
-
-$("adminEvents").textContent=
-state.audit.length;
-
-renderAudit();
-
-}
-
-
-function renderAudit(){
-
-$("auditTable").innerHTML=
-state.audit
-.slice(0,30)
-.map(x=>`
-
-<tr>
-
-<td>${escapeHTML(x.time)}</td>
-
-<td>${escapeHTML(x.action)}</td>
-
-<td>${escapeHTML(x.module)}</td>
-
-<td>
-<span class="badge low">
-${escapeHTML(x.status)}
-</span>
-</td>
-
-</tr>
-
-`)
-.join("")
-||
-`
-<tr>
-<td colspan="4">
-No audit events.
-</td>
-</tr>
-`;
-
-}
-
-
-function adminSection(section,button){
-
-[
-"adminOverview",
-"adminUsers",
-"adminSettings",
-"adminAudit",
-"adminApi"
-]
-.forEach(id=>{
-$(id).style.display="none";
-});
-
-
-const map={
-
-overview:"adminOverview",
-
-users:"adminUsers",
-
-settings:"adminSettings",
-
-audit:"adminAudit",
-
-api:"adminApi"
-
-};
-
-
-$(map[section]).style.display="block";
-
-
-document
-.querySelectorAll(".admin-nav button")
-.forEach(x=>x.classList.remove("active"));
-
-button.classList.add("active");
-
-}
-
-
-function toggleSwitch(button){
-
-button.classList.toggle("on");
-
-}
-
-
-function saveAPISettings(){
-
-const ai=
-$("aiEndpoint").value.trim();
-
-const ti=
-$("tiEndpoint").value.trim();
-
-
-API.AI=ai;
-
-API.THREAT_INTEL=ti;
-
-
-localStorage.setItem(
-"aurexa_api_config",
-JSON.stringify({
-ai,
-ti
-})
-);
-
-addAudit(
-"API configuration updated",
-"Administration"
-);
-
-toast(
-"Integration settings saved."
-);
-
-}
-
-
-/* ---------------------------------------------------------
-   NOTIFICATIONS
---------------------------------------------------------- */
-
-function showNotifications(){
-
-showModal(`
-
-<h2>Notification Center</h2>
-
-<div class="finding">
-<b>Critical alert</b>
-Credential phishing campaign requires investigation.
-</div>
-
-<div class="finding">
-<b>Threat intelligence</b>
-New suspicious domain indicators detected.
-</div>
-
-<div class="finding">
-<b>System</b>
-Aurexa AI-SOC operating normally.
-</div>
-
-`);
-
-}
-
-
-/* ---------------------------------------------------------
-   REFRESH
---------------------------------------------------------- */
-
-function refreshAlerts(){
-
-toast("Alert queue refreshed.");
-
-addAudit(
-"Alert queue refreshed",
-"SOC"
-);
-
-}
-
-
-/* ---------------------------------------------------------
-   INITIALIZATION
---------------------------------------------------------- */
-
-renderDashboardAlerts();
-
-renderAlerts();
-
-renderIncidents();
-
-renderReports();
-
-updateAdmin();
-
-
-/* Load saved API settings */
-
-try{
-
-const saved=
-JSON.parse(
-localStorage.getItem(
-"aurexa_api_config"
-)||"null"
-);
-
-if(saved){
-
-API.AI=saved.ai||"";
-API.THREAT_INTEL=saved.ti||"";
-
-}
-
-}catch{}
-
-
-/* Close modal by clicking outside */
-
-$("modal").addEventListener(
-"click",
-e=>{
-
-if(e.target===$("modal"))
-closeModal();
-
-});
-
-
-/* Keyboard shortcut */
-
-document.addEventListener(
-"keydown",
-e=>{
-
-if(
-e.ctrlKey &&
-e.key.toLowerCase()==="k"
-){
-
-e.preventDefault();
-
-showView("scanner");
-
-$("url").focus();
-
-}
-
-if(e.key==="Escape")
-closeModal();
-
-});
-
+applyFounderPhoto();
+renderHistory();
 
 </script>
 
