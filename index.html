@@ -1,658 +1,700 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AUREXA | Cyber Security Solutions</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
+        /* CSS Variables - Premium Light Corporate Theme */
         :root {
-            /* Light Theme (Corporate Default) */
-            --bg-base: #f4f7fb;
-            --bg-surface: rgba(255, 255, 255, 0.7);
-            --bg-surface-solid: #ffffff;
-            --text-main: #0f172a;
-            --text-muted: #64748b;
-            --border-color: rgba(15, 23, 42, 0.1);
+            --bg-primary: #f8fafc;
+            --bg-secondary: #ffffff;
+            --bg-tertiary: #f1f5f9;
             
-            --primary: #0f172a;
-            --secondary: #3b82f6;
-            --accent: #06b6d4;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #94a3b8;
+            
+            --accent-main: #2563eb;
+            --accent-hover: #1d4ed8;
+            --accent-glow: rgba(37, 99, 235, 0.2);
+            --navy-dark: #0f172a;
             
             --success: #10b981;
+            --success-bg: #d1fae5;
             --warning: #f59e0b;
+            --warning-bg: #fef3c7;
             --danger: #ef4444;
-            --info: #3b82f6;
+            --danger-bg: #fee2e2;
+            --info: #0ea5e9;
+            --info-bg: #e0f2fe;
 
-            --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+            --border-color: #e2e8f0;
+            --glass-bg: rgba(255, 255, 255, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.4);
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-float: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            
+            --radius-sm: 0.375rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            
             --sidebar-width: 280px;
-            --header-height: 70px;
-            --radius-md: 12px;
-            --radius-lg: 20px;
+            --header-height: 72px;
         }
 
         [data-theme="dark"] {
-            --bg-base: #020617;
-            --bg-surface: rgba(15, 23, 42, 0.7);
-            --bg-surface-solid: #0f172a;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --border-color: rgba(255, 255, 255, 0.1);
-            
-            --primary: #38bdf8;
-            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+            --bg-primary: #020617;
+            --bg-secondary: #0f172a;
+            --bg-tertiary: #1e293b;
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --border-color: #334155;
+            --glass-bg: rgba(15, 23, 42, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.1);
         }
 
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-                scroll-behavior: auto !important;
-            }
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        /* Resets & Base Styles */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-primary); color: var(--text-primary); line-height: 1.5; overflow-x: hidden; transition: background-color 0.3s, color 0.3s; }
+        a { text-decoration: none; color: var(--accent-main); }
+        button { cursor: pointer; font-family: inherit; border: none; background: none; }
+        ul { list-style: none; }
+        img { max-width: 100%; height: auto; display: block; }
         
-        body {
-            background-color: var(--bg-base);
-            color: var(--text-main);
-            overflow: hidden; /* Prevent body scroll, manage in main content */
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        h1, h2, h3, h4 { font-weight: 700; letter-spacing: -0.5px; margin-bottom: 1rem; }
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 { font-weight: 600; line-height: 1.2; color: var(--navy-dark); }
+        [data-theme="dark"] h1, [data-theme="dark"] h2, [data-theme="dark"] h3, [data-theme="dark"] h4, [data-theme="dark"] h5, [data-theme="dark"] h6 { color: var(--text-primary); }
         
-        /* Glassmorphism & 3D Utilities */
-        .glass {
-            background: var(--bg-surface);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid var(--border-color);
-            box-shadow: var(--glass-shadow);
-        }
-
-        .card {
-            background: var(--bg-surface-solid);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-lg);
-            padding: 1.5rem;
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s;
-            transform-style: preserve-3d;
-        }
-
-        .card:hover {
-            transform: translateY(-4px) translateZ(10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-        }
-
         /* Layout */
-        .app-wrapper {
-            display: flex;
-            height: 100vh;
-            width: 100vw;
-        }
-
-        /* Sidebar */
-        .sidebar {
-            width: var(--sidebar-width);
-            height: 100vh;
-            background: var(--bg-surface-solid);
-            border-right: 1px solid var(--border-color);
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            z-index: 100;
-            transition: transform 0.3s ease;
-        }
-
-        .sidebar-header {
-            height: var(--header-height);
-            display: flex;
-            align-items: center;
-            padding: 0 1.5rem;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .brand-logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--secondary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: -1px;
-        }
-
-        .sidebar-nav {
-            flex: 1;
-            overflow-y: auto;
-            padding: 1.5rem 1rem;
-        }
-
-        .nav-group { margin-bottom: 1.5rem; }
-        .nav-label { font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); font-weight: 700; margin-bottom: 0.5rem; padding-left: 0.5rem; letter-spacing: 1px; }
+        .app-container { display: flex; min-height: 100vh; }
         
-        .nav-item {
-            display: flex;
-            align-items: center;
-            padding: 0.75rem 1rem;
-            border-radius: var(--radius-md);
-            color: var(--text-main);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s;
-            margin-bottom: 0.25rem;
-        }
-
-        .nav-item:hover, .nav-item.active {
-            background: rgba(59, 130, 246, 0.1);
-            color: var(--secondary);
-            font-weight: 600;
-        }
-
-        /* Main Content */
-        .main-container {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            position: relative;
-        }
-
-        /* Header */
-        .top-header {
-            height: var(--header-height);
-            background: var(--bg-surface);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-color);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 2rem;
-            z-index: 90;
-        }
-
-        .header-actions { display: flex; align-items: center; gap: 1rem; }
+        /* Sidebar Navigation */
+        .sidebar { width: var(--sidebar-width); background-color: var(--bg-secondary); border-right: 1px solid var(--border-color); display: flex; flex-direction: column; position: fixed; top: 0; bottom: 0; left: 0; z-index: 50; transition: transform 0.3s ease; }
+        .sidebar-header { height: var(--header-height); display: flex; align-items: center; padding: 0 1.5rem; border-bottom: 1px solid var(--border-color); }
+        .logo-container { display: flex; align-items: center; gap: 0.75rem; }
+        .logo-icon { width: 32px; height: 32px; background: linear-gradient(135deg, var(--accent-main), #0ea5e9); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.2rem; }
+        .logo-text { font-size: 1.25rem; font-weight: 700; letter-spacing: 0.5px; }
         
-        .btn {
-            padding: 0.5rem 1rem;
-            border-radius: var(--radius-md);
-            border: none;
-            font-weight: 600;
-            font-size: 0.875rem;
-            cursor: pointer;
-            transition: all 0.2s;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
-
-        .btn-primary { background: var(--text-main); color: var(--bg-base); }
-        [data-theme="dark"] .btn-primary { background: var(--secondary); color: #fff; }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .sidebar-nav { flex: 1; overflow-y: auto; padding: 1.5rem 1rem; }
+        .nav-section { margin-bottom: 1.5rem; }
+        .nav-section-title { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); font-weight: 600; margin-bottom: 0.5rem; padding: 0 0.75rem; }
+        .nav-item { display: flex; align-items: center; padding: 0.5rem 0.75rem; color: var(--text-secondary); border-radius: var(--radius-md); transition: all 0.2s ease; margin-bottom: 0.25rem; font-weight: 500; font-size: 0.95rem; }
+        .nav-item:hover { background-color: var(--bg-tertiary); color: var(--accent-main); }
+        .nav-item.active { background-color: rgba(37, 99, 235, 0.1); color: var(--accent-main); font-weight: 600; }
         
-        .btn-outline { background: transparent; border: 1px solid var(--border-color); color: var(--text-main); }
-        .btn-outline:hover { border-color: var(--text-main); }
-
-        .hamburger { display: none; background: none; border: none; font-size: 1.5rem; color: var(--text-main); cursor: pointer; }
-
-        /* Scrollable Content */
-        .content-area {
-            flex: 1;
-            overflow-y: auto;
-            padding: 2rem;
-            scroll-behavior: smooth;
-        }
-
-        .view-section {
-            display: none;
-            animation: fadeIn 0.4s ease forwards;
-        }
-
+        /* Main Content Area */
+        .main-content { flex: 1; margin-left: var(--sidebar-width); display: flex; flex-direction: column; min-height: 100vh; transition: margin-left 0.3s ease; }
+        
+        /* Topbar */
+        .topbar { height: var(--header-height); background: var(--glass-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-color); display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; position: sticky; top: 0; z-index: 40; }
+        .menu-toggle { display: none; font-size: 1.5rem; color: var(--text-primary); }
+        .topbar-actions { display: flex; align-items: center; gap: 1rem; }
+        .btn-theme { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: var(--bg-tertiary); color: var(--text-primary); transition: background 0.2s; }
+        .btn-theme:hover { background: var(--border-color); }
+        
+        /* View Container */
+        .view-container { padding: 2rem; flex: 1; position: relative; }
+        .view-section { display: none; animation: fadeIn 0.4s ease-out forwards; }
         .view-section.active { display: block; }
-
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
+        
+        /* Components */
+        .btn { display: inline-flex; align-items: center; justify-content: center; padding: 0.625rem 1.25rem; border-radius: var(--radius-md); font-weight: 500; font-size: 0.95rem; transition: all 0.2s ease; text-align: center; }
+        .btn-primary { background-color: var(--accent-main); color: white; box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2); }
+        .btn-primary:hover { background-color: var(--accent-hover); transform: translateY(-1px); box-shadow: 0 6px 8px rgba(37, 99, 235, 0.3); }
+        .btn-secondary { background-color: var(--bg-secondary); color: var(--text-primary); border: 1px solid var(--border-color); }
+        .btn-secondary:hover { background-color: var(--bg-tertiary); border-color: var(--text-muted); }
+        .btn-danger { background-color: var(--danger); color: white; }
+        
+        .card { background-color: var(--bg-secondary); border-radius: var(--radius-lg); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm); padding: 1.5rem; transition: transform 0.3s, box-shadow 0.3s; }
+        .card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+        .card-glass { background: var(--glass-bg); backdrop-filter: blur(12px); border: 1px solid var(--glass-border); }
+        
+        .badge { display: inline-block; padding: 0.25rem 0.6rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+        .badge-success { background-color: var(--success-bg); color: #065f46; }
+        .badge-warning { background-color: var(--warning-bg); color: #92400e; }
+        .badge-danger { background-color: var(--danger-bg); color: #991b1b; }
+        .badge-info { background-color: var(--info-bg); color: #075985; }
+        
+        /* Form Elements */
+        .form-group { margin-bottom: 1.25rem; }
+        .form-label { display: block; font-weight: 500; margin-bottom: 0.5rem; color: var(--text-primary); font-size: 0.95rem; }
+        .form-control { width: 100%; padding: 0.75rem 1rem; border-radius: var(--radius-md); border: 1px solid var(--border-color); background-color: var(--bg-primary); color: var(--text-primary); font-family: inherit; font-size: 0.95rem; transition: border-color 0.2s, box-shadow 0.2s; }
+        .form-control:focus { outline: none; border-color: var(--accent-main); box-shadow: 0 0 0 3px var(--accent-glow); }
+        select.form-control { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2364748b'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; background-size: 1.2rem; padding-right: 2.5rem; }
+        
+        /* Hero Section 3D */
+        .hero { position: relative; padding: 4rem 2rem; border-radius: var(--radius-xl); overflow: hidden; background: linear-gradient(135deg, var(--navy-dark) 0%, #1e1b4b 100%); color: white; display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem; box-shadow: var(--shadow-lg); }
+        .hero-content { position: relative; z-index: 10; max-width: 600px; }
+        .hero-title { font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; line-height: 1.1; color: white; }
+        .hero-subtitle { font-size: 1.1rem; color: #cbd5e1; margin-bottom: 2rem; }
+        .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+        
+        .hero-visual { position: absolute; right: 5%; top: 50%; transform: translateY(-50%); width: 400px; height: 400px; perspective: 1000px; z-index: 1; display: flex; align-items: center; justify-content: center; }
+        .shield-3d { width: 150px; height: 170px; background: rgba(37, 99, 235, 0.2); backdrop-filter: blur(10px); border: 2px solid var(--accent-main); clip-path: polygon(50% 0%, 100% 20%, 100% 70%, 50% 100%, 0% 70%, 0% 20%); animation: float-rotate 8s infinite ease-in-out; position: relative; box-shadow: 0 0 40px rgba(37, 99, 235, 0.5) inset; }
+        .ring { position: absolute; border-radius: 50%; border: 1px solid rgba(14, 165, 233, 0.5); top: 50%; left: 50%; transform: translate(-50%, -50%) rotateX(60deg); animation: spin 10s linear infinite; }
+        .ring-1 { width: 250px; height: 250px; border-top-color: #0ea5e9; }
+        .ring-2 { width: 320px; height: 320px; border-bottom-color: #38bdf8; animation-direction: reverse; animation-duration: 15s; }
+        
         /* Dashboard Grid */
-        .grid-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
-        .stat-card { padding: 1.5rem; }
-        .stat-value { font-size: 2rem; font-weight: 700; margin: 0.5rem 0; color: var(--text-main); }
-        .stat-label { font-size: 0.875rem; color: var(--text-muted); font-weight: 500; }
+        .dashboard-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
+        .stat-card { display: flex; flex-direction: column; }
+        .stat-value { font-size: 2rem; font-weight: 700; margin: 0.5rem 0; color: var(--navy-dark); }
+        [data-theme="dark"] .stat-value { color: white; }
+        .stat-label { font-size: 0.875rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+        .stat-meta { font-size: 0.75rem; color: var(--text-secondary); display: flex; align-items: center; gap: 0.25rem; margin-top: auto; }
         
-        .grid-charts { display: grid; grid-template-columns: 2fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }
-        @media (max-width: 1024px) { .grid-charts { grid-template-columns: 1fr; } }
-
-        /* Forms & Inputs */
-        .input-group { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.5rem; }
-        input[type="text"], input[type="file"], select, textarea {
-            width: 100%;
-            padding: 0.75rem 1rem;
-            border-radius: var(--radius-md);
-            border: 1px solid var(--border-color);
-            background: var(--bg-surface-solid);
-            color: var(--text-main);
-            font-size: 0.875rem;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-        input:focus, select:focus, textarea:focus { border-color: var(--secondary); box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1); }
+        /* Layout Grids */
+        .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
         
-        /* Badges */
-        .badge { padding: 0.25rem 0.75rem; border-radius: 99px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; }
-        .badge-low { background: rgba(16, 185, 129, 0.1); color: var(--success); }
-        .badge-med { background: rgba(245, 158, 11, 0.1); color: var(--warning); }
-        .badge-high { background: rgba(239, 68, 68, 0.1); color: var(--danger); }
-
-        /* Scanner Tabs */
-        .tabs { display: flex; gap: 1rem; border-bottom: 1px solid var(--border-color); margin-bottom: 1.5rem; overflow-x: auto; }
-        .tab { padding: 0.75rem 1rem; cursor: pointer; color: var(--text-muted); font-weight: 600; border-bottom: 2px solid transparent; white-space: nowrap; }
-        .tab.active { color: var(--secondary); border-bottom-color: var(--secondary); }
-        .tab-content { display: none; }
-        .tab-content.active { display: block; animation: fadeIn 0.3s ease; }
-
-        /* Code/Mono Blocks */
-        pre, code { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; }
-        .terminal { background: #0f172a; color: #10b981; padding: 1.5rem; border-radius: var(--radius-md); overflow-x: auto; margin-top: 1rem; border: 1px solid #1e293b; }
-
-        /* Hero / 3D Element */
-        .hero-section {
-            position: relative;
-            padding: 4rem 2rem;
-            border-radius: var(--radius-lg);
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(6, 182, 212, 0.05));
-            overflow: hidden;
-            margin-bottom: 2rem;
-            border: 1px solid var(--border-color);
-            display: flex;
-            align-items: center;
-        }
-        .hero-content { position: relative; z-index: 2; max-width: 600px; }
+        /* Terminal / Result Box */
+        .terminal-box { background-color: #0f172a; color: #e2e8f0; border-radius: var(--radius-md); padding: 1.5rem; font-family: 'Fira Code', monospace; font-size: 0.875rem; overflow-x: auto; margin-top: 1.5rem; border: 1px solid #334155; }
+        .term-header { border-bottom: 1px solid #334155; padding-bottom: 0.75rem; margin-bottom: 1rem; display: flex; justify-content: space-between; align-items: center; }
+        .term-status-crit { color: #ef4444; }
+        .term-status-warn { color: #f59e0b; }
+        .term-status-safe { color: #10b981; }
+        .term-status-info { color: #38bdf8; }
         
-        .hero-visual {
-            position: absolute;
-            right: 10%;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 300px;
-            height: 300px;
-            z-index: 1;
-            perspective: 1000px;
-        }
-        .shield-3d {
-            width: 100%; height: 100%;
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(6, 182, 212, 0.2));
-            backdrop-filter: blur(5px);
-            border: 2px solid var(--secondary);
-            border-radius: 30% 30% 50% 50% / 20% 20% 60% 60%;
-            animation: rotateShield 10s infinite linear;
-            box-shadow: 0 0 50px rgba(59, 130, 246, 0.3), inset 0 0 20px rgba(6, 182, 212, 0.5);
-        }
-        @keyframes rotateShield { 0% { transform: rotateY(0deg) rotateX(10deg); } 100% { transform: rotateY(360deg) rotateX(10deg); } }
+        /* Tabs */
+        .tabs { display: flex; border-bottom: 1px solid var(--border-color); margin-bottom: 1.5rem; overflow-x: auto; scrollbar-width: none; }
+        .tabs::-webkit-scrollbar { display: none; }
+        .tab-btn { padding: 0.75rem 1.5rem; font-weight: 500; color: var(--text-secondary); border-bottom: 2px solid transparent; white-space: nowrap; transition: all 0.2s; }
+        .tab-btn:hover { color: var(--text-primary); }
+        .tab-btn.active { color: var(--accent-main); border-bottom-color: var(--accent-main); font-weight: 600; }
+        .tab-pane { display: none; animation: fadeIn 0.3s ease-out; }
+        .tab-pane.active { display: block; }
 
+        /* AI Chat */
+        .chat-container { display: flex; flex-direction: column; height: 500px; background: var(--bg-primary); border-radius: var(--radius-md); border: 1px solid var(--border-color); overflow: hidden; }
+        .chat-messages { flex: 1; padding: 1.5rem; overflow-y: auto; display: flex; flex-direction: column; gap: 1rem; }
+        .chat-msg { max-width: 80%; padding: 1rem; border-radius: var(--radius-lg); font-size: 0.95rem; line-height: 1.5; }
+        .msg-ai { background-color: var(--bg-secondary); border: 1px solid var(--border-color); align-self: flex-start; border-bottom-left-radius: 0; }
+        .msg-user { background-color: var(--accent-main); color: white; align-self: flex-end; border-bottom-right-radius: 0; }
+        .chat-input-area { padding: 1rem; background-color: var(--bg-secondary); border-top: 1px solid var(--border-color); display: flex; gap: 0.5rem; }
+        .suggested-prompts { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; }
+        .prompt-pill { padding: 0.4rem 0.8rem; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: 999px; font-size: 0.8rem; cursor: pointer; transition: all 0.2s; }
+        .prompt-pill:hover { background: var(--border-color); }
+
+        /* Tables */
+        .table-responsive { overflow-x: auto; border-radius: var(--radius-md); border: 1px solid var(--border-color); }
+        table { width: 100%; border-collapse: collapse; background-color: var(--bg-secondary); text-align: left; }
+        th, td { padding: 1rem; border-bottom: 1px solid var(--border-color); font-size: 0.9rem; }
+        th { background-color: var(--bg-tertiary); font-weight: 600; color: var(--text-secondary); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.05em; }
+        tr:last-child td { border-bottom: none; }
+        tr:hover { background-color: var(--bg-tertiary); }
+
+        /* Cyber Fraud Section */
+        .fraud-alert { border-left: 4px solid var(--danger); background-color: var(--danger-bg); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; }
+        .fraud-alert h3 { color: #991b1b; margin-bottom: 0.5rem; }
+        .fraud-alert p { color: #7f1d1d; }
+        
         /* Founder Profile */
-        .founder-grid { display: grid; grid-template-columns: 300px 1fr; gap: 3rem; align-items: start; }
-        .founder-image-placeholder {
-            width: 100%; aspect-ratio: 1;
-            background: linear-gradient(135deg, #1e293b, #0f172a);
-            border-radius: var(--radius-lg);
-            display: flex; align-items: center; justify-content: center;
-            color: #fff; font-size: 4rem; font-weight: 800;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-            position: relative;
-            overflow: hidden;
-        }
-        .founder-image-placeholder::after {
-            content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-            transform: skewX(-20deg); animation: shine 3s infinite;
-        }
-        @keyframes shine { 100% { left: 200%; } }
-
-        .contact-links { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1.5rem; }
+        .founder-card { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1.5rem; padding: 2.5rem !important; }
+        @media(min-width: 768px) { .founder-card { flex-direction: row; text-align: left; align-items: flex-start; } }
+        .founder-img-placeholder { width: 120px; height: 120px; border-radius: 50%; background: linear-gradient(135deg, var(--navy-dark), var(--accent-main)); display: flex; align-items: center; justify-content: center; color: white; font-size: 2.5rem; font-weight: bold; flex-shrink: 0; box-shadow: var(--shadow-md); border: 4px solid var(--bg-secondary); }
+        .founder-info { flex: 1; }
+        .founder-socials { display: flex; gap: 0.75rem; margin-top: 1.5rem; flex-wrap: wrap; }
+        .social-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: var(--bg-tertiary); border-radius: var(--radius-sm); font-size: 0.875rem; color: var(--text-primary); transition: all 0.2s; border: 1px solid var(--border-color); }
+        .social-btn:hover { background: var(--border-color); transform: translateY(-2px); }
+        
+        /* Utils & Animations */
+        .mb-1 { margin-bottom: 0.5rem; } .mb-2 { margin-bottom: 1rem; } .mb-3 { margin-bottom: 1.5rem; } .mb-4 { margin-bottom: 2rem; }
+        .mt-1 { margin-top: 0.5rem; } .mt-2 { margin-top: 1rem; } .mt-3 { margin-top: 1.5rem; } .mt-4 { margin-top: 2rem; }
+        .text-center { text-align: center; }
+        .w-full { width: 100%; }
+        
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes float-rotate { 0% { transform: translateY(0) rotateY(0deg) rotateZ(0deg); } 50% { transform: translateY(-20px) rotateY(180deg) rotateZ(5deg); } 100% { transform: translateY(0) rotateY(360deg) rotateZ(0deg); } }
+        @keyframes spin { 100% { transform: translate(-50%, -50%) rotateX(60deg) rotateZ(360deg); } }
         
         /* Mobile Overlay */
-        .mobile-overlay {
-            display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 95; backdrop-filter: blur(4px);
-        }
+        .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.5); z-index: 45; backdrop-filter: blur(2px); }
 
-        /* Responsive Breakpoints */
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .grid-4, .grid-3 { grid-template-columns: repeat(2, 1fr); }
+            .hero-visual { right: -50px; opacity: 0.5; }
+        }
+        
         @media (max-width: 768px) {
-            .sidebar { position: fixed; left: -100%; box-shadow: 20px 0 50px rgba(0,0,0,0.5); }
-            .sidebar.active { left: 0; }
-            .hamburger { display: block; }
-            .mobile-overlay.active { display: block; }
+            :root { --header-height: 60px; }
+            .sidebar { transform: translateX(-100%); }
+            .sidebar.open { transform: translateX(0); }
+            .main-content { margin-left: 0; }
+            .menu-toggle { display: block; }
+            .sidebar-overlay.active { display: block; }
+            .view-container { padding: 1rem; }
+            .hero { padding: 2rem 1.5rem; }
+            .hero-title { font-size: 1.8rem; }
             .hero-visual { display: none; }
-            .founder-grid { grid-template-columns: 1fr; }
-            .content-area { padding: 1rem; }
-            .tabs { padding-bottom: 0.5rem; }
-            .btn { width: 100%; justify-content: center; margin-bottom: 0.5rem; }
-            .header-actions .btn { width: auto; margin-bottom: 0; } /* keep header buttons small */
+            .grid-2, .grid-4, .grid-3 { grid-template-columns: 1fr; }
+            .founder-socials { justify-content: center; }
+            .topbar { padding: 0 1rem; }
         }
     </style>
 </head>
 <body>
 
-<div class="app-wrapper">
-    <div class="mobile-overlay" id="mobileOverlay" onclick="toggleMenu()"></div>
+<div class="app-container">
+    
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleMobileMenu()"></div>
 
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <div class="brand-logo">AUREXA</div>
-        </div>
-        <div class="sidebar-nav">
-            <div class="nav-group">
-                <div class="nav-label">Command Center</div>
-                <a class="nav-item active" onclick="navigate('dashboard')">Dashboard</a>
-                <a class="nav-item" onclick="navigate('scanner')">Security Scanner</a>
-                <a class="nav-item" onclick="navigate('copilot')">AI Copilot</a>
-            </div>
-            <div class="nav-group">
-                <div class="nav-label">Intelligence</div>
-                <a class="nav-item" onclick="navigate('threat-intel')">Threat Intelligence</a>
-                <a class="nav-item" onclick="navigate('ioc-intel')">IOC Intelligence</a>
-                <a class="nav-item" onclick="navigate('mitre')">MITRE ATT&CK</a>
-            </div>
-            <div class="nav-group">
-                <div class="nav-label">Operations</div>
-                <a class="nav-item" onclick="navigate('incidents')">Incidents</a>
-                <a class="nav-item" onclick="navigate('alerts')">Alerts</a>
-                <a class="nav-item" onclick="navigate('reports')">Reports</a>
-            </div>
-            <div class="nav-group">
-                <div class="nav-label">Organization</div>
-                <a class="nav-item" onclick="navigate('admin')">Admin Panel</a>
-                <a class="nav-item" onclick="navigate('fraud-help')">Cyber Fraud Help</a>
-                <a class="nav-item" onclick="navigate('founder')">Founder & CEO</a>
-                <a class="nav-item" onclick="navigate('about')">About</a>
+            <div class="logo-container">
+                <div class="logo-icon">A</div>
+                <div class="logo-text">AUREXA</div>
             </div>
         </div>
+        
+        <nav class="sidebar-nav">
+            <div class="nav-section">
+                <div class="nav-section-title">Overview</div>
+                <button class="nav-item active w-full" onclick="switchView('dashboard', this)">Dashboard</button>
+                <button class="nav-item w-full" onclick="switchView('scanner', this)">Security Scanner</button>
+                <button class="nav-item w-full" onclick="switchView('copilot', this)">AI Copilot</button>
+            </div>
+            
+            <div class="nav-section">
+                <div class="nav-section-title">Security Operations</div>
+                <button class="nav-item w-full" onclick="switchView('threat-intel', this)">Threat Intelligence</button>
+                <button class="nav-item w-full" onclick="switchView('ioc-intel', this)">IOC Intelligence</button>
+                <button class="nav-item w-full" onclick="switchView('mitre', this)">MITRE ATT&CK</button>
+            </div>
+            
+            <div class="nav-section">
+                <div class="nav-section-title">Operations</div>
+                <button class="nav-item w-full" onclick="switchView('incidents', this)">Incidents</button>
+                <button class="nav-item w-full" onclick="switchView('alerts', this)">Alerts</button>
+                <button class="nav-item w-full" onclick="switchView('reports', this)">Reports</button>
+            </div>
+            
+            <div class="nav-section">
+                <div class="nav-section-title">Platform</div>
+                <button class="nav-item w-full" onclick="switchView('fraud', this)">Cyber Fraud Help</button>
+                <button class="nav-item w-full" onclick="switchView('founder', this)">Founder & CEO</button>
+                <button class="nav-item w-full" onclick="switchView('contact', this)">Contact</button>
+                <button class="nav-item w-full" onclick="switchView('admin', this)">Admin Panel</button>
+            </div>
+        </nav>
     </aside>
 
-    <main class="main-container">
-        <header class="top-header">
-            <div style="display: flex; align-items: center; gap: 1rem;">
-                <button class="hamburger" onclick="toggleMenu()">☰</button>
-                <h3 style="margin: 0; font-size: 1.1rem; display: none;" id="mobileHeaderTitle">AUREXA</h3>
-            </div>
-            <div class="header-actions">
-                <button class="btn btn-outline" onclick="toggleTheme()" title="Toggle Theme">🌓</button>
-                <button class="btn btn-outline" onclick="alert('Demo: Notifications panel opened.')">🔔</button>
-                <button class="btn btn-primary" onclick="navigate('admin')">Admin</button>
+    <main class="main-content">
+        
+        <header class="topbar">
+            <button class="menu-toggle" onclick="toggleMobileMenu()">☰</button>
+            <div style="flex: 1;"></div>
+            <div class="topbar-actions">
+                <span class="badge badge-info" style="display: none;" id="demoBadge">Demo Environment</span>
+                <button class="btn-theme" onclick="toggleTheme()" title="Toggle Dark/Light Mode">🌓</button>
+                <button class="btn btn-primary" style="padding: 0.4rem 1rem; font-size: 0.85rem;" onclick="switchView('admin', null)">Admin Login</button>
             </div>
         </header>
 
-        <div class="content-area" id="mainContent">
-
-            <section id="dashboard" class="view-section active">
-                <div class="hero-section card">
+        <div class="view-container">
+            
+            <section id="view-dashboard" class="view-section active">
+                <div class="hero">
+                    <div class="hero-content">
+                        <div class="badge badge-info mb-3">Enterprise SaaS Platform</div>
+                        <h1 class="hero-title">AI-Powered Cybersecurity for Modern Digital Threats</h1>
+                        <p class="hero-subtitle">Detect. Analyze. Respond. Protect. Integrated intelligence and automated workflows for SOC teams and enterprises.</p>
+                        <div class="hero-actions">
+                            <button class="btn btn-primary" onclick="switchView('scanner', document.querySelectorAll('.nav-item')[1])">Start Security Scan</button>
+                            <button class="btn btn-secondary" style="background: rgba(255,255,255,0.1); color: white; border-color: rgba(255,255,255,0.2);" onclick="switchView('copilot', document.querySelectorAll('.nav-item')[2])">AI Security Copilot</button>
+                        </div>
+                    </div>
                     <div class="hero-visual">
+                        <div class="ring ring-1"></div>
+                        <div class="ring ring-2"></div>
                         <div class="shield-3d"></div>
                     </div>
-                    <div class="hero-content">
-                        <h1 style="font-size: 2.5rem; line-height: 1.2;">AI-POWERED<br><span style="color: var(--secondary)">CYBER SECURITY PLATFORM</span></h1>
-                        <p style="font-size: 1.2rem; color: var(--text-muted); margin-bottom: 2rem;">Detect. Analyze. Respond. Protect.</p>
-                        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                            <button class="btn btn-primary" onclick="navigate('scanner')">Start Security Scan</button>
-                            <button class="btn btn-outline" onclick="navigate('copilot')">Open AI Copilot</button>
-                        </div>
+                </div>
+
+                <div class="mb-2" style="display: flex; justify-content: space-between; align-items: center;">
+                    <h3>Security Command Center</h3>
+                    <span class="text-muted" style="font-size: 0.85rem;">[DEMO DATA]</span>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="card card-glass stat-card">
+                        <span class="stat-label">Total Scans (30d)</span>
+                        <span class="stat-value">12,458</span>
+                        <div class="stat-meta"><span style="color: var(--success);">↑ 14%</span> vs last month</div>
+                    </div>
+                    <div class="card card-glass stat-card">
+                        <span class="stat-label">Threats Detected</span>
+                        <span class="stat-value" style="color: var(--danger);">342</span>
+                        <div class="stat-meta"><span style="color: var(--danger);">↑ 5%</span> vs last month</div>
+                    </div>
+                    <div class="card card-glass stat-card">
+                        <span class="stat-label">Critical Alerts</span>
+                        <span class="stat-value" style="color: var(--warning);">18</span>
+                        <div class="stat-meta">Pending SOC review</div>
+                    </div>
+                    <div class="card card-glass stat-card">
+                        <span class="stat-label">Average Risk Score</span>
+                        <span class="stat-value">24/100</span>
+                        <div class="stat-meta"><span style="color: var(--success);">Low</span> overall network risk</div>
                     </div>
                 </div>
 
-                <div class="grid-stats">
-                    <div class="card stat-card glass">
-                        <div class="stat-label">Total Scans (30d)</div>
-                        <div class="stat-value">12,458</div>
-                        <div class="badge badge-low">↑ 14% Normal</div>
-                    </div>
-                    <div class="card stat-card glass">
-                        <div class="stat-label">Active Incidents</div>
-                        <div class="stat-value">3</div>
-                        <div class="badge badge-high">Needs Attention</div>
-                    </div>
-                    <div class="card stat-card glass">
-                        <div class="stat-label">Threats Blocked</div>
-                        <div class="stat-value">842</div>
-                        <div class="badge badge-low">System Secure</div>
-                    </div>
-                    <div class="card stat-card glass">
-                        <div class="stat-label">Avg Risk Score</div>
-                        <div class="stat-value">24/100</div>
-                        <div class="badge badge-med">Monitor</div>
-                    </div>
-                </div>
-
-                <div class="grid-charts">
+                <div class="grid-2">
                     <div class="card">
-                        <h3>Threat Activity Trend</h3>
-                        <canvas id="threatChart" height="200"></canvas>
-                    </div>
-                    <div class="card">
-                        <h3>Recent Alerts (Demo Data)</h3>
-                        <div style="margin-top: 1rem;">
-                            <div style="padding: 1rem; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between;">
-                                <div><strong style="color: var(--danger)">Suspicious Login</strong><br><small>10.0.0.45</small></div>
-                                <small>2m ago</small>
-                            </div>
-                            <div style="padding: 1rem; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between;">
-                                <div><strong style="color: var(--warning)">Phishing Attempt</strong><br><small>Email Gateway</small></div>
-                                <small>15m ago</small>
-                            </div>
-                            <div style="padding: 1rem; display: flex; justify-content: space-between;">
-                                <div><strong style="color: var(--success)">Scan Complete</strong><br><small>Target: aurexa.space</small></div>
-                                <small>1h ago</small>
-                            </div>
+                        <h4 class="mb-3">Threat Detection Trend</h4>
+                        <div style="height: 250px; position: relative;">
+                            <canvas id="threatChart"></canvas>
                         </div>
+                    </div>
+                    <div class="card">
+                        <h4 class="mb-3">Recent Active Incidents</h4>
+                        <div class="table-responsive">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Severity</th>
+                                        <th>Status</th>
+                                        <th>Asset</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>INC-1042</td>
+                                        <td><span class="badge badge-danger">Critical</span></td>
+                                        <td>Investigating</td>
+                                        <td>auth.aurexa.space</td>
+                                    </tr>
+                                    <tr>
+                                        <td>INC-1041</td>
+                                        <td><span class="badge badge-warning">High</span></td>
+                                        <td>Open</td>
+                                        <td>Mobile API Gateway</td>
+                                    </tr>
+                                    <tr>
+                                        <td>INC-1040</td>
+                                        <td><span class="badge badge-info">Medium</span></td>
+                                        <td>Contained</td>
+                                        <td>Employee Laptop</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <button class="btn btn-secondary w-full mt-3" onclick="switchView('incidents', document.querySelectorAll('.nav-item')[6])">View All Incidents</button>
                     </div>
                 </div>
             </section>
 
-            <section id="scanner" class="view-section">
-                <h2>Security Scanner Command Center</h2>
-                <p style="color: var(--text-muted); margin-bottom: 2rem;">Perform client-side heuristic analysis and connect to backend APIs for deep intelligence.</p>
-                
-                <div class="card glass">
+            <section id="view-scanner" class="view-section">
+                <div class="mb-4">
+                    <h2>Advanced Security Scanner</h2>
+                    <p class="text-secondary">Perform local heuristic analysis and prepare files for cloud intelligence integration.</p>
+                </div>
+
+                <div class="card">
                     <div class="tabs">
-                        <div class="tab active" onclick="switchScannerTab('tab-url')">Website / URL</div>
-                        <div class="tab" onclick="switchScannerTab('tab-apk')">APK Screening</div>
-                        <div class="tab" onclick="switchScannerTab('tab-img')">Screenshot Check</div>
+                        <button class="tab-btn active" onclick="openTab('scan-url', this)">URL / Domain</button>
+                        <button class="tab-btn" onclick="openTab('scan-apk', this)">APK Screening</button>
+                        <button class="tab-btn" onclick="openTab('scan-image', this)">Screenshot Analysis</button>
                     </div>
 
-                    <div id="tab-url" class="tab-content active">
-                        <div class="input-group">
-                            <label>Target URL / Domain</label>
-                            <input type="text" id="urlInput" placeholder="https://example.com" onkeydown="if(event.key === 'Enter') runURLScan()">
+                    <div id="scan-url" class="tab-pane active">
+                        <div style="background: rgba(37, 99, 235, 0.05); border-left: 4px solid var(--accent-main); padding: 1rem; border-radius: var(--radius-sm); margin-bottom: 1.5rem;">
+                            <strong>Disclaimer:</strong> This tool performs <em>browser-side heuristic screening</em>. It checks for structural anomalies, syntax, and known patterns (e.g., EICAR). It does <strong>not</strong> perform real-time malware downloads, sandboxing, or DNS reputation checks without an active backend API connection.
                         </div>
-                        <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem;">
-                            <select id="scanDepth" style="width: 200px;">
-                                <option>Quick Risk Analysis</option>
-                                <option>Standard Analysis</option>
-                                <option>Deep Analysis (Requires Backend)</option>
-                            </select>
-                            <button class="btn btn-primary" onclick="runURLScan()">Analyze URL</button>
+
+                        <div class="form-group">
+                            <label class="form-label">Target URL or Domain</label>
+                            <input type="text" id="urlInput" class="form-control" placeholder="https://example.com" autocomplete="off" onkeypress="if(event.key === 'Enter') runUrlScan()">
                         </div>
                         
-                        <div class="terminal" id="urlResult" style="display: none;">
-                            <h4 style="color: #fff">AUREXA Preliminary Heuristic Analysis</h4>
-                            <p style="color: #94a3b8; font-size: 0.75rem; margin-bottom: 1rem;">Note: This is browser-side heuristic screening. Real reputation/sandboxing requires API connection.</p>
-                            <div id="urlOutput"></div>
-                        </div>
-                    </div>
-
-                    <div id="tab-apk" class="tab-content">
-                        <div class="input-group">
-                            <label>Upload APK File</label>
-                            <input type="file" id="apkInput" accept=".apk">
-                        </div>
-                        <button class="btn btn-primary" onclick="runAPKScan()">Generate SHA-256 & Screen</button>
-                        
-                        <div class="terminal" id="apkResult" style="display: none;">
-                            <h4 style="color: #fff">APK Static Screening (Client-Side)</h4>
-                            <div id="apkOutput"></div>
-                        </div>
-                    </div>
-
-                    <div id="tab-img" class="tab-content">
-                        <div class="input-group">
-                            <label>Upload Screenshot (Phishing Check)</label>
-                            <input type="file" id="imgInput" accept="image/png, image/jpeg">
-                        </div>
-                        <button class="btn btn-primary" onclick="runImgScan()">Analyze Image</button>
-                        
-                        <div class="terminal" id="imgResult" style="display: none;">
-                            <h4 style="color: #fff">Visual Heuristics Analysis</h4>
-                            <div id="imgOutput"></div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="copilot" class="view-section">
-                <h2>AI Security Copilot</h2>
-                <div class="card" style="display: flex; flex-direction: column; height: 60vh;">
-                    <div id="chatHistory" style="flex: 1; overflow-y: auto; padding: 1rem; background: var(--bg-base); border-radius: var(--radius-md); border: 1px solid var(--border-color); margin-bottom: 1rem; display: flex; flex-direction: column; gap: 1rem;">
-                        <div style="align-self: flex-start; background: var(--bg-surface-solid); padding: 1rem; border-radius: 12px; border: 1px solid var(--border-color); max-width: 80%;">
-                            <strong>Aurexa AI:</strong> Hello. I am your Security Copilot. You can ask me to explain a URL risk, summarize an incident, or explain MITRE ATT&CK techniques. <em>(Demo Mode)</em>
-                        </div>
-                    </div>
-                    <div style="display: flex; gap: 0.5rem;">
-                        <input type="text" id="aiInput" placeholder="Ask a security question..." onkeydown="if(event.key === 'Enter') askAI()">
-                        <button class="btn btn-primary" onclick="askAI()">Send</button>
-                    </div>
-                </div>
-            </section>
-
-            <section id="founder" class="view-section">
-                <h2>Executive Leadership</h2>
-                <div class="card glass">
-                    <div class="founder-grid">
-                        <div class="founder-image-placeholder">
-                            SP
-                        </div>
-                        <div>
-                            <h1 style="font-size: 2.5rem; margin-bottom: 0.5rem;">Srikanth Paka</h1>
-                            <h3 style="color: var(--secondary); margin-bottom: 1.5rem; font-weight: 600;">Founder & CEO — AUREXA | Certified Ethical Hacker</h3>
-                            
-                            <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: 1.5rem; font-size: 1.05rem;">
-                                Driven by the vision to democratize enterprise-grade cybersecurity. As a Certified Ethical Hacker, I founded AUREXA to bridge the gap between complex threat intelligence and actionable security operations. Our mission is to build AI-assisted workflows that empower SOC analysts, developers, and business leaders to defend against modern digital adversaries with precision and speed.
-                            </p>
-                            
-                            <div style="background: rgba(59, 130, 246, 0.05); border-left: 4px solid var(--secondary); padding: 1rem; margin-bottom: 2rem; border-radius: 0 var(--radius-md) var(--radius-md) 0;">
-                                <strong>Mission Statement:</strong> "Make cybersecurity intelligence easier to understand, faster to act on, and accessible to modern teams."
+                        <div class="grid-2 mb-3">
+                            <div class="form-group mb-0">
+                                <label class="form-label">Analysis Mode</label>
+                                <select class="form-control" id="urlScanMode">
+                                    <option value="quick">Quick Heuristic Analysis (Local)</option>
+                                    <option value="standard" disabled>Standard Analysis (API Required)</option>
+                                    <option value="deep" disabled>Deep Sandbox Analysis (API Required)</option>
+                                </select>
                             </div>
+                            <div style="display: flex; align-items: flex-end;">
+                                <button class="btn btn-primary w-full" style="height: 46px;" onclick="runUrlScan()">Analyze Target</button>
+                            </div>
+                        </div>
 
-                            <h4 style="margin-bottom: 1rem;">Contact Information</h4>
-                            <div class="contact-links">
-                                <a href="mailto:srikanthh3k@gmail.com" class="btn btn-outline">📧 srikanthh3k@gmail.com</a>
-                                <a href="tel:9640724438" class="btn btn-outline">📞 9640724438</a>
-                                <a href="tel:9703724438" class="btn btn-outline">📞 9703724438</a>
-                                <a href="https://wa.me/919640724438" target="_blank" class="btn btn-outline" style="color: #25D366; border-color: #25D366;">💬 WhatsApp</a>
-                                <a href="https://aurexa.space" target="_blank" class="btn btn-outline">🌐 aurexa.space</a>
-                                <a href="https://instagram.com/Aurexa_space" target="_blank" class="btn btn-outline" style="color: #E1306C; border-color: #E1306C;">📸 @Aurexa_space</a>
+                        <div id="urlResultBox" class="terminal-box" style="display: none;">
+                            <div class="term-header">
+                                <span>AUREXA Local Heuristics Engine v2.4</span>
+                                <span id="urlScanTime"></span>
+                            </div>
+                            <div id="urlTerminalContent"></div>
+                        </div>
+                    </div>
+
+                    <div id="scan-apk" class="tab-pane">
+                        <div class="form-group">
+                            <label class="form-label">Upload Android APK</label>
+                            <div style="border: 2px dashed var(--border-color); padding: 3rem 1rem; text-align: center; border-radius: var(--radius-md); background: var(--bg-primary); transition: all 0.2s;" id="apkDropZone">
+                                <p class="text-secondary mb-2">Drag and drop APK file here, or click to browse.</p>
+                                <input type="file" id="apkInput" accept=".apk" style="display: none;" onchange="handleApkSelect(event)">
+                                <button class="btn btn-secondary" onclick="document.getElementById('apkInput').click()">Select File</button>
+                            </div>
+                        </div>
+                        
+                        <div id="apkResultBox" class="terminal-box" style="display: none;">
+                            <div class="term-header">
+                                <span>Static Cloud Malware Analysis Placeholder</span>
+                            </div>
+                            <div id="apkTerminalContent"></div>
+                        </div>
+                    </div>
+
+                    <div id="scan-image" class="tab-pane">
+                        <div class="form-group">
+                            <label class="form-label">Upload Screenshot (Phishing / OCR Check)</label>
+                            <input type="file" id="imgInput" class="form-control" accept="image/png, image/jpeg, image/jpg, image/webp" onchange="handleImgSelect(event)">
+                        </div>
+                        
+                        <div class="grid-2 mt-3" id="imgPreviewSection" style="display: none;">
+                            <div>
+                                <h5 class="mb-2">Image Preview</h5>
+                                <img id="imgPreview" style="max-height: 250px; border-radius: var(--radius-md); border: 1px solid var(--border-color);" src="" alt="Preview">
+                            </div>
+                            <div class="terminal-box" style="margin-top: 0;">
+                                <div class="term-header">
+                                    <span>OCR & Vision AI Status</span>
+                                </div>
+                                <div id="imgTerminalContent"></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section id="fraud-help" class="view-section">
-                <h2>Cyber Fraud Help & Reporting</h2>
-                <div class="card glass" style="border-top: 4px solid var(--danger);">
-                    <h3 style="color: var(--danger);">Immediate Actions for Victims of Fraud</h3>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
-                        <div class="card" style="background: var(--bg-base);">
-                            <h4>1. Block Financial Assets</h4>
-                            <p style="font-size: 0.9rem; color: var(--text-muted);">Immediately contact your bank or UPI provider to freeze your accounts and block compromised cards.</p>
+            <section id="view-copilot" class="view-section">
+                <div class="mb-4">
+                    <h2>AI Security Copilot</h2>
+                    <p class="text-secondary">Defensive cybersecurity guidance and analysis assistant.</p>
+                </div>
+                
+                <div class="chat-container card" style="padding: 0;">
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="chat-msg msg-ai">
+                            <strong>AUREXA Copilot:</strong> Hello. I am your defensive cybersecurity assistant. Since no backend API key is currently configured in this environment, I am operating in <em>Local Demo Mode</em>. I can provide basic guidance on standard security queries. How can I help you today?
                         </div>
-                        <div class="card" style="background: var(--bg-base);">
-                            <h4>2. Preserve Evidence</h4>
-                            <p style="font-size: 0.9rem; color: var(--text-muted);">Do not delete malicious emails, SMS, or WhatsApp messages. Take screenshots of transactions and fake profiles.</p>
+                    </div>
+                    
+                    <div style="padding: 0 1rem;">
+                        <div class="suggested-prompts">
+                            <button class="prompt-pill" onclick="insertPrompt('Explain this URL scan result.')">Explain this URL scan result.</button>
+                            <button class="prompt-pill" onclick="insertPrompt('What is phishing?')">What is phishing?</button>
+                            <button class="prompt-pill" onclick="insertPrompt('How do I report cyber fraud in India?')">Report cyber fraud</button>
+                            <button class="prompt-pill" onclick="insertPrompt('What should I do if I clicked a suspicious link?')">Clicked a suspicious link</button>
                         </div>
-                        <div class="card" style="background: var(--bg-base);">
-                            <h4>3. Secure Accounts</h4>
-                            <p style="font-size: 0.9rem; color: var(--text-muted);">Change passwords immediately from a secure device and enable Multi-Factor Authentication (MFA).</p>
+                    </div>
+                    
+                    <div class="chat-input-area">
+                        <input type="text" id="aiInput" class="form-control" placeholder="Ask a security question..." onkeypress="if(event.key === 'Enter') sendChatMessage()">
+                        <button class="btn btn-primary" onclick="sendChatMessage()">Send</button>
+                    </div>
+                </div>
+                <div class="mt-3 text-center text-muted" style="font-size: 0.8rem;">
+                    <code>// DEV NOTE: To enable real LLM responses, connect /api/v1/copilot in the backend.</code>
+                </div>
+            </section>
+
+            <section id="view-fraud" class="view-section">
+                <div class="mb-4">
+                    <h2>Report Cyber Fraud (India)</h2>
+                    <p class="text-secondary">Immediate action steps and official reporting channels.</p>
+                </div>
+
+                <div class="grid-2">
+                    <div>
+                        <div class="fraud-alert">
+                            <h3>National Cyber Crime Helpline</h3>
+                            <div style="font-size: 2.5rem; font-weight: bold; margin: 1rem 0; letter-spacing: 2px;">1930</div>
+                            <p class="mb-3">Dial 1930 immediately to report financial fraud, UPI scams, and unauthorized bank transfers in India.</p>
+                            <a href="https://www.cybercrime.gov.in/" target="_blank" rel="noopener noreferrer" class="btn btn-danger w-full">Open cybercrime.gov.in</a>
                         </div>
-                        <div class="card" style="background: var(--bg-base);">
-                            <h4>4. Official Reporting (India)</h4>
-                            <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">Report the incident to the official National Cyber Crime Reporting Portal.</p>
-                            <a href="https://cybercrime.gov.in" target="_blank" class="btn btn-primary" style="width: 100%;">Visit cybercrime.gov.in</a>
-                            <p style="font-size: 0.8rem; margin-top: 0.5rem; text-align: center;">Helpline: <strong>1930</strong></p>
+                        
+                        <div class="card">
+                            <h4 class="mb-3">Emergency Action Checklist</h4>
+                            <ul style="display: flex; flex-direction: column; gap: 0.75rem;">
+                                <li style="display: flex; gap: 0.5rem;"><span style="color: var(--danger);">✓</span> <strong>Disconnect:</strong> Turn off internet / Wi-Fi if malware is suspected.</li>
+                                <li style="display: flex; gap: 0.5rem;"><span style="color: var(--danger);">✓</span> <strong>Block Accounts:</strong> Contact your bank immediately to freeze affected cards or UPI handles.</li>
+                                <li style="display: flex; gap: 0.5rem;"><span style="color: var(--danger);">✓</span> <strong>Preserve Evidence:</strong> Take screenshots of transactions, SMS, WhatsApp chats, and caller IDs. Do not delete them.</li>
+                                <li style="display: flex; gap: 0.5rem;"><span style="color: var(--danger);">✓</span> <strong>Secure Access:</strong> Change passwords from a <em>different, secure device</em>. Enable MFA.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="card h-100">
+                            <h4 class="mb-3">AUREXA Incident Advisory</h4>
+                            <p class="text-secondary mb-3">While AUREXA provides threat intelligence tools for enterprises, we are not a government entity. If you are an individual victim of fraud, you must use official government channels.</p>
+                            
+                            <h5 class="mb-2 mt-4">Common Scams to Watch Out For:</h5>
+                            <div style="display: flex; flex-direction: column; gap: 1rem;">
+                                <div style="padding: 1rem; border-radius: var(--radius-sm); background: var(--bg-primary); border: 1px solid var(--border-color);">
+                                    <strong>Fake Customer Care:</strong> Scammers posting fake toll-free numbers on Google search results.
+                                </div>
+                                <div style="padding: 1rem; border-radius: var(--radius-sm); background: var(--bg-primary); border: 1px solid var(--border-color);">
+                                    <strong>APK Fraud (Parcel/Electricity Scams):</strong> SMS claiming delivery delay or electricity cut, asking you to download an APK file which steals SMS OTPs.
+                                </div>
+                                <div style="padding: 1rem; border-radius: var(--radius-sm); background: var(--bg-primary); border: 1px solid var(--border-color);">
+                                    <strong>Part-time Job Scams:</strong> Telegram/WhatsApp messages offering money for liking YouTube videos, eventually asking for "investments".
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section id="threat-intel" class="view-section">
-                <h2>Threat Intelligence (Demo Data)</h2>
-                <div class="card glass"><p>Global threat map, emerging malware variants, and ransomware advisories will populate here when connected to the backend threat feed API.</p></div>
-            </section>
-            
-            <section id="ioc-intel" class="view-section">
-                <h2>IOC Intelligence Checker</h2>
-                <div class="card">
-                    <p>Enter an IP, Domain, Hash, or Email to check reputation against integrated Threat Intel feeds (VirusTotal, AbuseIPDB).</p>
-                    <div class="input-group" style="margin-top:1rem;">
-                        <input type="text" placeholder="e.g., 185.15.2.x or bad-domain.com">
-                        <button class="btn btn-primary" onclick="alert('Backend API Required for Live IOC Lookup')">Investigate IOC</button>
+            <section id="view-founder" class="view-section">
+                <div class="mb-4">
+                    <h2>Leadership</h2>
+                </div>
+                
+                <div class="card founder-card">
+                    <div class="founder-img-placeholder">
+                        SP
+                    </div>
+                    <div class="founder-info">
+                        <h2 style="font-size: 2rem; margin-bottom: 0.25rem;">Srikanth Paka</h2>
+                        <h4 style="color: var(--accent-main); margin-bottom: 1rem;">Founder & CEO — AUREXA | Certified Ethical Hacker</h4>
+                        
+                        <p class="text-secondary mb-3" style="font-size: 1.05rem; max-width: 800px;">
+                            Dedicated to building transparent, high-performance security tooling. As a Certified Ethical Hacker, Srikanth founded AUREXA to bridge the gap between complex threat intelligence and actionable, intuitive SOC workflows.
+                        </p>
+                        
+                        <div class="founder-socials">
+                            <a href="mailto:srikanthh3k@gmail.com" class="social-btn">✉️ srikanthh3k@gmail.com</a>
+                            <a href="tel:9640724438" class="social-btn">📞 9640724438</a>
+                            <a href="tel:9703724438" class="social-btn">📞 9703724438</a>
+                            <a href="https://wa.me/919640724438" target="_blank" rel="noopener" class="social-btn" style="color: #16a34a; border-color: #16a34a;">💬 WhatsApp</a>
+                            <a href="https://www.instagram.com/Aurexa_space/" target="_blank" rel="noopener" class="social-btn" style="color: #db2777; border-color: #db2777;">📸 @Aurexa_space</a>
+                        </div>
                     </div>
                 </div>
             </section>
 
-            <section id="mitre" class="view-section">
+            <section id="view-threat-intel" class="view-section">
+                <h2>Threat Intelligence</h2>
+                <div class="card mt-3">
+                    <div class="badge badge-warning mb-2">Backend Connection Required</div>
+                    <p class="text-secondary">This module visualizes global threat feeds, emerging ransomware variants, and phishing campaigns.</p>
+                    <div class="terminal-box mt-3" style="min-height: 200px; display: flex; align-items: center; justify-content: center;">
+                        <span class="text-muted">Awaiting connection to Threat Intel API...</span>
+                    </div>
+                </div>
+            </section>
+
+            <section id="view-ioc-intel" class="view-section">
+                <h2>IOC Intelligence</h2>
+                <div class="card mt-3">
+                    <p class="text-secondary mb-3">Investigate IPs, Domains, URLs, Hashes, and Emails against known reputation databases.</p>
+                    <div class="grid-2">
+                        <input type="text" class="form-control" placeholder="Enter IOC (e.g. 185.xxx.xxx.xxx or sha256...)">
+                        <button class="btn btn-secondary" onclick="alert('API Integration Required: Connect to VirusTotal / AbuseIPDB endpoints to execute real-time IOC lookups.')">Search IOC (Demo)</button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="view-mitre" class="view-section">
                 <h2>MITRE ATT&CK Mapping</h2>
-                <div class="card"><p>Defensive mapping matrix. Map detected alerts to specific Tactics (e.g., Initial Access) and Techniques (e.g., Phishing T1566).</p></div>
+                <div class="card mt-3">
+                    <p class="text-secondary mb-3">Defensive framework mapping for SOC analysts.</p>
+                    <div class="grid-4 text-center">
+                        <div class="card" style="background: var(--bg-tertiary); box-shadow: none;"><strong>Initial Access</strong><br><small class="text-muted">Phishing, Exploit Public App</small></div>
+                        <div class="card" style="background: var(--bg-tertiary); box-shadow: none;"><strong>Execution</strong><br><small class="text-muted">Command/Script Interpreter</small></div>
+                        <div class="card" style="background: var(--bg-tertiary); box-shadow: none;"><strong>Persistence</strong><br><small class="text-muted">Registry Keys, Scheduled Tasks</small></div>
+                        <div class="card" style="background: var(--bg-tertiary); box-shadow: none;"><strong>Defense Evasion</strong><br><small class="text-muted">Obfuscated Files, Process Injection</small></div>
+                    </div>
+                </div>
             </section>
-            
-            <section id="incidents" class="view-section">
+
+            <section id="view-incidents" class="view-section">
                 <h2>Incident Management</h2>
-                <div class="card">
-                    <button class="btn btn-primary" style="margin-bottom: 1rem;" onclick="alert('Modal to create incident')">+ Create Incident</button>
-                    <table style="width: 100%; text-align: left; border-collapse: collapse;">
-                        <tr style="border-bottom: 1px solid var(--border-color);"><th>ID</th><th>Severity</th><th>Status</th><th>Asset</th></tr>
-                        <tr><td style="padding: 1rem 0;">INC-042</td><td><span class="badge badge-high">High</span></td><td>Investigating</td><td>Mail Server</td></tr>
-                        <tr><td style="padding: 1rem 0;">INC-041</td><td><span class="badge badge-low">Low</span></td><td>Closed</td><td>Workstation 2</td></tr>
-                    </table>
+                <div class="card mt-3">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+                        <input type="text" class="form-control" placeholder="Filter incidents..." style="max-width: 300px;">
+                        <button class="btn btn-primary" onclick="alert('Functionality requires backend database setup.')">+ Create Incident</button>
+                    </div>
+                    <div class="table-responsive">
+                        <table>
+                            <thead><tr><th>ID</th><th>Severity</th><th>Status</th><th>Asset</th><th>Date</th></tr></thead>
+                            <tbody>
+                                <tr><td>INC-1042</td><td><span class="badge badge-danger">Critical</span></td><td>Investigating</td><td>auth.aurexa.space</td><td>Today</td></tr>
+                                <tr><td>INC-1041</td><td><span class="badge badge-warning">High</span></td><td>Open</td><td>Mobile API</td><td>Yesterday</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </section>
 
-            <section id="alerts" class="view-section">
-                <h2>SOC Alert Queue</h2>
-                <div class="card"><p>Acknowledge and triage incoming SIEM alerts here. Persisted via localStorage in demo mode.</p></div>
+            <section id="view-alerts" class="view-section">
+                <h2>Alert Center</h2>
+                <div class="card mt-3">
+                    <p class="text-secondary mb-3">Raw security events queued for triaging.</p>
+                    <div class="terminal-box">
+                        <div class="term-status-crit">[CRITICAL] 2026-08-28 22:05:11 - Multiple failed logins from 103.xxx.xxx.xxx</div>
+                        <div class="term-status-warn">[WARN] 2026-08-28 21:42:00 - Suspicious outbound connection to known tor exit node</div>
+                        <div class="term-status-safe">[INFO] 2026-08-28 20:00:00 - Scheduled system scan completed. 0 threats found.</div>
+                    </div>
+                </div>
             </section>
 
-            <section id="reports" class="view-section">
+            <section id="view-reports" class="view-section">
                 <h2>Security Reports</h2>
-                <div class="card">
-                    <p>Generate professional PDF reports for executives and clients.</p>
-                    <button class="btn btn-outline" style="margin-top:1rem;" onclick="window.print()">Print / Export PDF</button>
+                <div class="card mt-3">
+                    <p class="text-secondary mb-3">Generate and export platform analytics and incident summaries.</p>
+                    <div style="display: flex; gap: 1rem;">
+                        <button class="btn btn-secondary" onclick="window.print()">Print Current View</button>
+                        <button class="btn btn-primary" onclick="alert('Export functionality requires backend reporting service.')">Export JSON (Demo)</button>
+                    </div>
                 </div>
             </section>
 
-            <section id="admin" class="view-section">
-                <h2>Admin Panel (Demo Auth)</h2>
-                <div class="card" style="max-width: 400px; margin: 0 auto;">
-                    <h3>System Login</h3>
-                    <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem;">Production authentication requires backend API setup.</p>
-                    <div class="input-group">
-                        <label>Email</label>
-                        <input type="text" placeholder="admin@aurexa.space">
+            <section id="view-contact" class="view-section">
+                <h2>Contact AUREXA</h2>
+                <div class="card mt-3">
+                    <p class="text-secondary mb-4">Get in touch for enterprise deployments, API access, and SOC consulting.</p>
+                    <div class="grid-2">
+                        <div>
+                            <div class="mb-3"><strong>Email:</strong> <a href="mailto:srikanthh3k@gmail.com">srikanthh3k@gmail.com</a></div>
+                            <div class="mb-3"><strong>Phone (Primary):</strong> <a href="tel:9640724438">9640724438</a></div>
+                            <div class="mb-3"><strong>Phone (Secondary):</strong> <a href="tel:9703724438">9703724438</a></div>
+                            <div class="mb-3"><strong>Website:</strong> <a href="https://aurexa.space" target="_blank">aurexa.space</a></div>
+                        </div>
                     </div>
-                    <div class="input-group">
-                        <label>Password</label>
-                        <input type="password" placeholder="••••••••">
-                    </div>
-                    <button class="btn btn-primary" style="width: 100%;" onclick="alert('Demo Authentication successful. Loading settings...')">Login</button>
                 </div>
             </section>
 
-            <section id="about" class="view-section">
-                <h2>About AUREXA</h2>
-                <div class="card">
-                    <p>AUREXA is an AI-assisted cybersecurity platform focused on helping users understand suspicious URLs, indicators, incidents, and security risks through accessible security workflows.</p>
-                    <p style="margin-top: 1rem;">Version: 2.0 (Enterprise Frontend Edition)</p>
+            <section id="view-admin" class="view-section">
+                <h2>Platform Administration</h2>
+                <div class="card mt-3" style="max-width: 500px; margin-left: auto; margin-right: auto; text-align: center; padding: 3rem 2rem;">
+                    <div class="badge badge-danger mb-3">ADMIN_BACKEND_REQUIRED</div>
+                    <h3 class="mb-2">Secure Authentication Required</h3>
+                    <p class="text-secondary mb-4">Frontend-only authentication is inherently insecure. Connecting to the AUREXA administration panel requires configuring the JWT/Session backend architecture.</p>
+                    <div class="form-group text-left">
+                        <label class="form-label">Admin Email</label>
+                        <input type="email" class="form-control" disabled placeholder="admin@aurexa.space">
+                    </div>
+                    <div class="form-group text-left">
+                        <label class="form-label">Password</label>
+                        <input type="password" class="form-control" disabled placeholder="••••••••">
+                    </div>
+                    <button class="btn btn-secondary w-full mt-2" onclick="alert('Authentication disabled in static demo mode.')">Login (Disabled)</button>
                 </div>
             </section>
 
@@ -661,232 +703,317 @@
 </div>
 
 <script>
-    // System Architecture Config
-    const AUREXA_CONFIG = {
-        apiBase: null, // "https://api.aurexa.space/v1" for production
-        mode: "demo"
-    };
+    // --- Application State & Navigation ---
+    document.addEventListener("DOMContentLoaded", () => {
+        // Init Demo Data Chart
+        initChart();
+        // Check system preference for theme
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    });
 
-    // Navigation Logic
-    function navigate(viewId) {
-        // Update active nav item
-        document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-        const activeLink = Array.from(document.querySelectorAll('.nav-item')).find(el => el.getAttribute('onclick') === `Maps('${viewId}')`);
-        if(activeLink) activeLink.classList.add('active');
-
-        // Update view sections
+    function switchView(viewId, navElement) {
+        // Hide all views
         document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
-        const targetView = document.getElementById(viewId);
-        if(targetView) {
-            targetView.classList.add('active');
-            targetView.scrollIntoView({ behavior: 'smooth' });
+        // Show target view
+        const target = document.getElementById(`view-${viewId}`);
+        if(target) target.classList.add('active');
+        
+        // Update nav active states
+        if (navElement) {
+            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+            navElement.classList.add('active');
         }
 
         // Close mobile menu if open
         const sidebar = document.getElementById('sidebar');
-        if (sidebar.classList.contains('active')) {
-            toggleMenu();
+        if (sidebar.classList.contains('open')) {
+            toggleMobileMenu();
         }
+        
+        window.scrollTo(0, 0);
     }
 
-    // Mobile Menu Toggle
-    function toggleMenu() {
+    function toggleMobileMenu() {
         const sidebar = document.getElementById('sidebar');
-        const overlay = document.getElementById('mobileOverlay');
-        sidebar.classList.toggle('active');
+        const overlay = document.getElementById('sidebarOverlay');
+        sidebar.classList.toggle('open');
         overlay.classList.toggle('active');
     }
 
-    // Theme Toggle
+    // Close menu on ESC key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            const sidebar = document.getElementById('sidebar');
+            if (sidebar.classList.contains('open')) toggleMobileMenu();
+        }
+    });
+
     function toggleTheme() {
-        const html = document.documentElement;
-        if(html.getAttribute('data-theme') === 'light') {
-            html.setAttribute('data-theme', 'dark');
-            if(window.threatChartInstance) { window.threatChartInstance.options.scales.x.grid.color = 'rgba(255,255,255,0.1)'; window.threatChartInstance.update(); }
-        } else {
-            html.setAttribute('data-theme', 'light');
-            if(window.threatChartInstance) { window.threatChartInstance.options.scales.x.grid.color = 'rgba(0,0,0,0.1)'; window.threatChartInstance.update(); }
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        document.documentElement.setAttribute('data-theme', currentTheme === 'dark' ? 'light' : 'dark');
+        if (window.threatChart) {
+            window.threatChart.options.scales.x.grid.color = currentTheme === 'dark' ? 'rgba(0,0,0,0.05)' : 'rgba(255,255,255,0.05)';
+            window.threatChart.options.scales.y.grid.color = currentTheme === 'dark' ? 'rgba(0,0,0,0.05)' : 'rgba(255,255,255,0.05)';
+            window.threatChart.update();
         }
     }
 
-    // Scanner Tabs
-    function switchScannerTab(tabId) {
-        document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
-        document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+    function openTab(tabId, btnElement) {
+        // Tab container scope
+        const container = btnElement.closest('.card');
+        container.querySelectorAll('.tab-pane').forEach(el => el.classList.remove('active'));
+        container.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
         
-        event.target.classList.add('active');
         document.getElementById(tabId).classList.add('active');
+        btnElement.classList.add('active');
     }
 
-    // Heuristic URL Scanner
-    function runURLScan() {
-        const url = document.getElementById('urlInput').value.trim();
-        const output = document.getElementById('urlOutput');
-        const resultContainer = document.getElementById('urlResult');
+    // --- Chart.js Initialization ---
+    let threatChart = null;
+    function initChart() {
+        const ctx = document.getElementById('threatChart');
+        if (!ctx) return;
         
-        if(!url) { alert("Please enter a URL to analyze."); return; }
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        const gridColor = isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)';
+
+        window.threatChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                datasets: [{
+                    label: 'Blocked Threats',
+                    data: [12, 19, 15, 25, 22, 30, 28],
+                    borderColor: '#2563eb',
+                    backgroundColor: 'rgba(37, 99, 235, 0.1)',
+                    borderWidth: 2,
+                    tension: 0.4,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                    y: { beginAtZero: true, grid: { color: gridColor } },
+                    x: { grid: { color: gridColor } }
+                }
+            }
+        });
+    }
+
+    // --- URL Security Scanner Logic (Heuristics Only) ---
+    function runUrlScan() {
+        const input = document.getElementById('urlInput').value.trim();
+        const resultBox = document.getElementById('urlResultBox');
+        const termContent = document.getElementById('urlTerminalContent');
+        const timeHeader = document.getElementById('urlScanTime');
         
-        resultContainer.style.display = 'block';
-        output.innerHTML = '<i>Initializing heuristic scan...</i><br>';
+        if (!input) {
+            alert("Please enter a URL or Domain.");
+            return;
+        }
+
+        resultBox.style.display = 'block';
+        timeHeader.innerText = new Date().toLocaleTimeString();
+        termContent.innerHTML = '<i>Initializing local heuristic screening...</i><br>';
         
         setTimeout(() => {
             let score = 0;
-            let logs = [];
-            
-            // Basic Heuristics
-            if(url.toLowerCase().startsWith('http://')) {
-                score += 40;
-                logs.push('<span style="color:var(--warning)">[WARN] Unencrypted HTTP protocol detected.</span>');
-            } else if (url.toLowerCase().startsWith('https://')) {
-                logs.push('<span style="color:var(--success)">[OK] HTTPS encryption present.</span>');
+            let findings = [];
+            let isCritical = false;
+            let target = input;
+
+            // Normalize slightly for testing
+            if (!target.startsWith('http')) {
+                target = 'http://' + target;
             }
 
-            if(url.length > 75) {
-                score += 20;
-                logs.push('<span style="color:var(--warning)">[WARN] Unusually long URL structure detected.</span>');
-            }
+            try {
+                const urlObj = new URL(target);
+                
+                // 1. EICAR Check (CRITICAL OVERRIDE)
+                if (urlObj.hostname === 'secure.eicar.org' && urlObj.pathname.includes('eicar.com')) {
+                    findings.push('<span class="term-status-crit">[CRITICAL] EICAR ANTIVIRUS TEST FILE DETECTED. Do not download or execute the test file.</span>');
+                    score = 100;
+                    isCritical = true;
+                } else {
+                    // Standard Heuristics
+                    
+                    // HTTPS Check
+                    if (urlObj.protocol === 'https:') {
+                        findings.push('<span class="term-status-safe">[INFO] Transport Security: HTTPS detected. (Does not guarantee safety)</span>');
+                    } else {
+                        findings.push('<span class="term-status-warn">[WARN] Transport Security: HTTP used. Data is unencrypted.</span>');
+                        score += 30;
+                    }
 
-            const ipRegex = /\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b/;
-            if(ipRegex.test(url)) {
-                score += 60;
-                logs.push('<span style="color:var(--danger)">[CRITICAL] IP address used instead of domain name. High phishing risk.</span>');
-            }
+                    // IP Address Check
+                    const ipPattern = /^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$/;
+                    if (ipPattern.test(urlObj.hostname)) {
+                        findings.push('<span class="term-status-crit">[CRITICAL] Domain Structure: Direct IP address usage detected. Highly suspicious for standard web traffic.</span>');
+                        score += 50;
+                        isCritical = true;
+                    }
 
-            if(url.includes('@')) {
-                score += 50;
-                logs.push('<span style="color:var(--danger)">[CRITICAL] "@" symbol found. Often used for credential obfuscation.</span>');
-            }
+                    // Length Check
+                    if (input.length > 75) {
+                        findings.push('<span class="term-status-warn">[WARN] URL Length: Unusually long URL detected. May conceal payload or redirects.</span>');
+                        score += 15;
+                    }
 
-            let riskLevel = 'LOW';
-            let riskColor = 'var(--success)';
-            if(score >= 60) { riskLevel = 'CRITICAL'; riskColor = 'var(--danger)'; }
-            else if(score >= 30) { riskLevel = 'MEDIUM'; riskColor = 'var(--warning)'; }
+                    // Obfuscation check (@)
+                    if (target.includes('@')) {
+                        findings.push('<span class="term-status-crit">[CRITICAL] Syntax: Credentials obfuscation (@ symbol) detected. Common phishing technique.</span>');
+                        score += 40;
+                        isCritical = true;
+                    }
 
-            let finalHTML = `
-                <br><strong>Target:</strong> ${url}
-                <br><strong>Heuristic Risk Score:</strong> <span style="color:${riskColor}; font-weight:bold;">${score}/100 (${riskLevel})</span>
-                <br><br><strong>Indicators:</strong><br>
-                ${logs.length > 0 ? logs.join('<br>') : '<span style="color:var(--success)">[OK] No obvious suspicious heuristic patterns detected.</span>'}
-                <br><br><hr style="border-color:#1e293b; margin: 10px 0;">
-                <span style="color:#94a3b8">Recommendation: Real-time malware, reputation, and DNS resolution scanning requires configuring the AUREXA Threat Intel API.</span>
-            `;
-            output.innerHTML = finalHTML;
-        }, 1000);
-    }
+                    // Punycode check
+                    if (urlObj.hostname.includes('xn--')) {
+                        findings.push('<span class="term-status-warn">[WARN] Domain Structure: Punycode (homograph attack indicator) detected.</span>');
+                        score += 30;
+                    }
 
-    // Client-Side APK SHA-256 Hashing
-    async function runAPKScan() {
-        const fileInput = document.getElementById('apkInput');
-        const output = document.getElementById('apkOutput');
-        const resultContainer = document.getElementById('apkResult');
-
-        if(fileInput.files.length === 0) { alert("Please select an APK file."); return; }
-        
-        const file = fileInput.files[0];
-        resultContainer.style.display = 'block';
-        output.innerHTML = `<i>Extracting metadata for ${file.name}...</i><br>`;
-
-        try {
-            const buffer = await file.arrayBuffer();
-            const hashBuffer = await crypto.subtle.digest('SHA-256', buffer);
-            const hashArray = Array.from(new Uint8Array(hashBuffer));
-            const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-            
-            setTimeout(() => {
-                output.innerHTML = `
-                    <br><strong>File Name:</strong> ${file.name}
-                    <br><strong>File Size:</strong> ${(file.size / (1024*1024)).toFixed(2)} MB
-                    <br><strong>SHA-256 Hash:</strong> <span style="color:var(--info)">${hashHex}</span>
-                    <br><br><span style="color:var(--warning)">[ACTION REQUIRED]</span> File hash generated locally. Send this hash to the backend sandbox or VirusTotal API for real malware detection. Do not install unknown APKs.
-                `;
-            }, 800);
-        } catch (e) {
-            output.innerHTML = `<span style="color:var(--danger)">Error calculating file hash locally.</span>`;
-        }
-    }
-
-    // Screenshot Fake Heuristics
-    function runImgScan() {
-        const fileInput = document.getElementById('imgInput');
-        const output = document.getElementById('imgOutput');
-        const resultContainer = document.getElementById('imgResult');
-        
-        if(fileInput.files.length === 0) { alert("Please select an image."); return; }
-        const file = fileInput.files[0];
-        
-        resultContainer.style.display = 'block';
-        output.innerHTML = `<i>Analyzing visual layout and simulating OCR...</i><br>`;
-        
-        setTimeout(() => {
-            output.innerHTML = `
-                <br><strong>File:</strong> ${file.name}
-                <br><strong>Status:</strong> <span style="color:var(--warning)">Pending Backend OCR Verification</span>
-                <br><br><strong>Checklist items verified locally:</strong>
-                <br>- File type safe: ${file.type}
-                <br>- Image dimensions extracted.
-                <br><br><span style="color:#94a3b8">Note: Extracting urgency language, credential requests, and hidden links from images requires the AUREXA Cloud Vision API.</span>
-            `;
-        }, 1200);
-    }
-
-    // AI Copilot Demo
-    function askAI() {
-        const input = document.getElementById('aiInput');
-        const text = input.value.trim();
-        if(!text) return;
-
-        const chat = document.getElementById('chatHistory');
-        
-        // Append user msg
-        chat.innerHTML += `<div style="align-self: flex-end; background: var(--secondary); color: white; padding: 1rem; border-radius: 12px; max-width: 80%;">${text}</div>`;
-        input.value = '';
-        chat.scrollTop = chat.scrollHeight;
-
-        // Simulate AI thinking & response
-        setTimeout(() => {
-            let response = "I am operating in frontend demo mode. To receive deep analysis on threats, URLs, or incident response procedures, please configure the backend LLM API.";
-            
-            if(text.toLowerCase().includes("mitre")) {
-                response = "MITRE ATT&CK is a globally-accessible knowledge base of adversary tactics and techniques based on real-world observations. In AUREXA, you can map your alerts to these tactics to understand the adversary's intent.";
-            } else if (text.toLowerCase().includes("url") || text.toLowerCase().includes("risk")) {
-                response = "A high URL risk score usually means the link uses an IP instead of a domain, lacks HTTPS, or contains obfuscation tactics (like the @ symbol). I recommend blocking it at the firewall.";
-            }
-            
-            chat.innerHTML += `<div style="align-self: flex-start; background: var(--bg-surface-solid); padding: 1rem; border-radius: 12px; border: 1px solid var(--border-color); max-width: 80%;"><strong>Aurexa AI:</strong> ${response}</div>`;
-            chat.scrollTop = chat.scrollHeight;
-        }, 1000);
-    }
-
-    // Initialize Chart.js
-    document.addEventListener('DOMContentLoaded', () => {
-        const ctx = document.getElementById('threatChart');
-        if(ctx) {
-            window.threatChartInstance = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-                    datasets: [{
-                        label: 'Blocked Threats',
-                        data: [65, 59, 80, 81, 56, 55, 40],
-                        borderColor: '#3b82f6',
-                        backgroundColor: 'rgba(59, 130, 246, 0.1)',
-                        tension: 0.4,
-                        fill: true
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: { legend: { display: false } },
-                    scales: {
-                        y: { beginAtZero: true, grid: { color: 'rgba(15, 23, 42, 0.05)' } },
-                        x: { grid: { color: 'rgba(15, 23, 42, 0.05)' } }
+                    if (score === 0) {
+                        findings.push('<span class="term-status-safe">[OK] Heuristics: No obvious structural anomalies detected.</span>');
                     }
                 }
-            });
-        }
-    });
-</script>
+            } catch (e) {
+                findings.push('<span class="term-status-crit">[ERROR] Syntax: Invalid URL structure. Could not parse safely.</span>');
+                score += 50;
+                isCritical = true;
+            }
 
+            // Cap score
+            score = Math.min(score, 100);
+
+            // Determine Level
+            let levelStr = '<span class="term-status-safe">LOW RISK INDICATORS</span>';
+            if (score >= 70 || isCritical) levelStr = '<span class="term-status-crit">CRITICAL RISK INDICATORS</span>';
+            else if (score >= 40) levelStr = '<span class="term-status-warn">HIGH RISK INDICATORS</span>';
+            else if (score >= 20) levelStr = '<span class="term-status-info">MODERATE RISK INDICATORS</span>';
+
+            let output = `
+<br><strong>Target:</strong> ${input.replace(/</g, "&lt;")}
+<br><strong>Analysis Type:</strong> Local Browser Heuristics
+<br><strong>Overall Risk Score:</strong> ${score}/100 (${levelStr})
+<br><strong>Confidence:</strong> Low (Backend API required for definitive intelligence)
+<br><br><strong>Detected Indicators:</strong><br>
+${findings.join('<br>')}
+<br><br>
+<span style="color: #64748b;">----------------------------------------</span><br>
+<span style="color: #94a3b8;"><strong>Recommended Action:</strong> ${isCritical ? 'Block execution/navigation immediately.' : 'Proceed with caution. Connect Threat Intel API for deep domain reputation scanning.'}</span>
+`;
+            termContent.innerHTML = output;
+
+        }, 800);
+    }
+
+    // --- APK Screening Logic (Placeholder) ---
+    function handleApkSelect(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        const resultBox = document.getElementById('apkResultBox');
+        const termContent = document.getElementById('apkTerminalContent');
+        
+        resultBox.style.display = 'block';
+        termContent.innerHTML = `<i>Processing local file metadata for: ${file.name}</i><br>`;
+
+        setTimeout(() => {
+            // Simulated local info
+            let output = `
+<br><strong>File Name:</strong> ${file.name}
+<br><strong>File Size:</strong> ${(file.size / (1024*1024)).toFixed(2)} MB
+<br><strong>MIME Type:</strong> ${file.type || 'application/vnd.android.package-archive'}
+<br><strong>Client-side SHA-256 Placeholder:</strong> (Requires WebCrypto digest completion)
+<br><br>
+<span class="term-status-warn">[ACTION REQUIRED] Static cloud malware analysis is not configured.</span>
+<br><span style="color: #94a3b8;">Browser cannot perform secure decompilation or manifest extraction. 
+<br>Configure API connector to send file hash to cloud sandbox.</span>
+            `;
+            termContent.innerHTML = output;
+        }, 600);
+    }
+
+    // --- Screenshot Logic ---
+    function handleImgSelect(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        const previewSection = document.getElementById('imgPreviewSection');
+        const previewImg = document.getElementById('imgPreview');
+        const termContent = document.getElementById('imgTerminalContent');
+        
+        // Preview
+        previewImg.src = URL.createObjectURL(file);
+        previewSection.style.display = 'grid'; // matches .grid-2
+        if(window.innerWidth <= 768) previewSection.style.display = 'block';
+
+        termContent.innerHTML = `<i>Queuing image for OCR analysis...</i><br>`;
+
+        setTimeout(() => {
+            termContent.innerHTML = `
+<br><strong>File:</strong> ${file.name}
+<br><strong>Type:</strong> ${file.type}
+<br><strong>Size:</strong> ${(file.size / 1024).toFixed(1)} KB
+<br><br>
+<span class="term-status-warn">[PENDING] AI Vision / OCR API not connected.</span>
+<br><span style="color: #94a3b8;">Cannot detect credential harvesting layouts, urgency text, or malicious QR codes without backend processing.</span>
+            `;
+        }, 800);
+    }
+
+    // --- AI Copilot Chat Demo ---
+    function sendChatMessage() {
+        const inputEl = document.getElementById('aiInput');
+        const text = inputEl.value.trim();
+        if(!text) return;
+        
+        appendChatMsg(text, 'user');
+        inputEl.value = '';
+
+        setTimeout(() => {
+            generateAIResponse(text);
+        }, 1000);
+    }
+
+    function insertPrompt(text) {
+        document.getElementById('aiInput').value = text;
+        sendChatMessage();
+    }
+
+    function appendChatMsg(text, sender) {
+        const container = document.getElementById('chatMessages');
+        const msgDiv = document.createElement('div');
+        msgDiv.className = `chat-msg msg-${sender}`;
+        msgDiv.innerHTML = sender === 'ai' ? `<strong>AUREXA Copilot:</strong> ${text}` : text;
+        container.appendChild(msgDiv);
+        container.scrollTop = container.scrollHeight;
+    }
+
+    function generateAIResponse(query) {
+        const q = query.toLowerCase();
+        let response = "I am operating in a disconnected frontend state. For deep analysis, please configure my backend API connection.";
+
+        if (q.includes('url') || q.includes('scan result')) {
+            response = "The URL scanner evaluates structure. If you see 'CRITICAL' indicators like an IP address instead of a domain name, or obfuscation characters (@), it often indicates a phishing attempt trying to bypass standard filtering.";
+        } else if (q.includes('phishing')) {
+            response = "Phishing is a social engineering attack where an attacker impersonates a trusted entity to steal sensitive data, such as login credentials or credit card numbers. Always verify the sender's email address and domain.";
+        } else if (q.includes('report') || q.includes('fraud')) {
+            response = "If you are in India and suspect financial cyber fraud, dial <strong>1930</strong> immediately to freeze the transaction, and file a detailed report at <strong>cybercrime.gov.in</strong>. Preserve all evidence (screenshots, SMS).";
+        } else if (q.includes('clicked')) {
+            response = "If you clicked a suspicious link: 1. Disconnect from the internet/network immediately to prevent malware payload drops. 2. Do not enter any credentials. 3. Run a full system antivirus scan. 4. Change your critical passwords from a different, known-safe device.";
+        } else if (q.includes('apk')) {
+            response = "A suspicious APK (Android App) should never be installed. Attackers use fake apps (like fake electricity bill updates or delivery apps) to intercept SMS OTPs. Upload the file hash to VirusTotal or an enterprise sandbox for analysis.";
+        }
+
+        appendChatMsg(response, 'ai');
+    }
+</script>
 </body>
 </html>
