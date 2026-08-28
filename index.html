@@ -2,1325 +2,1313 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="theme-color" content="#061a33">
 
-<meta name="description"
-content="AUREXA — Cybersecurity, Technology and Innovation. Founded by Srikanth Paka.">
-
-<meta name="keywords"
-content="AUREXA, cybersecurity, ethical hacking, cyber security courses, Srikanth Paka, technology, AI security, web security">
+<!-- AUREXA WEBSITE LOGO / FAVICON -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 120'%3E%3Cpath d='M50 4L91 20 84 78 50 114 16 78 9 20z' fill='%23061a33' stroke='%23087ef5' stroke-width='6'/%3E%3Ctext x='50' y='72' text-anchor='middle' font-family='Arial' font-size='48' font-weight='bold' fill='%2308c7ff'%3EA%3C/text%3E%3C/svg%3E">
 
 <title>AUREXA | Cybersecurity • Technology • Innovation</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap');
 
 :root{
-    --navy:#061a33;
-    --navy2:#092d59;
-    --blue:#087ef5;
-    --cyan:#08c7ff;
-    --ink:#071a31;
-    --muted:#65788c;
-    --bg:#f5f9fd;
-    --white:#fff;
-    --line:#dce8f2;
-    --shadow:0 25px 80px rgba(4,38,75,.13);
-    --radius:28px;
+--navy:#061a33;
+--navy2:#092d59;
+--blue:#087ef5;
+--cyan:#08c7ff;
+--ink:#071a31;
+--muted:#65788c;
+--bg:#f5f9fd;
+--white:#fff;
+--line:#dce8f2;
+--danger:#e53935;
+--success:#10a36d;
+--shadow:0 25px 80px rgba(4,38,75,.13);
 }
 
 *{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
+box-sizing:border-box;
+margin:0;
+padding:0;
 }
 
 html{
-    scroll-behavior:smooth;
+scroll-behavior:smooth;
 }
 
 body{
-    font-family:"DM Sans",Arial,sans-serif;
-    color:var(--ink);
-    background:var(--bg);
-    overflow-x:hidden;
+font-family:"DM Sans",Arial,sans-serif;
+color:var(--ink);
+background:var(--bg);
+overflow-x:hidden;
 }
 
 a{
-    text-decoration:none;
-    color:inherit;
+text-decoration:none;
+color:inherit;
 }
 
-button,
-input,
-textarea,
-select{
-    font:inherit;
+button,input,textarea,select{
+font:inherit;
 }
 
 button{
-    cursor:pointer;
-    border:0;
+cursor:pointer;
+border:0;
 }
 
 img{
-    max-width:100%;
-    display:block;
-}
-
-.container{
-    width:min(1180px,calc(100% - 40px));
-    margin:auto;
+max-width:100%;
+display:block;
 }
 
 .topline{
-    height:4px;
-    background:linear-gradient(90deg,#087ef5,#08c7ff,transparent);
+height:4px;
+background:linear-gradient(90deg,#087ef5,#08c7ff,transparent);
+}
+
+.container{
+width:min(1180px,calc(100% - 40px));
+margin:auto;
 }
 
 /* ================= HEADER ================= */
 
 header{
-    position:sticky;
-    top:0;
-    z-index:999;
-    background:rgba(255,255,255,.96);
-    backdrop-filter:blur(20px);
-    border-bottom:1px solid var(--line);
+position:sticky;
+top:0;
+z-index:999;
+background:rgba(255,255,255,.96);
+backdrop-filter:blur(20px);
+border-bottom:1px solid var(--line);
 }
 
 .nav{
-    min-height:82px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:20px;
+min-height:82px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:20px;
 }
 
 .brand{
-    display:flex;
-    align-items:center;
-    gap:12px;
+display:flex;
+align-items:center;
+gap:12px;
 }
 
 .logo{
-    width:48px;
-    height:58px;
-    position:relative;
-    display:grid;
-    place-items:center;
+width:50px;
+height:60px;
+position:relative;
+display:grid;
+place-items:center;
 }
 
-.logo:before{
-    content:"";
-    position:absolute;
-    inset:3px 5px 2px;
-    border:4px solid var(--blue);
-    clip-path:polygon(
-        50% 0,
-        92% 15%,
-        84% 70%,
-        50% 100%,
-        16% 70%,
-        8% 15%
-    );
-    background:linear-gradient(145deg,#fff,#e9f8ff);
+.logoShape{
+position:absolute;
+inset:2px 5px 2px;
+clip-path:polygon(
+50% 0,
+92% 15%,
+84% 70%,
+50% 100%,
+16% 70%,
+8% 15%
+);
+background:linear-gradient(145deg,#eaf9ff,#fff);
+border:4px solid var(--blue);
 }
 
 .logo span{
-    position:relative;
-    z-index:2;
-    font:800 21px "Space Grotesk";
-    color:var(--blue);
+position:relative;
+z-index:2;
+font:900 24px "Space Grotesk";
+color:var(--blue);
 }
 
 .brand strong{
-    display:block;
-    font:800 28px "Space Grotesk";
-    letter-spacing:-.06em;
+display:block;
+font:900 28px "Space Grotesk";
+letter-spacing:-.06em;
 }
 
 .brand small{
-    display:block;
-    font-size:9px;
-    font-weight:900;
-    letter-spacing:.18em;
-    color:#7c91a5;
+display:block;
+font-size:9px;
+font-weight:900;
+letter-spacing:.18em;
+color:#7c91a5;
 }
 
 .navlinks{
-    display:flex;
-    gap:22px;
-    align-items:center;
-    font-size:14px;
-    font-weight:800;
-    color:#43566a;
+display:flex;
+gap:20px;
+align-items:center;
+font-size:14px;
+font-weight:800;
+color:#43566a;
 }
 
 .navlinks a:hover{
-    color:var(--blue);
+color:var(--blue);
 }
 
 .actions{
-    display:flex;
-    gap:9px;
+display:flex;
+gap:9px;
 }
 
 .icon{
-    width:48px;
-    height:48px;
-    border-radius:16px;
-    background:#eef7fd;
-    border:1px solid var(--line);
-    display:grid;
-    place-items:center;
-    font-size:21px;
-    color:var(--navy);
+width:48px;
+height:48px;
+border-radius:16px;
+background:#eef7fd;
+border:1px solid var(--line);
+display:grid;
+place-items:center;
+font-size:21px;
+color:var(--navy);
 }
 
 .notify{
-    position:relative;
+position:relative;
 }
 
 .notify i{
-    position:absolute;
-    width:8px;
-    height:8px;
-    background:#ff416c;
-    border:2px solid white;
-    border-radius:50%;
-    top:8px;
-    right:8px;
+position:absolute;
+width:8px;
+height:8px;
+background:#ff416c;
+border:2px solid white;
+border-radius:50%;
+top:8px;
+right:8px;
 }
 
 .menu{
-    display:none;
+display:none;
 }
 
 .mobileNav{
-    display:none;
-    padding:15px 20px;
-    background:#fff;
-    border-top:1px solid var(--line);
+display:none;
+padding:15px 20px;
+background:#fff;
+border-top:1px solid var(--line);
 }
 
 .mobileNav.show{
-    display:block;
+display:block;
 }
 
 .mobileNav a{
-    display:block;
-    padding:13px 3px;
-    border-bottom:1px solid #edf2f6;
-    font-weight:800;
+display:block;
+padding:13px 3px;
+border-bottom:1px solid #edf2f6;
+font-weight:800;
 }
 
 /* ================= HERO ================= */
 
 .hero{
-    min-height:calc(100vh - 86px);
-    display:flex;
-    align-items:center;
-    position:relative;
-    overflow:hidden;
-    background:
-        radial-gradient(
-            circle at 85% 15%,
-            rgba(8,199,255,.18),
-            transparent 30%
-        ),
-        radial-gradient(
-            circle at 5% 90%,
-            rgba(8,126,245,.13),
-            transparent 30%
-        ),
-        #fff;
+min-height:calc(100vh - 86px);
+display:flex;
+align-items:center;
+position:relative;
+overflow:hidden;
+background:
+radial-gradient(circle at 85% 15%,rgba(8,199,255,.18),transparent 30%),
+radial-gradient(circle at 5% 90%,rgba(8,126,245,.13),transparent 30%),
+#fff;
 }
 
 .heroGrid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:70px;
-    align-items:center;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:70px;
+align-items:center;
 }
 
 .kicker{
-    color:var(--blue);
-    font-size:12px;
-    font-weight:900;
-    letter-spacing:.18em;
-    text-transform:uppercase;
-    margin-bottom:18px;
+color:var(--blue);
+font-size:12px;
+font-weight:900;
+letter-spacing:.18em;
+text-transform:uppercase;
+margin-bottom:18px;
 }
 
 .hero h1{
-    font:700 clamp(46px,6vw,82px)/1.01 "Space Grotesk";
-    letter-spacing:-.07em;
+font:700 clamp(46px,6vw,82px)/1.01 "Space Grotesk";
+letter-spacing:-.07em;
 }
 
 .gradient{
-    background:linear-gradient(90deg,#087ef5,#08c7ff);
-    -webkit-background-clip:text;
-    background-clip:text;
-    color:transparent;
+background:linear-gradient(90deg,#087ef5,#08c7ff);
+-webkit-background-clip:text;
+background-clip:text;
+color:transparent;
 }
 
 .hero p{
-    color:#60748a;
-    font-size:19px;
-    line-height:1.8;
-    margin:28px 0;
+color:#60748a;
+font-size:19px;
+line-height:1.8;
+margin:28px 0;
 }
 
 .btns{
-    display:flex;
-    gap:12px;
-    flex-wrap:wrap;
+display:flex;
+gap:12px;
+flex-wrap:wrap;
 }
 
 .btn{
-    padding:15px 22px;
-    border-radius:15px;
-    font-weight:900;
-    display:inline-flex;
-    justify-content:center;
-    align-items:center;
-    gap:8px;
-    transition:.25s;
-    box-shadow:0 15px 35px rgba(8,126,245,.12);
+padding:15px 22px;
+border-radius:15px;
+font-weight:900;
+display:inline-flex;
+justify-content:center;
+align-items:center;
+gap:8px;
+transition:.25s;
+box-shadow:0 15px 35px rgba(8,126,245,.12);
 }
 
 .btn:hover{
-    transform:translateY(-3px);
+transform:translateY(-3px);
 }
 
 .primary{
-    color:#fff;
-    background:linear-gradient(135deg,#0675ef,#08bfff);
+color:#fff;
+background:linear-gradient(135deg,#0675ef,#08bfff);
 }
 
 .secondary{
-    background:#fff;
-    border:1px solid var(--line);
+background:#fff;
+border:1px solid var(--line);
 }
 
-/* ================= HERO 3D ================= */
+/* ================= HERO VISUAL ================= */
 
 .scene{
-    min-height:530px;
-    display:grid;
-    place-items:center;
-    perspective:1200px;
+min-height:530px;
+display:grid;
+place-items:center;
+perspective:1200px;
 }
 
 .cube{
-    width:350px;
-    height:430px;
-    border-radius:55px;
-    background:
-        radial-gradient(
-            circle at 50% 15%,
-            rgba(8,199,255,.5),
-            transparent 30%
-        ),
-        linear-gradient(145deg,#092f61,#03152d);
-    box-shadow:
-        0 50px 100px rgba(0,62,130,.3),
-        inset 0 0 80px rgba(8,199,255,.12);
-    transform:rotateY(-13deg) rotateX(7deg);
-    position:relative;
-    animation:float 5s ease-in-out infinite;
+width:350px;
+height:430px;
+border-radius:55px;
+background:
+radial-gradient(circle at 50% 15%,rgba(8,199,255,.5),transparent 30%),
+linear-gradient(145deg,#092f61,#03152d);
+box-shadow:
+0 50px 100px rgba(0,62,130,.3),
+inset 0 0 80px rgba(8,199,255,.12);
+transform:rotateY(-13deg) rotateX(7deg);
+position:relative;
+animation:float 5s ease-in-out infinite;
 }
 
 @keyframes float{
-    0%,100%{
-        transform:rotateY(-13deg) rotateX(7deg) translateY(0);
-    }
-
-    50%{
-        transform:rotateY(-7deg) rotateX(4deg) translateY(-15px);
-    }
+0%,100%{
+transform:rotateY(-13deg) rotateX(7deg) translateY(0);
+}
+50%{
+transform:rotateY(-7deg) rotateX(4deg) translateY(-15px);
+}
 }
 
 .cube:before{
-    content:"";
-    position:absolute;
-    inset:35px;
-    border:1px solid rgba(8,199,255,.3);
-    border-radius:35px;
+content:"";
+position:absolute;
+inset:35px;
+border:1px solid rgba(8,199,255,.3);
+border-radius:35px;
 }
 
 .cubeShield{
-    position:absolute;
-    left:50%;
-    top:50%;
-    transform:translate(-50%,-50%);
-    width:205px;
-    height:250px;
-    clip-path:polygon(
-        50% 0,
-        94% 15%,
-        84% 72%,
-        50% 100%,
-        16% 72%,
-        6% 15%
-    );
-    background:linear-gradient(
-        150deg,
-        #0bcaff,
-        #087ef5 48%,
-        #061a33
-    );
-    display:grid;
-    place-items:center;
-    box-shadow:0 0 70px rgba(8,199,255,.35);
+position:absolute;
+left:50%;
+top:50%;
+transform:translate(-50%,-50%);
+width:205px;
+height:250px;
+clip-path:polygon(
+50% 0,
+94% 15%,
+84% 72%,
+50% 100%,
+16% 72%,
+6% 15%
+);
+background:linear-gradient(150deg,#0bcaff,#087ef5 48%,#061a33);
+display:grid;
+place-items:center;
+box-shadow:0 0 70px rgba(8,199,255,.35);
 }
 
 .cubeShield span{
-    color:#fff;
-    font:800 75px "Space Grotesk";
+color:#fff;
+font:800 75px "Space Grotesk";
 }
 
 .orbit{
-    position:absolute;
-    width:430px;
-    height:125px;
-    border:9px solid #08c7ff;
-    border-left-color:transparent;
-    border-right-color:#087ef5;
-    border-radius:50%;
-    transform:rotate(-22deg);
-    top:48%;
-    left:50%;
-    translate:-50% -50%;
+position:absolute;
+width:430px;
+height:125px;
+border:9px solid #08c7ff;
+border-left-color:transparent;
+border-right-color:#087ef5;
+border-radius:50%;
+transform:rotate(-22deg);
+top:48%;
+left:50%;
+translate:-50% -50%;
 }
 
 .floatingCard{
-    position:absolute;
-    background:rgba(255,255,255,.95);
-    border:1px solid var(--line);
-    box-shadow:var(--shadow);
-    border-radius:18px;
-    padding:15px 18px;
-    font-weight:900;
+position:absolute;
+background:rgba(255,255,255,.95);
+border:1px solid var(--line);
+box-shadow:var(--shadow);
+border-radius:18px;
+padding:15px 18px;
+font-weight:900;
 }
 
 .card1{
-    right:-15px;
-    top:50px;
+right:-15px;
+top:50px;
 }
 
 .card2{
-    left:-20px;
-    bottom:55px;
+left:-20px;
+bottom:55px;
 }
 
 /* ================= SECTIONS ================= */
 
 .section{
-    padding:100px 0;
+padding:100px 0;
 }
 
 .sectionHead{
-    display:flex;
-    justify-content:space-between;
-    align-items:end;
-    gap:30px;
-    margin-bottom:45px;
+display:flex;
+justify-content:space-between;
+align-items:end;
+gap:30px;
+margin-bottom:45px;
 }
 
 .sectionHead h2{
-    font:700 clamp(35px,5vw,58px)/1 "Space Grotesk";
-    letter-spacing:-.06em;
+font:700 clamp(35px,5vw,58px)/1 "Space Grotesk";
+letter-spacing:-.06em;
 }
 
 .sectionHead p{
-    max-width:540px;
-    color:var(--muted);
-    line-height:1.8;
+max-width:540px;
+color:var(--muted);
+line-height:1.8;
 }
 
 /* ================= STATS ================= */
 
 .stats{
-    background:var(--navy);
-    color:#fff;
+background:var(--navy);
+color:#fff;
 }
 
 .statGrid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:1px;
-    background:rgba(255,255,255,.12);
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:1px;
+background:rgba(255,255,255,.12);
 }
 
 .stat{
-    padding:35px;
-    background:var(--navy);
+padding:35px;
+background:var(--navy);
 }
 
 .stat strong{
-    display:block;
-    font:700 42px "Space Grotesk";
-    color:#09c6ff;
+display:block;
+font:700 42px "Space Grotesk";
+color:#09c6ff;
 }
 
 .stat span{
-    color:#a9bdd0;
-    font-size:14px;
+color:#a9bdd0;
+font-size:14px;
 }
 
 /* ================= COURSES ================= */
 
 .courses{
-    background:#f7fbff;
+background:#f7fbff;
 }
 
 .courseGrid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:24px;
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:24px;
 }
 
 .course{
-    background:#fff;
-    border:1px solid var(--line);
-    border-radius:32px;
-    padding:32px;
-    min-height:390px;
-    position:relative;
-    overflow:hidden;
-    box-shadow:0 15px 50px rgba(10,55,100,.07);
-    transition:.3s;
+background:#fff;
+border:1px solid var(--line);
+border-radius:32px;
+padding:32px;
+min-height:390px;
+position:relative;
+overflow:hidden;
+box-shadow:0 15px 50px rgba(10,55,100,.07);
+transition:.3s;
 }
 
 .course:hover{
-    transform:translateY(-8px);
-    box-shadow:0 30px 70px rgba(10,55,100,.14);
+transform:translateY(-8px);
+box-shadow:0 30px 70px rgba(10,55,100,.14);
 }
 
 .course:after{
-    content:"";
-    position:absolute;
-    width:190px;
-    height:190px;
-    border-radius:50%;
-    background:#eaf6ff;
-    right:-70px;
-    top:-80px;
-    z-index:0;
+content:"";
+position:absolute;
+width:190px;
+height:190px;
+border-radius:50%;
+background:#eaf6ff;
+right:-70px;
+top:-80px;
+z-index:0;
 }
 
 .course>*{
-    position:relative;
-    z-index:1;
+position:relative;
+z-index:1;
 }
 
 .courseIcon{
-    width:72px;
-    height:72px;
-    display:grid;
-    place-items:center;
-    background:#e5f7ff;
-    border-radius:22px;
-    font-size:38px;
-    margin-bottom:28px;
+width:72px;
+height:72px;
+display:grid;
+place-items:center;
+background:#e5f7ff;
+border-radius:22px;
+font-size:38px;
+margin-bottom:28px;
 }
 
 .level{
-    display:inline-block;
-    background:#e5f8ff;
-    color:#007bb4;
-    padding:9px 13px;
-    border-radius:12px;
-    font-size:11px;
-    font-weight:900;
-    margin-bottom:20px;
+display:inline-block;
+background:#e5f8ff;
+color:#007bb4;
+padding:9px 13px;
+border-radius:12px;
+font-size:11px;
+font-weight:900;
+margin-bottom:20px;
 }
 
 .course h3{
-    font:700 31px "Space Grotesk";
-    letter-spacing:-.04em;
-    margin-bottom:15px;
+font:700 31px "Space Grotesk";
+letter-spacing:-.04em;
+margin-bottom:15px;
 }
 
 .course p{
-    color:#6b7e91;
-    line-height:1.75;
-    min-height:80px;
+color:#6b7e91;
+line-height:1.75;
+min-height:80px;
 }
 
 .tags{
-    display:flex;
-    gap:8px;
-    flex-wrap:wrap;
-    margin:20px 0;
+display:flex;
+gap:8px;
+flex-wrap:wrap;
+margin:20px 0;
 }
 
 .tag{
-    background:#f3f7fa;
-    border:1px solid #e3ebf1;
-    border-radius:12px;
-    padding:8px 11px;
-    font-size:12px;
-    color:#607386;
+background:#f3f7fa;
+border:1px solid #e3ebf1;
+border-radius:12px;
+padding:8px 11px;
+font-size:12px;
+color:#607386;
 }
 
 .price{
-    font:800 25px "Space Grotesk";
-    color:var(--blue);
-    margin:15px 0;
+font:800 25px "Space Grotesk";
+color:var(--blue);
+margin:15px 0;
 }
 
 .courseActions{
-    display:flex;
-    gap:10px;
-    flex-wrap:wrap;
+display:flex;
+gap:10px;
+flex-wrap:wrap;
 }
 
 .smallBtn{
-    padding:12px 16px;
-    border-radius:12px;
-    font-weight:900;
-    background:#eef7ff;
-    color:#0675ef;
+padding:12px 16px;
+border-radius:12px;
+font-weight:900;
+background:#eef7ff;
+color:#0675ef;
 }
 
 .buy{
-    color:#fff;
-    background:linear-gradient(135deg,#087ef5,#08bfff);
+color:#fff;
+background:linear-gradient(135deg,#087ef5,#08bfff);
 }
 
 /* ================= FOUNDER ================= */
 
 .founder{
-    background:#fff;
+background:#fff;
 }
 
 .founderGrid{
-    display:grid;
-    grid-template-columns:430px 1fr;
-    gap:70px;
-    align-items:center;
+display:grid;
+grid-template-columns:430px 1fr;
+gap:70px;
+align-items:center;
 }
 
 .founderCard{
-    min-height:540px;
-    border-radius:40px;
-    background:
-        radial-gradient(
-            circle at 50% 20%,
-            rgba(8,199,255,.3),
-            transparent 25%
-        ),
-        linear-gradient(145deg,#082f60,#03172f);
-    position:relative;
-    overflow:hidden;
-    box-shadow:0 35px 90px rgba(4,40,80,.24);
-    display:grid;
-    place-items:center;
+min-height:540px;
+border-radius:40px;
+background:
+radial-gradient(circle at 50% 20%,rgba(8,199,255,.3),transparent 25%),
+linear-gradient(145deg,#082f60,#03172f);
+position:relative;
+overflow:hidden;
+box-shadow:0 35px 90px rgba(4,40,80,.24);
+display:grid;
+place-items:center;
 }
 
 .founderCard:after{
-    content:"";
-    position:absolute;
-    width:300px;
-    height:300px;
-    border:2px solid rgba(8,199,255,.2);
-    border-radius:50%;
-    animation:spin 15s linear infinite;
+content:"";
+position:absolute;
+width:300px;
+height:300px;
+border:2px solid rgba(8,199,255,.2);
+border-radius:50%;
+animation:spin 15s linear infinite;
 }
 
 @keyframes spin{
-    to{
-        transform:rotate(360deg);
-    }
+to{
+transform:rotate(360deg);
+}
 }
 
-/* FOUNDER IMAGE */
-
 .founderPhoto{
-    width:300px;
-    height:390px;
-    border-radius:120px 120px 45px 45px;
-    background:linear-gradient(145deg,#dff6ff,#a7ddf8);
-    display:grid;
-    place-items:center;
-    position:relative;
-    z-index:2;
-    overflow:hidden;
-    border:4px solid rgba(255,255,255,.15);
-    box-shadow:0 25px 70px rgba(0,0,0,.25);
+width:300px;
+height:390px;
+border-radius:120px 120px 45px 45px;
+background:#dff6ff;
+display:grid;
+place-items:center;
+position:relative;
+z-index:2;
+overflow:hidden;
+border:5px solid rgba(255,255,255,.25);
+box-shadow:0 25px 60px rgba(0,0,0,.25);
 }
 
 .founderPhoto img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    object-position:center top;
-}
-
-.founderPlaceholder{
-    font:800 26px "Space Grotesk";
-    color:#087ef5;
-    text-align:center;
+width:100%;
+height:100%;
+object-fit:cover;
+object-position:center top;
 }
 
 .founderText h2{
-    font:700 clamp(40px,5vw,65px) "Space Grotesk";
-    letter-spacing:-.06em;
-    margin-bottom:18px;
+font:700 clamp(40px,5vw,65px) "Space Grotesk";
+letter-spacing:-.06em;
+margin-bottom:18px;
 }
 
 .founderText h4{
-    color:var(--blue);
-    letter-spacing:.12em;
-    margin-bottom:25px;
+color:var(--blue);
+letter-spacing:.12em;
+margin-bottom:25px;
 }
 
 .founderText p{
-    color:#64778a;
-    font-size:18px;
-    line-height:1.9;
+color:#64778a;
+font-size:18px;
+line-height:1.9;
 }
 
 .chips{
-    display:flex;
-    flex-wrap:wrap;
-    gap:9px;
-    margin:25px 0;
+display:flex;
+flex-wrap:wrap;
+gap:9px;
+margin:25px 0;
 }
 
 .chip{
-    padding:10px 14px;
-    background:#eff8ff;
-    border:1px solid #dcecf7;
-    border-radius:13px;
-    font-size:12px;
-    font-weight:800;
+padding:10px 14px;
+background:#eff8ff;
+border:1px solid #dcecf7;
+border-radius:13px;
+font-size:12px;
+font-weight:800;
+}
+
+.socialTitle{
+font-weight:900;
+margin:25px 0 12px;
 }
 
 .socials{
-    display:flex;
-    gap:10px;
-    flex-wrap:wrap;
+display:flex;
+gap:10px;
+flex-wrap:wrap;
 }
 
 .social{
-    width:48px;
-    height:48px;
-    border-radius:15px;
-    background:#eef7fd;
-    color:#087ef5;
-    display:grid;
-    place-items:center;
-    font-weight:900;
+min-width:52px;
+height:48px;
+padding:0 15px;
+border-radius:15px;
+background:#eef7fd;
+color:#087ef5;
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:900;
+transition:.25s;
+}
+
+.social:hover{
+background:#087ef5;
+color:#fff;
+transform:translateY(-3px);
+}
+
+/* ================= FRAUD HELP ================= */
+
+.fraud{
+background:#fff5f5;
+}
+
+.fraudBox{
+background:linear-gradient(145deg,#fff,#fff7f7);
+border:1px solid #ffd6d6;
+border-radius:32px;
+padding:40px;
+box-shadow:0 20px 60px rgba(180,40,40,.08);
+}
+
+.fraudGrid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:25px;
+}
+
+.fraudCard{
+background:#fff;
+border:1px solid #f2dcdc;
+border-radius:24px;
+padding:28px;
+}
+
+.fraudIcon{
+font-size:40px;
+margin-bottom:15px;
+}
+
+.fraudCard h3{
+font:700 27px "Space Grotesk";
+margin-bottom:12px;
+}
+
+.fraudCard p{
+color:#6d7883;
+line-height:1.75;
+}
+
+.helpline{
+margin-top:25px;
+background:#fff;
+border:2px solid #ffcccc;
+border-radius:24px;
+padding:25px;
+text-align:center;
+}
+
+.helpline strong{
+display:block;
+font:900 48px "Space Grotesk";
+color:#d93636;
+}
+
+.fraudBtns{
+display:flex;
+justify-content:center;
+gap:12px;
+flex-wrap:wrap;
+margin-top:18px;
+}
+
+.redBtn{
+background:#d93636;
+color:#fff;
+padding:14px 20px;
+border-radius:13px;
+font-weight:900;
+}
+
+.fraudNote{
+margin-top:20px;
+font-size:13px;
+color:#7b6b6b;
+text-align:center;
 }
 
 /* ================= NEWS ================= */
 
 .news{
-    background:#eef6fc;
+background:#eef6fc;
 }
 
 .newsGrid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:20px;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:20px;
 }
 
 .newsCard{
-    background:#fff;
-    border:1px solid var(--line);
-    border-radius:25px;
-    padding:25px;
-    box-shadow:0 15px 40px rgba(5,45,85,.06);
-    transition:.25s;
-}
-
-.newsCard:hover{
-    transform:translateY(-5px);
+background:#fff;
+border:1px solid var(--line);
+border-radius:25px;
+padding:25px;
+box-shadow:0 15px 40px rgba(5,45,85,.06);
 }
 
 .newsCard .date{
-    color:var(--blue);
-    font-size:11px;
-    font-weight:900;
-    letter-spacing:.12em;
+color:var(--blue);
+font-size:11px;
+font-weight:900;
+letter-spacing:.12em;
 }
 
 .newsCard h3{
-    margin:13px 0;
-    font:700 22px "Space Grotesk";
+margin:13px 0;
+font:700 22px "Space Grotesk";
 }
 
 .newsCard p{
-    color:#6b7d8e;
-    line-height:1.7;
+color:#6b7d8e;
+line-height:1.7;
 }
 
 /* ================= CONTACT ================= */
 
 .contact{
-    background:linear-gradient(145deg,#061a33,#073c72);
-    color:#fff;
+background:linear-gradient(145deg,#061a33,#073c72);
+color:#fff;
 }
 
 .contactGrid{
-    display:grid;
-    grid-template-columns:.9fr 1.1fr;
-    gap:50px;
+display:grid;
+grid-template-columns:.9fr 1.1fr;
+gap:50px;
 }
 
 .contact h2{
-    font:700 clamp(42px,5vw,66px) "Space Grotesk";
-    letter-spacing:-.06em;
+font:700 clamp(42px,5vw,66px) "Space Grotesk";
+letter-spacing:-.06em;
 }
 
 .contactLead{
-    color:#a8bdd2;
-    line-height:1.8;
-    font-size:18px;
-    margin:20px 0 30px;
+color:#a8bdd2;
+line-height:1.8;
+font-size:18px;
+margin:20px 0 30px;
 }
 
 .contactBox{
-    background:rgba(255,255,255,.06);
-    border:1px solid rgba(255,255,255,.12);
-    border-radius:30px;
-    padding:30px;
+background:rgba(255,255,255,.06);
+border:1px solid rgba(255,255,255,.12);
+border-radius:30px;
+padding:30px;
 }
 
 .contactItem{
-    display:flex;
-    gap:16px;
-    padding:20px 0;
-    border-bottom:1px solid rgba(255,255,255,.1);
+display:flex;
+gap:16px;
+padding:20px 0;
+border-bottom:1px solid rgba(255,255,255,.1);
 }
 
 .contactItem:last-child{
-    border:0;
+border:0;
 }
 
 .contactItem b{
-    display:block;
-    margin-bottom:5px;
+display:block;
+margin-bottom:5px;
 }
 
 .contactItem span{
-    color:#a8bdd2;
-}
-
-.contactItem a:hover span{
-    color:#08c7ff;
+color:#a8bdd2;
 }
 
 /* ================= ADMIN ================= */
 
 .adminSection{
-    background:#fff;
+background:#fff;
 }
 
 .adminBox{
-    background:#061a33;
-    color:#fff;
-    border-radius:30px;
-    padding:35px;
-    box-shadow:0 25px 70px rgba(4,30,60,.15);
+background:#061a33;
+color:#fff;
+border-radius:30px;
+padding:35px;
 }
 
 .adminBox h2{
-    font:700 40px "Space Grotesk";
-    margin-bottom:10px;
+font:700 40px "Space Grotesk";
+margin-bottom:10px;
 }
 
 .adminBox p{
-    color:#9eb5ca;
-    margin-bottom:25px;
+color:#9eb5ca;
+margin-bottom:25px;
 }
 
 .adminLogin{
-    display:flex;
-    gap:10px;
-    flex-wrap:wrap;
+display:flex;
+gap:10px;
+flex-wrap:wrap;
 }
 
 .adminLogin input{
-    flex:1;
-    min-width:220px;
-    padding:15px;
-    border-radius:13px;
-    border:0;
-    outline:0;
+flex:1;
+min-width:220px;
+padding:15px;
+border-radius:13px;
+border:0;
+outline:0;
 }
 
 .dashboard{
-    display:none;
-    margin-top:25px;
+display:none;
+margin-top:25px;
 }
 
 .dashboard.show{
-    display:block;
+display:block;
 }
 
 .dashStats{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:12px;
-    margin-bottom:20px;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:12px;
+margin-bottom:20px;
 }
 
 .dashStat{
-    background:#0b2c52;
-    border:1px solid #21476d;
-    padding:20px;
-    border-radius:18px;
+background:#0b2c52;
+border:1px solid #21476d;
+padding:20px;
+border-radius:18px;
 }
 
 .dashStat strong{
-    display:block;
-    color:#08c7ff;
-    font-size:30px;
-    margin-top:5px;
+display:block;
+color:#08c7ff;
+font-size:30px;
 }
 
 .tableWrap{
-    overflow:auto;
+overflow:auto;
 }
 
 table{
-    width:100%;
-    border-collapse:collapse;
-    min-width:850px;
+width:100%;
+border-collapse:collapse;
+min-width:800px;
 }
 
-th,
-td{
-    padding:13px;
-    text-align:left;
-    border-bottom:1px solid #21476d;
-    font-size:13px;
+th,td{
+padding:13px;
+text-align:left;
+border-bottom:1px solid #21476d;
+font-size:13px;
 }
 
 th{
-    color:#08c7ff;
+color:#08c7ff;
 }
 
 .export{
-    margin-top:15px;
-    background:#087ef5;
-    color:#fff;
-    padding:12px 17px;
-    border-radius:12px;
-    font-weight:800;
-}
-
-.logout{
-    background:#455a70;
-    margin-left:7px;
+margin-top:15px;
+background:#087ef5;
+color:#fff;
+padding:12px 17px;
+border-radius:12px;
+font-weight:800;
 }
 
 /* ================= MODALS ================= */
 
 .modal{
-    position:fixed;
-    inset:0;
-    background:rgba(2,15,30,.72);
-    backdrop-filter:blur(10px);
-    z-index:3000;
-    display:none;
-    place-items:center;
-    padding:20px;
+position:fixed;
+inset:0;
+background:rgba(2,15,30,.72);
+backdrop-filter:blur(10px);
+z-index:3000;
+display:none;
+place-items:center;
+padding:20px;
 }
 
 .modal.show{
-    display:grid;
+display:grid;
 }
 
 .modalBox{
-    width:min(700px,100%);
-    max-height:90vh;
-    overflow:auto;
-    background:#fff;
-    border-radius:30px;
-    padding:32px;
-    position:relative;
-    box-shadow:0 40px 100px rgba(0,0,0,.3);
+width:min(700px,100%);
+max-height:90vh;
+overflow:auto;
+background:#fff;
+border-radius:30px;
+padding:32px;
+position:relative;
+box-shadow:0 40px 100px rgba(0,0,0,.3);
 }
 
 .close{
-    position:absolute;
-    right:18px;
-    top:18px;
-    width:40px;
-    height:40px;
-    border-radius:12px;
-    background:#eef4f8;
-    font-size:20px;
+position:absolute;
+right:18px;
+top:18px;
+width:40px;
+height:40px;
+border-radius:12px;
+background:#eef4f8;
+font-size:20px;
 }
 
 .modalBox h2{
-    font:700 36px "Space Grotesk";
-    margin-bottom:12px;
+font:700 36px "Space Grotesk";
+margin-bottom:12px;
 }
 
 .modalBox p{
-    color:#65788b;
-    line-height:1.8;
+color:#65788b;
+line-height:1.8;
 }
 
 .module{
-    padding:15px;
-    background:#f4f9fd;
-    border:1px solid var(--line);
-    border-radius:13px;
-    margin:8px 0;
-    font-weight:700;
+padding:15px;
+background:#f4f9fd;
+border:1px solid var(--line);
+border-radius:13px;
+margin:8px 0;
+font-weight:700;
 }
 
-/* ================= FORMS ================= */
-
 .form{
-    display:grid;
-    gap:12px;
-    margin-top:20px;
+display:grid;
+gap:12px;
+margin-top:20px;
 }
 
 .form input,
 .form textarea,
 .form select{
-    width:100%;
-    padding:14px;
-    border:1px solid var(--line);
-    border-radius:13px;
-    outline:0;
-    background:#fff;
-}
-
-.form input:focus,
-.form textarea:focus,
-.form select:focus{
-    border-color:var(--blue);
-    box-shadow:0 0 0 3px rgba(8,126,245,.08);
+width:100%;
+padding:14px;
+border:1px solid var(--line);
+border-radius:13px;
+outline:0;
+background:#fff;
 }
 
 .form textarea{
-    min-height:100px;
-    resize:vertical;
+min-height:100px;
 }
 
 /* ================= PAYMENT ================= */
 
 .payment{
-    margin-top:20px;
-    padding:22px;
-    background:#f2f8fc;
-    border-radius:20px;
-    border:1px solid var(--line);
+margin-top:20px;
+padding:22px;
+background:#f2f8fc;
+border-radius:20px;
+border:1px solid var(--line);
 }
 
 .upi{
-    font-weight:900;
-    color:var(--blue);
-    font-size:18px;
-    word-break:break-all;
-}
-
-.paymentNote{
-    font-size:13px;
-    margin-top:10px;
-}
-
-.qr{
-    width:190px;
-    height:190px;
-    background:#fff;
-    border:10px solid #fff;
-    margin:15px auto;
-    display:block;
-    object-fit:contain;
+font-weight:900;
+color:var(--blue);
+font-size:18px;
+word-break:break-all;
 }
 
 /* ================= FOOTER ================= */
 
 footer{
-    background:#031224;
-    color:#8ea6ba;
-    padding:45px 0 100px;
+background:#031224;
+color:#8ea6ba;
+padding:45px 0 100px;
 }
 
 .footerGrid{
-    display:flex;
-    justify-content:space-between;
-    gap:30px;
-    flex-wrap:wrap;
+display:flex;
+justify-content:space-between;
+gap:30px;
+flex-wrap:wrap;
 }
 
 footer strong{
-    color:#fff;
-    font:700 25px "Space Grotesk";
+color:#fff;
+font:700 25px "Space Grotesk";
 }
 
-/* ================= BOTTOM BAR ================= */
+/* ================= MOBILE BAR ================= */
 
 .bottomBar{
-    position:fixed;
-    bottom:0;
-    left:0;
-    right:0;
-    z-index:1500;
-    background:rgba(4,24,47,.97);
-    display:flex;
-    justify-content:center;
-    gap:20px;
-    padding:10px 15px;
-    backdrop-filter:blur(15px);
+position:fixed;
+bottom:0;
+left:0;
+right:0;
+z-index:1500;
+background:rgba(4,24,47,.97);
+display:flex;
+justify-content:center;
+gap:20px;
+padding:10px 15px;
+backdrop-filter:blur(15px);
 }
 
 .bottomBar a{
-    width:150px;
-    max-width:30%;
-    text-align:center;
-    color:#fff;
-    padding:6px;
+width:150px;
+max-width:30%;
+text-align:center;
+color:#fff;
+padding:6px;
 }
 
 .bottomBar span{
-    display:block;
-    font-size:25px;
+display:block;
+font-size:25px;
 }
 
 .bottomBar b{
-    font-size:12px;
+font-size:12px;
 }
 
 .toTop{
-    position:fixed;
-    right:25px;
-    bottom:85px;
-    z-index:1200;
-    width:54px;
-    height:54px;
-    border-radius:17px;
-    color:#fff;
-    background:linear-gradient(135deg,#087ef5,#08c7ff);
-    font-size:25px;
-    box-shadow:0 15px 40px rgba(8,126,245,.3);
+position:fixed;
+right:25px;
+bottom:85px;
+z-index:1200;
+width:54px;
+height:54px;
+border-radius:17px;
+color:#fff;
+background:linear-gradient(135deg,#087ef5,#08c7ff);
+font-size:25px;
+box-shadow:0 15px 40px rgba(8,126,245,.3);
 }
 
 /* ================= RESPONSIVE ================= */
 
 @media(max-width:900px){
 
-    .navlinks{
-        display:none;
-    }
+.navlinks{
+display:none;
+}
 
-    .menu{
-        display:grid;
-    }
+.menu{
+display:grid;
+}
 
-    .heroGrid,
-    .founderGrid,
-    .contactGrid{
-        grid-template-columns:1fr;
-    }
+.heroGrid,
+.founderGrid,
+.contactGrid{
+grid-template-columns:1fr;
+}
 
-    .hero{
-        padding:70px 0;
-    }
+.hero{
+padding:70px 0;
+}
 
-    .scene{
-        min-height:450px;
-    }
+.scene{
+min-height:450px;
+}
 
-    .courseGrid{
-        grid-template-columns:1fr;
-    }
+.courseGrid{
+grid-template-columns:1fr;
+}
 
-    .newsGrid{
-        grid-template-columns:1fr;
-    }
+.newsGrid{
+grid-template-columns:1fr;
+}
 
-    .statGrid{
-        grid-template-columns:repeat(2,1fr);
-    }
+.statGrid{
+grid-template-columns:repeat(2,1fr);
+}
 
-    .founderCard{
-        min-height:450px;
-    }
+.founderCard{
+min-height:500px;
+}
+
+.fraudGrid{
+grid-template-columns:1fr;
+}
+
 }
 
 @media(max-width:600px){
 
-    .container{
-        width:min(100% - 28px,1180px);
-    }
+.container{
+width:min(100% - 28px,1180px);
+}
 
-    .nav{
-        min-height:72px;
-    }
+.nav{
+min-height:72px;
+}
 
-    .brand strong{
-        font-size:23px;
-    }
+.brand strong{
+font-size:23px;
+}
 
-    .brand small{
-        font-size:7px;
-    }
+.brand small{
+font-size:7px;
+}
 
-    .logo{
-        width:42px;
-    }
+.logo{
+width:42px;
+}
 
-    .hero h1{
-        font-size:45px;
-    }
+.hero h1{
+font-size:45px;
+}
 
-    .hero p{
-        font-size:16px;
-    }
+.hero p{
+font-size:16px;
+}
 
-    .section{
-        padding:70px 0;
-    }
+.section{
+padding:70px 0;
+}
 
-    .sectionHead{
-        display:block;
-    }
+.scene{
+min-height:390px;
+}
 
-    .sectionHead p{
-        margin-top:20px;
-    }
+.cube{
+width:280px;
+height:350px;
+}
 
-    .scene{
-        min-height:390px;
-    }
+.cubeShield{
+width:160px;
+height:205px;
+}
 
-    .cube{
-        width:280px;
-        height:350px;
-    }
+.cubeShield span{
+font-size:55px;
+}
 
-    .cubeShield{
-        width:160px;
-        height:205px;
-    }
+.orbit{
+width:330px;
+height:100px;
+}
 
-    .cubeShield span{
-        font-size:55px;
-    }
+.card1{
+right:-5px;
+font-size:12px;
+}
 
-    .orbit{
-        width:330px;
-        height:100px;
-    }
+.card2{
+left:-5px;
+font-size:12px;
+}
 
-    .card1{
-        right:-5px;
-        top:35px;
-        font-size:12px;
-        padding:12px;
-    }
+.course{
+padding:24px;
+min-height:auto;
+}
 
-    .card2{
-        left:-5px;
-        bottom:40px;
-        font-size:12px;
-        padding:12px;
-    }
+.course h3{
+font-size:27px;
+}
 
-    .course{
-        padding:24px;
-        min-height:auto;
-    }
+.founderGrid{
+gap:40px;
+}
 
-    .course h3{
-        font-size:27px;
-    }
+.founderCard{
+min-height:430px;
+}
 
-    .founderGrid{
-        gap:40px;
-    }
+.founderPhoto{
+width:250px;
+height:330px;
+}
 
-    .founderCard{
-        min-height:430px;
-    }
+.stat{
+padding:22px;
+}
 
-    .founderPhoto{
-        width:245px;
-        height:330px;
-    }
+.stat strong{
+font-size:30px;
+}
 
-    .founderText p{
-        font-size:16px;
-    }
+.contactBox{
+padding:22px;
+}
 
-    .statGrid{
-        grid-template-columns:1fr 1fr;
-    }
+.dashStats{
+grid-template-columns:1fr;
+}
 
-    .stat{
-        padding:22px;
-    }
+.bottomBar{
+gap:4px;
+}
 
-    .stat strong{
-        font-size:30px;
-    }
+.bottomBar a{
+padding:5px;
+}
 
-    .contactBox{
-        padding:22px;
-    }
+.bottomBar span{
+font-size:21px;
+}
 
-    .adminBox{
-        padding:25px 20px;
-    }
+.toTop{
+right:15px;
+bottom:78px;
+}
 
-    .adminBox h2{
-        font-size:30px;
-    }
+.fraudBox{
+padding:22px;
+}
 
-    .dashStats{
-        grid-template-columns:1fr;
-    }
+.helpline strong{
+font-size:40px;
+}
 
-    .bottomBar{
-        gap:4px;
-    }
-
-    .bottomBar a{
-        padding:5px;
-    }
-
-    .bottomBar span{
-        font-size:21px;
-    }
-
-    .toTop{
-        right:15px;
-        bottom:78px;
-    }
-
-    .modal{
-        padding:12px;
-    }
-
-    .modalBox{
-        padding:25px 20px;
-        border-radius:24px;
-    }
-
-    .modalBox h2{
-        font-size:30px;
-    }
 }
 
 @media(min-width:901px){
-
-    .bottomBar{
-        display:none;
-    }
+.bottomBar{
+display:none;
+}
 }
 </style>
 </head>
@@ -1338,10 +1326,11 @@ footer strong{
 <a href="#home" class="brand">
 
 <div class="logo">
+<div class="logoShape"></div>
 <span>A</span>
 </div>
 
-<div class="brand-text">
+<div>
 <strong>AUREXA</strong>
 <small>Cybersecurity • Technology • Innovation</small>
 </div>
@@ -1349,30 +1338,23 @@ footer strong{
 </a>
 
 <nav class="navlinks">
-
 <a href="#home">Home</a>
 <a href="#courses">Courses</a>
 <a href="#founder">Founder</a>
+<a href="#fraud">Cyber Fraud Help</a>
 <a href="#news">Cyber News</a>
 <a href="#contact">Contact</a>
 <a href="#admin">Admin</a>
-
 </nav>
 
 <div class="actions">
 
-<button
-class="icon notify"
-onclick="showAlerts()"
-aria-label="Cybersecurity alerts">
+<button class="icon notify" onclick="showAlerts()">
 🔔
 <i></i>
 </button>
 
-<button
-class="icon menu"
-onclick="toggleMenu()"
-aria-label="Open menu">
+<button class="icon menu" onclick="toggleMenu()">
 ☰
 </button>
 
@@ -1387,6 +1369,7 @@ aria-label="Open menu">
 <a href="#home" onclick="toggleMenu()">Home</a>
 <a href="#courses" onclick="toggleMenu()">Courses</a>
 <a href="#founder" onclick="toggleMenu()">Founder</a>
+<a href="#fraud" onclick="toggleMenu()">Cyber Fraud Help</a>
 <a href="#news" onclick="toggleMenu()">Cyber News</a>
 <a href="#contact" onclick="toggleMenu()">Contact</a>
 <a href="#admin" onclick="toggleMenu()">Admin</a>
@@ -1512,7 +1495,8 @@ AUREXA ACADEMY
 </div>
 
 <h2>
-Learn. Build.<br>
+Learn. Build.
+<br>
 <span class="gradient">Defend.</span>
 </h2>
 
@@ -1521,8 +1505,6 @@ Learn. Build.<br>
 <p>
 Professional cybersecurity courses designed for beginners,
 intermediate learners and advanced technology enthusiasts.
-Learn security concepts responsibly through structured
-education and practical knowledge.
 </p>
 
 </div>
@@ -1546,9 +1528,15 @@ education and practical knowledge.
 
 <img
 src="file_00000000d568720bb94605cdf6d9e49e.png"
-alt="Srikanth Paka — Founder and CEO of AUREXA"
-loading="lazy"
+alt="Srikanth Paka — Founder & CEO of AUREXA"
+onerror="this.style.display='none';document.getElementById('photoFallback').style.display='block';"
 >
+
+<div id="photoFallback"
+style="display:none;text-align:center;font-weight:900;color:#087ef5;">
+AUREXA<br>
+<span style="font-size:13px">FOUNDER & CEO</span>
+</div>
 
 </div>
 
@@ -1582,6 +1570,7 @@ responsible security practices, emerging technologies,
 innovation and building a stronger digital future.
 </p>
 
+
 <div class="chips">
 
 <span class="chip">Cybersecurity</span>
@@ -1593,40 +1582,43 @@ innovation and building a stronger digital future.
 
 </div>
 
+
+<div class="socialTitle">
+Connect with Founder
+</div>
+
 <div class="socials">
+
+<!-- Replace these URLs with your exact handles when needed -->
 
 <a
 class="social"
 href="https://www.linkedin.com/"
 target="_blank"
-rel="noopener"
-aria-label="LinkedIn">
-in
+rel="noopener">
+LinkedIn
 </a>
 
 <a
 class="social"
 href="https://www.instagram.com/"
 target="_blank"
-rel="noopener"
-aria-label="Instagram">
-ig
+rel="noopener">
+Instagram
 </a>
 
 <a
 class="social"
-href="mailto:srikanthh3k@gmail.com"
-aria-label="Email">
-@
+href="mailto:srikanthh3k@gmail.com">
+Email
 </a>
 
 <a
 class="social"
 href="https://wa.me/919640724438"
 target="_blank"
-rel="noopener"
-aria-label="WhatsApp">
-wa
+rel="noopener">
+WhatsApp
 </a>
 
 </div>
@@ -1638,7 +1630,126 @@ wa
 </section>
 
 
-<!-- ================= CYBER NEWS ================= -->
+<!-- ================= CYBER FRAUD HELP ================= -->
+
+<section id="fraud" class="section fraud">
+
+<div class="container">
+
+<div class="sectionHead">
+
+<div>
+
+<div class="kicker">
+URGENT CYBER SAFETY
+</div>
+
+<h2>
+Cyber Fraud
+<br>
+<span class="gradient">Help & Report</span>
+</h2>
+
+</div>
+
+<p>
+If you have lost money through an online scam, banking fraud,
+UPI fraud, phishing or another cybercrime, report it immediately.
+</p>
+
+</div>
+
+
+<div class="fraudBox">
+
+<div class="fraudGrid">
+
+<div class="fraudCard">
+
+<div class="fraudIcon">🚨</div>
+
+<h3>
+Financial Cyber Fraud?
+</h3>
+
+<p>
+If money has been stolen through UPI, online banking, card fraud,
+investment scams or another digital financial fraud, act quickly.
+</p>
+
+</div>
+
+
+<div class="fraudCard">
+
+<div class="fraudIcon">🛡️</div>
+
+<h3>
+Protect Your Evidence
+</h3>
+
+<p>
+Keep transaction IDs, screenshots, phone numbers, messages,
+emails, URLs and other relevant evidence. Do not delete important
+evidence before reporting.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="helpline">
+
+<div>
+National Cyber Crime Helpline
+</div>
+
+<strong>
+1930
+</strong>
+
+<p>
+For cyber financial fraud, contact the helpline immediately
+and also submit a report through the official cybercrime portal.
+</p>
+
+
+<div class="fraudBtns">
+
+<a
+class="redBtn"
+href="tel:1930">
+📞 Call 1930
+</a>
+
+<a
+class="btn primary"
+href="https://www.cybercrime.gov.in/"
+target="_blank"
+rel="noopener">
+🌐 Report Cybercrime →
+</a>
+
+</div>
+
+</div>
+
+
+<div class="fraudNote">
+AUREXA provides cybersecurity awareness and guidance.
+For an actual cybercrime, use the official government reporting
+channels and contact law-enforcement authorities.
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= NEWS ================= -->
 
 <section id="news" class="section news">
 
@@ -1680,7 +1791,7 @@ Phishing Awareness
 
 <p>
 Never share OTPs, passwords or banking credentials
-through unknown links, calls or messages.
+through unknown links or messages.
 </p>
 
 </article>
@@ -1725,7 +1836,25 @@ sharing personal information online.
 <article class="newsCard">
 
 <div class="date">
-AUREXA SECURITY
+AUREXA ALERT
+</div>
+
+<h3>
+Suspicious Links
+</h3>
+
+<p>
+Check the domain carefully before entering passwords,
+payment details or personal information.
+</p>
+
+</article>
+
+
+<article class="newsCard">
+
+<div class="date">
+SECURITY UPDATE
 </div>
 
 <h3>
@@ -1733,8 +1862,8 @@ Software Updates
 </h3>
 
 <p>
-Keep operating systems, browsers and applications
-updated to reduce exposure to known security issues.
+Keep operating systems, browsers and applications updated
+to reduce exposure to known vulnerabilities.
 </p>
 
 </article>
@@ -1743,34 +1872,16 @@ updated to reduce exposure to known security issues.
 <article class="newsCard">
 
 <div class="date">
-ACCOUNT SECURITY
+DIGITAL SAFETY
 </div>
 
 <h3>
-Password Protection
+Account Protection
 </h3>
 
 <p>
-Use long, unique passwords and avoid reusing the same
-password across multiple services.
-</p>
-
-</article>
-
-
-<article class="newsCard">
-
-<div class="date">
-ONLINE SAFETY
-</div>
-
-<h3>
-Verify Before You Trust
-</h3>
-
-<p>
-Before clicking links, downloading files or sending money,
-verify the source independently.
+Use strong unique passwords and enable MFA on important
+email, social media and financial accounts.
 </p>
 
 </article>
@@ -1795,13 +1906,14 @@ CONTACT AUREXA
 </div>
 
 <h2>
-Let's<br>
+Let's
+<br>
 <span class="gradient">Connect.</span>
 </h2>
 
 <p class="contactLead">
-Have a question about AUREXA, courses, cybersecurity
-or collaboration? Reach out directly.
+Have a question about AUREXA, courses,
+cybersecurity or collaboration? Reach out directly.
 </p>
 
 <a
@@ -1824,16 +1936,22 @@ Send Email →
 
 <div>
 
-<b>Phone</b>
+<b>
+Phone
+</b>
 
 <a href="tel:+919640724438">
-<span>9640724438</span>
+<span>
+9640724438
+</span>
 </a>
 
 <br>
 
 <a href="tel:+919703724438">
-<span>9703724438</span>
+<span>
+9703724438
+</span>
 </a>
 
 </div>
@@ -1849,7 +1967,9 @@ Send Email →
 
 <div>
 
-<b>WhatsApp</b>
+<b>
+WhatsApp
+</b>
 
 <a
 href="https://wa.me/919640724438"
@@ -1875,7 +1995,9 @@ rel="noopener">
 
 <div>
 
-<b>Email</b>
+<b>
+Email
+</b>
 
 <a href="mailto:srikanthh3k@gmail.com">
 
@@ -1898,7 +2020,9 @@ srikanthh3k@gmail.com
 
 <div>
 
-<b>Website</b>
+<b>
+Website
+</b>
 
 <a
 href="https://aurexa.space"
@@ -1907,6 +2031,31 @@ rel="noopener">
 
 <span>
 aurexa.space
+</span>
+
+</a>
+
+</div>
+
+</div>
+
+
+<div class="contactItem">
+
+<div style="font-size:25px">
+🚨
+</div>
+
+<div>
+
+<b>
+Cyber Fraud Help
+</b>
+
+<a href="tel:1930">
+
+<span>
+Call 1930 immediately
 </span>
 
 </a>
@@ -1947,7 +2096,6 @@ stored in this browser.
 id="adminPassword"
 type="password"
 placeholder="Enter admin password"
-autocomplete="current-password"
 >
 
 <button
@@ -1961,42 +2109,22 @@ Login
 
 <div id="dashboard" class="dashboard">
 
-
 <div class="dashStats">
 
-
 <div class="dashStat">
-
 Orders
-
-<strong id="orderCount">
-0
-</strong>
-
+<strong id="orderCount">0</strong>
 </div>
 
-
 <div class="dashStat">
-
 Revenue
-
-<strong id="revenue">
-₹0
-</strong>
-
+<strong id="revenue">₹0</strong>
 </div>
-
 
 <div class="dashStat">
-
 Latest
-
-<strong id="latest">
-—
-</strong>
-
+<strong id="latest">—</strong>
 </div>
-
 
 </div>
 
@@ -2040,14 +2168,6 @@ onclick="clearOrders()">
 Clear Local Orders
 </button>
 
-
-<button
-class="export logout"
-onclick="logoutAdmin()">
-Logout
-</button>
-
-
 </div>
 
 </div>
@@ -2069,6 +2189,10 @@ Logout
 
 <p style="margin-top:10px">
 Cybersecurity • Technology • Innovation
+</p>
+
+<p style="margin-top:8px">
+Building a Safer Digital Future.
 </p>
 
 </div>
@@ -2094,7 +2218,7 @@ Srikanth Paka
 </footer>
 
 
-<!-- ================= MOBILE CONTACT BAR ================= -->
+<!-- ================= MOBILE BAR ================= -->
 
 <div class="bottomBar">
 
@@ -2107,28 +2231,21 @@ Srikanth Paka
 href="https://wa.me/919640724438"
 target="_blank"
 rel="noopener">
-
 <span>💬</span>
 <b>WhatsApp</b>
-
 </a>
 
 <a href="mailto:srikanthh3k@gmail.com">
-
 <span>✉️</span>
 <b>Email</b>
-
 </a>
 
 </div>
 
 
-<!-- ================= TOP BUTTON ================= -->
-
 <button
 class="toTop"
-onclick="window.scrollTo({top:0,behavior:'smooth'})"
-aria-label="Back to top">
+onclick="window.scrollTo({top:0,behavior:'smooth'})">
 ↑
 </button>
 
@@ -2191,11 +2308,9 @@ id="buyPrice">
 ₹0
 </div>
 
-<hr style="
-margin:15px 0;
-border:0;
-border-top:1px solid #dce8f2;
-">
+<hr
+style="margin:15px 0;border:0;border-top:1px solid #dce8f2"
+>
 
 <div>
 UPI Payment ID
@@ -2205,9 +2320,8 @@ UPI Payment ID
 9640724438@pthdfc
 </div>
 
-<p class="paymentNote">
+<p style="margin-top:10px">
 Pay the exact course amount using your UPI app.
-After payment, enter the transaction/reference ID below.
 </p>
 
 </div>
@@ -2215,47 +2329,44 @@ After payment, enter the transaction/reference ID below.
 
 <form
 class="form"
-onsubmit="submitOrder(event)">
+onsubmit="submitOrder(event)"
+>
 
 <input
 id="buyerName"
 required
-maxlength="80"
-placeholder="Full Name">
+placeholder="Full Name"
+>
 
 <input
 id="buyerPhone"
 required
 pattern="[0-9]{10}"
-maxlength="10"
-inputmode="numeric"
-placeholder="10-digit Mobile Number">
+placeholder="10-digit Mobile Number"
+>
 
 <input
 id="buyerEmail"
 type="email"
 required
-maxlength="120"
-placeholder="Email Address">
+placeholder="Email Address"
+>
 
 <input
 id="paymentRef"
 required
-maxlength="100"
-placeholder="UPI Transaction / Payment Reference">
+placeholder="UPI Transaction / Payment Reference"
+>
 
 <textarea
 id="buyerMessage"
-maxlength="500"
-placeholder="Message (optional)">
-</textarea>
+placeholder="Message (optional)"
+></textarea>
 
 <button
 class="btn primary"
 type="submit">
-
 Submit Enrollment →
-
 </button>
 
 </form>
@@ -2285,7 +2396,6 @@ AUREXA ALERTS
 Cyber Safety Alerts
 </h2>
 
-
 <div class="module">
 🛡️ Never share OTP or passwords.
 </div>
@@ -2307,11 +2417,7 @@ Cyber Safety Alerts
 </div>
 
 <div class="module">
-💳 Verify payment details before transferring money.
-</div>
-
-<div class="module">
-📧 Be careful with unexpected email attachments.
+🚨 Cyber financial fraud? Call 1930 immediately.
 </div>
 
 </div>
@@ -2321,22 +2427,14 @@ Cyber Safety Alerts
 
 <script>
 
-/* =====================================================
-   AUREXA CONFIGURATION
-===================================================== */
+/* ================= ADMIN PASSWORD ================= */
 
-const ADMIN_PASSWORD = "AUREXA@2026";
-
-const WHATSAPP_NUMBER = "919640724438";
-
-const COURSES_CURRENCY = "₹";
+const ADMIN_PASSWORD="AUREXA@2026";
 
 
-/* =====================================================
-   COURSE DATA
-===================================================== */
+/* ================= COURSES ================= */
 
-const courses = [
+const courses=[
 
 {
 id:1,
@@ -2344,16 +2442,13 @@ icon:"🧑‍💻",
 level:"BEGINNER → INTERMEDIATE",
 title:"Cybersecurity Fundamentals",
 price:999,
-
 description:
 "Build a strong foundation in cybersecurity, threats, security principles, passwords, authentication and safe digital practices.",
-
 tags:[
 "Security Basics",
 "Networking",
 "Awareness"
 ],
-
 modules:[
 "Introduction to Cybersecurity",
 "Common Cyber Threats",
@@ -2364,9 +2459,7 @@ modules:[
 "Security Awareness",
 "Incident Basics"
 ]
-
 },
-
 
 {
 id:2,
@@ -2374,16 +2467,13 @@ icon:"👨‍💻",
 level:"INTERMEDIATE",
 title:"Ethical Hacking",
 price:2499,
-
 description:
 "Explore ethical hacking concepts, reconnaissance, vulnerability assessment, web security and responsible security testing methodologies.",
-
 tags:[
 "Ethical Hacking",
 "Web Security",
 "Pentesting"
 ],
-
 modules:[
 "Ethical Hacking Fundamentals",
 "Reconnaissance",
@@ -2394,9 +2484,7 @@ modules:[
 "Security Testing Methodology",
 "Responsible Disclosure"
 ]
-
 },
-
 
 {
 id:3,
@@ -2404,16 +2492,13 @@ icon:"🤖",
 level:"ADVANCED",
 title:"AI & Cybersecurity",
 price:2999,
-
 description:
 "Explore how artificial intelligence is transforming threat detection, security automation, cyber defense and security operations.",
-
 tags:[
 "AI",
 "Security",
 "Automation"
 ],
-
 modules:[
 "AI Security Fundamentals",
 "Threat Detection",
@@ -2424,9 +2509,7 @@ modules:[
 "AI Security Risks",
 "Future of Cyber Defense"
 ]
-
 },
-
 
 {
 id:4,
@@ -2434,16 +2517,13 @@ icon:"☁️",
 level:"INTERMEDIATE",
 title:"Cloud Security",
 price:1999,
-
 description:
 "Understand secure cloud accounts, identity management, access control, cloud threats and security best practices.",
-
 tags:[
 "Cloud",
 "IAM",
 "Security"
 ],
-
 modules:[
 "Cloud Security Fundamentals",
 "Cloud Identity",
@@ -2454,9 +2534,7 @@ modules:[
 "Monitoring",
 "Cloud Security Best Practices"
 ]
-
 },
-
 
 {
 id:5,
@@ -2464,16 +2542,13 @@ icon:"🌐",
 level:"INTERMEDIATE",
 title:"Web Security & Pentesting",
 price:2299,
-
 description:
 "Learn modern web security concepts, application security, common vulnerabilities and responsible penetration testing.",
-
 tags:[
 "Web Security",
 "OWASP",
 "Pentesting"
 ],
-
 modules:[
 "Web Application Architecture",
 "HTTP & HTTPS",
@@ -2484,9 +2559,7 @@ modules:[
 "Security Testing",
 "Responsible Reporting"
 ]
-
 },
-
 
 {
 id:6,
@@ -2494,16 +2567,13 @@ icon:"👁️",
 level:"BEGINNER",
 title:"Digital Privacy & Awareness",
 price:799,
-
 description:
 "Learn practical methods to reduce unnecessary exposure of personal information and improve everyday digital privacy.",
-
 tags:[
 "Privacy",
 "Awareness",
 "Safety"
 ],
-
 modules:[
 "Digital Privacy Fundamentals",
 "Personal Information",
@@ -2514,694 +2584,527 @@ modules:[
 "Account Protection",
 "Digital Safety"
 ]
-
 }
 
 ];
 
+let selectedCourse=null;
 
-let selectedCourse = null;
 
-
-/* =====================================================
-   RENDER COURSES
-===================================================== */
+/* ================= COURSE CARDS ================= */
 
 function renderCourses(){
 
-    const grid = document.getElementById("courseGrid");
+const grid=document.getElementById("courseGrid");
 
-    grid.innerHTML = courses.map(c => `
+grid.innerHTML=courses.map(c=>`
 
-        <article class="course">
+<article class="course">
 
-            <div class="courseIcon">
-                ${c.icon}
-            </div>
+<div class="courseIcon">
+${c.icon}
+</div>
 
-            <div class="level">
-                ${c.level}
-            </div>
+<div class="level">
+${c.level}
+</div>
 
-            <h3>
-                ${escapeHTML(c.title)}
-            </h3>
+<h3>
+${c.title}
+</h3>
 
-            <p>
-                ${escapeHTML(c.description)}
-            </p>
+<p>
+${c.description}
+</p>
 
-            <div class="tags">
+<div class="tags">
+${c.tags.map(t=>`
+<span class="tag">
+${t}
+</span>
+`).join("")}
+</div>
 
-                ${c.tags.map(t => `
-                    <span class="tag">
-                        ${escapeHTML(t)}
-                    </span>
-                `).join("")}
+<div class="price">
+₹${c.price.toLocaleString("en-IN")}
+</div>
 
-            </div>
+<div class="courseActions">
 
-            <div class="price">
-                ₹${c.price.toLocaleString("en-IN")}
-            </div>
+<button
+class="smallBtn"
+onclick="viewCourse(${c.id})">
+View Course →
+</button>
 
-            <div class="courseActions">
+<button
+class="smallBtn buy"
+onclick="buyCourse(${c.id})">
+Buy Course
+</button>
 
-                <button
-                    class="smallBtn"
-                    onclick="viewCourse(${c.id})">
+</div>
 
-                    View Course →
+</article>
 
-                </button>
+`).join("");
 
-                <button
-                    class="smallBtn buy"
-                    onclick="buyCourse(${c.id})">
-
-                    Buy Course
-
-                </button>
-
-            </div>
-
-        </article>
-
-    `).join("");
 }
 
 
-/* =====================================================
-   VIEW COURSE
-===================================================== */
+/* ================= COURSE DETAILS ================= */
 
 function viewCourse(id){
 
-    const c = courses.find(x => x.id === id);
+const c=courses.find(x=>x.id===id);
 
-    if(!c) return;
+document.getElementById("courseDetails").innerHTML=`
 
-    document.getElementById("courseDetails").innerHTML = `
+<div class="courseIcon">
+${c.icon}
+</div>
 
-        <div class="courseIcon">
-            ${c.icon}
-        </div>
+<div class="level">
+${c.level}
+</div>
 
-        <div class="level">
-            ${escapeHTML(c.level)}
-        </div>
+<h2>
+${c.title}
+</h2>
 
-        <h2>
-            ${escapeHTML(c.title)}
-        </h2>
+<p>
+${c.description}
+</p>
 
-        <p>
-            ${escapeHTML(c.description)}
-        </p>
+<div class="price">
+₹${c.price.toLocaleString("en-IN")}
+</div>
 
-        <div class="price">
-            ₹${c.price.toLocaleString("en-IN")}
-        </div>
+<h3 style="margin:25px 0 10px">
+Course Modules
+</h3>
 
-        <h3 style="margin:25px 0 10px">
-            Course Modules
-        </h3>
+${c.modules.map((m,i)=>`
+<div class="module">
+${i+1}. ${m}
+</div>
+`).join("")}
 
-        ${c.modules.map((m,i) => `
-            <div class="module">
-                ${i+1}. ${escapeHTML(m)}
-            </div>
-        `).join("")}
+<div style="margin-top:25px">
 
-        <div style="margin-top:25px">
+<button
+class="btn primary"
+onclick="closeModal('courseModal');buyCourse(${c.id})">
+Enroll Now →
+</button>
 
-            <button
-                class="btn primary"
-                onclick="
-                    closeModal('courseModal');
-                    buyCourse(${c.id});
-                ">
+</div>
 
-                Enroll Now →
+`;
 
-            </button>
+document
+.getElementById("courseModal")
+.classList.add("show");
 
-        </div>
-
-    `;
-
-    document
-        .getElementById("courseModal")
-        .classList.add("show");
 }
 
 
-/* =====================================================
-   BUY COURSE
-===================================================== */
+/* ================= BUY COURSE ================= */
 
 function buyCourse(id){
 
-    selectedCourse = courses.find(x => x.id === id);
+selectedCourse=courses.find(x=>x.id===id);
 
-    if(!selectedCourse) return;
+document.getElementById("buyTitle").textContent=
+"Enroll — "+selectedCourse.title;
 
-    document.getElementById("buyTitle").textContent =
-        "Enroll — " + selectedCourse.title;
+document.getElementById("buyPrice").textContent=
+"₹"+selectedCourse.price.toLocaleString("en-IN");
 
-    document.getElementById("buyPrice").textContent =
-        "₹" + selectedCourse.price.toLocaleString("en-IN");
-
-    document
-        .getElementById("buyModal")
-        .classList.add("show");
+document
+.getElementById("buyModal")
+.classList.add("show");
 
 }
 
 
-/* =====================================================
-   SUBMIT ORDER
-===================================================== */
+/* ================= ORDER ================= */
 
 function submitOrder(e){
 
-    e.preventDefault();
+e.preventDefault();
 
-    if(!selectedCourse){
+if(!selectedCourse)return;
 
-        alert("Please select a course first.");
-        return;
+const order={
 
-    }
+id:Date.now(),
 
-    const order = {
-
-        id: Date.now(),
-
-        name:
-            document
-            .getElementById("buyerName")
-            .value
-            .trim(),
-
-        phone:
-            document
-            .getElementById("buyerPhone")
-            .value
-            .trim(),
-
-        email:
-            document
-            .getElementById("buyerEmail")
-            .value
-            .trim(),
-
-        course:
-            selectedCourse.title,
-
-        price:
-            selectedCourse.price,
-
-        paymentRef:
-            document
-            .getElementById("paymentRef")
-            .value
-            .trim(),
-
-        message:
-            document
-            .getElementById("buyerMessage")
-            .value
-            .trim(),
-
-        date:
-            new Date()
-            .toLocaleString("en-IN")
-
-    };
-
-
-    const orders =
-        JSON.parse(
-            localStorage.getItem("aurexa_orders") || "[]"
-        );
-
-
-    orders.push(order);
-
-
-    localStorage.setItem(
-        "aurexa_orders",
-        JSON.stringify(orders)
-    );
-
-
-    const whatsappText =
-        "Hello AUREXA,%0A%0A" +
-        "I want to enroll in " +
-        encodeURIComponent(order.course) +
-        ".%0A%0A" +
-        "Name: " +
-        encodeURIComponent(order.name) +
-        "%0APhone: " +
-        encodeURIComponent(order.phone) +
-        "%0AEmail: " +
-        encodeURIComponent(order.email) +
-        "%0APayment Ref: " +
-        encodeURIComponent(order.paymentRef);
-
-
-    alert(
-        "Enrollment submitted successfully!\\n\\n" +
-        "Please contact AUREXA on WhatsApp with your payment reference."
-    );
-
-
-    window.open(
-        "https://wa.me/" +
-        WHATSAPP_NUMBER +
-        "?text=" +
-        whatsappText,
-        "_blank"
-    );
-
-
-    e.target.reset();
-
-    closeModal("buyModal");
-
-}
-
-
-/* =====================================================
-   ADMIN LOGIN
-===================================================== */
-
-function loginAdmin(){
-
-    const password =
-        document
-        .getElementById("adminPassword")
-        .value;
-
-    if(password !== ADMIN_PASSWORD){
-
-        alert("Incorrect admin password.");
-
-        return;
-
-    }
-
-
-    sessionStorage.setItem(
-        "aurexa_admin",
-        "true"
-    );
-
-
-    document
-        .getElementById("dashboard")
-        .classList
-        .add("show");
-
-
-    loadDashboard();
-
-}
-
-
-/* =====================================================
-   ADMIN LOGOUT
-===================================================== */
-
-function logoutAdmin(){
-
-    sessionStorage.removeItem(
-        "aurexa_admin"
-    );
-
-    document
-        .getElementById("dashboard")
-        .classList
-        .remove("show");
-
-    document
-        .getElementById("adminPassword")
-        .value = "";
-
-}
-
-
-/* =====================================================
-   LOAD DASHBOARD
-===================================================== */
-
-function loadDashboard(){
-
-    const orders =
-        JSON.parse(
-            localStorage.getItem("aurexa_orders") || "[]"
-        );
-
-
-    document
-        .getElementById("orderCount")
-        .textContent = orders.length;
-
-
-    const total =
-        orders.reduce(
-            (sum,o) =>
-                sum + Number(o.price || 0),
-            0
-        );
-
-
-    document
-        .getElementById("revenue")
-        .textContent =
-            "₹" +
-            total.toLocaleString("en-IN");
-
-
-    document
-        .getElementById("latest")
-        .textContent =
-            orders.length
-            ? orders[orders.length - 1].course
-            : "—";
-
-
-    document
-        .getElementById("ordersTable")
-        .innerHTML = orders.length
-
-        ?
-
-        orders.map(o => `
-
-            <tr>
-
-                <td>
-                    ${escapeHTML(o.name)}
-                </td>
-
-                <td>
-                    ${escapeHTML(o.phone)}
-                </td>
-
-                <td>
-                    ${escapeHTML(o.email)}
-                </td>
-
-                <td>
-                    ${escapeHTML(o.course)}
-                </td>
-
-                <td>
-                    ₹${Number(o.price).toLocaleString("en-IN")}
-                </td>
-
-                <td>
-                    ${escapeHTML(o.paymentRef)}
-                </td>
-
-                <td>
-                    ${escapeHTML(o.date)}
-                </td>
-
-            </tr>
-
-        `).join("")
-
-        :
-
-        `
-
-        <tr>
-
-            <td colspan="7">
-                No orders yet.
-            </td>
-
-        </tr>
-
-        `;
-
-}
-
-
-/* =====================================================
-   EXPORT ORDERS CSV
-===================================================== */
-
-function exportOrders(){
-
-    const orders =
-        JSON.parse(
-            localStorage.getItem("aurexa_orders") || "[]"
-        );
-
-
-    if(!orders.length){
-
-        alert("No orders available.");
-
-        return;
-
-    }
-
-
-    const header = [
-
-        "Name",
-        "Phone",
-        "Email",
-        "Course",
-        "Price",
-        "Payment Reference",
-        "Message",
-        "Date"
-
-    ];
-
-
-    const rows = orders.map(o => [
-
-        o.name,
-        o.phone,
-        o.email,
-        o.course,
-        o.price,
-        o.paymentRef,
-        o.message,
-        o.date
-
-    ]);
-
-
-    const csv = [
-
-        header,
-        ...rows
-
-    ]
-
-    .map(row =>
-
-        row.map(v =>
-
-            `"${String(v ?? "")
-                .replaceAll('"','""')}"`
-
-        ).join(",")
-
-    )
-
-    .join("\n");
-
-
-    const blob =
-        new Blob(
-            [csv],
-            {type:"text/csv"}
-        );
-
-
-    const url =
-        URL.createObjectURL(blob);
-
-
-    const a =
-        document.createElement("a");
-
-
-    a.href = url;
-
-    a.download =
-        "aurexa-orders.csv";
-
-
-    document.body.appendChild(a);
-
-    a.click();
-
-    a.remove();
-
-    URL.revokeObjectURL(url);
-
-}
-
-
-/* =====================================================
-   CLEAR ORDERS
-===================================================== */
-
-function clearOrders(){
-
-    if(!confirm(
-        "Delete all local AUREXA orders?"
-    )){
-
-        return;
-
-    }
-
-
-    localStorage.removeItem(
-        "aurexa_orders"
-    );
-
-
-    loadDashboard();
-
-}
-
-
-/* =====================================================
-   ALERTS
-===================================================== */
-
-function showAlerts(){
-
-    document
-        .getElementById("alertModal")
-        .classList
-        .add("show");
-
-}
-
-
-/* =====================================================
-   MOBILE MENU
-===================================================== */
-
-function toggleMenu(){
-
-    document
-        .getElementById("mobileNav")
-        .classList
-        .toggle("show");
-
-}
-
-
-/* =====================================================
-   MODALS
-===================================================== */
-
-function closeModal(id){
-
-    document
-        .getElementById(id)
-        .classList
-        .remove("show");
-
-}
-
-
-/* =====================================================
-   ESCAPE HTML
-===================================================== */
-
-function escapeHTML(value){
-
-    return String(value ?? "")
-
-        .replaceAll("&","&amp;")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;")
-        .replaceAll("'","&#039;");
-
-}
-
-
-/* =====================================================
-   CLOSE MODAL WHEN CLICKING OUTSIDE
-===================================================== */
-
+name:
 document
-    .querySelectorAll(".modal")
-    .forEach(m => {
+.getElementById("buyerName")
+.value
+.trim(),
 
-        m.addEventListener("click",e => {
+phone:
+document
+.getElementById("buyerPhone")
+.value
+.trim(),
 
-            if(e.target === m){
+email:
+document
+.getElementById("buyerEmail")
+.value
+.trim(),
 
-                m.classList.remove("show");
+course:selectedCourse.title,
 
-            }
+price:selectedCourse.price,
 
-        });
+paymentRef:
+document
+.getElementById("paymentRef")
+.value
+.trim(),
 
-    });
+message:
+document
+.getElementById("buyerMessage")
+.value
+.trim(),
+
+date:new Date().toLocaleString("en-IN")
+
+};
 
 
-/* =====================================================
-   ESC KEY
-===================================================== */
+const orders=
+JSON.parse(
+localStorage.getItem("aurexa_orders")||"[]"
+);
 
-document.addEventListener(
-    "keydown",
-    function(e){
+orders.push(order);
 
-        if(e.key === "Escape"){
-
-            document
-                .querySelectorAll(".modal.show")
-                .forEach(m =>
-                    m.classList.remove("show")
-                );
-
-        }
-
-    }
+localStorage.setItem(
+"aurexa_orders",
+JSON.stringify(orders)
 );
 
 
-/* =====================================================
-   RESTORE ADMIN SESSION
-===================================================== */
+const whatsapp=
+"Hello AUREXA,%0A%0A"+
+"I want to enroll in "+
+encodeURIComponent(order.course)+
+".%0A%0A"+
+"Name: "+
+encodeURIComponent(order.name)+
+"%0APhone: "+
+encodeURIComponent(order.phone)+
+"%0AEmail: "+
+encodeURIComponent(order.email)+
+"%0APayment Ref: "+
+encodeURIComponent(order.paymentRef);
 
-if(
-    sessionStorage.getItem("aurexa_admin")
-    === "true"
-){
 
-    document
-        .getElementById("dashboard")
-        .classList
-        .add("show");
+alert(
+"Enrollment submitted successfully!\\n\\n"+
+"Please contact AUREXA on WhatsApp with your payment reference."
+);
 
-    loadDashboard();
+
+window.open(
+"https://wa.me/919640724438?text="+whatsapp,
+"_blank"
+);
+
+
+e.target.reset();
+
+closeModal("buyModal");
 
 }
 
 
-/* =====================================================
-   START AUREXA
-===================================================== */
+/* ================= ADMIN LOGIN ================= */
+
+function loginAdmin(){
+
+const password=
+document
+.getElementById("adminPassword")
+.value;
+
+if(password!==ADMIN_PASSWORD){
+
+alert("Incorrect admin password.");
+
+return;
+
+}
+
+document
+.getElementById("dashboard")
+.classList
+.add("show");
+
+loadDashboard();
+
+}
+
+
+/* ================= DASHBOARD ================= */
+
+function loadDashboard(){
+
+const orders=
+JSON.parse(
+localStorage.getItem("aurexa_orders")||"[]"
+);
+
+
+document
+.getElementById("orderCount")
+.textContent=orders.length;
+
+
+const total=
+orders.reduce(
+(sum,o)=>sum+Number(o.price||0),
+0
+);
+
+
+document
+.getElementById("revenue")
+.textContent=
+"₹"+total.toLocaleString("en-IN");
+
+
+document
+.getElementById("latest")
+.textContent=
+orders.length
+?orders[orders.length-1].course
+:"—";
+
+
+document
+.getElementById("ordersTable")
+.innerHTML=
+
+orders.length?
+
+orders.map(o=>`
+
+<tr>
+
+<td>
+${escapeHTML(o.name)}
+</td>
+
+<td>
+${escapeHTML(o.phone)}
+</td>
+
+<td>
+${escapeHTML(o.email)}
+</td>
+
+<td>
+${escapeHTML(o.course)}
+</td>
+
+<td>
+₹${Number(o.price).toLocaleString("en-IN")}
+</td>
+
+<td>
+${escapeHTML(o.paymentRef)}
+</td>
+
+<td>
+${escapeHTML(o.date)}
+</td>
+
+</tr>
+
+`).join(""):
+
+`
+<tr>
+<td colspan="7">
+No orders yet.
+</td>
+</tr>
+`;
+
+}
+
+
+/* ================= CSV ================= */
+
+function exportOrders(){
+
+const orders=
+JSON.parse(
+localStorage.getItem("aurexa_orders")||"[]"
+);
+
+if(!orders.length){
+
+alert("No orders available.");
+
+return;
+
+}
+
+
+const header=[
+"Name",
+"Phone",
+"Email",
+"Course",
+"Price",
+"Payment Reference",
+"Message",
+"Date"
+];
+
+
+const rows=
+orders.map(o=>[
+o.name,
+o.phone,
+o.email,
+o.course,
+o.price,
+o.paymentRef,
+o.message,
+o.date
+]);
+
+
+const csv=[
+header,
+...rows
+]
+.map(row=>
+row.map(v=>
+`"${String(v??"").replaceAll('"','""')}"`
+).join(",")
+)
+.join("\n");
+
+
+const blob=
+new Blob(
+[csv],
+{type:"text/csv"}
+);
+
+
+const url=
+URL.createObjectURL(blob);
+
+
+const a=
+document.createElement("a");
+
+a.href=url;
+a.download="aurexa-orders.csv";
+a.click();
+
+URL.revokeObjectURL(url);
+
+}
+
+
+/* ================= CLEAR ORDERS ================= */
+
+function clearOrders(){
+
+if(!confirm(
+"Delete all local AUREXA orders?"
+))return;
+
+localStorage.removeItem("aurexa_orders");
+
+loadDashboard();
+
+}
+
+
+/* ================= ALERTS ================= */
+
+function showAlerts(){
+
+document
+.getElementById("alertModal")
+.classList
+.add("show");
+
+}
+
+
+/* ================= MENU ================= */
+
+function toggleMenu(){
+
+document
+.getElementById("mobileNav")
+.classList
+.toggle("show");
+
+}
+
+
+/* ================= MODAL ================= */
+
+function closeModal(id){
+
+document
+.getElementById(id)
+.classList
+.remove("show");
+
+}
+
+
+/* ================= SECURITY ================= */
+
+function escapeHTML(value){
+
+return String(value??"")
+.replaceAll("&","&amp;")
+.replaceAll("<","&lt;")
+.replaceAll(">","&gt;")
+.replaceAll('"',"&quot;")
+.replaceAll("'","&#039;");
+
+}
+
+
+/* ================= CLOSE MODALS ================= */
+
+document
+.querySelectorAll(".modal")
+.forEach(m=>{
+
+m.addEventListener("click",e=>{
+
+if(e.target===m){
+
+m.classList.remove("show");
+
+}
+
+});
+
+});
+
+
+/* ================= START ================= */
 
 renderCourses();
 
