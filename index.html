@@ -3,12 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AUREXA | Cyber Security Solutions</title>
+    <title>AUREXA | AI-Powered Cybersecurity Platform</title>
+    <meta name="description" content="AUREXA Enterprise Cybersecurity - Detect. Analyze. Respond. Protect.">
     
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     
+    <!-- Dependencies -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <style>
@@ -16,443 +20,403 @@
            1. CSS VARIABLES & THEMING
            ========================================================================== */
         :root {
-            /* Light Theme (Default) */
-            --bg-body: #f4f7f9;
+            /* Light Theme - Corporate Default */
+            --bg-base: #f8fafc;
             --bg-surface: #ffffff;
-            --bg-surface-glass: rgba(255, 255, 255, 0.85);
+            --bg-glass: rgba(255, 255, 255, 0.85);
             --bg-hover: #f1f5f9;
-            --bg-overlay: rgba(15, 23, 42, 0.6);
             
-            --text-main: #0f172a;
-            --text-muted: #64748b;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #94a3b8;
             --text-inverse: #ffffff;
             
-            --border-light: #e2e8f0;
+            --border-color: #e2e8f0;
             --border-glass: rgba(255, 255, 255, 0.5);
             
-            --primary: #1e3a8a; /* Navy */
-            --primary-hover: #1e40af;
-            --secondary: #4f46e5; /* Indigo */
-            --accent: #0ea5e9; /* Blue/Cyan */
+            --primary: #0f172a; /* Navy */
+            --primary-hover: #1e293b;
+            --secondary: #2563eb; /* Blue */
+            --secondary-hover: #1d4ed8;
+            --accent: #06b6d4; /* Cyan */
+            --accent-violet: #6366f1;
             
             --success: #10b981;
             --success-bg: #d1fae5;
-            --success-text: #065f46;
-            
             --warning: #f59e0b;
             --warning-bg: #fef3c7;
-            --warning-text: #92400e;
-            
             --danger: #ef4444;
             --danger-bg: #fee2e2;
-            --danger-text: #991b1b;
-            
             --info: #3b82f6;
             --info-bg: #dbeafe;
-            --info-text: #1e40af;
             
             --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
             --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
             --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            --shadow-float: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
             
             --radius-md: 8px;
             --radius-lg: 12px;
             --radius-xl: 16px;
             
+            --header-height: 72px;
             --sidebar-width: 260px;
-            --header-height: 70px;
-            
-            --transition-speed: 0.3s;
+            --z-nav: 9000;
+            --z-overlay: 9998;
+            --z-drawer: 9999;
         }
 
         [data-theme="dark"] {
-            --bg-body: #020617;
+            --bg-base: #020617;
             --bg-surface: #0f172a;
-            --bg-surface-glass: rgba(15, 23, 42, 0.85);
+            --bg-glass: rgba(15, 23, 42, 0.85);
             --bg-hover: #1e293b;
-            --bg-overlay: rgba(0, 0, 0, 0.8);
             
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            
-            --border-light: #334155;
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --border-color: #334155;
             --border-glass: rgba(255, 255, 255, 0.1);
             
             --primary: #3b82f6;
             --primary-hover: #60a5fa;
             
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
             --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
             --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
         }
 
-        /* Reduced Motion */
         @media (prefers-reduced-motion: reduce) {
-            * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+            * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
         }
 
         /* ==========================================================================
-           2. RESET & BASE
+           2. BASE STYLES
            ========================================================================== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background-color: var(--bg-body); color: var(--text-main); line-height: 1.5; overflow-x: hidden; transition: background-color var(--transition-speed); }
-        h1, h2, h3, h4, h5, h6 { font-weight: 600; line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 0.5rem; }
-        a { color: var(--primary); text-decoration: none; transition: color 0.2s; }
-        a:hover { color: var(--primary-hover); }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-base); color: var(--text-primary); line-height: 1.5; overflow-x: hidden; transition: background-color 0.3s, color 0.3s; }
+        a { color: var(--secondary); text-decoration: none; transition: color 0.2s; }
+        a:hover { color: var(--secondary-hover); }
         ul { list-style: none; }
         button { cursor: pointer; font-family: inherit; border: none; background: none; color: inherit; }
         img { max-width: 100%; height: auto; display: block; }
         .hidden { display: none !important; }
         
+        h1, h2, h3, h4, h5, h6 { font-weight: 600; letter-spacing: -0.02em; margin-bottom: 0.5rem; line-height: 1.2; }
+        
         /* ==========================================================================
-           3. LAYOUT & GRID
+           3. LAYOUT
            ========================================================================== */
-        .app-layout { display: flex; height: 100vh; overflow: hidden; }
-        .main-content { flex: 1; display: flex; flex-direction: column; height: 100vh; overflow: hidden; position: relative; }
-        .scrollable-area { flex: 1; overflow-y: auto; padding: 2rem; scroll-behavior: smooth; }
+        .app-container { display: flex; height: 100vh; overflow: hidden; }
+        .main-wrapper { flex: 1; display: flex; flex-direction: column; height: 100vh; overflow: hidden; position: relative; }
+        .content-area { flex: 1; overflow-y: auto; padding: 2rem; scroll-behavior: smooth; }
         
         .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
         .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
         .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
-        
+
         /* ==========================================================================
-           4. SIDEBAR & MOBILE NAVIGATION
+           4. SIDEBAR NAVIGATION
            ========================================================================== */
-        .sidebar { width: var(--sidebar-width); background-color: var(--bg-surface); border-right: 1px solid var(--border-light); display: flex; flex-direction: column; flex-shrink: 0; transition: transform var(--transition-speed); z-index: 1000; }
+        .sidebar { width: var(--sidebar-width); background-color: var(--bg-surface); border-right: 1px solid var(--border-color); display: flex; flex-direction: column; z-index: var(--z-nav); transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .sidebar-header { height: var(--header-height); display: flex; align-items: center; padding: 0 1.5rem; border-bottom: 1px solid var(--border-color); }
         
-        .sidebar-header { height: var(--header-height); display: flex; align-items: center; padding: 0 1.5rem; border-bottom: 1px solid var(--border-light); }
-        .brand { display: flex; align-items: center; gap: 0.75rem; font-weight: 700; font-size: 1.25rem; letter-spacing: -0.5px; }
-        .brand-logo { width: 32px; height: 32px; background: linear-gradient(135deg, var(--primary), var(--accent)); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 800; font-size: 18px; }
+        /* Logo CSS Implementation */
+        .brand-logo { display: flex; align-items: center; gap: 0.75rem; font-weight: 700; font-size: 1.25rem; letter-spacing: -0.5px; }
+        .logo-mark { width: 32px; height: 32px; background: linear-gradient(135deg, var(--primary), var(--secondary)); clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); position: relative; display: flex; align-items: center; justify-content: center; }
+        .logo-mark::before { content: ''; position: absolute; width: 16px; height: 16px; background: var(--bg-surface); clip-path: polygon(50% 0%, 100% 100%, 0% 100%); top: 8px; }
         
-        .sidebar-nav { flex: 1; overflow-y: auto; padding: 1.5rem 1rem; }
-        .nav-group { margin-bottom: 1.5rem; }
-        .nav-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); font-weight: 700; margin-bottom: 0.5rem; padding-left: 0.75rem; }
-        .nav-item { display: flex; align-items: center; padding: 0.6rem 0.75rem; border-radius: var(--radius-md); font-size: 0.9rem; font-weight: 500; color: var(--text-main); transition: all 0.2s; margin-bottom: 0.25rem; }
-        .nav-item:hover { background-color: var(--bg-hover); color: var(--primary); }
-        .nav-item.active { background-color: rgba(79, 70, 229, 0.1); color: var(--secondary); font-weight: 600; }
-        
-        /* Mobile Overlay */
-        .mobile-overlay { position: fixed; inset: 0; background-color: var(--bg-overlay); backdrop-filter: blur(4px); z-index: 998; opacity: 0; visibility: hidden; transition: all var(--transition-speed); }
-        .mobile-overlay.active { opacity: 1; visibility: visible; }
-        .body-no-scroll { overflow: hidden; }
+        .nav-content { flex: 1; overflow-y: auto; padding: 1.5rem 1rem; }
+        .nav-section { margin-bottom: 1.5rem; }
+        .nav-title { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); font-weight: 700; margin-bottom: 0.5rem; padding-left: 0.75rem; }
+        .nav-item { display: flex; align-items: center; padding: 0.6rem 0.75rem; border-radius: var(--radius-md); font-size: 0.9rem; font-weight: 500; color: var(--text-primary); transition: all 0.2s; margin-bottom: 0.25rem; width: 100%; text-align: left; }
+        .nav-item:hover { background-color: var(--bg-hover); color: var(--secondary); }
+        .nav-item.active { background-color: rgba(37, 99, 235, 0.1); color: var(--secondary); font-weight: 600; }
+
+        /* Mobile Drawer Overlay */
+        .menu-overlay { position: fixed; inset: 0; background-color: rgba(15, 23, 42, 0.7); backdrop-filter: blur(4px); z-index: var(--z-overlay); opacity: 0; visibility: hidden; transition: all 0.3s; }
+        .menu-overlay.active { opacity: 1; visibility: visible; }
+        .no-scroll { overflow: hidden !important; }
 
         /* ==========================================================================
            5. TOP HEADER
            ========================================================================== */
-        .top-header { height: var(--header-height); background: var(--bg-surface-glass); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-light); display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; z-index: 900; }
+        .top-header { height: var(--header-height); background: var(--bg-glass); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-color); display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; position: sticky; top: 0; z-index: 50; }
         .header-left { display: flex; align-items: center; gap: 1rem; }
-        .hamburger-btn { display: none; font-size: 1.5rem; color: var(--text-main); padding: 0.5rem; border-radius: var(--radius-md); }
-        .hamburger-btn:hover { background-color: var(--bg-hover); }
+        .menu-toggle { display: none; font-size: 1.5rem; color: var(--text-primary); padding: 0.5rem; border-radius: var(--radius-md); border: 1px solid var(--border-color); }
         
         .header-right { display: flex; align-items: center; gap: 1rem; }
-        .icon-btn { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background-color: var(--bg-body); border: 1px solid var(--border-light); transition: all 0.2s; font-size: 1.1rem; }
-        .icon-btn:hover { background-color: var(--bg-hover); border-color: var(--text-muted); }
+        .icon-btn { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background-color: var(--bg-surface); border: 1px solid var(--border-color); transition: all 0.2s; font-size: 1.1rem; }
+        .icon-btn:hover { background-color: var(--bg-hover); }
         
-        /* Notification Dropdown */
-        .notif-wrapper { position: relative; }
-        .notif-badge { position: absolute; top: -2px; right: -2px; background: var(--danger); color: white; font-size: 0.65rem; font-weight: bold; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid var(--bg-surface); }
-        .notif-panel { position: absolute; top: 120%; right: 0; width: 320px; background: var(--bg-surface); border: 1px solid var(--border-light); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); opacity: 0; visibility: hidden; transform: translateY(10px); transition: all 0.2s; z-index: 1000; }
-        .notif-panel.active { opacity: 1; visibility: visible; transform: translateY(0); }
-        .notif-header { padding: 1rem; border-bottom: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: center; font-weight: 600; }
-        .notif-body { max-height: 300px; overflow-y: auto; }
-        .notif-item { padding: 1rem; border-bottom: 1px solid var(--border-light); font-size: 0.85rem; cursor: pointer; transition: background 0.2s; }
-        .notif-item:hover { background: var(--bg-hover); }
-        .notif-item:last-child { border-bottom: none; }
+        /* Notifications */
+        .notif-container { position: relative; }
+        .notif-badge { position: absolute; top: 0; right: 0; width: 10px; height: 10px; background-color: var(--danger); border-radius: 50%; border: 2px solid var(--bg-surface); }
+        .notif-dropdown { position: absolute; top: 120%; right: 0; width: 320px; background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); opacity: 0; visibility: hidden; transform: translateY(10px); transition: all 0.2s; z-index: 100; }
+        .notif-dropdown.active { opacity: 1; visibility: visible; transform: translateY(0); }
+        .notif-header { padding: 1rem; border-bottom: 1px solid var(--border-color); font-weight: 600; display: flex; justify-content: space-between; }
+        .notif-body { padding: 1rem; max-height: 300px; overflow-y: auto; font-size: 0.85rem; }
 
         /* ==========================================================================
-           6. COMPONENTS (Buttons, Cards, Badges, Forms)
+           6. COMPONENTS (Cards, Buttons, Forms)
            ========================================================================== */
-        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.6rem 1.25rem; font-size: 0.9rem; font-weight: 600; border-radius: var(--radius-md); transition: all 0.2s; text-align: center; }
-        .btn-primary { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25); border: 1px solid transparent; }
-        .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(79, 70, 229, 0.35); }
-        .btn-secondary { background-color: var(--bg-surface); color: var(--text-main); border: 1px solid var(--border-light); }
-        .btn-secondary:hover { background-color: var(--bg-hover); border-color: var(--text-muted); }
-        .btn-danger { background-color: var(--danger); color: white; }
-        .btn-danger:hover { background-color: #dc2626; }
-        .btn-block { width: 100%; }
-        
-        .card { background-color: var(--bg-surface); border-radius: var(--radius-lg); border: 1px solid var(--border-light); box-shadow: var(--shadow-sm); padding: 1.5rem; transition: transform 0.3s, box-shadow 0.3s; position: relative; z-index: 1; }
+        .card { background-color: var(--bg-surface); border-radius: var(--radius-lg); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm); padding: 1.5rem; transition: transform 0.3s, box-shadow 0.3s; position: relative; }
         .card:hover { box-shadow: var(--shadow-md); }
-        .card-glass { background: var(--bg-surface-glass); backdrop-filter: blur(16px); border: 1px solid var(--border-glass); }
         
-        .badge { display: inline-flex; align-items: center; padding: 0.25rem 0.6rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
-        .badge-success { background-color: var(--success-bg); color: var(--success-text); }
-        .badge-warning { background-color: var(--warning-bg); color: var(--warning-text); }
-        .badge-danger { background-color: var(--danger-bg); color: var(--danger-text); }
-        .badge-info { background-color: var(--info-bg); color: var(--info-text); }
-        .badge-outline { background: transparent; border: 1px solid currentColor; }
+        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.6rem 1.25rem; font-size: 0.9rem; font-weight: 600; border-radius: var(--radius-md); transition: all 0.2s; }
+        .btn-primary { background-color: var(--secondary); color: white; border: 1px solid transparent; }
+        .btn-primary:hover { background-color: var(--secondary-hover); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2); }
+        .btn-outline { background-color: transparent; color: var(--text-primary); border: 1px solid var(--border-color); }
+        .btn-outline:hover { background-color: var(--bg-hover); border-color: var(--text-secondary); }
+        .btn-danger { background-color: var(--danger); color: white; }
+        .btn-block { width: 100%; }
+
+        .badge { display: inline-flex; align-items: center; padding: 0.25rem 0.6rem; border-radius: 999px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+        .badge-success { background: var(--success-bg); color: #065f46; }
+        .badge-warning { background: var(--warning-bg); color: #92400e; }
+        .badge-danger { background: var(--danger-bg); color: #991b1b; }
+        .badge-info { background: var(--info-bg); color: #1e40af; }
+        .badge-outline { border: 1px solid currentColor; background: transparent; }
 
         .form-group { margin-bottom: 1.25rem; }
-        .form-label { display: block; font-size: 0.875rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-main); }
-        .form-control { width: 100%; padding: 0.75rem 1rem; border-radius: var(--radius-md); border: 1px solid var(--border-light); background-color: var(--bg-body); color: var(--text-main); font-family: inherit; font-size: 0.95rem; transition: border-color 0.2s, box-shadow 0.2s; outline: none; }
-        .form-control:focus { border-color: var(--secondary); box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15); }
-        textarea.form-control { resize: vertical; min-height: 100px; }
-
-        .tabs-nav { display: flex; border-bottom: 1px solid var(--border-light); margin-bottom: 1.5rem; overflow-x: auto; scrollbar-width: none; }
-        .tabs-nav::-webkit-scrollbar { display: none; }
-        .tab-btn { padding: 0.75rem 1.5rem; font-weight: 600; font-size: 0.9rem; color: var(--text-muted); border-bottom: 2px solid transparent; transition: all 0.2s; white-space: nowrap; }
-        .tab-btn:hover { color: var(--text-main); }
-        .tab-btn.active { color: var(--secondary); border-bottom-color: var(--secondary); }
-        .tab-content { display: none; animation: fadeIn 0.3s ease-out forwards; }
-        .tab-content.active { display: block; }
+        .form-label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-primary); }
+        .form-control { width: 100%; padding: 0.75rem 1rem; border-radius: var(--radius-md); border: 1px solid var(--border-color); background-color: var(--bg-base); color: var(--text-primary); font-family: inherit; font-size: 0.95rem; transition: all 0.2s; outline: none; }
+        .form-control:focus { border-color: var(--secondary); box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15); }
         
-        .table-container { overflow-x: auto; border: 1px solid var(--border-light); border-radius: var(--radius-md); }
         table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.9rem; }
-        th, td { padding: 1rem; border-bottom: 1px solid var(--border-light); }
+        th, td { padding: 1rem; border-bottom: 1px solid var(--border-color); }
         th { background-color: var(--bg-hover); font-weight: 600; color: var(--text-muted); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.05em; }
-        tr:last-child td { border-bottom: none; }
         tbody tr:hover { background-color: var(--bg-hover); }
 
         /* ==========================================================================
-           7. 3D HERO & DASHBOARD
+           7. 3D HERO SECTION
            ========================================================================== */
-        .hero-section { position: relative; padding: 4rem 2rem; border-radius: var(--radius-xl); background: linear-gradient(135deg, var(--primary) 0%, #0f172a 100%); color: white; display: flex; align-items: center; justify-content: space-between; overflow: hidden; margin-bottom: 2rem; box-shadow: var(--shadow-lg); }
-        .hero-content { position: relative; z-index: 10; max-width: 600px; }
-        .hero-title { font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; line-height: 1.1; margin-bottom: 1rem; text-shadow: 0 4px 12px rgba(0,0,0,0.3); }
-        .hero-subtitle { font-size: 1.1rem; color: #cbd5e1; margin-bottom: 2.5rem; }
+        .hero-section { position: relative; padding: 4rem 2rem; border-radius: var(--radius-xl); background: linear-gradient(135deg, var(--primary) 0%, #1e1b4b 100%); color: white; display: flex; align-items: center; justify-content: space-between; overflow: hidden; margin-bottom: 2rem; box-shadow: var(--shadow-lg); }
+        .hero-content { position: relative; z-index: 10; max-width: 650px; }
+        .hero-title { font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 800; line-height: 1.1; margin-bottom: 1rem; text-shadow: 0 4px 12px rgba(0,0,0,0.3); color: white; }
+        .hero-subtitle { font-size: 1.1rem; color: #cbd5e1; margin-bottom: 2.5rem; max-width: 500px; }
         .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
         
-        /* CSS 3D Fallback/Primary Visualization */
-        .hero-3d-container { position: absolute; right: 5%; top: 50%; transform: translateY(-50%); width: 400px; height: 400px; perspective: 1000px; z-index: 1; display: flex; align-items: center; justify-content: center; }
-        .cyber-shield { width: 160px; height: 180px; background: rgba(14, 165, 233, 0.15); backdrop-filter: blur(8px); border: 2px solid var(--accent); clip-path: polygon(50% 0%, 100% 20%, 100% 75%, 50% 100%, 0% 75%, 0% 20%); animation: float-shield 6s infinite ease-in-out; position: relative; box-shadow: inset 0 0 40px rgba(14, 165, 233, 0.4); display: flex; align-items: center; justify-content: center; }
-        .cyber-shield::after { content: '🛡️'; font-size: 4rem; opacity: 0.8; filter: drop-shadow(0 0 10px rgba(14, 165, 233, 0.8)); }
-        .orbit-ring { position: absolute; border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.2); border-top-color: var(--accent); top: 50%; left: 50%; transform: translate(-50%, -50%) rotateX(70deg); animation: spin-ring 12s linear infinite; }
-        .orbit-1 { width: 280px; height: 280px; animation-duration: 8s; }
-        .orbit-2 { width: 360px; height: 360px; border-top-color: transparent; border-bottom-color: var(--secondary); animation-direction: reverse; animation-duration: 15s; }
+        #threejs-container { position: absolute; right: 0; top: 0; width: 50%; height: 100%; z-index: 1; pointer-events: none; }
         
-        .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
-        .stat-card { padding: 1.5rem; display: flex; flex-direction: column; }
-        .stat-value { font-size: 2.2rem; font-weight: 700; color: var(--text-main); margin: 0.5rem 0; line-height: 1; }
+        .stat-card { display: flex; flex-direction: column; }
+        .stat-value { font-size: 2.2rem; font-weight: 700; color: var(--text-primary); margin: 0.5rem 0; line-height: 1; }
         .stat-label { font-size: 0.85rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
-        
+
         /* ==========================================================================
-           8. SPECIALIZED SECTIONS (Scanner, Chat, Terminal)
+           8. SPECIFIC VIEWS (Scanner, Chat, Service States)
            ========================================================================== */
+        .view-section { display: none; animation: fadeIn 0.4s ease-out forwards; }
+        .view-section.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Service Config State */
+        .service-state { border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 3rem 2rem; text-align: center; background-color: var(--bg-surface); }
+        .service-icon { font-size: 2.5rem; margin-bottom: 1rem; opacity: 0.5; }
+        .service-title { font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem; }
+        .service-desc { color: var(--text-muted); max-width: 500px; margin: 0 auto 1.5rem; font-size: 0.95rem; }
+
+        /* Scanner Terminal */
         .terminal-ui { background-color: #0f172a; color: #e2e8f0; font-family: 'JetBrains Mono', monospace; font-size: 0.875rem; padding: 1.5rem; border-radius: var(--radius-md); border: 1px solid #334155; margin-top: 1.5rem; overflow-x: auto; }
         .term-header { border-bottom: 1px solid #334155; padding-bottom: 0.75rem; margin-bottom: 1rem; display: flex; justify-content: space-between; font-weight: 700; color: #94a3b8; }
         .term-line { margin-bottom: 0.5rem; line-height: 1.6; }
-        .text-safe { color: #10b981; } .text-warn { color: #f59e0b; } .text-crit { color: #ef4444; } .text-info { color: #38bdf8; }
+        .t-safe { color: #10b981; } .t-warn { color: #f59e0b; } .t-crit { color: #ef4444; } .t-info { color: #38bdf8; }
 
-        /* Chat Copilot */
-        .chat-wrapper { display: flex; flex-direction: column; height: 600px; border: 1px solid var(--border-light); border-radius: var(--radius-lg); overflow: hidden; background: var(--bg-surface); }
-        .chat-history { flex: 1; padding: 1.5rem; overflow-y: auto; display: flex; flex-direction: column; gap: 1rem; background-color: var(--bg-body); }
+        /* AI Copilot */
+        .chat-layout { display: flex; flex-direction: column; height: 600px; border: 1px solid var(--border-color); border-radius: var(--radius-lg); overflow: hidden; background: var(--bg-surface); }
+        .chat-history { flex: 1; padding: 1.5rem; overflow-y: auto; display: flex; flex-direction: column; gap: 1rem; background-color: var(--bg-base); }
         .chat-bubble { max-width: 80%; padding: 1rem; border-radius: var(--radius-lg); font-size: 0.95rem; line-height: 1.5; box-shadow: var(--shadow-sm); }
-        .bubble-ai { background-color: var(--bg-surface); align-self: flex-start; border-bottom-left-radius: 4px; border: 1px solid var(--border-light); }
-        .bubble-user { background-color: var(--primary); color: white; align-self: flex-end; border-bottom-right-radius: 4px; }
-        .chat-input-container { padding: 1rem; background: var(--bg-surface); border-top: 1px solid var(--border-light); }
-        .quick-prompts { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; }
-        .prompt-chip { padding: 0.4rem 0.8rem; background: var(--bg-body); border: 1px solid var(--border-light); border-radius: 999px; font-size: 0.8rem; cursor: pointer; transition: 0.2s; color: var(--text-muted); }
-        .prompt-chip:hover { background: var(--border-light); color: var(--text-main); }
-        
-        /* Drag & Drop Zone */
-        .drop-zone { border: 2px dashed var(--border-light); border-radius: var(--radius-lg); padding: 3rem 2rem; text-align: center; background: var(--bg-body); transition: all 0.2s; cursor: pointer; }
-        .drop-zone:hover { border-color: var(--secondary); background: rgba(79, 70, 229, 0.05); }
+        .bubble-ai { background-color: var(--bg-surface); align-self: flex-start; border-bottom-left-radius: 4px; border: 1px solid var(--border-color); }
+        .bubble-user { background-color: var(--secondary); color: white; align-self: flex-end; border-bottom-right-radius: 4px; }
+
+        /* Founder Section */
+        .founder-box { display: flex; flex-direction: column; gap: 2rem; padding: 2.5rem; align-items: center; text-align: center; }
+        @media (min-width: 768px) { .founder-box { flex-direction: row; text-align: left; align-items: flex-start; } }
+        .founder-img { width: 160px; height: 160px; border-radius: 50%; object-fit: cover; border: 4px solid var(--bg-surface); box-shadow: var(--shadow-md); flex-shrink: 0; background-color: var(--bg-hover); }
         
         /* Fraud Section */
         .fraud-banner { background-color: var(--danger-bg); border-left: 4px solid var(--danger); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 2rem; }
-        .helpline-number { font-size: 3rem; font-weight: 800; color: var(--danger); letter-spacing: 2px; line-height: 1; margin: 1rem 0; }
+        .helpline { font-size: 3.5rem; font-weight: 800; color: var(--danger); letter-spacing: 2px; line-height: 1; margin: 1rem 0; }
 
-        /* Founder Section */
-        .founder-card { display: flex; flex-direction: column; gap: 2rem; padding: 2rem; align-items: center; text-align: center; }
-        @media (min-width: 768px) { .founder-card { flex-direction: row; text-align: left; align-items: flex-start; } }
-        .founder-img-box { width: 150px; height: 150px; border-radius: 50%; overflow: hidden; border: 4px solid var(--bg-surface); box-shadow: var(--shadow-md); flex-shrink: 0; background: linear-gradient(135deg, var(--primary), var(--secondary)); display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem; font-weight: 800; }
-        
-        /* Utilities & Animations */
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes float-shield { 0% { transform: translateY(0) rotateY(0deg); } 50% { transform: translateY(-15px) rotateY(15deg); } 100% { transform: translateY(0) rotateY(0deg); } }
-        @keyframes spin-ring { 100% { transform: translate(-50%, -50%) rotateX(70deg) rotateZ(360deg); } }
-        
-        .mt-1 { margin-top: 0.5rem; } .mt-2 { margin-top: 1rem; } .mt-3 { margin-top: 1.5rem; } .mt-4 { margin-top: 2rem; }
-        .mb-1 { margin-bottom: 0.5rem; } .mb-2 { margin-bottom: 1rem; } .mb-3 { margin-bottom: 1.5rem; } .mb-4 { margin-bottom: 2rem; }
-        .text-center { text-align: center; } .w-full { width: 100%; }
+        .mt-1 { margin-top: 0.5rem; } .mt-2 { margin-top: 1rem; } .mt-3 { margin-top: 1.5rem; } .mb-1 { margin-bottom: 0.5rem; } .mb-2 { margin-bottom: 1rem; } .mb-3 { margin-bottom: 1.5rem; }
+        .w-full { width: 100%; } .text-center { text-align: center; }
 
         /* ==========================================================================
-           9. RESPONSIVE DESIGN (MOBILE FIRST FIXES)
+           9. RESPONSIVE (MOBILE FIXES)
            ========================================================================== */
         @media (max-width: 1024px) {
             .grid-4 { grid-template-columns: repeat(2, 1fr); }
-            .hero-3d-container { right: -50px; opacity: 0.5; }
+            #threejs-container { opacity: 0.4; }
         }
         
         @media (max-width: 768px) {
-            .sidebar { position: fixed; inset: 0 auto 0 0; transform: translateX(-100%); box-shadow: var(--shadow-float); }
+            .sidebar { position: fixed; top: 0; left: 0; height: 100vh; transform: translateX(-100%); z-index: var(--z-drawer); background: var(--bg-surface); }
             .sidebar.open { transform: translateX(0); }
             .hamburger-btn { display: block; }
             .top-header { padding: 0 1rem; }
-            .scrollable-area { padding: 1rem; }
+            .content-area { padding: 1rem; }
             .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
             .hero-section { padding: 2.5rem 1.5rem; text-align: center; justify-content: center; }
             .hero-actions { justify-content: center; }
-            .hero-3d-container { display: none; }
-            .tabs-nav { padding-bottom: 5px; }
-            .notif-panel { width: 100%; right: 0; position: fixed; top: var(--header-height); border-radius: 0; border-left: none; border-right: none; }
+            #threejs-container { display: none; }
+            .notif-dropdown { width: 100%; position: fixed; top: var(--header-height); right: 0; border-radius: 0; border-left: none; border-right: none; }
         }
     </style>
 </head>
 <body>
 
-<div class="app-layout">
+<div class="app-container">
     
-    <div class="mobile-overlay" id="mobileOverlay" onclick="UI.toggleMenu()"></div>
+    <!-- Mobile Drawer Overlay -->
+    <div class="menu-overlay" id="menuOverlay" onclick="App.toggleMenu()"></div>
 
+    <!-- Sidebar Navigation -->
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <div class="brand">
-                <div class="brand-logo">A</div>
-                <span>AUREXA</span>
+            <div class="brand-logo">
+                <div class="logo-mark"></div>
+                AUREXA
             </div>
         </div>
         
-        <nav class="sidebar-nav">
-            <div class="nav-group">
-                <div class="nav-label">Overview</div>
-                <button class="nav-item active w-full" onclick="UI.navigate('dashboard')">Dashboard</button>
+        <nav class="nav-content">
+            <div class="nav-section">
+                <div class="nav-title">Overview</div>
+                <button class="nav-item active" onclick="App.navigate('dashboard', this)">Home</button>
             </div>
             
-            <div class="nav-group">
-                <div class="nav-label">Security</div>
-                <button class="nav-item w-full" onclick="UI.navigate('scanner')">URL Scanner</button>
-                <button class="nav-item w-full" onclick="UI.navigate('apk')">APK Screening</button>
-                <button class="nav-item w-full" onclick="UI.navigate('screenshot')">Screenshot Analysis</button>
-                <button class="nav-item w-full" onclick="UI.navigate('threat')">Threat Intelligence</button>
-                <button class="nav-item w-full" onclick="UI.navigate('mitre')">MITRE ATT&CK</button>
+            <div class="nav-section">
+                <div class="nav-title">Security Intelligence</div>
+                <button class="nav-item" onclick="App.navigate('scanner', this)">Security Scanner</button>
+                <button class="nav-item" onclick="App.navigate('copilot', this)">AI Copilot</button>
+                <button class="nav-item" onclick="App.navigate('threat', this)">Threat Intelligence</button>
+                <button class="nav-item" onclick="App.navigate('ioc', this)">IOC Intelligence</button>
+                <button class="nav-item" onclick="App.navigate('mitre', this)">MITRE ATT&CK</button>
+                <button class="nav-item" onclick="App.navigate('news', this)">Cyber News</button>
             </div>
             
-            <div class="nav-group">
-                <div class="nav-label">Operations</div>
-                <button class="nav-item w-full" onclick="UI.navigate('incidents')">Incidents</button>
-                <button class="nav-item w-full" onclick="UI.navigate('alerts')">Alerts</button>
-                <button class="nav-item w-full" onclick="UI.navigate('reports')">Reports</button>
+            <div class="nav-section">
+                <div class="nav-title">Operations</div>
+                <button class="nav-item" onclick="App.navigate('incidents', this)">Incidents</button>
+                <button class="nav-item" onclick="App.navigate('alerts', this)">Alerts</button>
+                <button class="nav-item" onclick="App.navigate('reports', this)">Reports</button>
             </div>
             
-            <div class="nav-group">
-                <div class="nav-label">Intelligence</div>
-                <button class="nav-item w-full" onclick="UI.navigate('news')">Cyber News</button>
-                <button class="nav-item w-full" onclick="UI.navigate('copilot')">AI Security Copilot</button>
-            </div>
-            
-            <div class="nav-group">
-                <div class="nav-label">Platform</div>
-                <button class="nav-item w-full" onclick="UI.navigate('fraud')">Report Cyber Fraud</button>
-                <button class="nav-item w-full" onclick="UI.navigate('founder')">Founder & CEO</button>
-                <button class="nav-item w-full" onclick="UI.navigate('contact')">Contact</button>
-                <button class="nav-item w-full" onclick="UI.navigate('admin')">Admin Panel</button>
+            <div class="nav-section">
+                <div class="nav-title">Platform</div>
+                <button class="nav-item" onclick="App.navigate('fraud', this)">Cyber Fraud Help</button>
+                <button class="nav-item" onclick="App.navigate('founder', this)">Founder & CEO</button>
+                <button class="nav-item" onclick="App.navigate('about', this)">About</button>
+                <button class="nav-item" onclick="App.navigate('contact', this)">Contact</button>
+                <button class="nav-item" onclick="App.navigate('admin', this)">Admin Panel</button>
             </div>
         </nav>
     </aside>
 
-    <main class="main-content">
+    <!-- Main Content -->
+    <main class="main-wrapper">
         
+        <!-- Top Header -->
         <header class="top-header">
             <div class="header-left">
-                <button class="hamburger-btn" onclick="UI.toggleMenu()" aria-label="Toggle Menu">☰</button>
-                <div style="font-weight: 600; color: var(--text-muted); display: none;" id="mobileTitle">AUREXA</div>
+                <button class="hamburger-btn menu-toggle" onclick="App.toggleMenu()" aria-label="Toggle Navigation">☰</button>
             </div>
             
             <div class="header-right">
-                <div style="position: relative; display: none;" id="desktopSearch">
-                    <input type="text" class="form-control" placeholder="Search..." style="border-radius: 99px; padding-left: 1.5rem; width: 250px; padding-top: 0.5rem; padding-bottom: 0.5rem; font-size: 0.85rem;">
+                <!-- Global Search -->
+                <div style="display: flex; align-items: center; background: var(--bg-base); border: 1px solid var(--border-color); border-radius: 99px; padding: 0.25rem 1rem; margin-right: 1rem;" class="hidden-mobile">
+                    <span style="color: var(--text-muted); margin-right: 0.5rem;">🔍</span>
+                    <input type="text" placeholder="Search... (Ctrl+K)" style="border: none; background: transparent; outline: none; font-size: 0.85rem; color: var(--text-primary); width: 150px;">
                 </div>
                 
-                <button class="icon-btn" onclick="UI.toggleTheme()" title="Toggle Theme">🌓</button>
+                <button class="icon-btn" onclick="App.toggleTheme()" aria-label="Toggle Theme">🌓</button>
                 
-                <div class="notif-wrapper">
-                    <button class="icon-btn" onclick="UI.toggleNotifications()" title="Notifications">
-                        🔔<span class="notif-badge">3</span>
+                <div class="notif-container">
+                    <button class="icon-btn" onclick="document.getElementById('notifDropdown').classList.toggle('active')" aria-label="Notifications">
+                        🔔<div class="notif-badge"></div>
                     </button>
-                    <div class="notif-panel" id="notifPanel">
+                    <div class="notif-dropdown" id="notifDropdown">
                         <div class="notif-header">
-                            Alerts
-                            <button style="color: var(--primary); font-size: 0.8rem; font-weight: normal;">Mark all read</button>
+                            <span>Notifications</span>
+                            <button style="color: var(--secondary); font-size: 0.8rem;">Mark read</button>
                         </div>
                         <div class="notif-body">
-                            <div class="notif-item">
-                                <div style="font-weight: 600; color: var(--danger);">Critical: Suspicious Login</div>
-                                <div style="color: var(--text-muted);">Multiple failed attempts detected.</div>
-                                <div style="font-size: 0.75rem; margin-top: 4px;">2 mins ago</div>
-                            </div>
-                            <div class="notif-item">
-                                <div style="font-weight: 600; color: var(--warning);">Warning: API Config</div>
-                                <div style="color: var(--text-muted);">Threat Intel backend is in demo mode.</div>
-                                <div style="font-size: 0.75rem; margin-top: 4px;">1 hr ago</div>
+                            <div style="margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-color);">
+                                <strong style="color: var(--warning);">Configuration Notice</strong>
+                                <p style="color: var(--text-muted); font-size: 0.8rem; margin-top: 0.25rem;">System is running with local heuristics. Connect API endpoints to enable real-time threat intelligence.</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 
-                <button class="btn btn-secondary" style="padding: 0.4rem 1rem; font-size: 0.85rem;" onclick="UI.navigate('admin')">Admin</button>
+                <button class="btn btn-outline" style="padding: 0.4rem 1rem; font-size: 0.85rem;" onclick="App.navigate('admin')">Admin</button>
             </div>
         </header>
 
-        <div class="scrollable-area" id="viewsContainer">
+        <!-- Dynamic Views Area -->
+        <div class="content-area" id="viewContainer">
             
-            <section id="view-dashboard" class="view-section">
+            <!-- ==========================================
+                 VIEW: DASHBOARD (Home)
+                 ========================================== -->
+            <section id="view-dashboard" class="view-section active">
                 <div class="hero-section">
+                    <div id="threejs-container"></div>
                     <div class="hero-content">
-                        <div class="badge badge-info mb-3" style="background: rgba(255,255,255,0.2); color: white; border-color: rgba(255,255,255,0.4);">Enterprise Platform</div>
-                        <h1 class="hero-title">AI-POWERED CYBERSECURITY<br>FOR THE MODERN DIGITAL WORLD</h1>
-                        <p class="hero-subtitle">Detect. Analyze. Respond. Protect. Manage your organization's security posture with integrated intelligence.</p>
+                        <h1 class="hero-title">AI-Powered Cybersecurity Platform</h1>
+                        <p class="hero-subtitle">Detect. Analyze. Respond. Protect. Enterprise-grade security intelligence and incident response in one unified architecture.</p>
                         <div class="hero-actions">
-                            <button class="btn btn-primary" style="background: white; color: var(--primary);" onclick="UI.navigate('scanner')">Start Security Scan</button>
-                            <button class="btn btn-secondary" style="background: rgba(255,255,255,0.1); color: white; border-color: rgba(255,255,255,0.3);" onclick="UI.navigate('copilot')">Open AI Copilot</button>
-                            <button class="btn btn-danger" onclick="UI.navigate('fraud')">Report Cyber Fraud</button>
+                            <button class="btn btn-primary" onclick="App.navigate('scanner')">START SECURITY SCAN</button>
+                            <button class="btn btn-outline" style="background: rgba(255,255,255,0.1); color: white; border-color: rgba(255,255,255,0.3);" onclick="App.navigate('copilot')">OPEN AI COPILOT</button>
                         </div>
-                    </div>
-                    
-                    <div class="hero-3d-container">
-                        <div class="orbit-ring orbit-1"></div>
-                        <div class="orbit-ring orbit-2"></div>
-                        <div class="cyber-shield"></div>
                     </div>
                 </div>
 
                 <div class="mb-2" style="display: flex; justify-content: space-between; align-items: flex-end;">
-                    <h2 style="margin: 0;">Security Overview</h2>
-                    <span class="badge badge-warning">DEMO TELEMETRY</span>
+                    <h2 style="margin: 0;">Platform Telemetry</h2>
+                    <span class="badge badge-outline" style="color: var(--text-muted);">Sample Dashboard Data</span>
                 </div>
 
-                <div class="stat-grid">
-                    <div class="card card-glass stat-card">
-                        <span class="stat-label">Total Scans (30d)</span>
-                        <span class="stat-value">12,458</span>
-                        <div style="font-size: 0.8rem; color: var(--success); font-weight: 600;">↑ 14% vs last month</div>
+                <div class="grid-4 mb-4">
+                    <div class="card stat-card">
+                        <span class="stat-label">Security Checks</span>
+                        <span class="stat-value">124,582</span>
+                        <span class="badge badge-success">System Nominal</span>
                     </div>
-                    <div class="card card-glass stat-card">
-                        <span class="stat-label">Threats Detected</span>
-                        <span class="stat-value" style="color: var(--danger);">342</span>
-                        <div style="font-size: 0.8rem; color: var(--danger); font-weight: 600;">Action Required</div>
+                    <div class="card stat-card">
+                        <span class="stat-label">Threats Monitored</span>
+                        <span class="stat-value" style="color: var(--danger);">3,421</span>
+                        <span class="badge badge-outline" style="color: var(--text-muted);">Across connected nodes</span>
                     </div>
-                    <div class="card card-glass stat-card">
-                        <span class="stat-label">Open Incidents</span>
+                    <div class="card stat-card">
+                        <span class="stat-label">Active Alerts</span>
                         <span class="stat-value" style="color: var(--warning);">18</span>
-                        <div style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">Pending SOC Review</div>
+                        <span class="badge badge-warning">Requires SOC Review</span>
                     </div>
-                    <div class="card card-glass stat-card">
-                        <span class="stat-label">System Health</span>
-                        <span class="stat-value" style="color: var(--success);">100%</span>
-                        <div style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">All services operational</div>
+                    <div class="card stat-card">
+                        <span class="stat-label">System Risk Score</span>
+                        <span class="stat-value">24/100</span>
+                        <span class="badge badge-success">Low Risk Posture</span>
                     </div>
                 </div>
 
                 <div class="grid-2">
                     <div class="card">
                         <h4 class="mb-3">Threat Detection Trend</h4>
-                        <div style="height: 250px; position: relative; width: 100%;">
+                        <div style="height: 250px; position: relative;">
                             <canvas id="trendChart"></canvas>
                         </div>
                     </div>
                     <div class="card">
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-                            <h4 style="margin: 0;">Active Incidents</h4>
-                            <button class="btn btn-secondary" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;" onclick="UI.navigate('incidents')">View All</button>
+                            <h4 style="margin: 0;">Recent Alerts</h4>
+                            <button class="btn btn-outline" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;" onclick="App.navigate('alerts')">View Queue</button>
                         </div>
-                        <div class="table-container">
+                        <div style="overflow-x: auto;">
                             <table>
-                                <thead><tr><th>ID</th><th>Severity</th><th>Asset</th><th>Status</th></tr></thead>
+                                <thead><tr><th>Severity</th><th>Source</th><th>Status</th></tr></thead>
                                 <tbody>
-                                    <tr><td>INC-1042</td><td><span class="badge badge-danger">Critical</span></td><td>auth.server</td><td>Open</td></tr>
-                                    <tr><td>INC-1041</td><td><span class="badge badge-warning">High</span></td><td>mobile.api</td><td>Investigating</td></tr>
-                                    <tr><td>INC-1040</td><td><span class="badge badge-info">Medium</span></td><td>user-laptop</td><td>Contained</td></tr>
+                                    <tr><td><span class="badge badge-danger">Critical</span></td><td>auth.aurexa.space</td><td>Investigating</td></tr>
+                                    <tr><td><span class="badge badge-warning">High</span></td><td>mobile.api.endpoint</td><td>Open</td></tr>
+                                    <tr><td><span class="badge badge-info">Medium</span></td><td>user-workstation-04</td><td>Contained</td></tr>
                                 </tbody>
                             </table>
                         </div>
@@ -460,34 +424,38 @@
                 </div>
             </section>
 
+            <!-- ==========================================
+                 VIEW: SECURITY SCANNER
+                 ========================================== -->
             <section id="view-scanner" class="view-section hidden">
                 <div class="mb-4">
-                    <h2>URL Security Scanner</h2>
+                    <h2>Security Scanner</h2>
                     <p class="text-muted">Analyze URLs and domains for structural anomalies, phishing patterns, and heuristic risk indicators.</p>
                 </div>
 
                 <div class="card mb-4">
+                    <div style="display: flex; gap: 1rem; border-bottom: 1px solid var(--border-color); margin-bottom: 1.5rem; padding-bottom: 0.5rem;">
+                        <button style="font-weight: 600; color: var(--secondary); border-bottom: 2px solid var(--secondary); padding-bottom: 0.5rem;">Website / URL</button>
+                        <button style="font-weight: 600; color: var(--text-muted);" onclick="alert('APK Scanner requires backend file upload architecture.')">APK Screening</button>
+                    </div>
+
                     <div class="form-group">
                         <label class="form-label">Target URL or Domain</label>
-                        <input type="text" id="urlInput" class="form-control" placeholder="https://example.com" autocomplete="off" onkeypress="if(event.key === 'Enter') Scanner.analyzeUrl()">
+                        <input type="text" id="urlInput" class="form-control" placeholder="https://example.com" onkeypress="if(event.key === 'Enter') Scanner.analyzeUrl()">
                     </div>
                     
                     <div class="grid-2 mb-3">
                         <div class="form-group mb-0">
-                            <label class="form-label">Analysis Mode</label>
-                            <select class="form-control" id="urlMode">
-                                <option value="quick">Quick Heuristic Analysis (Local Engine)</option>
-                                <option value="standard" disabled>Standard Reputational Analysis (API Required)</option>
-                                <option value="deep" disabled>Deep Sandbox Analysis (API Required)</option>
+                            <label class="form-label">Scan Depth</label>
+                            <select class="form-control" id="scanDepth">
+                                <option value="quick">Quick (Local Heuristic Analysis)</option>
+                                <option value="standard" disabled>Standard (API Connection Required)</option>
+                                <option value="deep" disabled>Deep (API Connection Required)</option>
                             </select>
                         </div>
                         <div style="display: flex; align-items: flex-end;">
                             <button class="btn btn-primary btn-block" style="height: 44px;" onclick="Scanner.analyzeUrl()">Analyze URL</button>
                         </div>
-                    </div>
-                    
-                    <div class="badge badge-outline mt-2" style="color: var(--text-muted); font-weight: normal; font-size: 0.75rem;">
-                        <span style="color: var(--warning); margin-right: 5px;">⚠️ Note:</span> External reputation intelligence is not configured. This result is based on local heuristics only.
                     </div>
                 </div>
 
@@ -500,97 +468,96 @@
                 </div>
             </section>
 
-            <section id="view-apk" class="view-section hidden">
-                <div class="mb-4">
-                    <h2>APK Malware Screening</h2>
-                    <p class="text-muted">Extract metadata and generate file hashes for Android application packages.</p>
-                </div>
-
-                <div class="grid-2">
-                    <div class="card">
-                        <h4 class="mb-3">Upload File</h4>
-                        <div class="drop-zone" onclick="document.getElementById('apkFileInput').click()">
-                            <p class="text-muted mb-2">Drag & Drop .apk file here<br>or click to browse</p>
-                            <button class="btn btn-secondary">Select APK</button>
-                            <input type="file" id="apkFileInput" accept=".apk" class="hidden" onchange="Scanner.handleApkUpload(event)">
-                        </div>
-                    </div>
-                    <div class="card">
-                        <h4 class="mb-3">Analysis Result</h4>
-                        <div id="apkResultContent" class="text-muted">
-                            Awaiting file upload...
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="view-screenshot" class="view-section hidden">
-                <div class="mb-4">
-                    <h2>Screenshot Security Analysis</h2>
-                    <p class="text-muted">Upload screenshots of suspicious messages or websites for visual inspection.</p>
-                </div>
-                
-                <div class="grid-2">
-                    <div class="card">
-                        <h4 class="mb-3">Upload Image</h4>
-                        <input type="file" id="screenFileInput" class="form-control" accept="image/png, image/jpeg, image/webp" onchange="Scanner.handleScreenUpload(event)">
-                        
-                        <div id="screenPreviewBox" class="mt-3 hidden">
-                            <h5 class="mb-2">Image Preview</h5>
-                            <img id="screenPreview" src="" alt="Preview" style="max-height: 200px; border-radius: var(--radius-md); border: 1px solid var(--border-light);">
-                        </div>
-                    </div>
-                    
-                    <div class="card">
-                        <h4 class="mb-3">AI Vision / OCR Results</h4>
-                        <div id="screenResultContent" class="text-muted">
-                            Awaiting image upload...
-                        </div>
-                    </div>
-                </div>
-            </section>
-
+            <!-- ==========================================
+                 VIEW: AI COPILOT
+                 ========================================== -->
             <section id="view-copilot" class="view-section hidden">
                 <div class="mb-4">
                     <h2>AUREXA AI Security Copilot</h2>
                     <p class="text-muted">Defensive cybersecurity guidance and analysis assistant.</p>
                 </div>
+                
+                <div id="copilotState" class="service-state">
+                    <div class="service-icon">🤖</div>
+                    <h3 class="service-title">AI Copilot Not Configured</h3>
+                    <p class="service-desc">The AI backend endpoint (AI_API_ENDPOINT) is not configured. Connect your enterprise LLM provider to enable intelligent analysis, alert explanations, and interactive security guidance.</p>
+                    <div class="form-group" style="max-width: 400px; margin: 0 auto; text-align: left;">
+                        <label class="form-label">Configuration Path:</label>
+                        <input type="text" class="form-control" value="CONFIG.AI_API_ENDPOINT" disabled style="background: var(--bg-hover);">
+                    </div>
+                </div>
+            </section>
 
-                <div class="chat-wrapper">
-                    <div class="chat-history" id="chatHistory">
-                        <div class="chat-bubble bubble-ai">
-                            <strong>AUREXA Copilot:</strong> Hello. I am operating in <strong>Local Demo Mode</strong> as no backend API key is currently configured. I can provide defensive guidance based on predefined security playbooks. How can I help you today?
-                        </div>
-                    </div>
-                    
-                    <div class="chat-input-container">
-                        <div class="quick-prompts">
-                            <button class="prompt-chip" onclick="Copilot.ask('What should I do after clicking a suspicious link?')">Clicked suspicious link</button>
-                            <button class="prompt-chip" onclick="Copilot.ask('How can I report cyber fraud?')">Report cyber fraud</button>
-                            <button class="prompt-chip" onclick="Copilot.ask('Explain my URL risk score.')">Explain risk score</button>
-                            <button class="prompt-chip" onclick="Copilot.ask('What is phishing?')">What is phishing?</button>
-                        </div>
-                        <div style="display: flex; gap: 0.5rem;">
-                            <input type="text" id="aiInput" class="form-control" placeholder="Ask a security question..." onkeypress="if(event.key === 'Enter') Copilot.send()">
-                            <button class="btn btn-primary" onclick="Copilot.send()">Send</button>
-                        </div>
-                    </div>
+            <!-- ==========================================
+                 VIEW: THREAT INTEL, NEWS, MITRE, IOC (Unified Unconfigured State)
+                 ========================================== -->
+            <section id="view-threat" class="view-section hidden">
+                <div class="mb-4"><h2>Threat Intelligence</h2></div>
+                <div class="service-state">
+                    <div class="service-icon">🛡️</div>
+                    <h3 class="service-title">Intelligence Provider Not Configured</h3>
+                    <p class="service-desc">Connect the THREAT_INTEL_API endpoint to visualize global threat feeds, malicious URLs, and malware indicators.</p>
                 </div>
             </section>
 
             <section id="view-news" class="view-section hidden">
-                <div class="mb-4" style="display: flex; justify-content: space-between; align-items: flex-end;">
-                    <div>
-                        <h2>Cyber Security News</h2>
-                        <p class="text-muted">Latest intelligence, vulnerabilities, and threat alerts.</p>
-                    </div>
-                    <div class="badge badge-warning">DEMO NEWS FEED</div>
+                <div class="mb-4"><h2>Cyber Security News</h2></div>
+                <div class="service-state">
+                    <div class="service-icon">📰</div>
+                    <h3 class="service-title">Live cyber news feed is not configured.</h3>
+                    <p class="service-desc">Please connect the NEWS_API_ENDPOINT to fetch live cybersecurity news, vulnerability alerts, and threat advisories.</p>
                 </div>
-                
-                <div class="grid-3" id="newsGrid">
-                    </div>
             </section>
 
+            <section id="view-ioc" class="view-section hidden">
+                <div class="mb-4"><h2>IOC Intelligence</h2></div>
+                <div class="service-state">
+                    <div class="service-icon">🔍</div>
+                    <h3 class="service-title">IOC Lookup Unavailable</h3>
+                    <p class="service-desc">Configure IOC_API_ENDPOINT to enable investigation of IP addresses, Domains, Hashes, and CVEs against global reputation databases.</p>
+                </div>
+            </section>
+
+            <section id="view-mitre" class="view-section hidden">
+                <div class="mb-4"><h2>MITRE ATT&CK Mapping</h2></div>
+                <div class="service-state">
+                    <div class="service-icon">📊</div>
+                    <h3 class="service-title">Framework Data Not Loaded</h3>
+                    <p class="service-desc">Configure MITRE_API_ENDPOINT to load and map defensive tactics, techniques, and sub-techniques.</p>
+                </div>
+            </section>
+            
+            <!-- ==========================================
+                 VIEW: OPERATIONS (Incidents, Alerts, Reports)
+                 ========================================== -->
+            <section id="view-incidents" class="view-section hidden">
+                <div class="mb-4"><h2>Incident Management</h2></div>
+                <div class="service-state">
+                    <h3 class="service-title">Backend Connection Required</h3>
+                    <p class="service-desc">Incident creation, tracking, and resolution requires a secure connection to the central AUREXA database API.</p>
+                </div>
+            </section>
+            
+            <section id="view-alerts" class="view-section hidden">
+                <div class="mb-4"><h2>Alert Queue</h2></div>
+                <div class="service-state">
+                    <h3 class="service-title">SIEM Connector Required</h3>
+                    <p class="service-desc">Configure backend connectors to stream live security alerts into this queue.</p>
+                </div>
+            </section>
+            
+            <section id="view-reports" class="view-section hidden">
+                <div class="mb-4"><h2>Security Reports</h2></div>
+                <div class="card text-center" style="padding: 3rem;">
+                    <h3 class="mb-3">Generate Executive Summary</h3>
+                    <p class="text-muted mb-4">Export current dashboard telemetry and heuristic scan history.</p>
+                    <button class="btn btn-primary" onclick="window.print()">Print Dashboard to PDF</button>
+                </div>
+            </section>
+
+            <!-- ==========================================
+                 VIEW: CYBER FRAUD HELP (INDIA)
+                 ========================================== -->
             <section id="view-fraud" class="view-section hidden">
                 <div class="mb-4">
                     <h2>Report Cyber Fraud (India)</h2>
@@ -600,17 +567,17 @@
                 <div class="grid-2">
                     <div>
                         <div class="fraud-banner">
-                            <h3 style="color: var(--danger-text);">National Cyber Crime Helpline</h3>
-                            <div class="helpline-number">1930</div>
-                            <p style="color: var(--danger-text); font-weight: 500; margin-bottom: 1rem;">Dial immediately to report financial fraud, UPI scams, and unauthorized bank transfers in India.</p>
-                            <a href="https://www.cybercrime.gov.in/" target="_blank" rel="noopener noreferrer" class="btn btn-danger btn-block">Open cybercrime.gov.in</a>
+                            <h3 style="color: var(--danger);">National Cyber Crime Helpline</h3>
+                            <div class="helpline">1930</div>
+                            <p style="color: var(--danger); font-weight: 500; margin-bottom: 1rem;">Dial immediately to report financial fraud, UPI scams, and unauthorized bank transfers in India.</p>
+                            <a href="https://www.cybercrime.gov.in/" target="_blank" rel="noopener noreferrer" class="btn btn-danger btn-block">REPORT ON CYBERCRIME.GOV.IN</a>
                         </div>
                         
                         <div class="card">
-                            <h4 class="mb-3">Emergency Checklist</h4>
+                            <h4 class="mb-3">Immediate Action Checklist</h4>
                             <ul style="display: flex; flex-direction: column; gap: 0.75rem;">
-                                <li style="display: flex; gap: 0.5rem;"><span style="color: var(--danger);">🛑</span> <strong>Disconnect:</strong> Turn off internet if malware is suspected.</li>
-                                <li style="display: flex; gap: 0.5rem;"><span style="color: var(--danger);">🛑</span> <strong>Block Assets:</strong> Contact bank immediately to freeze cards/UPI.</li>
+                                <li style="display: flex; gap: 0.5rem;"><span style="color: var(--danger);">🛑</span> <strong>Disconnect:</strong> Turn off internet if malware/remote-access is suspected.</li>
+                                <li style="display: flex; gap: 0.5rem;"><span style="color: var(--danger);">🛑</span> <strong>Block Assets:</strong> Contact your bank immediately to freeze cards and UPI handles.</li>
                                 <li style="display: flex; gap: 0.5rem;"><span style="color: var(--danger);">🛑</span> <strong>Preserve Evidence:</strong> Screenshot transactions, SMS, URLs, caller IDs. Do not delete them.</li>
                                 <li style="display: flex; gap: 0.5rem;"><span style="color: var(--danger);">🛑</span> <strong>Secure Accounts:</strong> Change passwords from a different, safe device. Enable MFA.</li>
                             </ul>
@@ -620,276 +587,190 @@
                     <div>
                         <div class="card h-100">
                             <h4 class="mb-3">Important Advisory</h4>
-                            <p class="text-muted mb-4">AUREXA provides enterprise cybersecurity tooling. We are NOT a government entity or law enforcement agency. <strong>Never</strong> provide your Password, OTP, PIN, CVV, or Bank Credentials to anyone, including our support team.</p>
+                            <p class="text-muted mb-4">AUREXA builds enterprise cybersecurity technology. We are NOT a government entity or law enforcement agency. <strong>Never</strong> provide your Password, OTP, PIN, CVV, or Bank Credentials to anyone, including our support team.</p>
                             
                             <h5 class="mb-2">Contact AUREXA Support</h5>
-                            <p class="text-muted mb-3">For enterprise incident response or platform support:</p>
-                            <a href="tel:9640724438" class="btn btn-secondary w-full mb-2">📞 Call: 9640724438</a>
-                            <a href="mailto:srikanthh3k@gmail.com" class="btn btn-secondary w-full">✉️ Email Support</a>
+                            <p class="text-muted mb-3">For enterprise incident response consulting or platform support:</p>
+                            <a href="tel:9640724438" class="btn btn-outline w-full mb-2">📞 Call: 9640724438</a>
+                            <a href="mailto:srikanthh3k@gmail.com" class="btn btn-outline w-full">✉️ Email Support</a>
                         </div>
                     </div>
                 </div>
             </section>
 
+            <!-- ==========================================
+                 VIEW: FOUNDER & CONTACT
+                 ========================================== -->
             <section id="view-founder" class="view-section hidden">
-                <div class="mb-4">
-                    <h2>Executive Leadership</h2>
-                </div>
+                <div class="mb-4"><h2>Executive Leadership</h2></div>
                 
-                <div class="card founder-card">
-                    <div class="founder-img-box">
-                        <img src="founder.jpg" alt="Srikanth Paka" onerror="this.style.display='none'" style="width: 100%; height: 100%; object-fit: cover;">
-                        <span id="founderInitials" style="position: absolute; display: none;">SP</span>
-                    </div>
+                <div class="card founder-box">
+                    <img src="file_00000000d568720bb94605cdf6d9e49e.png" alt="Srikanth Paka" class="founder-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'160\' height=\'160\' viewBox=\'0 0 160 160\'><rect width=\'160\' height=\'160\' fill=\'%230f172a\'/><text x=\'50%\' y=\'50%\' font-family=\'sans-serif\' font-size=\'40\' fill=\'white\' text-anchor=\'middle\' dy=\'.3em\'>SP</text></svg>'">
                     <div style="flex: 1;">
                         <h2 style="font-size: 2rem; margin-bottom: 0.25rem;">Srikanth Paka</h2>
-                        <h4 style="color: var(--primary); margin-bottom: 1.5rem;">Founder & CEO — AUREXA | Cyber Security Solutions</h4>
+                        <h4 style="color: var(--secondary); margin-bottom: 1.5rem;">Founder & CEO — AUREXA | Cyber Security Solutions</h4>
                         
                         <p class="text-muted mb-4" style="font-size: 1.05rem; max-width: 700px; line-height: 1.6;">
-                            Driven by a mission to build transparent, high-performance security tooling. AUREXA was founded to bridge the gap between complex threat intelligence and actionable, intuitive SOC workflows for modern enterprises.
+                            Building accessible, intelligent cybersecurity technology that helps organizations detect, understand and respond to digital threats. AUREXA is dedicated to providing transparent, high-performance security tooling.
                         </p>
                         
-                        <div style="display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; justify-content: center;">
-                            <a href="mailto:srikanthh3k@gmail.com" class="btn btn-secondary">✉️ Email</a>
-                            <a href="tel:9640724438" class="btn btn-secondary">📞 Call</a>
-                            <a href="https://wa.me/919640724438" target="_blank" rel="noopener" class="btn btn-secondary" style="color: #16a34a; border-color: #16a34a;">💬 WhatsApp</a>
-                            <a href="https://www.instagram.com/Aurexa_space/" target="_blank" rel="noopener" class="btn btn-secondary" style="color: #db2777; border-color: #db2777;">📸 Instagram</a>
+                        <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
+                            <a href="mailto:srikanthh3k@gmail.com" class="btn btn-outline">✉️ Email</a>
+                            <a href="tel:9640724438" class="btn btn-outline">📞 Phone</a>
+                            <a href="https://wa.me/919640724438" target="_blank" rel="noopener" class="btn btn-outline">💬 WhatsApp</a>
+                            <a href="https://www.instagram.com/Aurexa_space/" target="_blank" rel="noopener" class="btn btn-outline">📸 Instagram</a>
                         </div>
                     </div>
                 </div>
             </section>
             
-            <section id="view-contact" class="view-section hidden">
-                <div class="mb-4">
-                    <h2>Contact Us</h2>
-                    <p class="text-muted">Get in touch for enterprise deployments and API access.</p>
+            <section id="view-about" class="view-section hidden">
+                <div class="mb-4"><h2>About AUREXA</h2></div>
+                <div class="card">
+                    <p class="mb-3">AUREXA is an AI-assisted cybersecurity platform focused on helping users understand suspicious URLs, indicators, incidents, and security risks through accessible workflows.</p>
+                    <p><strong>Mission:</strong> Make cybersecurity intelligence easier to understand, faster to act on, and accessible to modern teams.</p>
                 </div>
+            </section>
+
+            <section id="view-contact" class="view-section hidden">
+                <div class="mb-4"><h2>Contact Us</h2></div>
                 <div class="card" style="max-width: 600px;">
                     <div class="mb-3"><strong>Email:</strong> <a href="mailto:srikanthh3k@gmail.com">srikanthh3k@gmail.com</a></div>
                     <div class="mb-3"><strong>Phone 1:</strong> <a href="tel:9640724438">9640724438</a></div>
                     <div class="mb-3"><strong>Phone 2:</strong> <a href="tel:9703724438">9703724438</a></div>
-                    <div class="mb-3"><strong>Website:</strong> <a href="https://aurexa.space" target="_blank">aurexa.space</a></div>
+                    <div class="mb-0"><strong>Website:</strong> <a href="https://aurexa.space" target="_blank">aurexa.space</a></div>
                 </div>
             </section>
 
+            <!-- ==========================================
+                 VIEW: ADMIN LOGIN
+                 ========================================== -->
             <section id="view-admin" class="view-section hidden">
                 <div style="max-width: 450px; margin: 4rem auto;">
                     <div class="card" style="padding: 2.5rem 2rem;">
                         <div class="text-center mb-4">
-                            <div class="badge badge-warning mb-2">DEMO ADMIN MODE</div>
                             <h2>Admin Authentication</h2>
-                            <p class="text-muted" style="font-size: 0.85rem;">Production authentication requires a secure JWT backend connection. Do not use real passwords here.</p>
+                            <p class="text-muted" style="font-size: 0.85rem;">Secure platform administration.</p>
                         </div>
                         
+                        <div id="adminErrorMsg" class="hidden mb-3" style="padding: 1rem; background: var(--danger-bg); color: var(--danger); border-radius: var(--radius-md); font-size: 0.85rem; border: 1px solid var(--danger);"></div>
+
                         <div class="form-group">
-                            <label class="form-label">Email Address (Demo)</label>
+                            <label class="form-label">Email Address</label>
                             <input type="email" id="adminEmail" class="form-control" placeholder="admin@aurexa.space">
                         </div>
                         <div class="form-group mb-4">
-                            <label class="form-label">Password (Demo)</label>
-                            <input type="password" id="adminPass" class="form-control" placeholder="Any text will work in demo">
+                            <label class="form-label">Password</label>
+                            <input type="password" id="adminPass" class="form-control" placeholder="••••••••">
                         </div>
                         
-                        <button class="btn btn-primary btn-block" onclick="Admin.login()">Login to Dashboard</button>
+                        <button class="btn btn-primary btn-block" onclick="Admin.login()">Secure Login</button>
                     </div>
                 </div>
-            </section>
-
-            <section id="view-admin-dashboard" class="view-section hidden">
-                <div class="mb-4" style="display: flex; justify-content: space-between; align-items: center;">
-                    <div>
-                        <h2>Admin Dashboard</h2>
-                        <div class="badge badge-warning mt-1">DEMO SESSION ACTIVE</div>
-                    </div>
-                    <button class="btn btn-secondary" onclick="Admin.logout()">Logout</button>
-                </div>
-                
-                <div class="grid-3 mb-4">
-                    <div class="card">
-                        <h4 class="mb-3">Platform Configuration</h4>
-                        <div class="form-group mb-2">
-                            <label class="form-label" style="font-size: 0.75rem;">AUREXA_API_BASE_URL</label>
-                            <input type="text" class="form-control" value="Not configured (Local Mode)" disabled style="background: var(--bg-hover); font-size: 0.8rem;">
-                        </div>
-                        <div class="form-group mb-2">
-                            <label class="form-label" style="font-size: 0.75rem;">NEWS_API_ENDPOINT</label>
-                            <input type="text" class="form-control" value="Not configured (Demo News)" disabled style="background: var(--bg-hover); font-size: 0.8rem;">
-                        </div>
-                        <div class="form-group mb-0">
-                            <label class="form-label" style="font-size: 0.75rem;">AI_API_ENDPOINT</label>
-                            <input type="text" class="form-control" value="Not configured (Demo Copilot)" disabled style="background: var(--bg-hover); font-size: 0.8rem;">
-                        </div>
-                    </div>
-                    
-                    <div class="card" style="grid-column: span 2;">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-                            <h4 style="margin: 0;">System Health & Audit Logs</h4>
-                            <div>
-                                <button class="btn btn-secondary" style="padding: 0.3rem 0.6rem; font-size: 0.75rem;">Export JSON</button>
-                                <button class="btn btn-secondary" style="padding: 0.3rem 0.6rem; font-size: 0.75rem;">Export CSV</button>
-                            </div>
-                        </div>
-                        <div class="table-container" style="max-height: 200px; overflow-y: auto;">
-                            <table>
-                                <thead><tr><th>Time</th><th>Event</th><th>User/IP</th><th>Status</th></tr></thead>
-                                <tbody>
-                                    <tr><td>Just now</td><td>Admin Auth Success</td><td>192.168.1.1</td><td><span class="badge badge-success">OK</span></td></tr>
-                                    <tr><td>1 hr ago</td><td>Heuristic Scan Executed</td><td>Guest</td><td><span class="badge badge-success">OK</span></td></tr>
-                                    <tr><td>2 hrs ago</td><td>Threat Intel Sync</td><td>System</td><td><span class="badge badge-warning">FAIL</span></td></tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="view-threat" class="view-section hidden">
-                <div class="mb-4"><h2>Threat Intelligence</h2><p class="text-muted">Global threat feeds and IOC search.</p></div>
-                <div class="card"><div class="badge badge-warning mb-3">DEMO DATA</div>
-                <div class="grid-3 mb-4">
-                    <div class="card bg-hover border-light"><strong>Malicious URLs</strong><br><h3 class="mt-1 text-danger">42</h3></div>
-                    <div class="card bg-hover border-light"><strong>Suspicious IPs</strong><br><h3 class="mt-1 text-warning">156</h3></div>
-                    <div class="card bg-hover border-light"><strong>New Malware Hashes</strong><br><h3 class="mt-1 text-primary">12</h3></div>
-                </div></div>
-            </section>
-            
-            <section id="view-mitre" class="view-section hidden">
-                <div class="mb-4"><h2>MITRE ATT&CK</h2><p class="text-muted">Defensive mapping for SOC analysts.</p></div>
-                <div class="card"><div class="grid-4 text-center">
-                    <div class="card"><strong>Initial Access</strong><br><small class="text-muted mt-1">Phishing (T1566)</small></div>
-                    <div class="card"><strong>Execution</strong><br><small class="text-muted mt-1">Command/Script (T1059)</small></div>
-                    <div class="card"><strong>Persistence</strong><br><small class="text-muted mt-1">Registry Run Keys (T1547)</small></div>
-                    <div class="card"><strong>Exfiltration</strong><br><small class="text-muted mt-1">Over C2 Channel (T1041)</small></div>
-                </div></div>
-            </section>
-            
-            <section id="view-incidents" class="view-section hidden">
-                <div class="mb-4"><h2>Incident Management</h2><p class="text-muted">Track and resolve security incidents.</p></div>
-                <div class="card"><p class="text-muted">Incident queue functionality requires backend database connection.</p></div>
-            </section>
-            
-            <section id="view-alerts" class="view-section hidden">
-                <div class="mb-4"><h2>Alert Center</h2><p class="text-muted">Security alerts awaiting triage.</p></div>
-                <div class="card"><p class="text-muted">Alert streaming functionality requires SIEM integration.</p></div>
-            </section>
-            
-            <section id="view-reports" class="view-section hidden">
-                <div class="mb-4"><h2>Security Reports</h2><p class="text-muted">Generate compliance and operational reports.</p></div>
-                <div class="card"><button class="btn btn-secondary" onclick="window.print()">Print Current Dashboard View</button></div>
             </section>
 
         </div>
     </main>
 </div>
 
+<!-- ==========================================================================
+     10. JAVASCRIPT ARCHITECTURE
+     ========================================================================== -->
 <script>
     /**
-     * AUREXA Core Configuration & Architecture
+     * CORE CONFIGURATION
+     * Frontend dynamically reacts to presence/absence of these endpoints.
      */
-    const AUREXA_CONFIG = {
+    const CONFIG = {
         API_BASE_URL: "",
+        AUTH_API_ENDPOINT: "",
         AI_API_ENDPOINT: "",
+        THREAT_INTEL_API: "",
         NEWS_API_ENDPOINT: "",
-        THREAT_INTEL_ENDPOINT: ""
+        SCANNER_API_ENDPOINT: "",
+        IOC_API_ENDPOINT: "",
+        MITRE_API_ENDPOINT: ""
     };
 
     /**
-     * UI & State Controller
+     * UI & ROUTING CONTROLLER
      */
-    const UI = {
+    const App = {
         init: () => {
-            // Check system preference
-            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            // Theme setup
+            if (localStorage.getItem('aurexa_theme') === 'dark' || (!localStorage.getItem('aurexa_theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
                 document.documentElement.setAttribute('data-theme', 'dark');
             }
             
-            // Check admin session
-            if(sessionStorage.getItem('aurexa_admin_demo') === 'true') {
-                // If user refreshes on admin, keep them logged in
-                const activeNav = document.querySelector('.nav-item.active');
-                if(activeNav && activeNav.textContent.includes('Admin')) {
-                    UI.navigate('admin-dashboard');
+            // ESC key handler for menu
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    const sidebar = document.getElementById('sidebar');
+                    if (sidebar.style.transform === 'translateX(0px)') {
+                        App.toggleMenu();
+                    }
                 }
-            }
+            });
 
-            // Init Chart
-            Charts.initTrendChart();
-
-            // Populate News
-            News.renderDemoNews();
-            
-            // Fix founder image fallback script
-            const founderImg = document.querySelector('.founder-img-box img');
-            if(founderImg) {
-                founderImg.onerror = function() {
-                    this.style.display = 'none';
-                    document.getElementById('founderInitials').style.display = 'block';
-                };
-            }
+            // Initialize visual components
+            Charts.init();
+            Visuals.initThreeJS();
         },
 
-        navigate: (viewId) => {
-            // Handle Admin Routing logic
-            if(viewId === 'admin') {
-                if(sessionStorage.getItem('aurexa_admin_demo') === 'true') {
-                    viewId = 'admin-dashboard';
-                }
-            }
-
+        navigate: (viewId, navElement) => {
             // Hide all views
             document.querySelectorAll('.view-section').forEach(el => el.classList.add('hidden'));
             
             // Show target view
             const target = document.getElementById(`view-${viewId}`);
-            if(target) {
-                target.classList.remove('hidden');
+            if(target) target.classList.remove('hidden');
+
+            // Update Active Nav State
+            if (navElement) {
+                document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+                navElement.classList.add('active');
             }
 
-            // Update Nav active state (find first matching text roughly)
-            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-            
-            // Close mobile menu
+            // Close mobile menu if open
             const sidebar = document.getElementById('sidebar');
-            if (sidebar.classList.contains('open')) {
-                UI.toggleMenu();
+            // Check computed style for mobile state
+            if (window.innerWidth <= 768 && sidebar.style.transform === 'translateX(0px)') {
+                App.toggleMenu();
             }
 
             // Scroll top
-            document.getElementById('viewsContainer').scrollTop = 0;
+            document.getElementById('viewContainer').scrollTop = 0;
         },
 
         toggleMenu: () => {
             const sidebar = document.getElementById('sidebar');
-            const overlay = document.getElementById('mobileOverlay');
+            const overlay = document.getElementById('menuOverlay');
             
-            if (sidebar.classList.contains('open')) {
-                sidebar.classList.remove('open');
+            if (sidebar.style.transform === 'translateX(0px)') {
+                sidebar.style.transform = 'translateX(-100%)';
                 overlay.classList.remove('active');
-                document.body.classList.remove('body-no-scroll');
+                document.body.classList.remove('no-scroll');
             } else {
-                sidebar.classList.add('open');
+                sidebar.style.transform = 'translateX(0px)';
                 overlay.classList.add('active');
-                document.body.classList.add('body-no-scroll');
+                document.body.classList.add('no-scroll');
             }
         },
 
         toggleTheme: () => {
             const html = document.documentElement;
             const currentTheme = html.getAttribute('data-theme');
-            html.setAttribute('data-theme', currentTheme === 'dark' ? 'light' : 'dark');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('aurexa_theme', newTheme);
             
-            // Update chart grid colors if instance exists
+            // Update chart grid
             if (window.trendChartInstance) {
-                const gridColor = currentTheme === 'dark' ? 'rgba(0,0,0,0.05)' : 'rgba(255,255,255,0.05)';
+                const gridColor = newTheme === 'dark' ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)';
                 window.trendChartInstance.options.scales.x.grid.color = gridColor;
                 window.trendChartInstance.options.scales.y.grid.color = gridColor;
                 window.trendChartInstance.update();
             }
-        },
-
-        toggleNotifications: () => {
-            const panel = document.getElementById('notifPanel');
-            panel.classList.toggle('active');
         },
         
         sanitize: (str) => {
@@ -900,7 +781,7 @@
     };
 
     /**
-     * Scanner Engine
+     * SCANNER LOGIC
      */
     const Scanner = {
         analyzeUrl: () => {
@@ -914,7 +795,7 @@
             
             resultBox.classList.remove('hidden');
             timeEl.textContent = new Date().toLocaleTimeString();
-            termContent.innerHTML = '<div class="term-line"><i>Initializing local heuristic screening engine...</i></div>';
+            termContent.innerHTML = '<div class="term-line"><i>Executing Local Heuristic Analysis Engine...</i></div>';
             
             setTimeout(() => {
                 let url = urlRaw;
@@ -923,254 +804,122 @@
                 let score = 0;
                 let findings = [];
                 let isCritical = false;
+                const safeTarget = App.sanitize(urlRaw);
                 
                 try {
                     const urlObj = new URL(url);
-                    const safeTarget = UI.sanitize(urlRaw);
                     
                     // 1. EICAR Test Check
                     if (urlObj.hostname === 'secure.eicar.org' && urlObj.pathname.includes('eicar.com')) {
-                        findings.push('<span class="text-crit">[CRITICAL] EICAR ANTIVIRUS TEST ARTIFACT DETECTED.</span>');
-                        findings.push('<span class="text-crit">This is a controlled security test file. Do not download or execute.</span>');
+                        findings.push('<span class="t-crit">[CRITICAL] EICAR ANTIVIRUS TEST ARTIFACT DETECTED.</span>');
+                        findings.push('<span class="t-crit">This is a controlled security test file. Do not download or execute.</span>');
                         score = 100;
                         isCritical = true;
                     } else {
                         // 2. Transport Security
                         if (urlObj.protocol === 'https:') {
-                            findings.push('<span class="text-safe">[OK] Transport: HTTPS connection established.</span>');
+                            findings.push('<span class="t-safe">[OK] Transport: HTTPS connection established. (Note: Does not guarantee domain safety)</span>');
                         } else {
-                            findings.push('<span class="text-warn">[WARN] Transport: HTTP protocol used. Traffic is unencrypted.</span>');
+                            findings.push('<span class="t-warn">[WARN] Transport: HTTP protocol used. Traffic is unencrypted.</span>');
                             score += 30;
                         }
 
                         // 3. IP Address Usage
                         const ipPattern = /^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$/;
                         if (ipPattern.test(urlObj.hostname)) {
-                            findings.push('<span class="text-crit">[CRITICAL] Structure: Direct IP address usage detected. Common in phishing to bypass DNS filtering.</span>');
+                            findings.push('<span class="t-crit">[CRITICAL] Structure: Direct IP address usage detected. Common in phishing to bypass DNS filtering.</span>');
                             score += 55;
                             isCritical = true;
                         }
 
                         // 4. Obfuscation (@ symbol)
                         if (urlRaw.includes('@')) {
-                            findings.push('<span class="text-crit">[CRITICAL] Syntax: Credentials obfuscation (@ symbol) detected. High phishing indicator.</span>');
+                            findings.push('<span class="t-crit">[CRITICAL] Syntax: Credentials obfuscation (@ symbol) detected. High phishing indicator.</span>');
                             score += 45;
                             isCritical = true;
                         }
 
                         // 5. Length Check
                         if (urlRaw.length > 75) {
-                            findings.push('<span class="text-warn">[WARN] Length: Unusually long URL structure. May conceal parameters.</span>');
+                            findings.push('<span class="t-warn">[WARN] Length: Unusually long URL structure. May conceal parameters.</span>');
                             score += 15;
                         }
 
                         // 6. Punycode (Homograph)
                         if (urlObj.hostname.includes('xn--')) {
-                            findings.push('<span class="text-warn">[WARN] Domain: Punycode detected. Verify this is not a homograph attack.</span>');
+                            findings.push('<span class="t-warn">[WARN] Domain: Punycode detected. Verify this is not a homograph attack.</span>');
                             score += 25;
                         }
 
                         if (score === 0) {
-                            findings.push('<span class="text-safe">[OK] Heuristics: No obvious structural anomalies detected.</span>');
+                            findings.push('<span class="t-safe">[OK] Heuristics: No obvious structural anomalies detected in local analysis.</span>');
                         }
                     }
                     
                     score = Math.min(score, 100);
                     
                     let levelHTML = '';
-                    if (score >= 70 || isCritical) levelHTML = '<span class="text-crit">CRITICAL RISK INDICATORS</span>';
-                    else if (score >= 40) levelHTML = '<span class="text-warn">HIGH RISK INDICATORS</span>';
-                    else if (score >= 15) levelHTML = '<span class="text-info">MODERATE RISK INDICATORS</span>';
-                    else levelHTML = '<span class="text-safe">LOW RISK INDICATORS</span>';
+                    if (score >= 70 || isCritical) levelHTML = '<span class="t-crit">CRITICAL RISK INDICATORS</span>';
+                    else if (score >= 40) levelHTML = '<span class="t-warn">HIGH RISK INDICATORS</span>';
+                    else if (score >= 15) levelHTML = '<span class="t-info">MODERATE RISK INDICATORS</span>';
+                    else levelHTML = '<span class="t-safe">LOW RISK INDICATORS</span>';
+                    
+                    // Config Check Note
+                    let apiNotice = '';
+                    if (!CONFIG.SCANNER_API_ENDPOINT) {
+                        apiNotice = '<div class="term-line" style="color: #64748b; margin-top: 1rem;">---</div><div class="term-line" style="color: var(--warning);">External reputation intelligence is not configured. This result is based on local heuristics only.</div>';
+                    }
                     
                     let output = `
                         <div class="term-line"><strong>Target:</strong> ${safeTarget}</div>
-                        <div class="term-line"><strong>Risk Score:</strong> ${score}/100 (${levelHTML})</div>
-                        <div class="term-line"><strong>Confidence:</strong> Low (Local Browser Heuristics Only)</div>
+                        <div class="term-line"><strong>Heuristic Risk Score:</strong> ${score}/100 (${levelHTML})</div>
                         <br>
                         <div class="term-line"><strong>Detected Indicators:</strong></div>
                         ${findings.map(f => `<div class="term-line">${f}</div>`).join('')}
-                        <br>
-                        <div class="term-line" style="color: #64748b;">---</div>
-                        <div class="term-line" style="color: #94a3b8;"><strong>Recommendation:</strong> ${isCritical ? 'Block navigation immediately.' : 'Do not enter credentials. Connect AUREXA Threat API for deep reputation scanning.'}</div>
+                        ${apiNotice}
                     `;
                     
                     termContent.innerHTML = output;
 
                 } catch (e) {
                     termContent.innerHTML = `
-                        <div class="term-line text-crit">[ERROR] Invalid URL syntax provided. Could not parse safely.</div>
+                        <div class="term-line t-crit">[ERROR] Invalid URL syntax provided. Could not parse safely.</div>
                     `;
                 }
-            }, 800);
-        },
-        
-        handleApkUpload: (e) => {
-            const file = e.target.files[0];
-            if(!file) return;
-            
-            const resultBox = document.getElementById('apkResultBox');
-            const termContent = document.getElementById('apkTerminalContent');
-            resultBox.classList.remove('hidden');
-            
-            termContent.innerHTML = `<div class="term-line"><i>Extracting local metadata for ${UI.sanitize(file.name)}...</i></div>`;
-            
-            setTimeout(() => {
-                termContent.innerHTML = `
-                    <div class="term-line"><strong>File Name:</strong> ${UI.sanitize(file.name)}</div>
-                    <div class="term-line"><strong>Size:</strong> ${(file.size / (1024*1024)).toFixed(2)} MB</div>
-                    <div class="term-line"><strong>Type:</strong> ${UI.sanitize(file.type) || 'application/vnd.android.package-archive'}</div>
-                    <br>
-                    <div class="term-line text-warn">[ACTION REQUIRED] Static malware analysis backend is not configured.</div>
-                    <div class="term-line" style="color: #94a3b8;">Browser javascript cannot safely decompile APKs or perform reliable static analysis. Configure AUREXA API to send file hashes to cloud sandbox. Do NOT install unknown APK files.</div>
-                `;
             }, 600);
-        },
-
-        handleScreenUpload: (e) => {
-            const file = e.target.files[0];
-            if(!file) return;
-            
-            const previewBox = document.getElementById('screenPreviewBox');
-            const previewImg = document.getElementById('screenPreview');
-            const termContent = document.getElementById('screenResultContent');
-            
-            previewImg.src = URL.createObjectURL(file);
-            previewBox.classList.remove('hidden');
-            
-            termContent.innerHTML = `<i>Queuing image for OCR analysis...</i>`;
-            
-            setTimeout(() => {
-                termContent.innerHTML = `
-                    <div style="margin-bottom: 0.5rem;"><strong>File:</strong> ${UI.sanitize(file.name)}</div>
-                    <div style="margin-bottom: 0.5rem;"><strong>Type:</strong> ${UI.sanitize(file.type)}</div>
-                    <br>
-                    <div style="color: var(--warning); font-weight: 600; margin-bottom: 0.5rem;">[DEMO MODE] OCR/AI analysis is running in demo mode.</div>
-                    <div style="color: var(--text-muted); font-size: 0.85rem;">Backend Vision API is required to extract URLs, detect urgency language, and identify fraudulent QR codes from images.</div>
-                `;
-            }, 800);
         }
     };
 
     /**
-     * AI Copilot Logic
-     */
-    const Copilot = {
-        ask: (text) => {
-            document.getElementById('aiInput').value = text;
-            Copilot.send();
-        },
-        send: () => {
-            const input = document.getElementById('aiInput');
-            const text = input.value.trim();
-            if(!text) return;
-            
-            const history = document.getElementById('chatHistory');
-            
-            // Add user message
-            const userDiv = document.createElement('div');
-            userDiv.className = 'chat-bubble bubble-user';
-            userDiv.textContent = text;
-            history.appendChild(userDiv);
-            
-            input.value = '';
-            history.scrollTop = history.scrollHeight;
-            
-            // Simulate AI
-            setTimeout(() => {
-                const q = text.toLowerCase();
-                let reply = "As a demo AI, my capabilities are limited without a backend connection. In production, I can query threat feeds and internal docs to answer this.";
-                
-                if (q.includes('url') || q.includes('risk score')) {
-                    reply = "A URL risk score is calculated based on heuristics like IP address usage instead of domain names, lack of HTTPS, unusual length, or obfuscation characters (@). A high score means the URL exhibits structural traits common in phishing.";
-                } else if (q.includes('phishing')) {
-                    reply = "Phishing is a social engineering attack where an entity impersonates a trusted organization to steal credentials (passwords, OTPs, CVVs). Always verify sender domains and do not click urgent links.";
-                } else if (q.includes('fraud') || q.includes('report')) {
-                    reply = "If you are in India and suspect financial cyber fraud, dial <strong>1930</strong> immediately to block transactions. Preserve all evidence (screenshots, SMS) and file a report at <strong>cybercrime.gov.in</strong>.";
-                } else if (q.includes('clicked')) {
-                    reply = "If you clicked a suspicious link: 1. Disconnect from the network immediately. 2. Do NOT enter any credentials or download files. 3. Run a full system antivirus scan. 4. Change critical passwords from a different, known-safe device.";
-                } else if (q.includes('apk')) {
-                    reply = "Never install APKs sent via SMS or WhatsApp (often disguised as electricity bill updates or courier tracking). They can intercept your SMS OTPs. Submit the file to VirusTotal or an enterprise sandbox for analysis.";
-                }
-
-                const aiDiv = document.createElement('div');
-                aiDiv.className = 'chat-bubble bubble-ai';
-                aiDiv.innerHTML = `<strong>AUREXA Copilot:</strong> ${reply}`;
-                history.appendChild(aiDiv);
-                history.scrollTop = history.scrollHeight;
-            }, 800);
-        }
-    };
-
-    /**
-     * Cyber News
-     */
-    const News = {
-        renderDemoNews: () => {
-            const grid = document.getElementById('newsGrid');
-            const demoData = [
-                { title: "Critical Zero-Day Found in Popular VPN Appliance", category: "Vulnerability", sev: "Critical", time: "2 hrs ago" },
-                { title: "New Phishing Campaign Targets Banking Credentials via Fake APKs", category: "Phishing", sev: "High", time: "5 hrs ago" },
-                { title: "AI-Generated Deepfakes Used in Enterprise Social Engineering", category: "AI Security", sev: "Medium", time: "1 day ago" }
-            ];
-            
-            let html = '';
-            demoData.forEach(item => {
-                const badgeColor = item.sev === 'Critical' ? 'badge-danger' : (item.sev === 'High' ? 'badge-warning' : 'badge-info');
-                html += `
-                    <div class="card">
-                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
-                            <span style="font-size: 0.75rem; color: var(--primary); font-weight: 600; text-transform: uppercase;">${item.category}</span>
-                            <span class="badge ${badgeColor}">${item.sev}</span>
-                        </div>
-                        <h4 style="margin-bottom: 1rem; font-size: 1.1rem;">${item.title}</h4>
-                        <div style="font-size: 0.8rem; color: var(--text-muted); display: flex; justify-content: space-between; align-items: center;">
-                            <span>${item.time}</span>
-                            <a href="#" style="font-weight: 600;">Read More →</a>
-                        </div>
-                    </div>
-                `;
-            });
-            if(grid) grid.innerHTML = html;
-        }
-    };
-
-    /**
-     * Admin Demo Logic
+     * ADMIN AUTHENTICATION
      */
     const Admin = {
         login: () => {
-            const email = document.getElementById('adminEmail').value;
-            const pass = document.getElementById('adminPass').value;
+            const errBox = document.getElementById('adminErrorMsg');
             
-            if(!email || !pass) {
-                alert("Please enter any email and password for demo mode.");
+            // Adhering to the prompt: NO FAKE AUTHENTICATION.
+            if (!CONFIG.AUTH_API_ENDPOINT) {
+                errBox.textContent = "Authentication service not configured. Secure backend connection is required to authenticate.";
+                errBox.classList.remove('hidden');
                 return;
             }
             
-            sessionStorage.setItem('aurexa_admin_demo', 'true');
-            UI.navigate('admin-dashboard');
-            
-            // Clear inputs securely
-            document.getElementById('adminEmail').value = '';
-            document.getElementById('adminPass').value = '';
-        },
-        logout: () => {
-            sessionStorage.removeItem('aurexa_admin_demo');
-            UI.navigate('dashboard');
+            // If configured, standard fetch logic would go here
+            errBox.textContent = "Attempting to contact authentication server...";
+            errBox.classList.remove('hidden');
         }
     };
 
     /**
-     * Charts Initialization
+     * VISUALIZATIONS & CHARTS
      */
     const Charts = {
-        initTrendChart: () => {
+        init: () => {
             const ctx = document.getElementById('trendChart');
             if(!ctx) return;
             
             const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-            const gridColor = isDark ? 'rgba(0,0,0,0.05)' : 'rgba(255,255,255,0.05)';
+            const gridColor = isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)';
 
             window.trendChartInstance = new Chart(ctx, {
                 type: 'line',
@@ -1179,8 +928,8 @@
                     datasets: [{
                         label: 'Detected Threats',
                         data: [12, 19, 15, 25, 22, 30, 28],
-                        borderColor: '#4f46e5',
-                        backgroundColor: 'rgba(79, 70, 229, 0.1)',
+                        borderColor: '#2563eb',
+                        backgroundColor: 'rgba(37, 99, 235, 0.1)',
                         borderWidth: 2,
                         tension: 0.4,
                         fill: true
@@ -1199,8 +948,78 @@
         }
     };
 
-    // Initialize application
-    document.addEventListener('DOMContentLoaded', UI.init);
+    const Visuals = {
+        initThreeJS: () => {
+            const container = document.getElementById('threejs-container');
+            if(!container || typeof THREE === 'undefined') return;
+            
+            try {
+                const scene = new THREE.Scene();
+                const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
+                const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+                
+                renderer.setSize(container.clientWidth, container.clientHeight);
+                container.appendChild(renderer.domElement);
+                
+                // Cybersecurity Globe
+                const geometry = new THREE.IcosahedronGeometry(2, 2);
+                const material = new THREE.MeshBasicMaterial({ 
+                    color: 0x06b6d4, 
+                    wireframe: true,
+                    transparent: true,
+                    opacity: 0.3
+                });
+                const sphere = new THREE.Mesh(geometry, material);
+                scene.add(sphere);
+                
+                // Nodes
+                const particlesGeo = new THREE.BufferGeometry();
+                const particleCount = window.innerWidth > 768 ? 100 : 40; // Optimize for mobile
+                const posArray = new Float32Array(particleCount * 3);
+                
+                for(let i=0; i<particleCount*3; i++) {
+                    posArray[i] = (Math.random() - 0.5) * 6;
+                }
+                
+                particlesGeo.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+                const particleMat = new THREE.PointsMaterial({
+                    size: 0.05,
+                    color: 0x3b82f6,
+                    transparent: true,
+                    opacity: 0.8
+                });
+                
+                const particlesMesh = new THREE.Points(particlesGeo, particleMat);
+                scene.add(particlesMesh);
+                
+                camera.position.z = 6;
+                
+                const animate = function () {
+                    requestAnimationFrame(animate);
+                    sphere.rotation.y += 0.002;
+                    sphere.rotation.x += 0.001;
+                    particlesMesh.rotation.y -= 0.001;
+                    renderer.render(scene, camera);
+                };
+                
+                animate();
+                
+                // Handle Resize
+                window.addEventListener('resize', () => {
+                    if(container.clientWidth > 0) {
+                        camera.aspect = container.clientWidth / container.clientHeight;
+                        camera.updateProjectionMatrix();
+                        renderer.setSize(container.clientWidth, container.clientHeight);
+                    }
+                });
+            } catch (e) {
+                console.warn("3D initialization failed, falling back to CSS.");
+            }
+        }
+    };
+
+    // Boot App
+    document.addEventListener('DOMContentLoaded', App.init);
 
 </script>
 </body>
