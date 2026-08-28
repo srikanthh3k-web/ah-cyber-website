@@ -2,1056 +2,1052 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="theme-color" content="#ffffff">
-<meta name="description" content="Aurexa AI-SOC - AI-powered cybersecurity operations, threat detection, response and automation.">
-<title>AUREXA | AI-SOC Cyber Security Solutions</title>
+<meta name="description" content="AUREXA Cyber Security Solutions - AI powered cybersecurity and AI-SOC platform">
+<title>AUREXA | Cyber Security Solutions</title>
 
 <style>
 :root{
-  --primary:#2457d6;
-  --primary2:#6748e8;
-  --cyan:#0891b2;
-  --success:#159447;
-  --warning:#d97706;
-  --danger:#dc2626;
-  --dark:#172033;
-  --text:#263247;
-  --muted:#68758a;
-  --bg:#f5f8fc;
-  --white:#ffffff;
-  --border:#dfe6ef;
-  --shadow:0 12px 35px rgba(35,54,90,.09);
-  --radius:18px;
+ --blue:#2563eb;
+ --purple:#6846e8;
+ --cyan:#0891b2;
+ --green:#16a34a;
+ --orange:#d97706;
+ --red:#dc2626;
+ --dark:#172033;
+ --text:#334155;
+ --muted:#718096;
+ --bg:#f5f8fc;
+ --white:#fff;
+ --border:#dfe6ef;
+ --shadow:0 15px 40px rgba(31,52,88,.10);
+ --radius:18px;
 }
 
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
+*{margin:0;padding:0;box-sizing:border-box}
 
-html{
-  scroll-behavior:smooth;
-}
+html{scroll-behavior:smooth}
 
 body{
-  font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  line-height:1.6;
+ font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;
+ background:var(--bg);
+ color:var(--text);
+ line-height:1.6;
 }
 
-a{
-  color:inherit;
-  text-decoration:none;
-}
+a{text-decoration:none;color:inherit}
 
-button,input,textarea,select{
-  font:inherit;
-}
+button,input,textarea,select{font:inherit}
 
-button{
-  cursor:pointer;
-}
+button{cursor:pointer}
 
 .container{
-  width:min(1180px,92%);
-  margin:auto;
+ width:min(1180px,92%);
+ margin:auto;
 }
 
 /* NAVBAR */
 
 .navbar{
-  position:sticky;
-  top:0;
-  z-index:1000;
-  background:rgba(255,255,255,.96);
-  backdrop-filter:blur(15px);
-  border-bottom:1px solid var(--border);
+ position:sticky;
+ top:0;
+ z-index:1000;
+ background:rgba(255,255,255,.96);
+ backdrop-filter:blur(16px);
+ border-bottom:1px solid var(--border);
 }
 
 .nav-inner{
-  min-height:76px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:25px;
+ min-height:76px;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ gap:20px;
 }
 
 .logo{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  font-weight:900;
-  letter-spacing:2px;
+ display:flex;
+ align-items:center;
+ gap:12px;
 }
 
 .logo-mark{
-  width:44px;
-  height:44px;
-  border-radius:13px;
-  background:linear-gradient(135deg,var(--primary),var(--primary2));
-  color:white;
-  display:grid;
-  place-items:center;
-  font-size:25px;
-  font-weight:900;
-  box-shadow:0 7px 20px rgba(36,87,214,.25);
+ width:45px;
+ height:45px;
+ border-radius:13px;
+ background:linear-gradient(135deg,var(--blue),var(--purple));
+ color:white;
+ display:grid;
+ place-items:center;
+ font-size:27px;
+ font-weight:900;
+ box-shadow:0 8px 20px rgba(37,99,235,.25);
 }
 
-.logo-text{
-  font-size:22px;
-  color:#18243a;
+.logo-name{
+ font-size:23px;
+ font-weight:900;
+ letter-spacing:2px;
+ color:var(--dark);
 }
 
-.logo-text span{
-  display:block;
-  font-size:8px;
-  letter-spacing:2.4px;
-  color:var(--muted);
-  margin-top:-3px;
+.logo-sub{
+ display:block;
+ font-size:8px;
+ letter-spacing:2.4px;
+ color:#7a879b;
 }
 
 .nav-links{
-  display:flex;
-  gap:23px;
-  align-items:center;
-  font-size:14px;
-  font-weight:600;
+ display:flex;
+ align-items:center;
+ gap:22px;
+ font-size:14px;
+ font-weight:700;
 }
 
 .nav-links a{
-  color:#526078;
+ color:#59677d;
 }
 
 .nav-links a:hover{
-  color:var(--primary);
+ color:var(--blue);
 }
 
-.nav-btn{
-  padding:11px 17px;
-  border-radius:10px;
-  color:white!important;
-  background:linear-gradient(135deg,var(--primary),var(--primary2));
+.nav-cta{
+ color:white!important;
+ background:linear-gradient(135deg,var(--blue),var(--purple));
+ padding:11px 17px;
+ border-radius:10px;
 }
 
 .menu-btn{
-  display:none;
-  border:0;
-  background:#eef3fb;
-  padding:10px 12px;
-  border-radius:10px;
+ display:none;
+ border:0;
+ background:#eef3fb;
+ padding:11px 13px;
+ border-radius:11px;
+ font-size:22px;
 }
 
 /* HERO */
 
 .hero{
-  padding:80px 0 70px;
-  background:
-    radial-gradient(circle at 90% 15%,rgba(103,72,232,.11),transparent 28%),
-    radial-gradient(circle at 10% 80%,rgba(8,145,178,.09),transparent 30%),
-    #fff;
+ background:
+ radial-gradient(circle at 90% 15%,rgba(104,70,232,.12),transparent 30%),
+ radial-gradient(circle at 5% 90%,rgba(8,145,178,.10),transparent 28%),
+ white;
+ padding:80px 0 70px;
 }
 
 .hero-grid{
-  display:grid;
-  grid-template-columns:1.05fr .95fr;
-  gap:55px;
-  align-items:center;
+ display:grid;
+ grid-template-columns:1.05fr .95fr;
+ align-items:center;
+ gap:55px;
 }
 
 .badge{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  border:1px solid #cddaf5;
-  background:#f2f6ff;
-  color:var(--primary);
-  padding:8px 13px;
-  border-radius:999px;
-  font-size:12px;
-  font-weight:800;
-  letter-spacing:.6px;
+ display:inline-flex;
+ align-items:center;
+ gap:8px;
+ padding:8px 14px;
+ border:1px solid #cedcf6;
+ background:#f3f7ff;
+ border-radius:50px;
+ color:var(--blue);
+ font-size:12px;
+ font-weight:800;
+ letter-spacing:.7px;
 }
 
-.badge i{
-  width:8px;
-  height:8px;
-  background:#22c55e;
-  border-radius:50%;
+.badge-dot{
+ width:8px;
+ height:8px;
+ border-radius:50%;
+ background:#22c55e;
 }
 
 .hero h1{
-  margin-top:20px;
-  font-size:clamp(40px,6vw,70px);
-  line-height:1.02;
-  color:#172033;
-  letter-spacing:-2.5px;
+ margin-top:20px;
+ font-size:clamp(42px,6vw,72px);
+ line-height:1;
+ letter-spacing:-3px;
+ color:var(--dark);
 }
 
-.gradient-text{
-  background:linear-gradient(90deg,var(--primary),var(--primary2),var(--cyan));
-  -webkit-background-clip:text;
-  background-clip:text;
-  color:transparent;
+.gradient{
+ background:linear-gradient(90deg,var(--blue),var(--purple),var(--cyan));
+ -webkit-background-clip:text;
+ background-clip:text;
+ color:transparent;
 }
 
-.hero-sub{
-  margin-top:20px;
-  font-size:19px;
-  color:#647188;
-  max-width:650px;
+.hero p{
+ margin-top:20px;
+ max-width:650px;
+ color:var(--muted);
+ font-size:18px;
 }
 
-.hero-actions{
-  display:flex;
-  gap:12px;
-  flex-wrap:wrap;
-  margin-top:30px;
+.hero-buttons{
+ display:flex;
+ flex-wrap:wrap;
+ gap:12px;
+ margin-top:28px;
 }
 
 .btn{
-  border:0;
-  border-radius:12px;
-  padding:13px 20px;
-  font-weight:750;
-  transition:.2s;
+ border:0;
+ padding:13px 20px;
+ border-radius:12px;
+ font-weight:800;
+ transition:.2s;
 }
 
 .btn:hover{
-  transform:translateY(-2px);
+ transform:translateY(-2px);
 }
 
 .btn-primary{
-  background:linear-gradient(135deg,var(--primary),var(--primary2));
-  color:white;
-  box-shadow:0 10px 22px rgba(36,87,214,.2);
+ color:white;
+ background:linear-gradient(135deg,var(--blue),var(--purple));
+ box-shadow:0 10px 25px rgba(37,99,235,.20);
 }
 
 .btn-secondary{
-  background:#fff;
-  color:var(--primary);
-  border:1px solid #cad7ed;
+ background:white;
+ color:var(--blue);
+ border:1px solid #ccd8ea;
 }
 
-.hero-card{
-  background:white;
-  border:1px solid var(--border);
-  border-radius:24px;
-  box-shadow:var(--shadow);
-  padding:20px;
+.contact-row{
+ display:flex;
+ flex-wrap:wrap;
+ gap:9px;
+ margin-top:22px;
 }
 
-.dashboard-head{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  border-bottom:1px solid var(--border);
-  padding-bottom:15px;
-  margin-bottom:15px;
+.contact-chip{
+ background:#f6f8fb;
+ border:1px solid var(--border);
+ border-radius:10px;
+ padding:8px 11px;
+ font-size:12px;
 }
 
-.status{
-  display:flex;
-  align-items:center;
-  gap:7px;
-  font-size:12px;
-  color:var(--success);
-  font-weight:700;
+/* HERO DASHBOARD */
+
+.hero-dashboard{
+ background:white;
+ border:1px solid var(--border);
+ border-radius:23px;
+ box-shadow:var(--shadow);
+ padding:20px;
 }
 
-.status-dot{
-  width:9px;
-  height:9px;
-  border-radius:50%;
-  background:#20b45a;
+.dash-head{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ border-bottom:1px solid var(--border);
+ padding-bottom:15px;
+ margin-bottom:15px;
 }
 
-.metric-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:12px;
+.online{
+ color:var(--green);
+ font-size:11px;
+ font-weight:800;
+ display:flex;
+ align-items:center;
+ gap:6px;
+}
+
+.online span{
+ width:8px;
+ height:8px;
+ border-radius:50%;
+ background:#22c55e;
+}
+
+.metrics{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:10px;
 }
 
 .metric{
-  border:1px solid var(--border);
-  padding:14px;
-  border-radius:13px;
-  background:#fbfcfe;
+ padding:14px;
+ background:#f8fafc;
+ border:1px solid var(--border);
+ border-radius:13px;
 }
 
 .metric small{
-  color:var(--muted);
+ color:var(--muted);
 }
 
 .metric strong{
-  display:block;
-  font-size:24px;
-  margin-top:4px;
-  color:var(--dark);
+ display:block;
+ color:var(--dark);
+ font-size:23px;
+ margin-top:3px;
 }
 
 .chart{
-  margin-top:14px;
-  height:155px;
-  border:1px solid var(--border);
-  border-radius:14px;
-  position:relative;
-  overflow:hidden;
-  background:
-    linear-gradient(#edf1f7 1px,transparent 1px),
-    linear-gradient(90deg,#edf1f7 1px,transparent 1px);
-  background-size:30px 30px;
+ height:160px;
+ margin-top:14px;
+ border:1px solid var(--border);
+ border-radius:13px;
+ overflow:hidden;
+ background:
+ linear-gradient(#edf1f6 1px,transparent 1px),
+ linear-gradient(90deg,#edf1f6 1px,transparent 1px);
+ background-size:30px 30px;
 }
 
 .chart svg{
-  width:100%;
-  height:100%;
+ width:100%;
+ height:100%;
 }
 
-/* SECTION */
+/* SECTIONS */
 
 section{
-  padding:78px 0;
+ padding:78px 0;
 }
 
 .section-head{
-  text-align:center;
-  max-width:720px;
-  margin:0 auto 45px;
+ text-align:center;
+ max-width:750px;
+ margin:0 auto 42px;
 }
 
-.section-head .eyebrow{
-  color:var(--primary);
-  font-weight:850;
-  font-size:13px;
-  letter-spacing:2px;
+.eyebrow{
+ color:var(--blue);
+ font-size:12px;
+ font-weight:900;
+ letter-spacing:2px;
 }
 
 .section-head h2{
-  margin-top:8px;
-  font-size:clamp(30px,4vw,44px);
-  color:var(--dark);
+ color:var(--dark);
+ font-size:clamp(30px,4vw,44px);
+ margin-top:7px;
 }
 
 .section-head p{
-  margin-top:12px;
-  color:var(--muted);
+ color:var(--muted);
+ margin-top:10px;
 }
 
 /* CAPABILITIES */
 
 .cap-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:18px;
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:18px;
 }
 
 .cap-card{
-  background:white;
-  border:1px solid var(--border);
-  padding:25px 20px;
-  border-radius:var(--radius);
-  box-shadow:0 5px 20px rgba(30,50,90,.04);
-  transition:.25s;
+ background:white;
+ border:1px solid var(--border);
+ border-radius:var(--radius);
+ padding:23px;
+ box-shadow:0 5px 20px rgba(30,50,90,.04);
+ transition:.25s;
 }
 
 .cap-card:hover{
-  transform:translateY(-5px);
-  box-shadow:var(--shadow);
-  border-color:#c8d5ee;
+ transform:translateY(-5px);
+ box-shadow:var(--shadow);
 }
 
-.cap-icon{
-  width:50px;
-  height:50px;
-  border-radius:14px;
-  display:grid;
-  place-items:center;
-  background:#eef4ff;
-  color:var(--primary);
-  font-size:24px;
-  margin-bottom:18px;
+.icon{
+ width:49px;
+ height:49px;
+ border-radius:14px;
+ background:#edf4ff;
+ color:var(--blue);
+ display:grid;
+ place-items:center;
+ font-size:23px;
+ margin-bottom:16px;
 }
 
 .cap-card h3{
-  font-size:17px;
-  color:var(--dark);
+ color:var(--dark);
+ font-size:17px;
 }
 
 .cap-card p{
-  font-size:13px;
-  color:var(--muted);
-  margin-top:8px;
+ color:var(--muted);
+ font-size:13px;
+ margin-top:7px;
 }
 
 /* SCANNER */
 
 .scanner-section{
-  background:white;
+ background:white;
 }
 
-.scanner{
-  max-width:900px;
-  margin:auto;
-  padding:28px;
-  border:1px solid var(--border);
-  border-radius:24px;
-  box-shadow:var(--shadow);
+.scanner-box{
+ max-width:920px;
+ margin:auto;
+ background:white;
+ border:1px solid var(--border);
+ border-radius:24px;
+ padding:28px;
+ box-shadow:var(--shadow);
 }
 
 .scanner-input{
-  display:flex;
-  gap:10px;
+ display:flex;
+ gap:10px;
 }
 
 .scanner-input input{
-  flex:1;
-  border:1px solid #ccd6e5;
-  border-radius:12px;
-  padding:15px;
-  outline:none;
+ flex:1;
+ min-width:0;
+ border:1px solid #cbd6e5;
+ padding:15px;
+ border-radius:12px;
+ outline:none;
+ background:white;
 }
 
 .scanner-input input:focus{
-  border-color:var(--primary);
-  box-shadow:0 0 0 4px rgba(36,87,214,.08);
+ border-color:var(--blue);
+ box-shadow:0 0 0 4px rgba(37,99,235,.08);
 }
 
 .scan-result{
-  margin-top:20px;
-  padding:20px;
-  border-radius:15px;
-  background:#f8fafc;
-  border:1px solid var(--border);
-  display:none;
+ display:none;
+ margin-top:20px;
+ padding:22px;
+ border-radius:17px;
+ border:1px solid var(--border);
+ background:#f8fafc;
 }
 
 .scan-result.show{
-  display:block;
+ display:block;
 }
 
+.scan-title{
+ font-size:24px;
+ font-weight:900;
+}
+
+.safe{color:var(--green)}
+.warning{color:var(--orange)}
+.danger{color:var(--red)}
+
 .risk-bar{
-  height:11px;
-  background:#e7ecf3;
-  border-radius:50px;
-  overflow:hidden;
-  margin:13px 0;
+ height:12px;
+ background:#e6ebf2;
+ border-radius:50px;
+ overflow:hidden;
+ margin:15px 0 9px;
 }
 
 .risk-fill{
-  height:100%;
-  width:0;
-  transition:1s;
+ height:100%;
+ width:0;
+ transition:1s;
+ border-radius:50px;
 }
 
-.result-safe{
-  color:var(--success);
+.analysis{
+ margin-top:17px;
+ padding:15px;
+ background:white;
+ border:1px solid var(--border);
+ border-radius:12px;
 }
 
-.result-warning{
-  color:var(--warning);
+.warning-note{
+ margin-top:15px;
+ font-size:12px;
+ color:#657286;
 }
 
-.result-danger{
-  color:var(--danger);
+/* SOC */
+
+.soc-section{
+ background:#f0f5fb;
 }
 
-/* SOC DASHBOARD */
-
-.dashboard{
-  background:#f1f5fb;
+.soc-layout{
+ display:grid;
+ grid-template-columns:225px 1fr;
+ gap:18px;
 }
 
-.dashboard-grid{
-  display:grid;
-  grid-template-columns:240px 1fr;
-  gap:18px;
+.sidebar{
+ background:white;
+ border:1px solid var(--border);
+ border-radius:18px;
+ padding:13px;
+ height:max-content;
 }
 
-.side-panel{
-  background:#fff;
-  border:1px solid var(--border);
-  border-radius:18px;
-  padding:15px;
-  height:max-content;
+.sidebar button{
+ width:100%;
+ text-align:left;
+ border:0;
+ background:transparent;
+ padding:12px;
+ border-radius:10px;
+ color:#617087;
+ font-weight:650;
+ margin-bottom:4px;
 }
 
-.side-panel button{
-  display:block;
-  width:100%;
-  text-align:left;
-  padding:12px;
-  border:0;
-  background:transparent;
-  border-radius:10px;
-  color:#59667c;
-  margin-bottom:5px;
+.sidebar button:hover,
+.sidebar button.active{
+ background:#edf3ff;
+ color:var(--blue);
 }
 
-.side-panel button.active,
-.side-panel button:hover{
-  background:#edf3ff;
-  color:var(--primary);
+.soc-content{
+ min-width:0;
 }
 
-.dash-content{
-  min-width:0;
+.soc-page{
+ display:none;
 }
 
-.dash-top{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:14px;
+.soc-page.active{
+ display:block;
 }
 
-.dash-card{
-  background:#fff;
-  border:1px solid var(--border);
-  padding:20px;
-  border-radius:16px;
+.soc-stats{
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:13px;
 }
 
-.dash-card small{
-  color:var(--muted);
+.stat-card{
+ background:white;
+ border:1px solid var(--border);
+ border-radius:15px;
+ padding:19px;
 }
 
-.dash-card strong{
-  display:block;
-  font-size:29px;
-  color:var(--dark);
+.stat-card small{
+ color:var(--muted);
+}
+
+.stat-card strong{
+ display:block;
+ color:var(--dark);
+ font-size:28px;
 }
 
 .panel{
-  background:white;
-  border:1px solid var(--border);
-  border-radius:17px;
-  padding:20px;
-  margin-top:16px;
+ background:white;
+ border:1px solid var(--border);
+ border-radius:17px;
+ padding:20px;
+ margin-top:15px;
 }
 
-.panel-title{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
-  margin-bottom:16px;
+.panel-head{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ gap:10px;
+ margin-bottom:15px;
 }
 
-.panel-title h3{
-  color:var(--dark);
+.panel h3{
+ color:var(--dark);
 }
 
 .table-wrap{
-  overflow-x:auto;
+ overflow-x:auto;
 }
 
 table{
-  width:100%;
-  border-collapse:collapse;
-  min-width:650px;
+ width:100%;
+ border-collapse:collapse;
+ min-width:650px;
 }
 
 th,td{
-  padding:12px 10px;
-  text-align:left;
-  border-bottom:1px solid #edf0f4;
-  font-size:13px;
+ padding:12px 10px;
+ border-bottom:1px solid #edf0f4;
+ text-align:left;
+ font-size:13px;
 }
 
 th{
-  color:#66748a;
-  font-size:12px;
-  text-transform:uppercase;
-  letter-spacing:.4px;
+ color:#68758a;
+ font-size:11px;
+ text-transform:uppercase;
 }
 
 .severity{
-  padding:5px 9px;
-  border-radius:999px;
-  font-size:11px;
-  font-weight:800;
+ display:inline-block;
+ padding:4px 9px;
+ border-radius:50px;
+ font-size:10px;
+ font-weight:900;
 }
 
-.high{
-  background:#fee2e2;
-  color:#b91c1c;
-}
+.high{background:#fee2e2;color:#b91c1c}
+.medium{background:#fef3c7;color:#a16207}
+.low{background:#dcfce7;color:#15803d}
 
-.medium{
-  background:#fef3c7;
-  color:#a16207;
-}
-
-.low{
-  background:#dcfce7;
-  color:#15803d;
-}
-
-.info{
-  background:#dbeafe;
-  color:#1d4ed8;
-}
-
-/* FEATURES */
+/* FEATURE GRID */
 
 .feature-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:20px;
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:18px;
 }
 
 .feature{
-  background:white;
-  border:1px solid var(--border);
-  border-radius:17px;
-  padding:23px;
+ background:white;
+ border:1px solid var(--border);
+ border-radius:17px;
+ padding:22px;
 }
 
 .feature h3{
-  margin-bottom:8px;
-  color:var(--dark);
+ color:var(--dark);
+ margin-bottom:8px;
+}
+
+.feature p,
+.feature li{
+ color:var(--muted);
+ font-size:13px;
 }
 
 .feature ul{
-  padding-left:18px;
-  color:var(--muted);
-  font-size:14px;
+ padding-left:18px;
 }
 
-.feature li{
-  margin:6px 0;
+/* FRAUD */
+
+.fraud-section{
+ background:linear-gradient(135deg,#eff6ff,#f7f4ff);
+}
+
+.fraud-grid{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:20px;
+}
+
+.fraud-card{
+ background:white;
+ border:1px solid var(--border);
+ border-radius:20px;
+ padding:28px;
+}
+
+.fraud-card h3{
+ color:var(--dark);
+ font-size:22px;
+}
+
+.fraud-card p{
+ color:var(--muted);
+ margin:9px 0 17px;
+}
+
+.step{
+ padding:13px;
+ border:1px solid #e6ebf2;
+ background:#f8fafc;
+ border-radius:10px;
+ margin-bottom:9px;
+ font-size:13px;
 }
 
 /* FOUNDER */
 
 .founder{
-  background:white;
+ background:white;
 }
 
 .founder-grid{
-  display:grid;
-  grid-template-columns:280px 1fr;
-  gap:40px;
-  align-items:center;
-  max-width:900px;
-  margin:auto;
+ max-width:900px;
+ margin:auto;
+ display:grid;
+ grid-template-columns:270px 1fr;
+ gap:40px;
+ align-items:center;
 }
 
 .founder-photo{
-  width:250px;
-  height:300px;
-  border-radius:25px;
-  background:linear-gradient(135deg,#edf3ff,#f7f4ff);
-  border:1px solid var(--border);
-  display:grid;
-  place-items:center;
-  color:var(--primary);
-  font-size:80px;
-  font-weight:900;
-}
-
-.founder-content h2{
-  font-size:40px;
-  color:var(--dark);
-}
-
-.founder-content h4{
-  color:var(--primary);
-  margin-top:5px;
-}
-
-.founder-content p{
-  color:var(--muted);
-  margin-top:15px;
-}
-
-.contact-list{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  margin-top:20px;
-}
-
-.contact-chip{
-  background:#f4f7fb;
-  border:1px solid var(--border);
-  padding:9px 12px;
-  border-radius:10px;
-  font-size:13px;
-}
-
-/* FRAUD */
-
-.fraud{
-  background:linear-gradient(135deg,#eff6ff,#f7f4ff);
-}
-
-.fraud-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:22px;
-}
-
-.fraud-card{
-  background:#fff;
-  padding:28px;
-  border-radius:20px;
-  border:1px solid var(--border);
-}
-
-.fraud-card h3{
-  color:var(--dark);
-}
-
-.fraud-card p{
-  color:var(--muted);
-  margin:9px 0 18px;
-}
-
-.fraud-steps{
-  display:grid;
-  gap:10px;
-}
-
-.fraud-step{
-  padding:13px;
-  background:#f7f9fc;
-  border-radius:10px;
-  border:1px solid #e7ebf2;
+ width:250px;
+ height:300px;
+ border-radius:25px;
+ background:linear-gradient(135deg,#edf4ff,#f3efff);
+ border:1px solid var(--border);
+ display:grid;
+ place-items:center;
+ color:var(--blue);
+ font-size:70px;
+ font-weight:900;
 }
 
 /* ADMIN */
 
-.admin{
-  background:#fff;
+.admin-section{
+ background:#f6f8fc;
 }
 
 .admin-box{
-  max-width:1000px;
-  margin:auto;
-  border:1px solid var(--border);
-  border-radius:20px;
-  overflow:hidden;
-  box-shadow:var(--shadow);
+ max-width:1000px;
+ margin:auto;
+ background:white;
+ border:1px solid var(--border);
+ border-radius:20px;
+ overflow:hidden;
+ box-shadow:var(--shadow);
 }
 
-.admin-login{
-  padding:40px;
-  max-width:500px;
-  margin:auto;
+.login-box{
+ max-width:500px;
+ margin:auto;
+ padding:40px;
 }
 
 .form-group{
-  margin-bottom:15px;
+ margin-bottom:15px;
 }
 
 .form-group label{
-  display:block;
-  margin-bottom:6px;
-  font-size:13px;
-  font-weight:700;
+ display:block;
+ font-size:13px;
+ font-weight:750;
+ margin-bottom:6px;
 }
 
 .form-group input,
 .form-group textarea,
 .form-group select{
-  width:100%;
-  padding:12px;
-  border:1px solid #ccd6e5;
-  border-radius:10px;
-  outline:none;
+ width:100%;
+ border:1px solid #ccd7e6;
+ border-radius:10px;
+ padding:12px;
+ outline:none;
 }
 
 .admin-dashboard{
-  display:none;
+ display:none;
 }
 
-.admin-nav{
-  padding:16px 20px;
-  border-bottom:1px solid var(--border);
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+.admin-header{
+ padding:17px 20px;
+ border-bottom:1px solid var(--border);
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
 }
 
 .admin-body{
-  padding:25px;
+ padding:23px;
 }
 
 .admin-stats{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:12px;
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:12px;
 }
 
 .admin-stat{
-  padding:17px;
-  background:#f6f8fc;
-  border:1px solid var(--border);
-  border-radius:13px;
+ background:#f6f8fc;
+ border:1px solid var(--border);
+ padding:16px;
+ border-radius:12px;
 }
 
 /* CTA */
 
 .cta{
-  background:#172033;
-  color:white;
-  text-align:center;
+ background:#172033;
+ color:white;
+ text-align:center;
 }
 
 .cta h2{
-  font-size:clamp(32px,5vw,52px);
+ font-size:clamp(31px,5vw,50px);
 }
 
 .cta p{
-  color:#b9c3d5;
-  margin:12px auto 25px;
+ color:#bac4d5;
+ margin:10px auto 23px;
 }
 
 /* FOOTER */
 
 footer{
-  background:#101827;
-  color:#d4dbea;
-  padding:45px 0 25px;
+ background:#101827;
+ color:#d8dfeb;
+ padding:45px 0 25px;
 }
 
 .footer-grid{
-  display:grid;
-  grid-template-columns:2fr 1fr 1fr 1fr;
-  gap:30px;
+ display:grid;
+ grid-template-columns:2fr 1fr 1fr 1fr;
+ gap:30px;
 }
 
 .footer-title{
-  color:white;
-  font-weight:800;
-  margin-bottom:12px;
-}
-
-footer p,footer li{
-  color:#9ba8bd;
-  font-size:13px;
+ color:white;
+ font-weight:850;
+ margin-bottom:10px;
 }
 
 footer ul{
-  list-style:none;
+ list-style:none;
 }
 
-footer li{
-  margin:7px 0;
+footer li,
+footer p{
+ color:#9aa7bb;
+ font-size:13px;
+ margin:6px 0;
 }
 
 .footer-bottom{
-  margin-top:30px;
-  padding-top:20px;
-  border-top:1px solid #273247;
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
-  flex-wrap:wrap;
+ border-top:1px solid #273247;
+ margin-top:28px;
+ padding-top:20px;
+ display:flex;
+ justify-content:space-between;
+ gap:10px;
+ flex-wrap:wrap;
+ font-size:12px;
+ color:#8795aa;
 }
 
 /* TOAST */
 
 .toast{
-  position:fixed;
-  bottom:25px;
-  right:25px;
-  background:#172033;
-  color:white;
-  padding:13px 17px;
-  border-radius:10px;
-  box-shadow:var(--shadow);
+ display:none;
+ position:fixed;
+ bottom:22px;
+ right:22px;
+ z-index:5000;
+ background:#172033;
+ color:white;
+ padding:13px 17px;
+ border-radius:10px;
+ box-shadow:var(--shadow);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1000px){
+
+ .nav-links{
   display:none;
-  z-index:3000;
+  position:absolute;
+  left:4%;
+  right:4%;
+  top:70px;
+  padding:14px;
+  background:white;
+  border:1px solid var(--border);
+  border-radius:14px;
+  box-shadow:var(--shadow);
+  flex-direction:column;
+  align-items:stretch;
+ }
+
+ .nav-links.open{display:flex}
+
+ .menu-btn{display:block}
+
+ .hero-grid{
+  grid-template-columns:1fr;
+ }
+
+ .cap-grid{
+  grid-template-columns:repeat(2,1fr);
+ }
+
+ .soc-layout{
+  grid-template-columns:1fr;
+ }
+
+ .soc-stats{
+  grid-template-columns:repeat(2,1fr);
+ }
+
+ .feature-grid{
+  grid-template-columns:repeat(2,1fr);
+ }
+
+ .footer-grid{
+  grid-template-columns:1fr 1fr;
+ }
 }
 
-/* MOBILE */
+@media(max-width:650px){
 
-@media(max-width:950px){
-  .nav-links{
-    display:none;
-    position:absolute;
-    left:4%;
-    right:4%;
-    top:70px;
-    background:white;
-    padding:15px;
-    border:1px solid var(--border);
-    border-radius:14px;
-    box-shadow:var(--shadow);
-    flex-direction:column;
-    align-items:stretch;
-  }
+ section{padding:55px 0}
 
-  .nav-links.open{
-    display:flex;
-  }
+ .hero{padding:55px 0}
 
-  .menu-btn{
-    display:block;
-  }
+ .hero h1{
+  font-size:47px;
+  letter-spacing:-2px;
+ }
 
-  .hero-grid{
-    grid-template-columns:1fr;
-  }
+ .hero p{font-size:16px}
 
-  .cap-grid{
-    grid-template-columns:repeat(2,1fr);
-  }
+ .metrics,
+ .cap-grid,
+ .soc-stats,
+ .feature-grid,
+ .fraud-grid,
+ .admin-stats,
+ .footer-grid{
+  grid-template-columns:1fr;
+ }
 
-  .dashboard-grid{
-    grid-template-columns:1fr;
-  }
+ .scanner-box{
+  padding:18px;
+ }
 
-  .dash-top{
-    grid-template-columns:repeat(2,1fr);
-  }
+ .scanner-input{
+  flex-direction:column;
+ }
 
-  .feature-grid{
-    grid-template-columns:repeat(2,1fr);
-  }
+ .scanner-input .btn{
+  width:100%;
+ }
 
-  .footer-grid{
-    grid-template-columns:1fr 1fr;
-  }
-}
+ .founder-grid{
+  grid-template-columns:1fr;
+  text-align:center;
+ }
 
-@media(max-width:620px){
-  section{
-    padding:55px 0;
-  }
+ .founder-photo{
+  margin:auto;
+ }
 
-  .hero{
-    padding:55px 0;
-  }
+ .contact-row{
+  justify-content:center;
+ }
 
-  .hero h1{
-    letter-spacing:-1.5px;
-  }
-
-  .hero-sub{
-    font-size:16px;
-  }
-
-  .metric-grid,
-  .dash-top,
-  .cap-grid,
-  .feature-grid,
-  .fraud-grid,
-  .footer-grid{
-    grid-template-columns:1fr;
-  }
-
-  .scanner{
-    padding:18px;
-  }
-
-  .scanner-input{
-    flex-direction:column;
-  }
-
-  .founder-grid{
-    grid-template-columns:1fr;
-    text-align:center;
-  }
-
-  .founder-photo{
-    margin:auto;
-  }
-
-  .contact-list{
-    justify-content:center;
-  }
-
-  .admin-stats{
-    grid-template-columns:1fr 1fr;
-  }
+ .admin-body{
+  padding:16px;
+ }
 }
 </style>
 </head>
 
 <body>
 
-<!-- NAVIGATION -->
+<!-- ================= NAVBAR ================= -->
+
 <header class="navbar">
 <div class="container nav-inner">
 
 <a href="#home" class="logo">
-  <div class="logo-mark">A</div>
-  <div class="logo-text">
-    AUREXA
-    <span>CYBER SECURITY SOLUTIONS</span>
-  </div>
+<div class="logo-mark">A</div>
+<div>
+<div class="logo-name">AUREXA</div>
+<span class="logo-sub">CYBER SECURITY SOLUTIONS</span>
+</div>
 </a>
 
 <button class="menu-btn" onclick="toggleMenu()">☰</button>
 
 <nav class="nav-links" id="navLinks">
-  <a href="#home">Home</a>
-  <a href="#capabilities">Capabilities</a>
-  <a href="#scanner">Link Scanner</a>
-  <a href="#soc">AI-SOC</a>
-  <a href="#fraud">Cyber Help</a>
-  <a href="#founder">Founder</a>
-  <a href="#admin" class="nav-btn">Admin Panel</a>
+<a href="#home">Home</a>
+<a href="#capabilities">Capabilities</a>
+<a href="#scanner">Link Scanner</a>
+<a href="#soc">AI-SOC</a>
+<a href="#fraud">Cyber Help</a>
+<a href="#founder">Founder</a>
+<a href="#admin" class="nav-cta">Admin Panel</a>
 </nav>
 
 </div>
 </header>
 
 
-<!-- HERO -->
+<!-- ================= HERO ================= -->
+
 <section class="hero" id="home">
 <div class="container hero-grid">
 
 <div>
-  <span class="badge"><i></i> AI-POWERED CYBERSECURITY PLATFORM</span>
 
-  <h1>
-    AUREXA<br>
-    <span class="gradient-text">AI-SOC</span>
-  </h1>
+<span class="badge">
+<span class="badge-dot"></span>
+AI-POWERED CYBERSECURITY PLATFORM
+</span>
 
-  <p class="hero-sub">
-    Detect threats. Analyze risks. Triage incidents. Respond faster.
-    Aurexa combines intelligent security operations with AI-driven
-    threat detection and automated response.
-  </p>
+<h1>
+AUREXA<br>
+<span class="gradient">AI-SOC</span>
+</h1>
 
-  <div class="hero-actions">
-    <a href="#scanner" class="btn btn-primary">Check a Link</a>
-    <a href="#soc" class="btn btn-secondary">Explore AI-SOC</a>
-  </div>
+<p>
+Next-generation cybersecurity operations platform that
+detects threats, analyzes suspicious activity, prioritizes
+incidents and helps security teams respond faster.
+</p>
 
-  <div class="contact-list">
-    <a class="contact-chip" href="mailto:srikanthh3k@gmail.com">
-      ✉ srikanthh3k@gmail.com
-    </a>
+<div class="hero-buttons">
+<a href="#scanner" class="btn btn-primary">
+🔍 Check a Link
+</a>
 
-    <a class="contact-chip" href="tel:9640724438">
-      ☎ 9640724438
-    </a>
+<a href="#soc" class="btn btn-secondary">
+🛡 Explore AI-SOC
+</a>
+</div>
 
-    <a class="contact-chip" href="https://wa.me/919640724438" target="_blank">
-      WhatsApp
-    </a>
-  </div>
+<div class="contact-row">
+
+<a class="contact-chip"
+href="mailto:srikanthh3k@gmail.com">
+✉ srikanthh3k@gmail.com
+</a>
+
+<a class="contact-chip"
+href="tel:9640724438">
+☎ 9640724438
+</a>
+
+<a class="contact-chip"
+href="https://wa.me/919640724438"
+target="_blank">
+💬 WhatsApp
+</a>
+
+</div>
+
 </div>
 
 
-<div class="hero-card">
+<div class="hero-dashboard">
 
-<div class="dashboard-head">
-  <strong>🛡 Aurexa AI-SOC Dashboard</strong>
-  <span class="status">
-    <span class="status-dot"></span> SYSTEM ACTIVE
-  </span>
+<div class="dash-head">
+<strong>🛡 AUREXA AI-SOC</strong>
+
+<span class="online">
+<span></span>
+SYSTEM ACTIVE
+</span>
 </div>
 
-<div class="metric-grid">
+<div class="metrics">
 
 <div class="metric">
 <small>Total Alerts</small>
@@ -1060,96 +1056,158 @@ footer li{
 
 <div class="metric">
 <small>Critical Alerts</small>
-<strong id="heroCritical">137</strong>
+<strong>137</strong>
 </div>
 
 <div class="metric">
 <small>Active Incidents</small>
-<strong id="heroIncidents">23</strong>
+<strong>23</strong>
 </div>
 
 </div>
 
 <div class="chart">
+
 <svg viewBox="0 0 500 160" preserveAspectRatio="none">
+
 <polyline
 fill="none"
-stroke="#2457d6"
+stroke="#2563eb"
 stroke-width="4"
-points="0,130 45,110 80,120 120,80 160,95 205,55 250,80 290,45 330,60 375,25 420,42 460,15 500,30"/>
+points="
+0,135
+40,120
+80,126
+120,87
+160,102
+200,62
+240,80
+280,48
+320,62
+360,35
+400,45
+450,20
+500,30"/>
+
 <polyline
 fill="none"
-stroke="#6748e8"
+stroke="#6846e8"
 stroke-width="3"
-points="0,145 50,140 100,135 150,125 200,130 250,110 300,115 350,95 400,100 450,75 500,65"/>
+points="
+0,148
+50,143
+100,138
+150,125
+200,132
+250,115
+300,120
+350,98
+400,105
+450,82
+500,67"/>
+
 </svg>
+
 </div>
 
 </div>
+
 </div>
 </section>
 
 
-<!-- CAPABILITIES -->
+<!-- ================= CAPABILITIES ================= -->
+
 <section id="capabilities">
 <div class="container">
 
 <div class="section-head">
-<span class="eyebrow">POWERFUL CAPABILITIES</span>
+
+<span class="eyebrow">
+POWERFUL CAPABILITIES
+</span>
+
 <h2>Modern Security Operations</h2>
+
 <p>
-Everything required to detect, investigate and respond to cyber threats.
+AI-driven capabilities for detection, investigation,
+risk scoring, response and security reporting.
 </p>
+
 </div>
 
 <div class="cap-grid">
 
 <div class="cap-card">
-<div class="cap-icon">◉</div>
+<div class="icon">◉</div>
 <h3>Multi-Source Ingestion</h3>
-<p>Windows, Linux, firewall, web logs, IAM, cloud, Wireshark, scanners and more.</p>
+<p>
+Windows, Linux, firewall, web logs, IAM, cloud,
+network telemetry and security scanners.
+</p>
 </div>
 
 <div class="cap-card">
-<div class="cap-icon">🧠</div>
+<div class="icon">🧠</div>
 <h3>AI Threat Detection</h3>
-<p>Detect brute force, port scans, malware, web attacks, privilege escalation and suspicious behavior.</p>
+<p>
+Identify suspicious authentication, malware,
+port scans, web attacks and anomalous behavior.
+</p>
 </div>
 
 <div class="cap-card">
-<div class="cap-icon">🎯</div>
+<div class="icon">🎯</div>
 <h3>MITRE ATT&CK Mapping</h3>
-<p>Automatically map observed behavior to tactics, techniques and sub-techniques.</p>
+<p>
+Map observed activity to tactics, techniques
+and sub-techniques.
+</p>
 </div>
 
 <div class="cap-card">
-<div class="cap-icon">🔎</div>
+<div class="icon">🔎</div>
 <h3>IOC Extraction</h3>
-<p>Extract IP addresses, domains, URLs, hashes, users, files and commands.</p>
+<p>
+Extract IPs, domains, URLs, hashes, users,
+files and suspicious commands.
+</p>
 </div>
 
 <div class="cap-card">
-<div class="cap-icon">📊</div>
+<div class="icon">📊</div>
 <h3>Risk Scoring Engine</h3>
-<p>AI-inspired risk scoring to prioritize critical incidents.</p>
+<p>
+Prioritize security events using risk-based
+analysis and incident severity.
+</p>
 </div>
 
 <div class="cap-card">
-<div class="cap-icon">🤖</div>
-<h3>Incident Response Automation</h3>
-<p>Smart response recommendations and SOC-ready automated workflows.</p>
+<div class="icon">🤖</div>
+<h3>Incident Response</h3>
+<p>
+Automated response recommendations and
+security workflow assistance.
+</p>
 </div>
 
 <div class="cap-card">
-<div class="cap-icon">📄</div>
-<h3>Analyst-Ready Reports</h3>
-<p>Generate incident summaries with timeline, evidence, IOCs and MITRE mapping.</p>
+<div class="icon">📄</div>
+<h3>Analyst Reports</h3>
+<p>
+Incident timelines, evidence, IOCs, risk
+scores and MITRE mapping.
+</p>
 </div>
 
 <div class="cap-card">
-<div class="cap-icon">💬</div>
+<div class="icon">💬</div>
 <h3>AI-SOC Copilot</h3>
-<p>Ask security questions, investigate alerts and accelerate analysis.</p>
+<p>
+Ask security questions and accelerate
+investigation workflows.
+</p>
 </div>
 
 </div>
@@ -1157,122 +1215,202 @@ Everything required to detect, investigate and respond to cyber threats.
 </section>
 
 
-<!-- LINK SCANNER -->
+<!-- ================= URL SCANNER ================= -->
+
 <section class="scanner-section" id="scanner">
+
 <div class="container">
 
 <div class="section-head">
-<span class="eyebrow">AUREXA URL INTELLIGENCE</span>
+
+<span class="eyebrow">
+AUREXA URL INTELLIGENCE
+</span>
+
 <h2>Check Before You Click</h2>
+
 <p>
-Paste a website link and Aurexa will perform a client-side security
-screening for suspicious indicators.
+Paste a website link and Aurexa will analyze it for
+common suspicious indicators.
 </p>
+
 </div>
 
-<div class="scanner">
+
+<div class="scanner-box">
 
 <div class="scanner-input">
+
 <input
 id="urlInput"
 type="text"
-placeholder="Paste URL here — https://example.com"
-/>
-<button class="btn btn-primary" onclick="scanURL()">
+placeholder="Paste URL — https://example.com">
+
+<button
+class="btn btn-primary"
+onclick="scanURL()">
+
 🔍 Scan Link
+
 </button>
+
 </div>
 
+
 <div class="scan-result" id="scanResult">
-<h3 id="scanTitle"></h3>
-<p id="scanDescription"></p>
+
+<div class="scan-title" id="scanTitle"></div>
+
+<p id="scanDescription"
+style="margin-top:7px;color:#68758a">
+</p>
 
 <div class="risk-bar">
-<div class="risk-fill" id="riskFill"></div>
+
+<div
+class="risk-fill"
+id="riskFill">
+</div>
+
 </div>
 
 <strong id="riskScore"></strong>
 
-<div id="scanDetails" style="margin-top:14px"></div>
-
-<div style="margin-top:15px">
-<small>
-⚠ This is an initial heuristic screening, not a guarantee that a
-website is safe. Never enter passwords or financial information on
-an unfamiliar website.
-</small>
-</div>
+<div class="analysis"
+id="scanDetails">
 </div>
 
+<div class="warning-note">
+⚠ Aurexa's browser-side scanner is a heuristic screening
+tool. It does not guarantee that a website is safe or malicious.
+Never provide passwords, OTPs, PINs or financial information
+to an unfamiliar website.
 </div>
+
+</div>
+
+</div>
+
 </div>
 </section>
 
 
-<!-- AI SOC -->
-<section class="dashboard" id="soc">
+<!-- ================= AI SOC ================= -->
+
+<section class="soc-section" id="soc">
+
 <div class="container">
 
 <div class="section-head">
-<span class="eyebrow">AUREXA AI-SOC</span>
+
+<span class="eyebrow">
+AUREXA AI-SOC
+</span>
+
 <h2>Security Operations Center</h2>
-<p>Centralized monitoring, investigation, response and reporting.</p>
+
+<p>
+Monitor alerts, investigate incidents, analyze indicators
+and generate security reports.
+</p>
+
 </div>
 
-<div class="dashboard-grid">
 
-<aside class="side-panel">
-<button class="active" onclick="showSOC('overview',this)">▦ Dashboard</button>
-<button onclick="showSOC('alerts',this)">⚠ Alerts</button>
-<button onclick="showSOC('incidents',this)">◉ Incidents</button>
-<button onclick="showSOC('intel',this)">◈ Threat Intel</button>
-<button onclick="showSOC('assets',this)">▣ Assets</button>
-<button onclick="showSOC('mitre',this)">⌖ MITRE ATT&CK</button>
-<button onclick="showSOC('reports',this)">▤ Reports</button>
-<button onclick="showSOC('copilot',this)">✦ AI Copilot</button>
+<div class="soc-layout">
+
+<aside class="sidebar">
+
+<button class="active"
+onclick="showSOC('overview',this)">
+▦ Dashboard
+</button>
+
+<button onclick="showSOC('alerts',this)">
+⚠ Alerts
+</button>
+
+<button onclick="showSOC('incidents',this)">
+◉ Incidents
+</button>
+
+<button onclick="showSOC('intel',this)">
+◈ Threat Intel
+</button>
+
+<button onclick="showSOC('assets',this)">
+▣ Assets
+</button>
+
+<button onclick="showSOC('mitre',this)">
+⌖ MITRE ATT&CK
+</button>
+
+<button onclick="showSOC('reports',this)">
+📄 Reports
+</button>
+
+<button onclick="showSOC('copilot',this)">
+✦ AI Copilot
+</button>
+
 </aside>
 
 
-<main class="dash-content">
+<main class="soc-content">
 
-<div id="soc-overview">
 
-<div class="dash-top">
+<!-- OVERVIEW -->
 
-<div class="dash-card">
+<div id="soc-overview" class="soc-page active">
+
+<div class="soc-stats">
+
+<div class="stat-card">
 <small>Total Alerts</small>
 <strong id="totalAlerts">2,486</strong>
-<span class="result-safe">+26% vs last 24h</span>
+<span class="safe">+26% vs last 24h</span>
 </div>
 
-<div class="dash-card">
+<div class="stat-card">
 <small>Critical Alerts</small>
-<strong id="criticalAlerts">137</strong>
-<span class="result-danger">15% priority</span>
+<strong>137</strong>
+<span class="danger">HIGH PRIORITY</span>
 </div>
 
-<div class="dash-card">
+<div class="stat-card">
 <small>Active Incidents</small>
-<strong id="activeIncidents">23</strong>
-<span class="result-safe">4 new</span>
+<strong>23</strong>
+<span class="safe">+4 new</span>
 </div>
 
-<div class="dash-card">
+<div class="stat-card">
 <small>Risk Score</small>
 <strong>94/100</strong>
-<span class="result-danger">CRITICAL</span>
+<span class="danger">CRITICAL</span>
 </div>
 
 </div>
+
 
 <div class="panel">
-<div class="panel-title">
+
+<div class="panel-head">
+
 <h3>Recent Security Alerts</h3>
-<button class="btn btn-secondary" onclick="addDemoAlert()">+ Simulate Alert</button>
+
+<button class="btn btn-secondary"
+onclick="addAlert()">
++ Simulate Alert
+</button>
+
 </div>
 
+
 <div class="table-wrap">
+
 <table>
+
 <thead>
 <tr>
 <th>Time</th>
@@ -1284,6 +1422,7 @@ an unfamiliar website.
 </thead>
 
 <tbody id="alertTable">
+
 <tr>
 <td>10:24:31</td>
 <td><span class="severity high">HIGH</span></td>
@@ -1315,103 +1454,143 @@ an unfamiliar website.
 <td>10.0.0.22</td>
 <td>Win-Server-02</td>
 </tr>
+
 </tbody>
+
 </table>
+
 </div>
+
 </div>
 
 </div>
 
 
-<div id="soc-alerts" style="display:none">
+<!-- ALERTS -->
+
+<div id="soc-alerts" class="soc-page">
 
 <div class="panel">
-<div class="panel-title">
+
 <h3>Alert Management</h3>
-</div>
 
-<p>AI-prioritized security alerts appear here.</p>
-
-<div class="feature-grid" style="margin-top:20px">
+<div class="feature-grid" style="margin-top:18px">
 
 <div class="feature">
 <h3>🔴 Critical</h3>
-<p>137 alerts require immediate analyst attention.</p>
+<p>137 critical security alerts.</p>
 </div>
 
 <div class="feature">
 <h3>🟠 High</h3>
-<p>High-risk activity requiring investigation.</p>
+<p>High-risk events requiring investigation.</p>
 </div>
 
 <div class="feature">
 <h3>🟢 Low</h3>
-<p>Low-priority events automatically monitored.</p>
-</div>
-
-</div>
+<p>Low-priority activity under monitoring.</p>
 </div>
 
 </div>
 
+</div>
 
-<div id="soc-incidents" style="display:none">
+</div>
+
+
+<!-- INCIDENTS -->
+
+<div id="soc-incidents" class="soc-page">
 
 <div class="panel">
-<div class="panel-title">
+
+<div class="panel-head">
+
 <h3>Active Incidents</h3>
-<button class="btn btn-primary" onclick="createIncident()">+ Create Incident</button>
+
+<button class="btn btn-primary"
+onclick="createIncident()">
++ Create Incident
+</button>
+
 </div>
 
 <div id="incidentList">
 
 <div class="feature">
-<h3>INC-001 — Suspicious Authentication Activity</h3>
-<p>Multiple failed authentication attempts detected.</p>
+<h3>INC-001 — Suspicious Authentication</h3>
+<p>
+Multiple failed authentication attempts detected.
+</p>
 <span class="severity high">HIGH RISK</span>
 </div>
 
 <br>
 
 <div class="feature">
-<h3>INC-002 — Possible Malware Execution</h3>
-<p>Endpoint behavior requires analyst investigation.</p>
+<h3>INC-002 — Possible Malware Activity</h3>
+<p>
+Endpoint behavior requires investigation.
+</p>
 <span class="severity high">HIGH RISK</span>
 </div>
 
 </div>
-</div>
 
 </div>
 
+</div>
 
-<div id="soc-intel" style="display:none">
+
+<!-- THREAT INTEL -->
+
+<div id="soc-intel" class="soc-page">
 
 <div class="panel">
+
 <h3>Threat Intelligence</h3>
-<p style="color:var(--muted);margin-top:7px">
-Analyze suspicious indicators and enrich investigations.
+
+<p style="color:var(--muted)">
+Analyze a basic IOC type and create an investigation note.
 </p>
 
-<div class="form-group" style="margin-top:20px">
-<input id="iocInput" placeholder="Enter IP, domain, hash or URL">
-</div>
+<div class="form-group"
+style="margin-top:18px">
 
-<button class="btn btn-primary" onclick="analyzeIOC()">Analyze IOC</button>
-
-<div id="iocResult" style="margin-top:15px"></div>
-</div>
+<input
+id="iocInput"
+placeholder="IP / Domain / URL / Hash">
 
 </div>
 
+<button
+class="btn btn-primary"
+onclick="analyzeIOC()">
+Analyze IOC
+</button>
 
-<div id="soc-assets" style="display:none">
+<div id="iocResult"
+style="margin-top:17px">
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ASSETS -->
+
+<div id="soc-assets" class="soc-page">
 
 <div class="panel">
+
 <h3>Protected Assets</h3>
 
-<div class="table-wrap" style="margin-top:15px">
+<div class="table-wrap"
+style="margin-top:15px">
+
 <table>
+
 <thead>
 <tr>
 <th>Asset</th>
@@ -1422,6 +1601,7 @@ Analyze suspicious indicators and enrich investigations.
 </thead>
 
 <tbody>
+
 <tr>
 <td>Web-Server-01</td>
 <td>Linux Server</td>
@@ -1442,28 +1622,35 @@ Analyze suspicious indicators and enrich investigations.
 <td><span class="severity low">ONLINE</span></td>
 <td>Low</td>
 </tr>
+
 </tbody>
+
 </table>
-</div>
 
 </div>
 
 </div>
 
+</div>
 
-<div id="soc-mitre" style="display:none">
+
+<!-- MITRE -->
+
+<div id="soc-mitre" class="soc-page">
 
 <div class="panel">
+
 <h3>MITRE ATT&CK Mapping</h3>
 
-<div class="feature-grid" style="margin-top:18px">
+<div class="feature-grid"
+style="margin-top:18px">
 
 <div class="feature">
 <h3>TA0001</h3>
 <p>Initial Access</p>
 <ul>
-<li>T1078 Valid Accounts</li>
-<li>T1190 Exploit Public-Facing Application</li>
+<li>T1078 — Valid Accounts</li>
+<li>T1190 — Public-Facing Application</li>
 </ul>
 </div>
 
@@ -1471,8 +1658,8 @@ Analyze suspicious indicators and enrich investigations.
 <h3>TA0002</h3>
 <p>Execution</p>
 <ul>
-<li>T1059 Command and Scripting</li>
-<li>T1106 Native API</li>
+<li>T1059 — Command & Scripting</li>
+<li>T1106 — Native API</li>
 </ul>
 </div>
 
@@ -1480,73 +1667,120 @@ Analyze suspicious indicators and enrich investigations.
 <h3>TA0003</h3>
 <p>Persistence</p>
 <ul>
-<li>T1053 Scheduled Task</li>
-<li>T1547 Boot or Logon Autostart</li>
+<li>T1053 — Scheduled Task</li>
+<li>T1547 — Boot/Logon Autostart</li>
 </ul>
 </div>
 
 </div>
-</div>
 
 </div>
 
+</div>
 
-<div id="soc-reports" style="display:none">
+
+<!-- REPORTS -->
+
+<div id="soc-reports" class="soc-page">
 
 <div class="panel">
-<h3>Security Reports</h3>
+
+<h3>Analyst-Ready Reports</h3>
 
 <p style="color:var(--muted);margin-top:6px">
-Generate analyst-ready incident reports.
+Generate a security incident report.
 </p>
 
-<button class="btn btn-primary" style="margin-top:15px" onclick="generateReport()">
+<button
+class="btn btn-primary"
+style="margin-top:16px"
+onclick="generateReport()">
 Generate Report
 </button>
 
 <pre id="reportOutput"
-style="white-space:pre-wrap;margin-top:20px;background:#f6f8fb;padding:18px;border-radius:12px;display:none"></pre>
-</div>
+style="
+display:none;
+white-space:pre-wrap;
+margin-top:18px;
+background:#f5f7fa;
+padding:18px;
+border-radius:12px;
+font-size:12px;
+"></pre>
 
 </div>
 
+</div>
 
-<div id="soc-copilot" style="display:none">
+
+<!-- COPILOT -->
+
+<div id="soc-copilot" class="soc-page">
 
 <div class="panel">
+
 <h3>✦ Aurexa AI-SOC Copilot</h3>
 
 <p style="color:var(--muted)">
-Ask a security investigation question.
+Security investigation assistant demo.
 </p>
 
-<div class="scanner-input" style="margin-top:18px">
-<input id="copilotInput" placeholder="Example: How should I investigate a brute-force alert?">
-<button class="btn btn-primary" onclick="askCopilot()">Ask AI</button>
+<div class="scanner-input"
+style="margin-top:17px">
+
+<input
+id="copilotInput"
+placeholder="Ask a cybersecurity question">
+
+<button
+class="btn btn-primary"
+onclick="askCopilot()">
+Ask
+</button>
+
 </div>
 
-<div id="copilotOutput"
-style="margin-top:18px;padding:17px;background:#f5f8fc;border-radius:12px;display:none">
+<div
+id="copilotOutput"
+style="
+display:none;
+margin-top:18px;
+background:#f5f8fc;
+border-radius:12px;
+padding:18px;
+white-space:pre-wrap;
+">
 </div>
 
 </div>
 
 </div>
+
 
 </main>
+
 </div>
 </div>
 </section>
 
 
-<!-- FEATURE MATRIX -->
+<!-- ================= SECURITY TEAMS ================= -->
+
 <section>
+
 <div class="container">
 
 <div class="section-head">
-<span class="eyebrow">SECURITY INTELLIGENCE</span>
-<h2>Built for Modern Security Teams</h2>
+
+<span class="eyebrow">
+BUILT FOR MODERN SOC TEAMS
+</span>
+
+<h2>One Platform. Multiple Security Workflows.</h2>
+
 </div>
+
 
 <div class="feature-grid">
 
@@ -1565,23 +1799,23 @@ style="margin-top:18px;padding:17px;background:#f5f8fc;border-radius:12px;displa
 <ul>
 <li>Incident prioritization</li>
 <li>IOC investigation</li>
-<li>Response recommendations</li>
 <li>Evidence tracking</li>
+<li>Response recommendations</li>
 </ul>
 </div>
 
 <div class="feature">
 <h3>⚙ Security Engineers</h3>
 <ul>
-<li>Asset monitoring</li>
-<li>Log ingestion</li>
 <li>Detection engineering</li>
-<li>MITRE ATT&CK mapping</li>
+<li>Log ingestion</li>
+<li>Asset monitoring</li>
+<li>MITRE mapping</li>
 </ul>
 </div>
 
 <div class="feature">
-<h3>👤 CISOs & Leaders</h3>
+<h3>👤 Security Leaders</h3>
 <ul>
 <li>Risk visibility</li>
 <li>Security posture</li>
@@ -1593,113 +1827,127 @@ style="margin-top:18px;padding:17px;background:#f5f8fc;border-radius:12px;displa
 <div class="feature">
 <h3>🌐 Continuous Monitoring</h3>
 <ul>
-<li>Real-time detection</li>
 <li>Threat trends</li>
+<li>Real-time alerts</li>
 <li>Risk scoring</li>
-<li>Security alerts</li>
+<li>Security telemetry</li>
 </ul>
 </div>
 
 <div class="feature">
 <h3>🤖 Automated Response</h3>
 <ul>
-<li>Response playbooks</li>
-<li>Workflow automation</li>
-<li>Analyst recommendations</li>
+<li>Response workflows</li>
+<li>Playbook assistance</li>
+<li>Recommendations</li>
 <li>SOAR-ready actions</li>
 </ul>
 </div>
 
 </div>
+
 </div>
 </section>
 
 
-<!-- CYBER FRAUD HELP -->
-<section class="fraud" id="fraud">
+<!-- ================= CYBER FRAUD ================= -->
+
+<section class="fraud-section" id="fraud">
+
 <div class="container">
 
 <div class="section-head">
-<span class="eyebrow">CYBER FRAUD ASSISTANCE</span>
+
+<span class="eyebrow">
+CYBER FRAUD ASSISTANCE
+</span>
+
 <h2>Cyber Fraud Help & Reporting</h2>
+
 <p>
-If you are facing online fraud, preserve evidence and report it quickly.
+If you face online fraud, preserve evidence and report it quickly.
 </p>
+
 </div>
+
 
 <div class="fraud-grid">
 
 <div class="fraud-card">
+
 <h3>🚨 Suspected Cyber Fraud?</h3>
 
 <p>
-Use Aurexa as an awareness and guidance layer. Do not share OTPs,
-passwords, PINs or banking credentials with anyone.
+Do not share OTPs, passwords, PINs, CVV or banking
+credentials with anyone.
 </p>
 
-<div class="fraud-steps">
-
-<div class="fraud-step">
+<div class="step">
 <strong>1. Preserve Evidence</strong><br>
-Screenshots, transaction IDs, phone numbers, emails and URLs.
+Screenshots, transaction IDs, phone numbers,
+emails and URLs.
 </div>
 
-<div class="fraud-step">
+<div class="step">
 <strong>2. Contact Your Bank</strong><br>
-Immediately report unauthorized financial transactions.
+Immediately report unauthorized transactions.
 </div>
 
-<div class="fraud-step">
+<div class="step">
 <strong>3. Report Cyber Crime</strong><br>
-Use the official Indian cybercrime reporting channels.
-</div>
-
+Use the official Indian cybercrime reporting channel.
 </div>
 
 <a
 href="https://www.cybercrime.gov.in/"
 target="_blank"
 class="btn btn-primary"
-style="display:inline-block;margin-top:20px">
-Report Cyber Crime
+style="display:inline-block;margin-top:13px">
+🚨 Report Cyber Crime
 </a>
 
 </div>
 
 
 <div class="fraud-card">
-<h3>🛡 Aurexa Safety Checklist</h3>
+
+<h3>🛡 Cyber Safety Checklist</h3>
 
 <p>
-Follow these basic practices to reduce your cyber-risk.
+Basic practices to reduce your online security risk.
 </p>
 
-<div class="fraud-steps">
-
-<div class="fraud-step">✓ Enable multi-factor authentication</div>
-<div class="fraud-step">✓ Use unique strong passwords</div>
-<div class="fraud-step">✓ Verify links before opening</div>
-<div class="fraud-step">✓ Never share OTP/PIN/CVV</div>
-<div class="fraud-step">✓ Keep operating systems updated</div>
-<div class="fraud-step">✓ Monitor financial transactions</div>
+<div class="step">✓ Enable multi-factor authentication</div>
+<div class="step">✓ Use unique strong passwords</div>
+<div class="step">✓ Verify links before opening</div>
+<div class="step">✓ Never share OTP/PIN/CVV</div>
+<div class="step">✓ Keep software updated</div>
+<div class="step">✓ Monitor financial transactions</div>
 
 </div>
 
 </div>
 
-</div>
 </div>
 </section>
 
 
-<!-- FOUNDER -->
+<!-- ================= FOUNDER ================= -->
+
 <section class="founder" id="founder">
+
 <div class="container">
 
 <div class="section-head">
-<span class="eyebrow">ABOUT AUREXA</span>
-<h2>Meet the Founder</h2>
+
+<span class="eyebrow">
+ABOUT AUREXA
+</span>
+
+<h2>Founder & CEO</h2>
+
 </div>
+
 
 <div class="founder-grid">
 
@@ -1707,101 +1955,151 @@ Follow these basic practices to reduce your cyber-risk.
 SP
 </div>
 
-<div class="founder-content">
-<h2>Srikanth Paka</h2>
-<h4>Founder & CEO — Aurexa</h4>
 
-<p>
+<div>
+
+<h2 style="font-size:40px;color:var(--dark)">
+Srikanth Paka
+</h2>
+
+<h4 style="color:var(--blue)">
+Founder & CEO — Aurexa
+</h4>
+
+<p style="color:var(--muted);margin-top:14px">
 Building Aurexa with a focus on practical cybersecurity,
-AI-powered security operations, threat awareness and
-technology-driven cyber defense.
+AI-powered security operations, threat awareness,
+security automation and technology-driven cyber defense.
 </p>
 
-<p>
-Aurexa aims to make modern cybersecurity intelligence
-more accessible, actionable and efficient.
-</p>
+<div class="contact-row">
 
-<div class="contact-list">
-
-<a class="contact-chip" href="mailto:srikanthh3k@gmail.com">
+<a class="contact-chip"
+href="mailto:srikanthh3k@gmail.com">
 ✉ srikanthh3k@gmail.com
 </a>
 
-<a class="contact-chip" href="tel:9640724438">
+<a class="contact-chip"
+href="tel:9640724438">
 ☎ 9640724438
 </a>
 
-<a class="contact-chip" href="tel:9703724438">
+<a class="contact-chip"
+href="tel:9703724438">
 ☎ 9703724438
 </a>
 
-<a class="contact-chip" href="https://wa.me/919640724438" target="_blank">
+<a class="contact-chip"
+href="https://wa.me/919640724438"
+target="_blank">
 💬 WhatsApp
 </a>
 
-<div class="contact-chip">
+<span class="contact-chip">
 📱 Aurexa_space
+</span>
+
 </div>
 
 </div>
-</div>
 
 </div>
+
 </div>
 </section>
 
 
-<!-- ADMIN PANEL -->
-<section class="admin" id="admin">
+<!-- ================= ADMIN ================= -->
+
+<section class="admin-section" id="admin">
+
 <div class="container">
 
 <div class="section-head">
-<span class="eyebrow">SECURE MANAGEMENT</span>
-<h2>Aurexa Admin Panel</h2>
-<p>Manage dashboard data, alerts and security operations.</p>
+
+<span class="eyebrow">
+AUREXA MANAGEMENT
+</span>
+
+<h2>Admin Panel</h2>
+
+<p>
+Manage demo alerts, incidents and Aurexa contact information.
+</p>
+
 </div>
+
 
 <div class="admin-box">
 
-<div class="admin-login" id="adminLogin">
 
-<h3 style="margin-bottom:8px">Admin Login</h3>
+<!-- LOGIN -->
 
-<p style="color:var(--muted);font-size:13px;margin-bottom:20px">
-Demo client-side administration panel.
+<div class="login-box" id="adminLogin">
+
+<h3 style="color:var(--dark)">
+Admin Login
+</h3>
+
+<p style="color:var(--muted);font-size:13px;margin:7px 0 20px">
+Demo client-side login.
 </p>
 
 <div class="form-group">
+
 <label>Admin ID</label>
-<input id="adminId" placeholder="Enter admin ID">
+
+<input
+id="adminId"
+placeholder="Admin ID">
+
 </div>
 
 <div class="form-group">
+
 <label>Password</label>
-<input id="adminPass" type="password" placeholder="Enter password">
+
+<input
+id="adminPassword"
+type="password"
+placeholder="Password">
+
 </div>
 
-<button class="btn btn-primary" onclick="adminLogin()">
+<button
+class="btn btn-primary"
+onclick="loginAdmin()">
 Login
 </button>
 
-<p id="loginError"
-style="color:var(--danger);font-size:13px;margin-top:10px">
-</p>
+<div
+id="loginError"
+style="color:var(--red);font-size:12px;margin-top:9px">
+</div>
 
 </div>
 
 
-<div class="admin-dashboard" id="adminDashboard">
+<!-- DASHBOARD -->
 
-<div class="admin-nav">
-<strong>🛡 Aurexa Admin Console</strong>
+<div
+class="admin-dashboard"
+id="adminDashboard">
 
-<button class="btn btn-secondary" onclick="adminLogout()">
+<div class="admin-header">
+
+<strong>
+🛡 Aurexa Admin Console
+</strong>
+
+<button
+class="btn btn-secondary"
+onclick="logoutAdmin()">
 Logout
 </button>
+
 </div>
+
 
 <div class="admin-body">
 
@@ -1834,24 +2132,39 @@ Logout
 
 <h3>Admin Actions</h3>
 
-<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:15px">
+<div
+style="
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+margin-top:15px">
 
-<button class="btn btn-primary" onclick="adminAddAlert()">
+<button
+class="btn btn-primary"
+onclick="addAlert()">
 + Add Alert
 </button>
 
-<button class="btn btn-secondary" onclick="clearLocalData()">
-Reset Demo Data
+<button
+class="btn btn-secondary"
+onclick="createIncident()">
++ Add Incident
 </button>
 
-<button class="btn btn-secondary" onclick="showAdminMessage()">
+<button
+class="btn btn-secondary"
+onclick="systemStatus()">
 System Status
 </button>
 
 </div>
 
-<div id="adminMessage"
-style="margin-top:15px;color:var(--success)">
+<div
+id="systemMessage"
+style="
+margin-top:13px;
+color:var(--green);
+font-size:13px">
 </div>
 
 </div>
@@ -1859,59 +2172,114 @@ style="margin-top:15px;color:var(--success)">
 
 <div class="panel">
 
-<h3>Update Contact Information</h3>
+<h3>Contact Details</h3>
 
-<div class="form-group" style="margin-top:15px">
+<div class="form-group"
+style="margin-top:16px">
+
 <label>Founder</label>
-<input id="editFounder" value="Srikanth Paka">
+
+<input
+id="editFounder"
+value="Srikanth Paka">
+
 </div>
 
 <div class="form-group">
+
 <label>Email</label>
-<input id="editEmail" value="srikanthh3k@gmail.com">
+
+<input
+id="editEmail"
+value="srikanthh3k@gmail.com">
+
 </div>
 
 <div class="form-group">
+
 <label>Primary Phone</label>
-<input id="editPhone" value="9640724438">
+
+<input
+id="editPhone"
+value="9640724438">
+
 </div>
 
-<button class="btn btn-primary" onclick="saveAdminDetails()">
+<div class="form-group">
+
+<label>Secondary Phone</label>
+
+<input
+id="editPhone2"
+value="9703724438">
+
+</div>
+
+<div class="form-group">
+
+<label>WhatsApp</label>
+
+<input
+id="editWhatsapp"
+value="9640724438">
+
+</div>
+
+<div class="form-group">
+
+<label>Social Handle</label>
+
+<input
+id="editSocial"
+value="Aurexa_space">
+
+</div>
+
+<button
+class="btn btn-primary"
+onclick="saveDetails()">
 Save Details
 </button>
 
 </div>
 
 </div>
+
 </div>
+
 </div>
 </div>
 </section>
 
 
-<!-- CTA -->
+<!-- ================= CTA ================= -->
+
 <section class="cta">
+
 <div class="container">
 
-<h2>The Future of Cyber Defense Is Here.</h2>
+<h2>
+The Future of Cyber Defense Is Here.
+</h2>
 
 <p>
-AI meets cybersecurity. Detect smarter. Respond faster. Protect better.
+AI meets cyber defense. Detect smarter. Respond faster. Protect better.
 </p>
 
-<div class="hero-actions" style="justify-content:center">
+<div class="hero-buttons"
+style="justify-content:center">
 
 <a
 href="mailto:srikanthh3k@gmail.com"
 class="btn btn-primary">
-Contact Aurexa
+✉ Contact Aurexa
 </a>
 
 <a
 href="https://wa.me/919640724438"
 target="_blank"
 class="btn btn-secondary">
-WhatsApp Aurexa
+💬 WhatsApp
 </a>
 
 </div>
@@ -1920,70 +2288,110 @@ WhatsApp Aurexa
 </section>
 
 
-<!-- FOOTER -->
+<!-- ================= FOOTER ================= -->
+
 <footer>
+
 <div class="container">
 
 <div class="footer-grid">
 
 <div>
-<div class="logo">
+
+<a href="#home" class="logo">
+
 <div class="logo-mark">A</div>
-<div class="logo-text" style="color:white">
+
+<div>
+<div
+class="logo-name"
+style="color:white">
 AUREXA
-<span style="color:#8e9bb0">CYBER SECURITY SOLUTIONS</span>
 </div>
+
+<span
+class="logo-sub"
+style="color:#8f9bae">
+CYBER SECURITY SOLUTIONS
+</span>
 </div>
+
+</a>
 
 <p style="margin-top:15px">
 AI-driven cybersecurity intelligence, threat detection,
-incident response and security awareness.
+incident response and cyber safety awareness.
 </p>
+
 </div>
 
 
 <div>
-<div class="footer-title">Platform</div>
+
+<div class="footer-title">
+Platform
+</div>
+
 <ul>
 <li><a href="#scanner">URL Scanner</a></li>
 <li><a href="#soc">AI-SOC</a></li>
 <li><a href="#capabilities">Capabilities</a></li>
-<li><a href="#admin">Admin</a></li>
+<li><a href="#admin">Admin Panel</a></li>
 </ul>
+
 </div>
 
 
 <div>
-<div class="footer-title">Security</div>
+
+<div class="footer-title">
+Security
+</div>
+
 <ul>
 <li><a href="#fraud">Cyber Fraud Help</a></li>
 <li><a href="#soc">Threat Intel</a></li>
 <li><a href="#soc">MITRE ATT&CK</a></li>
 <li><a href="#soc">Reports</a></li>
 </ul>
+
 </div>
 
 
 <div>
-<div class="footer-title">Contact</div>
+
+<div class="footer-title">
+Contact
+</div>
+
 <ul>
 <li>Srikanth Paka</li>
 <li>srikanthh3k@gmail.com</li>
 <li>9640724438</li>
 <li>9703724438</li>
+<li>WhatsApp: 9640724438</li>
 <li>Aurexa_space</li>
 </ul>
+
 </div>
 
 </div>
 
 
 <div class="footer-bottom">
-<span>© <span id="year"></span> Aurexa. All Rights Reserved.</span>
-<span>AUREXA.SPACE • AI-DRIVEN CYBER DEFENSE</span>
+
+<span>
+© <span id="year"></span> AUREXA. All Rights Reserved.
+</span>
+
+<span>
+AUREXA.SPACE • AI-DRIVEN CYBER DEFENSE
+</span>
+
 </div>
 
 </div>
+
 </footer>
 
 
@@ -1992,598 +2400,1159 @@ incident response and security awareness.
 
 <script>
 
-/* ===============================
-   BASIC UI
-================================ */
+/* =====================================================
+   AUREXA
+   MAIN JAVASCRIPT
+===================================================== */
+
+
+/* YEAR */
 
 document.getElementById("year").textContent =
 new Date().getFullYear();
 
+
+/* =====================================================
+   MOBILE MENU
+===================================================== */
+
 function toggleMenu(){
-  document.getElementById("navLinks").classList.toggle("open");
+
+ const nav =
+ document.getElementById("navLinks");
+
+ nav.classList.toggle("open");
+
 }
+
+
+/* =====================================================
+   TOAST
+===================================================== */
 
 function toast(message){
-  const t=document.getElementById("toast");
-  t.textContent=message;
-  t.style.display="block";
 
-  setTimeout(()=>{
-    t.style.display="none";
-  },2500);
+ const box =
+ document.getElementById("toast");
+
+ box.textContent = message;
+ box.style.display = "block";
+
+ setTimeout(function(){
+
+  box.style.display = "none";
+
+ },2500);
+
 }
 
 
-/* ===============================
+/* =====================================================
    URL SECURITY SCANNER
-================================ */
+===================================================== */
 
 function scanURL(){
 
-  const input=document.getElementById("urlInput");
-  const result=document.getElementById("scanResult");
+ const input =
+ document.getElementById("urlInput");
 
-  let value=input.value.trim();
+ const result =
+ document.getElementById("scanResult");
 
-  if(!value){
-    toast("Please paste a URL first.");
-    return;
-  }
+ let value =
+ input.value.trim();
 
-  if(!/^https?:\/\//i.test(value)){
-    value="https://"+value;
-  }
 
-  let score=0;
-  let reasons=[];
+ if(!value){
 
-  let urlObj;
+  toast("Please paste a URL first.");
+  return;
 
-  try{
-    urlObj=new URL(value);
-  }catch(e){
-    toast("Invalid URL.");
-    return;
-  }
+ }
 
-  const hostname=urlObj.hostname.toLowerCase();
-  const full=value.toLowerCase();
 
-  /* HTTPS */
-  if(urlObj.protocol==="https:"){
-    score-=10;
-    reasons.push("✓ HTTPS connection detected");
-  }else{
-    score+=18;
-    reasons.push("⚠ Website does not use HTTPS");
-  }
+ if(!/^https?:\/\//i.test(value)){
 
-  /* IP based URL */
-  if(/^\d{1,3}(\.\d{1,3}){3}$/.test(hostname)){
-    score+=25;
-    reasons.push("⚠ URL uses a raw IP address");
-  }
+  value = "https://" + value;
 
-  /* Suspicious keywords */
-  const suspiciousWords=[
-    "login",
-    "verify",
-    "verification",
-    "secure",
-    "account",
-    "update",
-    "password",
-    "wallet",
-    "claim",
-    "bonus",
-    "gift",
-    "free",
-    "urgent"
-  ];
+ }
 
-  let matches=suspiciousWords.filter(x=>hostname.includes(x));
 
-  if(matches.length){
-    score+=Math.min(matches.length*8,30);
-    reasons.push(
-      "⚠ Suspicious keywords: "+matches.join(", ")
-    );
-  }
+ let parsed;
 
-  /* @ symbol */
-  if(value.includes("@")){
-    score+=30;
-    reasons.push("⚠ URL contains @ redirection pattern");
-  }
+ try{
 
-  /* excessive subdomains */
-  if(hostname.split(".").length>=5){
-    score+=15;
-    reasons.push("⚠ Unusually deep subdomain structure");
-  }
+  parsed = new URL(value);
 
-  /* punycode */
-  if(hostname.includes("xn--")){
-    score+=25;
-    reasons.push("⚠ Punycode/IDN domain detected");
-  }
+ }catch(error){
 
-  /* URL length */
-  if(value.length>180){
-    score+=10;
-    reasons.push("⚠ Unusually long URL");
-  }
+  toast("Invalid URL.");
+  return;
 
-  score=Math.max(0,Math.min(100,score+20));
+ }
 
-  let title;
-  let desc;
-  let className;
-  let fill;
 
-  if(score<=30){
-    title="🟢 Low Risk Indicators";
-    desc="No major suspicious indicators were detected by this basic screening.";
-    className="result-safe";
-    fill="#16a34a";
-  }
-  else if(score<=60){
-    title="🟠 Potential Risk";
-    desc="Some indicators require additional verification before trusting this URL.";
-    className="result-warning";
-    fill="#d97706";
-  }
-  else{
-    title="🔴 High Risk Indicators";
-    desc="Multiple suspicious indicators were detected. Avoid entering sensitive information.";
-    className="result-danger";
-    fill="#dc2626";
-  }
+ const hostname =
+ parsed.hostname.toLowerCase();
 
-  document.getElementById("scanTitle").className=className;
-  document.getElementById("scanTitle").textContent=title;
-  document.getElementById("scanDescription").textContent=desc;
+ const fullURL =
+ value.toLowerCase();
 
-  document.getElementById("riskScore").textContent=
-    "Aurexa Heuristic Risk Score: "+score+"/100";
+ let score = 0;
 
-  const riskFill=document.getElementById("riskFill");
+ let reasons = [];
 
-  riskFill.style.width="0%";
-  riskFill.style.background=fill;
+ let detection = "AUREXA_HEURISTIC";
 
-  setTimeout(()=>{
-    riskFill.style.width=score+"%";
-  },100);
 
-  document.getElementById("scanDetails").innerHTML=
-    "<strong>Analysis:</strong><br>"+
-    reasons.map(x=>"• "+x).join("<br>");
+ /* =================================================
+    EICAR TEST DETECTION
+ ================================================= */
 
-  result.classList.add("show");
+ const eicarDetected =
+ hostname === "secure.eicar.org" ||
+ hostname === "www.eicar.org" ||
+ fullURL.includes("eicar.com") ||
+ fullURL.includes("eicar.com.txt");
+
+
+ if(eicarDetected){
+
+  score = 100;
+
+  detection = "EICAR_TEST_SIGNATURE";
+
+  reasons.push(
+   "🔴 EICAR anti-malware test signature detected."
+  );
+
+  reasons.push(
+   "✓ This is a safe antivirus testing resource."
+  );
+
+  reasons.push(
+   "✓ It is NOT real malware."
+  );
+
+  displayScanResult(
+   "🔴 MALWARE TEST SIGNATURE DETECTED",
+   "Aurexa recognized this URL as the EICAR anti-malware test resource.",
+   score,
+   "#dc2626",
+   "danger",
+   reasons,
+   detection
+  );
+
+  return;
+
+ }
+
+
+ /* =================================================
+    HTTPS
+ ================================================= */
+
+ if(parsed.protocol === "https:"){
+
+  reasons.push(
+   "✓ HTTPS connection detected."
+  );
+
+ }else{
+
+  score += 20;
+
+  reasons.push(
+   "⚠ Website does not use HTTPS."
+  );
+
+ }
+
+
+ /* =================================================
+    RAW IP
+ ================================================= */
+
+ if(
+  /^\d{1,3}(\.\d{1,3}){3}$/.test(hostname)
+ ){
+
+  score += 25;
+
+  reasons.push(
+   "⚠ URL uses a raw IP address."
+  );
+
+ }
+
+
+ /* =================================================
+    SUSPICIOUS KEYWORDS
+ ================================================= */
+
+ const suspiciousWords = [
+
+  "login",
+  "verify",
+  "verification",
+  "account",
+  "password",
+  "wallet",
+  "claim",
+  "bonus",
+  "gift",
+  "free",
+  "urgent",
+  "update",
+  "signin",
+  "bank",
+  "payment"
+
+ ];
+
+
+ const matches =
+ suspiciousWords.filter(function(word){
+
+  return hostname.includes(word);
+
+ });
+
+
+ if(matches.length > 0){
+
+  score += Math.min(
+   matches.length * 8,
+   32
+  );
+
+  reasons.push(
+   "⚠ Suspicious keywords: " +
+   matches.join(", ")
+  );
+
+ }
+
+
+ /* =================================================
+    @ REDIRECTION
+ ================================================= */
+
+ if(value.includes("@")){
+
+  score += 30;
+
+  reasons.push(
+   "⚠ URL contains an @ redirection pattern."
+  );
+
+ }
+
+
+ /* =================================================
+    DEEP SUBDOMAIN
+ ================================================= */
+
+ if(hostname.split(".").length >= 5){
+
+  score += 15;
+
+  reasons.push(
+   "⚠ Unusually deep subdomain structure."
+  );
+
+ }
+
+
+ /* =================================================
+    PUNYCODE
+ ================================================= */
+
+ if(hostname.includes("xn--")){
+
+  score += 25;
+
+  reasons.push(
+   "⚠ Punycode/IDN domain detected."
+  );
+
+ }
+
+
+ /* =================================================
+    LONG URL
+ ================================================= */
+
+ if(value.length > 180){
+
+  score += 10;
+
+  reasons.push(
+   "⚠ Unusually long URL."
+  );
+
+ }
+
+
+ /* =================================================
+    DOUBLE EXTENSIONS / SCRIPT-LIKE PATH
+ ================================================= */
+
+ if(
+  /\.(exe|scr|bat|cmd|js|vbs|ps1)(\?|$)/i.test(
+   parsed.pathname
+  )
+ ){
+
+  score += 45;
+
+  reasons.push(
+   "⚠ Potential executable/script file detected."
+  );
+
+ }
+
+
+ /* =================================================
+    SUSPICIOUS DOWNLOAD
+ ================================================= */
+
+ if(
+  /(download|payload|malware|trojan|ransomware)/i.test(
+   fullURL
+  )
+ ){
+
+  score += 30;
+
+  reasons.push(
+   "⚠ Suspicious security-related URL pattern."
+  );
+
+ }
+
+
+ /* =================================================
+    FINAL SCORE
+ ================================================= */
+
+ score =
+ Math.max(0,Math.min(100,score));
+
+
+ let title;
+ let description;
+ let color;
+ let level;
+
+
+ if(score <= 30){
+
+  title = "🟢 LOW RISK INDICATORS";
+
+  description =
+   "No major suspicious indicators were detected by the initial Aurexa screening.";
+
+  color = "#16a34a";
+
+  level = "safe";
+
+ }
+
+
+ else if(score <= 60){
+
+  title = "🟠 SUSPICIOUS";
+
+  description =
+   "Some suspicious indicators were detected. Verify this website before interacting with it.";
+
+  color = "#d97706";
+
+  level = "warning";
+
+ }
+
+
+ else{
+
+  title = "🔴 HIGH RISK";
+
+  description =
+   "Multiple suspicious indicators were detected. Avoid entering sensitive information.";
+
+  color = "#dc2626";
+
+  level = "danger";
+
+ }
+
+
+ displayScanResult(
+  title,
+  description,
+  score,
+  color,
+  level,
+  reasons,
+  detection
+ );
 
 }
 
 
-/* ===============================
+/* =====================================================
+   DISPLAY SCAN
+===================================================== */
+
+function displayScanResult(
+ title,
+ description,
+ score,
+ color,
+ level,
+ reasons,
+ detection
+){
+
+ const result =
+ document.getElementById("scanResult");
+
+ document.getElementById("scanTitle").className =
+ "scan-title " + level;
+
+ document.getElementById("scanTitle").textContent =
+ title;
+
+ document.getElementById("scanDescription").textContent =
+ description;
+
+ document.getElementById("riskScore").textContent =
+ "Aurexa Risk Score: " + score + "/100";
+
+ const fill =
+ document.getElementById("riskFill");
+
+ fill.style.width = "0%";
+ fill.style.background = color;
+
+ setTimeout(function(){
+
+  fill.style.width = score + "%";
+
+ },100);
+
+
+ document.getElementById("scanDetails").innerHTML =
+
+ "<strong>Detection Engine:</strong> " +
+ escapeHTML(detection) +
+
+ "<br><br><strong>Analysis:</strong><br>" +
+
+ reasons.map(function(item){
+
+  return "• " + escapeHTML(item);
+
+ }).join("<br>");
+
+
+ result.classList.add("show");
+
+}
+
+
+/* =====================================================
    SOC NAVIGATION
-================================ */
+===================================================== */
 
 function showSOC(name,button){
 
-  const panels=[
-    "overview",
-    "alerts",
-    "incidents",
-    "intel",
-    "assets",
-    "mitre",
-    "reports",
-    "copilot"
-  ];
+ const pages = [
 
-  panels.forEach(p=>{
-    const el=document.getElementById("soc-"+p);
-    if(el) el.style.display="none";
-  });
+  "overview",
+  "alerts",
+  "incidents",
+  "intel",
+  "assets",
+  "mitre",
+  "reports",
+  "copilot"
 
-  const selected=document.getElementById("soc-"+name);
+ ];
 
-  if(selected){
-    selected.style.display="block";
+
+ pages.forEach(function(page){
+
+  const element =
+   document.getElementById(
+    "soc-" + page
+   );
+
+  if(element){
+
+   element.classList.remove("active");
+
   }
 
-  document.querySelectorAll(".side-panel button")
-  .forEach(b=>b.classList.remove("active"));
+ });
 
-  if(button){
-    button.classList.add("active");
-  }
+
+ const selected =
+ document.getElementById(
+  "soc-" + name
+ );
+
+ if(selected){
+
+  selected.classList.add("active");
+
+ }
+
+
+ document
+ .querySelectorAll(".sidebar button")
+ .forEach(function(btn){
+
+  btn.classList.remove("active");
+
+ });
+
+
+ if(button){
+
+  button.classList.add("active");
+
+ }
+
 }
 
 
-/* ===============================
-   ALERT SIMULATION
-================================ */
+/* =====================================================
+   ALERT SYSTEM
+===================================================== */
 
-let alertCount=2486;
+let alertCount = 2486;
 
-function addDemoAlert(){
+function addAlert(){
 
-  alertCount++;
+ alertCount++;
 
-  document.getElementById("totalAlerts").textContent=
-    alertCount.toLocaleString();
+ document.getElementById(
+  "totalAlerts"
+ ).textContent =
+ alertCount.toLocaleString();
 
-  document.getElementById("heroAlerts").textContent=
-    alertCount.toLocaleString();
+ document.getElementById(
+  "heroAlerts"
+ ).textContent =
+ alertCount.toLocaleString();
 
-  const table=document.getElementById("alertTable");
+ const table =
+ document.getElementById("alertTable");
 
-  const row=document.createElement("tr");
+ const row =
+ document.createElement("tr");
 
-  row.innerHTML=`
-    <td>${new Date().toLocaleTimeString()}</td>
-    <td><span class="severity high">HIGH</span></td>
-    <td>AI Suspicious Activity Alert</td>
-    <td>Dynamic Source</td>
-    <td>Protected Asset</td>
-  `;
+ row.innerHTML = `
 
-  table.prepend(row);
+ <td>${new Date().toLocaleTimeString()}</td>
 
-  saveState();
+ <td>
+  <span class="severity high">
+   HIGH
+  </span>
+ </td>
 
-  toast("New security alert added.");
+ <td>
+  AI Suspicious Activity Alert
+ </td>
+
+ <td>
+  Dynamic Source
+ </td>
+
+ <td>
+  Protected Asset
+ </td>
+
+ `;
+
+ table.prepend(row);
+
+ document.getElementById(
+  "adminAlerts"
+ ).textContent =
+ alertCount.toLocaleString();
+
+ saveState();
+
+ toast("New security alert added.");
+
 }
 
 
-/* ===============================
-   INCIDENT CREATION
-================================ */
+/* =====================================================
+   INCIDENTS
+===================================================== */
 
-let incidentNumber=3;
+let incidentNumber = 3;
 
 function createIncident(){
 
-  const list=document.getElementById("incidentList");
+ const list =
+ document.getElementById(
+  "incidentList"
+ );
 
-  const div=document.createElement("div");
+ const div =
+ document.createElement("div");
 
-  div.className="feature";
+ div.className = "feature";
 
-  div.innerHTML=`
-    <h3>INC-00${incidentNumber} — New Security Investigation</h3>
-    <p>Incident created from the Aurexa AI-SOC console.</p>
-    <span class="severity medium">INVESTIGATING</span>
-  `;
+ div.innerHTML = `
 
-  list.prepend(div);
+ <h3>
+ INC-${String(incidentNumber).padStart(3,"0")}
+ — New Security Investigation
+ </h3>
 
-  incidentNumber++;
+ <p>
+ Incident created from the Aurexa AI-SOC console.
+ </p>
 
-  toast("Incident created.");
+ <span class="severity medium">
+ INVESTIGATING
+ </span>
+
+ `;
+
+ list.prepend(div);
+
+ incidentNumber++;
+
+ toast("Incident created.");
+
 }
 
 
-/* ===============================
+/* =====================================================
    IOC ANALYSIS
-================================ */
+===================================================== */
 
 function analyzeIOC(){
 
-  const input=document.getElementById("iocInput").value.trim();
-  const output=document.getElementById("iocResult");
+ const value =
+ document.getElementById(
+  "iocInput"
+ ).value.trim();
 
-  if(!input){
-    toast("Enter an IOC.");
-    return;
-  }
+ const output =
+ document.getElementById(
+  "iocResult"
+ );
 
-  let type="Unknown";
+ if(!value){
 
-  if(/^\d{1,3}(\.\d{1,3}){3}$/.test(input)){
-    type="IPv4 Address";
-  }
-  else if(/^https?:\/\//i.test(input)){
-    type="URL";
-  }
-  else if(/^[a-f0-9]{32}$/i.test(input)){
-    type="MD5 Hash";
-  }
-  else if(/^[a-f0-9]{40}$/i.test(input)){
-    type="SHA-1 Hash";
-  }
-  else if(/^[a-f0-9]{64}$/i.test(input)){
-    type="SHA-256 Hash";
-  }
-  else if(input.includes(".")){
-    type="Domain";
-  }
+  toast("Enter an IOC.");
 
-  output.innerHTML=`
-    <div class="feature">
-      <h3>IOC Analysis Result</h3>
-      <p><strong>Indicator:</strong> ${escapeHTML(input)}</p>
-      <p><strong>Type:</strong> ${type}</p>
-      <p><strong>Status:</strong> Requires intelligence enrichment</p>
-      <p><strong>Recommendation:</strong> Correlate this indicator with logs,
-      endpoint telemetry, DNS records and threat-intelligence sources.</p>
-    </div>
-  `;
+  return;
+
+ }
+
+ let type =
+ "Unknown Indicator";
+
+
+ if(
+  /^\d{1,3}(\.\d{1,3}){3}$/.test(value)
+ ){
+
+  type = "IPv4 Address";
+
+ }
+
+ else if(
+  /^https?:\/\//i.test(value)
+ ){
+
+  type = "URL";
+
+ }
+
+ else if(
+  /^[a-f0-9]{32}$/i.test(value)
+ ){
+
+  type = "MD5 Hash";
+
+ }
+
+ else if(
+  /^[a-f0-9]{40}$/i.test(value)
+ ){
+
+  type = "SHA-1 Hash";
+
+ }
+
+ else if(
+  /^[a-f0-9]{64}$/i.test(value)
+ ){
+
+  type = "SHA-256 Hash";
+
+ }
+
+ else if(
+  value.includes(".")
+ ){
+
+  type = "Domain";
+
+ }
+
+
+ output.innerHTML = `
+
+ <div class="feature">
+
+ <h3>IOC Analysis Result</h3>
+
+ <p>
+ <strong>Indicator:</strong>
+ ${escapeHTML(value)}
+ </p>
+
+ <p>
+ <strong>Type:</strong>
+ ${type}
+ </p>
+
+ <p>
+ <strong>Status:</strong>
+ Requires intelligence enrichment
+ </p>
+
+ <p>
+ <strong>Recommendation:</strong>
+ Correlate the indicator with authentication,
+ endpoint, DNS and network telemetry.
+ </p>
+
+ </div>
+
+ `;
+
 }
 
 
-/* ===============================
+/* =====================================================
    REPORT GENERATOR
-================================ */
+===================================================== */
 
 function generateReport(){
 
-  const output=document.getElementById("reportOutput");
+ const output =
+ document.getElementById(
+  "reportOutput"
+ );
 
-  const report=
-`AUREXA AI-SOC SECURITY INCIDENT REPORT
-======================================
+ const report =
 
-Generated: ${new Date().toLocaleString()}
+ `AUREXA AI-SOC SECURITY REPORT
+================================
 
-Organization:
-Aurexa Cyber Security Solutions
+Generated:
+${new Date().toLocaleString()}
 
-Founder & CEO:
+FOUNDER & CEO
+-------------
 Srikanth Paka
 
 CONTACT
 -------
 Email: srikanthh3k@gmail.com
-Phone: 9640724438 / 9703724438
+Phone: 9640724438
+Secondary: 9703724438
 WhatsApp: 9640724438
+Social: Aurexa_space
 
 SECURITY SUMMARY
 ----------------
-Total Alerts: 2,486
+Total Alerts: ${alertCount}
 Critical Alerts: 137
 Active Incidents: 23
 Risk Score: 94/100
 
-DETECTION
----------
-AI threat detection
-Multi-source security telemetry
-IOC extraction
-MITRE ATT&CK mapping
-Risk scoring
-
-RESPONSE
---------
-Incident prioritization
-Response recommendations
-Analyst workflows
-Security reporting
+CAPABILITIES
+------------
+AI Threat Detection
+Multi-Source Ingestion
+IOC Extraction
+MITRE ATT&CK Mapping
+Risk Scoring
+Incident Response
+Analyst Reports
+AI-SOC Copilot
 
 NOTE
 ----
-This generated report is a demonstration.
-Production deployment should connect Aurexa
-to authenticated security telemetry,
-databases and approved intelligence sources.
+This is a demonstration report.
+Production security operations require
+authenticated backend services and
+validated security telemetry.
 `;
 
-  output.textContent=report;
-  output.style.display="block";
+ output.textContent = report;
+
+ output.style.display = "block";
+
 }
 
 
-/* ===============================
+/* =====================================================
    AI COPILOT DEMO
-================================ */
+===================================================== */
 
 function askCopilot(){
 
-  const question=document.getElementById("copilotInput").value.trim();
-  const output=document.getElementById("copilotOutput");
+ const question =
+ document.getElementById(
+  "copilotInput"
+ ).value.trim();
 
-  if(!question){
-    toast("Ask the AI-SOC Copilot a question.");
-    return;
-  }
+ const output =
+ document.getElementById(
+  "copilotOutput"
+ );
 
-  let answer=`
-Aurexa AI-SOC Copilot Analysis
+ if(!question){
+
+  toast(
+   "Ask the AI-SOC Copilot a question."
+  );
+
+  return;
+
+ }
+
+
+ output.textContent =
+
+ `AUREXA AI-SOC COPILOT
+======================
 
 Question:
 ${question}
 
-Recommended investigation workflow:
+Recommended Investigation:
 
 1. Validate the alert source and timestamp.
-2. Identify affected user, endpoint or server.
-3. Extract relevant IPs, domains, URLs and hashes.
-4. Correlate authentication, endpoint and network logs.
+
+2. Identify the affected user, endpoint or server.
+
+3. Extract relevant IP addresses, domains,
+   URLs and hashes.
+
+4. Correlate authentication, endpoint and
+   network logs.
+
 5. Map observed behavior to MITRE ATT&CK.
-6. Calculate business and technical risk.
+
+6. Determine technical and business risk.
+
 7. Contain the affected asset if required.
+
 8. Preserve evidence and document the timeline.
-9. Review for lateral movement or persistence.
+
+9. Check for persistence or lateral movement.
+
 10. Generate an analyst-ready incident report.
 
-This is an AI-SOC workflow demonstration and should
-not replace qualified security analysis.
+This is a security workflow demonstration.
 `;
 
-  output.textContent=answer;
-  output.style.display="block";
+ output.style.display = "block";
+
 }
 
 
-/* ===============================
-   ADMIN
-================================ */
+/* =====================================================
+   ADMIN LOGIN
+===================================================== */
 
 /*
-  DEMO LOGIN ONLY
+ DEMO ONLY.
 
-  For production:
-  Replace with server-side authentication,
-  hashed passwords, sessions/JWT and database.
+ Admin ID:
+ admin
+
+ Password:
+ Aurexa@Admin2026
+
+ IMPORTANT:
+ Do NOT use client-side credentials for
+ a real production admin system.
 */
 
-const DEMO_ADMIN_ID="admin";
-const DEMO_ADMIN_PASSWORD="Aurexa@Admin2026";
+const ADMIN_ID = "admin";
 
-function adminLogin(){
+const ADMIN_PASSWORD =
+ "Aurexa@Admin2026";
 
-  const id=document.getElementById("adminId").value;
-  const pass=document.getElementById("adminPass").value;
-  const error=document.getElementById("loginError");
 
-  if(id===DEMO_ADMIN_ID && pass===DEMO_ADMIN_PASSWORD){
+function loginAdmin(){
 
-    sessionStorage.setItem("aurexaAdmin","true");
+ const id =
+ document.getElementById(
+  "adminId"
+ ).value;
 
-    document.getElementById("adminLogin").style.display="none";
-    document.getElementById("adminDashboard").style.display="block";
+ const password =
+ document.getElementById(
+  "adminPassword"
+ ).value;
 
-    error.textContent="";
+ const error =
+ document.getElementById(
+  "loginError"
+ );
 
-    toast("Admin login successful.");
 
-  }else{
+ if(
+  id === ADMIN_ID &&
+  password === ADMIN_PASSWORD
+ ){
 
-    error.textContent="Invalid admin credentials.";
-  }
+  sessionStorage.setItem(
+   "aurexaAdmin",
+   "true"
+  );
+
+  document.getElementById(
+   "adminLogin"
+  ).style.display = "none";
+
+  document.getElementById(
+   "adminDashboard"
+  ).style.display = "block";
+
+  error.textContent = "";
+
+  toast("Admin login successful.");
+
+ }
+
+ else{
+
+  error.textContent =
+   "Invalid admin ID or password.";
+
+ }
+
 }
 
-function adminLogout(){
 
-  sessionStorage.removeItem("aurexaAdmin");
+/* =====================================================
+   LOGOUT
+===================================================== */
 
-  document.getElementById("adminLogin").style.display="block";
-  document.getElementById("adminDashboard").style.display="none";
+function logoutAdmin(){
 
-  toast("Logged out.");
+ sessionStorage.removeItem(
+  "aurexaAdmin"
+ );
+
+ document.getElementById(
+  "adminLogin"
+ ).style.display = "block";
+
+ document.getElementById(
+  "adminDashboard"
+ ).style.display = "none";
+
+ toast("Admin logged out.");
+
 }
+
+
+/* =====================================================
+   CHECK ADMIN SESSION
+===================================================== */
 
 function checkAdmin(){
 
-  if(sessionStorage.getItem("aurexaAdmin")==="true"){
+ if(
+  sessionStorage.getItem(
+   "aurexaAdmin"
+  ) === "true"
+ ){
 
-    document.getElementById("adminLogin").style.display="none";
-    document.getElementById("adminDashboard").style.display="block";
+  document.getElementById(
+   "adminLogin"
+  ).style.display = "none";
 
-  }
-}
+  document.getElementById(
+   "adminDashboard"
+  ).style.display = "block";
 
-function adminAddAlert(){
+ }
 
-  addDemoAlert();
-
-  document.getElementById("adminAlerts").textContent=
-    alertCount.toLocaleString();
-
-  toast("Admin added an alert.");
-}
-
-function showAdminMessage(){
-
-  document.getElementById("adminMessage").textContent=
-    "✓ Aurexa system online • Monitoring active • Client-side demo mode";
-}
-
-function saveAdminDetails(){
-
-  const data={
-    founder:document.getElementById("editFounder").value,
-    email:document.getElementById("editEmail").value,
-    phone:document.getElementById("editPhone").value
-  };
-
-  localStorage.setItem("aurexaDetails",JSON.stringify(data));
-
-  toast("Admin details saved locally.");
-}
-
-function clearLocalData(){
-
-  localStorage.removeItem("aurexaState");
-  localStorage.removeItem("aurexaDetails");
-
-  alertCount=2486;
-
-  document.getElementById("totalAlerts").textContent="2,486";
-  document.getElementById("heroAlerts").textContent="2,486";
-  document.getElementById("adminAlerts").textContent="2,486";
-
-  toast("Demo data reset.");
 }
 
 
-/* ===============================
-   STORAGE
-================================ */
+/* =====================================================
+   SAVE CONTACT DETAILS
+===================================================== */
+
+function saveDetails(){
+
+ const details = {
+
+  founder:
+   document.getElementById(
+    "editFounder"
+   ).value,
+
+  email:
+   document.getElementById(
+    "editEmail"
+   ).value,
+
+  phone:
+   document.getElementById(
+    "editPhone"
+   ).value,
+
+  phone2:
+   document.getElementById(
+    "editPhone2"
+   ).value,
+
+  whatsapp:
+   document.getElementById(
+    "editWhatsapp"
+   ).value,
+
+  social:
+   document.getElementById(
+    "editSocial"
+   ).value
+
+ };
+
+ localStorage.setItem(
+  "aurexaDetails",
+  JSON.stringify(details)
+ );
+
+ toast("Aurexa details saved locally.");
+
+}
+
+
+/* =====================================================
+   SYSTEM STATUS
+===================================================== */
+
+function systemStatus(){
+
+ document.getElementById(
+  "systemMessage"
+ ).textContent =
+ "✓ Aurexa AI-SOC online • Monitoring active • Demo environment operational";
+
+}
+
+
+/* =====================================================
+   LOCAL STORAGE
+===================================================== */
 
 function saveState(){
 
-  localStorage.setItem(
-    "aurexaState",
-    JSON.stringify({
-      alertCount:alertCount
-    })
-  );
+ localStorage.setItem(
+  "aurexaState",
+  JSON.stringify({
+   alertCount:alertCount
+  })
+ );
 
-  document.getElementById("adminAlerts").textContent=
-    alertCount.toLocaleString();
 }
+
 
 function loadState(){
 
-  const state=localStorage.getItem("aurexaState");
+ const saved =
+ localStorage.getItem(
+  "aurexaState"
+ );
 
-  if(state){
+ if(!saved)return;
 
-    try{
+ try{
 
-      const data=JSON.parse(state);
+  const data =
+  JSON.parse(saved);
 
-      if(data.alertCount){
-        alertCount=data.alertCount;
+  if(
+   typeof data.alertCount === "number"
+  ){
 
-        document.getElementById("totalAlerts").textContent=
-          alertCount.toLocaleString();
+   alertCount =
+   data.alertCount;
 
-        document.getElementById("heroAlerts").textContent=
-          alertCount.toLocaleString();
+   document.getElementById(
+    "totalAlerts"
+   ).textContent =
+   alertCount.toLocaleString();
 
-        document.getElementById("adminAlerts").textContent=
-          alertCount.toLocaleString();
-      }
+   document.getElementById(
+    "heroAlerts"
+   ).textContent =
+   alertCount.toLocaleString();
 
-    }catch(e){}
+   document.getElementById(
+    "adminAlerts"
+   ).textContent =
+   alertCount.toLocaleString();
+
   }
+
+ }catch(error){}
+
 }
 
 
-/* ===============================
-   SECURITY HELPERS
-================================ */
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
 
-function escapeHTML(str){
+function escapeHTML(value){
 
-  return str
-  .replaceAll("&","&amp;")
-  .replaceAll("<","&lt;")
-  .replaceAll(">","&gt;")
-  .replaceAll('"',"&quot;")
-  .replaceAll("'","&#039;");
+ return String(value)
+
+ .replaceAll("&","&amp;")
+
+ .replaceAll("<","&lt;")
+
+ .replaceAll(">","&gt;")
+
+ .replaceAll('"',"&quot;")
+
+ .replaceAll("'","&#039;");
+
 }
 
 
-/* ===============================
+/* =====================================================
    INITIALIZE
-================================ */
+===================================================== */
 
 loadState();
+
 checkAdmin();
 
 </script>
