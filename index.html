@@ -2,2772 +2,1780 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="theme-color" content="#061a33">
-<meta name="description" content="AUREXA - Cybersecurity, Technology and Innovation">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ffffff">
+<meta name="description" content="AUREXA — Cybersecurity, Technology and Innovation">
 <title>AUREXA | Cybersecurity • Technology • Innovation</title>
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap');
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+<style>
 :root{
- --navy:#061a33;
- --navy2:#092d59;
- --blue:#087ef5;
- --cyan:#08c7ff;
- --ink:#071a31;
- --muted:#65788c;
- --bg:#f5f9fd;
- --white:#fff;
- --line:#dce8f2;
- --shadow:0 25px 80px rgba(4,38,75,.13);
- --radius:28px;
+  --primary:#0b63f6;
+  --primary-dark:#084bb8;
+  --cyan:#00a8ff;
+  --text:#101828;
+  --muted:#667085;
+  --light:#f6f9fc;
+  --white:#fff;
+  --border:#e4e7ec;
+  --success:#12b76a;
+  --shadow:0 18px 55px rgba(16,24,40,.09);
+  --radius:22px;
 }
 
 *{
- box-sizing:border-box;
- margin:0;
- padding:0
-}
-
-html{
- scroll-behavior:smooth
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  scroll-behavior:smooth;
 }
 
 body{
- font-family:"DM Sans",Arial,sans-serif;
- color:var(--ink);
- background:var(--bg);
- overflow-x:hidden
+  font-family:"DM Sans",sans-serif;
+  color:var(--text);
+  background:#fff;
+  line-height:1.6;
+  overflow-x:hidden;
 }
 
 a{
- text-decoration:none;
- color:inherit
-}
-
-button,input,textarea,select{
- font:inherit
-}
-
-button{
- cursor:pointer;
- border:0
-}
-
-img{
- max-width:100%;
- display:block
-}
-
-.topline{
- height:4px;
- background:linear-gradient(90deg,#087ef5,#08c7ff,transparent)
+  color:inherit;
+  text-decoration:none;
 }
 
 .container{
- width:min(1180px,calc(100% - 40px));
- margin:auto
+  width:min(1180px,92%);
+  margin:auto;
 }
 
-/* HEADER */
-
+/* NAVBAR */
 header{
- position:sticky;
- top:0;
- z-index:999;
- background:rgba(255,255,255,.94);
- backdrop-filter:blur(20px);
- border-bottom:1px solid var(--line)
+  position:fixed;
+  top:0;
+  width:100%;
+  z-index:1000;
+  background:rgba(255,255,255,.88);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(228,231,236,.8);
 }
 
 .nav{
- min-height:82px;
- display:flex;
- align-items:center;
- justify-content:space-between;
- gap:20px
-}
-
-.brand{
- display:flex;
- align-items:center;
- gap:12px
+  height:76px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
 }
 
 .logo{
- width:48px;
- height:58px;
- position:relative;
- display:grid;
- place-items:center
+  display:flex;
+  align-items:center;
+  gap:11px;
+  font-family:"Space Grotesk";
+  font-size:25px;
+  font-weight:800;
+  letter-spacing:-1px;
 }
 
-.logo:before{
- content:"";
- position:absolute;
- inset:3px 5px 2px;
- border:4px solid var(--blue);
- clip-path:polygon(50% 0,92% 15%,84% 70%,50% 100%,16% 70%,8% 15%);
- background:linear-gradient(145deg,#fff,#e9f8ff)
+.logo-mark{
+  width:40px;
+  height:40px;
+  border-radius:12px;
+  display:grid;
+  place-items:center;
+  color:white;
+  background:linear-gradient(135deg,#0b63f6,#00a8ff);
+  box-shadow:0 8px 20px rgba(11,99,246,.25);
 }
 
-.logo span{
- position:relative;
- z-index:2;
- font:800 21px "Space Grotesk";
- color:var(--blue)
+.logo-mark span{
+  font-weight:800;
 }
 
-.brand strong{
- display:block;
- font:800 28px "Space Grotesk";
- letter-spacing:-.06em
+.nav-links{
+  display:flex;
+  gap:30px;
+  align-items:center;
 }
 
-.brand small{
- display:block;
- font-size:9px;
- font-weight:900;
- letter-spacing:.18em;
- color:#7c91a5
+.nav-links a{
+  font-size:14px;
+  font-weight:600;
+  color:#344054;
+  transition:.25s;
 }
 
-.navlinks{
- display:flex;
- gap:22px;
- align-items:center;
- font-size:14px;
- font-weight:800;
- color:#43566a
+.nav-links a:hover{
+  color:var(--primary);
 }
 
-.navlinks a:hover{
- color:var(--blue)
-}
-
-.actions{
- display:flex;
- gap:9px
-}
-
-.icon{
- width:48px;
- height:48px;
- border-radius:16px;
- background:#eef7fd;
- border:1px solid var(--line);
- display:grid;
- place-items:center;
- font-size:21px;
- color:var(--navy)
-}
-
-.notify{
- position:relative
-}
-
-.notify i{
- position:absolute;
- width:8px;
- height:8px;
- background:#ff416c;
- border:2px solid white;
- border-radius:50%;
- top:8px;
- right:8px
+.nav-btn{
+  padding:11px 18px;
+  background:var(--primary);
+  color:white!important;
+  border-radius:10px;
 }
 
 .menu{
- display:none
-}
-
-.mobileNav{
- display:none;
- padding:15px 20px;
- background:#fff;
- border-top:1px solid var(--line)
-}
-
-.mobileNav.show{
- display:block
-}
-
-.mobileNav a{
- display:block;
- padding:13px 3px;
- border-bottom:1px solid #edf2f6;
- font-weight:800
+  display:none;
+  font-size:27px;
+  cursor:pointer;
 }
 
 /* HERO */
-
 .hero{
- min-height:calc(100vh - 86px);
- display:flex;
- align-items:center;
- position:relative;
- overflow:hidden;
- background:
- radial-gradient(circle at 85% 15%,rgba(8,199,255,.18),transparent 30%),
- radial-gradient(circle at 5% 90%,rgba(8,126,245,.13),transparent 30%),
- #fff
+  min-height:100vh;
+  padding:150px 0 90px;
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 85% 25%,rgba(0,168,255,.13),transparent 30%),
+    radial-gradient(circle at 10% 70%,rgba(11,99,246,.08),transparent 30%),
+    #fff;
 }
 
-.heroGrid{
- display:grid;
- grid-template-columns:1fr 1fr;
- gap:70px;
- align-items:center
+.hero-grid{
+  display:grid;
+  grid-template-columns:1.08fr .92fr;
+  gap:70px;
+  align-items:center;
 }
 
-.kicker{
- color:var(--blue);
- font-size:12px;
- font-weight:900;
- letter-spacing:.18em;
- text-transform:uppercase;
- margin-bottom:18px
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 13px;
+  border:1px solid #dbe8ff;
+  background:#f4f8ff;
+  color:var(--primary);
+  border-radius:100px;
+  font-size:13px;
+  font-weight:700;
+  margin-bottom:22px;
+}
+
+.dot{
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:#12b76a;
+  box-shadow:0 0 0 5px rgba(18,183,106,.1);
 }
 
 .hero h1{
- font:700 clamp(46px,6vw,82px)/1.01 "Space Grotesk";
- letter-spacing:-.07em
+  font-family:"Space Grotesk";
+  font-size:clamp(45px,6vw,78px);
+  line-height:1.02;
+  letter-spacing:-3px;
+  margin-bottom:24px;
 }
 
-.gradient{
- background:linear-gradient(90deg,#087ef5,#08c7ff);
- -webkit-background-clip:text;
- background-clip:text;
- color:transparent
+.hero h1 span{
+  background:linear-gradient(90deg,#0b63f6,#00a8ff);
+  -webkit-background-clip:text;
+  color:transparent;
 }
 
 .hero p{
- color:#60748a;
- font-size:19px;
- line-height:1.8;
- margin:28px 0
+  max-width:620px;
+  color:var(--muted);
+  font-size:18px;
+  margin-bottom:32px;
 }
 
-.btns{
- display:flex;
- gap:12px;
- flex-wrap:wrap
+.hero-buttons{
+  display:flex;
+  gap:13px;
+  flex-wrap:wrap;
 }
 
 .btn{
- padding:15px 22px;
- border-radius:15px;
- font-weight:900;
- display:inline-flex;
- justify-content:center;
- align-items:center;
- gap:8px;
- transition:.25s;
- box-shadow:0 15px 35px rgba(8,126,245,.12)
+  display:inline-flex;
+  justify-content:center;
+  align-items:center;
+  gap:8px;
+  padding:14px 21px;
+  border-radius:12px;
+  font-weight:700;
+  border:1px solid var(--border);
+  transition:.25s;
 }
 
-.btn:hover{
- transform:translateY(-3px)
+.btn-primary{
+  background:var(--primary);
+  color:white;
+  border-color:var(--primary);
+  box-shadow:0 10px 25px rgba(11,99,246,.2);
 }
 
-.primary{
- color:#fff;
- background:linear-gradient(135deg,#0675ef,#08bfff)
+.btn-primary:hover{
+  background:var(--primary-dark);
+  transform:translateY(-2px);
 }
 
-.secondary{
- background:#fff;
- border:1px solid var(--line)
+.btn-light{
+  background:white;
 }
 
-/* 3D HERO */
-
-.scene{
- min-height:530px;
- display:grid;
- place-items:center;
- perspective:1200px
+.btn-light:hover{
+  border-color:#b7c8e8;
+  transform:translateY(-2px);
 }
 
-.cube{
- width:350px;
- height:430px;
- border-radius:55px;
- background:
- radial-gradient(circle at 50% 15%,rgba(8,199,255,.5),transparent 30%),
- linear-gradient(145deg,#092f61,#03152d);
- box-shadow:
- 0 50px 100px rgba(0,62,130,.3),
- inset 0 0 80px rgba(8,199,255,.12);
- transform:rotateY(-13deg) rotateX(7deg);
- position:relative;
- animation:float 5s ease-in-out infinite
+/* HERO VISUAL */
+.hero-visual{
+  position:relative;
 }
 
-@keyframes float{
- 0%,100%{
-  transform:rotateY(-13deg) rotateX(7deg) translateY(0)
- }
- 50%{
-  transform:rotateY(-7deg) rotateX(4deg) translateY(-15px)
- }
+.hero-card{
+  background:white;
+  border:1px solid #e5eaf2;
+  border-radius:28px;
+  padding:15px;
+  box-shadow:var(--shadow);
+  transform:rotate(1deg);
 }
 
-.cube:before{
- content:"";
- position:absolute;
- inset:35px;
- border:1px solid rgba(8,199,255,.3);
- border-radius:35px
+.hero-image{
+  height:470px;
+  border-radius:20px;
+  overflow:hidden;
+  background:
+    linear-gradient(145deg,rgba(11,99,246,.1),rgba(0,168,255,.05)),
+    #edf4ff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
-.cubeShield{
- position:absolute;
- left:50%;
- top:50%;
- transform:translate(-50%,-50%);
- width:205px;
- height:250px;
- clip-path:polygon(50% 0,94% 15%,84% 72%,50% 100%,16% 72%,6% 15%);
- background:linear-gradient(150deg,#0bcaff,#087ef5 48%,#061a33);
- display:grid;
- place-items:center;
- box-shadow:0 0 70px rgba(8,199,255,.35)
+.hero-image img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
 }
 
-.cubeShield span{
- color:#fff;
- font:800 75px "Space Grotesk"
+.image-placeholder{
+  text-align:center;
+  color:#667085;
+  padding:30px;
 }
 
-.orbit{
- position:absolute;
- width:430px;
- height:125px;
- border:9px solid #08c7ff;
- border-left-color:transparent;
- border-right-color:#087ef5;
- border-radius:50%;
- transform:rotate(-22deg);
- top:48%;
- left:50%;
- translate:-50% -50%
+.image-placeholder strong{
+  display:block;
+  font-size:20px;
+  color:#344054;
+  margin-bottom:7px;
 }
 
-.floatingCard{
- position:absolute;
- background:rgba(255,255,255,.95);
- border:1px solid var(--line);
- box-shadow:var(--shadow);
- border-radius:18px;
- padding:15px 18px;
- font-weight:900
+.floating{
+  position:absolute;
+  background:white;
+  border:1px solid var(--border);
+  box-shadow:var(--shadow);
+  border-radius:16px;
+  padding:15px 18px;
+  display:flex;
+  align-items:center;
+  gap:12px;
 }
 
-.card1{
- right:-15px;
- top:50px
+.float-one{
+  left:-35px;
+  bottom:65px;
 }
 
-.card2{
- left:-20px;
- bottom:55px
+.float-two{
+  right:-25px;
+  top:70px;
 }
 
-/* SECTIONS */
-
-.section{
- padding:100px 0
+.float-icon{
+  width:40px;
+  height:40px;
+  display:grid;
+  place-items:center;
+  border-radius:11px;
+  background:#eef5ff;
+  color:var(--primary);
+  font-size:19px;
 }
 
-.sectionHead{
- display:flex;
- justify-content:space-between;
- align-items:end;
- gap:30px;
- margin-bottom:45px
+.floating small{
+  color:var(--muted);
+  display:block;
 }
 
-.sectionHead h2{
- font:700 clamp(35px,5vw,58px)/1 "Space Grotesk";
- letter-spacing:-.06em
+.floating strong{
+  display:block;
 }
 
-.sectionHead p{
- max-width:540px;
- color:var(--muted);
- line-height:1.8
+/* TRUST */
+.trust{
+  padding:35px 0;
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  background:#fff;
 }
 
-/* STATS */
-
-.stats{
- background:var(--navy);
- color:#fff
+.trust-content{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  flex-wrap:wrap;
 }
 
-.statGrid{
- display:grid;
- grid-template-columns:repeat(4,1fr);
- gap:1px;
- background:rgba(255,255,255,.12)
+.trust-label{
+  color:#98a2b3;
+  font-weight:600;
+  font-size:14px;
 }
 
-.stat{
- padding:35px;
- background:var(--navy)
+.trust-items{
+  display:flex;
+  gap:35px;
+  color:#475467;
+  font-weight:700;
 }
 
-.stat strong{
- display:block;
- font:700 42px "Space Grotesk";
- color:#09c6ff
+/* GENERAL */
+section{
+  padding:100px 0;
 }
 
-.stat span{
- color:#a9bdd0;
- font-size:14px
+.section-head{
+  max-width:720px;
+  margin-bottom:48px;
+}
+
+.eyebrow{
+  color:var(--primary);
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:1.5px;
+  font-size:12px;
+  margin-bottom:10px;
+}
+
+.section-head h2{
+  font-family:"Space Grotesk";
+  font-size:clamp(32px,4vw,50px);
+  letter-spacing:-2px;
+  line-height:1.1;
+  margin-bottom:15px;
+}
+
+.section-head p{
+  color:var(--muted);
+  font-size:16px;
+}
+
+/* SERVICES */
+.services{
+  background:var(--light);
+}
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+.card{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:28px;
+  transition:.3s;
+}
+
+.card:hover{
+  transform:translateY(-7px);
+  box-shadow:var(--shadow);
+  border-color:#cdddf7;
+}
+
+.icon{
+  width:52px;
+  height:52px;
+  border-radius:14px;
+  display:grid;
+  place-items:center;
+  background:#edf4ff;
+  color:var(--primary);
+  font-size:23px;
+  margin-bottom:20px;
+}
+
+.card h3{
+  font-family:"Space Grotesk";
+  font-size:21px;
+  margin-bottom:9px;
+}
+
+.card p{
+  color:var(--muted);
+  font-size:14px;
+}
+
+/* ABOUT */
+.about-grid{
+  display:grid;
+  grid-template-columns:.9fr 1.1fr;
+  gap:70px;
+  align-items:center;
+}
+
+.about-box{
+  padding:40px;
+  border-radius:28px;
+  background:linear-gradient(145deg,#f1f6ff,#fff);
+  border:1px solid #dfe9fa;
+}
+
+.about-box h3{
+  font-family:"Space Grotesk";
+  font-size:34px;
+  margin-bottom:15px;
+}
+
+.about-box p{
+  color:var(--muted);
+}
+
+.feature-list{
+  display:grid;
+  gap:16px;
+  margin-top:25px;
+}
+
+.feature{
+  display:flex;
+  gap:13px;
+  align-items:flex-start;
+}
+
+.check{
+  min-width:25px;
+  height:25px;
+  border-radius:50%;
+  background:#e8f8f0;
+  color:var(--success);
+  display:grid;
+  place-items:center;
+  font-size:13px;
+  font-weight:800;
 }
 
 /* COURSES */
-
 .courses{
- background:#f7fbff
+  background:#f8fafc;
 }
 
-.courseGrid{
- display:grid;
- grid-template-columns:repeat(2,1fr);
- gap:24px
+.course-card{
+  position:relative;
+  overflow:hidden;
 }
 
-.course{
- background:#fff;
- border:1px solid var(--line);
- border-radius:32px;
- padding:32px;
- min-height:390px;
- position:relative;
- overflow:hidden;
- box-shadow:0 15px 50px rgba(10,55,100,.07);
- transition:.3s
+.course-tag{
+  display:inline-block;
+  font-size:11px;
+  font-weight:800;
+  color:var(--primary);
+  background:#edf4ff;
+  padding:6px 9px;
+  border-radius:7px;
+  margin-bottom:14px;
 }
 
-.course:hover{
- transform:translateY(-8px);
- box-shadow:0 30px 70px rgba(10,55,100,.14)
+.course-card h3{
+  margin-bottom:10px;
 }
 
-.course:after{
- content:"";
- position:absolute;
- width:190px;
- height:190px;
- border-radius:50%;
- background:#eaf6ff;
- right:-70px;
- top:-80px;
- z-index:0
-}
-
-.course>*{
- position:relative;
- z-index:1
-}
-
-.courseIcon{
- width:72px;
- height:72px;
- display:grid;
- place-items:center;
- background:#e5f7ff;
- border-radius:22px;
- font-size:38px;
- margin-bottom:28px
-}
-
-.level{
- display:inline-block;
- background:#e5f8ff;
- color:#007bb4;
- padding:9px 13px;
- border-radius:12px;
- font-size:11px;
- font-weight:900;
- margin-bottom:20px
-}
-
-.course h3{
- font:700 31px "Space Grotesk";
- letter-spacing:-.04em;
- margin-bottom:15px
-}
-
-.course p{
- color:#6b7e91;
- line-height:1.75;
- min-height:80px
-}
-
-.tags{
- display:flex;
- gap:8px;
- flex-wrap:wrap;
- margin:20px 0
-}
-
-.tag{
- background:#f3f7fa;
- border:1px solid #e3ebf1;
- border-radius:12px;
- padding:8px 11px;
- font-size:12px;
- color:#607386
-}
-
-.price{
- font:800 25px "Space Grotesk";
- color:var(--blue);
- margin:15px 0
-}
-
-.courseActions{
- display:flex;
- gap:10px;
- flex-wrap:wrap
-}
-
-.smallBtn{
- padding:12px 16px;
- border-radius:12px;
- font-weight:900;
- background:#eef7ff;
- color:#0675ef
-}
-
-.buy{
- color:#fff;
- background:linear-gradient(135deg,#087ef5,#08bfff)
+.course-meta{
+  display:flex;
+  gap:15px;
+  margin-top:20px;
+  padding-top:17px;
+  border-top:1px solid var(--border);
+  color:#667085;
+  font-size:12px;
 }
 
 /* FOUNDER */
-
-.founder{
- background:#fff
+.founder-grid{
+  display:grid;
+  grid-template-columns:.8fr 1.2fr;
+  gap:70px;
+  align-items:center;
 }
 
-.founderGrid{
- display:grid;
- grid-template-columns:430px 1fr;
- gap:70px;
- align-items:center
+.founder-photo{
+  height:500px;
+  border-radius:28px;
+  overflow:hidden;
+  background:#edf4ff;
+  border:1px solid var(--border);
+  box-shadow:var(--shadow);
 }
 
-.founderCard{
- min-height:540px;
- border-radius:40px;
- background:
- radial-gradient(circle at 50% 20%,rgba(8,199,255,.3),transparent 25%),
- linear-gradient(145deg,#082f60,#03172f);
- position:relative;
- overflow:hidden;
- box-shadow:0 35px 90px rgba(4,40,80,.24);
- display:grid;
- place-items:center
+.founder-photo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
 }
 
-.founderCard:after{
- content:"";
- position:absolute;
- width:300px;
- height:300px;
- border:2px solid rgba(8,199,255,.2);
- border-radius:50%;
- animation:spin 15s linear infinite
+.founder-placeholder{
+  height:100%;
+  display:grid;
+  place-items:center;
+  text-align:center;
+  padding:30px;
+  color:#667085;
 }
 
-@keyframes spin{
- to{
-  transform:rotate(360deg)
- }
+.founder-content h2{
+  font-family:"Space Grotesk";
+  font-size:48px;
+  letter-spacing:-2px;
+  line-height:1.05;
+  margin-bottom:10px;
 }
 
-/* FOUNDER IMAGE - UPDATED */
-
-.founderPhoto{
- width:230px;
- height:300px;
- border-radius:110px 110px 40px 40px;
- background:linear-gradient(145deg,#dff6ff,#a7ddf8);
- display:grid;
- place-items:center;
- position:relative;
- z-index:2;
- overflow:hidden;
- box-shadow:0 25px 60px rgba(0,0,0,.25)
+.role{
+  color:var(--primary);
+  font-weight:800;
+  margin-bottom:20px;
 }
 
-.founderPhoto img{
- width:100%;
- height:100%;
- object-fit:cover;
- object-position:center;
- display:block
-}
-
-.founderText h2{
- font:700 clamp(40px,5vw,65px) "Space Grotesk";
- letter-spacing:-.06em;
- margin-bottom:18px
-}
-
-.founderText h4{
- color:var(--blue);
- letter-spacing:.12em;
- margin-bottom:25px
-}
-
-.founderText p{
- color:#64778a;
- font-size:18px;
- line-height:1.9
-}
-
-.chips{
- display:flex;
- flex-wrap:wrap;
- gap:9px;
- margin:25px 0
-}
-
-.chip{
- padding:10px 14px;
- background:#eff8ff;
- border:1px solid #dcecf7;
- border-radius:13px;
- font-size:12px;
- font-weight:800
+.founder-content p{
+  color:var(--muted);
+  margin-bottom:17px;
 }
 
 .socials{
- display:flex;
- gap:10px;
- flex-wrap:wrap
+  display:flex;
+  gap:10px;
+  margin-top:25px;
+  flex-wrap:wrap;
 }
 
 .social{
- width:48px;
- height:48px;
- border-radius:15px;
- background:#eef7fd;
- color:#087ef5;
- display:grid;
- place-items:center;
- font-weight:900
+  padding:10px 15px;
+  border:1px solid var(--border);
+  border-radius:10px;
+  font-size:13px;
+  font-weight:700;
+  background:white;
+  transition:.2s;
+}
+
+.social:hover{
+  border-color:var(--primary);
+  color:var(--primary);
 }
 
 /* NEWS */
-
 .news{
- background:#eef6fc
+  background:var(--light);
 }
 
-.newsGrid{
- display:grid;
- grid-template-columns:repeat(3,1fr);
- gap:20px
+.news-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
 }
 
-.newsCard{
- background:#fff;
- border:1px solid var(--line);
- border-radius:25px;
- padding:25px;
- box-shadow:0 15px 40px rgba(5,45,85,.06)
+.news-card{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:24px;
 }
 
-.newsCard .date{
- color:var(--blue);
- font-size:11px;
- font-weight:900;
- letter-spacing:.12em
+.news-top{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:15px;
 }
 
-.newsCard h3{
- margin:13px 0;
- font:700 22px "Space Grotesk"
+.news-category{
+  color:var(--primary);
+  font-size:11px;
+  font-weight:800;
+  text-transform:uppercase;
 }
 
-.newsCard p{
- color:#6b7d8e;
- line-height:1.7
+.news-date{
+  color:#98a2b3;
+  font-size:11px;
+}
+
+.news-card h3{
+  font-family:"Space Grotesk";
+  font-size:19px;
+  line-height:1.3;
+  margin-bottom:10px;
+}
+
+.news-card p{
+  color:var(--muted);
+  font-size:13px;
+}
+
+/* ALERTS */
+.alerts{
+  padding-top:80px;
+}
+
+.alert-panel{
+  background:#101828;
+  color:white;
+  border-radius:28px;
+  padding:38px;
+  position:relative;
+  overflow:hidden;
+}
+
+.alert-panel:before{
+  content:"";
+  position:absolute;
+  width:300px;
+  height:300px;
+  right:-100px;
+  top:-130px;
+  background:rgba(0,168,255,.18);
+  border-radius:50%;
+}
+
+.alert-title{
+  position:relative;
+  display:flex;
+  align-items:center;
+  gap:15px;
+  margin-bottom:25px;
+}
+
+.alert-title h3{
+  font-family:"Space Grotesk";
+  font-size:28px;
+}
+
+.alert-list{
+  position:relative;
+  display:grid;
+  gap:12px;
+}
+
+.alert{
+  padding:15px;
+  border:1px solid rgba(255,255,255,.1);
+  background:rgba(255,255,255,.04);
+  border-radius:12px;
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+}
+
+.alert i{
+  color:#ffb547;
+  font-style:normal;
+}
+
+/* STATS */
+.stats{
+  padding:60px 0;
+}
+
+.stats-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  border:1px solid var(--border);
+  border-radius:22px;
+  overflow:hidden;
+}
+
+.stat{
+  text-align:center;
+  padding:30px 15px;
+  border-right:1px solid var(--border);
+}
+
+.stat:last-child{
+  border-right:0;
+}
+
+.stat strong{
+  display:block;
+  font-family:"Space Grotesk";
+  font-size:34px;
+  color:var(--primary);
+}
+
+.stat span{
+  color:var(--muted);
+  font-size:13px;
 }
 
 /* CONTACT */
-
 .contact{
- background:linear-gradient(145deg,#061a33,#073c72);
- color:#fff
+  background:linear-gradient(135deg,#f2f7ff,#fff);
 }
 
-.contactGrid{
- display:grid;
- grid-template-columns:.9fr 1.1fr;
- gap:50px
+.contact-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:30px;
 }
 
-.contact h2{
- font:700 clamp(42px,5vw,66px) "Space Grotesk";
- letter-spacing:-.06em
+.contact-card{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:22px;
+  padding:30px;
 }
 
-.contactLead{
- color:#a8bdd2;
- line-height:1.8;
- font-size:18px;
- margin:20px 0 30px
+.contact-card h3{
+  font-family:"Space Grotesk";
+  font-size:25px;
+  margin-bottom:10px;
 }
 
-.contactBox{
- background:rgba(255,255,255,.06);
- border:1px solid rgba(255,255,255,.12);
- border-radius:30px;
- padding:30px
+.contact-card p{
+  color:var(--muted);
 }
 
-.contactItem{
- display:flex;
- gap:16px;
- padding:20px 0;
- border-bottom:1px solid rgba(255,255,255,.1)
+.contact-items{
+  display:grid;
+  gap:14px;
+  margin-top:25px;
 }
 
-.contactItem:last-child{
- border:0
+.contact-item{
+  display:flex;
+  gap:13px;
+  align-items:center;
+  padding:14px;
+  border:1px solid var(--border);
+  border-radius:12px;
 }
 
-.contactItem b{
- display:block;
- margin-bottom:5px
+.contact-item .icon{
+  width:40px;
+  height:40px;
+  margin:0;
+  font-size:17px;
 }
 
-.contactItem span{
- color:#a8bdd2
+.contact-item small{
+  display:block;
+  color:#98a2b3;
 }
 
-/* ADMIN */
-
-.adminSection{
- background:#fff
+.contact-item strong{
+  font-size:14px;
 }
 
-.adminBox{
- background:#061a33;
- color:#fff;
- border-radius:30px;
- padding:35px
+/* CTA */
+.cta{
+  padding:85px 0;
 }
 
-.adminBox h2{
- font:700 40px "Space Grotesk";
- margin-bottom:10px
+.cta-box{
+  text-align:center;
+  padding:70px 30px;
+  border-radius:30px;
+  background:linear-gradient(135deg,#0b63f6,#0752cf);
+  color:white;
+  position:relative;
+  overflow:hidden;
 }
 
-.adminBox p{
- color:#9eb5ca;
- margin-bottom:25px
+.cta-box:before,
+.cta-box:after{
+  content:"";
+  position:absolute;
+  border:1px solid rgba(255,255,255,.13);
+  border-radius:50%;
 }
 
-.adminLogin{
- display:flex;
- gap:10px;
- flex-wrap:wrap
+.cta-box:before{
+  width:380px;
+  height:380px;
+  left:-180px;
+  top:-200px;
 }
 
-.adminLogin input{
- flex:1;
- min-width:220px;
- padding:15px;
- border-radius:13px;
- border:0;
- outline:0
+.cta-box:after{
+  width:300px;
+  height:300px;
+  right:-130px;
+  bottom:-170px;
 }
 
-.dashboard{
- display:none;
- margin-top:25px
+.cta-box > *{
+  position:relative;
 }
 
-.dashboard.show{
- display:block
+.cta-box h2{
+  font-family:"Space Grotesk";
+  font-size:clamp(34px,5vw,52px);
+  letter-spacing:-2px;
+  margin-bottom:13px;
 }
 
-.dashStats{
- display:grid;
- grid-template-columns:repeat(3,1fr);
- gap:12px;
- margin-bottom:20px
+.cta-box p{
+  max-width:620px;
+  margin:0 auto 25px;
+  opacity:.86;
 }
 
-.dashStat{
- background:#0b2c52;
- border:1px solid #21476d;
- padding:20px;
- border-radius:18px
-}
-
-.dashStat strong{
- display:block;
- color:#08c7ff;
- font-size:30px
-}
-
-.tableWrap{
- overflow:auto
-}
-
-table{
- width:100%;
- border-collapse:collapse;
- min-width:800px
-}
-
-th,td{
- padding:13px;
- text-align:left;
- border-bottom:1px solid #21476d;
- font-size:13px
-}
-
-th{
- color:#08c7ff
-}
-
-.export{
- margin-top:15px;
- background:#087ef5;
- color:#fff;
- padding:12px 17px;
- border-radius:12px;
- font-weight:800
-}
-
-/* MODAL */
-
-.modal{
- position:fixed;
- inset:0;
- background:rgba(2,15,30,.72);
- backdrop-filter:blur(10px);
- z-index:3000;
- display:none;
- place-items:center;
- padding:20px
-}
-
-.modal.show{
- display:grid
-}
-
-.modalBox{
- width:min(700px,100%);
- max-height:90vh;
- overflow:auto;
- background:#fff;
- border-radius:30px;
- padding:32px;
- position:relative;
- box-shadow:0 40px 100px rgba(0,0,0,.3)
-}
-
-.close{
- position:absolute;
- right:18px;
- top:18px;
- width:40px;
- height:40px;
- border-radius:12px;
- background:#eef4f8;
- font-size:20px
-}
-
-.modalBox h2{
- font:700 36px "Space Grotesk";
- margin-bottom:12px
-}
-
-.modalBox p{
- color:#65788b;
- line-height:1.8
-}
-
-.module{
- padding:15px;
- background:#f4f9fd;
- border:1px solid var(--line);
- border-radius:13px;
- margin:8px 0;
- font-weight:700
-}
-
-.form{
- display:grid;
- gap:12px;
- margin-top:20px
-}
-
-.form input,
-.form textarea,
-.form select{
- width:100%;
- padding:14px;
- border:1px solid var(--line);
- border-radius:13px;
- outline:0;
- background:#fff
-}
-
-.form textarea{
- min-height:100px
-}
-
-/* PAYMENT */
-
-.payment{
- margin-top:20px;
- padding:22px;
- background:#f2f8fc;
- border-radius:20px;
- border:1px solid var(--line)
-}
-
-.upi{
- font-weight:900;
- color:var(--blue);
- font-size:18px;
- word-break:break-all
-}
-
-.qr{
- width:190px;
- height:190px;
- background:#fff;
- border:10px solid #fff;
- margin:15px auto;
- display:block;
- object-fit:contain
+.cta-box .btn{
+  background:white;
+  color:var(--primary);
+  border-color:white;
 }
 
 /* FOOTER */
-
 footer{
- background:#031224;
- color:#8ea6ba;
- padding:45px 0 100px
+  background:#08111f;
+  color:white;
+  padding:55px 0 25px;
 }
 
-.footerGrid{
- display:flex;
- justify-content:space-between;
- gap:30px;
- flex-wrap:wrap
+.footer-grid{
+  display:grid;
+  grid-template-columns:1.3fr 1fr 1fr 1fr;
+  gap:40px;
+  padding-bottom:40px;
 }
 
-footer strong{
- color:#fff;
- font:700 25px "Space Grotesk"
+.footer-brand p{
+  color:#98a2b3;
+  max-width:350px;
+  margin-top:15px;
+  font-size:14px;
 }
 
-/* BOTTOM BAR */
-
-.bottomBar{
- position:fixed;
- bottom:0;
- left:0;
- right:0;
- z-index:1500;
- background:rgba(4,24,47,.97);
- display:flex;
- justify-content:center;
- gap:20px;
- padding:10px 15px;
- backdrop-filter:blur(15px)
+.footer-title{
+  font-weight:800;
+  margin-bottom:15px;
 }
 
-.bottomBar a{
- width:150px;
- max-width:30%;
- text-align:center;
- color:#fff;
- padding:6px
+.footer-links{
+  display:grid;
+  gap:9px;
+  color:#98a2b3;
+  font-size:14px;
 }
 
-.bottomBar span{
- display:block;
- font-size:25px
+.footer-links a:hover{
+  color:white;
 }
 
-.bottomBar b{
- font-size:12px
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,.1);
+  padding-top:20px;
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  color:#667085;
+  font-size:12px;
 }
 
-.toTop{
- position:fixed;
- right:25px;
- bottom:85px;
- z-index:1200;
- width:54px;
- height:54px;
- border-radius:17px;
- color:#fff;
- background:linear-gradient(135deg,#087ef5,#08c7ff);
- font-size:25px;
- box-shadow:0 15px 40px rgba(8,126,245,.3)
-}
-
-/* RESPONSIVE */
-
+/* MOBILE */
 @media(max-width:900px){
+  .nav-links{
+    position:absolute;
+    top:76px;
+    left:0;
+    width:100%;
+    background:white;
+    border-bottom:1px solid var(--border);
+    padding:20px;
+    display:none;
+    flex-direction:column;
+    align-items:stretch;
+  }
 
- .navlinks{
-  display:none
- }
+  .nav-links.active{
+    display:flex;
+  }
 
- .menu{
-  display:grid
- }
+  .menu{
+    display:block;
+  }
 
- .heroGrid,
- .founderGrid,
- .contactGrid{
-  grid-template-columns:1fr
- }
+  .hero-grid,
+  .about-grid,
+  .founder-grid,
+  .contact-grid{
+    grid-template-columns:1fr;
+  }
 
- .hero{
-  padding:70px 0
- }
+  .hero{
+    padding-top:125px;
+  }
 
- .scene{
-  min-height:450px
- }
+  .hero-visual{
+    max-width:650px;
+    margin:auto;
+  }
 
- .courseGrid{
-  grid-template-columns:1fr
- }
+  .cards,
+  .news-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
 
- .newsGrid{
-  grid-template-columns:1fr
- }
-
- .statGrid{
-  grid-template-columns:repeat(2,1fr)
- }
-
- .founderCard{
-  min-height:450px
- }
+  .footer-grid{
+    grid-template-columns:1fr 1fr;
+  }
 }
 
 @media(max-width:600px){
+  section{
+    padding:70px 0;
+  }
 
- .container{
-  width:min(100% - 28px,1180px)
- }
+  .hero{
+    padding:110px 0 60px;
+  }
 
- .nav{
-  min-height:72px
- }
+  .hero h1{
+    font-size:45px;
+    letter-spacing:-2px;
+  }
 
- .brand strong{
-  font-size:23px
- }
+  .hero p{
+    font-size:16px;
+  }
 
- .brand small{
-  font-size:7px
- }
+  .hero-image{
+    height:390px;
+  }
 
- .logo{
-  width:42px
- }
+  .float-one{
+    left:8px;
+    bottom:30px;
+  }
 
- .actions .notify{
-  display:grid
- }
+  .float-two{
+    right:8px;
+    top:25px;
+  }
 
- .hero h1{
-  font-size:45px
- }
+  .floating{
+    padding:11px;
+  }
 
- .hero p{
-  font-size:16px
- }
+  .floating strong{
+    font-size:12px;
+  }
 
- .section{
-  padding:70px 0
- }
+  .floating small{
+    font-size:10px;
+  }
 
- .scene{
-  min-height:390px
- }
+  .cards,
+  .news-grid{
+    grid-template-columns:1fr;
+  }
 
- .cube{
-  width:280px;
-  height:350px
- }
+  .stats-grid{
+    grid-template-columns:1fr 1fr;
+  }
 
- .cubeShield{
-  width:160px;
-  height:205px
- }
+  .stat{
+    border-bottom:1px solid var(--border);
+  }
 
- .cubeShield span{
-  font-size:55px
- }
+  .stat:nth-child(2){
+    border-right:0;
+  }
 
- .orbit{
-  width:330px;
-  height:100px
- }
+  .stat:nth-child(3){
+    border-bottom:0;
+  }
 
- .card1{
-  right:-5px
- }
+  .stat:nth-child(4){
+    border-bottom:0;
+    border-right:0;
+  }
 
- .card2{
-  left:-5px
- }
+  .founder-photo{
+    height:420px;
+  }
 
- .course{
-  padding:24px;
-  min-height:auto
- }
+  .founder-content h2{
+    font-size:39px;
+  }
 
- .course h3{
-  font-size:27px
- }
+  .footer-grid{
+    grid-template-columns:1fr;
+  }
 
- .founderGrid{
-  gap:40px
- }
+  .footer-bottom{
+    flex-direction:column;
+  }
 
- .founderCard{
-  min-height:400px
- }
+  .trust-items{
+    gap:15px;
+    flex-wrap:wrap;
+  }
 
- .founderPhoto{
-  width:190px;
-  height:250px
- }
-
- .statGrid{
-  grid-template-columns:1fr 1fr
- }
-
- .stat{
-  padding:22px
- }
-
- .stat strong{
-  font-size:30px
- }
-
- .contactBox{
-  padding:22px
- }
-
- .dashStats{
-  grid-template-columns:1fr
- }
-
- .bottomBar{
-  gap:4px
- }
-
- .bottomBar a{
-  padding:5px
- }
-
- .bottomBar span{
-  font-size:21px
- }
-
- .toTop{
-  right:15px;
-  bottom:78px
- }
-}
-
-@media(min-width:901px){
-
- .bottomBar{
-  display:none
- }
+  .alert-panel{
+    padding:25px;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<div class="topline"></div>
-
+<!-- NAVBAR -->
 <header>
+  <div class="container nav">
+    <a href="#home" class="logo">
+      <div class="logo-mark"><span>A</span></div>
+      AUREXA
+    </a>
 
-<div class="container nav">
+    <nav class="nav-links" id="navLinks">
+      <a href="#home">Home</a>
+      <a href="#services">Services</a>
+      <a href="#courses">Courses</a>
+      <a href="#founder">Founder</a>
+      <a href="#news">Cyber News</a>
+      <a href="#contact" class="nav-btn">Contact</a>
+    </nav>
 
-<a href="#home" class="brand">
-
-<div class="logo">
-<span>A</span>
-</div>
-
-<div class="brand-text">
-<strong>AUREXA</strong>
-<small>Cybersecurity • Technology • Innovation</small>
-</div>
-
-</a>
-
-<nav class="navlinks">
-
-<a href="#home">Home</a>
-<a href="#courses">Courses</a>
-<a href="#founder">Founder</a>
-<a href="#news">Cyber News</a>
-<a href="#contact">Contact</a>
-<a href="#admin">Admin</a>
-
-</nav>
-
-<div class="actions">
-
-<button class="icon notify" onclick="showAlerts()">
-🔔
-<i></i>
-</button>
-
-<button class="icon menu" onclick="toggleMenu()">
-☰
-</button>
-
-</div>
-
-</div>
-
-<div id="mobileNav" class="mobileNav">
-
-<div class="container">
-
-<a href="#home" onclick="toggleMenu()">Home</a>
-<a href="#courses" onclick="toggleMenu()">Courses</a>
-<a href="#founder" onclick="toggleMenu()">Founder</a>
-<a href="#news" onclick="toggleMenu()">Cyber News</a>
-<a href="#contact" onclick="toggleMenu()">Contact</a>
-<a href="#admin" onclick="toggleMenu()">Admin</a>
-
-</div>
-
-</div>
-
+    <div class="menu" onclick="toggleMenu()">☰</div>
+  </div>
 </header>
 
 
 <!-- HERO -->
+<section class="hero" id="home">
+  <div class="container hero-grid">
 
-<section id="home" class="hero">
+    <div>
+      <div class="badge">
+        <span class="dot"></span>
+        CYBERSECURITY • TECHNOLOGY • INNOVATION
+      </div>
 
-<div class="container heroGrid">
+      <h1>
+        Securing the <span>Digital Future.</span>
+      </h1>
 
-<div>
+      <p>
+        AUREXA is a technology and cybersecurity initiative focused on
+        building secure digital solutions, developing cybersecurity talent,
+        and turning innovative ideas into real-world impact.
+      </p>
 
-<div class="kicker">
-CYBERSECURITY • TECHNOLOGY • INNOVATION
-</div>
+      <div class="hero-buttons">
+        <a href="#services" class="btn btn-primary">Explore AUREXA →</a>
+        <a href="#contact" class="btn btn-light">Get in Touch</a>
+      </div>
+    </div>
 
-<h1>
-Building a
-<span class="gradient">Safer Digital Future.</span>
-</h1>
+    <div class="hero-visual">
+      <div class="hero-card">
+        <div class="hero-image">
 
-<p>
-AUREXA is a cybersecurity and technology initiative founded by
-<strong>Srikanth Paka</strong>, focused on cybersecurity awareness,
-ethical security learning, technology education and practical digital skills.
-</p>
+          <!--
+            Replace this with your founder image:
 
-<div class="btns">
+            <img src="YOUR-IMAGE.jpg" alt="AUREXA Founder">
+          -->
 
-<a href="#courses" class="btn primary">
-Explore Courses →
-</a>
+          <div class="image-placeholder">
+            <strong>AUREXA Founder</strong>
+            Add your professional founder image here
+          </div>
 
-<a href="#founder" class="btn secondary">
-Meet Founder
-</a>
+        </div>
+      </div>
 
-</div>
+      <div class="floating float-one">
+        <div class="float-icon">🛡️</div>
+        <div>
+          <small>Security Status</small>
+          <strong>Protected</strong>
+        </div>
+      </div>
 
-</div>
+      <div class="floating float-two">
+        <div class="float-icon">⚡</div>
+        <div>
+          <small>Innovation</small>
+          <strong>Always On</strong>
+        </div>
+      </div>
+    </div>
 
-
-<div class="scene">
-
-<div class="cube">
-
-<div class="orbit"></div>
-
-<div class="cubeShield">
-<span>A</span>
-</div>
-
-<div class="floatingCard card1">
-🛡️ Secure Digital Future
-</div>
-
-<div class="floatingCard card2">
-⚡ Cyber Innovation
-</div>
-
-</div>
-
-</div>
-
-</div>
-
+  </div>
 </section>
 
 
-<!-- STATS -->
-
-<section class="stats">
-
-<div class="container statGrid">
-
-<div class="stat">
-<strong>06+</strong>
-<span>Cybersecurity Courses</span>
+<!-- TRUST -->
+<div class="trust">
+  <div class="container trust-content">
+    <div class="trust-label">A technology-first vision for a safer digital world</div>
+    <div class="trust-items">
+      <span>Cybersecurity</span>
+      <span>AI</span>
+      <span>Cloud</span>
+      <span>Innovation</span>
+    </div>
+  </div>
 </div>
 
-<div class="stat">
-<strong>24/7</strong>
-<span>Security Awareness</span>
-</div>
 
-<div class="stat">
-<strong>100%</strong>
-<span>Practical Learning</span>
-</div>
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="container">
 
-<div class="stat">
-<strong>01</strong>
-<span>AUREXA Digital Mission</span>
-</div>
+    <div class="section-head">
+      <div class="eyebrow">What We Do</div>
+      <h2>Technology built with security at its core.</h2>
+      <p>
+        AUREXA combines cybersecurity knowledge, modern technology and
+        innovation to create practical digital solutions.
+      </p>
+    </div>
 
-</div>
+    <div class="cards">
 
+      <div class="card">
+        <div class="icon">🛡️</div>
+        <h3>Cybersecurity</h3>
+        <p>
+          Security awareness, ethical security practices, vulnerability
+          understanding and digital protection.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🤖</div>
+        <h3>Artificial Intelligence</h3>
+        <p>
+          Exploring AI-powered solutions for automation, intelligence,
+          productivity and cybersecurity.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="icon">☁️</div>
+        <h3>Cloud Technology</h3>
+        <p>
+          Modern cloud concepts, secure architectures and scalable digital
+          infrastructure.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="icon">💻</div>
+        <h3>Web Technology</h3>
+        <p>
+          Modern responsive websites and digital experiences designed for
+          performance and usability.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🔐</div>
+        <h3>Security Awareness</h3>
+        <p>
+          Helping individuals understand phishing, passwords, privacy,
+          scams and common digital threats.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🚀</div>
+        <h3>Innovation</h3>
+        <p>
+          Turning ambitious technology ideas into practical projects and
+          future-focused solutions.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container about-grid">
+
+    <div class="about-box">
+      <div class="eyebrow">About AUREXA</div>
+      <h3>Build. Secure. Innovate.</h3>
+      <p>
+        AUREXA represents a vision where technology and cybersecurity work
+        together to create a safer and smarter digital ecosystem.
+      </p>
+    </div>
+
+    <div>
+      <div class="section-head">
+        <div class="eyebrow">Our Mission</div>
+        <h2>Making cybersecurity more accessible.</h2>
+        <p>
+          We believe cybersecurity should not be limited to experts.
+          Students, creators, businesses and everyday users can all build
+          better digital habits.
+        </p>
+      </div>
+
+      <div class="feature-list">
+
+        <div class="feature">
+          <div class="check">✓</div>
+          <div>
+            <strong>Security First</strong>
+            <p>Promoting secure-by-design thinking across technology.</p>
+          </div>
+        </div>
+
+        <div class="feature">
+          <div class="check">✓</div>
+          <div>
+            <strong>Practical Learning</strong>
+            <p>Focused on skills that can be applied to real-world projects.</p>
+          </div>
+        </div>
+
+        <div class="feature">
+          <div class="check">✓</div>
+          <div>
+            <strong>Innovation Driven</strong>
+            <p>Combining creativity with emerging technologies.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
 </section>
 
 
 <!-- COURSES -->
+<section class="courses" id="courses">
+  <div class="container">
 
-<section id="courses" class="section courses">
+    <div class="section-head">
+      <div class="eyebrow">AUREXA Academy</div>
+      <h2>Learn skills that matter.</h2>
+      <p>
+        Practical technology and cybersecurity learning paths for beginners
+        and aspiring professionals.
+      </p>
+    </div>
 
-<div class="container">
+    <div class="cards">
 
-<div class="sectionHead">
+      <div class="card course-card">
+        <span class="course-tag">CYBERSECURITY</span>
+        <h3>Ethical Hacking Fundamentals</h3>
+        <p>
+          Learn cybersecurity fundamentals, attack surfaces, common
+          vulnerabilities and ethical security concepts.
+        </p>
+        <div class="course-meta">
+          <span>Beginner</span>
+          <span>Practical</span>
+        </div>
+      </div>
 
-<div>
+      <div class="card course-card">
+        <span class="course-tag">SECURITY</span>
+        <h3>Cybersecurity Essentials</h3>
+        <p>
+          Understand digital threats, phishing, malware, authentication,
+          privacy and security best practices.
+        </p>
+        <div class="course-meta">
+          <span>Beginner</span>
+          <span>Core Skills</span>
+        </div>
+      </div>
 
-<div class="kicker">
-AUREXA ACADEMY
-</div>
+      <div class="card course-card">
+        <span class="course-tag">AI</span>
+        <h3>AI & Cybersecurity</h3>
+        <p>
+          Explore how artificial intelligence can support threat detection,
+          automation and security operations.
+        </p>
+        <div class="course-meta">
+          <span>Intermediate</span>
+          <span>AI</span>
+        </div>
+      </div>
 
-<h2>
-Learn. Build.<br>
-<span class="gradient">Defend.</span>
-</h2>
+      <div class="card course-card">
+        <span class="course-tag">WEB</span>
+        <h3>Web Development</h3>
+        <p>
+          Build responsive websites using HTML, CSS and JavaScript while
+          understanding fundamental web security concepts.
+        </p>
+        <div class="course-meta">
+          <span>Beginner</span>
+          <span>Projects</span>
+        </div>
+      </div>
 
-</div>
+      <div class="card course-card">
+        <span class="course-tag">CLOUD</span>
+        <h3>Cloud Security Basics</h3>
+        <p>
+          Learn core cloud concepts, identity, access control and security
+          considerations in modern infrastructure.
+        </p>
+        <div class="course-meta">
+          <span>Intermediate</span>
+          <span>Cloud</span>
+        </div>
+      </div>
 
-<p>
-Professional cybersecurity courses designed for beginners,
-intermediate learners and advanced technology enthusiasts.
-</p>
+      <div class="card course-card">
+        <span class="course-tag">AWARENESS</span>
+        <h3>Digital Safety</h3>
+        <p>
+          Learn practical ways to protect accounts, devices, personal data
+          and online identity.
+        </p>
+        <div class="course-meta">
+          <span>Everyone</span>
+          <span>Safety</span>
+        </div>
+      </div>
 
-</div>
-
-<div id="courseGrid" class="courseGrid"></div>
-
-</div>
-
+    </div>
+  </div>
 </section>
 
 
 <!-- FOUNDER -->
+<section id="founder">
+  <div class="container founder-grid">
 
-<section id="founder" class="section founder">
+    <div class="founder-photo">
 
-<div class="container founderGrid">
+      <!--
+        Replace the placeholder below with:
 
+        <img src="YOUR-FOUNDER-IMAGE.jpg"
+             alt="Founder & CEO of AUREXA">
+      -->
 
-<div class="founderCard">
+      <div class="founder-placeholder">
+        <div>
+          <div style="font-size:55px;margin-bottom:10px;">👤</div>
+          <strong style="display:block;font-size:20px;color:#344054;">
+            Founder & CEO
+          </strong>
+          <span>Add your professional founder photo</span>
+        </div>
+      </div>
 
-<!-- FOUNDER PNG ADDED HERE -->
+    </div>
 
-<div class="founderPhoto">
+    <div class="founder-content">
+      <div class="eyebrow">Leadership</div>
 
-<img
-src="file_00000000d568720bb94605cdf6d9e49e.png"
-alt="Srikanth Paka - Founder & CEO of AUREXA"
-loading="lazy"
->
+      <h2>Founder & CEO</h2>
 
-</div>
+      <div class="role">
+        AUREXA — Cybersecurity • Technology • Innovation
+      </div>
 
-</div>
+      <p>
+        AUREXA is driven by a founder-led vision focused on cybersecurity,
+        technology, innovation and creating meaningful digital solutions.
+      </p>
 
+      <p>
+        The mission is to continuously learn, build and share practical
+        technology knowledge while encouraging a stronger cybersecurity
+        culture.
+      </p>
 
-<div class="founderText">
+      <div class="socials">
 
-<div class="kicker">
-LEADERSHIP
-</div>
+        <!-- Replace these links with your actual profiles -->
 
-<h2>
-Founder & CEO
-</h2>
+        <a class="social"
+           href="https://www.linkedin.com/"
+           target="_blank">
+          LinkedIn ↗
+        </a>
 
-<h4>
-FOUNDER & CEO — AUREXA
-</h4>
+        <a class="social"
+           href="https://www.instagram.com/"
+           target="_blank">
+          Instagram ↗
+        </a>
 
-<p>
-<strong>Srikanth Paka</strong> is the Founder & CEO of AUREXA,
-a cybersecurity and technology initiative focused on making
-security education, digital awareness and practical technology
-learning more accessible.
-</p>
+        <a class="social"
+           href="#contact">
+          Contact
+        </a>
 
-<p style="margin-top:18px">
-AUREXA focuses on cybersecurity awareness, ethical hacking,
-responsible security practices, emerging technologies,
-innovation and building a stronger digital future.
-</p>
+      </div>
+    </div>
 
-<div class="chips">
-
-<span class="chip">Cybersecurity</span>
-<span class="chip">Ethical Hacking</span>
-<span class="chip">Web Security</span>
-<span class="chip">AI & Security</span>
-<span class="chip">Digital Awareness</span>
-<span class="chip">Technology</span>
-
-</div>
-
-<div class="socials">
-
-<a
-class="social"
-href="https://www.linkedin.com/"
-target="_blank"
-rel="noopener">
-in
-</a>
-
-<a
-class="social"
-href="https://www.instagram.com/"
-target="_blank"
-rel="noopener">
-ig
-</a>
-
-<a
-class="social"
-href="mailto:srikanthh3k@gmail.com">
-@
-</a>
-
-<a
-class="social"
-href="https://wa.me/919640724438"
-target="_blank"
-rel="noopener">
-wa
-</a>
-
-</div>
-
-</div>
-
-</div>
-
+  </div>
 </section>
 
 
 <!-- NEWS -->
+<section class="news" id="news">
+  <div class="container">
 
-<section id="news" class="section news">
+    <div class="section-head">
+      <div class="eyebrow">Cyber Intelligence</div>
+      <h2>Cyber news & awareness.</h2>
+      <p>
+        Stay informed about important cybersecurity topics and digital
+        security developments.
+      </p>
+    </div>
 
-<div class="container">
+    <div class="news-grid">
 
-<div class="sectionHead">
+      <article class="news-card">
+        <div class="news-top">
+          <span class="news-category">Awareness</span>
+          <span class="news-date">Daily</span>
+        </div>
+        <h3>Watch for sophisticated phishing campaigns.</h3>
+        <p>
+          Always verify links, sender addresses and unexpected requests
+          before sharing credentials or sensitive information.
+        </p>
+      </article>
 
-<div>
+      <article class="news-card">
+        <div class="news-top">
+          <span class="news-category">Security</span>
+          <span class="news-date">Daily</span>
+        </div>
+        <h3>Keep software and devices updated.</h3>
+        <p>
+          Security updates frequently address vulnerabilities, making
+          timely patching an important defensive habit.
+        </p>
+      </article>
 
-<div class="kicker">
-SECURITY INTELLIGENCE
-</div>
+      <article class="news-card">
+        <div class="news-top">
+          <span class="news-category">Privacy</span>
+          <span class="news-date">Daily</span>
+        </div>
+        <h3>Protect your digital identity.</h3>
+        <p>
+          Use strong unique passwords, multi-factor authentication and
+          review account activity regularly.
+        </p>
+      </article>
 
-<h2>
-Cyber News & Alerts
-</h2>
-
-</div>
-
-<p>
-Stay aware of cybersecurity trends, online threats,
-privacy risks and responsible digital practices.
-</p>
-
-</div>
-
-<div class="newsGrid">
-
-<article class="newsCard">
-
-<div class="date">
-AUREXA ALERT
-</div>
-
-<h3>
-Phishing Awareness
-</h3>
-
-<p>
-Never share OTPs, passwords or banking credentials
-through unknown links or messages.
-</p>
-
-</article>
-
-
-<article class="newsCard">
-
-<div class="date">
-SECURITY UPDATE
-</div>
-
-<h3>
-Strong Authentication
-</h3>
-
-<p>
-Use unique passwords and multi-factor authentication
-for important online accounts.
-</p>
-
-</article>
+    </div>
+  </div>
+</section>
 
 
-<article class="newsCard">
+<!-- ALERTS -->
+<section class="alerts">
+  <div class="container">
 
-<div class="date">
-DIGITAL SAFETY
-</div>
+    <div class="alert-panel">
 
-<h3>
-Privacy Protection
-</h3>
+      <div class="alert-title">
+        <div class="icon" style="margin:0;background:rgba(255,255,255,.1);color:#fff;">
+          🔔
+        </div>
 
-<p>
-Review application permissions and avoid unnecessarily
-sharing personal information online.
-</p>
+        <div>
+          <h3>Daily Security Alerts</h3>
+          <span style="color:#98a2b3;font-size:13px;">
+            AUREXA Cyber Awareness Center
+          </span>
+        </div>
+      </div>
 
-</article>
+      <div class="alert-list">
 
-</div>
+        <div class="alert">
+          <i>⚠</i>
+          <div>
+            <strong>Phishing Alert</strong>
+            <p style="color:#98a2b3;font-size:13px;">
+              Do not open suspicious links or unexpected attachments.
+            </p>
+          </div>
+        </div>
 
-</div>
+        <div class="alert">
+          <i>⚠</i>
+          <div>
+            <strong>Password Alert</strong>
+            <p style="color:#98a2b3;font-size:13px;">
+              Avoid reusing passwords across important accounts.
+            </p>
+          </div>
+        </div>
 
+        <div class="alert">
+          <i>⚠</i>
+          <div>
+            <strong>Account Security</strong>
+            <p style="color:#98a2b3;font-size:13px;">
+              Enable multi-factor authentication wherever possible.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- STATS -->
+<section class="stats">
+  <div class="container">
+
+    <div class="stats-grid">
+
+      <div class="stat">
+        <strong>01</strong>
+        <span>Security First</span>
+      </div>
+
+      <div class="stat">
+        <strong>24/7</strong>
+        <span>Digital Awareness</span>
+      </div>
+
+      <div class="stat">
+        <strong>∞</strong>
+        <span>Learning Mindset</span>
+      </div>
+
+      <div class="stat">
+        <strong>100%</strong>
+        <span>Innovation Driven</span>
+      </div>
+
+    </div>
+
+  </div>
 </section>
 
 
 <!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="container">
 
-<section id="contact" class="section contact">
+    <div class="section-head">
+      <div class="eyebrow">Contact AUREXA</div>
+      <h2>Let's build something secure.</h2>
+      <p>
+        For collaborations, technology projects, cybersecurity discussions,
+        courses or general enquiries, get in touch.
+      </p>
+    </div>
 
-<div class="container contactGrid">
+    <div class="contact-grid">
 
-<div>
+      <div class="contact-card">
+        <h3>Connect with us</h3>
+        <p>
+          Replace the details below with your official AUREXA contact
+          information.
+        </p>
 
-<div class="kicker">
-CONTACT AUREXA
-</div>
+        <div class="contact-items">
 
-<h2>
-Let's<br>
-<span class="gradient">Connect.</span>
-</h2>
+          <a class="contact-item"
+             href="mailto:YOUR-EMAIL@example.com">
+            <div class="icon">✉</div>
+            <div>
+              <small>Email</small>
+              <strong>YOUR-EMAIL@example.com</strong>
+            </div>
+          </a>
 
-<p class="contactLead">
-Have a question about AUREXA, courses,
-cybersecurity or collaboration? Reach out directly.
-</p>
+          <a class="contact-item"
+             href="tel:+910000000000">
+            <div class="icon">☎</div>
+            <div>
+              <small>Phone</small>
+              <strong>+91 XXXXXXXXXX</strong>
+            </div>
+          </a>
 
-<a
-class="btn primary"
-href="mailto:srikanthh3k@gmail.com">
-Send Email →
-</a>
+          <a class="contact-item"
+             href="https://wa.me/910000000000"
+             target="_blank">
+            <div class="icon">💬</div>
+            <div>
+              <small>WhatsApp</small>
+              <strong>Chat with AUREXA</strong>
+            </div>
+          </a>
 
-</div>
-
-
-<div class="contactBox">
-
-
-<div class="contactItem">
-
-<div style="font-size:25px">
-📞
-</div>
-
-<div>
-
-<b>Phone</b>
-
-<a href="tel:+919640724438">
-<span>9640724438</span>
-</a>
-
-<br>
-
-<a href="tel:+919703724438">
-<span>9703724438</span>
-</a>
-
-</div>
-
-</div>
+        </div>
+      </div>
 
 
-<div class="contactItem">
+      <div class="contact-card">
+        <h3>Social presence</h3>
+        <p>
+          Follow AUREXA for cybersecurity awareness, technology projects,
+          updates and innovation.
+        </p>
 
-<div style="font-size:25px">
-💬
-</div>
+        <div class="contact-items">
 
-<div>
+          <a class="contact-item"
+             href="https://www.linkedin.com/"
+             target="_blank">
+            <div class="icon">in</div>
+            <div>
+              <small>LinkedIn</small>
+              <strong>AUREXA LinkedIn</strong>
+            </div>
+          </a>
 
-<b>WhatsApp</b>
+          <a class="contact-item"
+             href="https://www.instagram.com/"
+             target="_blank">
+            <div class="icon">◎</div>
+            <div>
+              <small>Instagram</small>
+              <strong>@AUREXA</strong>
+            </div>
+          </a>
 
-<a
-href="https://wa.me/919640724438"
-target="_blank"
-rel="noopener">
-<span>9640724438</span>
-</a>
+          <a class="contact-item"
+             href="#home">
+            <div class="icon">🌐</div>
+            <div>
+              <small>Website</small>
+              <strong>aurexa.space</strong>
+            </div>
+          </a>
 
-</div>
+        </div>
+      </div>
 
-</div>
+    </div>
 
-
-<div class="contactItem">
-
-<div style="font-size:25px">
-✉️
-</div>
-
-<div>
-
-<b>Email</b>
-
-<a href="mailto:srikanthh3k@gmail.com">
-<span>srikanthh3k@gmail.com</span>
-</a>
-
-</div>
-
-</div>
-
-
-<div class="contactItem">
-
-<div style="font-size:25px">
-🌐
-</div>
-
-<div>
-
-<b>Website</b>
-
-<a
-href="https://aurexa.space"
-target="_blank"
-rel="noopener">
-<span>aurexa.space</span>
-</a>
-
-</div>
-
-</div>
-
-
-</div>
-
-</div>
-
+  </div>
 </section>
 
 
-<!-- ADMIN -->
+<!-- CTA -->
+<section class="cta">
+  <div class="container">
 
-<section id="admin" class="section adminSection">
+    <div class="cta-box">
+      <h2>Secure the future with AUREXA.</h2>
+      <p>
+        Technology moves fast. Security should move faster.
+        Let's learn, build and innovate together.
+      </p>
 
-<div class="container">
+      <a href="#contact" class="btn">
+        Start a Conversation →
+      </a>
+    </div>
 
-<div class="adminBox">
-
-<h2>
-🔐 AUREXA Admin Panel
-</h2>
-
-<p>
-Admin dashboard for viewing course enrollment requests
-stored in this browser.
-</p>
-
-<div class="adminLogin">
-
-<input
-id="adminPassword"
-type="password"
-placeholder="Enter admin password"
-autocomplete="current-password"
->
-
-<button
-class="btn primary"
-onclick="loginAdmin()">
-Login
-</button>
-
-</div>
-
-
-<div id="dashboard" class="dashboard">
-
-
-<div class="dashStats">
-
-<div class="dashStat">
-
-Orders
-
-<strong id="orderCount">
-0
-</strong>
-
-</div>
-
-
-<div class="dashStat">
-
-Revenue
-
-<strong id="revenue">
-₹0
-</strong>
-
-</div>
-
-
-<div class="dashStat">
-
-Latest
-
-<strong id="latest">
-—
-</strong>
-
-</div>
-
-</div>
-
-
-<div class="tableWrap">
-
-<table>
-
-<thead>
-
-<tr>
-
-<th>Name</th>
-<th>Phone</th>
-<th>Course</th>
-<th>Price</th>
-<th>Payment Ref</th>
-<th>Date</th>
-
-</tr>
-
-</thead>
-
-<tbody id="ordersTable"></tbody>
-
-</table>
-
-</div>
-
-
-<button
-class="export"
-onclick="exportOrders()">
-Export Orders CSV
-</button>
-
-
-<button
-class="export"
-style="background:#d93636"
-onclick="clearOrders()">
-Clear Local Orders
-</button>
-
-
-</div>
-
-</div>
-
-</div>
-
+  </div>
 </section>
 
 
 <!-- FOOTER -->
-
 <footer>
+  <div class="container">
 
-<div class="container footerGrid">
+    <div class="footer-grid">
 
-<div>
+      <div class="footer-brand">
+        <div class="logo">
+          <div class="logo-mark"><span>A</span></div>
+          AUREXA
+        </div>
 
-<strong>
-AUREXA
-</strong>
+        <p>
+          Cybersecurity • Technology • Innovation.
+          Building a safer and smarter digital future.
+        </p>
+      </div>
 
-<p style="margin-top:10px">
-Cybersecurity • Technology • Innovation
-</p>
+      <div>
+        <div class="footer-title">Explore</div>
+        <div class="footer-links">
+          <a href="#home">Home</a>
+          <a href="#services">Services</a>
+          <a href="#courses">Courses</a>
+          <a href="#founder">Founder</a>
+        </div>
+      </div>
 
-</div>
+      <div>
+        <div class="footer-title">Resources</div>
+        <div class="footer-links">
+          <a href="#news">Cyber News</a>
+          <a href="#news">Security Alerts</a>
+          <a href="#about">About AUREXA</a>
+        </div>
+      </div>
 
+      <div>
+        <div class="footer-title">Connect</div>
+        <div class="footer-links">
+          <a href="#contact">Contact</a>
+          <a href="https://www.linkedin.com/" target="_blank">LinkedIn</a>
+          <a href="https://www.instagram.com/" target="_blank">Instagram</a>
+        </div>
+      </div>
 
-<div>
+    </div>
 
-<p>
-Founder & CEO:
-<b style="color:white">
-Srikanth Paka
-</b>
-</p>
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> AUREXA. All rights reserved.</span>
+      <span>Cybersecurity • Technology • Innovation</span>
+    </div>
 
-<p style="margin-top:7px">
-© 2026 AUREXA. All rights reserved.
-</p>
-
-</div>
-
-</div>
-
+  </div>
 </footer>
 
 
-<!-- MOBILE BAR -->
-
-<div class="bottomBar">
-
-<a href="tel:+919640724438">
-
-<span>📞</span>
-<b>Call</b>
-
-</a>
-
-
-<a
-href="https://wa.me/919640724438"
-target="_blank"
-rel="noopener">
-
-<span>💬</span>
-<b>WhatsApp</b>
-
-</a>
-
-
-<a href="mailto:srikanthh3k@gmail.com">
-
-<span>✉️</span>
-<b>Email</b>
-
-</a>
-
-</div>
-
-
-<button
-class="toTop"
-onclick="window.scrollTo({top:0,behavior:'smooth'})">
-↑
-</button>
-
-
-<!-- COURSE MODAL -->
-
-<div id="courseModal" class="modal">
-
-<div class="modalBox">
-
-<button
-class="close"
-onclick="closeModal('courseModal')">
-×
-</button>
-
-<div id="courseDetails"></div>
-
-</div>
-
-</div>
-
-
-<!-- BUY MODAL -->
-
-<div id="buyModal" class="modal">
-
-<div class="modalBox">
-
-<button
-class="close"
-onclick="closeModal('buyModal')">
-×
-</button>
-
-<div class="kicker">
-COURSE ENROLLMENT
-</div>
-
-<h2 id="buyTitle">
-Enroll
-</h2>
-
-<p>
-Fill your details and complete the payment.
-After submitting, your enrollment request will
-be saved for the AUREXA admin dashboard.
-</p>
-
-
-<div class="payment">
-
-<div>
-Course Price
-</div>
-
-<div
-class="upi"
-id="buyPrice">
-₹0
-</div>
-
-<hr
-style="margin:15px 0;border:0;border-top:1px solid #dce8f2"
->
-
-<div>
-UPI Payment ID
-</div>
-
-<div class="upi">
-9640724438@pthdfc
-</div>
-
-<p style="margin-top:10px">
-Pay the exact course amount using your UPI app.
-</p>
-
-</div>
-
-
-<form
-class="form"
-onsubmit="submitOrder(event)"
->
-
-<input
-id="buyerName"
-required
-placeholder="Full Name"
->
-
-<input
-id="buyerPhone"
-required
-pattern="[0-9]{10}"
-placeholder="10-digit Mobile Number"
->
-
-<input
-id="buyerEmail"
-type="email"
-required
-placeholder="Email Address"
->
-
-<input
-id="paymentRef"
-required
-placeholder="UPI Transaction / Payment Reference"
->
-
-<textarea
-id="buyerMessage"
-placeholder="Message (optional)"
-></textarea>
-
-<button
-class="btn primary"
-type="submit">
-Submit Enrollment →
-</button>
-
-</form>
-
-</div>
-
-</div>
-
-
-<!-- ALERT MODAL -->
-
-<div id="alertModal" class="modal">
-
-<div class="modalBox">
-
-<button
-class="close"
-onclick="closeModal('alertModal')">
-×
-</button>
-
-<div class="kicker">
-AUREXA ALERTS
-</div>
-
-<h2>
-Cyber Safety Alerts
-</h2>
-
-<div class="module">
-🛡️ Never share OTP or passwords.
-</div>
-
-<div class="module">
-🔗 Verify suspicious links before opening.
-</div>
-
-<div class="module">
-🔐 Enable MFA wherever possible.
-</div>
-
-<div class="module">
-📱 Keep apps and devices updated.
-</div>
-
-<div class="module">
-👁️ Review your privacy settings regularly.
-</div>
-
-</div>
-
-</div>
-
-
 <script>
-
-/* ADMIN PASSWORD */
-
-const ADMIN_PASSWORD="AUREXA@2026";
-
-
-/* COURSES */
-
-const courses=[
-
-{
-id:1,
-icon:"🧑‍💻",
-level:"BEGINNER → INTERMEDIATE",
-title:"Cybersecurity Fundamentals",
-price:999,
-description:"Build a strong foundation in cybersecurity, threats, security principles, passwords, authentication and safe digital practices.",
-tags:["Security Basics","Networking","Awareness"],
-modules:[
-"Introduction to Cybersecurity",
-"Common Cyber Threats",
-"Networking Fundamentals",
-"Authentication & Access Control",
-"Password Security",
-"Malware & Phishing",
-"Security Awareness",
-"Incident Basics"
-]
-},
-
-{
-id:2,
-icon:"👨‍💻",
-level:"INTERMEDIATE",
-title:"Ethical Hacking",
-price:2499,
-description:"Explore ethical hacking concepts, reconnaissance, vulnerability assessment, web security and responsible security testing methodologies.",
-tags:["Ethical Hacking","Web Security","Pentesting"],
-modules:[
-"Ethical Hacking Fundamentals",
-"Reconnaissance",
-"Scanning Concepts",
-"Vulnerability Assessment",
-"Web Security",
-"Authentication Testing",
-"Security Testing Methodology",
-"Responsible Disclosure"
-]
-},
-
-{
-id:3,
-icon:"🤖",
-level:"ADVANCED",
-title:"AI & Cybersecurity",
-price:2999,
-description:"Explore how artificial intelligence is transforming threat detection, security automation, cyber defense and security operations.",
-tags:["AI","Security","Automation"],
-modules:[
-"AI Security Fundamentals",
-"Threat Detection",
-"Machine Learning Concepts",
-"Security Automation",
-"AI-assisted Analysis",
-"Detection Engineering",
-"AI Security Risks",
-"Future of Cyber Defense"
-]
-},
-
-{
-id:4,
-icon:"☁️",
-level:"INTERMEDIATE",
-title:"Cloud Security",
-price:1999,
-description:"Understand secure cloud accounts, identity management, access control, cloud threats and security best practices.",
-tags:["Cloud","IAM","Security"],
-modules:[
-"Cloud Security Fundamentals",
-"Cloud Identity",
-"Access Management",
-"Secure Configuration",
-"Cloud Threats",
-"Data Protection",
-"Monitoring",
-"Cloud Security Best Practices"
-]
-},
-
-{
-id:5,
-icon:"🌐",
-level:"INTERMEDIATE",
-title:"Web Security & Pentesting",
-price:2299,
-description:"Learn modern web security concepts, application security, common vulnerabilities and responsible penetration testing.",
-tags:["Web Security","OWASP","Pentesting"],
-modules:[
-"Web Application Architecture",
-"HTTP & HTTPS",
-"Authentication Security",
-"Input Validation",
-"OWASP Concepts",
-"Session Security",
-"Security Testing",
-"Responsible Reporting"
-]
-},
-
-{
-id:6,
-icon:"👁️",
-level:"BEGINNER",
-title:"Digital Privacy & Awareness",
-price:799,
-description:"Learn practical methods to reduce unnecessary exposure of personal information and improve everyday digital privacy.",
-tags:["Privacy","Awareness","Safety"],
-modules:[
-"Digital Privacy Fundamentals",
-"Personal Information",
-"Social Media Privacy",
-"Browser Privacy",
-"App Permissions",
-"Phishing Awareness",
-"Account Protection",
-"Digital Safety"
-]
-}
-
-];
-
-
-let selectedCourse=null;
-
-
-/* COURSE CARDS */
-
-function renderCourses(){
-
-const grid=document.getElementById("courseGrid");
-
-grid.innerHTML=courses.map(c=>`
-
-<article class="course">
-
-<div class="courseIcon">
-${c.icon}
-</div>
-
-<div class="level">
-${c.level}
-</div>
-
-<h3>
-${c.title}
-</h3>
-
-<p>
-${c.description}
-</p>
-
-<div class="tags">
-
-${c.tags.map(t=>
-`<span class="tag">${escapeHTML(t)}</span>`
-).join("")}
-
-</div>
-
-<div class="price">
-₹${c.price.toLocaleString("en-IN")}
-</div>
-
-<div class="courseActions">
-
-<button
-class="smallBtn"
-onclick="viewCourse(${c.id})">
-View Course →
-</button>
-
-<button
-class="smallBtn buy"
-onclick="buyCourse(${c.id})">
-Buy Course
-</button>
-
-</div>
-
-</article>
-
-`).join("");
-
-}
-
-
-/* COURSE DETAILS */
-
-function viewCourse(id){
-
-const c=courses.find(x=>x.id===id);
-
-if(!c)return;
-
-document.getElementById("courseDetails").innerHTML=`
-
-<div class="courseIcon">
-${c.icon}
-</div>
-
-<div class="level">
-${c.level}
-</div>
-
-<h2>
-${escapeHTML(c.title)}
-</h2>
-
-<p>
-${escapeHTML(c.description)}
-</p>
-
-<div class="price">
-₹${c.price.toLocaleString("en-IN")}
-</div>
-
-<h3 style="margin:25px 0 10px">
-Course Modules
-</h3>
-
-${c.modules.map((m,i)=>
-`<div class="module">${i+1}. ${escapeHTML(m)}</div>`
-).join("")}
-
-<div style="margin-top:25px">
-
-<button
-class="btn primary"
-onclick="closeModal('courseModal');buyCourse(${c.id})">
-Enroll Now →
-</button>
-
-</div>
-
-`;
-
-document
-.getElementById("courseModal")
-.classList.add("show");
-
-}
-
-
-/* BUY COURSE */
-
-function buyCourse(id){
-
-selectedCourse=courses.find(x=>x.id===id);
-
-if(!selectedCourse)return;
-
-document.getElementById("buyTitle").textContent=
-"Enroll — "+selectedCourse.title;
-
-document.getElementById("buyPrice").textContent=
-"₹"+selectedCourse.price.toLocaleString("en-IN");
-
-document
-.getElementById("buyModal")
-.classList.add("show");
-
-}
-
-
-/* SUBMIT ORDER */
-
-function submitOrder(e){
-
-e.preventDefault();
-
-if(!selectedCourse){
- alert("Please select a course.");
- return;
-}
-
-const order={
-
-id:Date.now(),
-
-name:document
-.getElementById("buyerName")
-.value
-.trim(),
-
-phone:document
-.getElementById("buyerPhone")
-.value
-.trim(),
-
-email:document
-.getElementById("buyerEmail")
-.value
-.trim(),
-
-course:selectedCourse.title,
-
-price:selectedCourse.price,
-
-paymentRef:document
-.getElementById("paymentRef")
-.value
-.trim(),
-
-message:document
-.getElementById("buyerMessage")
-.value
-.trim(),
-
-date:new Date().toLocaleString("en-IN")
-
-};
-
-
-const orders=
-JSON.parse(
-localStorage.getItem("aurexa_orders")||"[]"
-);
-
-
-orders.push(order);
-
-
-localStorage.setItem(
-"aurexa_orders",
-JSON.stringify(orders)
-);
-
-
-const whatsapp=
-"Hello AUREXA,%0A%0A"+
-"I want to enroll in "+
-encodeURIComponent(order.course)+
-".%0A%0A"+
-"Name: "+
-encodeURIComponent(order.name)+
-"%0APhone: "+
-encodeURIComponent(order.phone)+
-"%0AEmail: "+
-encodeURIComponent(order.email)+
-"%0APayment Ref: "+
-encodeURIComponent(order.paymentRef);
-
-
-alert(
-"Enrollment submitted successfully!\n\n"+
-"Please contact AUREXA on WhatsApp with your payment reference."
-);
-
-
-window.open(
-"https://wa.me/919640724438?text="+whatsapp,
-"_blank"
-);
-
-
-e.target.reset();
-
-closeModal("buyModal");
-
-}
-
-
-/* ADMIN LOGIN */
-
-function loginAdmin(){
-
-const password=
-document
-.getElementById("adminPassword")
-.value;
-
-if(password!==ADMIN_PASSWORD){
-
-alert("Incorrect admin password.");
-
-return;
-
-}
-
-document
-.getElementById("dashboard")
-.classList.add("show");
-
-loadDashboard();
-
-}
-
-
-/* DASHBOARD */
-
-function loadDashboard(){
-
-const orders=
-JSON.parse(
-localStorage.getItem("aurexa_orders")||"[]"
-);
-
-
-document.getElementById("orderCount")
-.textContent=orders.length;
-
-
-const total=
-orders.reduce(
-(sum,o)=>sum+Number(o.price||0),
-0
-);
-
-
-document.getElementById("revenue")
-.textContent=
-"₹"+total.toLocaleString("en-IN");
-
-
-document.getElementById("latest")
-.textContent=
-orders.length
-?
-orders[orders.length-1].course
-:
-"—";
-
-
-document.getElementById("ordersTable").innerHTML=
-
-orders.length?
-
-orders.map(o=>`
-
-<tr>
-
-<td>
-${escapeHTML(o.name)}
-</td>
-
-<td>
-${escapeHTML(o.phone)}
-</td>
-
-<td>
-${escapeHTML(o.course)}
-</td>
-
-<td>
-₹${Number(o.price).toLocaleString("en-IN")}
-</td>
-
-<td>
-${escapeHTML(o.paymentRef)}
-</td>
-
-<td>
-${escapeHTML(o.date)}
-</td>
-
-</tr>
-
-`).join(""):
-
-`<tr>
-<td colspan="6">
-No orders yet.
-</td>
-</tr>`;
-
-}
-
-
-/* CSV EXPORT */
-
-function exportOrders(){
-
-const orders=
-JSON.parse(
-localStorage.getItem("aurexa_orders")||"[]"
-);
-
-
-if(!orders.length){
-
-alert("No orders available.");
-
-return;
-
-}
-
-
-const header=[
-"Name",
-"Phone",
-"Email",
-"Course",
-"Price",
-"Payment Reference",
-"Message",
-"Date"
-];
-
-
-const rows=orders.map(o=>[
-o.name,
-o.phone,
-o.email,
-o.course,
-o.price,
-o.paymentRef,
-o.message,
-o.date
-]);
-
-
-const csv=[
-header,
-...rows
-]
-.map(row=>
-row.map(v=>
-`"${String(v??"").replaceAll('"','""')}"`
-).join(",")
-)
-.join("\n");
-
-
-const blob=
-new Blob(
-[csv],
-{type:"text/csv"}
-);
-
-
-const url=
-URL.createObjectURL(blob);
-
-
-const a=
-document.createElement("a");
-
-
-a.href=url;
-
-a.download=
-"aurexa-orders.csv";
-
-a.click();
-
-
-URL.revokeObjectURL(url);
-
-}
-
-
-/* CLEAR ORDERS */
-
-function clearOrders(){
-
-if(!confirm(
-"Delete all local AUREXA orders?"
-))return;
-
-
-localStorage.removeItem(
-"aurexa_orders"
-);
-
-
-loadDashboard();
-
-}
-
-
-/* ALERTS */
-
-function showAlerts(){
-
-document
-.getElementById("alertModal")
-.classList.add("show");
-
-}
-
-
-/* MOBILE MENU */
-
 function toggleMenu(){
-
-document
-.getElementById("mobileNav")
-.classList.toggle("show");
-
+  document.getElementById("navLinks").classList.toggle("active");
 }
 
-
-/* MODAL */
-
-function closeModal(id){
-
-document
-.getElementById(id)
-.classList.remove("show");
-
-}
-
-
-/* ESCAPE HTML */
-
-function escapeHTML(value){
-
-return String(value??"")
-.replaceAll("&","&amp;")
-.replaceAll("<","&lt;")
-.replaceAll(">","&gt;")
-.replaceAll('"',"&quot;")
-.replaceAll("'","&#039;");
-
-}
-
-
-/* CLOSE WHEN CLICKING OUTSIDE */
-
-document
-.querySelectorAll(".modal")
-.forEach(m=>{
-
-m.addEventListener("click",e=>{
-
-if(e.target===m){
-
-m.classList.remove("show");
-
-}
-
+document.querySelectorAll(".nav-links a").forEach(link=>{
+  link.addEventListener("click",()=>{
+    document.getElementById("navLinks").classList.remove("active");
+  });
 });
 
-});
-
-
-/* ESC KEY */
-
-document.addEventListener("keydown",e=>{
-
-if(e.key==="Escape"){
-
-document
-.querySelectorAll(".modal")
-.forEach(m=>
-m.classList.remove("show")
-);
-
-}
-
-});
-
-
-/* START */
-
-renderCourses();
-
+document.getElementById("year").textContent = new Date().getFullYear();
 </script>
 
 </body>
