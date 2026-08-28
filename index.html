@@ -4,84 +4,96 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AUREXA | AI-Powered Cybersecurity Platform</title>
-    <meta name="description" content="AUREXA Enterprise Cybersecurity - Detect. Analyze. Respond. Protect.">
+    <meta name="description" content="Detect. Analyze. Respond. Protect. Enterprise-grade security intelligence.">
     
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
     
-    <!-- Dependencies -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
         /* ==========================================================================
            1. CSS VARIABLES & THEMING
            ========================================================================== */
         :root {
-            /* Light Theme - Corporate Default */
+            /* Light Theme */
             --bg-base: #f8fafc;
             --bg-surface: #ffffff;
-            --bg-glass: rgba(255, 255, 255, 0.85);
+            --bg-surface-glass: rgba(255, 255, 255, 0.85);
             --bg-hover: #f1f5f9;
+            --bg-elevated: #ffffff;
             
             --text-primary: #0f172a;
             --text-secondary: #475569;
             --text-muted: #94a3b8;
             --text-inverse: #ffffff;
             
-            --border-color: #e2e8f0;
-            --border-glass: rgba(255, 255, 255, 0.5);
+            --border-light: #e2e8f0;
+            --border-focus: #3b82f6;
             
-            --primary: #0f172a; /* Navy */
+            --primary: #0f172a; /* Deep Navy */
             --primary-hover: #1e293b;
-            --secondary: #2563eb; /* Blue */
+            --secondary: #2563eb; /* Electric Blue */
             --secondary-hover: #1d4ed8;
             --accent: #06b6d4; /* Cyan */
-            --accent-violet: #6366f1;
+            --accent-purple: #8b5cf6;
             
-            --success: #10b981;
-            --success-bg: #d1fae5;
-            --warning: #f59e0b;
-            --warning-bg: #fef3c7;
-            --danger: #ef4444;
-            --danger-bg: #fee2e2;
-            --info: #3b82f6;
-            --info-bg: #dbeafe;
+            --status-safe: #10b981;
+            --status-safe-bg: #d1fae5;
+            --status-warn: #f59e0b;
+            --status-warn-bg: #fef3c7;
+            --status-crit: #ef4444;
+            --status-crit-bg: #fee2e2;
+            --status-info: #3b82f6;
+            --status-info-bg: #dbeafe;
             
             --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
             --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
             --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-glow: 0 0 20px rgba(37, 99, 235, 0.2);
             
-            --radius-md: 8px;
-            --radius-lg: 12px;
-            --radius-xl: 16px;
+            --radius-sm: 6px;
+            --radius-md: 10px;
+            --radius-lg: 16px;
+            --radius-full: 9999px;
             
-            --header-height: 72px;
-            --sidebar-width: 260px;
-            --z-nav: 9000;
-            --z-overlay: 9998;
-            --z-drawer: 9999;
+            --nav-height: 72px;
+            --z-base: 1;
+            --z-nav: 100;
+            --z-dropdown: 200;
+            --z-modal: 1000;
+            --z-toast: 2000;
         }
 
         [data-theme="dark"] {
             --bg-base: #020617;
             --bg-surface: #0f172a;
-            --bg-glass: rgba(15, 23, 42, 0.85);
+            --bg-surface-glass: rgba(15, 23, 42, 0.85);
             --bg-hover: #1e293b;
+            --bg-elevated: #1e293b;
             
             --text-primary: #f8fafc;
             --text-secondary: #cbd5e1;
-            --border-color: #334155;
-            --border-glass: rgba(255, 255, 255, 0.1);
+            --text-muted: #64748b;
             
-            --primary: #3b82f6;
-            --primary-hover: #60a5fa;
+            --border-light: #334155;
+            --border-focus: #60a5fa;
             
-            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+            --primary: #38bdf8;
+            --primary-hover: #7dd3fc;
+            --secondary: #3b82f6;
+            
+            --status-safe-bg: rgba(16, 185, 129, 0.15);
+            --status-warn-bg: rgba(245, 158, 11, 0.15);
+            --status-crit-bg: rgba(239, 68, 68, 0.15);
+            --status-info-bg: rgba(59, 130, 246, 0.15);
+            
             --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
             --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+            --shadow-glow: 0 0 25px rgba(56, 189, 248, 0.15);
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -89,938 +101,1665 @@
         }
 
         /* ==========================================================================
-           2. BASE STYLES
+           2. BASE STYLES & RESET
            ========================================================================== */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background-color: var(--bg-base); color: var(--text-primary); line-height: 1.5; overflow-x: hidden; transition: background-color 0.3s, color 0.3s; }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-base); color: var(--text-primary); line-height: 1.6; overflow-x: hidden; transition: background-color 0.3s, color 0.3s; -webkit-font-smoothing: antialiased; }
+        h1, h2, h3, h4, h5, h6 { font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 0.5rem; }
         a { color: var(--secondary); text-decoration: none; transition: color 0.2s; }
         a:hover { color: var(--secondary-hover); }
         ul { list-style: none; }
-        button { cursor: pointer; font-family: inherit; border: none; background: none; color: inherit; }
-        img { max-width: 100%; height: auto; display: block; }
+        button { cursor: pointer; font-family: inherit; border: none; background: none; color: inherit; outline: none; }
+        img, svg { max-width: 100%; height: auto; display: block; }
         .hidden { display: none !important; }
         
-        h1, h2, h3, h4, h5, h6 { font-weight: 600; letter-spacing: -0.02em; margin-bottom: 0.5rem; line-height: 1.2; }
+        .container { width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; }
+        .page-section { display: none; opacity: 0; animation: fadeIn 0.4s ease forwards; min-height: calc(100vh - var(--nav-height) - 100px); padding: 3rem 0; }
+        .page-section.active { display: block; }
         
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
         /* ==========================================================================
-           3. LAYOUT
+           3. UI COMPONENTS
            ========================================================================== */
-        .app-container { display: flex; height: 100vh; overflow: hidden; }
-        .main-wrapper { flex: 1; display: flex; flex-direction: column; height: 100vh; overflow: hidden; position: relative; }
-        .content-area { flex: 1; overflow-y: auto; padding: 2rem; scroll-behavior: smooth; }
+        /* Cards */
+        .card { background: var(--bg-surface); border: 1px solid var(--border-light); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); padding: 1.5rem; transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s; position: relative; overflow: hidden; }
+        .card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+        .card-glass { background: var(--bg-surface-glass); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-color: rgba(255,255,255,0.1); }
         
+        /* Buttons */
+        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.625rem 1.25rem; font-size: 0.95rem; font-weight: 600; border-radius: var(--radius-md); transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); user-select: none; }
+        .btn-primary { background: linear-gradient(135deg, var(--secondary), #0ea5e9); color: white; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2); border: 1px solid transparent; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(37, 99, 235, 0.3); }
+        .btn-secondary { background: var(--bg-surface); color: var(--text-primary); border: 1px solid var(--border-light); }
+        .btn-secondary:hover { background: var(--bg-hover); border-color: var(--text-secondary); }
+        .btn-danger { background: var(--status-crit); color: white; }
+        .btn-danger:hover { background: #dc2626; }
+        .btn-ghost { background: transparent; color: var(--text-secondary); }
+        .btn-ghost:hover { background: var(--bg-hover); color: var(--text-primary); }
+        .btn-block { width: 100%; }
+
+        /* Badges */
+        .badge { display: inline-flex; align-items: center; padding: 0.25rem 0.6rem; border-radius: var(--radius-full); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+        .badge-safe { background: var(--status-safe-bg); color: var(--status-safe); }
+        .badge-warn { background: var(--status-warn-bg); color: var(--status-warn); }
+        .badge-crit { background: var(--status-crit-bg); color: var(--status-crit); }
+        .badge-info { background: var(--status-info-bg); color: var(--status-info); }
+        .badge-outline { background: transparent; border: 1px solid currentColor; color: var(--text-muted); }
+
+        /* Forms */
+        .form-group { margin-bottom: 1.25rem; }
+        .form-label { display: block; font-size: 0.875rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-primary); }
+        .form-control { width: 100%; padding: 0.75rem 1rem; border-radius: var(--radius-md); border: 1px solid var(--border-light); background-color: var(--bg-base); color: var(--text-primary); font-family: inherit; font-size: 0.95rem; transition: all 0.2s; outline: none; }
+        .form-control:focus { border-color: var(--border-focus); box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15); }
+        textarea.form-control { resize: vertical; min-height: 100px; }
+        select.form-control { appearance: none; background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%2364748b%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'); background-repeat: no-repeat; background-position: right 1rem center; background-size: 0.65rem auto; padding-right: 2.5rem; }
+
+        /* Grids */
         .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
         .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
         .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
 
-        /* ==========================================================================
-           4. SIDEBAR NAVIGATION
-           ========================================================================== */
-        .sidebar { width: var(--sidebar-width); background-color: var(--bg-surface); border-right: 1px solid var(--border-color); display: flex; flex-direction: column; z-index: var(--z-nav); transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-        .sidebar-header { height: var(--header-height); display: flex; align-items: center; padding: 0 1.5rem; border-bottom: 1px solid var(--border-color); }
-        
-        /* Logo CSS Implementation */
-        .brand-logo { display: flex; align-items: center; gap: 0.75rem; font-weight: 700; font-size: 1.25rem; letter-spacing: -0.5px; }
-        .logo-mark { width: 32px; height: 32px; background: linear-gradient(135deg, var(--primary), var(--secondary)); clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); position: relative; display: flex; align-items: center; justify-content: center; }
-        .logo-mark::before { content: ''; position: absolute; width: 16px; height: 16px; background: var(--bg-surface); clip-path: polygon(50% 0%, 100% 100%, 0% 100%); top: 8px; }
-        
-        .nav-content { flex: 1; overflow-y: auto; padding: 1.5rem 1rem; }
-        .nav-section { margin-bottom: 1.5rem; }
-        .nav-title { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); font-weight: 700; margin-bottom: 0.5rem; padding-left: 0.75rem; }
-        .nav-item { display: flex; align-items: center; padding: 0.6rem 0.75rem; border-radius: var(--radius-md); font-size: 0.9rem; font-weight: 500; color: var(--text-primary); transition: all 0.2s; margin-bottom: 0.25rem; width: 100%; text-align: left; }
-        .nav-item:hover { background-color: var(--bg-hover); color: var(--secondary); }
-        .nav-item.active { background-color: rgba(37, 99, 235, 0.1); color: var(--secondary); font-weight: 600; }
-
-        /* Mobile Drawer Overlay */
-        .menu-overlay { position: fixed; inset: 0; background-color: rgba(15, 23, 42, 0.7); backdrop-filter: blur(4px); z-index: var(--z-overlay); opacity: 0; visibility: hidden; transition: all 0.3s; }
-        .menu-overlay.active { opacity: 1; visibility: visible; }
-        .no-scroll { overflow: hidden !important; }
-
-        /* ==========================================================================
-           5. TOP HEADER
-           ========================================================================== */
-        .top-header { height: var(--header-height); background: var(--bg-glass); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-color); display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; position: sticky; top: 0; z-index: 50; }
-        .header-left { display: flex; align-items: center; gap: 1rem; }
-        .menu-toggle { display: none; font-size: 1.5rem; color: var(--text-primary); padding: 0.5rem; border-radius: var(--radius-md); border: 1px solid var(--border-color); }
-        
-        .header-right { display: flex; align-items: center; gap: 1rem; }
-        .icon-btn { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background-color: var(--bg-surface); border: 1px solid var(--border-color); transition: all 0.2s; font-size: 1.1rem; }
-        .icon-btn:hover { background-color: var(--bg-hover); }
-        
-        /* Notifications */
-        .notif-container { position: relative; }
-        .notif-badge { position: absolute; top: 0; right: 0; width: 10px; height: 10px; background-color: var(--danger); border-radius: 50%; border: 2px solid var(--bg-surface); }
-        .notif-dropdown { position: absolute; top: 120%; right: 0; width: 320px; background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); opacity: 0; visibility: hidden; transform: translateY(10px); transition: all 0.2s; z-index: 100; }
-        .notif-dropdown.active { opacity: 1; visibility: visible; transform: translateY(0); }
-        .notif-header { padding: 1rem; border-bottom: 1px solid var(--border-color); font-weight: 600; display: flex; justify-content: space-between; }
-        .notif-body { padding: 1rem; max-height: 300px; overflow-y: auto; font-size: 0.85rem; }
-
-        /* ==========================================================================
-           6. COMPONENTS (Cards, Buttons, Forms)
-           ========================================================================== */
-        .card { background-color: var(--bg-surface); border-radius: var(--radius-lg); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm); padding: 1.5rem; transition: transform 0.3s, box-shadow 0.3s; position: relative; }
-        .card:hover { box-shadow: var(--shadow-md); }
-        
-        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.6rem 1.25rem; font-size: 0.9rem; font-weight: 600; border-radius: var(--radius-md); transition: all 0.2s; }
-        .btn-primary { background-color: var(--secondary); color: white; border: 1px solid transparent; }
-        .btn-primary:hover { background-color: var(--secondary-hover); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2); }
-        .btn-outline { background-color: transparent; color: var(--text-primary); border: 1px solid var(--border-color); }
-        .btn-outline:hover { background-color: var(--bg-hover); border-color: var(--text-secondary); }
-        .btn-danger { background-color: var(--danger); color: white; }
-        .btn-block { width: 100%; }
-
-        .badge { display: inline-flex; align-items: center; padding: 0.25rem 0.6rem; border-radius: 999px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
-        .badge-success { background: var(--success-bg); color: #065f46; }
-        .badge-warning { background: var(--warning-bg); color: #92400e; }
-        .badge-danger { background: var(--danger-bg); color: #991b1b; }
-        .badge-info { background: var(--info-bg); color: #1e40af; }
-        .badge-outline { border: 1px solid currentColor; background: transparent; }
-
-        .form-group { margin-bottom: 1.25rem; }
-        .form-label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-primary); }
-        .form-control { width: 100%; padding: 0.75rem 1rem; border-radius: var(--radius-md); border: 1px solid var(--border-color); background-color: var(--bg-base); color: var(--text-primary); font-family: inherit; font-size: 0.95rem; transition: all 0.2s; outline: none; }
-        .form-control:focus { border-color: var(--secondary); box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15); }
-        
+        /* Tables */
+        .table-responsive { overflow-x: auto; border: 1px solid var(--border-light); border-radius: var(--radius-md); background: var(--bg-surface); }
         table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.9rem; }
-        th, td { padding: 1rem; border-bottom: 1px solid var(--border-color); }
+        th, td { padding: 1rem; border-bottom: 1px solid var(--border-light); }
         th { background-color: var(--bg-hover); font-weight: 600; color: var(--text-muted); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.05em; }
+        tr:last-child td { border-bottom: none; }
         tbody tr:hover { background-color: var(--bg-hover); }
 
+        /* Tabs */
+        .tabs-nav { display: flex; border-bottom: 1px solid var(--border-light); margin-bottom: 1.5rem; overflow-x: auto; scrollbar-width: none; }
+        .tabs-nav::-webkit-scrollbar { display: none; }
+        .tab-btn { padding: 0.75rem 1.5rem; font-weight: 600; font-size: 0.95rem; color: var(--text-muted); border-bottom: 2px solid transparent; transition: all 0.2s; white-space: nowrap; }
+        .tab-btn:hover { color: var(--text-primary); }
+        .tab-btn.active { color: var(--secondary); border-bottom-color: var(--secondary); }
+        .tab-pane { display: none; animation: fadeIn 0.3s ease forwards; }
+        .tab-pane.active { display: block; }
+
+        /* Terminal/Console Output */
+        .console-ui { background-color: #0f172a; color: #f8fafc; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; padding: 1.5rem; border-radius: var(--radius-md); border: 1px solid #334155; overflow-x: auto; margin-top: 1.5rem; }
+        .console-header { border-bottom: 1px solid #334155; padding-bottom: 0.75rem; margin-bottom: 1rem; display: flex; justify-content: space-between; color: #94a3b8; font-weight: 600; }
+        .c-line { margin-bottom: 0.4rem; line-height: 1.5; }
+        .c-safe { color: #10b981; } .c-warn { color: #f59e0b; } .c-crit { color: #ef4444; } .c-info { color: #38bdf8; }
+
         /* ==========================================================================
-           7. 3D HERO SECTION
+           4. NAVIGATION & HEADER
            ========================================================================== */
-        .hero-section { position: relative; padding: 4rem 2rem; border-radius: var(--radius-xl); background: linear-gradient(135deg, var(--primary) 0%, #1e1b4b 100%); color: white; display: flex; align-items: center; justify-content: space-between; overflow: hidden; margin-bottom: 2rem; box-shadow: var(--shadow-lg); }
-        .hero-content { position: relative; z-index: 10; max-width: 650px; }
-        .hero-title { font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 800; line-height: 1.1; margin-bottom: 1rem; text-shadow: 0 4px 12px rgba(0,0,0,0.3); color: white; }
-        .hero-subtitle { font-size: 1.1rem; color: #cbd5e1; margin-bottom: 2.5rem; max-width: 500px; }
+        header { position: sticky; top: 0; background: var(--bg-surface-glass); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid var(--border-light); z-index: var(--z-nav); height: var(--nav-height); display: flex; align-items: center; }
+        .nav-container { display: flex; align-items: center; justify-content: space-between; width: 100%; }
+        
+        .brand { display: flex; align-items: center; gap: 0.75rem; font-weight: 800; font-size: 1.25rem; letter-spacing: -0.02em; color: var(--text-primary); z-index: calc(var(--z-nav) + 2); }
+        .logo-mark { width: 32px; height: 32px; background: linear-gradient(135deg, var(--secondary), var(--accent)); clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); position: relative; display: flex; align-items: center; justify-content: center; }
+        .logo-mark::before { content: ''; position: absolute; width: 14px; height: 14px; background: var(--bg-surface); clip-path: polygon(50% 0%, 100% 100%, 0% 100%); top: 8px; transition: background 0.3s; }
+        
+        .desktop-nav { display: flex; align-items: center; gap: 1.5rem; }
+        .nav-link { font-weight: 600; font-size: 0.9rem; color: var(--text-secondary); transition: color 0.2s; }
+        .nav-link:hover, .nav-link.active { color: var(--secondary); }
+        
+        .header-actions { display: flex; align-items: center; gap: 0.75rem; }
+        .icon-btn { width: 40px; height: 40px; border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; background: var(--bg-base); border: 1px solid var(--border-light); color: var(--text-secondary); transition: all 0.2s; position: relative; }
+        .icon-btn:hover { background: var(--bg-hover); color: var(--text-primary); }
+        .badge-dot { position: absolute; top: -2px; right: -2px; width: 18px; height: 18px; background: var(--status-crit); color: white; font-size: 0.65rem; font-weight: bold; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid var(--bg-surface); }
+        
+        .menu-toggle { display: none; z-index: calc(var(--z-nav) + 2); }
+
+        /* Mobile Slide-out Menu */
+        .mobile-nav { position: fixed; top: 0; left: 0; width: 300px; max-width: 80vw; height: 100vh; background: var(--bg-surface); border-right: 1px solid var(--border-light); z-index: calc(var(--z-nav) + 1); transform: translateX(-100%); transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); overflow-y: auto; padding-top: var(--nav-height); box-shadow: var(--shadow-lg); }
+        .mobile-nav.open { transform: translateX(0); }
+        .mobile-overlay { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(4px); z-index: var(--z-nav); opacity: 0; visibility: hidden; transition: all 0.3s; }
+        .mobile-overlay.active { opacity: 1; visibility: visible; }
+        .mobile-nav-group { padding: 1rem 1.5rem; border-bottom: 1px solid var(--border-light); }
+        .mobile-nav-title { font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); font-weight: 700; margin-bottom: 0.75rem; letter-spacing: 0.05em; }
+        .mobile-nav-link { display: block; padding: 0.5rem 0; font-size: 1rem; font-weight: 500; color: var(--text-primary); transition: color 0.2s; }
+        .mobile-nav-link:hover, .mobile-nav-link.active { color: var(--secondary); }
+        .body-lock { overflow: hidden !important; }
+
+        /* Dropdowns & Modals */
+        .dropdown { position: absolute; top: 120%; right: 0; width: 340px; background: var(--bg-elevated); border: 1px solid var(--border-light); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); opacity: 0; visibility: hidden; transform: translateY(10px); transition: all 0.2s; z-index: var(--z-dropdown); }
+        .dropdown.active { opacity: 1; visibility: visible; transform: translateY(0); }
+        .dropdown-header { padding: 1rem; border-bottom: 1px solid var(--border-light); font-weight: 600; display: flex; justify-content: space-between; align-items: center; }
+        .dropdown-body { max-height: 350px; overflow-y: auto; }
+        .dropdown-item { padding: 1rem; border-bottom: 1px solid var(--border-light); transition: background 0.2s; cursor: pointer; }
+        .dropdown-item:hover { background: var(--bg-hover); }
+        .dropdown-item:last-child { border-bottom: none; }
+
+        .modal-overlay { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(4px); z-index: var(--z-modal); display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: all 0.2s; padding: 1rem; }
+        .modal-overlay.active { opacity: 1; visibility: visible; }
+        .modal-content { background: var(--bg-elevated); border: 1px solid var(--border-light); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); width: 100%; max-width: 600px; max-height: 90vh; overflow-y: auto; transform: scale(0.95); transition: transform 0.2s; }
+        .modal-overlay.active .modal-content { transform: scale(1); }
+        .modal-header { padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; background: var(--bg-elevated); z-index: 2; }
+        .modal-body { padding: 1.5rem; }
+
+        /* ==========================================================================
+           5. HERO SECTION & 3D
+           ========================================================================== */
+        .hero { position: relative; padding: 5rem 0; min-height: 600px; display: flex; align-items: center; border-radius: var(--radius-xl); overflow: hidden; background: linear-gradient(135deg, var(--primary) 0%, #1e1b4b 100%); color: white; margin-top: 1rem; box-shadow: var(--shadow-glow); }
+        .hero-content { position: relative; z-index: 10; max-width: 650px; padding: 2rem; }
+        .hero-title { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; line-height: 1.1; margin-bottom: 1.25rem; letter-spacing: -0.03em; color: white; }
+        .hero-subtitle { font-size: 1.15rem; color: #cbd5e1; margin-bottom: 2.5rem; font-weight: 400; max-width: 550px; }
         .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
         
-        #threejs-container { position: absolute; right: 0; top: 0; width: 50%; height: 100%; z-index: 1; pointer-events: none; }
+        #hero-canvas { position: absolute; top: 0; right: 0; width: 60%; height: 100%; z-index: 1; pointer-events: none; }
         
-        .stat-card { display: flex; flex-direction: column; }
-        .stat-value { font-size: 2.2rem; font-weight: 700; color: var(--text-primary); margin: 0.5rem 0; line-height: 1; }
-        .stat-label { font-size: 0.85rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+        .stat-banner { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: -3rem; position: relative; z-index: 20; }
+        .stat-box { padding: 1.5rem; text-align: center; }
+        .stat-num { font-size: 2.5rem; font-weight: 800; color: var(--text-primary); line-height: 1; margin-bottom: 0.5rem; }
+        .stat-text { font-size: 0.85rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
 
         /* ==========================================================================
-           8. SPECIFIC VIEWS (Scanner, Chat, Service States)
+           6. PAGE SPECIFIC STYLES
            ========================================================================== */
-        .view-section { display: none; animation: fadeIn 0.4s ease-out forwards; }
-        .view-section.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-        /* Service Config State */
-        .service-state { border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 3rem 2rem; text-align: center; background-color: var(--bg-surface); }
-        .service-icon { font-size: 2.5rem; margin-bottom: 1rem; opacity: 0.5; }
-        .service-title { font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem; }
-        .service-desc { color: var(--text-muted); max-width: 500px; margin: 0 auto 1.5rem; font-size: 0.95rem; }
-
-        /* Scanner Terminal */
-        .terminal-ui { background-color: #0f172a; color: #e2e8f0; font-family: 'JetBrains Mono', monospace; font-size: 0.875rem; padding: 1.5rem; border-radius: var(--radius-md); border: 1px solid #334155; margin-top: 1.5rem; overflow-x: auto; }
-        .term-header { border-bottom: 1px solid #334155; padding-bottom: 0.75rem; margin-bottom: 1rem; display: flex; justify-content: space-between; font-weight: 700; color: #94a3b8; }
-        .term-line { margin-bottom: 0.5rem; line-height: 1.6; }
-        .t-safe { color: #10b981; } .t-warn { color: #f59e0b; } .t-crit { color: #ef4444; } .t-info { color: #38bdf8; }
-
         /* AI Copilot */
-        .chat-layout { display: flex; flex-direction: column; height: 600px; border: 1px solid var(--border-color); border-radius: var(--radius-lg); overflow: hidden; background: var(--bg-surface); }
-        .chat-history { flex: 1; padding: 1.5rem; overflow-y: auto; display: flex; flex-direction: column; gap: 1rem; background-color: var(--bg-base); }
-        .chat-bubble { max-width: 80%; padding: 1rem; border-radius: var(--radius-lg); font-size: 0.95rem; line-height: 1.5; box-shadow: var(--shadow-sm); }
-        .bubble-ai { background-color: var(--bg-surface); align-self: flex-start; border-bottom-left-radius: 4px; border: 1px solid var(--border-color); }
-        .bubble-user { background-color: var(--secondary); color: white; align-self: flex-end; border-bottom-right-radius: 4px; }
+        .chat-container { display: flex; flex-direction: column; height: 600px; border: 1px solid var(--border-light); border-radius: var(--radius-lg); overflow: hidden; background: var(--bg-surface); box-shadow: var(--shadow-sm); }
+        .chat-messages { flex: 1; padding: 1.5rem; overflow-y: auto; display: flex; flex-direction: column; gap: 1rem; background-color: var(--bg-base); scroll-behavior: smooth; }
+        .msg-bubble { max-width: 80%; padding: 1rem 1.25rem; border-radius: var(--radius-lg); font-size: 0.95rem; line-height: 1.5; box-shadow: var(--shadow-sm); }
+        .msg-ai { background: var(--bg-surface); align-self: flex-start; border-bottom-left-radius: 4px; border: 1px solid var(--border-light); }
+        .msg-user { background: linear-gradient(135deg, var(--secondary), #0ea5e9); color: white; align-self: flex-end; border-bottom-right-radius: 4px; }
+        .chat-input { padding: 1rem; background: var(--bg-surface); border-top: 1px solid var(--border-light); }
+        .quick-prompts { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; }
+        .prompt-chip { padding: 0.4rem 0.8rem; background: var(--bg-base); border: 1px solid var(--border-light); border-radius: var(--radius-full); font-size: 0.8rem; font-weight: 500; cursor: pointer; transition: 0.2s; color: var(--text-secondary); }
+        .prompt-chip:hover { background: var(--bg-hover); color: var(--text-primary); border-color: var(--border-focus); }
+        .typing-indicator { display: inline-flex; gap: 4px; padding: 4px 8px; }
+        .typing-dot { width: 6px; height: 6px; background: var(--text-muted); border-radius: 50%; animation: typing 1.4s infinite ease-in-out; }
+        .typing-dot:nth-child(1) { animation-delay: 0s; }
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes typing { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
 
         /* Founder Section */
-        .founder-box { display: flex; flex-direction: column; gap: 2rem; padding: 2.5rem; align-items: center; text-align: center; }
-        @media (min-width: 768px) { .founder-box { flex-direction: row; text-align: left; align-items: flex-start; } }
-        .founder-img { width: 160px; height: 160px; border-radius: 50%; object-fit: cover; border: 4px solid var(--bg-surface); box-shadow: var(--shadow-md); flex-shrink: 0; background-color: var(--bg-hover); }
+        .founder-grid { display: grid; grid-template-columns: 1fr; gap: 3rem; align-items: center; }
+        @media (min-width: 768px) { .founder-grid { grid-template-columns: 350px 1fr; } }
+        .founder-img-wrapper { position: relative; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-lg); background: var(--primary); aspect-ratio: 4/5; }
+        .founder-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+        .founder-img-wrapper:hover .founder-img { transform: scale(1.05); }
         
         /* Fraud Section */
-        .fraud-banner { background-color: var(--danger-bg); border-left: 4px solid var(--danger); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 2rem; }
-        .helpline { font-size: 3.5rem; font-weight: 800; color: var(--danger); letter-spacing: 2px; line-height: 1; margin: 1rem 0; }
+        .fraud-alert { background: var(--status-crit-bg); border-left: 4px solid var(--status-crit); padding: 2rem; border-radius: var(--radius-md); margin-bottom: 2rem; text-align: center; }
+        .fraud-number { font-size: 4rem; font-weight: 900; color: var(--status-crit); letter-spacing: 2px; line-height: 1; margin: 1rem 0; text-shadow: 0 2px 10px rgba(239, 68, 68, 0.2); }
 
-        .mt-1 { margin-top: 0.5rem; } .mt-2 { margin-top: 1rem; } .mt-3 { margin-top: 1.5rem; } .mb-1 { margin-bottom: 0.5rem; } .mb-2 { margin-bottom: 1rem; } .mb-3 { margin-bottom: 1.5rem; }
-        .w-full { width: 100%; } .text-center { text-align: center; }
+        /* Utilities */
+        .text-center { text-align: center; }
+        .text-right { text-align: right; }
+        .mt-1 { margin-top: 0.5rem; } .mt-2 { margin-top: 1rem; } .mt-3 { margin-top: 1.5rem; } .mt-4 { margin-top: 2rem; }
+        .mb-1 { margin-bottom: 0.5rem; } .mb-2 { margin-bottom: 1rem; } .mb-3 { margin-bottom: 1.5rem; } .mb-4 { margin-bottom: 2rem; }
+        .flex-between { display: flex; justify-content: space-between; align-items: center; }
+        .section-header { margin-bottom: 2.5rem; max-width: 700px; }
+        .section-header h2 { font-size: 2.2rem; }
+        .section-header p { font-size: 1.1rem; color: var(--text-secondary); }
 
         /* ==========================================================================
-           9. RESPONSIVE (MOBILE FIXES)
+           7. RESPONSIVE DESIGN
            ========================================================================== */
         @media (max-width: 1024px) {
             .grid-4 { grid-template-columns: repeat(2, 1fr); }
-            #threejs-container { opacity: 0.4; }
+            #hero-canvas { opacity: 0.4; width: 100%; }
         }
         
         @media (max-width: 768px) {
-            .sidebar { position: fixed; top: 0; left: 0; height: 100vh; transform: translateX(-100%); z-index: var(--z-drawer); background: var(--bg-surface); }
-            .sidebar.open { transform: translateX(0); }
-            .hamburger-btn { display: block; }
-            .top-header { padding: 0 1rem; }
-            .content-area { padding: 1rem; }
+            .desktop-nav { display: none; }
+            .menu-toggle { display: block; }
             .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
-            .hero-section { padding: 2.5rem 1.5rem; text-align: center; justify-content: center; }
+            
+            .hero { padding: 3rem 0; min-height: auto; margin-top: 0; text-align: center; border-radius: 0; }
+            .hero-content { padding: 1.5rem; margin: 0 auto; }
             .hero-actions { justify-content: center; }
-            #threejs-container { display: none; }
-            .notif-dropdown { width: 100%; position: fixed; top: var(--header-height); right: 0; border-radius: 0; border-left: none; border-right: none; }
+            #hero-canvas { display: none; }
+            .stat-banner { grid-template-columns: 1fr 1fr; margin-top: 0; padding: 1rem; }
+            
+            .container { padding: 0 1rem; }
+            .card { padding: 1.25rem; }
+            .tabs-nav { padding-bottom: 5px; }
+            .dropdown { width: 100%; position: fixed; top: var(--nav-height); right: 0; border-radius: 0; border-left: none; border-right: none; }
+            
+            .founder-grid { text-align: center; }
+            .founder-img-wrapper { max-width: 300px; margin: 0 auto; aspect-ratio: 1; border-radius: 50%; }
         }
+
+        /* Toast Notifications */
+        #toast-container { position: fixed; bottom: 20px; right: 20px; z-index: var(--z-toast); display: flex; flex-direction: column; gap: 10px; }
+        .toast { background: var(--bg-elevated); color: var(--text-primary); padding: 1rem 1.5rem; border-radius: var(--radius-md); box-shadow: var(--shadow-lg); border-left: 4px solid var(--secondary); display: flex; align-items: center; gap: 0.75rem; font-weight: 500; animation: slideInRight 0.3s forwards, fadeOut 0.3s 2.7s forwards; }
+        .toast.error { border-left-color: var(--status-crit); }
+        .toast.success { border-left-color: var(--status-safe); }
+        @keyframes slideInRight { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        @keyframes fadeOut { to { opacity: 0; visibility: hidden; } }
     </style>
 </head>
 <body>
 
-<div class="app-container">
-    
-    <!-- Mobile Drawer Overlay -->
-    <div class="menu-overlay" id="menuOverlay" onclick="App.toggleMenu()"></div>
-
-    <!-- Sidebar Navigation -->
-    <aside class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-            <div class="brand-logo">
+    <header>
+        <div class="container nav-container">
+            <a href="#/home" class="brand">
                 <div class="logo-mark"></div>
                 AUREXA
-            </div>
-        </div>
-        
-        <nav class="nav-content">
-            <div class="nav-section">
-                <div class="nav-title">Overview</div>
-                <button class="nav-item active" onclick="App.navigate('dashboard', this)">Home</button>
-            </div>
+            </a>
             
-            <div class="nav-section">
-                <div class="nav-title">Security Intelligence</div>
-                <button class="nav-item" onclick="App.navigate('scanner', this)">Security Scanner</button>
-                <button class="nav-item" onclick="App.navigate('copilot', this)">AI Copilot</button>
-                <button class="nav-item" onclick="App.navigate('threat', this)">Threat Intelligence</button>
-                <button class="nav-item" onclick="App.navigate('ioc', this)">IOC Intelligence</button>
-                <button class="nav-item" onclick="App.navigate('mitre', this)">MITRE ATT&CK</button>
-                <button class="nav-item" onclick="App.navigate('news', this)">Cyber News</button>
-            </div>
+            <nav class="desktop-nav">
+                <a href="#/scanner" class="nav-link">Scanner</a>
+                <a href="#/copilot" class="nav-link">AI Copilot</a>
+                <a href="#/threats" class="nav-link">Threat Intel</a>
+                <a href="#/news" class="nav-link">News</a>
+                <a href="#/courses" class="nav-link">Courses</a>
+                <a href="#/fraud" class="nav-link" style="color: var(--status-crit);">Fraud Help</a>
+            </nav>
             
-            <div class="nav-section">
-                <div class="nav-title">Operations</div>
-                <button class="nav-item" onclick="App.navigate('incidents', this)">Incidents</button>
-                <button class="nav-item" onclick="App.navigate('alerts', this)">Alerts</button>
-                <button class="nav-item" onclick="App.navigate('reports', this)">Reports</button>
-            </div>
-            
-            <div class="nav-section">
-                <div class="nav-title">Platform</div>
-                <button class="nav-item" onclick="App.navigate('fraud', this)">Cyber Fraud Help</button>
-                <button class="nav-item" onclick="App.navigate('founder', this)">Founder & CEO</button>
-                <button class="nav-item" onclick="App.navigate('about', this)">About</button>
-                <button class="nav-item" onclick="App.navigate('contact', this)">Contact</button>
-                <button class="nav-item" onclick="App.navigate('admin', this)">Admin Panel</button>
-            </div>
-        </nav>
-    </aside>
-
-    <!-- Main Content -->
-    <main class="main-wrapper">
-        
-        <!-- Top Header -->
-        <header class="top-header">
-            <div class="header-left">
-                <button class="hamburger-btn menu-toggle" onclick="App.toggleMenu()" aria-label="Toggle Navigation">☰</button>
-            </div>
-            
-            <div class="header-right">
-                <!-- Global Search -->
-                <div style="display: flex; align-items: center; background: var(--bg-base); border: 1px solid var(--border-color); border-radius: 99px; padding: 0.25rem 1rem; margin-right: 1rem;" class="hidden-mobile">
-                    <span style="color: var(--text-muted); margin-right: 0.5rem;">🔍</span>
-                    <input type="text" placeholder="Search... (Ctrl+K)" style="border: none; background: transparent; outline: none; font-size: 0.85rem; color: var(--text-primary); width: 150px;">
+            <div class="header-actions">
+                <button class="icon-btn hidden-mobile" onclick="UI.openSearch()" aria-label="Search">
+                    <i data-lucide="search" style="width:18px;height:18px;"></i>
+                </button>
+                <button class="icon-btn" onclick="UI.toggleTheme()" aria-label="Toggle Theme">
+                    <i data-lucide="moon" id="theme-icon" style="width:18px;height:18px;"></i>
+                </button>
+                
+                <div style="position: relative;">
+                    <button class="icon-btn" onclick="UI.toggleDropdown('notifDropdown')" aria-label="Notifications">
+                        <i data-lucide="bell" style="width:18px;height:18px;"></i>
+                        <span class="badge-dot" id="notif-count">2</span>
+                    </button>
+                    <div class="dropdown" id="notifDropdown">
+                        <div class="dropdown-header">
+                            <span>Notifications</span>
+                            <button class="btn-ghost" style="font-size: 0.8rem; padding: 0.2rem 0.5rem;" onclick="Data.clearNotifications()">Mark all read</button>
+                        </div>
+                        <div class="dropdown-body" id="notif-list">
+                            </div>
+                    </div>
                 </div>
                 
-                <button class="icon-btn" onclick="App.toggleTheme()" aria-label="Toggle Theme">🌓</button>
-                
-                <div class="notif-container">
-                    <button class="icon-btn" onclick="document.getElementById('notifDropdown').classList.toggle('active')" aria-label="Notifications">
-                        🔔<div class="notif-badge"></div>
-                    </button>
-                    <div class="notif-dropdown" id="notifDropdown">
-                        <div class="notif-header">
-                            <span>Notifications</span>
-                            <button style="color: var(--secondary); font-size: 0.8rem;">Mark read</button>
+                <a href="#/admin" class="btn btn-secondary hidden-mobile" style="padding: 0.4rem 1rem; font-size: 0.85rem;">Admin</a>
+                <button class="menu-toggle icon-btn" onclick="UI.toggleMobileMenu()" aria-label="Menu">
+                    <i data-lucide="menu" style="width:20px;height:20px;"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="mobile-overlay" id="mobileOverlay" onclick="UI.toggleMobileMenu()"></div>
+    <nav class="mobile-nav" id="mobileNav">
+        <div class="mobile-nav-group">
+            <div class="mobile-nav-title">Overview</div>
+            <a href="#/home" class="mobile-nav-link" onclick="UI.toggleMobileMenu()">Home</a>
+        </div>
+        <div class="mobile-nav-group">
+            <div class="mobile-nav-title">Security Apps</div>
+            <a href="#/scanner" class="mobile-nav-link" onclick="UI.toggleMobileMenu()">Security Scanner</a>
+            <a href="#/copilot" class="mobile-nav-link" onclick="UI.toggleMobileMenu()">AI Copilot</a>
+            <a href="#/threats" class="mobile-nav-link" onclick="UI.toggleMobileMenu()">Threat Intelligence</a>
+            <a href="#/news" class="mobile-nav-link" onclick="UI.toggleMobileMenu()">Cyber News</a>
+            <a href="#/mitre" class="mobile-nav-link" onclick="UI.toggleMobileMenu()">MITRE ATT&CK</a>
+        </div>
+        <div class="mobile-nav-group">
+            <div class="mobile-nav-title">Education & Help</div>
+            <a href="#/courses" class="mobile-nav-link" onclick="UI.toggleMobileMenu()">Courses</a>
+            <a href="#/fraud" class="mobile-nav-link" style="color: var(--status-crit);" onclick="UI.toggleMobileMenu()">Report Cyber Fraud</a>
+        </div>
+        <div class="mobile-nav-group">
+            <div class="mobile-nav-title">Company</div>
+            <a href="#/about" class="mobile-nav-link" onclick="UI.toggleMobileMenu()">About AUREXA</a>
+            <a href="#/founder" class="mobile-nav-link" onclick="UI.toggleMobileMenu()">Founder & CEO</a>
+            <a href="#/contact" class="mobile-nav-link" onclick="UI.toggleMobileMenu()">Contact</a>
+            <a href="#/admin" class="mobile-nav-link" onclick="UI.toggleMobileMenu()">Admin Login</a>
+        </div>
+    </nav>
+
+    <main id="app-root">
+        
+        <section id="view-home" class="page-section">
+            <div class="container">
+                <div class="hero">
+                    <div id="hero-canvas"></div>
+                    <div class="hero-content">
+                        <div class="badge badge-info mb-3" style="background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); color: white;">Enterprise SaaS Platform</div>
+                        <h1 class="hero-title">AI-Powered Cybersecurity Platform</h1>
+                        <p class="hero-subtitle">Detect. Analyze. Respond. Protect. Enterprise-grade security intelligence and incident response architecture for modern digital threats.</p>
+                        <div class="hero-actions">
+                            <a href="#/scanner" class="btn btn-primary" style="background: white; color: var(--primary);">START SECURITY SCAN</a>
+                            <a href="#/copilot" class="btn btn-outline" style="background: rgba(255,255,255,0.1); color: white; border-color: rgba(255,255,255,0.3);">OPEN AI COPILOT</a>
                         </div>
-                        <div class="notif-body">
-                            <div style="margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-color);">
-                                <strong style="color: var(--warning);">Configuration Notice</strong>
-                                <p style="color: var(--text-muted); font-size: 0.8rem; margin-top: 0.25rem;">System is running with local heuristics. Connect API endpoints to enable real-time threat intelligence.</p>
+                    </div>
+                </div>
+
+                <div class="stat-banner card card-glass">
+                    <div class="stat-box">
+                        <div class="stat-num" id="count-scans">142,580</div>
+                        <div class="stat-text">Security Checks</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-num" style="color: var(--status-crit);" id="count-threats">3,412</div>
+                        <div class="stat-text">Threats Analyzed</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-num" style="color: var(--status-warn);" id="count-alerts">24</div>
+                        <div class="stat-text">Active Alerts</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-num" style="color: var(--status-safe);">99.9%</div>
+                        <div class="stat-text">System Uptime</div>
+                    </div>
+                </div>
+
+                <div class="grid-2 mt-4">
+                    <div class="card">
+                        <div class="flex-between mb-3">
+                            <h4>Threat Detection Trend</h4>
+                            <span class="badge badge-outline">Curated Intelligence</span>
+                        </div>
+                        <div style="height: 250px; position: relative;">
+                            <canvas id="homeChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="flex-between mb-3">
+                            <h4>Latest Cybersecurity News</h4>
+                            <a href="#/news" class="btn btn-ghost" style="padding: 0.2rem 0.5rem; font-size: 0.85rem;">View All</a>
+                        </div>
+                        <div id="home-news-list" style="display: flex; flex-direction: column; gap: 1rem;">
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="view-scanner" class="page-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Security Scanner</h2>
+                    <p>Analyze URLs, domains, and files for heuristic risk indicators, structural anomalies, and known threat patterns.</p>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="tabs-nav">
+                        <button class="tab-btn active" onclick="UI.switchTab('scan', 'url', this)">Website / URL</button>
+                        <button class="tab-btn" onclick="UI.switchTab('scan', 'apk', this)">APK Screening</button>
+                    </div>
+
+                    <div id="tab-scan-url" class="tab-pane active">
+                        <div style="background: var(--status-info-bg); border-left: 4px solid var(--status-info); padding: 1rem; border-radius: var(--radius-sm); margin-bottom: 1.5rem; font-size: 0.9rem;">
+                            <strong>Architecture Notice:</strong> The AUREXA frontend performs <em>local heuristic analysis</em>. Connect your backend Threat Intelligence APIs in settings to enable deep reputation, DNS, and sandbox scanning.
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Target URL or Domain</label>
+                            <input type="text" id="scan-target" class="form-control" placeholder="https://example.com" autocomplete="off" onkeypress="if(event.key === 'Enter') Scanner.analyzeUrl()">
+                        </div>
+                        
+                        <div class="grid-2 mb-3">
+                            <div class="form-group mb-0">
+                                <label class="form-label">Scan Depth</label>
+                                <select class="form-control" id="scan-depth">
+                                    <option value="quick">Quick Heuristics (Local Engine)</option>
+                                    <option value="standard" disabled>Standard Reputation (API Required)</option>
+                                    <option value="deep" disabled>Deep Sandbox (API Required)</option>
+                                </select>
+                            </div>
+                            <div style="display: flex; align-items: flex-end;">
+                                <button class="btn btn-primary btn-block" style="height: 44px;" onclick="Scanner.analyzeUrl()">
+                                    <i data-lucide="shield-alert" style="width:18px;height:18px;"></i> Analyze Target
+                                </button>
+                            </div>
+                        </div>
+
+                        <div id="scan-results" class="console-ui hidden">
+                            <div class="console-header">
+                                <span>AUREXA Local Heuristics Engine</span>
+                                <span id="scan-time"></span>
+                            </div>
+                            <div id="scan-output"></div>
+                        </div>
+                    </div>
+
+                    <div id="tab-scan-apk" class="tab-pane">
+                        <div class="grid-2">
+                            <div>
+                                <div style="border: 2px dashed var(--border-light); padding: 3rem 1.5rem; text-align: center; border-radius: var(--radius-md); background: var(--bg-base); cursor: pointer; transition: all 0.2s;" onclick="document.getElementById('apk-input').click()" onmouseover="this.style.borderColor='var(--border-focus)'" onmouseout="this.style.borderColor='var(--border-light)'">
+                                    <i data-lucide="file-badge" style="width:48px;height:48px; color:var(--text-muted); margin: 0 auto 1rem;"></i>
+                                    <h4 class="mb-1">Select APK File</h4>
+                                    <p class="text-muted" style="font-size: 0.85rem;">Extract local metadata and SHA-256 hash.</p>
+                                    <input type="file" id="apk-input" accept=".apk" class="hidden" onchange="Scanner.analyzeApk(event)">
+                                </div>
+                            </div>
+                            <div>
+                                <div id="apk-results" class="console-ui" style="margin-top: 0; height: 100%;">
+                                    <div class="console-header"><span>Static Analysis Info</span></div>
+                                    <div id="apk-output" class="text-muted">Awaiting file selection...</div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                
-                <button class="btn btn-outline" style="padding: 0.4rem 1rem; font-size: 0.85rem;" onclick="App.navigate('admin')">Admin</button>
             </div>
-        </header>
+        </section>
 
-        <!-- Dynamic Views Area -->
-        <div class="content-area" id="viewContainer">
-            
-            <!-- ==========================================
-                 VIEW: DASHBOARD (Home)
-                 ========================================== -->
-            <section id="view-dashboard" class="view-section active">
-                <div class="hero-section">
-                    <div id="threejs-container"></div>
-                    <div class="hero-content">
-                        <h1 class="hero-title">AI-Powered Cybersecurity Platform</h1>
-                        <p class="hero-subtitle">Detect. Analyze. Respond. Protect. Enterprise-grade security intelligence and incident response in one unified architecture.</p>
-                        <div class="hero-actions">
-                            <button class="btn btn-primary" onclick="App.navigate('scanner')">START SECURITY SCAN</button>
-                            <button class="btn btn-outline" style="background: rgba(255,255,255,0.1); color: white; border-color: rgba(255,255,255,0.3);" onclick="App.navigate('copilot')">OPEN AI COPILOT</button>
+        <section id="view-copilot" class="page-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>AUREXA AI Copilot</h2>
+                    <p>Defensive cybersecurity guidance, incident response planning, and indicator analysis assistant.</p>
+                </div>
+                
+                <div class="chat-container">
+                    <div class="chat-messages" id="chat-history">
+                        <div class="msg-bubble msg-ai">
+                            <strong>AUREXA Copilot:</strong> Hello. I am operating in <strong>Local Knowledge Mode</strong> (AI_API_ENDPOINT not configured). I can provide defensive guidance based on predefined security playbooks. How can I assist you today?
+                        </div>
+                    </div>
+                    
+                    <div class="chat-input">
+                        <div class="quick-prompts mb-2">
+                            <button class="prompt-chip" onclick="Copilot.ask('Analyze this suspicious URL')">Analyze suspicious URL</button>
+                            <button class="prompt-chip" onclick="Copilot.ask('Explain phishing')">Explain phishing</button>
+                            <button class="prompt-chip" onclick="Copilot.ask('What should I do after a cyber fraud?')">Scam response guide</button>
+                            <button class="prompt-chip" onclick="Copilot.ask('Create an incident response plan')">Incident response plan</button>
+                        </div>
+                        <div style="display: flex; gap: 0.5rem;">
+                            <input type="text" id="chat-input-field" class="form-control" placeholder="Ask a security question..." onkeypress="if(event.key === 'Enter') Copilot.send()">
+                            <button class="btn btn-primary" onclick="Copilot.send()">
+                                <i data-lucide="send" style="width:18px;height:18px;"></i>
+                            </button>
+                            <button class="btn btn-secondary" onclick="Copilot.clear()" title="Clear Chat">
+                                <i data-lucide="trash-2" style="width:18px;height:18px;"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <div class="mb-2" style="display: flex; justify-content: space-between; align-items: flex-end;">
-                    <h2 style="margin: 0;">Platform Telemetry</h2>
-                    <span class="badge badge-outline" style="color: var(--text-muted);">Sample Dashboard Data</span>
+        <section id="view-threats" class="page-section">
+            <div class="container">
+                <div class="flex-between mb-4">
+                    <div class="section-header mb-0">
+                        <h2>Threat Intelligence</h2>
+                        <p>Global threat feeds, IOCs, and attack campaign tracking.</p>
+                    </div>
+                    <span class="badge badge-outline">Curated Intelligence DB</span>
                 </div>
-
+                
                 <div class="grid-4 mb-4">
-                    <div class="card stat-card">
-                        <span class="stat-label">Security Checks</span>
-                        <span class="stat-value">124,582</span>
-                        <span class="badge badge-success">System Nominal</span>
+                    <div class="card text-center" style="border-top: 4px solid var(--status-crit);">
+                        <h4 class="mb-1 text-muted">Threat Level</h4>
+                        <h2 style="color: var(--status-crit); font-size: 2.5rem; margin-bottom: 0;">ELEVATED</h2>
                     </div>
-                    <div class="card stat-card">
-                        <span class="stat-label">Threats Monitored</span>
-                        <span class="stat-value" style="color: var(--danger);">3,421</span>
-                        <span class="badge badge-outline" style="color: var(--text-muted);">Across connected nodes</span>
+                    <div class="card text-center">
+                        <h4 class="mb-1 text-muted">Active Campaigns</h4>
+                        <h2 style="font-size: 2.5rem; margin-bottom: 0;">12</h2>
                     </div>
-                    <div class="card stat-card">
-                        <span class="stat-label">Active Alerts</span>
-                        <span class="stat-value" style="color: var(--warning);">18</span>
-                        <span class="badge badge-warning">Requires SOC Review</span>
+                    <div class="card text-center">
+                        <h4 class="mb-1 text-muted">New IOCs (24h)</h4>
+                        <h2 style="color: var(--secondary); font-size: 2.5rem; margin-bottom: 0;">1,402</h2>
                     </div>
-                    <div class="card stat-card">
-                        <span class="stat-label">System Risk Score</span>
-                        <span class="stat-value">24/100</span>
-                        <span class="badge badge-success">Low Risk Posture</span>
+                    <div class="card text-center">
+                        <h4 class="mb-1 text-muted">Zero-Days</h4>
+                        <h2 style="color: var(--status-warn); font-size: 2.5rem; margin-bottom: 0;">3</h2>
                     </div>
                 </div>
 
-                <div class="grid-2">
-                    <div class="card">
-                        <h4 class="mb-3">Threat Detection Trend</h4>
-                        <div style="height: 250px; position: relative;">
-                            <canvas id="trendChart"></canvas>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-                            <h4 style="margin: 0;">Recent Alerts</h4>
-                            <button class="btn btn-outline" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;" onclick="App.navigate('alerts')">View Queue</button>
-                        </div>
-                        <div style="overflow-x: auto;">
-                            <table>
-                                <thead><tr><th>Severity</th><th>Source</th><th>Status</th></tr></thead>
-                                <tbody>
-                                    <tr><td><span class="badge badge-danger">Critical</span></td><td>auth.aurexa.space</td><td>Investigating</td></tr>
-                                    <tr><td><span class="badge badge-warning">High</span></td><td>mobile.api.endpoint</td><td>Open</td></tr>
-                                    <tr><td><span class="badge badge-info">Medium</span></td><td>user-workstation-04</td><td>Contained</td></tr>
+                <div class="card">
+                    <h4 class="mb-3">Recent Threat Indicators</h4>
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr><th>Indicator</th><th>Type</th><th>Severity</th><th>Campaign / Family</th><th>Status</th></tr>
+                            </thead>
+                            <tbody id="threats-table-body">
                                 </tbody>
-                            </table>
-                        </div>
+                        </table>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <!-- ==========================================
-                 VIEW: SECURITY SCANNER
-                 ========================================== -->
-            <section id="view-scanner" class="view-section hidden">
-                <div class="mb-4">
-                    <h2>Security Scanner</h2>
-                    <p class="text-muted">Analyze URLs and domains for structural anomalies, phishing patterns, and heuristic risk indicators.</p>
-                </div>
-
-                <div class="card mb-4">
-                    <div style="display: flex; gap: 1rem; border-bottom: 1px solid var(--border-color); margin-bottom: 1.5rem; padding-bottom: 0.5rem;">
-                        <button style="font-weight: 600; color: var(--secondary); border-bottom: 2px solid var(--secondary); padding-bottom: 0.5rem;">Website / URL</button>
-                        <button style="font-weight: 600; color: var(--text-muted);" onclick="alert('APK Scanner requires backend file upload architecture.')">APK Screening</button>
+        <section id="view-news" class="page-section">
+            <div class="container">
+                <div class="flex-between mb-4">
+                    <div class="section-header mb-0">
+                        <h2>Cyber Security News</h2>
+                        <p>Vulnerability alerts, threat briefings, and industry updates.</p>
                     </div>
-
-                    <div class="form-group">
-                        <label class="form-label">Target URL or Domain</label>
-                        <input type="text" id="urlInput" class="form-control" placeholder="https://example.com" onkeypress="if(event.key === 'Enter') Scanner.analyzeUrl()">
+                    <div style="display: flex; gap: 1rem;">
+                        <input type="text" id="news-search" class="form-control" placeholder="Search news..." style="width: 200px;" oninput="UI.renderNews()">
+                        <select id="news-filter" class="form-control" style="width: 150px;" onchange="UI.renderNews()">
+                            <option value="All">All Categories</option>
+                            <option value="Vulnerability">Vulnerability</option>
+                            <option value="Malware">Malware</option>
+                            <option value="Data Breach">Data Breach</option>
+                        </select>
                     </div>
-                    
-                    <div class="grid-2 mb-3">
-                        <div class="form-group mb-0">
-                            <label class="form-label">Scan Depth</label>
-                            <select class="form-control" id="scanDepth">
-                                <option value="quick">Quick (Local Heuristic Analysis)</option>
-                                <option value="standard" disabled>Standard (API Connection Required)</option>
-                                <option value="deep" disabled>Deep (API Connection Required)</option>
-                            </select>
-                        </div>
-                        <div style="display: flex; align-items: flex-end;">
-                            <button class="btn btn-primary btn-block" style="height: 44px;" onclick="Scanner.analyzeUrl()">Analyze URL</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="urlResultBox" class="terminal-ui hidden">
-                    <div class="term-header">
-                        <span>AUREXA Local Heuristics Engine</span>
-                        <span id="urlTimestamp"></span>
-                    </div>
-                    <div id="urlTermContent"></div>
-                </div>
-            </section>
-
-            <!-- ==========================================
-                 VIEW: AI COPILOT
-                 ========================================== -->
-            <section id="view-copilot" class="view-section hidden">
-                <div class="mb-4">
-                    <h2>AUREXA AI Security Copilot</h2>
-                    <p class="text-muted">Defensive cybersecurity guidance and analysis assistant.</p>
                 </div>
                 
-                <div id="copilotState" class="service-state">
-                    <div class="service-icon">🤖</div>
-                    <h3 class="service-title">AI Copilot Not Configured</h3>
-                    <p class="service-desc">The AI backend endpoint (AI_API_ENDPOINT) is not configured. Connect your enterprise LLM provider to enable intelligent analysis, alert explanations, and interactive security guidance.</p>
-                    <div class="form-group" style="max-width: 400px; margin: 0 auto; text-align: left;">
-                        <label class="form-label">Configuration Path:</label>
-                        <input type="text" class="form-control" value="CONFIG.AI_API_ENDPOINT" disabled style="background: var(--bg-hover);">
+                <div class="grid-3" id="news-grid">
                     </div>
+            </div>
+        </section>
+        
+        <section id="view-mitre" class="page-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>MITRE ATT&CK® Framework</h2>
+                    <p>Defensive mapping of adversary tactics and techniques.</p>
                 </div>
-            </section>
+                <div class="card">
+                    <div class="grid-4" id="mitre-grid">
+                        </div>
+                </div>
+            </div>
+        </section>
 
-            <!-- ==========================================
-                 VIEW: THREAT INTEL, NEWS, MITRE, IOC (Unified Unconfigured State)
-                 ========================================== -->
-            <section id="view-threat" class="view-section hidden">
-                <div class="mb-4"><h2>Threat Intelligence</h2></div>
-                <div class="service-state">
-                    <div class="service-icon">🛡️</div>
-                    <h3 class="service-title">Intelligence Provider Not Configured</h3>
-                    <p class="service-desc">Connect the THREAT_INTEL_API endpoint to visualize global threat feeds, malicious URLs, and malware indicators.</p>
+        <section id="view-courses" class="page-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Cybersecurity Training</h2>
+                    <p>Professional courses designed to build operational security skills.</p>
                 </div>
-            </section>
+                
+                <div class="grid-3" id="courses-grid">
+                    </div>
+            </div>
+        </section>
 
-            <section id="view-news" class="view-section hidden">
-                <div class="mb-4"><h2>Cyber Security News</h2></div>
-                <div class="service-state">
-                    <div class="service-icon">📰</div>
-                    <h3 class="service-title">Live cyber news feed is not configured.</h3>
-                    <p class="service-desc">Please connect the NEWS_API_ENDPOINT to fetch live cybersecurity news, vulnerability alerts, and threat advisories.</p>
+        <section id="view-fraud" class="page-section">
+            <div class="container">
+                <div class="section-header text-center mx-auto" style="margin: 0 auto 2.5rem; max-width: 800px;">
+                    <h2>Report Cyber Fraud & Scams</h2>
+                    <p>Immediate action steps and official reporting channels for victims of financial fraud, hacking, or scams in India.</p>
                 </div>
-            </section>
 
-            <section id="view-ioc" class="view-section hidden">
-                <div class="mb-4"><h2>IOC Intelligence</h2></div>
-                <div class="service-state">
-                    <div class="service-icon">🔍</div>
-                    <h3 class="service-title">IOC Lookup Unavailable</h3>
-                    <p class="service-desc">Configure IOC_API_ENDPOINT to enable investigation of IP addresses, Domains, Hashes, and CVEs against global reputation databases.</p>
-                </div>
-            </section>
-
-            <section id="view-mitre" class="view-section hidden">
-                <div class="mb-4"><h2>MITRE ATT&CK Mapping</h2></div>
-                <div class="service-state">
-                    <div class="service-icon">📊</div>
-                    <h3 class="service-title">Framework Data Not Loaded</h3>
-                    <p class="service-desc">Configure MITRE_API_ENDPOINT to load and map defensive tactics, techniques, and sub-techniques.</p>
-                </div>
-            </section>
-            
-            <!-- ==========================================
-                 VIEW: OPERATIONS (Incidents, Alerts, Reports)
-                 ========================================== -->
-            <section id="view-incidents" class="view-section hidden">
-                <div class="mb-4"><h2>Incident Management</h2></div>
-                <div class="service-state">
-                    <h3 class="service-title">Backend Connection Required</h3>
-                    <p class="service-desc">Incident creation, tracking, and resolution requires a secure connection to the central AUREXA database API.</p>
-                </div>
-            </section>
-            
-            <section id="view-alerts" class="view-section hidden">
-                <div class="mb-4"><h2>Alert Queue</h2></div>
-                <div class="service-state">
-                    <h3 class="service-title">SIEM Connector Required</h3>
-                    <p class="service-desc">Configure backend connectors to stream live security alerts into this queue.</p>
-                </div>
-            </section>
-            
-            <section id="view-reports" class="view-section hidden">
-                <div class="mb-4"><h2>Security Reports</h2></div>
-                <div class="card text-center" style="padding: 3rem;">
-                    <h3 class="mb-3">Generate Executive Summary</h3>
-                    <p class="text-muted mb-4">Export current dashboard telemetry and heuristic scan history.</p>
-                    <button class="btn btn-primary" onclick="window.print()">Print Dashboard to PDF</button>
-                </div>
-            </section>
-
-            <!-- ==========================================
-                 VIEW: CYBER FRAUD HELP (INDIA)
-                 ========================================== -->
-            <section id="view-fraud" class="view-section hidden">
-                <div class="mb-4">
-                    <h2>Report Cyber Fraud (India)</h2>
-                    <p class="text-muted">Immediate action steps and official reporting channels for financial and cyber fraud.</p>
+                <div class="fraud-alert">
+                    <h3 style="color: var(--status-crit);">National Cyber Crime Reporting Helpline</h3>
+                    <div class="fraud-number">1930</div>
+                    <p style="color: var(--status-crit); font-weight: 500; margin-bottom: 1.5rem; font-size: 1.1rem;">Dial immediately to report financial fraud, UPI scams, and unauthorized bank transfers in India.</p>
+                    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                        <a href="tel:1930" class="btn btn-danger" style="padding: 1rem 2rem; font-size: 1.1rem;">
+                            <i data-lucide="phone-call" style="width:20px;height:20px;"></i> CALL 1930
+                        </a>
+                        <a href="https://www.cybercrime.gov.in/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="background: white; padding: 1rem 2rem; font-size: 1.1rem;">
+                            <i data-lucide="external-link" style="width:20px;height:20px;"></i> FILE ONLINE REPORT
+                        </a>
+                    </div>
                 </div>
 
                 <div class="grid-2">
-                    <div>
-                        <div class="fraud-banner">
-                            <h3 style="color: var(--danger);">National Cyber Crime Helpline</h3>
-                            <div class="helpline">1930</div>
-                            <p style="color: var(--danger); font-weight: 500; margin-bottom: 1rem;">Dial immediately to report financial fraud, UPI scams, and unauthorized bank transfers in India.</p>
-                            <a href="https://www.cybercrime.gov.in/" target="_blank" rel="noopener noreferrer" class="btn btn-danger btn-block">REPORT ON CYBERCRIME.GOV.IN</a>
+                    <div class="card">
+                        <h4 class="mb-3">Emergency Action Steps</h4>
+                        <ul style="display: flex; flex-direction: column; gap: 1rem;">
+                            <li style="display: flex; gap: 0.75rem;">
+                                <i data-lucide="shield-alert" style="color:var(--status-crit); width:24px;height:24px; flex-shrink:0;"></i>
+                                <div><strong>Disconnect:</strong> Turn off internet/Wi-Fi immediately if remote access malware is suspected.</div>
+                            </li>
+                            <li style="display: flex; gap: 0.75rem;">
+                                <i data-lucide="credit-card" style="color:var(--status-crit); width:24px;height:24px; flex-shrink:0;"></i>
+                                <div><strong>Block Financial Assets:</strong> Contact your bank immediately to freeze credit cards, debit cards, and UPI handles.</div>
+                            </li>
+                            <li style="display: flex; gap: 0.75rem;">
+                                <i data-lucide="camera" style="color:var(--status-crit); width:24px;height:24px; flex-shrink:0;"></i>
+                                <div><strong>Preserve Evidence:</strong> Take screenshots of transactions, SMS, WhatsApp chats, URLs, and caller IDs. Do not delete them.</div>
+                            </li>
+                            <li style="display: flex; gap: 0.75rem;">
+                                <i data-lucide="key" style="color:var(--status-crit); width:24px;height:24px; flex-shrink:0;"></i>
+                                <div><strong>Secure Accounts:</strong> Change passwords from a <em>different, known-safe device</em>. Enable Multi-Factor Authentication (MFA).</div>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="card h-100" style="display: flex; flex-direction: column;">
+                        <h4 class="mb-3">Important Advisory</h4>
+                        <p class="text-muted mb-4">AUREXA builds enterprise cybersecurity technology. We are <strong>NOT</strong> a government entity or law enforcement agency. We cannot recover lost funds.</p>
+                        
+                        <div style="background: var(--bg-hover); padding: 1rem; border-radius: var(--radius-md); border: 1px solid var(--border-light); margin-bottom: 1.5rem;">
+                            <strong style="color: var(--status-crit);">NEVER</strong> provide your Password, OTP, PIN, CVV, or Bank Login Credentials to anyone, including our support team or anyone claiming to be police.
                         </div>
                         
-                        <div class="card">
-                            <h4 class="mb-3">Immediate Action Checklist</h4>
-                            <ul style="display: flex; flex-direction: column; gap: 0.75rem;">
-                                <li style="display: flex; gap: 0.5rem;"><span style="color: var(--danger);">🛑</span> <strong>Disconnect:</strong> Turn off internet if malware/remote-access is suspected.</li>
-                                <li style="display: flex; gap: 0.5rem;"><span style="color: var(--danger);">🛑</span> <strong>Block Assets:</strong> Contact your bank immediately to freeze cards and UPI handles.</li>
-                                <li style="display: flex; gap: 0.5rem;"><span style="color: var(--danger);">🛑</span> <strong>Preserve Evidence:</strong> Screenshot transactions, SMS, URLs, caller IDs. Do not delete them.</li>
-                                <li style="display: flex; gap: 0.5rem;"><span style="color: var(--danger);">🛑</span> <strong>Secure Accounts:</strong> Change passwords from a different, safe device. Enable MFA.</li>
-                            </ul>
+                        <div style="margin-top: auto;">
+                            <h5 class="mb-2">Need Enterprise Incident Response?</h5>
+                            <a href="#/contact" class="btn btn-outline w-full">Contact AUREXA Consulting</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="view-founder" class="page-section">
+            <div class="container">
+                <div class="founder-grid">
+                    <div>
+                        <div class="founder-img-wrapper">
+                            <img src="file_00000000d568720bb94605cdf6d9e49e.png" alt="Srikanth Paka" class="founder-img" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'400\' height=\'500\'><rect width=\'100%\' height=\'100%\' fill=\'%230f172a\'/><text x=\'50%\' y=\'50%\' font-family=\'sans-serif\' font-size=\'80\' fill=\'white\' text-anchor=\'middle\' dy=\'.3em\'>SP</text></svg>'">
                         </div>
                     </div>
                     
                     <div>
-                        <div class="card h-100">
-                            <h4 class="mb-3">Important Advisory</h4>
-                            <p class="text-muted mb-4">AUREXA builds enterprise cybersecurity technology. We are NOT a government entity or law enforcement agency. <strong>Never</strong> provide your Password, OTP, PIN, CVV, or Bank Credentials to anyone, including our support team.</p>
-                            
-                            <h5 class="mb-2">Contact AUREXA Support</h5>
-                            <p class="text-muted mb-3">For enterprise incident response consulting or platform support:</p>
-                            <a href="tel:9640724438" class="btn btn-outline w-full mb-2">📞 Call: 9640724438</a>
-                            <a href="mailto:srikanthh3k@gmail.com" class="btn btn-outline w-full">✉️ Email Support</a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- ==========================================
-                 VIEW: FOUNDER & CONTACT
-                 ========================================== -->
-            <section id="view-founder" class="view-section hidden">
-                <div class="mb-4"><h2>Executive Leadership</h2></div>
-                
-                <div class="card founder-box">
-                    <img src="file_00000000d568720bb94605cdf6d9e49e.png" alt="Srikanth Paka" class="founder-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'160\' height=\'160\' viewBox=\'0 0 160 160\'><rect width=\'160\' height=\'160\' fill=\'%230f172a\'/><text x=\'50%\' y=\'50%\' font-family=\'sans-serif\' font-size=\'40\' fill=\'white\' text-anchor=\'middle\' dy=\'.3em\'>SP</text></svg>'">
-                    <div style="flex: 1;">
-                        <h2 style="font-size: 2rem; margin-bottom: 0.25rem;">Srikanth Paka</h2>
-                        <h4 style="color: var(--secondary); margin-bottom: 1.5rem;">Founder & CEO — AUREXA | Cyber Security Solutions</h4>
+                        <h1 style="font-size: 3rem; margin-bottom: 0.25rem;">Srikanth Paka</h1>
+                        <h3 style="color: var(--secondary); margin-bottom: 2rem; font-weight: 600;">Founder & CEO, AUREXA</h3>
                         
-                        <p class="text-muted mb-4" style="font-size: 1.05rem; max-width: 700px; line-height: 1.6;">
-                            Building accessible, intelligent cybersecurity technology that helps organizations detect, understand and respond to digital threats. AUREXA is dedicated to providing transparent, high-performance security tooling.
+                        <h4 class="mb-2">Biography</h4>
+                        <p class="text-secondary mb-4" style="font-size: 1.1rem; max-width: 700px; line-height: 1.7;">
+                            Srikanth Paka is a cybersecurity professional and entrepreneur dedicated to building transparent, high-performance security tooling. With expertise as a Certified Ethical Hacker, Srikanth founded AUREXA to bridge the gap between complex threat intelligence and actionable, intuitive SOC workflows for modern enterprises and individuals.
                         </p>
                         
-                        <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
-                            <a href="mailto:srikanthh3k@gmail.com" class="btn btn-outline">✉️ Email</a>
-                            <a href="tel:9640724438" class="btn btn-outline">📞 Phone</a>
-                            <a href="https://wa.me/919640724438" target="_blank" rel="noopener" class="btn btn-outline">💬 WhatsApp</a>
-                            <a href="https://www.instagram.com/Aurexa_space/" target="_blank" rel="noopener" class="btn btn-outline">📸 Instagram</a>
+                        <h4 class="mb-2">Vision</h4>
+                        <p class="text-secondary mb-4" style="font-size: 1.1rem; max-width: 700px; line-height: 1.7;">
+                            "To democratize enterprise-grade cybersecurity by providing AI-assisted analysis platforms that empower users to detect, understand, and respond to digital threats with unprecedented clarity and speed."
+                        </p>
+                        
+                        <div style="display: flex; flex-wrap: wrap; gap: 1rem; align-items: center;">
+                            <a href="mailto:srikanthh3k@gmail.com" class="btn btn-secondary"><i data-lucide="mail" style="width:18px;height:18px;"></i> Email</a>
+                            <a href="https://wa.me/919640724438" target="_blank" rel="noopener" class="btn btn-secondary" style="color: #16a34a; border-color: #16a34a;"><i data-lucide="message-circle" style="width:18px;height:18px;"></i> WhatsApp</a>
+                            <a href="https://www.instagram.com/Aurexa_space/" target="_blank" rel="noopener" class="btn btn-secondary" style="color: #db2777; border-color: #db2777;"><i data-lucide="instagram" style="width:18px;height:18px;"></i> Instagram</a>
                         </div>
                     </div>
                 </div>
-            </section>
-            
-            <section id="view-about" class="view-section hidden">
-                <div class="mb-4"><h2>About AUREXA</h2></div>
-                <div class="card">
-                    <p class="mb-3">AUREXA is an AI-assisted cybersecurity platform focused on helping users understand suspicious URLs, indicators, incidents, and security risks through accessible workflows.</p>
-                    <p><strong>Mission:</strong> Make cybersecurity intelligence easier to understand, faster to act on, and accessible to modern teams.</p>
+            </div>
+        </section>
+        
+        <section id="view-about" class="page-section">
+            <div class="container">
+                <div class="section-header mx-auto text-center">
+                    <h2>About AUREXA</h2>
+                    <p>Building the next generation of security intelligence tools.</p>
                 </div>
-            </section>
-
-            <section id="view-contact" class="view-section hidden">
-                <div class="mb-4"><h2>Contact Us</h2></div>
-                <div class="card" style="max-width: 600px;">
-                    <div class="mb-3"><strong>Email:</strong> <a href="mailto:srikanthh3k@gmail.com">srikanthh3k@gmail.com</a></div>
-                    <div class="mb-3"><strong>Phone 1:</strong> <a href="tel:9640724438">9640724438</a></div>
-                    <div class="mb-3"><strong>Phone 2:</strong> <a href="tel:9703724438">9703724438</a></div>
-                    <div class="mb-0"><strong>Website:</strong> <a href="https://aurexa.space" target="_blank">aurexa.space</a></div>
+                <div class="card" style="max-width: 800px; margin: 0 auto;">
+                    <h4 class="mb-2">Our Mission</h4>
+                    <p class="mb-4 text-secondary">AUREXA is an AI-assisted cybersecurity platform focused on helping users understand suspicious URLs, threat indicators, incidents, and security risks through accessible and automated workflows.</p>
+                    
+                    <h4 class="mb-2">Security-First Principles</h4>
+                    <ul style="list-style-type: disc; padding-left: 1.5rem; margin-bottom: 2rem; color: var(--text-secondary);">
+                        <li class="mb-1"><strong>Privacy by Design:</strong> We do not store sensitive user data in insecure environments.</li>
+                        <li class="mb-1"><strong>Actionable Intelligence:</strong> Data is useless without context. We focus on clear remediation steps.</li>
+                        <li class="mb-1"><strong>Transparency:</strong> Security tools should not be black boxes. We show you the "why" behind every risk score.</li>
+                    </ul>
+                    
+                    <h4 class="mb-2">Technology Architecture</h4>
+                    <p class="text-secondary">Our platform integrates browser-based heuristics, cloud sandbox analysis, and global threat intelligence APIs into a unified React/Node.js based ecosystem designed for high availability and low latency.</p>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <!-- ==========================================
-                 VIEW: ADMIN LOGIN
-                 ========================================== -->
-            <section id="view-admin" class="view-section hidden">
-                <div style="max-width: 450px; margin: 4rem auto;">
+        <section id="view-contact" class="page-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Contact Us</h2>
+                    <p>Get in touch for enterprise deployments, consulting, or API access.</p>
+                </div>
+                
+                <div class="grid-2">
+                    <div>
+                        <div class="card mb-3">
+                            <h4 class="mb-3">Contact Information</h4>
+                            <div class="mb-3" style="display: flex; gap: 0.75rem; align-items: center;">
+                                <i data-lucide="mail" style="color:var(--text-muted);"></i>
+                                <div><strong>Email:</strong> <br><a href="mailto:srikanthh3k@gmail.com">srikanthh3k@gmail.com</a></div>
+                            </div>
+                            <div class="mb-3" style="display: flex; gap: 0.75rem; align-items: center;">
+                                <i data-lucide="phone" style="color:var(--text-muted);"></i>
+                                <div><strong>Phone 1:</strong> <br><a href="tel:9640724438">9640724438</a></div>
+                            </div>
+                            <div class="mb-3" style="display: flex; gap: 0.75rem; align-items: center;">
+                                <i data-lucide="phone" style="color:var(--text-muted);"></i>
+                                <div><strong>Phone 2:</strong> <br><a href="tel:9703724438">9703724438</a></div>
+                            </div>
+                            <div style="display: flex; gap: 0.75rem; align-items: center;">
+                                <i data-lucide="globe" style="color:var(--text-muted);"></i>
+                                <div><strong>Website:</strong> <br><a href="https://aurexa.space" target="_blank">aurexa.space</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="card">
+                            <h4 class="mb-3">Send a Message</h4>
+                            <div class="badge badge-outline mb-3">Saved locally (Backend unconfigured)</div>
+                            
+                            <form id="contact-form" onsubmit="App.handleContact(event)">
+                                <div class="form-group">
+                                    <label class="form-label">Name</label>
+                                    <input type="text" id="contact-name" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Email</label>
+                                    <input type="email" id="contact-email" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Message</label>
+                                    <textarea id="contact-msg" class="form-control" required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-block">Send Message</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="view-admin" class="page-section">
+            <div class="container">
+                <div style="max-width: 450px; margin: 2rem auto;">
                     <div class="card" style="padding: 2.5rem 2rem;">
                         <div class="text-center mb-4">
                             <h2>Admin Authentication</h2>
-                            <p class="text-muted" style="font-size: 0.85rem;">Secure platform administration.</p>
+                            <p class="text-muted" style="font-size: 0.85rem;">Platform administration panel.</p>
                         </div>
                         
-                        <div id="adminErrorMsg" class="hidden mb-3" style="padding: 1rem; background: var(--danger-bg); color: var(--danger); border-radius: var(--radius-md); font-size: 0.85rem; border: 1px solid var(--danger);"></div>
+                        <div style="background: var(--bg-hover); border-left: 3px solid var(--status-info); padding: 1rem; border-radius: var(--radius-sm); margin-bottom: 1.5rem; font-size: 0.85rem;">
+                            <strong>Dev Credentials:</strong><br>
+                            Email: admin@aurexa.space<br>
+                            Password: admin123
+                        </div>
 
-                        <div class="form-group">
-                            <label class="form-label">Email Address</label>
-                            <input type="email" id="adminEmail" class="form-control" placeholder="admin@aurexa.space">
+                        <form id="admin-login-form" onsubmit="Admin.login(event)">
+                            <div class="form-group">
+                                <label class="form-label">Email Address</label>
+                                <input type="email" id="admin-email" class="form-control" placeholder="admin@aurexa.space" required>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label class="form-label">Password</label>
+                                <input type="password" id="admin-pass" class="form-control" placeholder="••••••••" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Secure Login</button>
+                        </form>
+                        <div class="mt-3 text-center text-muted" style="font-size: 0.75rem;">
+                            Note: Production authentication MUST use a secure backend JWT. This UI uses localStorage for development state management.
                         </div>
-                        <div class="form-group mb-4">
-                            <label class="form-label">Password</label>
-                            <input type="password" id="adminPass" class="form-control" placeholder="••••••••">
-                        </div>
-                        
-                        <button class="btn btn-primary btn-block" onclick="Admin.login()">Secure Login</button>
                     </div>
                 </div>
-            </section>
-
-        </div>
-    </main>
-</div>
-
-<!-- ==========================================================================
-     10. JAVASCRIPT ARCHITECTURE
-     ========================================================================== -->
-<script>
-    /**
-     * CORE CONFIGURATION
-     * Frontend dynamically reacts to presence/absence of these endpoints.
-     */
-    const CONFIG = {
-        API_BASE_URL: "",
-        AUTH_API_ENDPOINT: "",
-        AI_API_ENDPOINT: "",
-        THREAT_INTEL_API: "",
-        NEWS_API_ENDPOINT: "",
-        SCANNER_API_ENDPOINT: "",
-        IOC_API_ENDPOINT: "",
-        MITRE_API_ENDPOINT: ""
-    };
-
-    /**
-     * UI & ROUTING CONTROLLER
-     */
-    const App = {
-        init: () => {
-            // Theme setup
-            if (localStorage.getItem('aurexa_theme') === 'dark' || (!localStorage.getItem('aurexa_theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                document.documentElement.setAttribute('data-theme', 'dark');
-            }
-            
-            // ESC key handler for menu
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') {
-                    const sidebar = document.getElementById('sidebar');
-                    if (sidebar.style.transform === 'translateX(0px)') {
-                        App.toggleMenu();
-                    }
-                }
-            });
-
-            // Initialize visual components
-            Charts.init();
-            Visuals.initThreeJS();
-        },
-
-        navigate: (viewId, navElement) => {
-            // Hide all views
-            document.querySelectorAll('.view-section').forEach(el => el.classList.add('hidden'));
-            
-            // Show target view
-            const target = document.getElementById(`view-${viewId}`);
-            if(target) target.classList.remove('hidden');
-
-            // Update Active Nav State
-            if (navElement) {
-                document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-                navElement.classList.add('active');
-            }
-
-            // Close mobile menu if open
-            const sidebar = document.getElementById('sidebar');
-            // Check computed style for mobile state
-            if (window.innerWidth <= 768 && sidebar.style.transform === 'translateX(0px)') {
-                App.toggleMenu();
-            }
-
-            // Scroll top
-            document.getElementById('viewContainer').scrollTop = 0;
-        },
-
-        toggleMenu: () => {
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.getElementById('menuOverlay');
-            
-            if (sidebar.style.transform === 'translateX(0px)') {
-                sidebar.style.transform = 'translateX(-100%)';
-                overlay.classList.remove('active');
-                document.body.classList.remove('no-scroll');
-            } else {
-                sidebar.style.transform = 'translateX(0px)';
-                overlay.classList.add('active');
-                document.body.classList.add('no-scroll');
-            }
-        },
-
-        toggleTheme: () => {
-            const html = document.documentElement;
-            const currentTheme = html.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            html.setAttribute('data-theme', newTheme);
-            localStorage.setItem('aurexa_theme', newTheme);
-            
-            // Update chart grid
-            if (window.trendChartInstance) {
-                const gridColor = newTheme === 'dark' ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)';
-                window.trendChartInstance.options.scales.x.grid.color = gridColor;
-                window.trendChartInstance.options.scales.y.grid.color = gridColor;
-                window.trendChartInstance.update();
-            }
-        },
+            </div>
+        </section>
         
-        sanitize: (str) => {
-            const temp = document.createElement('div');
-            temp.textContent = str;
-            return temp.innerHTML;
-        }
-    };
+        <section id="view-admin-dashboard" class="page-section">
+            <div class="container">
+                <div class="flex-between mb-4">
+                    <div>
+                        <h2>Admin Dashboard</h2>
+                        <span class="badge badge-info mt-1">Active Local Session</span>
+                    </div>
+                    <button class="btn btn-outline" onclick="Admin.logout()">Logout</button>
+                </div>
+                
+                <div class="card mb-4">
+                    <div class="tabs-nav">
+                        <button class="tab-btn active" onclick="UI.switchTab('admin', 'config', this)">API Configuration</button>
+                        <button class="tab-btn" onclick="UI.switchTab('admin', 'data', this)">Manage Content</button>
+                        <button class="tab-btn" onclick="UI.switchTab('admin', 'audit', this)">Audit Logs</button>
+                    </div>
 
-    /**
-     * SCANNER LOGIC
-     */
-    const Scanner = {
-        analyzeUrl: () => {
-            const inputEl = document.getElementById('urlInput');
-            const urlRaw = inputEl.value.trim();
-            if(!urlRaw) { alert("Please enter a URL or Domain"); return; }
-            
-            const resultBox = document.getElementById('urlResultBox');
-            const termContent = document.getElementById('urlTermContent');
-            const timeEl = document.getElementById('urlTimestamp');
-            
-            resultBox.classList.remove('hidden');
-            timeEl.textContent = new Date().toLocaleTimeString();
-            termContent.innerHTML = '<div class="term-line"><i>Executing Local Heuristic Analysis Engine...</i></div>';
-            
-            setTimeout(() => {
-                let url = urlRaw;
-                if(!url.startsWith('http')) url = 'http://' + url;
+                    <div id="tab-admin-config" class="tab-pane active">
+                        <h4 class="mb-3">API Endpoints (Placeholder)</h4>
+                        <p class="text-muted mb-4" style="font-size: 0.9rem;">Configure production endpoints here. Secrets must be stored server-side.</p>
+                        <div class="grid-2">
+                            <div class="form-group">
+                                <label class="form-label">THREAT_INTEL_API_URL</label>
+                                <input type="text" class="form-control" value="Not configured" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">AI_API_ENDPOINT</label>
+                                <input type="text" class="form-control" value="Not configured" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">NEWS_API_ENDPOINT</label>
+                                <input type="text" class="form-control" value="Not configured" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">AUTH_API_ENDPOINT</label>
+                                <input type="text" class="form-control" value="Not configured" disabled>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="tab-admin-data" class="tab-pane">
+                        <h4 class="mb-3">Manage Curated News</h4>
+                        <div class="table-responsive mb-4">
+                            <table>
+                                <thead><tr><th>Title</th><th>Category</th><th>Severity</th><th>Action</th></tr></thead>
+                                <tbody id="admin-news-table">
+                                    </tbody>
+                            </table>
+                        </div>
+                        <button class="btn btn-secondary" onclick="Admin.resetData()">Reset Default Data</button>
+                    </div>
+
+                    <div id="tab-admin-audit" class="tab-pane">
+                        <h4 class="mb-3">System Audit Logs</h4>
+                        <div class="console-ui" style="margin-top: 0; max-height: 300px; overflow-y: auto;">
+                            <div class="c-line">[SYS] Admin session initiated.</div>
+                            <div class="c-line">[SYS] Initialized local intelligence databases.</div>
+                            <div class="c-line">[WARN] API connectors not found. Falling back to local heuristics.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="view-incidents" class="page-section">
+            <div class="container">
+                <div class="section-header"><h2>Incident Management</h2><p>Track and resolve security incidents.</p></div>
+                <div class="card text-center py-5">
+                    <i data-lucide="database" style="width:48px;height:48px; color:var(--text-muted); margin: 0 auto 1rem;"></i>
+                    <h4>Database Connection Required</h4>
+                    <p class="text-muted">Incident tracking requires a persistent backend connection.</p>
+                </div>
+            </div>
+        </section>
+        <section id="view-alerts" class="page-section">
+            <div class="container">
+                <div class="section-header"><h2>Alert Center</h2><p>Security alerts awaiting triage.</p></div>
+                <div class="card text-center py-5">
+                    <i data-lucide="bell-ring" style="width:48px;height:48px; color:var(--text-muted); margin: 0 auto 1rem;"></i>
+                    <h4>SIEM Integration Required</h4>
+                    <p class="text-muted">Connect your event management system to stream live alerts here.</p>
+                </div>
+            </div>
+        </section>
+        <section id="view-reports" class="page-section">
+            <div class="container">
+                <div class="section-header"><h2>Security Reports</h2><p>Generate compliance and operational reports.</p></div>
+                <div class="card text-center py-5">
+                    <i data-lucide="file-text" style="width:48px;height:48px; color:var(--text-muted); margin: 0 auto 1rem;"></i>
+                    <h4>Reporting Engine</h4>
+                    <p class="text-muted mb-3">Export current dashboard telemetry and intelligence.</p>
+                    <button class="btn btn-primary" onclick="window.print()">Print Report to PDF</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="modal-overlay" id="article-modal" onclick="if(event.target===this) UI.closeModal('article-modal')">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-article-title" style="margin: 0; font-size: 1.25rem;">Article</h3>
+                <button class="icon-btn" onclick="UI.closeModal('article-modal')" style="border:none; width:32px; height:32px;"><i data-lucide="x"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="flex-between mb-3">
+                    <span class="badge badge-outline" id="modal-article-cat">Category</span>
+                    <span class="text-muted" style="font-size: 0.85rem;" id="modal-article-date">Date</span>
+                </div>
+                <p id="modal-article-body" style="color: var(--text-secondary); line-height: 1.7;"></p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal-overlay" id="search-modal" onclick="if(event.target===this) UI.closeModal('search-modal')">
+        <div class="modal-content" style="max-width: 500px; transform: translateY(-20vh);">
+            <div style="padding: 1rem; border-bottom: 1px solid var(--border-light); display: flex; gap: 1rem; align-items: center;">
+                <i data-lucide="search" style="color: var(--text-muted);"></i>
+                <input type="text" id="global-search-input" class="form-control" placeholder="Search pages, tools, or news..." style="border:none; box-shadow:none; padding:0; background:transparent; font-size:1.1rem;" oninput="UI.handleSearch()">
+                <button class="badge badge-outline" onclick="UI.closeModal('search-modal')" style="cursor:pointer;">ESC</button>
+            </div>
+            <div class="modal-body" id="search-results" style="max-height: 300px; overflow-y: auto; padding: 0;">
+                </div>
+        </div>
+    </div>
+
+    <div id="toast-container"></div>
+
+    <footer style="background: var(--bg-surface); border-top: 1px solid var(--border-light); padding: 3rem 0; margin-top: auto;">
+        <div class="container">
+            <div class="grid-3">
+                <div>
+                    <div class="brand mb-2">
+                        <div class="logo-mark"></div>
+                        AUREXA
+                    </div>
+                    <p class="text-muted mb-3" style="font-size: 0.9rem;">AI-Powered Cybersecurity Platform.<br>Detect. Analyze. Respond. Protect.</p>
+                </div>
+                <div>
+                    <h4 class="mb-2">Quick Links</h4>
+                    <ul style="display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.9rem;">
+                        <li><a href="#/scanner" class="text-secondary">Security Scanner</a></li>
+                        <li><a href="#/copilot" class="text-secondary">AI Copilot</a></li>
+                        <li><a href="#/threats" class="text-secondary">Threat Intelligence</a></li>
+                        <li><a href="#/fraud" class="text-secondary" style="color: var(--status-crit);">Cyber Fraud Help</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="mb-2">Company</h4>
+                    <ul style="display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.9rem;">
+                        <li><a href="#/founder" class="text-secondary">Founder & CEO</a></li>
+                        <li><a href="#/about" class="text-secondary">About Us</a></li>
+                        <li><a href="#/contact" class="text-secondary">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div style="border-top: 1px solid var(--border-light); margin-top: 2rem; padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; color: var(--text-muted); flex-wrap: wrap; gap: 1rem;">
+                <div>&copy; 2026 AUREXA Cyber Security Solutions. All rights reserved.</div>
+                <div style="display: flex; gap: 1rem;">
+                    <a href="#" class="text-muted">Privacy Policy</a>
+                    <a href="#" class="text-muted">Terms of Service</a>
+                    <a href="#" class="text-muted">Security Disclaimer</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // --- 1. CONFIGURATION & DATA MODEL ---
+        const CONFIG = {
+            API_BASE_URL: "",
+            AUTH_API_ENDPOINT: "",
+            AI_API_ENDPOINT: "",
+            THREAT_INTEL_API: "",
+            NEWS_API_ENDPOINT: ""
+        };
+
+        const InitialData = {
+            news: [
+                { id: 1, title: "Critical Zero-Day Found in Popular VPN Appliance", category: "Vulnerability", sev: "Critical", time: "2 hrs ago", summary: "A new zero-day vulnerability allows unauthenticated remote code execution. Patch immediately." },
+                { id: 2, title: "New Phishing Campaign Targets Banking Credentials via Fake APKs", category: "Phishing", sev: "High", time: "5 hrs ago", summary: "Attackers are distributing fake electricity bill APKs via WhatsApp to intercept SMS OTPs." },
+                { id: 3, title: "AI-Generated Deepfakes Used in Enterprise Social Engineering", category: "AI Security", sev: "Medium", time: "1 day ago", summary: "Executives targeted by highly realistic voice cloning attacks authorizing fraudulent wire transfers." },
+                { id: 4, title: "Ransomware Group Exploiting Cloud Storage Misconfigurations", category: "Cloud Security", sev: "High", time: "2 days ago", summary: "Unsecured S3 buckets are being targeted for data exfiltration and extortion." },
+                { id: 5, title: "Massive Data Breach Exposes 50M User Records", category: "Data Breach", sev: "Critical", time: "3 days ago", summary: "A prominent healthcare provider suffered a breach exposing PII and medical records." },
+                { id: 6, title: "New Android Malware Family Discovered", category: "Malware", sev: "High", time: "4 days ago", summary: "Disguised as utility apps, this new malware family aggressively requests accessibility permissions." }
+            ],
+            courses: [
+                { id: 1, title: "Cybersecurity Fundamentals", level: "Beginner", duration: "4 Weeks", desc: "Core concepts of networking, security architecture, and threat landscapes." },
+                { id: 2, title: "Ethical Hacking Essentials", level: "Intermediate", duration: "8 Weeks", desc: "Learn offensive techniques to build better defensive strategies." },
+                { id: 3, title: "SOC Analyst Fundamentals", level: "Intermediate", duration: "6 Weeks", desc: "SIEM, log analysis, alert triaging, and incident response basics." },
+                { id: 4, title: "Web Application Security", level: "Advanced", duration: "10 Weeks", desc: "Deep dive into OWASP Top 10, exploitation, and secure coding." },
+                { id: 5, title: "Cloud Security Architecture", level: "Advanced", duration: "6 Weeks", desc: "Securing AWS, Azure, and GCP environments." },
+                { id: 6, title: "AI in Cybersecurity", level: "Intermediate", duration: "4 Weeks", desc: "Applying machine learning to threat detection and analysis." }
+            ],
+            threats: [
+                { ind: "103.45.xx.xx", type: "IP", sev: "Critical", camp: "APT29", status: "Active" },
+                { ind: "update-billing-secure.com", type: "Domain", sev: "High", camp: "Phishing", status: "Active" },
+                { ind: "a8f5f167...110c", type: "Hash (SHA256)", sev: "High", camp: "Ransomware", status: "Monitored" },
+                { ind: "CVE-2026-1045", type: "Vulnerability", sev: "Critical", camp: "N/A", status: "Active Exploitation" }
+            ],
+            mitre: [
+                { tactic: "Initial Access", technique: "Phishing (T1566)" },
+                { tactic: "Execution", technique: "Command/Script (T1059)" },
+                { tactic: "Persistence", technique: "Registry Run Keys (T1547)" },
+                { tactic: "Privilege Escalation", technique: "Process Injection (T1055)" },
+                { tactic: "Defense Evasion", technique: "Obfuscated Files (T1027)" },
+                { tactic: "Credential Access", technique: "OS Credential Dumping (T1003)" },
+                { tactic: "Discovery", technique: "System Network Config (T1016)" },
+                { tactic: "Lateral Movement", technique: "Remote Services (T1021)" }
+            ],
+            alerts: [
+                { id: 1, text: "Critical: Multiple failed logins detected on Admin Portal.", type: "danger" },
+                { id: 2, text: "Warning: API Connectors not configured. Using local intelligence.", type: "warn" }
+            ]
+        };
+
+        // --- 2. STATE MANAGEMENT ---
+        const State = {
+            db: {},
+            init() {
+                // Load or seed DB
+                const localData = localStorage.getItem('aurexa_db');
+                if (localData) {
+                    this.db = JSON.parse(localData);
+                } else {
+                    this.db = JSON.parse(JSON.stringify(InitialData));
+                    this.save();
+                }
+            },
+            save() {
+                localStorage.setItem('aurexa_db', JSON.stringify(this.db));
+            }
+        };
+
+        // --- 3. UI CONTROLLER ---
+        const UI = {
+            init() {
+                lucide.createIcons();
                 
-                let score = 0;
-                let findings = [];
-                let isCritical = false;
-                const safeTarget = App.sanitize(urlRaw);
+                // Router listener
+                window.addEventListener('hashchange', App.route);
                 
-                try {
-                    const urlObj = new URL(url);
+                // Ctrl+K for search
+                document.addEventListener('keydown', (e) => {
+                    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                        e.preventDefault();
+                        this.openSearch();
+                    }
+                });
+
+                // Render initial data
+                this.renderNews();
+                this.renderCourses();
+                this.renderThreats();
+                this.renderMitre();
+                this.updateNotifCount();
+            },
+            
+            toggleMobileMenu() {
+                const nav = document.getElementById('mobileNav');
+                const overlay = document.getElementById('mobileOverlay');
+                if (nav.classList.contains('open')) {
+                    nav.classList.remove('open');
+                    overlay.classList.remove('active');
+                    document.body.classList.remove('body-lock');
+                } else {
+                    nav.classList.add('open');
+                    overlay.classList.add('active');
+                    document.body.classList.add('body-lock');
+                }
+            },
+
+            toggleTheme() {
+                const html = document.documentElement;
+                const current = html.getAttribute('data-theme');
+                const next = current === 'dark' ? 'light' : 'dark';
+                html.setAttribute('data-theme', next);
+                localStorage.setItem('aurexa_theme', next);
+                
+                // Update icons
+                const icon = document.getElementById('theme-icon');
+                if(icon) {
+                    icon.setAttribute('data-lucide', next === 'dark' ? 'sun' : 'moon');
+                    lucide.createIcons();
+                }
+
+                // Update Charts
+                if (window.appChart) {
+                    const gridColor = next === 'dark' ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)';
+                    window.appChart.options.scales.x.grid.color = gridColor;
+                    window.appChart.options.scales.y.grid.color = gridColor;
+                    window.appChart.update();
+                }
+            },
+
+            toggleDropdown(id) {
+                document.getElementById(id).classList.toggle('active');
+            },
+
+            switchTab(group, tabId, btn) {
+                const container = btn.closest('.card');
+                container.querySelectorAll('.tab-pane').forEach(el => el.classList.remove('active'));
+                container.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+                
+                document.getElementById(`tab-${group}-${tabId}`).classList.add('active');
+                btn.classList.add('active');
+            },
+
+            openModal(id) {
+                document.getElementById(id).classList.add('active');
+                document.body.classList.add('body-lock');
+            },
+
+            closeModal(id) {
+                document.getElementById(id).classList.remove('active');
+                document.body.classList.remove('body-lock');
+            },
+
+            toast(msg, type='success') {
+                const container = document.getElementById('toast-container');
+                const toast = document.createElement('div');
+                toast.className = `toast ${type}`;
+                
+                let icon = type === 'success' ? 'check-circle' : 'alert-circle';
+                toast.innerHTML = `<i data-lucide="${icon}" style="width:18px;height:18px; color:var(--${type==='success'?'status-safe':'status-crit'});"></i> ${msg}`;
+                
+                container.appendChild(toast);
+                lucide.createIcons();
+                
+                setTimeout(() => { toast.remove(); }, 3000);
+            },
+
+            sanitize(str) {
+                const temp = document.createElement('div');
+                temp.textContent = str;
+                return temp.innerHTML;
+            },
+
+            // Renderers
+            renderNews() {
+                const grid = document.getElementById('news-grid');
+                const homeList = document.getElementById('home-news-list');
+                const adminTable = document.getElementById('admin-news-table');
+                
+                const filter = document.getElementById('news-filter') ? document.getElementById('news-filter').value : 'All';
+                const search = document.getElementById('news-search') ? document.getElementById('news-search').value.toLowerCase() : '';
+                
+                let html = '';
+                let homeHtml = '';
+                let adminHtml = '';
+                
+                State.db.news.forEach((n, idx) => {
+                    const matchFilter = filter === 'All' || n.category === filter;
+                    const matchSearch = n.title.toLowerCase().includes(search) || n.summary.toLowerCase().includes(search);
                     
-                    // 1. EICAR Test Check
-                    if (urlObj.hostname === 'secure.eicar.org' && urlObj.pathname.includes('eicar.com')) {
-                        findings.push('<span class="t-crit">[CRITICAL] EICAR ANTIVIRUS TEST ARTIFACT DETECTED.</span>');
-                        findings.push('<span class="t-crit">This is a controlled security test file. Do not download or execute.</span>');
-                        score = 100;
-                        isCritical = true;
+                    if (matchFilter && matchSearch) {
+                        const badgeColor = n.sev === 'Critical' ? 'badge-crit' : (n.sev === 'High' ? 'badge-warn' : 'badge-info');
+                        
+                        // Main News Page
+                        html += `
+                            <div class="card" style="display: flex; flex-direction: column;">
+                                <div class="flex-between mb-2">
+                                    <span style="font-size: 0.75rem; color: var(--secondary); font-weight: 700; text-transform: uppercase;">${n.category}</span>
+                                    <span class="badge ${badgeColor}">${n.sev}</span>
+                                </div>
+                                <h4 class="mb-2" style="font-size: 1.1rem;">${n.title}</h4>
+                                <p class="text-secondary mb-3" style="font-size: 0.9rem; flex: 1;">${n.summary}</p>
+                                <div class="flex-between" style="border-top: 1px solid var(--border-light); padding-top: 1rem; margin-top: auto;">
+                                    <span class="text-muted" style="font-size: 0.8rem;">${n.time}</span>
+                                    <button class="btn btn-ghost" style="padding: 0; color: var(--secondary);" onclick="UI.openArticle(${n.id})">Read More</button>
+                                </div>
+                            </div>
+                        `;
+
+                        // Home Page (only first 3)
+                        if (idx < 3) {
+                            homeHtml += `
+                                <div style="padding-bottom: 1rem; border-bottom: 1px solid var(--border-light);">
+                                    <div style="font-size: 0.75rem; color: var(--secondary); font-weight: 700; margin-bottom: 0.25rem;">${n.category}</div>
+                                    <div style="font-weight: 600; margin-bottom: 0.25rem;">${n.title}</div>
+                                    <div class="text-muted" style="font-size: 0.8rem;">${n.time}</div>
+                                </div>
+                            `;
+                        }
+
+                        // Admin Table
+                        adminHtml += `
+                            <tr>
+                                <td>${n.title}</td>
+                                <td>${n.category}</td>
+                                <td><span class="badge ${badgeColor}">${n.sev}</span></td>
+                                <td><button class="btn btn-ghost" style="padding:0.2rem; color:var(--status-crit);" onclick="Admin.deleteNews(${n.id})"><i data-lucide="trash-2" style="width:16px;height:16px;"></i></button></td>
+                            </tr>
+                        `;
+                    }
+                });
+                
+                if(grid) grid.innerHTML = html || '<div class="text-muted">No news found matching criteria.</div>';
+                if(homeList) homeList.innerHTML = homeHtml;
+                if(adminTable) {
+                    adminTable.innerHTML = adminHtml;
+                    lucide.createIcons();
+                }
+            },
+
+            openArticle(id) {
+                const article = State.db.news.find(n => n.id === id);
+                if(!article) return;
+                
+                document.getElementById('modal-article-title').textContent = article.title;
+                document.getElementById('modal-article-cat').textContent = article.category;
+                document.getElementById('modal-article-date').textContent = article.time;
+                document.getElementById('modal-article-body').textContent = article.summary + " (Demo Data: Connect NEWS_API_ENDPOINT for full article bodies).";
+                
+                this.openModal('article-modal');
+            },
+
+            renderCourses() {
+                const grid = document.getElementById('courses-grid');
+                if(!grid) return;
+                let html = '';
+                State.db.courses.forEach(c => {
+                    html += `
+                        <div class="card" style="display: flex; flex-direction: column;">
+                            <div class="flex-between mb-2">
+                                <span class="badge badge-info">${c.level}</span>
+                                <span class="text-muted" style="font-size: 0.8rem;"><i data-lucide="clock" style="width:12px;height:12px; display:inline; margin-right:4px;"></i>${c.duration}</span>
+                            </div>
+                            <h4 class="mb-2" style="font-size: 1.1rem;">${c.title}</h4>
+                            <p class="text-secondary mb-4" style="font-size: 0.9rem; flex: 1;">${c.desc}</p>
+                            <button class="btn btn-secondary btn-block" onclick="alert('Course Management LMS API not connected.')">Start Learning</button>
+                        </div>
+                    `;
+                });
+                grid.innerHTML = html;
+                lucide.createIcons();
+            },
+
+            renderThreats() {
+                const body = document.getElementById('threats-table-body');
+                if(!body) return;
+                let html = '';
+                State.db.threats.forEach(t => {
+                    const sevClass = t.sev === 'Critical' ? 'badge-crit' : 'badge-warn';
+                    html += `
+                        <tr>
+                            <td style="font-family: monospace;">${t.ind}</td>
+                            <td>${t.type}</td>
+                            <td><span class="badge ${sevClass}">${t.sev}</span></td>
+                            <td>${t.camp}</td>
+                            <td><span class="badge badge-outline">${t.status}</span></td>
+                        </tr>
+                    `;
+                });
+                body.innerHTML = html;
+            },
+
+            renderMitre() {
+                const grid = document.getElementById('mitre-grid');
+                if(!grid) return;
+                let html = '';
+                State.db.mitre.forEach(m => {
+                    html += `
+                        <div class="card" style="padding: 1rem; border: none; background: var(--bg-hover);">
+                            <div style="font-weight: 700; margin-bottom: 0.25rem;">${m.tactic}</div>
+                            <div class="text-secondary" style="font-size: 0.85rem;">${m.technique}</div>
+                        </div>
+                    `;
+                });
+                grid.innerHTML = html;
+            },
+
+            updateNotifCount() {
+                const count = State.db.alerts.length;
+                document.getElementById('notif-count').textContent = count;
+                document.getElementById('notif-count').style.display = count > 0 ? 'flex' : 'none';
+                
+                const list = document.getElementById('notif-list');
+                let html = '';
+                State.db.alerts.forEach(a => {
+                    const color = a.type === 'danger' ? 'var(--status-crit)' : 'var(--status-warn)';
+                    html += `
+                        <div class="dropdown-item">
+                            <div style="font-weight: 500; color: ${color};">${a.text}</div>
+                        </div>
+                    `;
+                });
+                if(count === 0) html = '<div class="dropdown-item text-muted">No new notifications.</div>';
+                list.innerHTML = html;
+            },
+
+            openSearch() {
+                this.openModal('search-modal');
+                setTimeout(() => document.getElementById('global-search-input').focus(), 100);
+            },
+            
+            handleSearch() {
+                const q = document.getElementById('global-search-input').value.toLowerCase();
+                const res = document.getElementById('search-results');
+                if(!q) { res.innerHTML = ''; return; }
+                
+                let html = '';
+                // Search News
+                State.db.news.forEach(n => {
+                    if(n.title.toLowerCase().includes(q) || n.category.toLowerCase().includes(q)) {
+                        html += `<div style="padding: 0.75rem 1rem; border-bottom: 1px solid var(--border-light); cursor:pointer;" onclick="App.navigate('news'); UI.closeModal('search-modal');">
+                            <div style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase;">News: ${n.category}</div>
+                            <div style="font-weight:500;">${n.title}</div>
+                        </div>`;
+                    }
+                });
+                // Search Courses
+                State.db.courses.forEach(c => {
+                    if(c.title.toLowerCase().includes(q)) {
+                        html += `<div style="padding: 0.75rem 1rem; border-bottom: 1px solid var(--border-light); cursor:pointer;" onclick="App.navigate('courses'); UI.closeModal('search-modal');">
+                            <div style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase;">Course</div>
+                            <div style="font-weight:500;">${c.title}</div>
+                        </div>`;
+                    }
+                });
+                
+                if(!html) html = '<div style="padding: 1rem; color: var(--text-muted);">No results found.</div>';
+                res.innerHTML = html;
+            }
+        };
+
+        // --- 4. APP & ROUTER ---
+        const App = {
+            init() {
+                State.init();
+                
+                // Theme setup
+                if (localStorage.getItem('aurexa_theme') === 'dark' || (!localStorage.getItem('aurexa_theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    const icon = document.getElementById('theme-icon');
+                    if(icon) icon.setAttribute('data-lucide', 'sun');
+                }
+                
+                UI.init();
+                ThreeVis.init();
+                ChartsApp.init();
+
+                // Initial Route
+                this.route();
+            },
+
+            route() {
+                let hash = window.location.hash.replace('#/', '') || 'home';
+                
+                // Admin Auth Check
+                if(hash === 'admin' || hash === 'admin-dashboard') {
+                    if(sessionStorage.getItem('aurexa_admin_auth') === 'true') {
+                        hash = 'admin-dashboard';
                     } else {
-                        // 2. Transport Security
-                        if (urlObj.protocol === 'https:') {
-                            findings.push('<span class="t-safe">[OK] Transport: HTTPS connection established. (Note: Does not guarantee domain safety)</span>');
+                        hash = 'admin';
+                    }
+                }
+
+                // Hide all
+                document.querySelectorAll('.page-section').forEach(el => el.classList.remove('active'));
+                
+                // Show active
+                const target = document.getElementById(`view-${hash}`);
+                if(target) {
+                    target.classList.add('active');
+                } else {
+                    document.getElementById('view-home').classList.add('active'); // Fallback
+                }
+
+                // Update Nav links
+                document.querySelectorAll('.nav-link, .mobile-nav-link').forEach(el => {
+                    el.classList.remove('active');
+                    if(el.getAttribute('href') === `#/${hash}`) el.classList.add('active');
+                });
+                
+                window.scrollTo(0,0);
+            },
+
+            handleContact(e) {
+                e.preventDefault();
+                const name = document.getElementById('contact-name').value;
+                UI.toast(`Message from ${UI.sanitize(name)} saved locally. Backend required for email delivery.`);
+                e.target.reset();
+            }
+        };
+
+        // --- 5. SECURITY SCANNER ---
+        const Scanner = {
+            analyzeUrl() {
+                const input = document.getElementById('scan-target').value.trim();
+                if(!input) { UI.toast('Please enter a URL', 'error'); return; }
+                
+                const out = document.getElementById('scan-output');
+                document.getElementById('scan-results').classList.remove('hidden');
+                document.getElementById('scan-time').textContent = new Date().toLocaleTimeString();
+                
+                out.innerHTML = '<div class="c-line"><i>Executing Local Heuristic Analysis Engine...</i></div>';
+                
+                setTimeout(() => {
+                    let url = input;
+                    if(!url.startsWith('http')) url = 'http://' + url;
+                    
+                    let score = 0;
+                    let findings = [];
+                    let isCrit = false;
+                    const safeInput = UI.sanitize(input);
+                    
+                    try {
+                        const u = new URL(url);
+                        
+                        // EICAR Check
+                        if (u.hostname === 'secure.eicar.org' && u.pathname.includes('eicar.com')) {
+                            findings.push('<span class="c-crit">[CRITICAL] EICAR ANTIVIRUS TEST ARTIFACT DETECTED.</span>');
+                            findings.push('<span class="c-crit">This is a controlled security test file. Do not execute.</span>');
+                            score = 100;
+                            isCrit = true;
                         } else {
-                            findings.push('<span class="t-warn">[WARN] Transport: HTTP protocol used. Traffic is unencrypted.</span>');
-                            score += 30;
+                            if (u.protocol === 'https:') {
+                                findings.push('<span class="c-safe">[OK] Transport: HTTPS used. (Does not guarantee domain safety)</span>');
+                            } else {
+                                findings.push('<span class="c-warn">[WARN] Transport: HTTP used. Unencrypted traffic.</span>');
+                                score += 30;
+                            }
+                            
+                            const ipRegex = /^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$/;
+                            if(ipRegex.test(u.hostname)) {
+                                findings.push('<span class="c-crit">[CRITICAL] Structure: Direct IP address usage detected. Common in phishing.</span>');
+                                score += 55;
+                                isCrit = true;
+                            }
+                            
+                            if(input.includes('@')) {
+                                findings.push('<span class="c-crit">[CRITICAL] Syntax: Credentials obfuscation (@) detected.</span>');
+                                score += 45;
+                                isCrit = true;
+                            }
+                            
+                            if(input.length > 75) {
+                                findings.push('<span class="c-warn">[WARN] Length: Unusually long URL structure.</span>');
+                                score += 15;
+                            }
+                            
+                            if(score === 0) findings.push('<span class="c-safe">[OK] Heuristics: No obvious structural anomalies.</span>');
                         }
-
-                        // 3. IP Address Usage
-                        const ipPattern = /^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$/;
-                        if (ipPattern.test(urlObj.hostname)) {
-                            findings.push('<span class="t-crit">[CRITICAL] Structure: Direct IP address usage detected. Common in phishing to bypass DNS filtering.</span>');
-                            score += 55;
-                            isCritical = true;
-                        }
-
-                        // 4. Obfuscation (@ symbol)
-                        if (urlRaw.includes('@')) {
-                            findings.push('<span class="t-crit">[CRITICAL] Syntax: Credentials obfuscation (@ symbol) detected. High phishing indicator.</span>');
-                            score += 45;
-                            isCritical = true;
-                        }
-
-                        // 5. Length Check
-                        if (urlRaw.length > 75) {
-                            findings.push('<span class="t-warn">[WARN] Length: Unusually long URL structure. May conceal parameters.</span>');
-                            score += 15;
-                        }
-
-                        // 6. Punycode (Homograph)
-                        if (urlObj.hostname.includes('xn--')) {
-                            findings.push('<span class="t-warn">[WARN] Domain: Punycode detected. Verify this is not a homograph attack.</span>');
-                            score += 25;
-                        }
-
-                        if (score === 0) {
-                            findings.push('<span class="t-safe">[OK] Heuristics: No obvious structural anomalies detected in local analysis.</span>');
-                        }
+                        
+                        score = Math.min(score, 100);
+                        let lvl = '<span class="c-safe">LOW RISK INDICATORS</span>';
+                        if(score >= 70 || isCrit) lvl = '<span class="c-crit">CRITICAL RISK INDICATORS</span>';
+                        else if(score >= 40) lvl = '<span class="c-warn">HIGH RISK INDICATORS</span>';
+                        else if(score >= 15) lvl = '<span class="c-info">MODERATE RISK INDICATORS</span>';
+                        
+                        out.innerHTML = `
+                            <div class="c-line"><strong>Target:</strong> ${safeInput}</div>
+                            <div class="c-line"><strong>Local Risk Score:</strong> ${score}/100 (${lvl})</div>
+                            <br>
+                            <div class="c-line"><strong>Indicators:</strong></div>
+                            ${findings.map(f => `<div class="c-line">${f}</div>`).join('')}
+                            <br>
+                            <div class="c-line" style="color:var(--text-muted);">---</div>
+                            <div class="c-line" style="color:var(--text-muted);">Note: External threat intelligence API not configured. Results based on local structural analysis only.</div>
+                        `;
+                    } catch (e) {
+                        out.innerHTML = '<div class="c-line c-crit">[ERROR] Invalid URL syntax.</div>';
                     }
-                    
-                    score = Math.min(score, 100);
-                    
-                    let levelHTML = '';
-                    if (score >= 70 || isCritical) levelHTML = '<span class="t-crit">CRITICAL RISK INDICATORS</span>';
-                    else if (score >= 40) levelHTML = '<span class="t-warn">HIGH RISK INDICATORS</span>';
-                    else if (score >= 15) levelHTML = '<span class="t-info">MODERATE RISK INDICATORS</span>';
-                    else levelHTML = '<span class="t-safe">LOW RISK INDICATORS</span>';
-                    
-                    // Config Check Note
-                    let apiNotice = '';
-                    if (!CONFIG.SCANNER_API_ENDPOINT) {
-                        apiNotice = '<div class="term-line" style="color: #64748b; margin-top: 1rem;">---</div><div class="term-line" style="color: var(--warning);">External reputation intelligence is not configured. This result is based on local heuristics only.</div>';
-                    }
-                    
-                    let output = `
-                        <div class="term-line"><strong>Target:</strong> ${safeTarget}</div>
-                        <div class="term-line"><strong>Heuristic Risk Score:</strong> ${score}/100 (${levelHTML})</div>
+                }, 800);
+            },
+            
+            analyzeApk(e) {
+                const file = e.target.files[0];
+                if(!file) return;
+                
+                const out = document.getElementById('apk-output');
+                out.innerHTML = `<div class="c-line"><i>Extracting metadata for ${UI.sanitize(file.name)}...</i></div>`;
+                
+                setTimeout(() => {
+                    out.innerHTML = `
+                        <div class="c-line"><strong>File:</strong> ${UI.sanitize(file.name)}</div>
+                        <div class="c-line"><strong>Size:</strong> ${(file.size/(1024*1024)).toFixed(2)} MB</div>
                         <br>
-                        <div class="term-line"><strong>Detected Indicators:</strong></div>
-                        ${findings.map(f => `<div class="term-line">${f}</div>`).join('')}
-                        ${apiNotice}
+                        <div class="c-line c-warn">[ACTION REQUIRED] Static cloud malware analysis API not configured.</div>
+                        <div class="c-line" style="color:var(--text-muted);">Browser JavaScript cannot perform secure APK decompilation. Ready to transmit hash to cloud sandbox when connected.</div>
                     `;
+                }, 600);
+            }
+        };
+
+        // --- 6. AI COPILOT ---
+        const Copilot = {
+            ask(text) {
+                document.getElementById('chat-input-field').value = text;
+                this.send();
+            },
+            send() {
+                const input = document.getElementById('chat-input-field');
+                const text = input.value.trim();
+                if(!text) return;
+                
+                const history = document.getElementById('chat-history');
+                
+                // Add user
+                const uDiv = document.createElement('div');
+                uDiv.className = 'msg-bubble msg-user';
+                uDiv.textContent = text;
+                history.appendChild(uDiv);
+                
+                input.value = '';
+                history.scrollTop = history.scrollHeight;
+                
+                // Typing
+                const tDiv = document.createElement('div');
+                tDiv.className = 'msg-bubble msg-ai';
+                tDiv.innerHTML = '<div class="typing-indicator"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>';
+                history.appendChild(tDiv);
+                history.scrollTop = history.scrollHeight;
+                
+                // AI Response
+                setTimeout(() => {
+                    tDiv.remove();
+                    const q = text.toLowerCase();
+                    let reply = "I am operating in a local fallback mode because the AI_API_ENDPOINT is not configured. I can answer standard security queries.";
                     
-                    termContent.innerHTML = output;
-
-                } catch (e) {
-                    termContent.innerHTML = `
-                        <div class="term-line t-crit">[ERROR] Invalid URL syntax provided. Could not parse safely.</div>
-                    `;
-                }
-            }, 600);
-        }
-    };
-
-    /**
-     * ADMIN AUTHENTICATION
-     */
-    const Admin = {
-        login: () => {
-            const errBox = document.getElementById('adminErrorMsg');
-            
-            // Adhering to the prompt: NO FAKE AUTHENTICATION.
-            if (!CONFIG.AUTH_API_ENDPOINT) {
-                errBox.textContent = "Authentication service not configured. Secure backend connection is required to authenticate.";
-                errBox.classList.remove('hidden');
-                return;
-            }
-            
-            // If configured, standard fetch logic would go here
-            errBox.textContent = "Attempting to contact authentication server...";
-            errBox.classList.remove('hidden');
-        }
-    };
-
-    /**
-     * VISUALIZATIONS & CHARTS
-     */
-    const Charts = {
-        init: () => {
-            const ctx = document.getElementById('trendChart');
-            if(!ctx) return;
-            
-            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-            const gridColor = isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)';
-
-            window.trendChartInstance = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-                    datasets: [{
-                        label: 'Detected Threats',
-                        data: [12, 19, 15, 25, 22, 30, 28],
-                        borderColor: '#2563eb',
-                        backgroundColor: 'rgba(37, 99, 235, 0.1)',
-                        borderWidth: 2,
-                        tension: 0.4,
-                        fill: true
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: { legend: { display: false } },
-                    scales: {
-                        y: { beginAtZero: true, grid: { color: gridColor } },
-                        x: { grid: { color: gridColor } }
+                    if (q.includes('url') || q.includes('risk score')) {
+                        reply = "A URL risk score evaluates structure. High risk indicators include using direct IP addresses instead of domains, lack of HTTPS, and obfuscation characters like '@'. This often indicates phishing.";
+                    } else if (q.includes('phishing')) {
+                        reply = "Phishing is a social engineering attack where an adversary impersonates a trusted entity to steal credentials. Always verify domains and avoid clicking urgent links.";
+                    } else if (q.includes('fraud') || q.includes('scam')) {
+                        reply = "If you are in India and suspect financial cyber fraud, dial <strong>1930</strong> immediately to block transactions, and file a detailed report at <strong>cybercrime.gov.in</strong>. Preserve all evidence (screenshots, SMS).";
+                    } else if (q.includes('incident')) {
+                        reply = "An Incident Response Plan contains 6 phases: 1. Preparation, 2. Identification, 3. Containment, 4. Eradication, 5. Recovery, 6. Lessons Learned.";
+                    } else if (q.includes('alert')) {
+                        reply = "Security alerts in the dashboard represent anomalous activities detected by our sensors, such as failed logins or unauthorized access attempts. They require SOC analyst triage.";
                     }
-                }
-            });
-        }
-    };
+                    
+                    const aDiv = document.createElement('div');
+                    aDiv.className = 'msg-bubble msg-ai';
+                    aDiv.innerHTML = `<strong>AUREXA Copilot:</strong> ${reply}`;
+                    history.appendChild(aDiv);
+                    history.scrollTop = history.scrollHeight;
+                }, 1000);
+            },
+            clear() {
+                document.getElementById('chat-history').innerHTML = `
+                    <div class="msg-bubble msg-ai">
+                        <strong>AUREXA Copilot:</strong> Chat cleared. How can I assist you today?
+                    </div>`;
+            }
+        };
 
-    const Visuals = {
-        initThreeJS: () => {
-            const container = document.getElementById('threejs-container');
-            if(!container || typeof THREE === 'undefined') return;
-            
-            try {
-                const scene = new THREE.Scene();
-                const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
-                const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        // --- 7. ADMIN SYSTEM ---
+        const Admin = {
+            login(e) {
+                e.preventDefault();
+                const email = document.getElementById('admin-email').value;
+                const pass = document.getElementById('admin-pass').value;
                 
-                renderer.setSize(container.clientWidth, container.clientHeight);
-                container.appendChild(renderer.domElement);
-                
-                // Cybersecurity Globe
-                const geometry = new THREE.IcosahedronGeometry(2, 2);
-                const material = new THREE.MeshBasicMaterial({ 
-                    color: 0x06b6d4, 
-                    wireframe: true,
-                    transparent: true,
-                    opacity: 0.3
-                });
-                const sphere = new THREE.Mesh(geometry, material);
-                scene.add(sphere);
-                
-                // Nodes
-                const particlesGeo = new THREE.BufferGeometry();
-                const particleCount = window.innerWidth > 768 ? 100 : 40; // Optimize for mobile
-                const posArray = new Float32Array(particleCount * 3);
-                
-                for(let i=0; i<particleCount*3; i++) {
-                    posArray[i] = (Math.random() - 0.5) * 6;
+                // Dev credentials
+                if(email === 'admin@aurexa.space' && pass === 'admin123') {
+                    sessionStorage.setItem('aurexa_admin_auth', 'true');
+                    window.location.hash = '#/admin-dashboard';
+                    UI.toast('Dev Admin Login Successful');
+                } else {
+                    UI.toast('Invalid Credentials', 'error');
                 }
+            },
+            logout() {
+                sessionStorage.removeItem('aurexa_admin_auth');
+                window.location.hash = '#/admin';
+                UI.toast('Logged out');
+            },
+            resetData() {
+                if(confirm("Reset all local curated content to defaults?")) {
+                    State.db = JSON.parse(JSON.stringify(InitialData));
+                    State.save();
+                    UI.renderNews();
+                    UI.renderCourses();
+                    UI.toast('Data reset successful');
+                }
+            },
+            deleteNews(id) {
+                if(confirm("Delete this article?")) {
+                    State.db.news = State.db.news.filter(n => n.id !== id);
+                    State.save();
+                    UI.renderNews();
+                    UI.toast('Article deleted');
+                }
+            }
+        };
+        
+        const Data = {
+            clearNotifications() {
+                State.db.alerts = [];
+                State.save();
+                UI.updateNotifCount();
+                document.getElementById('notifDropdown').classList.remove('active');
+            }
+        };
+
+        // --- 8. VISUALS (Chart & 3D) ---
+        const ChartsApp = {
+            init() {
+                const ctx = document.getElementById('homeChart');
+                if(!ctx) return;
                 
-                particlesGeo.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-                const particleMat = new THREE.PointsMaterial({
-                    size: 0.05,
-                    color: 0x3b82f6,
-                    transparent: true,
-                    opacity: 0.8
-                });
-                
-                const particlesMesh = new THREE.Points(particlesGeo, particleMat);
-                scene.add(particlesMesh);
-                
-                camera.position.z = 6;
-                
-                const animate = function () {
-                    requestAnimationFrame(animate);
-                    sphere.rotation.y += 0.002;
-                    sphere.rotation.x += 0.001;
-                    particlesMesh.rotation.y -= 0.001;
-                    renderer.render(scene, camera);
-                };
-                
-                animate();
-                
-                // Handle Resize
-                window.addEventListener('resize', () => {
-                    if(container.clientWidth > 0) {
-                        camera.aspect = container.clientWidth / container.clientHeight;
-                        camera.updateProjectionMatrix();
-                        renderer.setSize(container.clientWidth, container.clientHeight);
+                const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+                const gridColor = isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)';
+
+                window.appChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                        datasets: [{
+                            label: 'Threats Blocked',
+                            data: [120, 190, 150, 250, 220, 300, 280],
+                            borderColor: '#2563eb',
+                            backgroundColor: 'rgba(37, 99, 235, 0.1)',
+                            borderWidth: 2,
+                            tension: 0.4,
+                            fill: true
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { display: false } },
+                        scales: {
+                            y: { grid: { color: gridColor } },
+                            x: { grid: { color: gridColor } }
+                        }
                     }
                 });
-            } catch (e) {
-                console.warn("3D initialization failed, falling back to CSS.");
             }
-        }
-    };
+        };
 
-    // Boot App
-    document.addEventListener('DOMContentLoaded', App.init);
+        const ThreeVis = {
+            init() {
+                const container = document.getElementById('hero-canvas');
+                if(!container || typeof THREE === 'undefined') return;
+                
+                // Respect reduced motion
+                const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                if(prefersReducedMotion) return;
 
-</script>
+                try {
+                    const scene = new THREE.Scene();
+                    const camera = new THREE.PerspectiveCamera(50, container.clientWidth / container.clientHeight, 0.1, 1000);
+                    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+                    
+                    renderer.setSize(container.clientWidth, container.clientHeight);
+                    container.appendChild(renderer.domElement);
+                    
+                    // Globe
+                    const geo = new THREE.IcosahedronGeometry(2.2, 2);
+                    const mat = new THREE.MeshBasicMaterial({ 
+                        color: 0x06b6d4, 
+                        wireframe: true,
+                        transparent: true,
+                        opacity: 0.15
+                    });
+                    const globe = new THREE.Mesh(geo, mat);
+                    scene.add(globe);
+                    
+                    // Particles
+                    const pGeo = new THREE.BufferGeometry();
+                    const pCount = window.innerWidth > 768 ? 150 : 50; // Performance tuning
+                    const pArray = new Float32Array(pCount * 3);
+                    for(let i=0; i<pCount*3; i++) pArray[i] = (Math.random() - 0.5) * 8;
+                    pGeo.setAttribute('position', new THREE.BufferAttribute(pArray, 3));
+                    
+                    const pMat = new THREE.PointsMaterial({ size: 0.04, color: 0x3b82f6, transparent: true, opacity: 0.6 });
+                    const particles = new THREE.Points(pGeo, pMat);
+                    scene.add(particles);
+                    
+                    camera.position.z = 6;
+                    
+                    const animate = () => {
+                        requestAnimationFrame(animate);
+                        globe.rotation.y += 0.001;
+                        globe.rotation.x += 0.0005;
+                        particles.rotation.y -= 0.0005;
+                        renderer.render(scene, camera);
+                    };
+                    animate();
+                    
+                    window.addEventListener('resize', () => {
+                        if(container.clientWidth > 0) {
+                            camera.aspect = container.clientWidth / container.clientHeight;
+                            camera.updateProjectionMatrix();
+                            renderer.setSize(container.clientWidth, container.clientHeight);
+                        }
+                    });
+                } catch(e) { console.warn("WebGL/ThreeJS fallback active"); }
+            }
+        };
+
+        // Boot
+        document.addEventListener('DOMContentLoaded', App.init);
+
+    </script>
 </body>
 </html>
