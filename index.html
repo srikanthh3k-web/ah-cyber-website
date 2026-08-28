@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="theme-color" content="#061a33">
+<meta name="description" content="AUREXA - Cybersecurity, Technology and Innovation">
 <title>AUREXA | Cybersecurity • Technology • Innovation</title>
 
 <style>
@@ -23,18 +24,41 @@
  --radius:28px;
 }
 
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+*{
+ box-sizing:border-box;
+ margin:0;
+ padding:0
+}
+
+html{
+ scroll-behavior:smooth
+}
+
 body{
  font-family:"DM Sans",Arial,sans-serif;
  color:var(--ink);
  background:var(--bg);
  overflow-x:hidden
 }
-a{text-decoration:none;color:inherit}
-button,input,textarea,select{font:inherit}
-button{cursor:pointer;border:0}
-img{max-width:100%;display:block}
+
+a{
+ text-decoration:none;
+ color:inherit
+}
+
+button,input,textarea,select{
+ font:inherit
+}
+
+button{
+ cursor:pointer;
+ border:0
+}
+
+img{
+ max-width:100%;
+ display:block
+}
 
 .topline{
  height:4px;
@@ -45,6 +69,8 @@ img{max-width:100%;display:block}
  width:min(1180px,calc(100% - 40px));
  margin:auto
 }
+
+/* HEADER */
 
 header{
  position:sticky;
@@ -116,7 +142,9 @@ header{
  color:#43566a
 }
 
-.navlinks a:hover{color:var(--blue)}
+.navlinks a:hover{
+ color:var(--blue)
+}
 
 .actions{
  display:flex;
@@ -135,7 +163,10 @@ header{
  color:var(--navy)
 }
 
-.notify{position:relative}
+.notify{
+ position:relative
+}
+
 .notify i{
  position:absolute;
  width:8px;
@@ -158,7 +189,10 @@ header{
  border-top:1px solid var(--line)
 }
 
-.mobileNav.show{display:block}
+.mobileNav.show{
+ display:block
+}
+
 .mobileNav a{
  display:block;
  padding:13px 3px;
@@ -204,6 +238,7 @@ header{
 .gradient{
  background:linear-gradient(90deg,#087ef5,#08c7ff);
  -webkit-background-clip:text;
+ background-clip:text;
  color:transparent
 }
 
@@ -232,7 +267,9 @@ header{
  box-shadow:0 15px 35px rgba(8,126,245,.12)
 }
 
-.btn:hover{transform:translateY(-3px)}
+.btn:hover{
+ transform:translateY(-3px)
+}
 
 .primary{
  color:#fff;
@@ -269,8 +306,12 @@ header{
 }
 
 @keyframes float{
- 0%,100%{transform:rotateY(-13deg) rotateX(7deg) translateY(0)}
- 50%{transform:rotateY(-7deg) rotateX(4deg) translateY(-15px)}
+ 0%,100%{
+  transform:rotateY(-13deg) rotateX(7deg) translateY(0)
+ }
+ 50%{
+  transform:rotateY(-7deg) rotateX(4deg) translateY(-15px)
+ }
 }
 
 .cube:before{
@@ -324,12 +365,22 @@ header{
  font-weight:900
 }
 
-.card1{right:-15px;top:50px}
-.card2{left:-20px;bottom:55px}
+.card1{
+ right:-15px;
+ top:50px
+}
+
+.card2{
+ left:-20px;
+ bottom:55px
+}
 
 /* SECTIONS */
 
-.section{padding:100px 0}
+.section{
+ padding:100px 0
+}
+
 .sectionHead{
  display:flex;
  justify-content:space-between;
@@ -420,7 +471,10 @@ header{
  z-index:0
 }
 
-.course>*{position:relative;z-index:1}
+.course>*{
+ position:relative;
+ z-index:1
+}
 
 .courseIcon{
  width:72px;
@@ -533,7 +587,13 @@ header{
  animation:spin 15s linear infinite
 }
 
-@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes spin{
+ to{
+  transform:rotate(360deg)
+ }
+}
+
+/* FOUNDER IMAGE - UPDATED */
 
 .founderPhoto{
  width:230px;
@@ -544,19 +604,16 @@ header{
  place-items:center;
  position:relative;
  z-index:2;
- overflow:hidden
+ overflow:hidden;
+ box-shadow:0 25px 60px rgba(0,0,0,.25)
 }
 
 .founderPhoto img{
  width:100%;
  height:100%;
- object-fit:cover
-}
-
-.founderPlaceholder{
- font:800 26px "Space Grotesk";
- color:#087ef5;
- text-align:center
+ object-fit:cover;
+ object-position:center;
+ display:block
 }
 
 .founderText h2{
@@ -686,7 +743,9 @@ header{
  border-bottom:1px solid rgba(255,255,255,.1)
 }
 
-.contactItem:last-child{border:0}
+.contactItem:last-child{
+ border:0
+}
 
 .contactItem b{
  display:block;
@@ -740,7 +799,9 @@ header{
  margin-top:25px
 }
 
-.dashboard.show{display:block}
+.dashboard.show{
+ display:block
+}
 
 .dashStats{
  display:grid;
@@ -779,7 +840,9 @@ th,td{
  font-size:13px
 }
 
-th{color:#08c7ff}
+th{
+ color:#08c7ff
+}
 
 .export{
  margin-top:15px;
@@ -803,7 +866,9 @@ th{color:#08c7ff}
  padding:20px
 }
 
-.modal.show{display:grid}
+.modal.show{
+ display:grid
+}
 
 .modalBox{
  width:min(700px,100%);
@@ -852,7 +917,9 @@ th{color:#08c7ff}
  margin-top:20px
 }
 
-.form input,.form textarea,.form select{
+.form input,
+.form textarea,
+.form select{
  width:100%;
  padding:14px;
  border:1px solid var(--line);
@@ -861,7 +928,9 @@ th{color:#08c7ff}
  background:#fff
 }
 
-.form textarea{min-height:100px}
+.form textarea{
+ min-height:100px
+}
 
 /* PAYMENT */
 
@@ -909,6 +978,8 @@ footer strong{
  color:#fff;
  font:700 25px "Space Grotesk"
 }
+
+/* BOTTOM BAR */
 
 .bottomBar{
  position:fixed;
@@ -958,55 +1029,180 @@ footer strong{
 /* RESPONSIVE */
 
 @media(max-width:900px){
- .navlinks{display:none}
- .menu{display:grid}
+
+ .navlinks{
+  display:none
+ }
+
+ .menu{
+  display:grid
+ }
+
  .heroGrid,
  .founderGrid,
  .contactGrid{
   grid-template-columns:1fr
  }
- .hero{padding:70px 0}
- .scene{min-height:450px}
- .courseGrid{grid-template-columns:1fr}
- .newsGrid{grid-template-columns:1fr}
- .statGrid{grid-template-columns:repeat(2,1fr)}
- .founderCard{min-height:450px}
+
+ .hero{
+  padding:70px 0
+ }
+
+ .scene{
+  min-height:450px
+ }
+
+ .courseGrid{
+  grid-template-columns:1fr
+ }
+
+ .newsGrid{
+  grid-template-columns:1fr
+ }
+
+ .statGrid{
+  grid-template-columns:repeat(2,1fr)
+ }
+
+ .founderCard{
+  min-height:450px
+ }
 }
 
 @media(max-width:600px){
- .container{width:min(100% - 28px,1180px)}
- .nav{min-height:72px}
- .brand strong{font-size:23px}
- .logo{width:42px}
- .actions .notify{display:grid}
- .hero h1{font-size:45px}
- .hero p{font-size:16px}
- .section{padding:70px 0}
- .scene{min-height:390px}
- .cube{width:280px;height:350px}
- .cubeShield{width:160px;height:205px}
- .cubeShield span{font-size:55px}
- .orbit{width:330px;height:100px}
- .card1{right:-5px}
- .card2{left:-5px}
- .course{padding:24px;min-height:auto}
- .course h3{font-size:27px}
- .founderGrid{gap:40px}
- .founderCard{min-height:400px}
- .founderPhoto{width:190px;height:250px}
- .statGrid{grid-template-columns:1fr 1fr}
- .stat{padding:22px}
- .stat strong{font-size:30px}
- .contactBox{padding:22px}
- .dashStats{grid-template-columns:1fr}
- .bottomBar{gap:4px}
- .bottomBar a{padding:5px}
- .bottomBar span{font-size:21px}
- .toTop{right:15px;bottom:78px}
+
+ .container{
+  width:min(100% - 28px,1180px)
+ }
+
+ .nav{
+  min-height:72px
+ }
+
+ .brand strong{
+  font-size:23px
+ }
+
+ .brand small{
+  font-size:7px
+ }
+
+ .logo{
+  width:42px
+ }
+
+ .actions .notify{
+  display:grid
+ }
+
+ .hero h1{
+  font-size:45px
+ }
+
+ .hero p{
+  font-size:16px
+ }
+
+ .section{
+  padding:70px 0
+ }
+
+ .scene{
+  min-height:390px
+ }
+
+ .cube{
+  width:280px;
+  height:350px
+ }
+
+ .cubeShield{
+  width:160px;
+  height:205px
+ }
+
+ .cubeShield span{
+  font-size:55px
+ }
+
+ .orbit{
+  width:330px;
+  height:100px
+ }
+
+ .card1{
+  right:-5px
+ }
+
+ .card2{
+  left:-5px
+ }
+
+ .course{
+  padding:24px;
+  min-height:auto
+ }
+
+ .course h3{
+  font-size:27px
+ }
+
+ .founderGrid{
+  gap:40px
+ }
+
+ .founderCard{
+  min-height:400px
+ }
+
+ .founderPhoto{
+  width:190px;
+  height:250px
+ }
+
+ .statGrid{
+  grid-template-columns:1fr 1fr
+ }
+
+ .stat{
+  padding:22px
+ }
+
+ .stat strong{
+  font-size:30px
+ }
+
+ .contactBox{
+  padding:22px
+ }
+
+ .dashStats{
+  grid-template-columns:1fr
+ }
+
+ .bottomBar{
+  gap:4px
+ }
+
+ .bottomBar a{
+  padding:5px
+ }
+
+ .bottomBar span{
+  font-size:21px
+ }
+
+ .toTop{
+  right:15px;
+  bottom:78px
+ }
 }
 
 @media(min-width:901px){
- .bottomBar{display:none}
+
+ .bottomBar{
+  display:none
+ }
 }
 </style>
 </head>
@@ -1016,52 +1212,77 @@ footer strong{
 <div class="topline"></div>
 
 <header>
+
 <div class="container nav">
 
 <a href="#home" class="brand">
-<div class="logo"><span>A</span></div>
+
+<div class="logo">
+<span>A</span>
+</div>
+
 <div class="brand-text">
 <strong>AUREXA</strong>
 <small>Cybersecurity • Technology • Innovation</small>
 </div>
+
 </a>
 
 <nav class="navlinks">
+
 <a href="#home">Home</a>
 <a href="#courses">Courses</a>
 <a href="#founder">Founder</a>
 <a href="#news">Cyber News</a>
 <a href="#contact">Contact</a>
 <a href="#admin">Admin</a>
+
 </nav>
 
 <div class="actions">
-<button class="icon notify" onclick="showAlerts()">🔔<i></i></button>
-<button class="icon menu" onclick="toggleMenu()">☰</button>
+
+<button class="icon notify" onclick="showAlerts()">
+🔔
+<i></i>
+</button>
+
+<button class="icon menu" onclick="toggleMenu()">
+☰
+</button>
+
 </div>
 
 </div>
 
 <div id="mobileNav" class="mobileNav">
+
 <div class="container">
+
 <a href="#home" onclick="toggleMenu()">Home</a>
 <a href="#courses" onclick="toggleMenu()">Courses</a>
 <a href="#founder" onclick="toggleMenu()">Founder</a>
 <a href="#news" onclick="toggleMenu()">Cyber News</a>
 <a href="#contact" onclick="toggleMenu()">Contact</a>
 <a href="#admin" onclick="toggleMenu()">Admin</a>
+
 </div>
+
 </div>
+
 </header>
 
 
 <!-- HERO -->
 
 <section id="home" class="hero">
+
 <div class="container heroGrid">
 
 <div>
-<div class="kicker">CYBERSECURITY • TECHNOLOGY • INNOVATION</div>
+
+<div class="kicker">
+CYBERSECURITY • TECHNOLOGY • INNOVATION
+</div>
 
 <h1>
 Building a
@@ -1075,30 +1296,51 @@ ethical security learning, technology education and practical digital skills.
 </p>
 
 <div class="btns">
-<a href="#courses" class="btn primary">Explore Courses →</a>
-<a href="#founder" class="btn secondary">Meet Founder</a>
+
+<a href="#courses" class="btn primary">
+Explore Courses →
+</a>
+
+<a href="#founder" class="btn secondary">
+Meet Founder
+</a>
+
 </div>
+
 </div>
 
 
 <div class="scene">
 
 <div class="cube">
+
 <div class="orbit"></div>
-<div class="cubeShield"><span>A</span></div>
-<div class="floatingCard card1">🛡️ Secure Digital Future</div>
-<div class="floatingCard card2">⚡ Cyber Innovation</div>
+
+<div class="cubeShield">
+<span>A</span>
+</div>
+
+<div class="floatingCard card1">
+🛡️ Secure Digital Future
+</div>
+
+<div class="floatingCard card2">
+⚡ Cyber Innovation
 </div>
 
 </div>
 
 </div>
+
+</div>
+
 </section>
 
 
 <!-- STATS -->
 
 <section class="stats">
+
 <div class="container statGrid">
 
 <div class="stat">
@@ -1122,55 +1364,82 @@ ethical security learning, technology education and practical digital skills.
 </div>
 
 </div>
+
 </section>
 
 
 <!-- COURSES -->
 
 <section id="courses" class="section courses">
+
 <div class="container">
 
 <div class="sectionHead">
+
 <div>
-<div class="kicker">AUREXA ACADEMY</div>
-<h2>Learn. Build.<br><span class="gradient">Defend.</span></h2>
+
+<div class="kicker">
+AUREXA ACADEMY
+</div>
+
+<h2>
+Learn. Build.<br>
+<span class="gradient">Defend.</span>
+</h2>
+
 </div>
 
 <p>
 Professional cybersecurity courses designed for beginners,
 intermediate learners and advanced technology enthusiasts.
 </p>
+
 </div>
 
 <div id="courseGrid" class="courseGrid"></div>
 
 </div>
+
 </section>
 
 
 <!-- FOUNDER -->
 
 <section id="founder" class="section founder">
+
 <div class="container founderGrid">
+
 
 <div class="founderCard">
 
+<!-- FOUNDER PNG ADDED HERE -->
+
 <div class="founderPhoto">
-<div class="founderPlaceholder">
-AUREXA<br>
-<span style="font-size:14px">FOUNDER</span>
-</div>
+
+<img
+src="file_00000000d568720bb94605cdf6d9e49e.png"
+alt="Srikanth Paka - Founder & CEO of AUREXA"
+loading="lazy"
+>
+
 </div>
 
 </div>
+
 
 <div class="founderText">
 
-<div class="kicker">LEADERSHIP</div>
+<div class="kicker">
+LEADERSHIP
+</div>
 
-<h2>Founder & CEO</h2>
+<h2>
+Founder & CEO
+</h2>
 
-<h4>FOUNDER & CEO — AUREXA</h4>
+<h4>
+FOUNDER & CEO — AUREXA
+</h4>
 
 <p>
 <strong>Srikanth Paka</strong> is the Founder & CEO of AUREXA,
@@ -1186,168 +1455,286 @@ innovation and building a stronger digital future.
 </p>
 
 <div class="chips">
+
 <span class="chip">Cybersecurity</span>
 <span class="chip">Ethical Hacking</span>
 <span class="chip">Web Security</span>
 <span class="chip">AI & Security</span>
 <span class="chip">Digital Awareness</span>
 <span class="chip">Technology</span>
+
 </div>
 
 <div class="socials">
 
-<a class="social"
+<a
+class="social"
 href="https://www.linkedin.com/"
-target="_blank">in</a>
+target="_blank"
+rel="noopener">
+in
+</a>
 
-<a class="social"
+<a
+class="social"
 href="https://www.instagram.com/"
-target="_blank">ig</a>
+target="_blank"
+rel="noopener">
+ig
+</a>
 
-<a class="social"
-href="mailto:srikanthh3k@gmail.com">@</a>
+<a
+class="social"
+href="mailto:srikanthh3k@gmail.com">
+@
+</a>
 
-<a class="social"
+<a
+class="social"
 href="https://wa.me/919640724438"
-target="_blank">wa</a>
+target="_blank"
+rel="noopener">
+wa
+</a>
 
 </div>
 
 </div>
 
 </div>
+
 </section>
 
 
 <!-- NEWS -->
 
 <section id="news" class="section news">
+
 <div class="container">
 
 <div class="sectionHead">
+
 <div>
-<div class="kicker">SECURITY INTELLIGENCE</div>
-<h2>Cyber News & Alerts</h2>
+
+<div class="kicker">
+SECURITY INTELLIGENCE
 </div>
+
+<h2>
+Cyber News & Alerts
+</h2>
+
+</div>
+
 <p>
 Stay aware of cybersecurity trends, online threats,
 privacy risks and responsible digital practices.
 </p>
+
 </div>
 
 <div class="newsGrid">
 
 <article class="newsCard">
-<div class="date">AUREXA ALERT</div>
-<h3>Phishing Awareness</h3>
+
+<div class="date">
+AUREXA ALERT
+</div>
+
+<h3>
+Phishing Awareness
+</h3>
+
 <p>
 Never share OTPs, passwords or banking credentials
 through unknown links or messages.
 </p>
+
 </article>
 
+
 <article class="newsCard">
-<div class="date">SECURITY UPDATE</div>
-<h3>Strong Authentication</h3>
+
+<div class="date">
+SECURITY UPDATE
+</div>
+
+<h3>
+Strong Authentication
+</h3>
+
 <p>
 Use unique passwords and multi-factor authentication
 for important online accounts.
 </p>
+
 </article>
 
+
 <article class="newsCard">
-<div class="date">DIGITAL SAFETY</div>
-<h3>Privacy Protection</h3>
+
+<div class="date">
+DIGITAL SAFETY
+</div>
+
+<h3>
+Privacy Protection
+</h3>
+
 <p>
 Review application permissions and avoid unnecessarily
 sharing personal information online.
 </p>
+
 </article>
 
 </div>
+
 </div>
+
 </section>
 
 
 <!-- CONTACT -->
 
 <section id="contact" class="section contact">
+
 <div class="container contactGrid">
 
 <div>
-<div class="kicker">CONTACT AUREXA</div>
-<h2>Let's<br><span class="gradient">Connect.</span></h2>
+
+<div class="kicker">
+CONTACT AUREXA
+</div>
+
+<h2>
+Let's<br>
+<span class="gradient">Connect.</span>
+</h2>
 
 <p class="contactLead">
 Have a question about AUREXA, courses,
 cybersecurity or collaboration? Reach out directly.
 </p>
 
-<a class="btn primary"
+<a
+class="btn primary"
 href="mailto:srikanthh3k@gmail.com">
 Send Email →
 </a>
+
 </div>
+
 
 <div class="contactBox">
 
+
 <div class="contactItem">
-<div style="font-size:25px">📞</div>
+
+<div style="font-size:25px">
+📞
+</div>
+
 <div>
+
 <b>Phone</b>
+
 <a href="tel:+919640724438">
 <span>9640724438</span>
 </a>
+
 <br>
+
 <a href="tel:+919703724438">
 <span>9703724438</span>
 </a>
-</div>
+
 </div>
 
+</div>
+
+
 <div class="contactItem">
-<div style="font-size:25px">💬</div>
+
+<div style="font-size:25px">
+💬
+</div>
+
 <div>
+
 <b>WhatsApp</b>
-<a href="https://wa.me/919640724438" target="_blank">
+
+<a
+href="https://wa.me/919640724438"
+target="_blank"
+rel="noopener">
 <span>9640724438</span>
 </a>
-</div>
+
 </div>
 
+</div>
+
+
 <div class="contactItem">
-<div style="font-size:25px">✉️</div>
+
+<div style="font-size:25px">
+✉️
+</div>
+
 <div>
+
 <b>Email</b>
+
 <a href="mailto:srikanthh3k@gmail.com">
 <span>srikanthh3k@gmail.com</span>
 </a>
+
 </div>
+
 </div>
+
 
 <div class="contactItem">
-<div style="font-size:25px">🌐</div>
-<div>
-<b>Website</b>
-<a href="https://aurexa.ai" target="_blank">
-<span>aurexa.ai</span>
-</a>
+
+<div style="font-size:25px">
+🌐
 </div>
+
+<div>
+
+<b>Website</b>
+
+<a
+href="https://aurexa.space"
+target="_blank"
+rel="noopener">
+<span>aurexa.space</span>
+</a>
+
 </div>
 
 </div>
+
+
 </div>
+
+</div>
+
 </section>
 
 
 <!-- ADMIN -->
 
 <section id="admin" class="section adminSection">
+
 <div class="container">
 
 <div class="adminBox">
 
-<h2>🔐 AUREXA Admin Panel</h2>
+<h2>
+🔐 AUREXA Admin Panel
+</h2>
 
 <p>
 Admin dashboard for viewing course enrollment requests
@@ -1359,48 +1746,76 @@ stored in this browser.
 <input
 id="adminPassword"
 type="password"
-placeholder="Enter admin password">
+placeholder="Enter admin password"
+autocomplete="current-password"
+>
 
-<button class="btn primary"
+<button
+class="btn primary"
 onclick="loginAdmin()">
 Login
 </button>
 
 </div>
 
+
 <div id="dashboard" class="dashboard">
+
 
 <div class="dashStats">
 
 <div class="dashStat">
+
 Orders
-<strong id="orderCount">0</strong>
+
+<strong id="orderCount">
+0
+</strong>
+
 </div>
 
+
 <div class="dashStat">
+
 Revenue
-<strong id="revenue">₹0</strong>
+
+<strong id="revenue">
+₹0
+</strong>
+
 </div>
+
 
 <div class="dashStat">
+
 Latest
-<strong id="latest">—</strong>
+
+<strong id="latest">
+—
+</strong>
+
 </div>
 
 </div>
+
 
 <div class="tableWrap">
 
 <table>
+
 <thead>
+
 <tr>
+
 <th>Name</th>
 <th>Phone</th>
 <th>Course</th>
 <th>Price</th>
 <th>Payment Ref</th>
 <th>Date</th>
+
 </tr>
+
 </thead>
 
 <tbody id="ordersTable"></tbody>
@@ -1409,38 +1824,67 @@ Latest
 
 </div>
 
-<button class="export" onclick="exportOrders()">
+
+<button
+class="export"
+onclick="exportOrders()">
 Export Orders CSV
 </button>
 
-<button class="export"
+
+<button
+class="export"
 style="background:#d93636"
 onclick="clearOrders()">
 Clear Local Orders
 </button>
 
+
 </div>
+
 </div>
+
 </div>
+
 </section>
 
 
+<!-- FOOTER -->
+
 <footer>
+
 <div class="container footerGrid">
 
 <div>
-<strong>AUREXA</strong>
+
+<strong>
+AUREXA
+</strong>
+
 <p style="margin-top:10px">
 Cybersecurity • Technology • Innovation
 </p>
+
 </div>
+
 
 <div>
-<p>Founder & CEO: <b style="color:white">Srikanth Paka</b></p>
-<p style="margin-top:7px">© 2026 AUREXA. All rights reserved.</p>
+
+<p>
+Founder & CEO:
+<b style="color:white">
+Srikanth Paka
+</b>
+</p>
+
+<p style="margin-top:7px">
+© 2026 AUREXA. All rights reserved.
+</p>
+
 </div>
 
 </div>
+
 </footer>
 
 
@@ -1449,23 +1893,36 @@ Cybersecurity • Technology • Innovation
 <div class="bottomBar">
 
 <a href="tel:+919640724438">
+
 <span>📞</span>
 <b>Call</b>
+
 </a>
 
-<a href="https://wa.me/919640724438" target="_blank">
+
+<a
+href="https://wa.me/919640724438"
+target="_blank"
+rel="noopener">
+
 <span>💬</span>
 <b>WhatsApp</b>
+
 </a>
 
+
 <a href="mailto:srikanthh3k@gmail.com">
+
 <span>✉️</span>
 <b>Email</b>
+
 </a>
 
 </div>
 
-<button class="toTop"
+
+<button
+class="toTop"
 onclick="window.scrollTo({top:0,behavior:'smooth'})">
 ↑
 </button>
@@ -1474,28 +1931,41 @@ onclick="window.scrollTo({top:0,behavior:'smooth'})">
 <!-- COURSE MODAL -->
 
 <div id="courseModal" class="modal">
+
 <div class="modalBox">
 
-<button class="close"
-onclick="closeModal('courseModal')">×</button>
+<button
+class="close"
+onclick="closeModal('courseModal')">
+×
+</button>
 
 <div id="courseDetails"></div>
 
 </div>
+
 </div>
 
 
 <!-- BUY MODAL -->
 
 <div id="buyModal" class="modal">
+
 <div class="modalBox">
 
-<button class="close"
-onclick="closeModal('buyModal')">×</button>
+<button
+class="close"
+onclick="closeModal('buyModal')">
+×
+</button>
 
-<div class="kicker">COURSE ENROLLMENT</div>
+<div class="kicker">
+COURSE ENROLLMENT
+</div>
 
-<h2 id="buyTitle">Enroll</h2>
+<h2 id="buyTitle">
+Enroll
+</h2>
 
 <p>
 Fill your details and complete the payment.
@@ -1503,15 +1973,30 @@ After submitting, your enrollment request will
 be saved for the AUREXA admin dashboard.
 </p>
 
+
 <div class="payment">
 
-<div>Course Price</div>
-<div class="upi" id="buyPrice">₹0</div>
+<div>
+Course Price
+</div>
 
-<hr style="margin:15px 0;border:0;border-top:1px solid #dce8f2">
+<div
+class="upi"
+id="buyPrice">
+₹0
+</div>
 
-<div>UPI Payment ID</div>
-<div class="upi">9640724438@pthdfc</div>
+<hr
+style="margin:15px 0;border:0;border-top:1px solid #dce8f2"
+>
+
+<div>
+UPI Payment ID
+</div>
+
+<div class="upi">
+9640724438@pthdfc
+</div>
 
 <p style="margin-top:10px">
 Pay the exact course amount using your UPI app.
@@ -1519,65 +2004,109 @@ Pay the exact course amount using your UPI app.
 
 </div>
 
-<form class="form" onsubmit="submitOrder(event)">
 
-<input id="buyerName"
+<form
+class="form"
+onsubmit="submitOrder(event)"
+>
+
+<input
+id="buyerName"
 required
-placeholder="Full Name">
+placeholder="Full Name"
+>
 
-<input id="buyerPhone"
+<input
+id="buyerPhone"
 required
 pattern="[0-9]{10}"
-placeholder="10-digit Mobile Number">
+placeholder="10-digit Mobile Number"
+>
 
-<input id="buyerEmail"
+<input
+id="buyerEmail"
 type="email"
 required
-placeholder="Email Address">
+placeholder="Email Address"
+>
 
-<input id="paymentRef"
+<input
+id="paymentRef"
 required
-placeholder="UPI Transaction / Payment Reference">
+placeholder="UPI Transaction / Payment Reference"
+>
 
 <textarea
 id="buyerMessage"
-placeholder="Message (optional)"></textarea>
+placeholder="Message (optional)"
+></textarea>
 
-<button class="btn primary" type="submit">
+<button
+class="btn primary"
+type="submit">
 Submit Enrollment →
 </button>
 
 </form>
 
 </div>
+
 </div>
 
 
 <!-- ALERT MODAL -->
 
 <div id="alertModal" class="modal">
+
 <div class="modalBox">
 
-<button class="close"
-onclick="closeModal('alertModal')">×</button>
+<button
+class="close"
+onclick="closeModal('alertModal')">
+×
+</button>
 
-<div class="kicker">AUREXA ALERTS</div>
+<div class="kicker">
+AUREXA ALERTS
+</div>
 
-<h2>Cyber Safety Alerts</h2>
+<h2>
+Cyber Safety Alerts
+</h2>
 
-<div class="module">🛡️ Never share OTP or passwords.</div>
-<div class="module">🔗 Verify suspicious links before opening.</div>
-<div class="module">🔐 Enable MFA wherever possible.</div>
-<div class="module">📱 Keep apps and devices updated.</div>
-<div class="module">👁️ Review your privacy settings regularly.</div>
+<div class="module">
+🛡️ Never share OTP or passwords.
+</div>
+
+<div class="module">
+🔗 Verify suspicious links before opening.
+</div>
+
+<div class="module">
+🔐 Enable MFA wherever possible.
+</div>
+
+<div class="module">
+📱 Keep apps and devices updated.
+</div>
+
+<div class="module">
+👁️ Review your privacy settings regularly.
+</div>
 
 </div>
+
 </div>
 
 
 <script>
 
+/* ADMIN PASSWORD */
+
 const ADMIN_PASSWORD="AUREXA@2026";
+
+
+/* COURSES */
 
 const courses=[
 
@@ -1703,6 +2232,7 @@ modules:[
 
 ];
 
+
 let selectedCourse=null;
 
 
@@ -1716,19 +2246,33 @@ grid.innerHTML=courses.map(c=>`
 
 <article class="course">
 
-<div class="courseIcon">${c.icon}</div>
-
-<div class="level">${c.level}</div>
-
-<h3>${c.title}</h3>
-
-<p>${c.description}</p>
-
-<div class="tags">
-${c.tags.map(t=>`<span class="tag">${t}</span>`).join("")}
+<div class="courseIcon">
+${c.icon}
 </div>
 
-<div class="price">₹${c.price.toLocaleString("en-IN")}</div>
+<div class="level">
+${c.level}
+</div>
+
+<h3>
+${c.title}
+</h3>
+
+<p>
+${c.description}
+</p>
+
+<div class="tags">
+
+${c.tags.map(t=>
+`<span class="tag">${escapeHTML(t)}</span>`
+).join("")}
+
+</div>
+
+<div class="price">
+₹${c.price.toLocaleString("en-IN")}
+</div>
 
 <div class="courseActions">
 
@@ -1759,15 +2303,25 @@ function viewCourse(id){
 
 const c=courses.find(x=>x.id===id);
 
+if(!c)return;
+
 document.getElementById("courseDetails").innerHTML=`
 
-<div class="courseIcon">${c.icon}</div>
+<div class="courseIcon">
+${c.icon}
+</div>
 
-<div class="level">${c.level}</div>
+<div class="level">
+${c.level}
+</div>
 
-<h2>${c.title}</h2>
+<h2>
+${escapeHTML(c.title)}
+</h2>
 
-<p>${c.description}</p>
+<p>
+${escapeHTML(c.description)}
+</p>
 
 <div class="price">
 ₹${c.price.toLocaleString("en-IN")}
@@ -1778,29 +2332,35 @@ Course Modules
 </h3>
 
 ${c.modules.map((m,i)=>
-`<div class="module">${i+1}. ${m}</div>`
+`<div class="module">${i+1}. ${escapeHTML(m)}</div>`
 ).join("")}
 
 <div style="margin-top:25px">
+
 <button
 class="btn primary"
 onclick="closeModal('courseModal');buyCourse(${c.id})">
 Enroll Now →
 </button>
+
 </div>
 
 `;
 
-document.getElementById("courseModal").classList.add("show");
+document
+.getElementById("courseModal")
+.classList.add("show");
 
 }
 
 
-/* BUY */
+/* BUY COURSE */
 
 function buyCourse(id){
 
 selectedCourse=courses.find(x=>x.id===id);
+
+if(!selectedCourse)return;
 
 document.getElementById("buyTitle").textContent=
 "Enroll — "+selectedCourse.title;
@@ -1808,69 +2368,103 @@ document.getElementById("buyTitle").textContent=
 document.getElementById("buyPrice").textContent=
 "₹"+selectedCourse.price.toLocaleString("en-IN");
 
-document.getElementById("buyModal").classList.add("show");
+document
+.getElementById("buyModal")
+.classList.add("show");
 
 }
 
 
-/* ORDER */
+/* SUBMIT ORDER */
 
 function submitOrder(e){
 
 e.preventDefault();
 
-if(!selectedCourse)return;
+if(!selectedCourse){
+ alert("Please select a course.");
+ return;
+}
 
 const order={
 
 id:Date.now(),
 
-name:document.getElementById("buyerName").value.trim(),
+name:document
+.getElementById("buyerName")
+.value
+.trim(),
 
-phone:document.getElementById("buyerPhone").value.trim(),
+phone:document
+.getElementById("buyerPhone")
+.value
+.trim(),
 
-email:document.getElementById("buyerEmail").value.trim(),
+email:document
+.getElementById("buyerEmail")
+.value
+.trim(),
 
 course:selectedCourse.title,
 
 price:selectedCourse.price,
 
-paymentRef:document.getElementById("paymentRef").value.trim(),
+paymentRef:document
+.getElementById("paymentRef")
+.value
+.trim(),
 
-message:document.getElementById("buyerMessage").value.trim(),
+message:document
+.getElementById("buyerMessage")
+.value
+.trim(),
 
 date:new Date().toLocaleString("en-IN")
 
 };
 
+
 const orders=
-JSON.parse(localStorage.getItem("aurexa_orders")||"[]");
+JSON.parse(
+localStorage.getItem("aurexa_orders")||"[]"
+);
+
 
 orders.push(order);
+
 
 localStorage.setItem(
 "aurexa_orders",
 JSON.stringify(orders)
 );
 
+
 const whatsapp=
 "Hello AUREXA,%0A%0A"+
-"I want to enroll in "+encodeURIComponent(order.course)+
+"I want to enroll in "+
+encodeURIComponent(order.course)+
 ".%0A%0A"+
-"Name: "+encodeURIComponent(order.name)+
-"%0APhone: "+encodeURIComponent(order.phone)+
-"%0AEmail: "+encodeURIComponent(order.email)+
-"%0APayment Ref: "+encodeURIComponent(order.paymentRef);
+"Name: "+
+encodeURIComponent(order.name)+
+"%0APhone: "+
+encodeURIComponent(order.phone)+
+"%0AEmail: "+
+encodeURIComponent(order.email)+
+"%0APayment Ref: "+
+encodeURIComponent(order.paymentRef);
+
 
 alert(
-"Enrollment submitted successfully!\\n\\n"+
+"Enrollment submitted successfully!\n\n"+
 "Please contact AUREXA on WhatsApp with your payment reference."
 );
+
 
 window.open(
 "https://wa.me/919640724438?text="+whatsapp,
 "_blank"
 );
+
 
 e.target.reset();
 
@@ -1884,16 +2478,20 @@ closeModal("buyModal");
 function loginAdmin(){
 
 const password=
-document.getElementById("adminPassword").value;
+document
+.getElementById("adminPassword")
+.value;
 
 if(password!==ADMIN_PASSWORD){
 
 alert("Incorrect admin password.");
+
 return;
 
 }
 
-document.getElementById("dashboard")
+document
+.getElementById("dashboard")
 .classList.add("show");
 
 loadDashboard();
@@ -1906,22 +2504,35 @@ loadDashboard();
 function loadDashboard(){
 
 const orders=
-JSON.parse(localStorage.getItem("aurexa_orders")||"[]");
+JSON.parse(
+localStorage.getItem("aurexa_orders")||"[]"
+);
+
 
 document.getElementById("orderCount")
 .textContent=orders.length;
 
+
 const total=
-orders.reduce((sum,o)=>sum+Number(o.price||0),0);
+orders.reduce(
+(sum,o)=>sum+Number(o.price||0),
+0
+);
+
 
 document.getElementById("revenue")
-.textContent="₹"+total.toLocaleString("en-IN");
+.textContent=
+"₹"+total.toLocaleString("en-IN");
+
 
 document.getElementById("latest")
 .textContent=
-orders.length?
-orders[orders.length-1].course:
+orders.length
+?
+orders[orders.length-1].course
+:
 "—";
+
 
 document.getElementById("ordersTable").innerHTML=
 
@@ -1931,42 +2542,61 @@ orders.map(o=>`
 
 <tr>
 
-<td>${escapeHTML(o.name)}</td>
+<td>
+${escapeHTML(o.name)}
+</td>
 
-<td>${escapeHTML(o.phone)}</td>
+<td>
+${escapeHTML(o.phone)}
+</td>
 
-<td>${escapeHTML(o.course)}</td>
+<td>
+${escapeHTML(o.course)}
+</td>
 
-<td>₹${Number(o.price).toLocaleString("en-IN")}</td>
+<td>
+₹${Number(o.price).toLocaleString("en-IN")}
+</td>
 
-<td>${escapeHTML(o.paymentRef)}</td>
+<td>
+${escapeHTML(o.paymentRef)}
+</td>
 
-<td>${escapeHTML(o.date)}</td>
+<td>
+${escapeHTML(o.date)}
+</td>
 
 </tr>
 
 `).join(""):
 
 `<tr>
-<td colspan="6">No orders yet.</td>
+<td colspan="6">
+No orders yet.
+</td>
 </tr>`;
 
 }
 
 
-/* CSV */
+/* CSV EXPORT */
 
 function exportOrders(){
 
 const orders=
-JSON.parse(localStorage.getItem("aurexa_orders")||"[]");
+JSON.parse(
+localStorage.getItem("aurexa_orders")||"[]"
+);
+
 
 if(!orders.length){
 
 alert("No orders available.");
+
 return;
 
 }
+
 
 const header=[
 "Name",
@@ -1979,6 +2609,7 @@ const header=[
 "Date"
 ];
 
+
 const rows=orders.map(o=>[
 o.name,
 o.phone,
@@ -1990,6 +2621,7 @@ o.message,
 o.date
 ]);
 
+
 const csv=[
 header,
 ...rows
@@ -1999,26 +2631,38 @@ row.map(v=>
 `"${String(v??"").replaceAll('"','""')}"`
 ).join(",")
 )
-.join("\\n");
+.join("\n");
+
 
 const blob=
-new Blob([csv],{type:"text/csv"});
+new Blob(
+[csv],
+{type:"text/csv"}
+);
+
 
 const url=
 URL.createObjectURL(blob);
 
-const a=document.createElement("a");
+
+const a=
+document.createElement("a");
+
 
 a.href=url;
-a.download="aurexa-orders.csv";
+
+a.download=
+"aurexa-orders.csv";
+
 a.click();
+
 
 URL.revokeObjectURL(url);
 
 }
 
 
-/* CLEAR */
+/* CLEAR ORDERS */
 
 function clearOrders(){
 
@@ -2026,7 +2670,11 @@ if(!confirm(
 "Delete all local AUREXA orders?"
 ))return;
 
-localStorage.removeItem("aurexa_orders");
+
+localStorage.removeItem(
+"aurexa_orders"
+);
+
 
 loadDashboard();
 
@@ -2037,17 +2685,19 @@ loadDashboard();
 
 function showAlerts(){
 
-document.getElementById("alertModal")
+document
+.getElementById("alertModal")
 .classList.add("show");
 
 }
 
 
-/* MENU */
+/* MOBILE MENU */
 
 function toggleMenu(){
 
-document.getElementById("mobileNav")
+document
+.getElementById("mobileNav")
 .classList.toggle("show");
 
 }
@@ -2057,13 +2707,14 @@ document.getElementById("mobileNav")
 
 function closeModal(id){
 
-document.getElementById(id)
+document
+.getElementById(id)
 .classList.remove("show");
 
 }
 
 
-/* SECURITY */
+/* ESCAPE HTML */
 
 function escapeHTML(value){
 
@@ -2077,20 +2728,43 @@ return String(value??"")
 }
 
 
-/* CLOSE MODALS */
+/* CLOSE WHEN CLICKING OUTSIDE */
 
-document.querySelectorAll(".modal")
+document
+.querySelectorAll(".modal")
 .forEach(m=>{
 
 m.addEventListener("click",e=>{
 
-if(e.target===m)
+if(e.target===m){
+
 m.classList.remove("show");
 
-});
+}
 
 });
 
+});
+
+
+/* ESC KEY */
+
+document.addEventListener("keydown",e=>{
+
+if(e.key==="Escape"){
+
+document
+.querySelectorAll(".modal")
+.forEach(m=>
+m.classList.remove("show")
+);
+
+}
+
+});
+
+
+/* START */
 
 renderCourses();
 
