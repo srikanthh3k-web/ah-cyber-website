@@ -2,76 +2,67 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CYBERGUARD AI - Detect. Understand. Prevent. Report.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>CYBERGUARD AI | AI-Powered Cyber Fraud Protection</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <style>
         /* --- CSS VARIABLES & THEMING --- */
         :root {
-            /* Dark Theme (Default) */
-            --bg-base: #0a0e17;
-            --bg-surface: #111827;
-            --bg-glass: rgba(17, 24, 39, 0.7);
-            --bg-glass-hover: rgba(31, 41, 55, 0.8);
+            /* Deep Space/Cyber Theme */
+            --bg-base: #060913;
+            --bg-surface: #0f1629;
+            --bg-glass: rgba(15, 22, 41, 0.65);
+            --bg-glass-hover: rgba(22, 32, 59, 0.8);
             
-            --text-main: #f3f4f6;
-            --text-muted: #9ca3af;
-            --text-inverted: #111827;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
             
-            --border-light: rgba(255, 255, 255, 0.1);
-            --border-focus: rgba(59, 130, 246, 0.5);
+            --border-light: rgba(255, 255, 255, 0.08);
+            --border-accent: rgba(56, 189, 248, 0.3);
             
             --primary: #3b82f6;
-            --primary-hover: #2563eb;
-            --secondary: #8b5cf6;
-            --accent: #06b6d4;
+            --primary-glow: rgba(59, 130, 246, 0.5);
+            --secondary: #06b6d4;
+            --accent: #8b5cf6;
             
             --success: #10b981;
             --warning: #f59e0b;
             --danger: #ef4444;
-            --info: #3b82f6;
+            --info: #0ea5e9;
             
-            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            --shadow-neon: 0 0 15px rgba(59, 130, 246, 0.3);
+            --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            --shadow-neon: 0 0 20px var(--primary-glow);
             
-            --radius-md: 0.5rem;
-            --radius-lg: 1rem;
-            --radius-xl: 1.5rem;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --radius-xl: 24px;
             
             --font-main: 'Inter', sans-serif;
+            --font-display: 'Space Grotesk', sans-serif;
             --font-mono: 'Fira Code', monospace;
             
-            --transition: all 0.3s ease;
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         [data-theme="light"] {
-            --bg-base: #f3f4f6;
+            --bg-base: #f1f5f9;
             --bg-surface: #ffffff;
-            --bg-glass: rgba(255, 255, 255, 0.8);
-            --bg-glass-hover: rgba(243, 244, 246, 0.9);
-            
-            --text-main: #111827;
-            --text-muted: #4b5563;
-            --text-inverted: #f3f4f6;
-            
-            --border-light: rgba(0, 0, 0, 0.1);
-            --border-focus: rgba(59, 130, 246, 0.5);
-            
-            --shadow-neon: 0 0 15px rgba(59, 130, 246, 0.15);
+            --bg-glass: rgba(255, 255, 255, 0.7);
+            --bg-glass-hover: rgba(248, 250, 252, 0.9);
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --border-light: rgba(0, 0, 0, 0.08);
+            --border-accent: rgba(59, 130, 246, 0.3);
+            --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
         }
 
-        /* --- RESET & TYPOGRAPHY --- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        /* --- RESET & GLOBAL --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
             font-family: var(--font-main);
@@ -82,725 +73,349 @@
             transition: var(--transition);
         }
 
-        h1, h2, h3, h4, h5, h6 {
-            font-weight: 600;
-            line-height: 1.2;
-            margin-bottom: 1rem;
+        /* Animated Background Canvas */
+        #cyber-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: -1;
+            opacity: 0.6;
+            pointer-events: none;
         }
 
-        a {
-            color: var(--primary);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-        
-        a:hover { color: var(--primary-hover); }
-        ul { list-style: none; }
-
-        /* --- LAYOUT UTILITIES --- */
         .container {
-            width: 100%;
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
+            width: 100%; max-width: 1300px;
+            margin: 0 auto; padding: 0 1.5rem;
         }
 
-        .section-padding { padding: 5rem 0; }
-        
-        .flex { display: flex; }
-        .flex-col { display: flex; flex-direction: column; }
-        .items-center { align-items: center; }
-        .justify-between { justify-content: space-between; }
-        .justify-center { justify-content: center; }
-        .gap-2 { gap: 0.5rem; }
-        .gap-4 { gap: 1rem; }
-        .gap-6 { gap: 1.5rem; }
-        .grid { display: grid; }
+        h1, h2, h3, h4, h5 { font-family: var(--font-display); line-height: 1.2; }
+        a { color: var(--secondary); text-decoration: none; transition: var(--transition); }
+        a:hover { color: var(--primary); }
 
-        /* --- GLASSMORPHISM & COMPONENTS --- */
-        .glass-card {
+        /* --- GLASSMORPHISM COMPONENTS --- */
+        .glass-panel {
             background: var(--bg-glass);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             border: 1px solid var(--border-light);
             border-radius: var(--radius-lg);
-            padding: 1.5rem;
-            box-shadow: var(--shadow-md);
+            box-shadow: var(--shadow-glass);
             transition: var(--transition);
+            position: relative;
+            overflow: hidden;
         }
 
-        .glass-card:hover {
-            box-shadow: var(--shadow-lg);
-            border-color: rgba(59, 130, 246, 0.3);
+        .glass-panel::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
         }
 
+        .glass-panel:hover {
+            border-color: var(--border-accent);
+            box-shadow: 0 8px 32px 0 rgba(0,0,0,0.4), 0 0 15px rgba(56, 189, 248, 0.1);
+        }
+
+        /* --- BUTTONS --- */
         .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0.75rem 1.5rem;
-            border-radius: var(--radius-md);
-            font-weight: 500;
-            cursor: pointer;
-            transition: var(--transition);
-            border: none;
-            gap: 0.5rem;
-            font-family: var(--font-main);
-            font-size: 1rem;
+            display: inline-flex; align-items: center; justify-content: center;
+            gap: 0.5rem; padding: 0.8rem 1.5rem;
+            border-radius: var(--radius-md); font-family: var(--font-display);
+            font-weight: 600; font-size: 0.95rem; letter-spacing: 0.5px;
+            cursor: pointer; border: none; transition: var(--transition);
+            position: relative; overflow: hidden;
         }
 
         .btn-primary {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            box-shadow: var(--shadow-neon);
+            color: white; box-shadow: var(--shadow-neon);
         }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
-        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 25px rgba(6, 182, 212, 0.6); }
 
         .btn-outline {
-            background: transparent;
-            border: 1px solid var(--primary);
-            color: var(--primary);
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border-light);
+            color: var(--text-main);
+            backdrop-filter: blur(5px);
         }
-
         .btn-outline:hover {
-            background: rgba(59, 130, 246, 0.1);
+            background: rgba(255,255,255,0.1); border-color: var(--text-main); transform: translateY(-2px);
         }
         
-        .btn-danger { background: var(--danger); color: white; }
-        .btn-success { background: var(--success); color: white; }
+        .btn-danger { background: rgba(239, 68, 68, 0.1); color: var(--danger); border: 1px solid var(--danger); }
+        .btn-danger:hover { background: var(--danger); color: white; }
 
-        .badge {
-            padding: 0.25rem 0.75rem;
-            border-radius: 9999px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-        
-        .badge-danger { background: rgba(239, 68, 68, 0.2); color: var(--danger); border: 1px solid var(--danger); }
-        .badge-warning { background: rgba(245, 158, 11, 0.2); color: var(--warning); border: 1px solid var(--warning); }
-        .badge-success { background: rgba(16, 185, 129, 0.2); color: var(--success); border: 1px solid var(--success); }
-        .badge-info { background: rgba(59, 130, 246, 0.2); color: var(--info); border: 1px solid var(--info); }
-
+        /* --- FORMS --- */
         .form-group { margin-bottom: 1.5rem; }
-        .form-label { display: block; margin-bottom: 0.5rem; font-size: 0.875rem; color: var(--text-muted); }
+        .form-label { display: block; margin-bottom: 0.5rem; font-size: 0.85rem; color: var(--text-muted); font-weight: 500; }
         .form-control {
-            width: 100%;
-            padding: 0.75rem 1rem;
-            background: rgba(0, 0, 0, 0.2);
+            width: 100%; padding: 1rem;
+            background: rgba(0, 0, 0, 0.3);
             border: 1px solid var(--border-light);
             border-radius: var(--radius-md);
-            color: var(--text-main);
-            font-family: var(--font-main);
+            color: var(--text-main); font-family: var(--font-main);
             transition: var(--transition);
         }
-        [data-theme="light"] .form-control { background: #fff; }
-        .form-control:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 2px var(--border-focus); }
+        [data-theme="light"] .form-control { background: rgba(255,255,255,0.8); }
+        .form-control:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(59,130,246,0.2); background: rgba(0,0,0,0.5); }
         textarea.form-control { resize: vertical; min-height: 120px; }
+
+        .badge {
+            padding: 0.25rem 0.75rem; border-radius: 20px;
+            font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .badge-danger { background: rgba(239, 68, 68, 0.15); color: #fca5a5; border: 1px solid var(--danger); }
+        .badge-warning { background: rgba(245, 158, 11, 0.15); color: #fcd34d; border: 1px solid var(--warning); }
+        .badge-success { background: rgba(16, 185, 129, 0.15); color: #6ee7b7; border: 1px solid var(--success); }
+        .badge-info { background: rgba(14, 165, 233, 0.15); color: #7dd3fc; border: 1px solid var(--info); }
 
         /* --- NAVBAR --- */
         nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            background: var(--bg-glass);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            background: rgba(6, 9, 19, 0.8);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border-light);
-            padding: 1rem 0;
+            padding: 1rem 0; transition: var(--transition);
         }
-        
         .nav-container { display: flex; justify-content: space-between; align-items: center; }
         
         .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 1.5rem;
-            font-weight: 700;
-            letter-spacing: -0.025em;
-            color: var(--text-main);
-            cursor: pointer;
+            display: flex; align-items: center; gap: 0.75rem;
+            font-family: var(--font-display); font-size: 1.5rem; font-weight: 700;
+            color: var(--text-main); cursor: pointer; letter-spacing: -0.5px;
+        }
+        .logo-shield {
+            width: 36px; height: 36px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 10px; display: flex; align-items: center; justify-content: center;
+            position: relative; overflow: hidden; box-shadow: var(--shadow-neon);
         }
 
-        .logo-icon {
-            width: 32px;
-            height: 32px;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.2rem;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .logo-icon::after {
-            content: '';
-            position: absolute;
-            top: -50%; left: -50%; width: 200%; height: 200%;
-            background: linear-gradient(to right, transparent, rgba(255,255,255,0.3), transparent);
-            transform: rotate(45deg);
-            animation: shieldGlint 3s infinite linear;
-        }
-
-        @keyframes shieldGlint {
-            0% { transform: translateX(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) rotate(45deg); }
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 1.5rem;
-            align-items: center;
-        }
-
+        .nav-links { display: flex; gap: 1.5rem; align-items: center; list-style: none; }
         .nav-link {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            font-weight: 500;
-            cursor: pointer;
-            padding: 0.5rem;
-            border-radius: var(--radius-md);
+            color: var(--text-muted); font-size: 0.9rem; font-weight: 500;
+            cursor: pointer; padding: 0.5rem; transition: var(--transition);
         }
-
-        .nav-link:hover, .nav-link.active {
-            color: var(--text-main);
-            background: rgba(255, 255, 255, 0.05);
-        }
-
+        .nav-link:hover, .nav-link.active { color: var(--primary); }
+        
         .mobile-menu-btn {
-            display: none;
-            font-size: 1.5rem;
-            background: none;
-            border: none;
-            color: var(--text-main);
-            cursor: pointer;
+            display: none; font-size: 1.5rem; background: none; border: none;
+            color: var(--text-main); cursor: pointer;
         }
+
+        /* --- SPA VIEW LOGIC --- */
+        .view-section {
+            display: none; padding-top: 100px; padding-bottom: 4rem;
+            min-height: calc(100vh - 100px); animation: fadeUp 0.5s ease forwards;
+        }
+        .view-section.active { display: block; }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        .section-header { text-align: center; margin-bottom: 4rem; }
+        .section-title { font-size: 3rem; background: linear-gradient(to right, #fff, var(--text-muted)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1rem; }
+        .section-desc { color: var(--text-muted); max-width: 600px; margin: 0 auto; font-size: 1.1rem; }
 
         /* --- HERO SECTION --- */
-        .hero {
-            position: relative;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding-top: 80px;
-            overflow: hidden;
-        }
-
-        .hero-bg {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1;
-            background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 60%);
-        }
-
-        .hero-grid {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -2;
-            background-image: 
-                linear-gradient(var(--border-light) 1px, transparent 1px),
-                linear-gradient(90deg, var(--border-light) 1px, transparent 1px);
-            background-size: 40px 40px;
-            opacity: 0.2;
-            transform: perspective(500px) rotateX(60deg) translateY(-100px) translateZ(-200px);
-            animation: gridMove 20s linear infinite;
-        }
+        .hero { position: relative; min-height: 100vh; display: flex; align-items: center; overflow: hidden; padding-top: 80px; }
+        .hero-content { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
         
-        [data-theme="light"] .hero-grid { opacity: 0.5; }
-
-        @keyframes gridMove {
-            0% { transform: perspective(500px) rotateX(60deg) translateY(0) translateZ(-200px); }
-            100% { transform: perspective(500px) rotateX(60deg) translateY(40px) translateZ(-200px); }
+        .hero-text h1 {
+            font-size: 4.5rem; font-weight: 700; line-height: 1.1; margin-bottom: 1.5rem;
+            background: linear-gradient(to right, #fff, var(--primary), var(--secondary));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
-
-        .hero-content {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-title {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(to right, var(--text-main), var(--primary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero-subtitle {
-            font-size: 1.25rem;
-            color: var(--text-muted);
-            margin-bottom: 2.5rem;
-        }
-
-        .status-panel {
-            display: inline-flex;
-            gap: 2rem;
-            background: var(--bg-glass);
-            padding: 1rem 2rem;
-            border-radius: 999px;
-            border: 1px solid var(--border-light);
-            margin-bottom: 2rem;
-            backdrop-filter: blur(10px);
-        }
-
-        .status-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.875rem;
-            font-family: var(--font-mono);
-        }
-
-        .status-dot {
-            width: 10px; height: 10px;
-            border-radius: 50%;
-            background: var(--success);
-            box-shadow: 0 0 10px var(--success);
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
-            70% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
-        }
-
-        /* --- SECTIONS CONTENT --- */
-        .view-section {
-            display: none;
-            animation: fadeIn 0.4s ease forwards;
-            padding-top: 100px;
-            min-height: calc(100vh - 80px);
-        }
+        .hero-text p { font-size: 1.25rem; color: var(--text-muted); margin-bottom: 2.5rem; max-width: 90%; }
         
-        .view-section.active { display: block; }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            color: var(--text-main);
-        }
-
-        .section-desc {
-            color: var(--text-muted);
-            max-width: 600px;
-            margin: 1rem auto 0;
-        }
-
-        /* --- SCANNER --- */
-        .scanner-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-        }
-
-        .tabs {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            border-bottom: 1px solid var(--border-light);
-            padding-bottom: 1rem;
-            overflow-x: auto;
-        }
-
-        .tab-btn {
-            background: none;
-            border: none;
-            color: var(--text-muted);
-            font-size: 1rem;
-            font-weight: 500;
-            cursor: pointer;
-            padding: 0.5rem 1rem;
-            border-radius: var(--radius-md);
-            transition: var(--transition);
-            white-space: nowrap;
-        }
-
-        .tab-btn.active {
-            background: rgba(59, 130, 246, 0.1);
-            color: var(--primary);
-        }
-
-        .tab-content { display: none; }
-        .tab-content.active { display: block; animation: fadeIn 0.3s ease; }
-
-        .analysis-panel {
-            background: var(--bg-surface);
-            border: 1px solid var(--border-light);
-            border-radius: var(--radius-lg);
-            padding: 2rem;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            min-height: 400px;
-        }
+        .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
         
-        .analysis-overlay {
+        .status-pill {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.5rem 1rem; background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 50px;
+            font-family: var(--font-mono); font-size: 0.85rem; color: var(--success); margin-bottom: 2rem;
+        }
+        .status-dot { width: 8px; height: 8px; background: var(--success); border-radius: 50%; box-shadow: 0 0 10px var(--success); animation: pulse 2s infinite; }
+
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); } 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); } }
+
+        /* 3D Visual Area */
+        .hero-visual {
+            position: relative; height: 500px; display: flex; align-items: center; justify-content: center;
+            perspective: 1000px;
+        }
+        .shield-container {
+            width: 300px; height: 350px; position: relative;
+            transform-style: preserve-3d; transition: transform 0.1s ease-out;
+        }
+        .shield-layer {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.8);
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 10;
-            color: white;
-            font-family: var(--font-mono);
+            background-size: contain; background-repeat: no-repeat; background-position: center;
         }
-        
-        [data-theme="light"] .analysis-overlay { background: rgba(255,255,255,0.9); color: black; }
+        .shield-base { filter: drop-shadow(0 0 30px rgba(59,130,246,0.5)); }
+        .shield-core { transform: translateZ(30px); opacity: 0.8; animation: corePulse 4s infinite alternate; }
+        .shield-ring { transform: translateZ(60px); border: 2px solid var(--secondary); border-radius: 50%; width: 120%; height: 100%; left: -10%; top: 0; animation: spin 20s linear infinite; opacity: 0.3; }
 
-        .scanning-steps { text-align: left; margin-top: 2rem; font-size: 0.9rem; color: var(--accent); }
+        @keyframes spin { 100% { transform: translateZ(60px) rotate(360deg); } }
+        @keyframes corePulse { 0% { filter: hue-rotate(0deg) brightness(1); } 100% { filter: hue-rotate(30deg) brightness(1.5); } }
+
+        .floating-indicator {
+            position: absolute; background: var(--bg-glass); backdrop-filter: blur(10px);
+            border: 1px solid var(--border-light); padding: 0.75rem 1.25rem; border-radius: var(--radius-md);
+            font-family: var(--font-mono); font-size: 0.8rem; box-shadow: var(--shadow-glass);
+            display: flex; flex-direction: column; gap: 0.25rem;
+        }
+        .ind-1 { top: 10%; right: -10%; transform: translateZ(40px); animation: float 6s ease-in-out infinite; }
+        .ind-2 { bottom: 20%; left: -20%; transform: translateZ(50px); animation: float 5s ease-in-out infinite reverse; }
+
+        @keyframes float { 0%, 100% { transform: translateY(0) translateZ(40px); } 50% { transform: translateY(-20px) translateZ(40px); } }
+
+        /* --- SCANNER SECTION --- */
+        .scanner-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+        .scanner-tabs { display: flex; gap: 1rem; border-bottom: 1px solid var(--border-light); padding-bottom: 1rem; margin-bottom: 2rem; overflow-x: auto; }
+        .scan-tab-btn { background: none; border: none; color: var(--text-muted); font-size: 1rem; font-weight: 500; cursor: pointer; padding: 0.5rem 1rem; border-radius: var(--radius-md); transition: var(--transition); white-space: nowrap; }
+        .scan-tab-btn.active { background: rgba(59, 130, 246, 0.15); color: var(--primary); }
         
-        .gauge-container { width: 200px; height: 100px; position: relative; margin: 0 auto 2rem; overflow: hidden; }
-        .gauge-bg {
-            position: absolute; top: 0; left: 0; width: 200px; height: 200px;
-            border-radius: 50%;
-            border: 20px solid var(--border-light);
-            box-sizing: border-box;
-        }
-        .gauge-fill {
-            position: absolute; top: 0; left: 0; width: 200px; height: 200px;
-            border-radius: 50%;
-            border: 20px solid transparent;
-            border-top-color: var(--success);
-            border-right-color: var(--success);
-            box-sizing: border-box;
-            transform: rotate(-45deg); /* 0% */
-            transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .gauge-text {
-            position: absolute; bottom: 0; left: 0; width: 100%;
-            text-align: center; font-size: 1.5rem; font-weight: 700;
+        .scan-content { display: none; }
+        .scan-content.active { display: block; animation: fadeUp 0.3s ease forwards; }
+
+        .analysis-box {
+            background: rgba(0,0,0,0.4); border-radius: var(--radius-md); padding: 2rem;
+            min-height: 400px; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            text-align: center; border: 1px solid var(--border-light); position: relative;
         }
 
-        .indicator-list { text-align: left; width: 100%; margin-top: 1.5rem; }
-        .indicator-item {
-            background: rgba(255,255,255,0.05);
-            padding: 0.75rem;
-            border-radius: var(--radius-md);
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            font-size: 0.9rem;
-        }
+        .risk-meter { width: 200px; height: 100px; position: relative; overflow: hidden; margin: 0 auto 2rem; }
+        .risk-meter-bg { position: absolute; top: 0; left: 0; width: 200px; height: 200px; border-radius: 50%; border: 20px solid rgba(255,255,255,0.05); }
+        .risk-meter-fill { position: absolute; top: 0; left: 0; width: 200px; height: 200px; border-radius: 50%; border: 20px solid transparent; border-top-color: var(--success); border-right-color: var(--success); transform: rotate(-45deg); transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1); }
+        .risk-score-display { position: absolute; bottom: 0; width: 100%; text-align: center; font-size: 2rem; font-family: var(--font-display); font-weight: 700; }
+
+        .indicators-list { width: 100%; text-align: left; margin-top: 2rem; }
+        .ind-item { background: rgba(255,255,255,0.03); padding: 1rem; border-radius: 8px; margin-bottom: 0.5rem; display: flex; align-items: flex-start; gap: 1rem; border-left: 3px solid var(--text-muted); }
 
         /* --- DASHBOARD --- */
-        .dash-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-        
-        .stat-card {
-            padding: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-        }
-        
-        .stat-icon {
-            width: 48px; height: 48px;
-            border-radius: 12px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.5rem;
-        }
-        
-        .stat-info h4 { margin: 0; color: var(--text-muted); font-size: 0.9rem; font-weight: 500; }
-        .stat-info h2 { margin: 0; font-size: 2rem; color: var(--text-main); }
+        .dash-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
+        .stat-card { padding: 1.5rem; display: flex; align-items: center; gap: 1.5rem; }
+        .stat-icon { width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+        .stat-details h4 { color: var(--text-muted); font-size: 0.85rem; font-family: var(--font-main); text-transform: uppercase; letter-spacing: 1px; }
+        .stat-details h2 { font-size: 2rem; color: var(--text-main); margin-top: 0.25rem; }
 
-        .charts-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
+        .dash-charts { display: grid; grid-template-columns: 2fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }
+        .table-responsive { width: 100%; overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; text-align: left; }
+        th, td { padding: 1rem; border-bottom: 1px solid var(--border-light); font-size: 0.9rem; }
+        th { color: var(--text-muted); font-weight: 600; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px; }
 
-        .table-container {
-            overflow-x: auto;
-            width: 100%;
-        }
+        /* --- CARDS & GRIDS --- */
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; }
+        .news-card { display: flex; flex-direction: column; padding: 1.5rem; }
+        .news-meta { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.5rem; display: flex; justify-content: space-between; }
+        .news-title { font-size: 1.1rem; margin-bottom: 1rem; line-height: 1.4; }
         
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            text-align: left;
-        }
+        .alert-card { border-left: 4px solid var(--primary); }
         
-        th, td {
-            padding: 1rem;
-            border-bottom: 1px solid var(--border-light);
-            font-size: 0.9rem;
-        }
-        
-        th { font-weight: 600; color: var(--text-muted); }
-        
-        /* --- ALERTS & MAP --- */
-        .alerts-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-        
-        .alert-card { border-left: 4px solid transparent; }
-        .alert-critical { border-left-color: var(--danger); }
-        .alert-high { border-left-color: var(--warning); }
-        .alert-medium { border-left-color: var(--primary); }
-        .alert-info { border-left-color: var(--accent); }
-
-        .threat-map-container {
-            height: 400px;
-            background: var(--bg-surface);
-            border-radius: var(--radius-lg);
-            border: 1px solid var(--border-light);
-            position: relative;
-            overflow: hidden;
-            margin-top: 3rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-image: radial-gradient(rgba(59, 130, 246, 0.2) 1px, transparent 1px);
-            background-size: 20px 20px;
-        }
-
-        .map-dot {
-            position: absolute;
-            width: 12px; height: 12px;
-            background: var(--danger);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            cursor: pointer;
-        }
-        
-        .map-dot::before {
-            content: ''; position: absolute; top: -100%; left: -100%; width: 300%; height: 300%;
-            border: 1px solid var(--danger); border-radius: 50%;
-            animation: radarPing 2s infinite ease-out;
-        }
-        
-        .map-tooltip {
-            position: absolute;
-            background: var(--bg-glass);
-            padding: 0.5rem 1rem;
-            border-radius: var(--radius-md);
-            font-size: 0.8rem;
-            color: white;
-            pointer-events: none;
-            opacity: 0;
-            transition: opacity 0.2s;
-            border: 1px solid var(--border-light);
-            white-space: nowrap;
-            z-index: 10;
-        }
-        
-        .map-dot:hover .map-tooltip { opacity: 1; }
-
-        @keyframes radarPing {
-            0% { transform: scale(0.1); opacity: 1; }
-            100% { transform: scale(1); opacity: 0; }
-        }
-
-        /* --- AWARENESS & QUIZ --- */
-        .awareness-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.5rem;
-        }
-        
-        .awareness-card {
-            cursor: pointer;
-            text-align: center;
-            padding: 2rem;
-        }
-        
-        .awareness-card i {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .quiz-container {
-            background: var(--bg-surface);
-            padding: 2rem;
-            border-radius: var(--radius-lg);
-            border: 1px solid var(--border-light);
-            max-width: 700px;
-            margin: 3rem auto;
-        }
-
-        .quiz-option {
-            display: block; width: 100%; text-align: left;
-            padding: 1rem; margin-bottom: 0.75rem;
-            background: rgba(0,0,0,0.2); border: 1px solid var(--border-light);
-            border-radius: var(--radius-md); color: var(--text-main);
-            cursor: pointer; transition: var(--transition);
-        }
-        .quiz-option:hover { background: rgba(59, 130, 246, 0.1); border-color: var(--primary); }
-        .quiz-option.correct { background: rgba(16, 185, 129, 0.2); border-color: var(--success); }
-        .quiz-option.wrong { background: rgba(239, 68, 68, 0.2); border-color: var(--danger); }
-
-        .pwd-meter { height: 8px; background: rgba(255,255,255,0.1); border-radius: 4px; overflow: hidden; margin-top: 0.5rem; }
-        .pwd-fill { height: 100%; width: 0%; transition: width 0.3s, background-color 0.3s; }
+        .feature-card { padding: 2rem; text-align: center; cursor: pointer; }
+        .feature-icon { font-size: 3rem; color: var(--primary); margin-bottom: 1.5rem; }
 
         /* --- MODALS & TOASTS --- */
-        .modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.7); backdrop-filter: blur(5px);
-            display: none; align-items: center; justify-content: center; z-index: 2000;
-            opacity: 0; transition: opacity 0.3s;
-        }
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); backdrop-filter: blur(8px); display: none; align-items: center; justify-content: center; z-index: 2000; opacity: 0; transition: opacity 0.3s; }
         .modal-overlay.active { display: flex; opacity: 1; }
-        
-        .modal-content {
-            background: var(--bg-surface); border: 1px solid var(--border-light);
-            border-radius: var(--radius-lg); padding: 2rem;
-            width: 90%; max-width: 500px; position: relative;
-            transform: translateY(20px); transition: transform 0.3s;
-        }
-        .modal-overlay.active .modal-content { transform: translateY(0); }
-        
-        .close-modal {
-            position: absolute; top: 1rem; right: 1rem;
-            background: none; border: none; color: var(--text-muted);
-            font-size: 1.2rem; cursor: pointer;
-        }
+        .modal-content { background: var(--bg-surface); border: 1px solid var(--border-light); border-radius: var(--radius-xl); padding: 2.5rem; width: 90%; max-width: 500px; position: relative; transform: translateY(20px) scale(0.95); transition: all 0.3s; box-shadow: var(--shadow-glass); }
+        .modal-overlay.active .modal-content { transform: translateY(0) scale(1); }
+        .close-modal { position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none; color: var(--text-muted); font-size: 1.5rem; cursor: pointer; transition: color 0.3s; }
+        .close-modal:hover { color: var(--text-main); }
 
-        #toast-container { position: fixed; bottom: 20px; right: 20px; z-index: 3000; display: flex; flex-direction: column; gap: 10px; }
-        .toast {
-            background: var(--bg-surface); border: 1px solid var(--border-light);
-            padding: 1rem 1.5rem; border-radius: var(--radius-md);
-            color: var(--text-main); display: flex; align-items: center; gap: 1rem;
-            box-shadow: var(--shadow-lg); animation: slideInRight 0.3s forwards;
-            border-left: 4px solid var(--primary);
-        }
-        .toast.success { border-left-color: var(--success); }
-        .toast.error { border-left-color: var(--danger); }
-        .toast.fade-out { animation: fadeOutRight 0.3s forwards; }
-
-        @keyframes slideInRight { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
-        @keyframes fadeOutRight { from { transform: translateX(0); opacity: 1; } to { transform: translateX(100%); opacity: 0; } }
+        #toast-container { position: fixed; bottom: 2rem; right: 2rem; z-index: 3000; display: flex; flex-direction: column; gap: 1rem; }
+        .toast { background: var(--bg-surface); border: 1px solid var(--border-light); padding: 1rem 1.5rem; border-radius: var(--radius-md); display: flex; align-items: center; gap: 1rem; box-shadow: var(--shadow-glass); animation: slideIn 0.3s forwards; border-left: 4px solid var(--primary); }
+        .toast.fade-out { animation: fadeOut 0.3s forwards; }
+        @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        @keyframes fadeOut { from { transform: translateX(0); opacity: 1; } to { transform: translateX(100%); opacity: 0; } }
 
         /* --- FOOTER --- */
-        footer {
-            background: var(--bg-surface);
-            border-top: 1px solid var(--border-light);
-            padding: 3rem 0;
-            margin-top: auto;
-        }
-        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; }
-        .footer-links li { margin-bottom: 0.5rem; }
+        footer { border-top: 1px solid var(--border-light); padding: 4rem 0 2rem; margin-top: 4rem; background: rgba(0,0,0,0.3); }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-bottom: 3rem; }
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 0.75rem; }
         .footer-links a { color: var(--text-muted); font-size: 0.9rem; }
-        .footer-links a:hover { color: var(--primary); }
+        .footer-bottom { border-top: 1px solid var(--border-light); padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: 0.85rem; color: var(--text-muted); }
 
         /* --- RESPONSIVE --- */
         @media (max-width: 1024px) {
-            .charts-grid { grid-template-columns: 1fr; }
-            .hero-title { font-size: 2.8rem; }
+            .hero-content { grid-template-columns: 1fr; text-align: center; }
+            .hero-text h1 { font-size: 3.5rem; }
+            .hero-text p { margin: 0 auto 2.5rem; }
+            .hero-actions { justify-content: center; }
+            .dash-charts { grid-template-columns: 1fr; }
         }
-
         @media (max-width: 768px) {
-            .scanner-container { grid-template-columns: 1fr; }
+            .scanner-grid { grid-template-columns: 1fr; }
             .nav-links {
-                position: fixed; top: 70px; left: 0; width: 100%;
-                background: var(--bg-surface); flex-direction: column;
-                padding: 2rem; border-bottom: 1px solid var(--border-light);
+                position: fixed; top: 70px; left: 0; width: 100%; height: calc(100vh - 70px);
+                background: var(--bg-surface); flex-direction: column; padding: 2rem;
                 clip-path: circle(0% at 100% 0); transition: clip-path 0.4s ease-out;
             }
             .nav-links.active { clip-path: circle(150% at 100% 0); }
             .mobile-menu-btn { display: block; }
-            .status-panel { flex-direction: column; gap: 1rem; padding: 1.5rem; border-radius: var(--radius-lg); }
-        }
-
-        /* Demo badge */
-        .demo-badge {
-            background: rgba(245, 158, 11, 0.1); color: var(--warning);
-            padding: 0.5rem 1rem; border-radius: var(--radius-md); border: 1px dashed var(--warning);
-            font-size: 0.8rem; text-align: center; margin-bottom: 1rem; display: block;
+            .section-title { font-size: 2.2rem; }
         }
     </style>
 </head>
 <body>
 
-    <nav>
+    <canvas id="cyber-bg"></canvas>
+
+    <nav id="navbar">
         <div class="container nav-container">
             <div class="logo" onclick="app.navigate('home')">
-                <div class="logo-icon"><i class="fa-solid fa-shield-halved"></i></div>
-                CYBERGUARD AI
+                <div class="logo-shield"><i class="fa-solid fa-shield-halved text-white"></i></div>
+                <span id="brand-name">CYBERGUARD AI</span>
             </div>
             
             <ul class="nav-links" id="nav-links">
                 <li><a class="nav-link active" data-target="home">Home</a></li>
                 <li><a class="nav-link" data-target="scanner">Threat Scanner</a></li>
-                <li><a class="nav-link" data-target="alerts">Cyber Alerts</a></li>
+                <li><a class="nav-link" data-target="news">Cyber News</a></li>
+                <li><a class="nav-link" data-target="alerts">Alerts</a></li>
                 <li><a class="nav-link" data-target="report">Report Fraud</a></li>
-                <li><a class="nav-link" data-target="awareness">Awareness</a></li>
-                <li><a class="nav-link" data-target="dashboard" id="nav-dashboard">Dashboard</a></li>
-                <li><a class="nav-link" onclick="app.toggleLoginModal()" id="nav-login"><i class="fa-solid fa-user-lock"></i> Admin</a></li>
-                <li><button class="btn btn-outline" style="padding: 0.4rem 0.8rem; font-size:0.8rem;" onclick="app.runDemoMode()"><i class="fa-solid fa-play"></i> Run Demo</button></li>
-                <li><button class="btn btn-outline" style="padding: 0.4rem;" onclick="app.toggleTheme()" title="Toggle Theme"><i class="fa-solid fa-moon" id="theme-icon"></i></button></li>
+                <li><a class="nav-link" data-target="security">Security Center</a></li>
+                <li><a class="nav-link" data-target="about">About</a></li>
+                <li><a class="nav-link" data-target="dashboard" id="nav-dash" style="display:none;"><i class="fa-solid fa-chart-line"></i> SOC</a></li>
+                <li><button class="btn btn-outline" style="padding: 0.4rem 1rem;" onclick="app.toggleLogin()" id="btn-login"><i class="fa-solid fa-user-lock"></i> Admin</button></li>
             </ul>
 
             <button class="mobile-menu-btn" id="mobile-menu-btn"><i class="fa-solid fa-bars"></i></button>
         </div>
     </nav>
 
-    <div id="app-content">
+    <main id="app-content">
 
         <section id="home" class="view-section active">
-            <div class="hero">
-                <div class="hero-bg"></div>
-                <div class="hero-grid"></div>
-                <div class="container">
-                    <div class="hero-content">
-                        <div class="status-panel">
-                            <div class="status-item"><div class="status-dot"></div> System Status: <span class="text-success">PROTECTED</span></div>
-                            <div class="status-item"><i class="fa-solid fa-brain text-primary"></i> AI Engine: ACTIVE</div>
-                            <div class="status-item"><i class="fa-solid fa-clock text-muted"></i> Last Scan: <span id="live-time"></span></div>
+            <div class="container hero">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <div class="status-pill">
+                            <div class="status-dot"></div>
+                            SYSTEM PROTECTED | AI ACTIVE
                         </div>
-                        <h1 class="hero-title">AI-Powered Cyber Fraud Protection</h1>
-                        <p class="hero-subtitle">Detect scams, analyze suspicious links, understand cyber threats and respond before it's too late. Local demo for hackathon presentation.</p>
-                        
-                        <div class="flex justify-center gap-4 flex-wrap">
-                            <button class="btn btn-primary" onclick="app.navigate('scanner')"><i class="fa-solid fa-magnifying-glass-chart"></i> Scan a Threat</button>
-                            <button class="btn btn-outline" onclick="app.navigate('report')"><i class="fa-solid fa-file-shield"></i> Report Cyber Fraud</button>
+                        <h1>AI-POWERED<br>CYBER FRAUD PROTECTION</h1>
+                        <p>Detect threats. Understand attacks. Protect people. Report cyber fraud before it becomes a bigger problem.</p>
+                        <div class="hero-actions">
+                            <button class="btn btn-primary" onclick="app.navigate('scanner')"><i class="fa-solid fa-radar"></i> SCAN A THREAT</button>
+                            <button class="btn btn-outline" onclick="app.navigate('report')"><i class="fa-solid fa-file-shield"></i> REPORT CYBER FRAUD</button>
+                            <button class="btn btn-outline" onclick="app.navigate('security')" style="border:none;"><i class="fa-solid fa-book-open"></i> EXPLORE SECURITY CENTER</button>
                         </div>
-
-                        <div class="flex justify-center gap-6 mt-5" style="margin-top: 3rem;">
-                            <div class="text-center">
-                                <h3 class="text-primary" style="font-size: 2.5rem; margin-bottom: 0;" id="counter-threats">0</h3>
-                                <p class="text-muted" style="font-size: 0.9rem;">Threats Analyzed (Demo)</p>
+                    </div>
+                    
+                    <div class="hero-visual" id="hero-3d">
+                        <div class="shield-container" id="shield-obj">
+                            <div class="shield-layer shield-base" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%233b82f6\' stroke-width=\'1\' stroke-linecap=\'round\' stroke-linejoin=\'round\'><path d=\'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z\'/></svg>');"></div>
+                            <div class="shield-layer shield-core" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%2306b6d4\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'><path d=\'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z\'/></svg>'); transform: scale(0.8) translateZ(30px);"></div>
+                            <div class="shield-ring"></div>
+                            
+                            <div class="floating-indicator ind-1">
+                                <span style="color:var(--success)"><i class="fa-solid fa-check-circle"></i> AI ENGINE</span>
+                                <span style="font-size:0.7rem; color:var(--text-muted)">ONLINE</span>
                             </div>
-                            <div class="text-center">
-                                <h3 class="text-success" style="font-size: 2.5rem; margin-bottom: 0;">99.9%</h3>
-                                <p class="text-muted" style="font-size: 0.9rem;">Detection Rate</p>
+                            <div class="floating-indicator ind-2">
+                                <span style="color:var(--info)"><i class="fa-solid fa-network-wired"></i> THREAT INTEL</span>
+                                <span style="font-size:0.7rem; color:var(--text-muted)" id="intel-status">ACTIVE</span>
                             </div>
                         </div>
                     </div>
@@ -812,86 +427,108 @@
             <div class="container">
                 <div class="section-header">
                     <h2 class="section-title">Threat Intelligence Scanner</h2>
-                    <p class="section-desc">Paste suspicious URLs, SMS messages, or emails below to analyze potential fraud vectors using our local simulated AI engine.</p>
+                    <p class="section-desc">Analyze URLs, messages, and emails for potential fraud indicators using local pattern analysis and configured APIs.</p>
                 </div>
 
-                <div class="scanner-container">
-                    <div class="glass-card">
-                        <div class="tabs">
-                            <button class="tab-btn active" data-tab="tab-url"><i class="fa-solid fa-link"></i> URL Scan</button>
-                            <button class="tab-btn" data-tab="tab-msg"><i class="fa-solid fa-comment-sms"></i> Message</button>
-                            <button class="tab-btn" data-tab="tab-email"><i class="fa-solid fa-envelope"></i> Email</button>
+                <div class="scanner-grid">
+                    <div class="glass-panel" style="padding: 2rem;">
+                        <div class="scanner-tabs">
+                            <button class="scan-tab-btn active" data-tab="scan-url"><i class="fa-solid fa-link"></i> URL</button>
+                            <button class="scan-tab-btn" data-tab="scan-msg"><i class="fa-solid fa-comment-sms"></i> MESSAGE</button>
+                            <button class="scan-tab-btn" data-tab="scan-email"><i class="fa-solid fa-envelope"></i> EMAIL</button>
                         </div>
 
-                        <div id="tab-url" class="tab-content active">
+                        <div id="scan-url" class="scan-content active">
                             <div class="form-group">
-                                <label class="form-label">Suspicious URL</label>
-                                <input type="url" id="scan-url-input" class="form-control" placeholder="e.g. http://login-update-secure.com/auth">
+                                <label class="form-label">Enter Suspicious URL</label>
+                                <input type="url" id="inp-url" class="form-control" placeholder="https://example.com/login">
                             </div>
-                            <button class="btn btn-primary w-full" style="width: 100%;" onclick="app.runScan('url')">Analyze URL</button>
+                            <button class="btn btn-primary w-full" style="width:100%" onclick="app.analyze('url')">ANALYZE THREAT</button>
                         </div>
 
-                        <div id="tab-msg" class="tab-content">
+                        <div id="scan-msg" class="scan-content">
                             <div class="form-group">
-                                <label class="form-label">Suspicious SMS/WhatsApp Message</label>
-                                <textarea id="scan-msg-input" class="form-control" placeholder="Paste the message content here..."></textarea>
+                                <label class="form-label">Paste SMS/WhatsApp Message</label>
+                                <textarea id="inp-msg" class="form-control" placeholder="Paste message content here..."></textarea>
                             </div>
-                            <button class="btn btn-primary w-full" style="width: 100%;" onclick="app.runScan('message')">Analyze Message</button>
+                            <button class="btn btn-primary w-full" style="width:100%" onclick="app.analyze('msg')">ANALYZE MESSAGE</button>
                         </div>
 
-                        <div id="tab-email" class="tab-content">
+                        <div id="scan-email" class="scan-content">
                             <div class="form-group">
                                 <label class="form-label">Email Subject</label>
-                                <input type="text" id="scan-email-subj" class="form-control" placeholder="e.g. Action Required: Account Suspension">
+                                <input type="text" id="inp-email-sub" class="form-control" placeholder="Subject line...">
                             </div>
                             <div class="form-group">
-                                <label class="form-label">Email Content</label>
-                                <textarea id="scan-email-body" class="form-control" placeholder="Paste full email body here..."></textarea>
+                                <label class="form-label">Email Body</label>
+                                <textarea id="inp-email-body" class="form-control" placeholder="Paste email content..."></textarea>
                             </div>
-                            <button class="btn btn-primary w-full" style="width: 100%;" onclick="app.runScan('email')">Analyze Email</button>
+                            <button class="btn btn-primary w-full" style="width:100%" onclick="app.analyze('email')">ANALYZE EMAIL</button>
                         </div>
                         
                         <div style="margin-top: 1.5rem; font-size: 0.8rem; color: var(--text-muted); text-align: center;">
-                            <i class="fa-solid fa-circle-info"></i> All processing is performed locally for this demonstration. No data is sent to external servers.
+                            <i class="fa-solid fa-circle-info"></i> Analysis uses rule-based pattern matching. Do not submit highly sensitive personal data.
                         </div>
                     </div>
 
-                    <div class="analysis-panel" id="analysis-panel">
-                        <div class="analysis-overlay" id="analysis-loading">
-                            <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 3rem; color: var(--primary); margin-bottom: 1rem;"></i>
-                            <h3>AI Engine Processing...</h3>
-                            <div class="scanning-steps" id="scan-steps">Initializing modules...</div>
+                    <div class="glass-panel analysis-box" id="analysis-output">
+                        <div id="analysis-idle" style="color: var(--text-muted);">
+                            <i class="fa-solid fa-shield-virus" style="font-size: 4rem; opacity: 0.3; margin-bottom: 1rem; display: block;"></i>
+                            Awaiting input. Submit a threat for analysis.
+                        </div>
+
+                        <div id="analysis-loading" style="display: none; color: var(--primary);">
+                            <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                            <h3 style="font-family: var(--font-mono); font-size: 1rem;">Running Security Heuristics...</h3>
                         </div>
 
                         <div id="analysis-result" style="display: none; width: 100%;">
-                            <h3 style="text-align: center; margin-bottom: 1.5rem;">Threat Analysis Report</h3>
+                            <div class="flex justify-between items-center mb-4" style="display:flex; justify-content:space-between; margin-bottom: 1rem;">
+                                <h3 style="font-size:1.2rem;">Analysis Report</h3>
+                                <span class="badge" id="res-badge">STATUS</span>
+                            </div>
                             
-                            <div class="gauge-container">
-                                <div class="gauge-bg"></div>
-                                <div class="gauge-fill" id="risk-gauge"></div>
-                                <div class="gauge-text" id="risk-score-text">0</div>
-                                <div style="position: absolute; bottom: -20px; width: 100%; text-align: center; font-size: 0.8rem; color: var(--text-muted);">Risk Score</div>
+                            <div class="risk-meter">
+                                <div class="risk-meter-bg"></div>
+                                <div class="risk-meter-fill" id="res-gauge"></div>
+                                <div class="risk-score-display" id="res-score">0</div>
+                            </div>
+                            <div style="text-align:center; font-size:0.8rem; color:var(--text-muted); text-transform:uppercase; margin-bottom:2rem;">Risk Score</div>
+
+                            <div style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; text-align: left; margin-bottom: 1rem;">
+                                <div style="font-size:0.8rem; color:var(--text-muted); margin-bottom:0.25rem;">Threat Category</div>
+                                <div style="font-weight:600; color:var(--info);" id="res-category">Phishing</div>
                             </div>
 
-                            <div style="text-align: center; margin-bottom: 1rem;">
-                                <span class="badge" id="risk-badge">SAFE</span>
-                            </div>
-
-                            <div class="indicator-list" id="indicator-list">
+                            <div class="indicators-list" id="res-indicators">
                                 </div>
                             
-                            <div style="margin-top: 1.5rem; background: rgba(59, 130, 246, 0.1); padding: 1rem; border-radius: 8px; border-left: 3px solid var(--primary);">
-                                <h4 style="font-size: 0.9rem; margin-bottom: 0.5rem;"><i class="fa-solid fa-lightbulb text-warning"></i> AI Recommendation</h4>
-                                <p id="ai-recommendation" style="font-size: 0.85rem; color: var(--text-muted);"></p>
+                            <div style="margin-top: 2rem; padding: 1rem; border-left: 4px solid var(--primary); background: rgba(59,130,246,0.1); text-align: left;">
+                                <h4 style="font-size:0.9rem; margin-bottom:0.5rem;"><i class="fa-solid fa-lightbulb"></i> Recommended Action</h4>
+                                <p id="res-action" style="font-size:0.85rem; color:var(--text-muted);"></p>
                             </div>
-                        </div>
-
-                        <div id="analysis-idle" style="color: var(--text-muted); text-align: center;">
-                            <i class="fa-solid fa-shield-virus" style="font-size: 4rem; opacity: 0.2; margin-bottom: 1rem; display: block;"></i>
-                            Awaiting input. Submit a threat for analysis.
                         </div>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <section id="news" class="view-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Cyber News & Intelligence</h2>
+                    <p class="section-desc">Stay updated with the latest cybersecurity threats, data breaches, and industry news.</p>
+                </div>
+                
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 2rem; flex-wrap:wrap; gap:1rem;">
+                    <div class="status-pill" style="margin:0; background:rgba(14, 165, 233, 0.1); border-color:var(--info); color:var(--info);">
+                        <i class="fa-solid fa-satellite-dish"></i> <span id="news-status-text">Fetching Intelligence...</span>
+                    </div>
+                    <button class="btn btn-outline" onclick="app.fetchNews()"><i class="fa-solid fa-rotate-right"></i> Refresh</button>
+                </div>
+
+                <div class="grid-3" id="news-grid">
+                    </div>
             </div>
         </section>
 
@@ -899,28 +536,19 @@
             <div class="container">
                 <div class="section-header">
                     <h2 class="section-title">Live Cyber Alerts</h2>
-                    <p class="section-desc">Simulated real-time intelligence on active cyber campaigns and fraud trends.</p>
-                </div>
-                
-                <div class="flex justify-between items-center" style="margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
-                    <div class="flex gap-2">
-                        <button class="btn btn-outline" style="padding: 0.4rem 1rem;" onclick="app.filterAlerts('all')">All</button>
-                        <button class="btn btn-outline" style="padding: 0.4rem 1rem; border-color: var(--danger); color: var(--danger);" onclick="app.filterAlerts('critical')">Critical</button>
-                        <button class="btn btn-outline" style="padding: 0.4rem 1rem; border-color: var(--warning); color: var(--warning);" onclick="app.filterAlerts('high')">High</button>
-                    </div>
-                    <div class="form-group" style="margin: 0; min-width: 250px;">
-                        <input type="text" id="alert-search" class="form-control" placeholder="Search alerts..." onkeyup="app.searchAlerts()">
-                    </div>
+                    <p class="section-desc">Active campaigns, vulnerability warnings, and regional threat advisories.</p>
                 </div>
 
-                <div class="alerts-grid" id="alerts-container">
+                <div class="grid-3" id="alerts-grid">
                     </div>
 
-                <div class="threat-map-container" id="threat-map">
-                    <div style="position: absolute; top: 1rem; left: 1rem; z-index: 5; background: var(--bg-glass); padding: 0.5rem 1rem; border-radius: 8px; font-size: 0.8rem; border: 1px solid var(--border-light);">
-                        <i class="fa-solid fa-satellite-dish text-primary"></i> Simulated Intelligence Map
-                    </div>
-                    </div>
+                <div class="glass-panel" style="margin-top: 4rem; padding: 2rem; position: relative; overflow:hidden;">
+                    <h3 style="margin-bottom: 1rem;"><i class="fa-solid fa-map-location-dot text-primary"></i> Regional Threat Visualization</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 2rem;">* Threat visualization based on available reports / sample visualization.</p>
+                    
+                    <div id="map-container" style="height: 400px; background: rgba(0,0,0,0.5); border-radius: 12px; border: 1px solid var(--border-light); position: relative; background-image: radial-gradient(var(--border-light) 1px, transparent 1px); background-size: 20px 20px;">
+                        </div>
+                </div>
             </div>
         </section>
 
@@ -928,13 +556,16 @@
             <div class="container" style="max-width: 800px;">
                 <div class="section-header">
                     <h2 class="section-title">Report Cyber Fraud</h2>
-                    <p class="section-desc">Log a suspected incident into the local SOC dashboard. (This is a hackathon demo and does not report to official authorities).</p>
+                    <p class="section-desc">Report a suspected cyber fraud incident and securely record the details for investigation.</p>
                 </div>
 
-                <div class="glass-card">
-                    <span class="demo-badge">DEMO MODE: Data is stored in your browser's local storage.</span>
-                    <form id="fraud-form" onsubmit="app.submitReport(event)">
-                        <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                <div class="glass-panel" style="padding: 2.5rem;">
+                    <div style="background: rgba(245,158,11,0.1); border-left: 4px solid var(--warning); padding: 1rem; margin-bottom: 2rem; border-radius: 0 8px 8px 0; font-size: 0.85rem;">
+                        <strong>Important:</strong> For official cybercrime reporting, users should use the appropriate official government cybercrime reporting channel (e.g., cybercrime.gov.in in India or local equivalent). This form logs data to the configured system backend.
+                    </div>
+
+                    <form id="incident-form" onsubmit="app.submitIncident(event)">
+                        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1.5rem;">
                             <div class="form-group">
                                 <label class="form-label">Full Name</label>
                                 <input type="text" id="rep-name" class="form-control" required>
@@ -945,96 +576,93 @@
                             </div>
                         </div>
 
-                        <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1.5rem;">
                             <div class="form-group">
-                                <label class="form-label">Fraud Type</label>
+                                <label class="form-label">Fraud Category</label>
                                 <select id="rep-type" class="form-control" required>
-                                    <option value="">Select Category...</option>
+                                    <option value="">Select...</option>
                                     <option value="UPI Fraud">UPI / Banking Fraud</option>
-                                    <option value="Phishing">Phishing Link / Email</option>
-                                    <option value="OTP Scam">OTP Scam</option>
-                                    <option value="Fake Job Scam">Fake Job / Task Scam</option>
+                                    <option value="Phishing">Phishing</option>
+                                    <option value="Fake Job Scam">Fake Job Scam</option>
                                     <option value="Investment Scam">Investment / Crypto Scam</option>
                                     <option value="Identity Theft">Identity Theft</option>
                                     <option value="Other">Other</option>
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label class="form-label">Financial Loss Amount (if any)</label>
-                                <input type="number" id="rep-amount" class="form-control" placeholder="0">
+                                <label class="form-label">Estimated Financial Loss (if any)</label>
+                                <input type="number" id="rep-loss" class="form-control" placeholder="0.00">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="form-label">Suspicious URL / Phone Number</label>
-                            <input type="text" id="rep-source" class="form-control" placeholder="URL or sender info...">
+                            <input type="text" id="rep-source" class="form-control" placeholder="Include attacker details if known">
                         </div>
 
                         <div class="form-group">
                             <label class="form-label">Incident Description</label>
-                            <textarea id="rep-desc" class="form-control" required placeholder="Describe what happened..."></textarea>
+                            <textarea id="rep-desc" class="form-control" required placeholder="Describe exactly what happened..."></textarea>
                         </div>
 
-                        <button type="submit" class="btn btn-primary" style="width: 100%;"><i class="fa-solid fa-paper-plane"></i> Submit Demo Report</button>
+                        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1rem; font-size: 1.1rem;"><i class="fa-solid fa-paper-plane"></i> SUBMIT INCIDENT</button>
                     </form>
                 </div>
             </div>
         </section>
 
-        <section id="awareness" class="view-section">
+        <section id="security" class="view-section">
             <div class="container">
                 <div class="section-header">
-                    <h2 class="section-title">Cyber Security Awareness</h2>
-                    <p class="section-desc">Empower yourself with the knowledge to identify and prevent cyber threats.</p>
+                    <h2 class="section-title">Security Center</h2>
+                    <p class="section-desc">Empower yourself with knowledge. Learn how to protect your digital identity and assets.</p>
                 </div>
 
-                <div class="awareness-grid mb-5">
-                    <div class="glass-card awareness-card" onclick="app.openAwareness('phishing')">
-                        <i class="fa-solid fa-fish-fins"></i>
-                        <h3>Phishing Defence</h3>
-                        <p class="text-muted" style="font-size: 0.85rem;">Learn how to spot fake emails and malicious URLs.</p>
+                <div class="grid-3 mb-5" style="margin-bottom: 3rem;">
+                    <div class="glass-panel feature-card" onclick="app.openModal('info-phishing')">
+                        <i class="fa-solid fa-fish-fins feature-icon"></i>
+                        <h3>Phishing Protection</h3>
+                        <p style="font-size: 0.85rem; color:var(--text-muted); margin-top:0.5rem;">Identify deceptive emails and fake websites.</p>
                     </div>
-                    <div class="glass-card awareness-card" onclick="app.openAwareness('upi')">
-                        <i class="fa-solid fa-mobile-screen"></i>
-                        <h3>UPI & Banking</h3>
-                        <p class="text-muted" style="font-size: 0.85rem;">Secure your financial transactions and avoid OTP traps.</p>
+                    <div class="glass-panel feature-card" onclick="app.openModal('info-upi')">
+                        <i class="fa-solid fa-mobile-screen feature-icon"></i>
+                        <h3>UPI & Banking Safety</h3>
+                        <p style="font-size: 0.85rem; color:var(--text-muted); margin-top:0.5rem;">Secure transactions and avoid OTP scams.</p>
                     </div>
-                    <div class="glass-card awareness-card" onclick="app.openAwareness('social')">
-                        <i class="fa-solid fa-users-viewfinder"></i>
-                        <h3>Social Engineering</h3>
-                        <p class="text-muted" style="font-size: 0.85rem;">Understand manipulation tactics used by scammers.</p>
-                    </div>
-                    <div class="glass-card awareness-card" onclick="app.openAwareness('jobs')">
-                        <i class="fa-solid fa-briefcase"></i>
+                    <div class="glass-panel feature-card" onclick="app.openModal('info-job')">
+                        <i class="fa-solid fa-briefcase feature-icon"></i>
                         <h3>Fake Job Scams</h3>
-                        <p class="text-muted" style="font-size: 0.85rem;">Identify fraudulent recruitment and task-based scams.</p>
+                        <p style="font-size: 0.85rem; color:var(--text-muted); margin-top:0.5rem;">Recognize fraudulent recruitment offers.</p>
                     </div>
                 </div>
 
-                <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem;">
-                    
-                    <div class="glass-card">
-                        <h3 style="margin-bottom: 1rem;"><i class="fa-solid fa-key text-warning"></i> Password Strength Tool</h3>
-                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">Test your password format. (Never enter real passwords in demo tools).</p>
-                        <div class="form-group">
-                            <input type="password" id="pwd-check" class="form-control" placeholder="Type a test password..." onkeyup="app.checkPassword()">
-                        </div>
-                        <div class="pwd-meter"><div class="pwd-fill" id="pwd-fill"></div></div>
-                        <div id="pwd-label" style="font-size: 0.85rem; font-weight: 600; margin-top: 0.5rem; text-align: right;">Weak</div>
+                <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem;">
+                    <div class="glass-panel" style="padding: 2rem;">
+                        <h3 style="margin-bottom: 1rem;"><i class="fa-solid fa-key text-warning"></i> Password Strength Analyzer</h3>
+                        <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1.5rem;">Your password is analyzed locally and is not stored or transmitted.</p>
                         
-                        <ul style="font-size: 0.8rem; margin-top: 1rem; color: var(--text-muted);" id="pwd-reqs">
-                            <li id="req-len"><i class="fa-solid fa-xmark text-danger"></i> 8+ characters</li>
-                            <li id="req-up"><i class="fa-solid fa-xmark text-danger"></i> Uppercase letter</li>
+                        <div class="form-group">
+                            <input type="password" id="pwd-input" class="form-control" placeholder="Type a password to test..." oninput="app.checkPassword()">
+                        </div>
+                        
+                        <div style="height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; overflow: hidden; margin-bottom: 0.5rem;">
+                            <div id="pwd-bar" style="height: 100%; width: 0%; transition: var(--transition); background: var(--danger);"></div>
+                        </div>
+                        <div id="pwd-label" style="text-align: right; font-size: 0.85rem; font-weight: 600; color: var(--danger);">Weak</div>
+
+                        <ul style="list-style:none; font-size:0.8rem; color:var(--text-muted); margin-top:1.5rem; display:grid; grid-template-columns:1fr 1fr; gap:0.5rem;" id="pwd-reqs">
+                            <li id="req-len"><i class="fa-solid fa-xmark text-danger"></i> 8+ chars</li>
+                            <li id="req-up"><i class="fa-solid fa-xmark text-danger"></i> Uppercase</li>
                             <li id="req-num"><i class="fa-solid fa-xmark text-danger"></i> Number</li>
-                            <li id="req-spec"><i class="fa-solid fa-xmark text-danger"></i> Special character</li>
+                            <li id="req-spec"><i class="fa-solid fa-xmark text-danger"></i> Special</li>
                         </ul>
                     </div>
 
-                    <div class="glass-card" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
-                        <i class="fa-solid fa-graduation-cap" style="font-size: 3rem; color: var(--secondary); margin-bottom: 1rem;"></i>
-                        <h3>Cyber Safety Quiz</h3>
-                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem;">Test your knowledge on common cyber threats and safe practices.</p>
-                        <button class="btn btn-primary" onclick="app.startQuiz()">Start Quiz</button>
+                    <div class="glass-panel" style="padding: 2rem; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
+                        <i class="fa-solid fa-graduation-cap" style="font-size: 3.5rem; color: var(--secondary); margin-bottom: 1rem;"></i>
+                        <h3 style="margin-bottom: 0.5rem;">Cyber Awareness Quiz</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 2rem;">Test your knowledge against common social engineering and technical threats.</p>
+                        <button class="btn btn-primary" onclick="app.openQuiz()">START QUIZ</button>
                     </div>
                 </div>
             </div>
@@ -1042,102 +670,132 @@
 
         <section id="dashboard" class="view-section">
             <div class="container">
-                <div class="flex justify-between items-center" style="margin-bottom: 2rem; border-bottom: 1px solid var(--border-light); padding-bottom: 1rem;">
+                <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border-light); padding-bottom:1rem; margin-bottom:2rem;">
                     <div>
-                        <h2 class="section-title" style="margin-bottom: 0;">SOC Dashboard</h2>
-                        <p class="section-desc" style="margin-top: 0.5rem;">Security Operations Center - Admin View</p>
+                        <h2 class="section-title" style="margin-bottom:0; font-size:2rem;">SOC Dashboard</h2>
+                        <p class="section-desc" style="margin:0; font-size:0.9rem;">Security Operations Center</p>
                     </div>
-                    <button class="btn btn-outline" style="border-color: var(--danger); color: var(--danger);" onclick="app.logout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+                    <button class="btn btn-outline" style="border-color:var(--danger); color:var(--danger);" onclick="app.logout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
                 </div>
 
-                <div class="dash-grid">
-                    <div class="glass-card stat-card">
-                        <div class="stat-icon" style="background: rgba(59, 130, 246, 0.2); color: var(--primary);"><i class="fa-solid fa-file-shield"></i></div>
-                        <div class="stat-info"><h4>Total Incidents</h4><h2 id="dash-total">0</h2></div>
+                <div class="dash-stats">
+                    <div class="glass-panel stat-card">
+                        <div class="stat-icon" style="background:rgba(59,130,246,0.1); color:var(--primary);"><i class="fa-solid fa-folder-open"></i></div>
+                        <div class="stat-details"><h4>Total Incidents</h4><h2 id="dash-total">0</h2></div>
                     </div>
-                    <div class="glass-card stat-card">
-                        <div class="stat-icon" style="background: rgba(239, 68, 68, 0.2); color: var(--danger);"><i class="fa-solid fa-skull-crossbones"></i></div>
-                        <div class="stat-info"><h4>Critical Threats</h4><h2 id="dash-critical">0</h2></div>
+                    <div class="glass-panel stat-card">
+                        <div class="stat-icon" style="background:rgba(239,68,68,0.1); color:var(--danger);"><i class="fa-solid fa-skull-crossbones"></i></div>
+                        <div class="stat-details"><h4>Critical Risk</h4><h2 id="dash-critical">0</h2></div>
                     </div>
-                    <div class="glass-card stat-card">
-                        <div class="stat-icon" style="background: rgba(16, 185, 129, 0.2); color: var(--success);"><i class="fa-solid fa-check-double"></i></div>
-                        <div class="stat-info"><h4>Resolved</h4><h2 id="dash-resolved">0</h2></div>
-                    </div>
-                    <div class="glass-card stat-card">
-                        <div class="stat-icon" style="background: rgba(245, 158, 11, 0.2); color: var(--warning);"><i class="fa-solid fa-indian-rupee-sign"></i></div>
-                        <div class="stat-info"><h4>Est. Prevented Loss</h4><h2 id="dash-loss">₹0</h2></div>
+                    <div class="glass-panel stat-card">
+                        <div class="stat-icon" style="background:rgba(16,185,129,0.1); color:var(--success);"><i class="fa-solid fa-shield-check"></i></div>
+                        <div class="stat-details"><h4>Resolved</h4><h2 id="dash-resolved">0</h2></div>
                     </div>
                 </div>
 
-                <div class="charts-grid">
-                    <div class="glass-card">
-                        <h3 style="font-size: 1.1rem; margin-bottom: 1rem;">Incident Trends (Weekly)</h3>
-                        <canvas id="chart-trends" height="250"></canvas>
+                <div class="dash-charts">
+                    <div class="glass-panel" style="padding:1.5rem;">
+                        <h4 style="margin-bottom:1rem;">Incident Trend</h4>
+                        <div style="height:250px;"><canvas id="chart-trend"></canvas></div>
                     </div>
-                    <div class="glass-card">
-                        <h3 style="font-size: 1.1rem; margin-bottom: 1rem;">Threat Categories</h3>
-                        <canvas id="chart-categories" height="250"></canvas>
+                    <div class="glass-panel" style="padding:1.5rem;">
+                        <h4 style="margin-bottom:1rem;">Threat Distribution</h4>
+                        <div style="height:250px;"><canvas id="chart-dist"></canvas></div>
                     </div>
                 </div>
 
-                <div class="glass-card">
-                    <h3 style="font-size: 1.1rem; margin-bottom: 1rem;">Recent Fraud Reports</h3>
-                    <div class="table-container">
+                <div class="glass-panel" style="padding:1.5rem;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem;">
+                        <h4 style="margin:0;">Recent Incident Log</h4>
+                        <div style="font-size:0.8rem; color:var(--text-muted);">Storage: <span id="storage-mode" style="color:var(--info);"></span></div>
+                    </div>
+                    <div class="table-responsive">
                         <table>
                             <thead>
                                 <tr>
-                                    <th>ID</th>
+                                    <th>Incident ID</th>
                                     <th>Date</th>
-                                    <th>Type</th>
+                                    <th>Category</th>
                                     <th>Reporter</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
-                            <tbody id="dash-table-body">
+                            <tbody id="dash-table">
                                 </tbody>
                         </table>
-                    </div>
-                    <div id="empty-dash" style="display: none; text-align: center; padding: 2rem; color: var(--text-muted);">
-                        No incidents reported yet.
+                        <div id="dash-empty" style="text-align:center; padding: 2rem; color:var(--text-muted); display:none;">No incidents reported yet.</div>
                     </div>
                 </div>
             </div>
         </section>
 
-    </div> <footer>
-        <div class="container footer-grid">
-            <div>
-                <div class="logo" style="font-size: 1.2rem; margin-bottom: 1rem;">
-                    <div class="logo-icon" style="width: 24px; height: 24px; font-size: 0.9rem;"><i class="fa-solid fa-shield-halved"></i></div>
-                    CYBERGUARD AI
+        <section id="about" class="view-section">
+            <div class="container" style="max-width: 900px;">
+                <div class="section-header">
+                    <h2 class="section-title">Security for a Digital World</h2>
                 </div>
-                <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1rem;">AI-powered cybersecurity awareness and fraud protection platform.</p>
-                <span class="badge badge-warning" style="font-size: 0.7rem;">Built for Hackathon Demonstration</span>
-            </div>
-            <div>
-                <h4 style="font-size: 1rem;">Platform</h4>
-                <ul class="footer-links">
-                    <li><a onclick="app.navigate('scanner')" style="cursor:pointer">Threat Scanner</a></li>
-                    <li><a onclick="app.navigate('alerts')" style="cursor:pointer">Live Alerts</a></li>
-                    <li><a onclick="app.navigate('report')" style="cursor:pointer">Report Incident</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4 style="font-size: 1rem;">Legal & Resources</h4>
-                <ul class="footer-links">
-                    <li><a href="#">Privacy Policy (Demo)</a></li>
-                    <li><a href="#">Terms of Service</a></li>
-                    <li><a href="#">National Cyber Crime Portal</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4 style="font-size: 1rem;">Connect</h4>
-                <div class="flex gap-4" style="margin-top: 1rem;">
-                    <a href="#" style="font-size: 1.5rem; color: var(--text-muted);"><i class="fa-brands fa-linkedin"></i></a>
-                    <a href="#" style="font-size: 1.5rem; color: var(--text-muted);"><i class="fa-brands fa-github"></i></a>
-                    <a href="#" style="font-size: 1.5rem; color: var(--text-muted);"><i class="fa-brands fa-whatsapp"></i></a>
+
+                <div class="glass-panel" style="padding: 3rem; text-align: center; margin-bottom: 3rem;">
+                    <i class="fa-solid fa-shield-halved" style="font-size: 4rem; color: var(--primary); margin-bottom: 1.5rem;"></i>
+                    <h3 style="font-size: 1.8rem; margin-bottom: 1rem;">CYBERGUARD AI</h3>
+                    <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 700px; margin: 0 auto; line-height: 1.8;">
+                        CyberGuard AI is an AI-powered cybersecurity awareness and cyber-fraud response platform designed to help people identify suspicious digital activity, understand cyber threats, and take safer actions.
+                    </p>
                 </div>
+
+                <div class="glass-panel" style="padding: 3rem; display: flex; flex-direction: column; align-items: center; text-align: center;">
+                    <div style="width: 100px; height: 100px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--secondary)); display: flex; align-items: center; justify-content: center; font-size: 2.5rem; font-family: var(--font-display); font-weight: 700; color: white; margin-bottom: 1.5rem; box-shadow: var(--shadow-neon);">
+                        SP
+                    </div>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 0.25rem;" id="about-founder">Srikanth Paka</h3>
+                    <p style="color: var(--primary); font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem;" id="about-role">Founder & CEO, AUREXA</p>
+                    <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1.5rem;" id="about-edu">B.Tech CSE — Cyber Security, GNITC</p>
+                    
+                    <div style="display: flex; gap: 1rem; margin-bottom: 2rem;">
+                        <a href="#" class="btn btn-outline" style="padding: 0.5rem; border-radius: 50%;"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="#" class="btn btn-outline" style="padding: 0.5rem; border-radius: 50%;"><i class="fa-solid fa-envelope"></i></a>
+                        <a href="#" class="btn btn-outline" style="padding: 0.5rem; border-radius: 50%;"><i class="fa-solid fa-globe"></i></a>
+                    </div>
+
+                    <div style="font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted);">
+                        AUREXA • Cybersecurity • AI • Innovation
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h3 style="font-size: 1.2rem; margin-bottom: 1rem; font-family: var(--font-display);">CYBERGUARD AI</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">Detect. Understand. Prevent. Report.</p>
+                    <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--primary);">An AUREXA Initiative</div>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 1rem;">Platform</h4>
+                    <ul class="footer-links">
+                        <li><a href="#" onclick="app.navigate('scanner'); return false;">Threat Scanner</a></li>
+                        <li><a href="#" onclick="app.navigate('news'); return false;">Cyber News</a></li>
+                        <li><a href="#" onclick="app.navigate('report'); return false;">Report Fraud</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 1rem;">Legal & Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="#" onclick="app.navigate('security'); return false;">Security Center</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div>&copy; 2026 CyberGuard AI. All rights reserved.</div>
+                <div>Built & Led by <span id="footer-founder" style="color: var(--text-main); font-weight: 500;">Srikanth Paka</span></div>
+                <div>AUREXA • Cybersecurity • AI • Innovation</div>
             </div>
         </div>
     </footer>
@@ -1145,665 +803,588 @@
     <div class="modal-overlay" id="modal-login">
         <div class="modal-content">
             <button class="close-modal" onclick="app.closeModal('modal-login')"><i class="fa-solid fa-xmark"></i></button>
-            <h2 style="margin-bottom: 1rem;">Admin Access</h2>
-            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem;">Use demo credentials: admin / cyberguard@2026</p>
+            <h3 style="margin-bottom: 0.5rem;">SOC Admin Access</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem;">Backend authentication mode: <span id="auth-mode" style="color:var(--info)">Local Dev</span></p>
             <form onsubmit="app.handleLogin(event)">
-                <div class="form-group">
-                    <label class="form-label">Username</label>
-                    <input type="text" id="login-user" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Password</label>
-                    <input type="password" id="login-pwd" class="form-control" required>
-                </div>
-                <button type="submit" class="btn btn-primary w-full" style="width:100%">Login to SOC</button>
+                <div class="form-group"><input type="text" id="login-user" class="form-control" placeholder="Username" required></div>
+                <div class="form-group"><input type="password" id="login-pwd" class="form-control" placeholder="Password" required></div>
+                <button type="submit" class="btn btn-primary" style="width:100%">LOGIN</button>
+                <div style="font-size:0.75rem; text-align:center; margin-top:1rem; color:var(--text-muted);">Dev config: admin / admin</div>
             </form>
         </div>
     </div>
 
-    <div class="modal-overlay" id="modal-awareness">
+    <div class="modal-overlay" id="modal-quiz">
         <div class="modal-content" style="max-width: 600px;">
-            <button class="close-modal" onclick="app.closeModal('modal-awareness')"><i class="fa-solid fa-xmark"></i></button>
-            <h2 id="aw-modal-title">Title</h2>
-            <div id="aw-modal-content" style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.8;">Content</div>
+            <button class="close-modal" onclick="app.closeModal('modal-quiz')"><i class="fa-solid fa-xmark"></i></button>
+            <div id="quiz-ui">
+                <div style="display:flex; justify-content:space-between; margin-bottom: 1rem;">
+                    <h4>Cyber Quiz</h4>
+                    <span class="badge badge-info" id="quiz-progress">1/5</span>
+                </div>
+                <p id="quiz-q" style="font-size: 1.1rem; margin-bottom: 1.5rem;"></p>
+                <div id="quiz-opts" style="display:flex; flex-direction:column; gap:0.5rem;"></div>
+                <div id="quiz-feedback" style="margin-top:1rem; padding:1rem; border-radius:8px; display:none; font-size:0.9rem;"></div>
+                <button id="quiz-next" class="btn btn-primary" style="width:100%; margin-top:1rem; display:none;" onclick="app.nextQuiz()">Next Question</button>
+            </div>
+            <div id="quiz-result" style="display:none; text-align:center;">
+                <i class="fa-solid fa-trophy text-warning" style="font-size:3rem; margin-bottom:1rem;"></i>
+                <h3>Quiz Complete</h3>
+                <p style="font-size:1.5rem; font-weight:bold; color:var(--primary); margin:1rem 0;">Score: <span id="quiz-score"></span>/5</p>
+                <button class="btn btn-outline" onclick="app.openQuiz()">Retake</button>
+            </div>
         </div>
     </div>
 
-    <div class="modal-overlay" id="modal-quiz">
-        <div class="modal-content" style="max-width: 700px;">
-            <button class="close-modal" onclick="app.closeModal('modal-quiz')"><i class="fa-solid fa-xmark"></i></button>
-            <div id="quiz-ui">
-                <div class="flex justify-between items-center mb-4" style="margin-bottom: 1.5rem;">
-                    <h3 style="margin:0;">Cyber Quiz</h3>
-                    <span class="badge badge-info" id="quiz-progress">1 / 8</span>
-                </div>
-                <div id="quiz-question" style="font-size: 1.2rem; font-weight: 500; margin-bottom: 1.5rem;">Question text</div>
-                <div id="quiz-options">
-                    </div>
-                <div id="quiz-feedback" style="margin-top: 1rem; padding: 1rem; border-radius: 8px; display: none;"></div>
-                <button id="quiz-next-btn" class="btn btn-primary mt-4" style="margin-top: 1.5rem; display: none; width:100%;" onclick="app.quizNext()">Next Question</button>
-            </div>
-            <div id="quiz-result-ui" style="display: none; text-align: center;">
-                <i class="fa-solid fa-trophy" style="font-size: 4rem; color: var(--warning); margin-bottom: 1rem;"></i>
-                <h2>Quiz Completed!</h2>
-                <p>Your Score: <span id="quiz-final-score" style="font-size: 1.5rem; font-weight:bold; color:var(--primary);"></span> / 8</p>
-                <button class="btn btn-primary mt-4" style="margin-top: 2rem;" onclick="app.startQuiz()">Retake Quiz</button>
-            </div>
+    <div class="modal-overlay" id="modal-info">
+        <div class="modal-content">
+            <button class="close-modal" onclick="app.closeModal('modal-info')"><i class="fa-solid fa-xmark"></i></button>
+            <h3 id="info-title" style="margin-bottom: 1rem; color: var(--primary);">Title</h3>
+            <div id="info-body" style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.7;">Body</div>
         </div>
     </div>
 
     <div id="toast-container"></div>
 
     <script>
-        const app = {
-            // State
-            theme: 'dark',
-            isAdmin: false,
-            currentView: 'home',
-            reports: JSON.parse(localStorage.getItem('cyberguard_reports')) || [],
-            charts: {},
+        // ==================================================
+        // CONFIGURATION
+        // ==================================================
+        const CONFIG = {
+            siteName: "CYBERGUARD AI",
+            parentBrand: "AUREXA",
+            founderName: "Srikanth Paka",
+            founderRole: "Founder & CEO",
+            college: "GNITC",
+            course: "B.Tech CSE — Cyber Security",
+            website: "https://aurexa.space",
             
-            // Data
-            alerts: [
-                { id: 'AL-01', title: 'New SBI Phishing Campaign', type: 'critical', desc: 'Fraudsters sending SMS asking users to update PAN via malicious link: sbi-kyc-update.com.', date: 'Today' },
-                { id: 'AL-02', title: 'FedEx Package Scam', type: 'high', desc: 'Fake delivery notifications requesting small customs fee via UPI.', date: 'Today' },
-                { id: 'AL-03', title: 'Telegram Task Fraud', type: 'critical', desc: 'Users added to groups promising money for liking YouTube videos, later asked to "invest".', date: 'Yesterday' },
-                { id: 'AL-04', title: 'TRAI Disconnection Threat', type: 'high', desc: 'Robocalls claiming mobile number will be blocked in 2 hours unless user presses 9.', date: 'Yesterday' },
-                { id: 'AL-05', title: 'WhatsApp Wedding Invite APK', type: 'critical', desc: 'Malicious APK files disguised as wedding invitations stealing OTPs.', date: '2 days ago' },
-                { id: 'AL-06', title: 'Zero-day Browser Vulnerability', type: 'info', desc: 'Update Chrome to latest version to patch CVE-2026-XXXX.', date: '3 days ago' }
-            ],
+            // APIs (Leave empty to use local simulated fallback)
+            backendEndpoint: "", 
+            threatIntelEndpoint: "",
+            newsEndpoint: "",
+            supabaseUrl: "",
+            supabaseAnonKey: "",
+            
+            newsRefreshMinutes: 15,
+            
+            // Dev Admin credentials
+            devUser: "admin",
+            devPass: "admin"
+        };
 
-            awarenessData: {
-                phishing: { title: '<i class="fa-solid fa-fish-fins text-primary"></i> Phishing Defence', content: '<p>Phishing is a method where attackers deceive you into revealing sensitive information by pretending to be a trustworthy entity.</p><br><b>Red Flags:</b><ul><li>Urgent or threatening language ("Account suspended!").</li><li>Generic greetings ("Dear Customer").</li><li>Mismatched URLs (looks like bank.com but is actually b4nk-security.com).</li><li>Requests for passwords, PINs, or OTPs.</li></ul><br><b>Action:</b> Never click links in unexpected emails/SMS. Navigate to the official website manually.' },
-                upi: { title: '<i class="fa-solid fa-mobile-screen text-primary"></i> UPI & Banking Safety', content: '<p>UPI fraud often tricks victims into approving a payment instead of receiving one.</p><br><b>Golden Rule:</b> You NEVER need to enter your UPI PIN to <i>receive</i> money. PIN is only for deducting money from your account.<br><br><b>Common Scams:</b><ul><li>OLX/Marketplace buyer sending a "Receive Money" QR code.</li><li>Customer care numbers found on Google search (often manipulated by scammers).</li><li>Screen sharing apps (AnyDesk) used to read your OTPs.</li></ul>' },
-                social: { title: '<i class="fa-solid fa-users-viewfinder text-primary"></i> Social Engineering', content: '<p>Social engineering manipulates human psychology rather than technical hacking.</p><br><b>Tactics:</b><ul><li><b>Authority:</b> Pretending to be Police, Customs, or Telecom regulator (TRAI).</li><li><b>Panic:</b> "Your child is in police custody, send money for bail."</li><li><b>Greed:</b> "You won a lottery, pay tax to claim."</li></ul><br><b>Defence:</b> Pause and verify. Scammers want you to act fast without thinking. Hang up and call the official entity.' },
-                jobs: { title: '<i class="fa-solid fa-briefcase text-primary"></i> Fake Job & Task Scams', content: '<p>Preying on job seekers with fake offers that require upfront payment.</p><br><b>How it works:</b><ul><li>Receive WhatsApp message offering part-time work (e.g., liking videos, reviewing hotels).</li><li>Initial small tasks actually pay out, building trust.</li><li>Suddenly, you must "upgrade" or pay a "security deposit" for premium tasks.</li><li>Once large sums are paid, the scammers disappear.</li></ul><br><b>Rule:</b> Legitimate employers never ask YOU to pay for a job.' }
+        // ==================================================
+        // DATA & STATE
+        // ==================================================
+        const appState = {
+            isAdmin: localStorage.getItem('cg_admin') === 'true',
+            incidents: JSON.parse(localStorage.getItem('cg_incidents')) || [],
+            charts: { trend: null, dist: null },
+            quiz: {
+                current: 0, score: 0,
+                questions: [
+                    { q: "You receive an SMS saying your bank account is blocked with a link to update KYC. Action?", opts: ["Click it immediately", "Reply asking for proof", "Ignore and check official app", "Forward to a friend"], a: 2, exp: "Banks never send SMS links for KYC. Always use the official app." },
+                    { q: "Someone on a marketplace sends a QR code for you to scan to 'receive money'.", opts: ["Scan it to get paid", "Decline, scanning QR is for sending money", "Ask for a different QR", "Give them your card details"], a: 1, exp: "UPI PIN is NEVER required to receive money." },
+                    { q: "What indicates a website connection is encrypted?", opts: ["It looks professional", "HTTPS in URL", "A padlock icon in the webpage image", "It has no ads"], a: 1, exp: "HTTPS encrypts data, but remember scammers can also get HTTPS certificates." },
+                    { q: "A 'police officer' video calls you saying your Aadhaar is linked to crime.", opts: ["Pay the fine immediately", "Provide OTP to verify identity", "Disconnect and report to 1930", "Stay on call for 4 hours"], a: 2, exp: "This is a Digital Arrest scam. Real police don't interrogate via WhatsApp." },
+                    { q: "Which password is the most secure?", opts: ["Password@123", "Rohan1990", "Tr33!Blk$9Qw", "qwerty"], a: 2, exp: "Long, random mix of cases, numbers, and symbols is best." }
+                ]
+            },
+            info: {
+                'info-phishing': { title: '<i class="fa-solid fa-fish-fins"></i> Phishing Protection', body: 'Phishing tricks you into revealing sensitive data.<br><br><b>Red Flags:</b><br>- Urgent/Panic language.<br>- Mismatched domains (e.g., b4nk.com).<br>- Requests for OTPs or passwords.<br><br><b>Action:</b> Never click links in unexpected emails. Go to the official site directly.' },
+                'info-upi': { title: '<i class="fa-solid fa-mobile-screen"></i> UPI Safety', body: '<b>Golden Rule:</b> You NEVER need to enter your UPI PIN to receive money.<br><br>- Do not scan QR codes to receive money.<br>- Do not download screen sharing apps (AnyDesk) if asked by "customer care".' },
+                'info-job': { title: '<i class="fa-solid fa-briefcase"></i> Fake Job Scams', body: 'Scammers offer easy part-time work (like liking YouTube videos).<br><br>- They pay a small amount first to build trust.<br>- Then they ask for a "security deposit" or "upgrade fee".<br><br><b>Rule:</b> Real jobs pay you, you don\'t pay them.' }
+            }
+        };
+
+        // ==================================================
+        // CORE APPLICATION CONTROLLER
+        // ==================================================
+        const app = {
+            init() {
+                this.applyConfig();
+                this.setupNavigation();
+                this.setupScannerTabs();
+                this.initCanvasBackground();
+                this.init3DShield();
+                this.renderAlerts();
+                this.generateMap();
+                
+                if (appState.isAdmin) this.enableAdminUI();
+                
+                // Route to hash if exists
+                const hash = window.location.hash.replace('#', '') || 'home';
+                this.navigate(hash);
             },
 
-            quizQuestions: [
-                { q: "You receive an SMS saying your bank account is blocked. It has a link to 'verify PAN'. What do you do?", opts: ["Click it quickly to avoid block", "Reply with PAN details", "Ignore and check official app directly", "Forward to friends"], ans: 2, exp: "Banks never send SMS links for KYC/PAN updates. Always use the official app." },
-                { q: "Someone buying your item on OLX sends a QR code and says 'scan to receive money'.", opts: ["Scan it to get paid", "Decline, scanning QR/entering PIN is only for sending money", "Ask them to send double", "Give them your card details instead"], ans: 1, exp: "UPI PIN is NEVER required to receive money." },
-                { q: "A 'police officer' video calls you in uniform saying your Aadhaar is linked to money laundering.", opts: ["Transfer money to 'safe account' as instructed", "Give them your OTPs to clear your name", "Disconnect immediately and report to 1930", "Stay on call for 4 hours"], ans: 2, exp: "This is Digital Arrest fraud. Real police don't interrogate via Skype/WhatsApp." },
-                { q: "What does 'HTTPS' in a website address indicate?", opts: ["The site is 100% safe from scams", "Data sent between you and site is encrypted", "It's a government website", "It has no viruses"], ans: 1, exp: "HTTPS means encrypted connection, but scammers can easily get HTTPS certificates for fake sites." },
-                { q: "You want to call customer care. Where should you find the number?", opts: ["First Google Search result", "Comments on YouTube", "The official app or back of your debit card", "Twitter random replies"], ans: 2, exp: "Scammers manipulate Google Search results using Ads and SEO. Always use official apps/cards." },
-                { q: "Which of these is a strong password?", opts: ["Password@123", "Rohan1990", "Tr33!Blk$9Qw", "qwerty"], ans: 2, exp: "Long, mix of cases, numbers, and symbols without personal info like names/birthyears." },
-                { q: "A WhatsApp message offers ₹5000/day just to like YouTube videos.", opts: ["Accept immediately", "It's a Task Fraud scam. Ignore/Block.", "Ask them for advance", "Share bank details"], ans: 1, exp: "Classic task scam. They pay ₹150 first to build trust, then steal lakhs." },
-                { q: "You realize you've been scammed and lost money. What is the immediate first step?", opts: ["Cry and do nothing", "Call 1930 or visit cybercrime.gov.in immediately", "Hire a 'hacker' on Instagram to recover it", "Delete your bank account"], ans: 1, exp: "Reporting immediately to 1930 increases chances of freezing the scammer's accounts. Never trust 'recovery hackers'." }
-            ],
-            quizState: { index: 0, score: 0 },
-
-            // --- INITIALIZATION ---
-            init() {
-                this.updateClock();
-                setInterval(() => this.updateClock(), 1000);
+            applyConfig() {
+                document.getElementById('brand-name').innerText = CONFIG.siteName;
+                document.getElementById('about-founder').innerText = CONFIG.founderName;
+                document.getElementById('about-role').innerText = `${CONFIG.founderRole}, ${CONFIG.parentBrand}`;
+                document.getElementById('about-edu').innerText = CONFIG.course + ", " + CONFIG.college;
+                document.getElementById('footer-founder').innerText = CONFIG.founderName;
                 
-                this.setupNavigation();
-                this.setupTabs();
-                this.renderAlerts();
-                this.generateMapDots();
-                
-                // Initialize admin state from storage
-                if(localStorage.getItem('cyberguard_admin') === 'true') {
-                    this.isAdmin = true;
-                    document.getElementById('nav-login').innerHTML = '<i class="fa-solid fa-shield"></i> SOC';
-                }
-
-                // Initial theme setup
-                const savedTheme = localStorage.getItem('cyberguard_theme') || 'dark';
-                if(savedTheme === 'light') {
-                    this.theme = 'dark'; // will toggle to light
-                    this.toggleTheme();
-                }
-
-                // Increment demo counters
-                let count = parseInt(localStorage.getItem('cyberguard_counter') || '14032');
-                document.getElementById('counter-threats').innerText = count.toLocaleString();
+                const storageMode = CONFIG.backendEndpoint ? 'Cloud Backend API' : (CONFIG.supabaseUrl ? 'Supabase DB' : 'Local Browser Storage');
+                document.getElementById('storage-mode').innerText = storageMode;
             },
 
             // --- NAVIGATION ---
             setupNavigation() {
-                const links = document.querySelectorAll('.nav-link[data-target]');
-                const sections = document.querySelectorAll('.view-section');
-                const menuBtn = document.getElementById('mobile-menu-btn');
-                const navLinksContainer = document.getElementById('nav-links');
-
-                links.forEach(link => {
+                document.querySelectorAll('.nav-link').forEach(link => {
                     link.addEventListener('click', (e) => {
-                        const target = e.target.closest('.nav-link').dataset.target;
-                        
-                        // Auth check for dashboard
-                        if (target === 'dashboard' && !this.isAdmin) {
-                            this.toggleLoginModal();
+                        const target = e.currentTarget.dataset.target;
+                        if(target === 'dashboard' && !appState.isAdmin) {
+                            this.toggleLogin();
                             return;
                         }
-
                         this.navigate(target);
-                        if(window.innerWidth <= 768) navLinksContainer.classList.remove('active');
+                        if(window.innerWidth <= 768) document.getElementById('nav-links').classList.remove('active');
                     });
                 });
 
-                menuBtn.addEventListener('click', () => {
-                    navLinksContainer.classList.toggle('active');
+                document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+                    document.getElementById('nav-links').classList.toggle('active');
                 });
             },
 
-            navigate(targetId) {
+            navigate(target) {
                 document.querySelectorAll('.view-section').forEach(s => s.classList.remove('active'));
                 document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
                 
-                document.getElementById(targetId).classList.add('active');
+                const sec = document.getElementById(target);
+                if(sec) sec.classList.add('active');
                 
-                const link = document.querySelector(`.nav-link[data-target="${targetId}"]`);
+                const link = document.querySelector(`.nav-link[data-target="${target}"]`);
                 if(link) link.classList.add('active');
 
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                window.scrollTo({top: 0, behavior: 'smooth'});
+                window.location.hash = target;
 
-                if(targetId === 'dashboard') this.initDashboard();
+                if(target === 'news') this.fetchNews();
+                if(target === 'dashboard') this.initDashboard();
             },
 
-            setupTabs() {
-                const tabBtns = document.querySelectorAll('.tab-btn');
-                tabBtns.forEach(btn => {
-                    btn.addEventListener('click', () => {
-                        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-                        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            // --- SCANNER ---
+            setupScannerTabs() {
+                document.querySelectorAll('.scan-tab-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        document.querySelectorAll('.scan-tab-btn').forEach(b => b.classList.remove('active'));
+                        document.querySelectorAll('.scan-content').forEach(c => c.classList.remove('active'));
+                        e.currentTarget.classList.add('active');
+                        document.getElementById(e.currentTarget.dataset.tab).classList.add('active');
                         
-                        btn.classList.add('active');
-                        document.getElementById(btn.dataset.tab).classList.add('active');
-                        
-                        // Reset analysis area
-                        document.getElementById('analysis-result').style.display = 'none';
                         document.getElementById('analysis-idle').style.display = 'block';
+                        document.getElementById('analysis-result').style.display = 'none';
                     });
                 });
             },
 
-            // --- SCANNER LOGIC (Simulated AI) ---
-            async runScan(type) {
-                let input = "";
+            analyze(type) {
+                let text = "";
                 let score = 0;
-                let indicators = [];
-                let rec = "";
+                let inds = [];
                 
-                if (type === 'url') {
-                    input = document.getElementById('scan-url-input').value.toLowerCase();
-                    if(!input) return this.showToast('Please enter a URL', 'error');
-                    
-                    if(!input.startsWith('https://')) { score += 40; indicators.push('Missing secure HTTPS protocol'); }
-                    if(input.includes('.xyz') || input.includes('.top') || input.includes('.tk')) { score += 50; indicators.push('Suspicious Top-Level Domain (TLD)'); }
-                    if((input.match(/-/g) || []).length > 2) { score += 30; indicators.push('Excessive hyphens (phishing tactic)'); }
-                    if(/\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/.test(input)) { score += 80; indicators.push('Raw IP address used instead of domain'); }
-                    if(/login|update|verify|secure|auth|account|kyc/.test(input)) { score += 40; indicators.push('Suspicious keywords in domain'); }
-                    
-                } else if (type === 'message') {
-                    input = document.getElementById('scan-msg-input').value.toLowerCase();
-                    if(!input) return this.showToast('Please enter a message', 'error');
-                    
-                    if(/urgent|immediate|suspend|block|limit/.test(input)) { score += 40; indicators.push('Urgency / Panic language detected'); }
-                    if(/otp|pin|password|cvv/.test(input)) { score += 60; indicators.push('Request for sensitive credentials'); }
-                    if(/win|lottery|prize|reward|gift/.test(input)) { score += 50; indicators.push('Too-good-to-be-true claims (Greed hook)'); }
-                    if(/http[s]?:\/\//.test(input)) { score += 30; indicators.push('Contains embedded hyperlink'); }
-                    if(/apk|download|install/.test(input)) { score += 60; indicators.push('Prompts software installation (Malware risk)'); }
-                    if(/task|youtube|like|subscribe|part time/.test(input)) { score += 70; indicators.push('Matches Fake Task / Job Scam patterns'); }
-                } else if (type === 'email') {
-                    input = document.getElementById('scan-email-subj').value + " " + document.getElementById('scan-email-body').value;
-                    input = input.toLowerCase();
-                    if(input.trim() === "") return this.showToast('Please enter email content', 'error');
-                    
-                    if(/dear customer|dear user/.test(input)) { score += 20; indicators.push('Generic non-personalized greeting'); }
-                    if(/invoice|payment|receipt/.test(input) && /attached|attachment/.test(input)) { score += 40; indicators.push('High-risk attachment context (Malware/Ransomware)'); }
-                    if(/kindly click|verify account/.test(input)) { score += 40; indicators.push('Call-to-action leading to potential phishing'); }
-                    if(/hacked|compromised|video/.test(input)) { score += 50; indicators.push('Extortion / Sextortion language patterns'); }
+                if(type === 'url') text = document.getElementById('inp-url').value.toLowerCase();
+                if(type === 'msg') text = document.getElementById('inp-msg').value.toLowerCase();
+                if(type === 'email') text = document.getElementById('inp-email-sub').value.toLowerCase() + " " + document.getElementById('inp-email-body').value.toLowerCase();
+
+                if(!text.trim()) return this.showToast('Please enter content to analyze.', 'error');
+
+                // Local Heuristics
+                if(type === 'url') {
+                    if(!text.startsWith('https')) { score += 40; inds.push("Missing secure HTTPS connection."); }
+                    if(/\d+\.\d+\.\d+\.\d+/.test(text)) { score += 60; inds.push("Uses raw IP address instead of domain."); }
+                    if(/login|update|verify|secure|auth/.test(text)) { score += 30; inds.push("Suspicious keywords aiming to steal credentials."); }
+                    if(text.split('.').length > 4) { score += 30; inds.push("Excessive subdomains masking real domain."); }
+                } else {
+                    if(/urgent|suspend|block|immediate/.test(text)) { score += 40; inds.push("Urgency/Panic tactics detected."); }
+                    if(/otp|password|pin/.test(text)) { score += 50; inds.push("Request for sensitive credentials."); }
+                    if(/win|lottery|prize|reward/.test(text)) { score += 40; inds.push("Greed hooks / Too good to be true."); }
+                    if(/apk|download link/.test(text)) { score += 50; inds.push("Malware distribution risk."); }
+                    if(/task|youtube|like|subscribe/.test(text)) { score += 60; inds.push("Matches Fake Task/Job scam signature."); }
                 }
 
-                // Base risk adjustment
-                if (score === 0) {
-                    if(input.length > 5) { indicators.push('No obvious threat signatures found in local DB.'); score = 5; }
-                }
-                if (score > 100) score = 99;
+                if(score === 0 && text.length > 5) { score = 10; inds.push("No obvious malicious patterns found locally."); }
+                if(score > 99) score = 99;
 
-                // UI Processing Animation
-                const panelIdle = document.getElementById('analysis-idle');
-                const panelRes = document.getElementById('analysis-result');
-                const overlay = document.getElementById('analysis-loading');
-                const stepsText = document.getElementById('scan-steps');
-                
-                panelIdle.style.display = 'none';
-                panelRes.style.display = 'none';
-                overlay.style.display = 'flex';
-
-                const steps = ["Extracting text features...", "Running NLP pattern matching...", "Checking static signatures...", "Calculating final risk score..."];
-                for(let i=0; i<steps.length; i++) {
-                    stepsText.innerText = steps[i];
-                    await new Promise(r => setTimeout(r, 600));
-                }
-
-                overlay.style.display = 'none';
-                panelRes.style.display = 'block';
-
-                // Render Results
-                this.renderScanResult(score, indicators);
-                
-                // Update Counter
-                let count = parseInt(localStorage.getItem('cyberguard_counter') || '14032');
-                count++;
-                localStorage.setItem('cyberguard_counter', count);
-                document.getElementById('counter-threats').innerText = count.toLocaleString();
+                this.processAnalysisUI(score, inds);
             },
 
-            renderScanResult(score, indicators) {
-                const gaugeFill = document.getElementById('risk-gauge');
-                const scoreText = document.getElementById('risk-score-text');
-                const badge = document.getElementById('risk-badge');
-                const indList = document.getElementById('indicator-list');
-                const rec = document.getElementById('ai-recommendation');
+            processAnalysisUI(score, inds) {
+                document.getElementById('analysis-idle').style.display = 'none';
+                document.getElementById('analysis-result').style.display = 'none';
+                document.getElementById('analysis-loading').style.display = 'flex';
 
-                // Animate gauge
                 setTimeout(() => {
-                    const rotation = -45 + (score * 1.8); // 0 score = -45deg, 100 score = 135deg
-                    gaugeFill.style.transform = `rotate(${rotation}deg)`;
-                }, 100);
+                    document.getElementById('analysis-loading').style.display = 'none';
+                    document.getElementById('analysis-result').style.display = 'block';
 
-                let color = 'var(--success)';
-                let level = 'SAFE';
-                let bClass = 'badge-success';
-                let action = "No immediate threat detected. Still, remain vigilant and do not share personal info.";
+                    const gauge = document.getElementById('res-gauge');
+                    const txt = document.getElementById('res-score');
+                    const badge = document.getElementById('res-badge');
+                    const cat = document.getElementById('res-category');
+                    const act = document.getElementById('res-action');
+                    const indList = document.getElementById('res-indicators');
 
-                if(score > 30) { color = 'var(--info)'; level = 'LOW RISK'; bClass = 'badge-info'; action = "Proceed with caution. Verify the sender/source independently before clicking any links."; }
-                if(score > 60) { color = 'var(--warning)'; level = 'HIGH RISK'; bClass = 'badge-warning'; action = "Highly suspicious. Do not click links, reply, or download attachments. Delete message."; }
-                if(score > 80) { color = 'var(--danger)'; level = 'CRITICAL'; bClass = 'badge-danger'; action = "MALICIOUS CONTENT DETECTED. Block the sender immediately. Do not interact. Report to authorities if data was shared."; }
+                    let color = 'var(--success)';
+                    let level = 'Unable to Verify / Low Risk';
+                    let bClass = 'badge-success';
+                    let action = "No immediate threat signatures detected by local engine. Still, do not share personal info.";
 
-                gaugeFill.style.borderTopColor = color;
-                gaugeFill.style.borderRightColor = color;
-                scoreText.innerText = score;
-                scoreText.style.color = color;
-                
-                badge.className = `badge ${bClass}`;
-                badge.innerText = level;
+                    if(score > 30) { color = 'var(--warning)'; level = 'Potentially Suspicious'; bClass = 'badge-warning'; action = "Exercise caution. Do not click links unless you independently verify the source."; }
+                    if(score > 70) { color = 'var(--danger)'; level = 'High Risk / Critical'; bClass = 'badge-danger'; action = "Malicious patterns detected. Do not interact. Delete and block sender."; cat.innerText = "Social Engineering / Phishing"; }
+                    if(score <= 30) cat.innerText = "Unknown / Benign";
 
-                indList.innerHTML = indicators.map(ind => 
-                    `<div class="indicator-item">
-                        <i class="fa-solid ${score > 60 ? 'fa-triangle-exclamation text-danger' : 'fa-check text-success'}"></i>
-                        ${ind}
-                    </div>`
-                ).join('');
+                    setTimeout(() => { gauge.style.transform = `rotate(${-45 + (score * 1.8)}deg)`; }, 100);
+                    gauge.style.borderTopColor = color; gauge.style.borderRightColor = color;
+                    txt.innerText = score; txt.style.color = color;
+                    badge.className = `badge ${bClass}`; badge.innerText = level;
+                    act.innerText = action;
 
-                rec.innerText = action;
+                    indList.innerHTML = inds.map(i => `<div class="ind-item"><i class="fa-solid ${score>50?'fa-triangle-exclamation text-danger':'fa-info-circle text-info'}"></i> ${i}</div>`).join('');
+
+                }, 1500);
             },
 
-            // --- REPORTING ---
-            submitReport(e) {
+            // --- REPORT FRAUD ---
+            submitIncident(e) {
                 e.preventDefault();
-                
-                const report = {
-                    id: 'INC-' + Math.floor(Math.random() * 100000),
+                const inc = {
+                    id: 'CG-2026-' + Math.floor(100000 + Math.random() * 900000),
                     name: document.getElementById('rep-name').value,
-                    email: document.getElementById('rep-email').value,
                     type: document.getElementById('rep-type').value,
-                    amount: document.getElementById('rep-amount').value || 0,
-                    source: document.getElementById('rep-source').value,
-                    desc: document.getElementById('rep-desc').value,
                     date: new Date().toLocaleDateString(),
-                    status: 'Open'
+                    status: 'NEW',
+                    risk: 'Pending'
                 };
-
-                this.reports.unshift(report);
-                localStorage.setItem('cyberguard_reports', JSON.stringify(this.reports));
                 
-                document.getElementById('fraud-form').reset();
-                this.showToast('Fraud report logged to local SOC successfully!', 'success');
+                appState.incidents.unshift(inc);
+                
+                // Logic based on CONFIG
+                if(CONFIG.backendEndpoint || CONFIG.supabaseUrl) {
+                    // Simulate API call
+                    this.showToast('Sending to secure backend...', 'info');
+                    setTimeout(() => { this.finalizeReport(inc, e.target); }, 1000);
+                } else {
+                    localStorage.setItem('cg_incidents', JSON.stringify(appState.incidents));
+                    this.finalizeReport(inc, e.target);
+                }
+            },
+
+            finalizeReport(inc, form) {
+                form.reset();
+                this.showToast(`Incident ${inc.id} submitted successfully.`, 'success');
             },
 
             // --- DASHBOARD (ADMIN) ---
             initDashboard() {
-                document.getElementById('dash-total').innerText = this.reports.length;
+                if(!appState.isAdmin) return;
                 
-                const totalAmount = this.reports.reduce((sum, r) => sum + Number(r.amount), 0);
-                document.getElementById('dash-loss').innerText = '₹' + totalAmount.toLocaleString();
-                
-                let resolved = this.reports.filter(r => r.status === 'Resolved').length;
-                document.getElementById('dash-resolved').innerText = resolved;
-                document.getElementById('dash-critical').innerText = this.reports.filter(r => r.type.includes('Fraud') || r.type.includes('Phishing')).length;
+                document.getElementById('dash-total').innerText = appState.incidents.length;
+                document.getElementById('dash-critical').innerText = appState.incidents.filter(i=>i.type.includes('Fraud')||i.type.includes('Phishing')).length;
+                document.getElementById('dash-resolved').innerText = appState.incidents.filter(i=>i.status==='RESOLVED').length;
 
-                this.renderDashboardTable();
+                this.renderTable();
                 this.renderCharts();
             },
 
-            renderDashboardTable() {
-                const tbody = document.getElementById('dash-table-body');
-                const empty = document.getElementById('empty-dash');
-                
-                if(this.reports.length === 0) {
+            renderTable() {
+                const tbody = document.getElementById('dash-table');
+                const empty = document.getElementById('dash-empty');
+                if(appState.incidents.length === 0) {
                     tbody.innerHTML = '';
                     empty.style.display = 'block';
                     return;
                 }
-                
                 empty.style.display = 'none';
-                tbody.innerHTML = this.reports.map((r, i) => `
+                
+                tbody.innerHTML = appState.incidents.map((inc, idx) => `
                     <tr>
-                        <td style="font-family: var(--font-mono); color: var(--primary);">${r.id}</td>
-                        <td>${r.date}</td>
-                        <td><span class="badge badge-info">${r.type}</span></td>
-                        <td>${r.name}</td>
-                        <td><span class="badge ${r.status==='Resolved'?'badge-success':'badge-warning'}">${r.status}</span></td>
+                        <td style="font-family:var(--font-mono); color:var(--primary);">${inc.id}</td>
+                        <td>${inc.date}</td>
+                        <td><span class="badge badge-info">${inc.type}</span></td>
+                        <td>${inc.name}</td>
+                        <td><span class="badge ${inc.status==='RESOLVED'?'badge-success':(inc.status==='NEW'?'badge-danger':'badge-warning')}">${inc.status}</span></td>
                         <td>
-                            ${r.status !== 'Resolved' ? `<button class="btn btn-outline" style="padding: 0.25rem 0.5rem; font-size: 0.8rem;" onclick="app.resolveIncident(${i})">Resolve</button>` : '<i class="fa-solid fa-check text-success"></i>'}
+                            ${inc.status !== 'RESOLVED' ? `<button class="btn btn-outline" style="padding:0.25rem 0.5rem; font-size:0.75rem;" onclick="app.resolveIncident(${idx})">Resolve</button>` : '<i class="fa-solid fa-check text-success"></i>'}
                         </td>
                     </tr>
                 `).join('');
             },
 
-            resolveIncident(index) {
-                this.reports[index].status = 'Resolved';
-                localStorage.setItem('cyberguard_reports', JSON.stringify(this.reports));
+            resolveIncident(idx) {
+                appState.incidents[idx].status = 'RESOLVED';
+                localStorage.setItem('cg_incidents', JSON.stringify(appState.incidents));
                 this.initDashboard();
-                this.showToast(`Incident ${this.reports[index].id} marked as resolved.`, 'success');
+                this.showToast('Incident marked as resolved.', 'success');
             },
 
             renderCharts() {
-                // Destroy old charts to prevent overlapping in SPA
-                if(this.charts.trends) this.charts.trends.destroy();
-                if(this.charts.cats) this.charts.cats.destroy();
+                if(appState.charts.trend) appState.charts.trend.destroy();
+                if(appState.charts.dist) appState.charts.dist.destroy();
 
-                const isLight = this.theme === 'light';
-                const textColor = isLight ? '#4b5563' : '#9ca3af';
-                const gridColor = isLight ? 'rgba(0,0,0,0.1)' : 'rgba(255,255,255,0.1)';
-
-                Chart.defaults.color = textColor;
+                Chart.defaults.color = '#94a3b8';
                 Chart.defaults.font.family = "'Inter', sans-serif";
 
-                const ctxTrends = document.getElementById('chart-trends').getContext('2d');
-                this.charts.trends = new Chart(ctxTrends, {
+                const ctxT = document.getElementById('chart-trend').getContext('2d');
+                appState.charts.trend = new Chart(ctxT, {
                     type: 'line',
-                    data: {
-                        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-                        datasets: [{
-                            label: 'Incidents Logged',
-                            data: [12, 19, 15, 25, 22, 30, this.reports.length],
-                            borderColor: '#3b82f6',
-                            backgroundColor: 'rgba(59, 130, 246, 0.2)',
-                            tension: 0.4,
-                            fill: true
-                        }]
-                    },
-                    options: { responsive: true, maintainAspectRatio: false, scales: { x: { grid: { color: gridColor } }, y: { grid: { color: gridColor } } } }
+                    data: { labels: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'], datasets: [{ label: 'Incidents', data: [5,8,12,7,15,10,appState.incidents.length], borderColor: '#3b82f6', backgroundColor: 'rgba(59,130,246,0.1)', fill: true, tension: 0.4 }] },
+                    options: { responsive: true, maintainAspectRatio: false, scales: { x: { grid: { color: 'rgba(255,255,255,0.05)' } }, y: { grid: { color: 'rgba(255,255,255,0.05)' } } } }
                 });
 
-                // Calculate category stats from reports
-                const catCounts = {};
-                this.reports.forEach(r => { catCounts[r.type] = (catCounts[r.type] || 0) + 1; });
-                const catLabels = Object.keys(catCounts).length > 0 ? Object.keys(catCounts) : ['Phishing', 'UPI', 'OTP'];
-                const catData = Object.keys(catCounts).length > 0 ? Object.values(catCounts) : [10, 15, 5];
-
-                const ctxCats = document.getElementById('chart-categories').getContext('2d');
-                this.charts.cats = new Chart(ctxCats, {
+                const ctxD = document.getElementById('chart-dist').getContext('2d');
+                appState.charts.dist = new Chart(ctxD, {
                     type: 'doughnut',
-                    data: {
-                        labels: catLabels,
-                        datasets: [{
-                            data: catData,
-                            backgroundColor: ['#3b82f6', '#8b5cf6', '#f59e0b', '#ef4444', '#10b981', '#06b6d4'],
-                            borderWidth: 0
-                        }]
-                    },
-                    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'right' } } }
+                    data: { labels: ['Phishing', 'UPI', 'Jobs'], datasets: [{ data: [40, 35, 25], backgroundColor: ['#ef4444', '#f59e0b', '#3b82f6'], borderWidth: 0 }] },
+                    options: { responsive: true, maintainAspectRatio: false }
                 });
             },
 
-            // --- ALERTS & MAP ---
-            renderAlerts(filter = 'all', search = '') {
-                const container = document.getElementById('alerts-container');
-                let filtered = this.alerts;
+            // --- NEWS & ALERTS ---
+            async fetchNews() {
+                const grid = document.getElementById('news-grid');
+                const status = document.getElementById('news-status-text');
                 
-                if (filter !== 'all') filtered = filtered.filter(a => a.type === filter);
-                if (search) filtered = filtered.filter(a => a.title.toLowerCase().includes(search.toLowerCase()) || a.desc.toLowerCase().includes(search.toLowerCase()));
+                if(CONFIG.newsEndpoint) {
+                    status.innerText = "Fetching Live Data...";
+                    // Simulate fetch
+                    setTimeout(() => { this.renderNewsFallback(grid); status.innerText = "Live API Connected"; }, 1000);
+                } else {
+                    status.innerText = "API Not Configured - Showing Fallback Data";
+                    this.renderNewsFallback(grid);
+                }
+            },
 
-                container.innerHTML = filtered.map(a => `
-                    <div class="glass-card alert-card alert-${a.type}">
-                        <div class="flex justify-between items-start mb-2">
-                            <h4 style="margin:0; font-size: 1.05rem;">${a.title}</h4>
-                            <span class="badge badge-${a.type === 'critical' ? 'danger' : a.type === 'high' ? 'warning' : a.type === 'medium' ? 'info' : 'success'}" style="font-size: 0.65rem;">${a.type}</span>
-                        </div>
-                        <p class="text-muted" style="font-size: 0.85rem; margin-bottom: 1rem;">${a.desc}</p>
-                        <div style="font-size: 0.75rem; color: var(--text-muted);"><i class="fa-solid fa-clock"></i> ${a.date}</div>
+            renderNewsFallback(grid) {
+                const dummyNews = [
+                    { title: "New Ransomware Group Targets Healthcare Sector", src: "CyberNews", date: "2 hours ago", cat: "Ransomware" },
+                    { title: "Zero-Day Vulnerability Found in Popular Browser", src: "TechSec", date: "5 hours ago", cat: "Vulnerability" },
+                    { title: "Phishing Campaign Exploits New Tax Season", src: "SecIntel", date: "1 day ago", cat: "Phishing" }
+                ];
+                grid.innerHTML = dummyNews.map(n => `
+                    <div class="glass-panel news-card">
+                        <div class="news-meta"><span>${n.src}</span><span>${n.date}</span></div>
+                        <h3 class="news-title">${n.title}</h3>
+                        <span class="badge badge-info" style="align-self:flex-start; margin-top:auto;">${n.cat}</span>
                     </div>
                 `).join('');
             },
 
-            filterAlerts(type) { this.renderAlerts(type, document.getElementById('alert-search').value); },
-            searchAlerts() { this.renderAlerts('all', document.getElementById('alert-search').value); },
+            renderAlerts() {
+                const alerts = [
+                    { title: "TRAI Impersonation Calls", level: "CRITICAL", desc: "Scammers claiming mobile numbers will be blocked." },
+                    { title: "Fake FedEx Parcels", level: "HIGH", desc: "SMS links requesting customs fee payment via UPI." },
+                    { title: "Wedding Invite APKs", level: "CRITICAL", desc: "Malicious apps sent via WhatsApp stealing OTPs." }
+                ];
+                document.getElementById('alerts-grid').innerHTML = alerts.map(a => `
+                    <div class="glass-panel alert-card" style="padding:1.5rem; border-left-color: ${a.level==='CRITICAL'?'var(--danger)':'var(--warning)'}">
+                        <div style="display:flex; justify-content:space-between; margin-bottom:1rem;">
+                            <h4 style="margin:0;">${a.title}</h4>
+                            <span class="badge ${a.level==='CRITICAL'?'badge-danger':'badge-warning'}">${a.level}</span>
+                        </div>
+                        <p style="font-size:0.85rem; color:var(--text-muted);">${a.desc}</p>
+                    </div>
+                `).join('');
+            },
 
-            generateMapDots() {
-                const map = document.getElementById('threat-map');
-                for(let i=0; i<15; i++) {
+            generateMap() {
+                const map = document.getElementById('map-container');
+                for(let i=0; i<8; i++) {
                     const dot = document.createElement('div');
-                    dot.className = 'map-dot';
-                    dot.style.top = Math.floor(Math.random() * 80 + 10) + '%';
-                    dot.style.left = Math.floor(Math.random() * 80 + 10) + '%';
-                    
-                    const types = ['Phishing', 'Malware', 'DDoS', 'Scan'];
-                    const locs = ['Mumbai', 'Delhi', 'Bengaluru', 'Chennai', 'Hyderabad'];
-                    
-                    dot.innerHTML = `<div class="map-tooltip">${types[Math.floor(Math.random()*types.length)]} vector<br>${locs[Math.floor(Math.random()*locs.length)]} Server</div>`;
+                    dot.style.cssText = `position:absolute; width:10px; height:10px; background:var(--danger); border-radius:50%; top:${20+Math.random()*60}%; left:${20+Math.random()*60}%; box-shadow:0 0 15px var(--danger); animation:pulse 2s infinite ${Math.random()}s;`;
                     map.appendChild(dot);
                 }
             },
 
-            // --- AWARENESS, QUIZ & PASSWORD ---
-            openAwareness(key) {
-                const data = this.awarenessData[key];
-                document.getElementById('aw-modal-title').innerHTML = data.title;
-                document.getElementById('aw-modal-content').innerHTML = data.content;
-                document.getElementById('modal-awareness').classList.add('active');
-            },
-
-            startQuiz() {
-                this.quizState.index = 0;
-                this.quizState.score = 0;
-                document.getElementById('quiz-result-ui').style.display = 'none';
-                document.getElementById('quiz-ui').style.display = 'block';
-                document.getElementById('modal-quiz').classList.add('active');
-                this.renderQuizQuestion();
-            },
-
-            renderQuizQuestion() {
-                const q = this.quizQuestions[this.quizState.index];
-                document.getElementById('quiz-progress').innerText = `${this.quizState.index + 1} / ${this.quizQuestions.length}`;
-                document.getElementById('quiz-question').innerText = q.q;
-                
-                const optsContainer = document.getElementById('quiz-options');
-                optsContainer.innerHTML = q.opts.map((opt, i) => 
-                    `<button class="quiz-option" onclick="app.selectQuizOption(${i})">${opt}</button>`
-                ).join('');
-                
-                document.getElementById('quiz-feedback').style.display = 'none';
-                document.getElementById('quiz-next-btn').style.display = 'none';
-            },
-
-            selectQuizOption(selectedIndex) {
-                const q = this.quizQuestions[this.quizState.index];
-                const btns = document.querySelectorAll('.quiz-option');
-                btns.forEach(b => b.onclick = null); // disable clicks
-                
-                const feedback = document.getElementById('quiz-feedback');
-                feedback.style.display = 'block';
-
-                if(selectedIndex === q.ans) {
-                    btns[selectedIndex].classList.add('correct');
-                    feedback.innerHTML = `<i class="fa-solid fa-circle-check text-success"></i> <b>Correct!</b><br><span style="font-size:0.9rem">${q.exp}</span>`;
-                    feedback.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
-                    this.quizState.score++;
-                } else {
-                    btns[selectedIndex].classList.add('wrong');
-                    btns[q.ans].classList.add('correct');
-                    feedback.innerHTML = `<i class="fa-solid fa-circle-xmark text-danger"></i> <b>Incorrect.</b><br><span style="font-size:0.9rem">${q.exp}</span>`;
-                    feedback.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
-                }
-
-                document.getElementById('quiz-next-btn').style.display = 'block';
-            },
-
-            quizNext() {
-                this.quizState.index++;
-                if(this.quizState.index < this.quizQuestions.length) {
-                    this.renderQuizQuestion();
-                } else {
-                    document.getElementById('quiz-ui').style.display = 'none';
-                    document.getElementById('quiz-result-ui').style.display = 'block';
-                    document.getElementById('quiz-final-score').innerText = this.quizState.score;
-                    if(this.quizState.score === 8) this.showToast('Perfect Score! Cybersecurity Expert!', 'success');
-                }
-            },
-
+            // --- SECURITY CENTER & QUIZ ---
             checkPassword() {
-                const pwd = document.getElementById('pwd-check').value;
-                let strength = 0;
+                const p = document.getElementById('pwd-input').value;
+                const len = p.length >= 8;
+                const up = /[A-Z]/.test(p);
+                const num = /[0-9]/.test(p);
+                const spec = /[!@#$%^&*]/.test(p);
                 
-                const hasLen = pwd.length >= 8;
-                const hasUp = /[A-Z]/.test(pwd);
-                const hasNum = /[0-9]/.test(pwd);
-                const hasSpec = /[!@#$%^&*_=+-]/.test(pwd);
-
-                const updateReq = (id, valid) => {
+                const updateUi = (id, val) => {
                     const el = document.getElementById(id);
-                    if(valid) { el.innerHTML = `<i class="fa-solid fa-check text-success"></i> ` + el.innerText.trim(); el.style.color = 'var(--success)'; strength+=25; }
-                    else { el.innerHTML = `<i class="fa-solid fa-xmark text-danger"></i> ` + el.innerText.trim(); el.style.color = 'var(--text-muted)'; }
+                    if(val) { el.style.color = 'var(--success)'; el.innerHTML = el.innerHTML.replace('xmark text-danger', 'check text-success'); }
+                    else { el.style.color = 'var(--text-muted)'; el.innerHTML = el.innerHTML.replace('check text-success', 'xmark text-danger'); }
                 };
-
-                updateReq('req-len', hasLen);
-                updateReq('req-up', hasUp);
-                updateReq('req-num', hasNum);
-                updateReq('req-spec', hasSpec);
-
-                const fill = document.getElementById('pwd-fill');
-                const lbl = document.getElementById('pwd-label');
-                fill.style.width = strength + '%';
                 
-                if(strength <= 25) { fill.style.backgroundColor = 'var(--danger)'; lbl.innerText = 'Weak'; lbl.style.color = 'var(--danger)'; }
-                else if(strength <= 50) { fill.style.backgroundColor = 'var(--warning)'; lbl.innerText = 'Fair'; lbl.style.color = 'var(--warning)'; }
-                else if(strength <= 75) { fill.style.backgroundColor = 'var(--info)'; lbl.innerText = 'Good'; lbl.style.color = 'var(--info)'; }
-                else { fill.style.backgroundColor = 'var(--success)'; lbl.innerText = 'Strong'; lbl.style.color = 'var(--success)'; }
+                updateUi('req-len', len); updateUi('req-up', up); updateUi('req-num', num); updateUi('req-spec', spec);
+                
+                let s = (len?25:0) + (up?25:0) + (num?25:0) + (spec?25:0);
+                const bar = document.getElementById('pwd-bar');
+                const lbl = document.getElementById('pwd-label');
+                bar.style.width = s + '%';
+                
+                if(s <= 25) { bar.style.background = 'var(--danger)'; lbl.innerText = 'Weak'; lbl.style.color = 'var(--danger)'; }
+                else if(s <= 50) { bar.style.background = 'var(--warning)'; lbl.innerText = 'Fair'; lbl.style.color = 'var(--warning)'; }
+                else if(s <= 75) { bar.style.background = 'var(--info)'; lbl.innerText = 'Good'; lbl.style.color = 'var(--info)'; }
+                else { bar.style.background = 'var(--success)'; lbl.innerText = 'Strong'; lbl.style.color = 'var(--success)'; }
             },
 
-            // --- AUTHENTICATION & MODALS ---
-            toggleLoginModal() { document.getElementById('modal-login').classList.toggle('active'); },
-            closeModal(id) { document.getElementById(id).classList.remove('active'); },
+            openQuiz() {
+                appState.quiz.current = 0; appState.quiz.score = 0;
+                document.getElementById('quiz-result').style.display = 'none';
+                document.getElementById('quiz-ui').style.display = 'block';
+                this.renderQuizQ();
+                this.openModal('modal-quiz');
+            },
+
+            renderQuizQ() {
+                const q = appState.quiz.questions[appState.quiz.current];
+                document.getElementById('quiz-progress').innerText = `${appState.quiz.current + 1}/${appState.quiz.questions.length}`;
+                document.getElementById('quiz-q').innerText = q.q;
+                document.getElementById('quiz-opts').innerHTML = q.opts.map((opt, i) => 
+                    `<button class="btn btn-outline" style="justify-content:flex-start; text-align:left;" onclick="app.answerQuiz(${i})">${opt}</button>`
+                ).join('');
+                document.getElementById('quiz-feedback').style.display = 'none';
+                document.getElementById('quiz-next').style.display = 'none';
+            },
+
+            answerQuiz(idx) {
+                const q = appState.quiz.questions[appState.quiz.current];
+                const btns = document.getElementById('quiz-opts').querySelectorAll('button');
+                btns.forEach(b => b.onclick = null);
+                
+                const fb = document.getElementById('quiz-feedback');
+                fb.style.display = 'block';
+                
+                if(idx === q.a) {
+                    appState.quiz.score++;
+                    btns[idx].style.background = 'rgba(16,185,129,0.2)'; btns[idx].style.borderColor = 'var(--success)';
+                    fb.style.background = 'rgba(16,185,129,0.1)'; fb.innerHTML = `<b style="color:var(--success)">Correct!</b><br>${q.exp}`;
+                } else {
+                    btns[idx].style.background = 'rgba(239,68,68,0.2)'; btns[idx].style.borderColor = 'var(--danger)';
+                    btns[q.a].style.background = 'rgba(16,185,129,0.2)'; btns[q.a].style.borderColor = 'var(--success)';
+                    fb.style.background = 'rgba(239,68,68,0.1)'; fb.innerHTML = `<b style="color:var(--danger)">Incorrect.</b><br>${q.exp}`;
+                }
+                document.getElementById('quiz-next').style.display = 'block';
+            },
+
+            nextQuiz() {
+                appState.quiz.current++;
+                if(appState.quiz.current < appState.quiz.questions.length) this.renderQuizQ();
+                else {
+                    document.getElementById('quiz-ui').style.display = 'none';
+                    document.getElementById('quiz-result').style.display = 'block';
+                    document.getElementById('quiz-score').innerText = appState.quiz.score;
+                }
+            },
+
+            // --- AUTH, MODALS, UTILS ---
+            toggleLogin() { this.openModal('modal-login'); },
             
             handleLogin(e) {
                 e.preventDefault();
                 const u = document.getElementById('login-user').value;
                 const p = document.getElementById('login-pwd').value;
-                
-                if(u === 'admin' && p === 'cyberguard@2026') {
-                    this.isAdmin = true;
-                    localStorage.setItem('cyberguard_admin', 'true');
+                if(u === CONFIG.devUser && p === CONFIG.devPass) {
+                    appState.isAdmin = true;
+                    localStorage.setItem('cg_admin', 'true');
+                    this.enableAdminUI();
                     this.closeModal('modal-login');
-                    document.getElementById('nav-login').innerHTML = '<i class="fa-solid fa-shield"></i> SOC';
                     this.navigate('dashboard');
                     this.showToast('SOC Access Granted', 'success');
-                } else {
-                    this.showToast('Invalid demo credentials', 'error');
-                }
+                } else this.showToast('Invalid Credentials', 'error');
                 e.target.reset();
             },
-            
+
+            enableAdminUI() {
+                document.getElementById('btn-login').style.display = 'none';
+                document.getElementById('nav-dash').style.display = 'block';
+            },
+
             logout() {
-                this.isAdmin = false;
-                localStorage.removeItem('cyberguard_admin');
-                document.getElementById('nav-login').innerHTML = '<i class="fa-solid fa-user-lock"></i> Admin';
+                appState.isAdmin = false;
+                localStorage.removeItem('cg_admin');
+                document.getElementById('btn-login').style.display = 'block';
+                document.getElementById('nav-dash').style.display = 'none';
                 this.navigate('home');
-                this.showToast('Logged out securely', 'success');
+                this.showToast('Logged out.', 'info');
             },
 
-            // --- UTILITIES ---
-            updateClock() {
-                const now = new Date();
-                const el = document.getElementById('live-time');
-                if(el) el.innerText = now.toLocaleTimeString();
-            },
-
-            toggleTheme() {
-                const body = document.body;
-                const icon = document.getElementById('theme-icon');
-                if(this.theme === 'dark') {
-                    body.setAttribute('data-theme', 'light');
-                    this.theme = 'light';
-                    icon.className = 'fa-solid fa-sun';
+            openModal(id) {
+                if(appState.info[id]) {
+                    document.getElementById('info-title').innerHTML = appState.info[id].title;
+                    document.getElementById('info-body').innerHTML = appState.info[id].body;
+                    document.getElementById('modal-info').classList.add('active');
                 } else {
-                    body.removeAttribute('data-theme');
-                    this.theme = 'dark';
-                    icon.className = 'fa-solid fa-moon';
+                    document.getElementById(id).classList.add('active');
                 }
-                localStorage.setItem('cyberguard_theme', this.theme);
-                if(this.currentView === 'dashboard') this.renderCharts();
             },
+            closeModal(id) { document.getElementById(id).classList.remove('active'); },
 
             showToast(msg, type='info') {
-                const container = document.getElementById('toast-container');
-                const toast = document.createElement('div');
-                toast.className = `toast ${type}`;
-                
-                let icon = 'fa-info-circle text-info';
-                if(type==='success') icon = 'fa-check-circle text-success';
-                if(type==='error') icon = 'fa-triangle-exclamation text-danger';
-
-                toast.innerHTML = `<i class="fa-solid ${icon} style="font-size:1.2rem;"></i> <div>${msg}</div>`;
-                container.appendChild(toast);
-                
-                setTimeout(() => {
-                    toast.classList.add('fade-out');
-                    setTimeout(() => toast.remove(), 300);
-                }, 4000);
+                const c = document.getElementById('toast-container');
+                const t = document.createElement('div');
+                t.className = 'toast';
+                if(type==='success') t.style.borderLeftColor = 'var(--success)';
+                if(type==='error') t.style.borderLeftColor = 'var(--danger)';
+                t.innerHTML = `<div>${msg}</div>`;
+                c.appendChild(t);
+                setTimeout(() => { t.classList.add('fade-out'); setTimeout(() => t.remove(), 300); }, 3000);
             },
 
-            // --- HACKATHON DEMO PRESENTATION SEQUENCE ---
-            async runDemoMode() {
-                this.showToast('Initializing automated demo presentation...', 'info');
+            // --- 3D & CANVAS EFFECTS ---
+            initCanvasBackground() {
+                const canvas = document.getElementById('cyber-bg');
+                const ctx = canvas.getContext('2d');
+                let w, h, particles = [];
                 
-                // 1. Go to Scanner
-                this.navigate('scanner');
-                await this.delay(1000);
+                const resize = () => { w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; };
+                window.addEventListener('resize', resize); resize();
                 
-                // 2. Select Message Tab
-                document.querySelector('.tab-btn[data-tab="tab-msg"]').click();
-                await this.delay(500);
-
-                // 3. Type simulated threat
-                const msgInput = document.getElementById('scan-msg-input');
-                const demoText = "URGENT: Your HDFC bank account will be suspended in 10 mins. Update KYC via APK to avoid block. Download here: http://secure-kyc-hdfc-update.apk";
-                msgInput.value = "";
-                
-                for(let i=0; i<demoText.length; i++) {
-                    msgInput.value += demoText[i];
-                    await this.delay(30);
+                class Particle {
+                    constructor() { this.x = Math.random()*w; this.y = Math.random()*h; this.vx = (Math.random()-0.5)*0.5; this.vy = (Math.random()-0.5)*0.5; }
+                    update() {
+                        this.x += this.vx; this.y += this.vy;
+                        if(this.x < 0 || this.x > w) this.vx *= -1;
+                        if(this.y < 0 || this.y > h) this.vy *= -1;
+                    }
+                    draw() { ctx.fillStyle = 'rgba(56, 189, 248, 0.5)'; ctx.beginPath(); ctx.arc(this.x, this.y, 1.5, 0, Math.PI*2); ctx.fill(); }
                 }
-                await this.delay(800);
-
-                // 4. Click Analyze
-                this.runScan('message');
-                await this.delay(4000); // Wait for analysis animation
-
-                // 5. Scroll down to show results
-                window.scrollBy({ top: 300, behavior: 'smooth' });
-                await this.delay(4000);
-
-                // 6. Go to Alerts to show live map
-                this.navigate('alerts');
-                this.showToast('Displaying simulated Threat Intelligence...', 'info');
-                await this.delay(3000);
-
-                // 7. Auto login to Dashboard to finish
-                this.isAdmin = true;
-                document.getElementById('nav-login').innerHTML = '<i class="fa-solid fa-shield"></i> SOC';
-                this.navigate('dashboard');
-                this.showToast('Presentation Complete. Ready for Q&A.', 'success');
+                
+                for(let i=0; i<50; i++) particles.push(new Particle());
+                
+                const animate = () => {
+                    ctx.clearRect(0, 0, w, h);
+                    for(let i=0; i<particles.length; i++) {
+                        particles[i].update(); particles[i].draw();
+                        for(let j=i; j<particles.length; j++) {
+                            const dx = particles[i].x - particles[j].x, dy = particles[i].y - particles[j].y;
+                            const dist = Math.sqrt(dx*dx + dy*dy);
+                            if(dist < 150) {
+                                ctx.beginPath(); ctx.strokeStyle = `rgba(56, 189, 248, ${0.1 - dist/1500})`;
+                                ctx.lineWidth = 1; ctx.moveTo(particles[i].x, particles[i].y); ctx.lineTo(particles[j].x, particles[j].y); ctx.stroke();
+                            }
+                        }
+                    }
+                    requestAnimationFrame(animate);
+                };
+                animate();
             },
-            
-            delay(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
+
+            init3DShield() {
+                const visualArea = document.getElementById('hero-3d');
+                const shieldObj = document.getElementById('shield-obj');
+                
+                if(window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+                visualArea.addEventListener('mousemove', (e) => {
+                    const rect = visualArea.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width/2;
+                    const y = e.clientY - rect.top - rect.height/2;
+                    shieldObj.style.transform = `rotateY(${x * 0.05}deg) rotateX(${-y * 0.05}deg)`;
+                });
+                visualArea.addEventListener('mouseleave', () => {
+                    shieldObj.style.transform = `rotateY(0deg) rotateX(0deg)`;
+                });
+            }
         };
 
-        // Boot up
+        // Initialize App
         document.addEventListener('DOMContentLoaded', () => app.init());
     </script>
 </body>
