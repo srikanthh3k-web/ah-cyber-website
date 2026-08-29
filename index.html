@@ -7,9 +7,7 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
     <style>
         /* --- CSS VARIABLES & THEMING --- */
         :root {
@@ -18,37 +16,28 @@
             --bg-surface: #0f1629;
             --bg-glass: rgba(15, 22, 41, 0.65);
             --bg-glass-hover: rgba(22, 32, 59, 0.8);
-            
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
-            
             --border-light: rgba(255, 255, 255, 0.08);
             --border-accent: rgba(56, 189, 248, 0.3);
-            
             --primary: #3b82f6;
             --primary-glow: rgba(59, 130, 246, 0.5);
             --secondary: #06b6d4;
             --accent: #8b5cf6;
-            
             --success: #10b981;
             --warning: #f59e0b;
             --danger: #ef4444;
             --info: #0ea5e9;
-            
             --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
             --shadow-neon: 0 0 20px var(--primary-glow);
-            
             --radius-md: 12px;
             --radius-lg: 20px;
             --radius-xl: 24px;
-            
             --font-main: 'Inter', sans-serif;
             --font-display: 'Space Grotesk', sans-serif;
             --font-mono: 'Fira Code', monospace;
-            
             --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
-
         [data-theme="light"] {
             --bg-base: #f1f5f9;
             --bg-surface: #ffffff;
@@ -60,260 +49,110 @@
             --border-accent: rgba(59, 130, 246, 0.3);
             --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
         }
-
         /* --- RESET & GLOBAL --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body {
-            font-family: var(--font-main);
-            background-color: var(--bg-base);
-            color: var(--text-main);
-            line-height: 1.6;
-            overflow-x: hidden;
-            transition: var(--transition);
-        }
-
+        body { font-family: var(--font-main); background-color: var(--bg-base); color: var(--text-main); line-height: 1.6; overflow-x: hidden; transition: var(--transition); }
         /* Animated Background Canvas */
-        #cyber-bg {
-            position: fixed;
-            top: 0; left: 0; width: 100vw; height: 100vh;
-            z-index: -1;
-            opacity: 0.6;
-            pointer-events: none;
-        }
-
-        .container {
-            width: 100%; max-width: 1300px;
-            margin: 0 auto; padding: 0 1.5rem;
-        }
-
+        #cyber-bg { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; opacity: 0.6; pointer-events: none; }
+        .container { width: 100%; max-width: 1300px; margin: 0 auto; padding: 0 1.5rem; }
         h1, h2, h3, h4, h5 { font-family: var(--font-display); line-height: 1.2; }
         a { color: var(--secondary); text-decoration: none; transition: var(--transition); }
         a:hover { color: var(--primary); }
-
         /* --- GLASSMORPHISM COMPONENTS --- */
-        .glass-panel {
-            background: var(--bg-glass);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid var(--border-light);
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-glass);
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .glass-panel::before {
-            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-        }
-
-        .glass-panel:hover {
-            border-color: var(--border-accent);
-            box-shadow: 0 8px 32px 0 rgba(0,0,0,0.4), 0 0 15px rgba(56, 189, 248, 0.1);
-        }
-
+        .glass-panel { background: var(--bg-glass); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid var(--border-light); border-radius: var(--radius-lg); box-shadow: var(--shadow-glass); transition: var(--transition); position: relative; overflow: hidden; }
+        .glass-panel::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); }
+        .glass-panel:hover { border-color: var(--border-accent); box-shadow: 0 8px 32px 0 rgba(0,0,0,0.4), 0 0 15px rgba(56, 189, 248, 0.1); }
         /* --- BUTTONS --- */
-        .btn {
-            display: inline-flex; align-items: center; justify-content: center;
-            gap: 0.5rem; padding: 0.8rem 1.5rem;
-            border-radius: var(--radius-md); font-family: var(--font-display);
-            font-weight: 600; font-size: 0.95rem; letter-spacing: 0.5px;
-            cursor: pointer; border: none; transition: var(--transition);
-            position: relative; overflow: hidden;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white; box-shadow: var(--shadow-neon);
-        }
+        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.8rem 1.5rem; border-radius: var(--radius-md); font-family: var(--font-display); font-weight: 600; font-size: 0.95rem; letter-spacing: 0.5px; cursor: pointer; border: none; transition: var(--transition); position: relative; overflow: hidden; }
+        .btn-primary { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; box-shadow: var(--shadow-neon); }
         .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 25px rgba(6, 182, 212, 0.6); }
-
-        .btn-outline {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid var(--border-light);
-            color: var(--text-main);
-            backdrop-filter: blur(5px);
-        }
-        .btn-outline:hover {
-            background: rgba(255,255,255,0.1); border-color: var(--text-main); transform: translateY(-2px);
-        }
-        
+        .btn-outline { background: rgba(255,255,255,0.03); border: 1px solid var(--border-light); color: var(--text-main); backdrop-filter: blur(5px); }
+        .btn-outline:hover { background: rgba(255,255,255,0.1); border-color: var(--text-main); transform: translateY(-2px); }
         .btn-danger { background: rgba(239, 68, 68, 0.1); color: var(--danger); border: 1px solid var(--danger); }
         .btn-danger:hover { background: var(--danger); color: white; }
-
         /* --- FORMS --- */
         .form-group { margin-bottom: 1.5rem; }
         .form-label { display: block; margin-bottom: 0.5rem; font-size: 0.85rem; color: var(--text-muted); font-weight: 500; }
-        .form-control {
-            width: 100%; padding: 1rem;
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid var(--border-light);
-            border-radius: var(--radius-md);
-            color: var(--text-main); font-family: var(--font-main);
-            transition: var(--transition);
-        }
+        .form-control { width: 100%; padding: 1rem; background: rgba(0, 0, 0, 0.3); border: 1px solid var(--border-light); border-radius: var(--radius-md); color: var(--text-main); font-family: var(--font-main); transition: var(--transition); }
         [data-theme="light"] .form-control { background: rgba(255,255,255,0.8); }
         .form-control:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(59,130,246,0.2); background: rgba(0,0,0,0.5); }
         textarea.form-control { resize: vertical; min-height: 120px; }
-
-        .badge {
-            padding: 0.25rem 0.75rem; border-radius: 20px;
-            font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;
-        }
+        .badge { padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
         .badge-danger { background: rgba(239, 68, 68, 0.15); color: #fca5a5; border: 1px solid var(--danger); }
         .badge-warning { background: rgba(245, 158, 11, 0.15); color: #fcd34d; border: 1px solid var(--warning); }
         .badge-success { background: rgba(16, 185, 129, 0.15); color: #6ee7b7; border: 1px solid var(--success); }
         .badge-info { background: rgba(14, 165, 233, 0.15); color: #7dd3fc; border: 1px solid var(--info); }
-
         /* --- NAVBAR --- */
-        nav {
-            position: fixed; top: 0; width: 100%; z-index: 1000;
-            background: rgba(6, 9, 19, 0.8);
-            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border-light);
-            padding: 1rem 0; transition: var(--transition);
-        }
+        nav { position: fixed; top: 0; width: 100%; z-index: 1000; background: rgba(6, 9, 19, 0.8); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-light); padding: 1rem 0; transition: var(--transition); }
         .nav-container { display: flex; justify-content: space-between; align-items: center; }
-        
-        .logo {
-            display: flex; align-items: center; gap: 0.75rem;
-            font-family: var(--font-display); font-size: 1.5rem; font-weight: 700;
-            color: var(--text-main); cursor: pointer; letter-spacing: -0.5px;
-        }
-        .logo-shield {
-            width: 36px; height: 36px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 10px; display: flex; align-items: center; justify-content: center;
-            position: relative; overflow: hidden; box-shadow: var(--shadow-neon);
-        }
-
+        .logo { display: flex; align-items: center; gap: 0.75rem; font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; color: var(--text-main); cursor: pointer; letter-spacing: -0.5px; }
+        .logo-shield { width: 36px; height: 36px; background: linear-gradient(135deg, var(--primary), var(--secondary)); border-radius: 10px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; box-shadow: var(--shadow-neon); }
         .nav-links { display: flex; gap: 1.5rem; align-items: center; list-style: none; }
-        .nav-link {
-            color: var(--text-muted); font-size: 0.9rem; font-weight: 500;
-            cursor: pointer; padding: 0.5rem; transition: var(--transition);
-        }
+        .nav-link { color: var(--text-muted); font-size: 0.9rem; font-weight: 500; cursor: pointer; padding: 0.5rem; transition: var(--transition); }
         .nav-link:hover, .nav-link.active { color: var(--primary); }
-        
-        .mobile-menu-btn {
-            display: none; font-size: 1.5rem; background: none; border: none;
-            color: var(--text-main); cursor: pointer;
-        }
-
+        .mobile-menu-btn { display: none; font-size: 1.5rem; background: none; border: none; color: var(--text-main); cursor: pointer; }
         /* --- SPA VIEW LOGIC --- */
-        .view-section {
-            display: none; padding-top: 100px; padding-bottom: 4rem;
-            min-height: calc(100vh - 100px); animation: fadeUp 0.5s ease forwards;
-        }
+        .view-section { display: none; padding-top: 100px; padding-bottom: 4rem; min-height: calc(100vh - 100px); animation: fadeUp 0.5s ease forwards; }
         .view-section.active { display: block; }
         @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
         .section-header { text-align: center; margin-bottom: 4rem; }
         .section-title { font-size: 3rem; background: linear-gradient(to right, #fff, var(--text-muted)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1rem; }
         .section-desc { color: var(--text-muted); max-width: 600px; margin: 0 auto; font-size: 1.1rem; }
-
         /* --- HERO SECTION --- */
         .hero { position: relative; min-height: 100vh; display: flex; align-items: center; overflow: hidden; padding-top: 80px; }
         .hero-content { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
-        
-        .hero-text h1 {
-            font-size: 4.5rem; font-weight: 700; line-height: 1.1; margin-bottom: 1.5rem;
-            background: linear-gradient(to right, #fff, var(--primary), var(--secondary));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        }
+        .hero-text h1 { font-size: 4.5rem; font-weight: 700; line-height: 1.1; margin-bottom: 1.5rem; background: linear-gradient(to right, #fff, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .hero-text p { font-size: 1.25rem; color: var(--text-muted); margin-bottom: 2.5rem; max-width: 90%; }
-        
         .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
-        
-        .status-pill {
-            display: inline-flex; align-items: center; gap: 0.5rem;
-            padding: 0.5rem 1rem; background: rgba(16, 185, 129, 0.1);
-            border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 50px;
-            font-family: var(--font-mono); font-size: 0.85rem; color: var(--success); margin-bottom: 2rem;
-        }
+        .status-pill { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 50px; font-family: var(--font-mono); font-size: 0.85rem; color: var(--success); margin-bottom: 2rem; }
         .status-dot { width: 8px; height: 8px; background: var(--success); border-radius: 50%; box-shadow: 0 0 10px var(--success); animation: pulse 2s infinite; }
-
         @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); } 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); } }
-
         /* 3D Visual Area */
-        .hero-visual {
-            position: relative; height: 500px; display: flex; align-items: center; justify-content: center;
-            perspective: 1000px;
-        }
-        .shield-container {
-            width: 300px; height: 350px; position: relative;
-            transform-style: preserve-3d; transition: transform 0.1s ease-out;
-        }
-        .shield-layer {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background-size: contain; background-repeat: no-repeat; background-position: center;
-        }
+        .hero-visual { position: relative; height: 500px; display: flex; align-items: center; justify-content: center; perspective: 1000px; }
+        .shield-container { width: 300px; height: 350px; position: relative; transform-style: preserve-3d; transition: transform 0.1s ease-out; }
+        .shield-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: contain; background-repeat: no-repeat; background-position: center; }
         .shield-base { filter: drop-shadow(0 0 30px rgba(59,130,246,0.5)); }
         .shield-core { transform: translateZ(30px); opacity: 0.8; animation: corePulse 4s infinite alternate; }
         .shield-ring { transform: translateZ(60px); border: 2px solid var(--secondary); border-radius: 50%; width: 120%; height: 100%; left: -10%; top: 0; animation: spin 20s linear infinite; opacity: 0.3; }
-
         @keyframes spin { 100% { transform: translateZ(60px) rotate(360deg); } }
         @keyframes corePulse { 0% { filter: hue-rotate(0deg) brightness(1); } 100% { filter: hue-rotate(30deg) brightness(1.5); } }
-
-        .floating-indicator {
-            position: absolute; background: var(--bg-glass); backdrop-filter: blur(10px);
-            border: 1px solid var(--border-light); padding: 0.75rem 1.25rem; border-radius: var(--radius-md);
-            font-family: var(--font-mono); font-size: 0.8rem; box-shadow: var(--shadow-glass);
-            display: flex; flex-direction: column; gap: 0.25rem;
-        }
+        .floating-indicator { position: absolute; background: var(--bg-glass); backdrop-filter: blur(10px); border: 1px solid var(--border-light); padding: 0.75rem 1.25rem; border-radius: var(--radius-md); font-family: var(--font-mono); font-size: 0.8rem; box-shadow: var(--shadow-glass); display: flex; flex-direction: column; gap: 0.25rem; }
         .ind-1 { top: 10%; right: -10%; transform: translateZ(40px); animation: float 6s ease-in-out infinite; }
         .ind-2 { bottom: 20%; left: -20%; transform: translateZ(50px); animation: float 5s ease-in-out infinite reverse; }
-
         @keyframes float { 0%, 100% { transform: translateY(0) translateZ(40px); } 50% { transform: translateY(-20px) translateZ(40px); } }
-
         /* --- SCANNER SECTION --- */
         .scanner-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
         .scanner-tabs { display: flex; gap: 1rem; border-bottom: 1px solid var(--border-light); padding-bottom: 1rem; margin-bottom: 2rem; overflow-x: auto; }
         .scan-tab-btn { background: none; border: none; color: var(--text-muted); font-size: 1rem; font-weight: 500; cursor: pointer; padding: 0.5rem 1rem; border-radius: var(--radius-md); transition: var(--transition); white-space: nowrap; }
         .scan-tab-btn.active { background: rgba(59, 130, 246, 0.15); color: var(--primary); }
-        
         .scan-content { display: none; }
         .scan-content.active { display: block; animation: fadeUp 0.3s ease forwards; }
-
-        .analysis-box {
-            background: rgba(0,0,0,0.4); border-radius: var(--radius-md); padding: 2rem;
-            min-height: 400px; display: flex; flex-direction: column; align-items: center; justify-content: center;
-            text-align: center; border: 1px solid var(--border-light); position: relative;
-        }
-
+        .analysis-box { background: rgba(0,0,0,0.4); border-radius: var(--radius-md); padding: 2rem; min-height: 400px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; border: 1px solid var(--border-light); position: relative; }
         .risk-meter { width: 200px; height: 100px; position: relative; overflow: hidden; margin: 0 auto 2rem; }
         .risk-meter-bg { position: absolute; top: 0; left: 0; width: 200px; height: 200px; border-radius: 50%; border: 20px solid rgba(255,255,255,0.05); }
         .risk-meter-fill { position: absolute; top: 0; left: 0; width: 200px; height: 200px; border-radius: 50%; border: 20px solid transparent; border-top-color: var(--success); border-right-color: var(--success); transform: rotate(-45deg); transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1); }
         .risk-score-display { position: absolute; bottom: 0; width: 100%; text-align: center; font-size: 2rem; font-family: var(--font-display); font-weight: 700; }
-
         .indicators-list { width: 100%; text-align: left; margin-top: 2rem; }
         .ind-item { background: rgba(255,255,255,0.03); padding: 1rem; border-radius: 8px; margin-bottom: 0.5rem; display: flex; align-items: flex-start; gap: 1rem; border-left: 3px solid var(--text-muted); }
-
         /* --- DASHBOARD --- */
         .dash-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
         .stat-card { padding: 1.5rem; display: flex; align-items: center; gap: 1.5rem; }
         .stat-icon { width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
         .stat-details h4 { color: var(--text-muted); font-size: 0.85rem; font-family: var(--font-main); text-transform: uppercase; letter-spacing: 1px; }
         .stat-details h2 { font-size: 2rem; color: var(--text-main); margin-top: 0.25rem; }
-
         .dash-charts { display: grid; grid-template-columns: 2fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }
         .table-responsive { width: 100%; overflow-x: auto; }
         table { width: 100%; border-collapse: collapse; text-align: left; }
         th, td { padding: 1rem; border-bottom: 1px solid var(--border-light); font-size: 0.9rem; }
         th { color: var(--text-muted); font-weight: 600; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px; }
-
         /* --- CARDS & GRIDS --- */
         .grid-3 { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; }
         .news-card { display: flex; flex-direction: column; padding: 1.5rem; }
         .news-meta { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.5rem; display: flex; justify-content: space-between; }
         .news-title { font-size: 1.1rem; margin-bottom: 1rem; line-height: 1.4; }
-        
         .alert-card { border-left: 4px solid var(--primary); }
-        
         .feature-card { padding: 2rem; text-align: center; cursor: pointer; }
         .feature-icon { font-size: 3rem; color: var(--primary); margin-bottom: 1.5rem; }
-
         /* --- MODALS & TOASTS --- */
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); backdrop-filter: blur(8px); display: none; align-items: center; justify-content: center; z-index: 2000; opacity: 0; transition: opacity 0.3s; }
         .modal-overlay.active { display: flex; opacity: 1; }
@@ -321,13 +160,11 @@
         .modal-overlay.active .modal-content { transform: translateY(0) scale(1); }
         .close-modal { position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none; color: var(--text-muted); font-size: 1.5rem; cursor: pointer; transition: color 0.3s; }
         .close-modal:hover { color: var(--text-main); }
-
         #toast-container { position: fixed; bottom: 2rem; right: 2rem; z-index: 3000; display: flex; flex-direction: column; gap: 1rem; }
         .toast { background: var(--bg-surface); border: 1px solid var(--border-light); padding: 1rem 1.5rem; border-radius: var(--radius-md); display: flex; align-items: center; gap: 1rem; box-shadow: var(--shadow-glass); animation: slideIn 0.3s forwards; border-left: 4px solid var(--primary); }
         .toast.fade-out { animation: fadeOut 0.3s forwards; }
         @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
         @keyframes fadeOut { from { transform: translateX(0); opacity: 1; } to { transform: translateX(100%); opacity: 0; } }
-
         /* --- FOOTER --- */
         footer { border-top: 1px solid var(--border-light); padding: 4rem 0 2rem; margin-top: 4rem; background: rgba(0,0,0,0.3); }
         .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-bottom: 3rem; }
@@ -335,7 +172,6 @@
         .footer-links li { margin-bottom: 0.75rem; }
         .footer-links a { color: var(--text-muted); font-size: 0.9rem; }
         .footer-bottom { border-top: 1px solid var(--border-light); padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: 0.85rem; color: var(--text-muted); }
-
         /* --- RESPONSIVE --- */
         @media (max-width: 1024px) {
             .hero-content { grid-template-columns: 1fr; text-align: center; }
@@ -358,16 +194,13 @@
     </style>
 </head>
 <body>
-
     <canvas id="cyber-bg"></canvas>
-
     <nav id="navbar">
         <div class="container nav-container">
             <div class="logo" onclick="app.navigate('home')">
                 <div class="logo-shield"><i class="fa-solid fa-shield-halved text-white"></i></div>
                 <span id="brand-name">CYBERGUARD AI</span>
             </div>
-            
             <ul class="nav-links" id="nav-links">
                 <li><a class="nav-link active" data-target="home">Home</a></li>
                 <li><a class="nav-link" data-target="scanner">Threat Scanner</a></li>
@@ -379,13 +212,10 @@
                 <li><a class="nav-link" data-target="dashboard" id="nav-dash" style="display:none;"><i class="fa-solid fa-chart-line"></i> SOC</a></li>
                 <li><button class="btn btn-outline" style="padding: 0.4rem 1rem;" onclick="app.toggleLogin()" id="btn-login"><i class="fa-solid fa-user-lock"></i> Admin</button></li>
             </ul>
-
             <button class="mobile-menu-btn" id="mobile-menu-btn"><i class="fa-solid fa-bars"></i></button>
         </div>
     </nav>
-
     <main id="app-content">
-
         <section id="home" class="view-section active">
             <div class="container hero">
                 <div class="hero-content">
@@ -402,13 +232,11 @@
                             <button class="btn btn-outline" onclick="app.navigate('security')" style="border:none;"><i class="fa-solid fa-book-open"></i> EXPLORE SECURITY CENTER</button>
                         </div>
                     </div>
-                    
                     <div class="hero-visual" id="hero-3d">
                         <div class="shield-container" id="shield-obj">
                             <div class="shield-layer shield-base" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%233b82f6\' stroke-width=\'1\' stroke-linecap=\'round\' stroke-linejoin=\'round\'><path d=\'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z\'/></svg>');"></div>
                             <div class="shield-layer shield-core" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%2306b6d4\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'><path d=\'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z\'/></svg>'); transform: scale(0.8) translateZ(30px);"></div>
                             <div class="shield-ring"></div>
-                            
                             <div class="floating-indicator ind-1">
                                 <span style="color:var(--success)"><i class="fa-solid fa-check-circle"></i> AI ENGINE</span>
                                 <span style="font-size:0.7rem; color:var(--text-muted)">ONLINE</span>
@@ -422,14 +250,12 @@
                 </div>
             </div>
         </section>
-
         <section id="scanner" class="view-section">
             <div class="container">
                 <div class="section-header">
                     <h2 class="section-title">Threat Intelligence Scanner</h2>
                     <p class="section-desc">Analyze URLs, messages, and emails for potential fraud indicators using local pattern analysis and configured APIs.</p>
                 </div>
-
                 <div class="scanner-grid">
                     <div class="glass-panel" style="padding: 2rem;">
                         <div class="scanner-tabs">
@@ -437,7 +263,6 @@
                             <button class="scan-tab-btn" data-tab="scan-msg"><i class="fa-solid fa-comment-sms"></i> MESSAGE</button>
                             <button class="scan-tab-btn" data-tab="scan-email"><i class="fa-solid fa-envelope"></i> EMAIL</button>
                         </div>
-
                         <div id="scan-url" class="scan-content active">
                             <div class="form-group">
                                 <label class="form-label">Enter Suspicious URL</label>
@@ -445,7 +270,6 @@
                             </div>
                             <button class="btn btn-primary w-full" style="width:100%" onclick="app.analyze('url')">ANALYZE THREAT</button>
                         </div>
-
                         <div id="scan-msg" class="scan-content">
                             <div class="form-group">
                                 <label class="form-label">Paste SMS/WhatsApp Message</label>
@@ -453,7 +277,6 @@
                             </div>
                             <button class="btn btn-primary w-full" style="width:100%" onclick="app.analyze('msg')">ANALYZE MESSAGE</button>
                         </div>
-
                         <div id="scan-email" class="scan-content">
                             <div class="form-group">
                                 <label class="form-label">Email Subject</label>
@@ -465,44 +288,36 @@
                             </div>
                             <button class="btn btn-primary w-full" style="width:100%" onclick="app.analyze('email')">ANALYZE EMAIL</button>
                         </div>
-                        
                         <div style="margin-top: 1.5rem; font-size: 0.8rem; color: var(--text-muted); text-align: center;">
                             <i class="fa-solid fa-circle-info"></i> Analysis uses rule-based pattern matching. Do not submit highly sensitive personal data.
                         </div>
                     </div>
-
                     <div class="glass-panel analysis-box" id="analysis-output">
                         <div id="analysis-idle" style="color: var(--text-muted);">
                             <i class="fa-solid fa-shield-virus" style="font-size: 4rem; opacity: 0.3; margin-bottom: 1rem; display: block;"></i>
                             Awaiting input. Submit a threat for analysis.
                         </div>
-
                         <div id="analysis-loading" style="display: none; color: var(--primary);">
                             <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 3rem; margin-bottom: 1rem;"></i>
                             <h3 style="font-family: var(--font-mono); font-size: 1rem;">Running Security Heuristics...</h3>
                         </div>
-
                         <div id="analysis-result" style="display: none; width: 100%;">
                             <div class="flex justify-between items-center mb-4" style="display:flex; justify-content:space-between; margin-bottom: 1rem;">
                                 <h3 style="font-size:1.2rem;">Analysis Report</h3>
                                 <span class="badge" id="res-badge">STATUS</span>
                             </div>
-                            
                             <div class="risk-meter">
                                 <div class="risk-meter-bg"></div>
                                 <div class="risk-meter-fill" id="res-gauge"></div>
                                 <div class="risk-score-display" id="res-score">0</div>
                             </div>
                             <div style="text-align:center; font-size:0.8rem; color:var(--text-muted); text-transform:uppercase; margin-bottom:2rem;">Risk Score</div>
-
                             <div style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; text-align: left; margin-bottom: 1rem;">
                                 <div style="font-size:0.8rem; color:var(--text-muted); margin-bottom:0.25rem;">Threat Category</div>
                                 <div style="font-weight:600; color:var(--info);" id="res-category">Phishing</div>
                             </div>
-
                             <div class="indicators-list" id="res-indicators">
-                                </div>
-                            
+                            </div>
                             <div style="margin-top: 2rem; padding: 1rem; border-left: 4px solid var(--primary); background: rgba(59,130,246,0.1); text-align: left;">
                                 <h4 style="font-size:0.9rem; margin-bottom:0.5rem;"><i class="fa-solid fa-lightbulb"></i> Recommended Action</h4>
                                 <p id="res-action" style="font-size:0.85rem; color:var(--text-muted);"></p>
@@ -512,58 +327,48 @@
                 </div>
             </div>
         </section>
-
         <section id="news" class="view-section">
             <div class="container">
                 <div class="section-header">
                     <h2 class="section-title">Cyber News & Intelligence</h2>
                     <p class="section-desc">Stay updated with the latest cybersecurity threats, data breaches, and industry news.</p>
                 </div>
-                
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 2rem; flex-wrap:wrap; gap:1rem;">
                     <div class="status-pill" style="margin:0; background:rgba(14, 165, 233, 0.1); border-color:var(--info); color:var(--info);">
                         <i class="fa-solid fa-satellite-dish"></i> <span id="news-status-text">Fetching Intelligence...</span>
                     </div>
                     <button class="btn btn-outline" onclick="app.fetchNews()"><i class="fa-solid fa-rotate-right"></i> Refresh</button>
                 </div>
-
                 <div class="grid-3" id="news-grid">
-                    </div>
+                </div>
             </div>
         </section>
-
         <section id="alerts" class="view-section">
             <div class="container">
                 <div class="section-header">
                     <h2 class="section-title">Live Cyber Alerts</h2>
                     <p class="section-desc">Active campaigns, vulnerability warnings, and regional threat advisories.</p>
                 </div>
-
                 <div class="grid-3" id="alerts-grid">
-                    </div>
-
+                </div>
                 <div class="glass-panel" style="margin-top: 4rem; padding: 2rem; position: relative; overflow:hidden;">
                     <h3 style="margin-bottom: 1rem;"><i class="fa-solid fa-map-location-dot text-primary"></i> Regional Threat Visualization</h3>
                     <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 2rem;">* Threat visualization based on available reports / sample visualization.</p>
-                    
                     <div id="map-container" style="height: 400px; background: rgba(0,0,0,0.5); border-radius: 12px; border: 1px solid var(--border-light); position: relative; background-image: radial-gradient(var(--border-light) 1px, transparent 1px); background-size: 20px 20px;">
-                        </div>
+                    </div>
                 </div>
             </div>
         </section>
-
         <section id="report" class="view-section">
             <div class="container" style="max-width: 800px;">
                 <div class="section-header">
                     <h2 class="section-title">Report Cyber Fraud</h2>
                     <p class="section-desc">Report a suspected cyber fraud incident and securely record the details for investigation.</p>
                 </div>
-
                 <div class="glass-panel" style="padding: 2.5rem;">
                     <div style="background: rgba(245,158,11,0.1); border-left: 4px solid var(--warning); padding: 1rem; margin-bottom: 2rem; border-radius: 0 8px 8px 0; font-size: 0.85rem;">
                         <strong>Important:</strong> For official cybercrime reporting, users should use the appropriate official government cybercrime reporting channel (e.g., cybercrime.gov.in in India or local equivalent). This form logs data to the configured system backend.
                     </div>
-
                     <form id="incident-form" onsubmit="app.submitIncident(event)">
                         <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1.5rem;">
                             <div class="form-group">
@@ -575,7 +380,6 @@
                                 <input type="email" id="rep-email" class="form-control" required>
                             </div>
                         </div>
-
                         <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1.5rem;">
                             <div class="form-group">
                                 <label class="form-label">Fraud Category</label>
@@ -594,30 +398,25 @@
                                 <input type="number" id="rep-loss" class="form-control" placeholder="0.00">
                             </div>
                         </div>
-
                         <div class="form-group">
                             <label class="form-label">Suspicious URL / Phone Number</label>
                             <input type="text" id="rep-source" class="form-control" placeholder="Include attacker details if known">
                         </div>
-
                         <div class="form-group">
                             <label class="form-label">Incident Description</label>
                             <textarea id="rep-desc" class="form-control" required placeholder="Describe exactly what happened..."></textarea>
                         </div>
-
                         <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1rem; font-size: 1.1rem;"><i class="fa-solid fa-paper-plane"></i> SUBMIT INCIDENT</button>
                     </form>
                 </div>
             </div>
         </section>
-
         <section id="security" class="view-section">
             <div class="container">
                 <div class="section-header">
                     <h2 class="section-title">Security Center</h2>
                     <p class="section-desc">Empower yourself with knowledge. Learn how to protect your digital identity and assets.</p>
                 </div>
-
                 <div class="grid-3 mb-5" style="margin-bottom: 3rem;">
                     <div class="glass-panel feature-card" onclick="app.openModal('info-phishing')">
                         <i class="fa-solid fa-fish-fins feature-icon"></i>
@@ -635,21 +434,17 @@
                         <p style="font-size: 0.85rem; color:var(--text-muted); margin-top:0.5rem;">Recognize fraudulent recruitment offers.</p>
                     </div>
                 </div>
-
                 <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem;">
                     <div class="glass-panel" style="padding: 2rem;">
                         <h3 style="margin-bottom: 1rem;"><i class="fa-solid fa-key text-warning"></i> Password Strength Analyzer</h3>
                         <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1.5rem;">Your password is analyzed locally and is not stored or transmitted.</p>
-                        
                         <div class="form-group">
                             <input type="password" id="pwd-input" class="form-control" placeholder="Type a password to test..." oninput="app.checkPassword()">
                         </div>
-                        
                         <div style="height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; overflow: hidden; margin-bottom: 0.5rem;">
                             <div id="pwd-bar" style="height: 100%; width: 0%; transition: var(--transition); background: var(--danger);"></div>
                         </div>
                         <div id="pwd-label" style="text-align: right; font-size: 0.85rem; font-weight: 600; color: var(--danger);">Weak</div>
-
                         <ul style="list-style:none; font-size:0.8rem; color:var(--text-muted); margin-top:1.5rem; display:grid; grid-template-columns:1fr 1fr; gap:0.5rem;" id="pwd-reqs">
                             <li id="req-len"><i class="fa-solid fa-xmark text-danger"></i> 8+ chars</li>
                             <li id="req-up"><i class="fa-solid fa-xmark text-danger"></i> Uppercase</li>
@@ -657,7 +452,6 @@
                             <li id="req-spec"><i class="fa-solid fa-xmark text-danger"></i> Special</li>
                         </ul>
                     </div>
-
                     <div class="glass-panel" style="padding: 2rem; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
                         <i class="fa-solid fa-graduation-cap" style="font-size: 3.5rem; color: var(--secondary); margin-bottom: 1rem;"></i>
                         <h3 style="margin-bottom: 0.5rem;">Cyber Awareness Quiz</h3>
@@ -667,7 +461,6 @@
                 </div>
             </div>
         </section>
-
         <section id="dashboard" class="view-section">
             <div class="container">
                 <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border-light); padding-bottom:1rem; margin-bottom:2rem;">
@@ -677,7 +470,6 @@
                     </div>
                     <button class="btn btn-outline" style="border-color:var(--danger); color:var(--danger);" onclick="app.logout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
                 </div>
-
                 <div class="dash-stats">
                     <div class="glass-panel stat-card">
                         <div class="stat-icon" style="background:rgba(59,130,246,0.1); color:var(--primary);"><i class="fa-solid fa-folder-open"></i></div>
@@ -692,7 +484,6 @@
                         <div class="stat-details"><h4>Resolved</h4><h2 id="dash-resolved">0</h2></div>
                     </div>
                 </div>
-
                 <div class="dash-charts">
                     <div class="glass-panel" style="padding:1.5rem;">
                         <h4 style="margin-bottom:1rem;">Incident Trend</h4>
@@ -703,7 +494,6 @@
                         <div style="height:250px;"><canvas id="chart-dist"></canvas></div>
                     </div>
                 </div>
-
                 <div class="glass-panel" style="padding:1.5rem;">
                     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem;">
                         <h4 style="margin:0;">Recent Incident Log</h4>
@@ -722,20 +512,18 @@
                                 </tr>
                             </thead>
                             <tbody id="dash-table">
-                                </tbody>
+                            </tbody>
                         </table>
                         <div id="dash-empty" style="text-align:center; padding: 2rem; color:var(--text-muted); display:none;">No incidents reported yet.</div>
                     </div>
                 </div>
             </div>
         </section>
-
         <section id="about" class="view-section">
             <div class="container" style="max-width: 900px;">
                 <div class="section-header">
                     <h2 class="section-title">Security for a Digital World</h2>
                 </div>
-
                 <div class="glass-panel" style="padding: 3rem; text-align: center; margin-bottom: 3rem;">
                     <i class="fa-solid fa-shield-halved" style="font-size: 4rem; color: var(--primary); margin-bottom: 1.5rem;"></i>
                     <h3 style="font-size: 1.8rem; margin-bottom: 1rem;">CYBERGUARD AI</h3>
@@ -743,7 +531,6 @@
                         CyberGuard AI is an AI-powered cybersecurity awareness and cyber-fraud response platform designed to help people identify suspicious digital activity, understand cyber threats, and take safer actions.
                     </p>
                 </div>
-
                 <div class="glass-panel" style="padding: 3rem; display: flex; flex-direction: column; align-items: center; text-align: center;">
                     <div style="width: 100px; height: 100px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--secondary)); display: flex; align-items: center; justify-content: center; font-size: 2.5rem; font-family: var(--font-display); font-weight: 700; color: white; margin-bottom: 1.5rem; box-shadow: var(--shadow-neon);">
                         SP
@@ -757,16 +544,13 @@
                         <a href="#" class="btn btn-outline" style="padding: 0.5rem; border-radius: 50%;"><i class="fa-solid fa-envelope"></i></a>
                         <a href="#" class="btn btn-outline" style="padding: 0.5rem; border-radius: 50%;"><i class="fa-solid fa-globe"></i></a>
                     </div>
-
                     <div style="font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted);">
                         AUREXA • Cybersecurity • AI • Innovation
                     </div>
                 </div>
             </div>
         </section>
-
     </main>
-
     <footer>
         <div class="container">
             <div class="footer-grid">
@@ -799,7 +583,6 @@
             </div>
         </div>
     </footer>
-
     <div class="modal-overlay" id="modal-login">
         <div class="modal-content">
             <button class="close-modal" onclick="app.closeModal('modal-login')"><i class="fa-solid fa-xmark"></i></button>
@@ -813,7 +596,6 @@
             </form>
         </div>
     </div>
-
     <div class="modal-overlay" id="modal-quiz">
         <div class="modal-content" style="max-width: 600px;">
             <button class="close-modal" onclick="app.closeModal('modal-quiz')"><i class="fa-solid fa-xmark"></i></button>
@@ -835,7 +617,6 @@
             </div>
         </div>
     </div>
-
     <div class="modal-overlay" id="modal-info">
         <div class="modal-content">
             <button class="close-modal" onclick="app.closeModal('modal-info')"><i class="fa-solid fa-xmark"></i></button>
@@ -843,9 +624,7 @@
             <div id="info-body" style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.7;">Body</div>
         </div>
     </div>
-
     <div id="toast-container"></div>
-
     <script>
         // ==================================================
         // CONFIGURATION
@@ -860,6 +639,7 @@
             website: "https://aurexa.space",
             
             // APIs (Leave empty to use local simulated fallback)
+            apiKey: "1927297bd8838e5315576e7fce880ff6", // Added API Key
             backendEndpoint: "", 
             threatIntelEndpoint: "",
             newsEndpoint: "",
@@ -872,7 +652,6 @@
             devUser: "admin",
             devPass: "admin"
         };
-
         // ==================================================
         // DATA & STATE
         // ==================================================
@@ -896,7 +675,6 @@
                 'info-job': { title: '<i class="fa-solid fa-briefcase"></i> Fake Job Scams', body: 'Scammers offer easy part-time work (like liking YouTube videos).<br><br>- They pay a small amount first to build trust.<br>- Then they ask for a "security deposit" or "upgrade fee".<br><br><b>Rule:</b> Real jobs pay you, you don\'t pay them.' }
             }
         };
-
         // ==================================================
         // CORE APPLICATION CONTROLLER
         // ==================================================
@@ -916,7 +694,6 @@
                 const hash = window.location.hash.replace('#', '') || 'home';
                 this.navigate(hash);
             },
-
             applyConfig() {
                 document.getElementById('brand-name').innerText = CONFIG.siteName;
                 document.getElementById('about-founder').innerText = CONFIG.founderName;
@@ -927,7 +704,6 @@
                 const storageMode = CONFIG.backendEndpoint ? 'Cloud Backend API' : (CONFIG.supabaseUrl ? 'Supabase DB' : 'Local Browser Storage');
                 document.getElementById('storage-mode').innerText = storageMode;
             },
-
             // --- NAVIGATION ---
             setupNavigation() {
                 document.querySelectorAll('.nav-link').forEach(link => {
@@ -941,12 +717,10 @@
                         if(window.innerWidth <= 768) document.getElementById('nav-links').classList.remove('active');
                     });
                 });
-
                 document.getElementById('mobile-menu-btn').addEventListener('click', () => {
                     document.getElementById('nav-links').classList.toggle('active');
                 });
             },
-
             navigate(target) {
                 document.querySelectorAll('.view-section').forEach(s => s.classList.remove('active'));
                 document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
@@ -956,14 +730,11 @@
                 
                 const link = document.querySelector(`.nav-link[data-target="${target}"]`);
                 if(link) link.classList.add('active');
-
                 window.scrollTo({top: 0, behavior: 'smooth'});
                 window.location.hash = target;
-
                 if(target === 'news') this.fetchNews();
                 if(target === 'dashboard') this.initDashboard();
             },
-
             // --- SCANNER ---
             setupScannerTabs() {
                 document.querySelectorAll('.scan-tab-btn').forEach(btn => {
@@ -978,7 +749,6 @@
                     });
                 });
             },
-
             analyze(type) {
                 let text = "";
                 let score = 0;
@@ -987,9 +757,7 @@
                 if(type === 'url') text = document.getElementById('inp-url').value.toLowerCase();
                 if(type === 'msg') text = document.getElementById('inp-msg').value.toLowerCase();
                 if(type === 'email') text = document.getElementById('inp-email-sub').value.toLowerCase() + " " + document.getElementById('inp-email-body').value.toLowerCase();
-
                 if(!text.trim()) return this.showToast('Please enter content to analyze.', 'error');
-
                 // Local Heuristics
                 if(type === 'url') {
                     if(!text.startsWith('https')) { score += 40; inds.push("Missing secure HTTPS connection."); }
@@ -1003,49 +771,38 @@
                     if(/apk|download link/.test(text)) { score += 50; inds.push("Malware distribution risk."); }
                     if(/task|youtube|like|subscribe/.test(text)) { score += 60; inds.push("Matches Fake Task/Job scam signature."); }
                 }
-
                 if(score === 0 && text.length > 5) { score = 10; inds.push("No obvious malicious patterns found locally."); }
                 if(score > 99) score = 99;
-
                 this.processAnalysisUI(score, inds);
             },
-
             processAnalysisUI(score, inds) {
                 document.getElementById('analysis-idle').style.display = 'none';
                 document.getElementById('analysis-result').style.display = 'none';
                 document.getElementById('analysis-loading').style.display = 'flex';
-
                 setTimeout(() => {
                     document.getElementById('analysis-loading').style.display = 'none';
                     document.getElementById('analysis-result').style.display = 'block';
-
                     const gauge = document.getElementById('res-gauge');
                     const txt = document.getElementById('res-score');
                     const badge = document.getElementById('res-badge');
                     const cat = document.getElementById('res-category');
                     const act = document.getElementById('res-action');
                     const indList = document.getElementById('res-indicators');
-
                     let color = 'var(--success)';
                     let level = 'Unable to Verify / Low Risk';
                     let bClass = 'badge-success';
                     let action = "No immediate threat signatures detected by local engine. Still, do not share personal info.";
-
                     if(score > 30) { color = 'var(--warning)'; level = 'Potentially Suspicious'; bClass = 'badge-warning'; action = "Exercise caution. Do not click links unless you independently verify the source."; }
                     if(score > 70) { color = 'var(--danger)'; level = 'High Risk / Critical'; bClass = 'badge-danger'; action = "Malicious patterns detected. Do not interact. Delete and block sender."; cat.innerText = "Social Engineering / Phishing"; }
                     if(score <= 30) cat.innerText = "Unknown / Benign";
-
                     setTimeout(() => { gauge.style.transform = `rotate(${-45 + (score * 1.8)}deg)`; }, 100);
                     gauge.style.borderTopColor = color; gauge.style.borderRightColor = color;
                     txt.innerText = score; txt.style.color = color;
                     badge.className = `badge ${bClass}`; badge.innerText = level;
                     act.innerText = action;
-
                     indList.innerHTML = inds.map(i => `<div class="ind-item"><i class="fa-solid ${score>50?'fa-triangle-exclamation text-danger':'fa-info-circle text-info'}"></i> ${i}</div>`).join('');
-
                 }, 1500);
             },
-
             // --- REPORT FRAUD ---
             submitIncident(e) {
                 e.preventDefault();
@@ -1070,12 +827,10 @@
                     this.finalizeReport(inc, e.target);
                 }
             },
-
             finalizeReport(inc, form) {
                 form.reset();
                 this.showToast(`Incident ${inc.id} submitted successfully.`, 'success');
             },
-
             // --- DASHBOARD (ADMIN) ---
             initDashboard() {
                 if(!appState.isAdmin) return;
@@ -1083,11 +838,9 @@
                 document.getElementById('dash-total').innerText = appState.incidents.length;
                 document.getElementById('dash-critical').innerText = appState.incidents.filter(i=>i.type.includes('Fraud')||i.type.includes('Phishing')).length;
                 document.getElementById('dash-resolved').innerText = appState.incidents.filter(i=>i.status==='RESOLVED').length;
-
                 this.renderTable();
                 this.renderCharts();
             },
-
             renderTable() {
                 const tbody = document.getElementById('dash-table');
                 const empty = document.getElementById('dash-empty');
@@ -1111,28 +864,23 @@
                     </tr>
                 `).join('');
             },
-
             resolveIncident(idx) {
                 appState.incidents[idx].status = 'RESOLVED';
                 localStorage.setItem('cg_incidents', JSON.stringify(appState.incidents));
                 this.initDashboard();
                 this.showToast('Incident marked as resolved.', 'success');
             },
-
             renderCharts() {
                 if(appState.charts.trend) appState.charts.trend.destroy();
                 if(appState.charts.dist) appState.charts.dist.destroy();
-
                 Chart.defaults.color = '#94a3b8';
                 Chart.defaults.font.family = "'Inter', sans-serif";
-
                 const ctxT = document.getElementById('chart-trend').getContext('2d');
                 appState.charts.trend = new Chart(ctxT, {
                     type: 'line',
                     data: { labels: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'], datasets: [{ label: 'Incidents', data: [5,8,12,7,15,10,appState.incidents.length], borderColor: '#3b82f6', backgroundColor: 'rgba(59,130,246,0.1)', fill: true, tension: 0.4 }] },
                     options: { responsive: true, maintainAspectRatio: false, scales: { x: { grid: { color: 'rgba(255,255,255,0.05)' } }, y: { grid: { color: 'rgba(255,255,255,0.05)' } } } }
                 });
-
                 const ctxD = document.getElementById('chart-dist').getContext('2d');
                 appState.charts.dist = new Chart(ctxD, {
                     type: 'doughnut',
@@ -1140,7 +888,6 @@
                     options: { responsive: true, maintainAspectRatio: false }
                 });
             },
-
             // --- NEWS & ALERTS ---
             async fetchNews() {
                 const grid = document.getElementById('news-grid');
@@ -1155,7 +902,6 @@
                     this.renderNewsFallback(grid);
                 }
             },
-
             renderNewsFallback(grid) {
                 const dummyNews = [
                     { title: "New Ransomware Group Targets Healthcare Sector", src: "CyberNews", date: "2 hours ago", cat: "Ransomware" },
@@ -1170,7 +916,6 @@
                     </div>
                 `).join('');
             },
-
             renderAlerts() {
                 const alerts = [
                     { title: "TRAI Impersonation Calls", level: "CRITICAL", desc: "Scammers claiming mobile numbers will be blocked." },
@@ -1187,7 +932,6 @@
                     </div>
                 `).join('');
             },
-
             generateMap() {
                 const map = document.getElementById('map-container');
                 for(let i=0; i<8; i++) {
@@ -1196,7 +940,6 @@
                     map.appendChild(dot);
                 }
             },
-
             // --- SECURITY CENTER & QUIZ ---
             checkPassword() {
                 const p = document.getElementById('pwd-input').value;
@@ -1223,7 +966,6 @@
                 else if(s <= 75) { bar.style.background = 'var(--info)'; lbl.innerText = 'Good'; lbl.style.color = 'var(--info)'; }
                 else { bar.style.background = 'var(--success)'; lbl.innerText = 'Strong'; lbl.style.color = 'var(--success)'; }
             },
-
             openQuiz() {
                 appState.quiz.current = 0; appState.quiz.score = 0;
                 document.getElementById('quiz-result').style.display = 'none';
@@ -1231,7 +973,6 @@
                 this.renderQuizQ();
                 this.openModal('modal-quiz');
             },
-
             renderQuizQ() {
                 const q = appState.quiz.questions[appState.quiz.current];
                 document.getElementById('quiz-progress').innerText = `${appState.quiz.current + 1}/${appState.quiz.questions.length}`;
@@ -1242,7 +983,6 @@
                 document.getElementById('quiz-feedback').style.display = 'none';
                 document.getElementById('quiz-next').style.display = 'none';
             },
-
             answerQuiz(idx) {
                 const q = appState.quiz.questions[appState.quiz.current];
                 const btns = document.getElementById('quiz-opts').querySelectorAll('button');
@@ -1262,7 +1002,6 @@
                 }
                 document.getElementById('quiz-next').style.display = 'block';
             },
-
             nextQuiz() {
                 appState.quiz.current++;
                 if(appState.quiz.current < appState.quiz.questions.length) this.renderQuizQ();
@@ -1272,7 +1011,6 @@
                     document.getElementById('quiz-score').innerText = appState.quiz.score;
                 }
             },
-
             // --- AUTH, MODALS, UTILS ---
             toggleLogin() { this.openModal('modal-login'); },
             
@@ -1290,12 +1028,10 @@
                 } else this.showToast('Invalid Credentials', 'error');
                 e.target.reset();
             },
-
             enableAdminUI() {
                 document.getElementById('btn-login').style.display = 'none';
                 document.getElementById('nav-dash').style.display = 'block';
             },
-
             logout() {
                 appState.isAdmin = false;
                 localStorage.removeItem('cg_admin');
@@ -1304,7 +1040,6 @@
                 this.navigate('home');
                 this.showToast('Logged out.', 'info');
             },
-
             openModal(id) {
                 if(appState.info[id]) {
                     document.getElementById('info-title').innerHTML = appState.info[id].title;
@@ -1315,7 +1050,6 @@
                 }
             },
             closeModal(id) { document.getElementById(id).classList.remove('active'); },
-
             showToast(msg, type='info') {
                 const c = document.getElementById('toast-container');
                 const t = document.createElement('div');
@@ -1326,7 +1060,6 @@
                 c.appendChild(t);
                 setTimeout(() => { t.classList.add('fade-out'); setTimeout(() => t.remove(), 300); }, 3000);
             },
-
             // --- 3D & CANVAS EFFECTS ---
             initCanvasBackground() {
                 const canvas = document.getElementById('cyber-bg');
@@ -1365,13 +1098,11 @@
                 };
                 animate();
             },
-
             init3DShield() {
                 const visualArea = document.getElementById('hero-3d');
                 const shieldObj = document.getElementById('shield-obj');
                 
                 if(window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
                 visualArea.addEventListener('mousemove', (e) => {
                     const rect = visualArea.getBoundingClientRect();
                     const x = e.clientX - rect.left - rect.width/2;
@@ -1383,7 +1114,6 @@
                 });
             }
         };
-
         // Initialize App
         document.addEventListener('DOMContentLoaded', () => app.init());
     </script>
