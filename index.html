@@ -1,1802 +1,1810 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#030719">
-<meta name="description" content="AUREXA — AI-Powered Cybersecurity Platform">
-<title>AUREXA | AI-Powered Cybersecurity Platform</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CYBERGUARD AI - Detect. Understand. Prevent. Report.</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<style>
-:root{
-  --bg:#030719;
-  --bg2:#071027;
-  --panel:#08142e;
-  --panel2:#0b1a3b;
-  --blue:#087cff;
-  --cyan:#00e5ff;
-  --green:#00d7a0;
-  --red:#ff496c;
-  --orange:#ffb52e;
-  --text:#f5f8ff;
-  --muted:#91a3c1;
-  --border:rgba(116,159,220,.20);
-  --shadow:0 25px 70px rgba(0,0,0,.35);
-}
+    <style>
+        /* --- CSS VARIABLES & THEMING --- */
+        :root {
+            /* Dark Theme (Default) */
+            --bg-base: #0a0e17;
+            --bg-surface: #111827;
+            --bg-glass: rgba(17, 24, 39, 0.7);
+            --bg-glass-hover: rgba(31, 41, 55, 0.8);
+            
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --text-inverted: #111827;
+            
+            --border-light: rgba(255, 255, 255, 0.1);
+            --border-focus: rgba(59, 130, 246, 0.5);
+            
+            --primary: #3b82f6;
+            --primary-hover: #2563eb;
+            --secondary: #8b5cf6;
+            --accent: #06b6d4;
+            
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --info: #3b82f6;
+            
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-neon: 0 0 15px rgba(59, 130, 246, 0.3);
+            
+            --radius-md: 0.5rem;
+            --radius-lg: 1rem;
+            --radius-xl: 1.5rem;
+            
+            --font-main: 'Inter', sans-serif;
+            --font-mono: 'Fira Code', monospace;
+            
+            --transition: all 0.3s ease;
+        }
 
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{
-  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  overflow-x:hidden;
-}
-button,input,textarea,select{font:inherit}
-button{cursor:pointer}
+        [data-theme="light"] {
+            --bg-base: #f3f4f6;
+            --bg-surface: #ffffff;
+            --bg-glass: rgba(255, 255, 255, 0.8);
+            --bg-glass-hover: rgba(243, 244, 246, 0.9);
+            
+            --text-main: #111827;
+            --text-muted: #4b5563;
+            --text-inverted: #f3f4f6;
+            
+            --border-light: rgba(0, 0, 0, 0.1);
+            --border-focus: rgba(59, 130, 246, 0.5);
+            
+            --shadow-neon: 0 0 15px rgba(59, 130, 246, 0.15);
+        }
 
-#network{
-  position:fixed;
-  inset:0;
-  z-index:-3;
-  opacity:.72;
-}
+        /* --- RESET & TYPOGRAPHY --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: var(--transition);
+        }
 
-.noise{
-  position:fixed;
-  inset:0;
-  z-index:-2;
-  pointer-events:none;
-  opacity:.035;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
-}
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
 
-header{
-  position:sticky;
-  top:0;
-  z-index:1000;
-  height:76px;
-  display:flex;
-  align-items:center;
-  border-bottom:1px solid var(--border);
-  background:rgba(3,7,25,.84);
-  backdrop-filter:blur(22px);
-}
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        a:hover { color: var(--primary-hover); }
+        ul { list-style: none; }
 
-.nav{
-  width:min(1400px,94%);
-  margin:auto;
-  display:flex;
-  align-items:center;
-  gap:22px;
-}
+        /* --- LAYOUT UTILITIES --- */
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
 
-.logo{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  font-size:26px;
-  font-weight:900;
-  letter-spacing:3px;
-  color:#fff;
-  min-width:max-content;
-}
-.logoShield{
-  width:32px;height:38px;
-  position:relative;
-  border:3px solid var(--cyan);
-  border-radius:45% 45% 50% 50%;
-  box-shadow:0 0 20px rgba(0,229,255,.4);
-  transform:scale(.78);
-}
-.logoShield:after{
-  content:"";
-  position:absolute;
-  width:7px;height:7px;
-  border-radius:50%;
-  background:var(--cyan);
-  top:12px;left:10px;
-  box-shadow:0 0 15px var(--cyan);
-}
+        .section-padding { padding: 5rem 0; }
+        
+        .flex { display: flex; }
+        .flex-col { display: flex; flex-direction: column; }
+        .items-center { align-items: center; }
+        .justify-between { justify-content: space-between; }
+        .justify-center { justify-content: center; }
+        .gap-2 { gap: 0.5rem; }
+        .gap-4 { gap: 1rem; }
+        .gap-6 { gap: 1.5rem; }
+        .grid { display: grid; }
 
-.search{
-  flex:1;
-  max-width:470px;
-  margin:auto;
-  position:relative;
-}
-.search input{
-  width:100%;
-  border:1px solid var(--border);
-  background:#08142b;
-  color:#fff;
-  border-radius:30px;
-  padding:13px 18px 13px 45px;
-  outline:none;
-}
-.search span{
-  position:absolute;
-  left:17px;
-  top:10px;
-  font-size:21px;
-}
+        /* --- GLASSMORPHISM & COMPONENTS --- */
+        .glass-card {
+            background: var(--bg-glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+        }
 
-.navActions{
-  display:flex;
-  gap:8px;
-  align-items:center;
-}
-.iconBtn,.menuBtn{
-  width:48px;height:48px;
-  border:1px solid transparent;
-  background:transparent;
-  color:var(--muted);
-  border-radius:13px;
-  font-size:23px;
-}
-.iconBtn:hover,.menuBtn:hover{
-  color:var(--cyan);
-  background:#0b1938;
-  border-color:var(--border);
-}
-.menuBtn{font-size:27px}
+        .glass-card:hover {
+            box-shadow: var(--shadow-lg);
+            border-color: rgba(59, 130, 246, 0.3);
+        }
 
-.drawer{
-  position:fixed;
-  z-index:1200;
-  top:76px;
-  right:-340px;
-  width:320px;
-  height:calc(100vh - 76px);
-  background:rgba(5,12,34,.97);
-  backdrop-filter:blur(25px);
-  border-left:1px solid var(--border);
-  transition:.35s;
-  padding:22px;
-  overflow:auto;
-}
-.drawer.open{right:0}
-.drawer h3{
-  color:var(--cyan);
-  margin:12px 10px 18px;
-}
-.drawer button{
-  width:100%;
-  padding:15px;
-  margin:4px 0;
-  text-align:left;
-  color:#c5d2e8;
-  background:transparent;
-  border:0;
-  border-radius:12px;
-}
-.drawer button:hover{
-  background:#0d1e42;
-  color:#fff;
-}
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius-md);
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            gap: 0.5rem;
+            font-family: var(--font-main);
+            font-size: 1rem;
+        }
 
-main{width:min(1400px,94%);margin:auto}
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            box-shadow: var(--shadow-neon);
+        }
 
-section{
-  min-height:100vh;
-  padding:95px 0;
-}
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+        }
 
-.hero{
-  min-height:calc(100vh - 76px);
-  display:grid;
-  grid-template-columns:1.05fr .95fr;
-  align-items:center;
-  gap:35px;
-  position:relative;
-}
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+        }
 
-.status{
-  display:inline-flex;
-  align-items:center;
-  gap:9px;
-  padding:9px 15px;
-  background:rgba(0,215,160,.09);
-  border:1px solid rgba(0,215,160,.25);
-  border-radius:30px;
-  color:var(--green);
-  font-weight:700;
-}
-.status i{
-  width:9px;height:9px;
-  background:var(--green);
-  border-radius:50%;
-  box-shadow:0 0 14px var(--green);
-  animation:pulse 1.7s infinite;
-}
+        .btn-outline:hover {
+            background: rgba(59, 130, 246, 0.1);
+        }
+        
+        .btn-danger { background: var(--danger); color: white; }
+        .btn-success { background: var(--success); color: white; }
 
-@keyframes pulse{
-  50%{transform:scale(1.5);opacity:.45}
-}
+        .badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .badge-danger { background: rgba(239, 68, 68, 0.2); color: var(--danger); border: 1px solid var(--danger); }
+        .badge-warning { background: rgba(245, 158, 11, 0.2); color: var(--warning); border: 1px solid var(--warning); }
+        .badge-success { background: rgba(16, 185, 129, 0.2); color: var(--success); border: 1px solid var(--success); }
+        .badge-info { background: rgba(59, 130, 246, 0.2); color: var(--info); border: 1px solid var(--info); }
 
-.hero h1{
-  font-size:clamp(48px,7vw,92px);
-  line-height:.98;
-  margin:25px 0;
-  letter-spacing:-4px;
-}
-.gradient{
-  background:linear-gradient(100deg,#fff 10%,#1592ff 48%,#00e5ff 90%);
-  -webkit-background-clip:text;
-  color:transparent;
-}
-.hero p{
-  max-width:720px;
-  color:var(--muted);
-  font-size:clamp(18px,2vw,24px);
-  line-height:1.6;
-}
-.buttons{
-  display:flex;
-  flex-wrap:wrap;
-  gap:14px;
-  margin-top:32px;
-}
-.primary,.secondary{
-  border-radius:13px;
-  padding:16px 24px;
-  font-weight:800;
-  border:1px solid var(--border);
-  transition:.25s;
-}
-.primary{
-  color:#fff;
-  background:linear-gradient(110deg,#087cff,#00bde8);
-  box-shadow:0 15px 40px rgba(0,124,255,.22);
-}
-.secondary{
-  background:#091630;
-  color:#dbe8ff;
-}
-.primary:hover,.secondary:hover{
-  transform:translateY(-3px);
-}
+        .form-group { margin-bottom: 1.5rem; }
+        .form-label { display: block; margin-bottom: 0.5rem; font-size: 0.875rem; color: var(--text-muted); }
+        .form-control {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-md);
+            color: var(--text-main);
+            font-family: var(--font-main);
+            transition: var(--transition);
+        }
+        [data-theme="light"] .form-control { background: #fff; }
+        .form-control:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 2px var(--border-focus); }
+        textarea.form-control { resize: vertical; min-height: 120px; }
 
-.globeWrap{
-  height:600px;
-  position:relative;
-  display:grid;
-  place-items:center;
-  perspective:900px;
-}
-.globe{
-  width:min(500px,82vw);
-  aspect-ratio:1;
-  border-radius:50%;
-  position:relative;
-  transform-style:preserve-3d;
-  animation:float 7s ease-in-out infinite;
-  background:
-    radial-gradient(circle at 35% 28%,rgba(0,229,255,.14),transparent 25%),
-    radial-gradient(circle,transparent 54%,rgba(0,124,255,.12) 55%,transparent 56%);
-  box-shadow:
-    inset 0 0 70px rgba(0,124,255,.16),
-    0 0 100px rgba(0,124,255,.11);
-}
-.globe:before,.globe:after{
-  content:"";
-  position:absolute;
-  inset:7%;
-  border:1px solid rgba(0,229,255,.30);
-  border-radius:50%;
-}
-.globe:before{
-  transform:rotateX(65deg);
-  box-shadow:0 0 30px rgba(0,229,255,.12);
-}
-.globe:after{
-  transform:rotateY(65deg);
-}
-.gridline{
-  position:absolute;
-  inset:0;
-  border:1px solid rgba(30,130,255,.25);
-  border-radius:50%;
-  transform:rotateX(35deg);
-}
-.core{
-  position:absolute;
-  width:15px;height:15px;
-  border-radius:50%;
-  background:var(--cyan);
-  left:50%;top:50%;
-  transform:translate(-50%,-50%);
-  box-shadow:0 0 40px 10px rgba(0,229,255,.45);
-}
-.node{
-  position:absolute;
-  width:7px;height:7px;
-  background:var(--cyan);
-  border-radius:50%;
-  box-shadow:0 0 14px var(--cyan);
-}
-.n1{left:23%;top:30%}.n2{left:73%;top:22%}
-.n3{left:79%;top:66%}.n4{left:32%;top:77%}
-.n5{left:52%;top:14%}.n6{left:17%;top:60%}
+        /* --- NAVBAR --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: var(--bg-glass);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-light);
+            padding: 1rem 0;
+        }
+        
+        .nav-container { display: flex; justify-content: space-between; align-items: center; }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            color: var(--text-main);
+            cursor: pointer;
+        }
 
-@keyframes float{
-  50%{transform:translateY(-13px) rotateX(4deg) rotateY(-4deg)}
-}
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .logo-icon::after {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%; width: 200%; height: 200%;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.3), transparent);
+            transform: rotate(45deg);
+            animation: shieldGlint 3s infinite linear;
+        }
 
-.metrics{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:16px;
-  margin-top:45px;
-}
-.metric,.card{
-  background:linear-gradient(145deg,rgba(12,28,61,.9),rgba(5,15,35,.92));
-  border:1px solid var(--border);
-  border-radius:22px;
-  padding:26px;
-  box-shadow:var(--shadow);
-}
-.metric small,.eyebrow{
-  color:var(--muted);
-  text-transform:uppercase;
-  letter-spacing:1.5px;
-  font-weight:700;
-}
-.metric strong{
-  display:block;
-  font-size:35px;
-  margin-top:9px;
-}
-.good{color:var(--green)}
-.danger{color:var(--red)}
-.warn{color:var(--orange)}
+        @keyframes shieldGlint {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) rotate(45deg); }
+        }
 
-.sectionHead{
-  margin-bottom:35px;
-}
-.sectionHead h2{
-  font-size:clamp(35px,5vw,58px);
-  margin:8px 0 10px;
-}
-.sectionHead p{
-  color:var(--muted);
-  font-size:18px;
-}
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
 
-.panel{
-  background:rgba(7,18,42,.85);
-  border:1px solid var(--border);
-  border-radius:25px;
-  padding:28px;
-  box-shadow:var(--shadow);
-}
+        .nav-link {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: var(--radius-md);
+        }
 
-.tabs{
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
-  margin-bottom:24px;
-}
-.tab{
-  padding:11px 16px;
-  border-radius:10px;
-  background:#0a1733;
-  border:1px solid var(--border);
-  color:var(--muted);
-}
-.tab.active{
-  background:#087cff;
-  color:#fff;
-}
+        .nav-link:hover, .nav-link.active {
+            color: var(--text-main);
+            background: rgba(255, 255, 255, 0.05);
+        }
 
-.formGrid{
-  display:grid;
-  grid-template-columns:1fr auto;
-  gap:12px;
-}
-input,textarea,select{
-  width:100%;
-  padding:15px 17px;
-  color:#fff;
-  background:#07132d;
-  border:1px solid var(--border);
-  border-radius:12px;
-  outline:none;
-}
-input:focus,textarea:focus,select:focus{
-  border-color:var(--cyan);
-  box-shadow:0 0 0 3px rgba(0,229,255,.08);
-}
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            color: var(--text-main);
+            cursor: pointer;
+        }
 
-.scanResult{
-  margin-top:24px;
-  display:none;
-}
-.scanResult.show{display:block}
-.riskCircle{
-  width:130px;height:130px;
-  border-radius:50%;
-  display:grid;
-  place-items:center;
-  margin:auto;
-  font-size:34px;
-  font-weight:900;
-  border:8px solid var(--green);
-}
-.resultGrid{
-  display:grid;
-  grid-template-columns:170px 1fr;
-  gap:28px;
-  align-items:center;
-}
-.indicator{
-  padding:13px 15px;
-  margin:7px 0;
-  background:#07142e;
-  border:1px solid var(--border);
-  border-radius:11px;
-}
-.chat{
-  height:510px;
-  display:flex;
-  flex-direction:column;
-}
-.messages{
-  flex:1;
-  overflow:auto;
-  padding:10px;
-}
-.msg{
-  max-width:82%;
-  padding:14px 17px;
-  border-radius:15px;
-  margin:10px 0;
-  line-height:1.5;
-}
-.bot{
-  background:#0b1938;
-  border:1px solid var(--border);
-}
-.user{
-  background:#087cff;
-  margin-left:auto;
-}
-.chatInput{
-  display:flex;
-  gap:10px;
-  margin-top:10px;
-}
+        /* --- HERO SECTION --- */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+            overflow: hidden;
+        }
 
-.newsGrid,.featureGrid,.adminGrid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:18px;
-}
-.newsCard{
-  min-height:230px;
-  display:flex;
-  flex-direction:column;
-}
-.badge{
-  display:inline-block;
-  padding:7px 11px;
-  border-radius:20px;
-  width:max-content;
-  font-size:12px;
-  font-weight:900;
-  margin-bottom:18px;
-}
-.badge.high{background:rgba(255,73,108,.15);color:#ff7d98}
-.badge.medium{background:rgba(255,181,46,.15);color:#ffc65c}
-.badge.low{background:rgba(0,215,160,.12);color:#42e3b7}
-.newsCard h3{
-  font-size:21px;
-  line-height:1.3;
-  margin-bottom:auto;
-}
-.newsMeta{
-  color:var(--muted);
-  margin-top:20px;
-}
+        .hero-bg {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 60%);
+        }
 
-.alert{
-  display:flex;
-  gap:15px;
-  align-items:flex-start;
-  margin:10px 0;
-  padding:17px;
-  background:#081631;
-  border:1px solid var(--border);
-  border-radius:14px;
-}
-.alertDot{
-  width:12px;height:12px;border-radius:50%;
-  margin-top:5px;background:var(--green);
-}
-.alertDot.red{background:var(--red);box-shadow:0 0 12px var(--red)}
+        .hero-grid {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -2;
+            background-image: 
+                linear-gradient(var(--border-light) 1px, transparent 1px),
+                linear-gradient(90deg, var(--border-light) 1px, transparent 1px);
+            background-size: 40px 40px;
+            opacity: 0.2;
+            transform: perspective(500px) rotateX(60deg) translateY(-100px) translateZ(-200px);
+            animation: gridMove 20s linear infinite;
+        }
+        
+        [data-theme="light"] .hero-grid { opacity: 0.5; }
 
-.founder{
-  display:grid;
-  grid-template-columns:350px 1fr;
-  gap:45px;
-  align-items:center;
-}
-.founderPhoto{
-  width:100%;
-  aspect-ratio:1;
-  border-radius:25px;
-  object-fit:cover;
-  border:1px solid var(--border);
-  background:linear-gradient(145deg,#0d2a5b,#06102a);
-}
-.founderPlaceholder{
-  display:grid;
-  place-items:center;
-  height:100%;
-  min-height:350px;
-  color:var(--muted);
-  font-size:70px;
-}
+        @keyframes gridMove {
+            0% { transform: perspective(500px) rotateX(60deg) translateY(0) translateZ(-200px); }
+            100% { transform: perspective(500px) rotateX(60deg) translateY(40px) translateZ(-200px); }
+        }
 
-.adminStats{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:15px;
-}
-.adminTable{
-  width:100%;
-  border-collapse:collapse;
-  margin-top:20px;
-}
-.adminTable th,.adminTable td{
-  text-align:left;
-  padding:14px 10px;
-  border-bottom:1px solid var(--border);
-  color:#c8d5ea;
-}
-.adminActions{
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
-}
-.smallBtn{
-  padding:8px 12px;
-  border-radius:8px;
-  background:#0d1d3d;
-  color:#fff;
-  border:1px solid var(--border);
-}
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
 
-.login{
-  max-width:520px;
-  margin:30px auto;
-}
-.login h3{
-  font-size:30px;
-  margin-bottom:25px;
-}
-.field{margin:14px 0}
-.field label{
-  display:block;
-  margin-bottom:8px;
-  color:#aabbd5;
-}
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, var(--text-main), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-.footer{
-  border-top:1px solid var(--border);
-  padding:40px 0;
-  color:var(--muted);
-}
-.footerInner{
-  width:min(1400px,94%);
-  margin:auto;
-  display:flex;
-  justify-content:space-between;
-  gap:20px;
-  flex-wrap:wrap;
-}
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+        }
 
-.toast{
-  position:fixed;
-  right:20px;
-  bottom:20px;
-  z-index:3000;
-  background:#0c1b39;
-  border:1px solid var(--cyan);
-  padding:14px 18px;
-  border-radius:12px;
-  transform:translateY(120px);
-  opacity:0;
-  transition:.3s;
-}
-.toast.show{
-  transform:translateY(0);
-  opacity:1;
-}
+        .status-panel {
+            display: inline-flex;
+            gap: 2rem;
+            background: var(--bg-glass);
+            padding: 1rem 2rem;
+            border-radius: 999px;
+            border: 1px solid var(--border-light);
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+        }
 
-.modal{
-  position:fixed;
-  inset:0;
-  z-index:2000;
-  display:none;
-  place-items:center;
-  padding:20px;
-  background:rgba(0,0,0,.7);
-  backdrop-filter:blur(8px);
-}
-.modal.show{display:grid}
-.modalBox{
-  width:min(650px,100%);
-  max-height:90vh;
-  overflow:auto;
-  background:#07142e;
-  border:1px solid var(--border);
-  border-radius:22px;
-  padding:25px;
-}
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            font-family: var(--font-mono);
+        }
 
-.hidden{display:none!important}
+        .status-dot {
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            background: var(--success);
+            box-shadow: 0 0 10px var(--success);
+            animation: pulse 2s infinite;
+        }
 
-@media(max-width:1000px){
-  .hero{grid-template-columns:1fr}
-  .globeWrap{height:420px;order:-1}
-  .metrics{grid-template-columns:repeat(2,1fr)}
-  .newsGrid,.featureGrid,.adminGrid{grid-template-columns:1fr 1fr}
-  .adminStats{grid-template-columns:repeat(2,1fr)}
-}
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
 
-@media(max-width:650px){
-  header{height:68px}
-  .nav{gap:8px}
-  .logo{font-size:21px}
-  .search{display:none}
-  .iconBtn{display:none}
-  .menuBtn{margin-left:auto}
-  main{width:92%}
-  section{padding:75px 0}
-  .hero{min-height:auto;padding-top:60px}
-  .hero h1{font-size:48px;letter-spacing:-2px}
-  .hero p{font-size:17px}
-  .globeWrap{height:350px}
-  .metrics,.newsGrid,.featureGrid,.adminGrid,.adminStats{
-    grid-template-columns:1fr;
-  }
-  .formGrid{grid-template-columns:1fr}
-  .resultGrid{grid-template-columns:1fr}
-  .founder{grid-template-columns:1fr}
-  .founderPhoto{max-width:330px;margin:auto}
-  .panel,.metric,.card{padding:20px}
-  .chat{height:600px}
-}
-</style>
+        /* --- SECTIONS CONTENT --- */
+        .view-section {
+            display: none;
+            animation: fadeIn 0.4s ease forwards;
+            padding-top: 100px;
+            min-height: calc(100vh - 80px);
+        }
+        
+        .view-section.active { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--text-main);
+        }
+
+        .section-desc {
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 1rem auto 0;
+        }
+
+        /* --- SCANNER --- */
+        .scanner-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 1rem;
+            overflow-x: auto;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-md);
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .tab-btn.active {
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--primary);
+        }
+
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: fadeIn 0.3s ease; }
+
+        .analysis-panel {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            min-height: 400px;
+        }
+        
+        .analysis-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            color: white;
+            font-family: var(--font-mono);
+        }
+        
+        [data-theme="light"] .analysis-overlay { background: rgba(255,255,255,0.9); color: black; }
+
+        .scanning-steps { text-align: left; margin-top: 2rem; font-size: 0.9rem; color: var(--accent); }
+        
+        .gauge-container { width: 200px; height: 100px; position: relative; margin: 0 auto 2rem; overflow: hidden; }
+        .gauge-bg {
+            position: absolute; top: 0; left: 0; width: 200px; height: 200px;
+            border-radius: 50%;
+            border: 20px solid var(--border-light);
+            box-sizing: border-box;
+        }
+        .gauge-fill {
+            position: absolute; top: 0; left: 0; width: 200px; height: 200px;
+            border-radius: 50%;
+            border: 20px solid transparent;
+            border-top-color: var(--success);
+            border-right-color: var(--success);
+            box-sizing: border-box;
+            transform: rotate(-45deg); /* 0% */
+            transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .gauge-text {
+            position: absolute; bottom: 0; left: 0; width: 100%;
+            text-align: center; font-size: 1.5rem; font-weight: 700;
+        }
+
+        .indicator-list { text-align: left; width: 100%; margin-top: 1.5rem; }
+        .indicator-item {
+            background: rgba(255,255,255,0.05);
+            padding: 0.75rem;
+            border-radius: var(--radius-md);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.9rem;
+        }
+
+        /* --- DASHBOARD --- */
+        .dash-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .stat-card {
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        
+        .stat-icon {
+            width: 48px; height: 48px;
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem;
+        }
+        
+        .stat-info h4 { margin: 0; color: var(--text-muted); font-size: 0.9rem; font-weight: 500; }
+        .stat-info h2 { margin: 0; font-size: 2rem; color: var(--text-main); }
+
+        .charts-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            width: 100%;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+        
+        th, td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-light);
+            font-size: 0.9rem;
+        }
+        
+        th { font-weight: 600; color: var(--text-muted); }
+        
+        /* --- ALERTS & MAP --- */
+        .alerts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .alert-card { border-left: 4px solid transparent; }
+        .alert-critical { border-left-color: var(--danger); }
+        .alert-high { border-left-color: var(--warning); }
+        .alert-medium { border-left-color: var(--primary); }
+        .alert-info { border-left-color: var(--accent); }
+
+        .threat-map-container {
+            height: 400px;
+            background: var(--bg-surface);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-light);
+            position: relative;
+            overflow: hidden;
+            margin-top: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-image: radial-gradient(rgba(59, 130, 246, 0.2) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        .map-dot {
+            position: absolute;
+            width: 12px; height: 12px;
+            background: var(--danger);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            cursor: pointer;
+        }
+        
+        .map-dot::before {
+            content: ''; position: absolute; top: -100%; left: -100%; width: 300%; height: 300%;
+            border: 1px solid var(--danger); border-radius: 50%;
+            animation: radarPing 2s infinite ease-out;
+        }
+        
+        .map-tooltip {
+            position: absolute;
+            background: var(--bg-glass);
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-md);
+            font-size: 0.8rem;
+            color: white;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s;
+            border: 1px solid var(--border-light);
+            white-space: nowrap;
+            z-index: 10;
+        }
+        
+        .map-dot:hover .map-tooltip { opacity: 1; }
+
+        @keyframes radarPing {
+            0% { transform: scale(0.1); opacity: 1; }
+            100% { transform: scale(1); opacity: 0; }
+        }
+
+        /* --- AWARENESS & QUIZ --- */
+        .awareness-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .awareness-card {
+            cursor: pointer;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .awareness-card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .quiz-container {
+            background: var(--bg-surface);
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-light);
+            max-width: 700px;
+            margin: 3rem auto;
+        }
+
+        .quiz-option {
+            display: block; width: 100%; text-align: left;
+            padding: 1rem; margin-bottom: 0.75rem;
+            background: rgba(0,0,0,0.2); border: 1px solid var(--border-light);
+            border-radius: var(--radius-md); color: var(--text-main);
+            cursor: pointer; transition: var(--transition);
+        }
+        .quiz-option:hover { background: rgba(59, 130, 246, 0.1); border-color: var(--primary); }
+        .quiz-option.correct { background: rgba(16, 185, 129, 0.2); border-color: var(--success); }
+        .quiz-option.wrong { background: rgba(239, 68, 68, 0.2); border-color: var(--danger); }
+
+        .pwd-meter { height: 8px; background: rgba(255,255,255,0.1); border-radius: 4px; overflow: hidden; margin-top: 0.5rem; }
+        .pwd-fill { height: 100%; width: 0%; transition: width 0.3s, background-color 0.3s; }
+
+        /* --- MODALS & TOASTS --- */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7); backdrop-filter: blur(5px);
+            display: none; align-items: center; justify-content: center; z-index: 2000;
+            opacity: 0; transition: opacity 0.3s;
+        }
+        .modal-overlay.active { display: flex; opacity: 1; }
+        
+        .modal-content {
+            background: var(--bg-surface); border: 1px solid var(--border-light);
+            border-radius: var(--radius-lg); padding: 2rem;
+            width: 90%; max-width: 500px; position: relative;
+            transform: translateY(20px); transition: transform 0.3s;
+        }
+        .modal-overlay.active .modal-content { transform: translateY(0); }
+        
+        .close-modal {
+            position: absolute; top: 1rem; right: 1rem;
+            background: none; border: none; color: var(--text-muted);
+            font-size: 1.2rem; cursor: pointer;
+        }
+
+        #toast-container { position: fixed; bottom: 20px; right: 20px; z-index: 3000; display: flex; flex-direction: column; gap: 10px; }
+        .toast {
+            background: var(--bg-surface); border: 1px solid var(--border-light);
+            padding: 1rem 1.5rem; border-radius: var(--radius-md);
+            color: var(--text-main); display: flex; align-items: center; gap: 1rem;
+            box-shadow: var(--shadow-lg); animation: slideInRight 0.3s forwards;
+            border-left: 4px solid var(--primary);
+        }
+        .toast.success { border-left-color: var(--success); }
+        .toast.error { border-left-color: var(--danger); }
+        .toast.fade-out { animation: fadeOutRight 0.3s forwards; }
+
+        @keyframes slideInRight { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        @keyframes fadeOutRight { from { transform: translateX(0); opacity: 1; } to { transform: translateX(100%); opacity: 0; } }
+
+        /* --- FOOTER --- */
+        footer {
+            background: var(--bg-surface);
+            border-top: 1px solid var(--border-light);
+            padding: 3rem 0;
+            margin-top: auto;
+        }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; }
+        .footer-links li { margin-bottom: 0.5rem; }
+        .footer-links a { color: var(--text-muted); font-size: 0.9rem; }
+        .footer-links a:hover { color: var(--primary); }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 1024px) {
+            .charts-grid { grid-template-columns: 1fr; }
+            .hero-title { font-size: 2.8rem; }
+        }
+
+        @media (max-width: 768px) {
+            .scanner-container { grid-template-columns: 1fr; }
+            .nav-links {
+                position: fixed; top: 70px; left: 0; width: 100%;
+                background: var(--bg-surface); flex-direction: column;
+                padding: 2rem; border-bottom: 1px solid var(--border-light);
+                clip-path: circle(0% at 100% 0); transition: clip-path 0.4s ease-out;
+            }
+            .nav-links.active { clip-path: circle(150% at 100% 0); }
+            .mobile-menu-btn { display: block; }
+            .status-panel { flex-direction: column; gap: 1rem; padding: 1.5rem; border-radius: var(--radius-lg); }
+        }
+
+        /* Demo badge */
+        .demo-badge {
+            background: rgba(245, 158, 11, 0.1); color: var(--warning);
+            padding: 0.5rem 1rem; border-radius: var(--radius-md); border: 1px dashed var(--warning);
+            font-size: 0.8rem; text-align: center; margin-bottom: 1rem; display: block;
+        }
+    </style>
 </head>
-
 <body>
 
-<canvas id="network"></canvas>
-<div class="noise"></div>
+    <nav>
+        <div class="container nav-container">
+            <div class="logo" onclick="app.navigate('home')">
+                <div class="logo-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                CYBERGUARD AI
+            </div>
+            
+            <ul class="nav-links" id="nav-links">
+                <li><a class="nav-link active" data-target="home">Home</a></li>
+                <li><a class="nav-link" data-target="scanner">Threat Scanner</a></li>
+                <li><a class="nav-link" data-target="alerts">Cyber Alerts</a></li>
+                <li><a class="nav-link" data-target="report">Report Fraud</a></li>
+                <li><a class="nav-link" data-target="awareness">Awareness</a></li>
+                <li><a class="nav-link" data-target="dashboard" id="nav-dashboard">Dashboard</a></li>
+                <li><a class="nav-link" onclick="app.toggleLoginModal()" id="nav-login"><i class="fa-solid fa-user-lock"></i> Admin</a></li>
+                <li><button class="btn btn-outline" style="padding: 0.4rem 0.8rem; font-size:0.8rem;" onclick="app.runDemoMode()"><i class="fa-solid fa-play"></i> Run Demo</button></li>
+                <li><button class="btn btn-outline" style="padding: 0.4rem;" onclick="app.toggleTheme()" title="Toggle Theme"><i class="fa-solid fa-moon" id="theme-icon"></i></button></li>
+            </ul>
 
-<header>
-  <nav class="nav">
-    <div class="logo" onclick="go('home')" style="cursor:pointer">
-      <div class="logoShield"></div>
-      AUREXA
-    </div>
-
-    <div class="search">
-      <span>⌕</span>
-      <input id="globalSearch" placeholder="Search AUREXA...  Ctrl+K"
-             onkeydown="globalSearch(event)">
-    </div>
-
-    <div class="navActions">
-      <button class="iconBtn" onclick="go('alerts')" title="Alerts">♧</button>
-      <button class="iconBtn" onclick="toggleTheme()" title="Theme">☾</button>
-      <button class="iconBtn" onclick="go('scanner')" title="Security">♢</button>
-      <button class="menuBtn" onclick="toggleDrawer()">☰</button>
-    </div>
-  </nav>
-</header>
-
-<aside id="drawer" class="drawer">
-  <h3>AUREXA CONTROL</h3>
-  <button onclick="go('home');closeDrawer()">⌂ &nbsp; Home</button>
-  <button onclick="go('scanner');closeDrawer()">⌁ &nbsp; Security Scanner</button>
-  <button onclick="go('copilot');closeDrawer()">◈ &nbsp; AI Copilot</button>
-  <button onclick="go('news');closeDrawer()">◉ &nbsp; Cyber News</button>
-  <button onclick="go('alerts');closeDrawer()">⚠ &nbsp; Alerts</button>
-  <button onclick="go('fraud');closeDrawer()">🛡 &nbsp; Cyber Fraud Help</button>
-  <button onclick="go('reports');closeDrawer()">▣ &nbsp; Reports</button>
-  <button onclick="go('about');closeDrawer()">♙ &nbsp; Founder / About</button>
-  <button onclick="go('admin');closeDrawer()">⚙ &nbsp; Admin Control Center</button>
-  <button onclick="go('contact');closeDrawer()">✉ &nbsp; Contact</button>
-</aside>
-
-<main>
-
-<!-- HOME -->
-<section id="home" class="hero">
-  <div>
-    <div class="status"><i></i> System Operational</div>
-
-    <h1>
-      AI-Powered<br>
-      <span class="gradient">Cybersecurity</span><br>
-      Platform
-    </h1>
-
-    <p>
-      Detect. Analyze. Respond. Protect.
-      Enterprise-grade security intelligence for modern digital threats.
-    </p>
-
-    <div class="buttons">
-      <button class="primary" onclick="go('scanner')">
-        ◫ &nbsp; Start Security Scan
-      </button>
-      <button class="secondary" onclick="go('copilot')">
-        🤖 &nbsp; Open AI Copilot
-      </button>
-    </div>
-  </div>
-
-  <div class="globeWrap">
-    <div class="globe">
-      <div class="gridline"></div>
-      <div class="gridline" style="transform:rotateY(35deg)"></div>
-      <div class="gridline" style="transform:rotateX(80deg)"></div>
-      <div class="core"></div>
-      <div class="node n1"></div>
-      <div class="node n2"></div>
-      <div class="node n3"></div>
-      <div class="node n4"></div>
-      <div class="node n5"></div>
-      <div class="node n6"></div>
-    </div>
-  </div>
-</section>
-
-<div class="metrics">
-  <div class="metric">
-    <small>Security Checks</small>
-    <strong id="checks">124,582</strong>
-    <span class="good">● System Nominal</span>
-  </div>
-  <div class="metric">
-    <small>Threats Analyzed</small>
-    <strong id="threats">8,421</strong>
-    <span class="good">Active intelligence</span>
-  </div>
-  <div class="metric">
-    <small>Average Risk</small>
-    <strong class="good">18/100</strong>
-    <span>Low risk average</span>
-  </div>
-  <div class="metric">
-    <small>Platform Uptime</small>
-    <strong>99.9%</strong>
-    <span class="good">Operational</span>
-  </div>
-</div>
-
-<!-- SCANNER -->
-<section id="scanner">
-  <div class="sectionHead">
-    <span class="eyebrow">Security Intelligence</span>
-    <h2>Threat Scanner</h2>
-    <p>Analyze URLs, domains and suspicious indicators with AUREXA heuristics.</p>
-  </div>
-
-  <div class="panel">
-    <div class="tabs">
-      <button class="tab active" onclick="setScanType(this,'url')">Website / URL</button>
-      <button class="tab" onclick="setScanType(this,'domain')">Domain</button>
-      <button class="tab" onclick="setScanType(this,'ip')">IP Address</button>
-      <button class="tab" onclick="setScanType(this,'apk')">APK / File</button>
-    </div>
-
-    <div id="scanInputArea">
-      <div class="formGrid">
-        <input id="scanInput" placeholder="Enter URL, domain or IP address">
-        <button class="primary" onclick="runScan()">Analyze Target</button>
-      </div>
-      <p style="color:var(--muted);margin-top:12px;font-size:13px">
-        AUREXA local analysis checks structural indicators. External reputation
-        services require an API connection.
-      </p>
-    </div>
-
-    <div id="scanResult" class="scanResult">
-      <div class="resultGrid">
-        <div>
-          <div id="riskCircle" class="riskCircle">0</div>
-          <p id="riskLabel" style="text-align:center;margin-top:12px;font-weight:800">LOW RISK</p>
+            <button class="mobile-menu-btn" id="mobile-menu-btn"><i class="fa-solid fa-bars"></i></button>
         </div>
+    </nav>
 
-        <div>
-          <h3 style="font-size:25px;margin-bottom:12px">AUREXA Security Analysis</h3>
-          <p id="targetOutput" style="color:var(--muted);word-break:break-all"></p>
-          <div id="indicators" style="margin-top:16px"></div>
-          <button class="secondary" onclick="saveReport()" style="margin-top:15px">
-            Save Security Report
-          </button>
+    <div id="app-content">
+
+        <section id="home" class="view-section active">
+            <div class="hero">
+                <div class="hero-bg"></div>
+                <div class="hero-grid"></div>
+                <div class="container">
+                    <div class="hero-content">
+                        <div class="status-panel">
+                            <div class="status-item"><div class="status-dot"></div> System Status: <span class="text-success">PROTECTED</span></div>
+                            <div class="status-item"><i class="fa-solid fa-brain text-primary"></i> AI Engine: ACTIVE</div>
+                            <div class="status-item"><i class="fa-solid fa-clock text-muted"></i> Last Scan: <span id="live-time"></span></div>
+                        </div>
+                        <h1 class="hero-title">AI-Powered Cyber Fraud Protection</h1>
+                        <p class="hero-subtitle">Detect scams, analyze suspicious links, understand cyber threats and respond before it's too late. Local demo for hackathon presentation.</p>
+                        
+                        <div class="flex justify-center gap-4 flex-wrap">
+                            <button class="btn btn-primary" onclick="app.navigate('scanner')"><i class="fa-solid fa-magnifying-glass-chart"></i> Scan a Threat</button>
+                            <button class="btn btn-outline" onclick="app.navigate('report')"><i class="fa-solid fa-file-shield"></i> Report Cyber Fraud</button>
+                        </div>
+
+                        <div class="flex justify-center gap-6 mt-5" style="margin-top: 3rem;">
+                            <div class="text-center">
+                                <h3 class="text-primary" style="font-size: 2.5rem; margin-bottom: 0;" id="counter-threats">0</h3>
+                                <p class="text-muted" style="font-size: 0.9rem;">Threats Analyzed (Demo)</p>
+                            </div>
+                            <div class="text-center">
+                                <h3 class="text-success" style="font-size: 2.5rem; margin-bottom: 0;">99.9%</h3>
+                                <p class="text-muted" style="font-size: 0.9rem;">Detection Rate</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="scanner" class="view-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Threat Intelligence Scanner</h2>
+                    <p class="section-desc">Paste suspicious URLs, SMS messages, or emails below to analyze potential fraud vectors using our local simulated AI engine.</p>
+                </div>
+
+                <div class="scanner-container">
+                    <div class="glass-card">
+                        <div class="tabs">
+                            <button class="tab-btn active" data-tab="tab-url"><i class="fa-solid fa-link"></i> URL Scan</button>
+                            <button class="tab-btn" data-tab="tab-msg"><i class="fa-solid fa-comment-sms"></i> Message</button>
+                            <button class="tab-btn" data-tab="tab-email"><i class="fa-solid fa-envelope"></i> Email</button>
+                        </div>
+
+                        <div id="tab-url" class="tab-content active">
+                            <div class="form-group">
+                                <label class="form-label">Suspicious URL</label>
+                                <input type="url" id="scan-url-input" class="form-control" placeholder="e.g. http://login-update-secure.com/auth">
+                            </div>
+                            <button class="btn btn-primary w-full" style="width: 100%;" onclick="app.runScan('url')">Analyze URL</button>
+                        </div>
+
+                        <div id="tab-msg" class="tab-content">
+                            <div class="form-group">
+                                <label class="form-label">Suspicious SMS/WhatsApp Message</label>
+                                <textarea id="scan-msg-input" class="form-control" placeholder="Paste the message content here..."></textarea>
+                            </div>
+                            <button class="btn btn-primary w-full" style="width: 100%;" onclick="app.runScan('message')">Analyze Message</button>
+                        </div>
+
+                        <div id="tab-email" class="tab-content">
+                            <div class="form-group">
+                                <label class="form-label">Email Subject</label>
+                                <input type="text" id="scan-email-subj" class="form-control" placeholder="e.g. Action Required: Account Suspension">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Email Content</label>
+                                <textarea id="scan-email-body" class="form-control" placeholder="Paste full email body here..."></textarea>
+                            </div>
+                            <button class="btn btn-primary w-full" style="width: 100%;" onclick="app.runScan('email')">Analyze Email</button>
+                        </div>
+                        
+                        <div style="margin-top: 1.5rem; font-size: 0.8rem; color: var(--text-muted); text-align: center;">
+                            <i class="fa-solid fa-circle-info"></i> All processing is performed locally for this demonstration. No data is sent to external servers.
+                        </div>
+                    </div>
+
+                    <div class="analysis-panel" id="analysis-panel">
+                        <div class="analysis-overlay" id="analysis-loading">
+                            <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 3rem; color: var(--primary); margin-bottom: 1rem;"></i>
+                            <h3>AI Engine Processing...</h3>
+                            <div class="scanning-steps" id="scan-steps">Initializing modules...</div>
+                        </div>
+
+                        <div id="analysis-result" style="display: none; width: 100%;">
+                            <h3 style="text-align: center; margin-bottom: 1.5rem;">Threat Analysis Report</h3>
+                            
+                            <div class="gauge-container">
+                                <div class="gauge-bg"></div>
+                                <div class="gauge-fill" id="risk-gauge"></div>
+                                <div class="gauge-text" id="risk-score-text">0</div>
+                                <div style="position: absolute; bottom: -20px; width: 100%; text-align: center; font-size: 0.8rem; color: var(--text-muted);">Risk Score</div>
+                            </div>
+
+                            <div style="text-align: center; margin-bottom: 1rem;">
+                                <span class="badge" id="risk-badge">SAFE</span>
+                            </div>
+
+                            <div class="indicator-list" id="indicator-list">
+                                </div>
+                            
+                            <div style="margin-top: 1.5rem; background: rgba(59, 130, 246, 0.1); padding: 1rem; border-radius: 8px; border-left: 3px solid var(--primary);">
+                                <h4 style="font-size: 0.9rem; margin-bottom: 0.5rem;"><i class="fa-solid fa-lightbulb text-warning"></i> AI Recommendation</h4>
+                                <p id="ai-recommendation" style="font-size: 0.85rem; color: var(--text-muted);"></p>
+                            </div>
+                        </div>
+
+                        <div id="analysis-idle" style="color: var(--text-muted); text-align: center;">
+                            <i class="fa-solid fa-shield-virus" style="font-size: 4rem; opacity: 0.2; margin-bottom: 1rem; display: block;"></i>
+                            Awaiting input. Submit a threat for analysis.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="alerts" class="view-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Live Cyber Alerts</h2>
+                    <p class="section-desc">Simulated real-time intelligence on active cyber campaigns and fraud trends.</p>
+                </div>
+                
+                <div class="flex justify-between items-center" style="margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
+                    <div class="flex gap-2">
+                        <button class="btn btn-outline" style="padding: 0.4rem 1rem;" onclick="app.filterAlerts('all')">All</button>
+                        <button class="btn btn-outline" style="padding: 0.4rem 1rem; border-color: var(--danger); color: var(--danger);" onclick="app.filterAlerts('critical')">Critical</button>
+                        <button class="btn btn-outline" style="padding: 0.4rem 1rem; border-color: var(--warning); color: var(--warning);" onclick="app.filterAlerts('high')">High</button>
+                    </div>
+                    <div class="form-group" style="margin: 0; min-width: 250px;">
+                        <input type="text" id="alert-search" class="form-control" placeholder="Search alerts..." onkeyup="app.searchAlerts()">
+                    </div>
+                </div>
+
+                <div class="alerts-grid" id="alerts-container">
+                    </div>
+
+                <div class="threat-map-container" id="threat-map">
+                    <div style="position: absolute; top: 1rem; left: 1rem; z-index: 5; background: var(--bg-glass); padding: 0.5rem 1rem; border-radius: 8px; font-size: 0.8rem; border: 1px solid var(--border-light);">
+                        <i class="fa-solid fa-satellite-dish text-primary"></i> Simulated Intelligence Map
+                    </div>
+                    </div>
+            </div>
+        </section>
+
+        <section id="report" class="view-section">
+            <div class="container" style="max-width: 800px;">
+                <div class="section-header">
+                    <h2 class="section-title">Report Cyber Fraud</h2>
+                    <p class="section-desc">Log a suspected incident into the local SOC dashboard. (This is a hackathon demo and does not report to official authorities).</p>
+                </div>
+
+                <div class="glass-card">
+                    <span class="demo-badge">DEMO MODE: Data is stored in your browser's local storage.</span>
+                    <form id="fraud-form" onsubmit="app.submitReport(event)">
+                        <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                            <div class="form-group">
+                                <label class="form-label">Full Name</label>
+                                <input type="text" id="rep-name" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Email Address</label>
+                                <input type="email" id="rep-email" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                            <div class="form-group">
+                                <label class="form-label">Fraud Type</label>
+                                <select id="rep-type" class="form-control" required>
+                                    <option value="">Select Category...</option>
+                                    <option value="UPI Fraud">UPI / Banking Fraud</option>
+                                    <option value="Phishing">Phishing Link / Email</option>
+                                    <option value="OTP Scam">OTP Scam</option>
+                                    <option value="Fake Job Scam">Fake Job / Task Scam</option>
+                                    <option value="Investment Scam">Investment / Crypto Scam</option>
+                                    <option value="Identity Theft">Identity Theft</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Financial Loss Amount (if any)</label>
+                                <input type="number" id="rep-amount" class="form-control" placeholder="0">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Suspicious URL / Phone Number</label>
+                            <input type="text" id="rep-source" class="form-control" placeholder="URL or sender info...">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Incident Description</label>
+                            <textarea id="rep-desc" class="form-control" required placeholder="Describe what happened..."></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" style="width: 100%;"><i class="fa-solid fa-paper-plane"></i> Submit Demo Report</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section id="awareness" class="view-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Cyber Security Awareness</h2>
+                    <p class="section-desc">Empower yourself with the knowledge to identify and prevent cyber threats.</p>
+                </div>
+
+                <div class="awareness-grid mb-5">
+                    <div class="glass-card awareness-card" onclick="app.openAwareness('phishing')">
+                        <i class="fa-solid fa-fish-fins"></i>
+                        <h3>Phishing Defence</h3>
+                        <p class="text-muted" style="font-size: 0.85rem;">Learn how to spot fake emails and malicious URLs.</p>
+                    </div>
+                    <div class="glass-card awareness-card" onclick="app.openAwareness('upi')">
+                        <i class="fa-solid fa-mobile-screen"></i>
+                        <h3>UPI & Banking</h3>
+                        <p class="text-muted" style="font-size: 0.85rem;">Secure your financial transactions and avoid OTP traps.</p>
+                    </div>
+                    <div class="glass-card awareness-card" onclick="app.openAwareness('social')">
+                        <i class="fa-solid fa-users-viewfinder"></i>
+                        <h3>Social Engineering</h3>
+                        <p class="text-muted" style="font-size: 0.85rem;">Understand manipulation tactics used by scammers.</p>
+                    </div>
+                    <div class="glass-card awareness-card" onclick="app.openAwareness('jobs')">
+                        <i class="fa-solid fa-briefcase"></i>
+                        <h3>Fake Job Scams</h3>
+                        <p class="text-muted" style="font-size: 0.85rem;">Identify fraudulent recruitment and task-based scams.</p>
+                    </div>
+                </div>
+
+                <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem;">
+                    
+                    <div class="glass-card">
+                        <h3 style="margin-bottom: 1rem;"><i class="fa-solid fa-key text-warning"></i> Password Strength Tool</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">Test your password format. (Never enter real passwords in demo tools).</p>
+                        <div class="form-group">
+                            <input type="password" id="pwd-check" class="form-control" placeholder="Type a test password..." onkeyup="app.checkPassword()">
+                        </div>
+                        <div class="pwd-meter"><div class="pwd-fill" id="pwd-fill"></div></div>
+                        <div id="pwd-label" style="font-size: 0.85rem; font-weight: 600; margin-top: 0.5rem; text-align: right;">Weak</div>
+                        
+                        <ul style="font-size: 0.8rem; margin-top: 1rem; color: var(--text-muted);" id="pwd-reqs">
+                            <li id="req-len"><i class="fa-solid fa-xmark text-danger"></i> 8+ characters</li>
+                            <li id="req-up"><i class="fa-solid fa-xmark text-danger"></i> Uppercase letter</li>
+                            <li id="req-num"><i class="fa-solid fa-xmark text-danger"></i> Number</li>
+                            <li id="req-spec"><i class="fa-solid fa-xmark text-danger"></i> Special character</li>
+                        </ul>
+                    </div>
+
+                    <div class="glass-card" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+                        <i class="fa-solid fa-graduation-cap" style="font-size: 3rem; color: var(--secondary); margin-bottom: 1rem;"></i>
+                        <h3>Cyber Safety Quiz</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem;">Test your knowledge on common cyber threats and safe practices.</p>
+                        <button class="btn btn-primary" onclick="app.startQuiz()">Start Quiz</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="dashboard" class="view-section">
+            <div class="container">
+                <div class="flex justify-between items-center" style="margin-bottom: 2rem; border-bottom: 1px solid var(--border-light); padding-bottom: 1rem;">
+                    <div>
+                        <h2 class="section-title" style="margin-bottom: 0;">SOC Dashboard</h2>
+                        <p class="section-desc" style="margin-top: 0.5rem;">Security Operations Center - Admin View</p>
+                    </div>
+                    <button class="btn btn-outline" style="border-color: var(--danger); color: var(--danger);" onclick="app.logout()"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+                </div>
+
+                <div class="dash-grid">
+                    <div class="glass-card stat-card">
+                        <div class="stat-icon" style="background: rgba(59, 130, 246, 0.2); color: var(--primary);"><i class="fa-solid fa-file-shield"></i></div>
+                        <div class="stat-info"><h4>Total Incidents</h4><h2 id="dash-total">0</h2></div>
+                    </div>
+                    <div class="glass-card stat-card">
+                        <div class="stat-icon" style="background: rgba(239, 68, 68, 0.2); color: var(--danger);"><i class="fa-solid fa-skull-crossbones"></i></div>
+                        <div class="stat-info"><h4>Critical Threats</h4><h2 id="dash-critical">0</h2></div>
+                    </div>
+                    <div class="glass-card stat-card">
+                        <div class="stat-icon" style="background: rgba(16, 185, 129, 0.2); color: var(--success);"><i class="fa-solid fa-check-double"></i></div>
+                        <div class="stat-info"><h4>Resolved</h4><h2 id="dash-resolved">0</h2></div>
+                    </div>
+                    <div class="glass-card stat-card">
+                        <div class="stat-icon" style="background: rgba(245, 158, 11, 0.2); color: var(--warning);"><i class="fa-solid fa-indian-rupee-sign"></i></div>
+                        <div class="stat-info"><h4>Est. Prevented Loss</h4><h2 id="dash-loss">₹0</h2></div>
+                    </div>
+                </div>
+
+                <div class="charts-grid">
+                    <div class="glass-card">
+                        <h3 style="font-size: 1.1rem; margin-bottom: 1rem;">Incident Trends (Weekly)</h3>
+                        <canvas id="chart-trends" height="250"></canvas>
+                    </div>
+                    <div class="glass-card">
+                        <h3 style="font-size: 1.1rem; margin-bottom: 1rem;">Threat Categories</h3>
+                        <canvas id="chart-categories" height="250"></canvas>
+                    </div>
+                </div>
+
+                <div class="glass-card">
+                    <h3 style="font-size: 1.1rem; margin-bottom: 1rem;">Recent Fraud Reports</h3>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Date</th>
+                                    <th>Type</th>
+                                    <th>Reporter</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="dash-table-body">
+                                </tbody>
+                        </table>
+                    </div>
+                    <div id="empty-dash" style="display: none; text-align: center; padding: 2rem; color: var(--text-muted);">
+                        No incidents reported yet.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div> <footer>
+        <div class="container footer-grid">
+            <div>
+                <div class="logo" style="font-size: 1.2rem; margin-bottom: 1rem;">
+                    <div class="logo-icon" style="width: 24px; height: 24px; font-size: 0.9rem;"><i class="fa-solid fa-shield-halved"></i></div>
+                    CYBERGUARD AI
+                </div>
+                <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1rem;">AI-powered cybersecurity awareness and fraud protection platform.</p>
+                <span class="badge badge-warning" style="font-size: 0.7rem;">Built for Hackathon Demonstration</span>
+            </div>
+            <div>
+                <h4 style="font-size: 1rem;">Platform</h4>
+                <ul class="footer-links">
+                    <li><a onclick="app.navigate('scanner')" style="cursor:pointer">Threat Scanner</a></li>
+                    <li><a onclick="app.navigate('alerts')" style="cursor:pointer">Live Alerts</a></li>
+                    <li><a onclick="app.navigate('report')" style="cursor:pointer">Report Incident</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 style="font-size: 1rem;">Legal & Resources</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Privacy Policy (Demo)</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">National Cyber Crime Portal</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 style="font-size: 1rem;">Connect</h4>
+                <div class="flex gap-4" style="margin-top: 1rem;">
+                    <a href="#" style="font-size: 1.5rem; color: var(--text-muted);"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="#" style="font-size: 1.5rem; color: var(--text-muted);"><i class="fa-brands fa-github"></i></a>
+                    <a href="#" style="font-size: 1.5rem; color: var(--text-muted);"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
+    </footer>
 
-<!-- COPILOT -->
-<section id="copilot">
-  <div class="sectionHead">
-    <span class="eyebrow">AI Security Assistant</span>
-    <h2>AUREXA Copilot</h2>
-    <p>Ask security questions, understand alerts and get defensive guidance.</p>
-  </div>
-
-  <div class="panel chat">
-    <div id="messages" class="messages">
-      <div class="msg bot">
-        <b>AUREXA Copilot</b><br>
-        Hello. I can help with cybersecurity analysis, phishing awareness,
-        suspicious URLs, incident response and defensive security.
-      </div>
-    </div>
-
-    <div class="chatInput">
-      <input id="chatInput" placeholder="Ask a cybersecurity question..."
-             onkeydown="if(event.key==='Enter')sendChat()">
-      <button class="primary" onclick="sendChat()">Send</button>
-    </div>
-  </div>
-</section>
-
-<!-- NEWS -->
-<section id="news">
-  <div class="sectionHead">
-    <span class="eyebrow">Threat Intelligence</span>
-    <h2>Cybersecurity News</h2>
-    <p>Security developments, vulnerabilities and threat awareness.</p>
-  </div>
-
-  <div style="display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap">
-    <button class="tab active" onclick="filterNews('all',this)">All</button>
-    <button class="tab" onclick="filterNews('Vulnerability',this)">Vulnerabilities</button>
-    <button class="tab" onclick="filterNews('Phishing',this)">Phishing</button>
-    <button class="tab" onclick="filterNews('AI Security',this)">AI Security</button>
-  </div>
-
-  <div id="newsGrid" class="newsGrid"></div>
-</section>
-
-<!-- ALERTS -->
-<section id="alerts">
-  <div class="sectionHead">
-    <span class="eyebrow">Security Operations</span>
-    <h2>Alert Center</h2>
-    <p>Monitor security events and platform notifications.</p>
-  </div>
-
-  <div class="panel">
-    <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap">
-      <h3>Active Alerts</h3>
-      <button class="secondary" onclick="markAlertsRead()">Mark all as read</button>
-    </div>
-    <div id="alertsList" style="margin-top:20px"></div>
-  </div>
-</section>
-
-<!-- FRAUD HELP -->
-<section id="fraud">
-  <div class="sectionHead">
-    <span class="eyebrow">Protection Center</span>
-    <h2>Cyber Fraud Help</h2>
-    <p>Immediate defensive steps for common online fraud situations.</p>
-  </div>
-
-  <div class="featureGrid">
-    <div class="card">
-      <h3>🎣 Phishing</h3>
-      <p style="color:var(--muted);margin-top:12px">
-        Do not enter credentials into suspicious links. Verify the website
-        independently before signing in.
-      </p>
-    </div>
-
-    <div class="card">
-      <h3>💳 Payment Fraud</h3>
-      <p style="color:var(--muted);margin-top:12px">
-        Contact your bank/payment provider immediately and preserve transaction
-        information and screenshots.
-      </p>
-    </div>
-
-    <div class="card">
-      <h3>📱 Account Compromise</h3>
-      <p style="color:var(--muted);margin-top:12px">
-        Change passwords from a trusted device, revoke unknown sessions and
-        enable multi-factor authentication.
-      </p>
-    </div>
-
-    <div class="card">
-      <h3>📦 Suspicious APK</h3>
-      <p style="color:var(--muted);margin-top:12px">
-        Do not install APKs from untrusted sources. Review permissions and
-        scan the file with trusted security software.
-      </p>
-    </div>
-
-    <div class="card">
-      <h3>🧾 Preserve Evidence</h3>
-      <p style="color:var(--muted);margin-top:12px">
-        Keep URLs, transaction IDs, emails, messages, screenshots and relevant
-        timestamps.
-      </p>
-    </div>
-
-    <div class="card">
-      <h3>🇮🇳 India Cyber Fraud</h3>
-      <p style="color:var(--muted);margin-top:12px">
-        For suspected cybercrime in India, use official government reporting
-        channels or contact the appropriate authorities.
-      </p>
-    </div>
-  </div>
-</section>
-
-<!-- REPORTS -->
-<section id="reports">
-  <div class="sectionHead">
-    <span class="eyebrow">Security Records</span>
-    <h2>Reports</h2>
-    <p>Your locally stored AUREXA security scan history.</p>
-  </div>
-
-  <div class="panel">
-    <div id="reportsList"></div>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section id="about">
-  <div class="sectionHead">
-    <span class="eyebrow">AUREXA</span>
-    <h2>Founder & Vision</h2>
-  </div>
-
-  <div class="founder">
-    <div class="founderPhoto" id="founderContainer">
-      <div class="founderPlaceholder">♙</div>
-    </div>
-
-    <div>
-      <span class="status"><i></i> Founder / CEO</span>
-      <h2 style="font-size:42px;margin:20px 0 10px" id="founderName">
-        AUREXA Founder
-      </h2>
-      <p style="color:var(--muted);font-size:19px;line-height:1.7">
-        Building AUREXA as a modern cybersecurity platform focused on
-        accessible security intelligence, threat awareness and AI-assisted
-        defensive operations.
-      </p>
-
-      <div class="buttons">
-        <button class="secondary" onclick="openFounderUpload()">Add Founder Photo</button>
-        <button class="secondary" onclick="go('contact')">Contact AUREXA</button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ADMIN -->
-<section id="admin">
-  <div class="sectionHead">
-    <span class="eyebrow">Platform Operations</span>
-    <h2>AUREXA Control Center</h2>
-    <p>Manage local platform content and security records.</p>
-  </div>
-
-  <div id="adminLogin" class="panel login">
-    <h3>Administrator Authentication</h3>
-    <p style="color:var(--muted);margin-bottom:20px">
-      Standalone frontend mode. For real production authentication,
-      connect this interface to a secure backend.
-    </p>
-
-    <div class="field">
-      <label>Username</label>
-      <input id="adminUser" placeholder="Administrator username">
-    </div>
-
-    <div class="field">
-      <label>Password</label>
-      <input id="adminPass" type="password" placeholder="Password">
-    </div>
-
-    <button class="primary" style="width:100%;margin-top:10px" onclick="adminLogin()">
-      Authenticate Session
-    </button>
-
-    <p style="color:var(--muted);font-size:12px;margin-top:15px">
-      Standalone mode stores authentication state locally. Do not use this
-      mechanism as a substitute for server-side authentication.
-    </p>
-  </div>
-
-  <div id="adminDashboard" class="hidden">
-    <div class="adminStats">
-      <div class="metric"><small>Total Scans</small><strong id="aScans">0</strong></div>
-      <div class="metric"><small>Reports</small><strong id="aReports">0</strong></div>
-      <div class="metric"><small>Alerts</small><strong id="aAlerts">0</strong></div>
-      <div class="metric"><small>Status</small><strong class="good">ONLINE</strong></div>
-    </div>
-
-    <div class="adminGrid" style="margin-top:20px">
-      <div class="panel">
-        <h3>Platform Actions</h3>
-        <div class="buttons">
-          <button class="secondary" onclick="go('scanner')">New Scan</button>
-          <button class="secondary" onclick="go('news')">Manage News</button>
-          <button class="secondary" onclick="go('reports')">View Reports</button>
-          <button class="secondary" onclick="openFounderUpload()">Founder Photo</button>
+    <div class="modal-overlay" id="modal-login">
+        <div class="modal-content">
+            <button class="close-modal" onclick="app.closeModal('modal-login')"><i class="fa-solid fa-xmark"></i></button>
+            <h2 style="margin-bottom: 1rem;">Admin Access</h2>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem;">Use demo credentials: admin / cyberguard@2026</p>
+            <form onsubmit="app.handleLogin(event)">
+                <div class="form-group">
+                    <label class="form-label">Username</label>
+                    <input type="text" id="login-user" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <input type="password" id="login-pwd" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary w-full" style="width:100%">Login to SOC</button>
+            </form>
         </div>
-      </div>
+    </div>
 
-      <div class="panel">
-        <h3>System Health</h3>
-        <div style="margin-top:18px">
-          <div class="indicator">● Frontend <span class="good">Operational</span></div>
-          <div class="indicator">● Scanner <span class="good">Operational</span></div>
-          <div class="indicator">● Local Storage <span class="good">Available</span></div>
-          <div class="indicator">● Threat API <span class="warn">Not Connected</span></div>
+    <div class="modal-overlay" id="modal-awareness">
+        <div class="modal-content" style="max-width: 600px;">
+            <button class="close-modal" onclick="app.closeModal('modal-awareness')"><i class="fa-solid fa-xmark"></i></button>
+            <h2 id="aw-modal-title">Title</h2>
+            <div id="aw-modal-content" style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.8;">Content</div>
         </div>
-      </div>
-
-      <div class="panel">
-        <h3>Security Notice</h3>
-        <p style="color:var(--muted);line-height:1.6;margin-top:14px">
-          External threat intelligence is intentionally not simulated.
-          Configure a legitimate backend/API before presenting external
-          reputation results as verified intelligence.
-        </p>
-      </div>
     </div>
 
-    <div class="panel" style="margin-top:20px">
-      <div style="display:flex;justify-content:space-between;align-items:center">
-        <h3>Recent Scan Activity</h3>
-        <button class="smallBtn" onclick="clearReports()">Clear Local Records</button>
-      </div>
-      <div id="adminActivity"></div>
+    <div class="modal-overlay" id="modal-quiz">
+        <div class="modal-content" style="max-width: 700px;">
+            <button class="close-modal" onclick="app.closeModal('modal-quiz')"><i class="fa-solid fa-xmark"></i></button>
+            <div id="quiz-ui">
+                <div class="flex justify-between items-center mb-4" style="margin-bottom: 1.5rem;">
+                    <h3 style="margin:0;">Cyber Quiz</h3>
+                    <span class="badge badge-info" id="quiz-progress">1 / 8</span>
+                </div>
+                <div id="quiz-question" style="font-size: 1.2rem; font-weight: 500; margin-bottom: 1.5rem;">Question text</div>
+                <div id="quiz-options">
+                    </div>
+                <div id="quiz-feedback" style="margin-top: 1rem; padding: 1rem; border-radius: 8px; display: none;"></div>
+                <button id="quiz-next-btn" class="btn btn-primary mt-4" style="margin-top: 1.5rem; display: none; width:100%;" onclick="app.quizNext()">Next Question</button>
+            </div>
+            <div id="quiz-result-ui" style="display: none; text-align: center;">
+                <i class="fa-solid fa-trophy" style="font-size: 4rem; color: var(--warning); margin-bottom: 1rem;"></i>
+                <h2>Quiz Completed!</h2>
+                <p>Your Score: <span id="quiz-final-score" style="font-size: 1.5rem; font-weight:bold; color:var(--primary);"></span> / 8</p>
+                <button class="btn btn-primary mt-4" style="margin-top: 2rem;" onclick="app.startQuiz()">Retake Quiz</button>
+            </div>
+        </div>
     </div>
 
-    <button class="secondary" style="margin-top:18px" onclick="adminLogout()">
-      Sign Out
-    </button>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-  <div class="sectionHead">
-    <span class="eyebrow">Connect</span>
-    <h2>Contact AUREXA</h2>
-    <p>For partnerships, security projects and collaboration.</p>
-  </div>
-
-  <div class="panel" style="max-width:750px">
-    <div class="field">
-      <label>Name</label>
-      <input id="contactName" placeholder="Your name">
-    </div>
-
-    <div class="field">
-      <label>Email</label>
-      <input id="contactEmail" type="email" placeholder="you@example.com">
-    </div>
-
-    <div class="field">
-      <label>Message</label>
-      <textarea id="contactMsg" rows="6" placeholder="Your message"></textarea>
-    </div>
-
-    <button class="primary" onclick="sendContact()">Send Message</button>
-  </div>
-</section>
-
-</main>
-
-<footer class="footer">
-  <div class="footerInner">
-    <div>© 2026 AUREXA — AI-Powered Cybersecurity</div>
-    <div>Detect • Analyze • Respond • Protect</div>
-  </div>
-</footer>
-
-<div id="toast" class="toast"></div>
-
-<div id="founderModal" class="modal">
-  <div class="modalBox">
-    <h2>Founder Profile</h2>
-    <div class="field">
-      <label>Founder Name</label>
-      <input id="founderNameInput" placeholder="Founder / CEO">
-    </div>
-    <div class="field">
-      <label>Founder Photo</label>
-      <input id="founderFile" type="file" accept="image/*">
-    </div>
-    <div class="buttons">
-      <button class="primary" onclick="saveFounder()">Save Profile</button>
-      <button class="secondary" onclick="closeFounder()">Cancel</button>
-    </div>
-  </div>
-</div>
-
-<script>
-/* =========================================================
-   AUREXA SINGLE-FILE APPLICATION
-   ========================================================= */
-
-const $ = id => document.getElementById(id);
-
-function toast(message){
-  const t=$("toast");
-  t.textContent=message;
-  t.classList.add("show");
-  setTimeout(()=>t.classList.remove("show"),2600);
-}
-
-function go(id){
-  const el=$(id);
-  if(el) el.scrollIntoView({behavior:"smooth",block:"start"});
-}
-
-function toggleDrawer(){
-  $("drawer").classList.toggle("open");
-}
-function closeDrawer(){
-  $("drawer").classList.remove("open");
-}
-
-/* 3D / NETWORK BACKGROUND */
-const canvas=$("network");
-const ctx=canvas.getContext("2d");
-let W,H,nodes=[];
-
-function resizeCanvas(){
-  W=canvas.width=innerWidth*devicePixelRatio;
-  H=canvas.height=innerHeight*devicePixelRatio;
-  canvas.style.width=innerWidth+"px";
-  canvas.style.height=innerHeight+"px";
-
-  nodes=Array.from({length:Math.min(75,Math.floor(innerWidth/14))},()=>({
-    x:Math.random()*W,
-    y:Math.random()*H,
-    vx:(Math.random()-.5)*.28*devicePixelRatio,
-    vy:(Math.random()-.5)*.28*devicePixelRatio
-  }));
-}
-resizeCanvas();
-addEventListener("resize",resizeCanvas);
-
-function animateNetwork(){
-  ctx.clearRect(0,0,W,H);
-
-  for(const p of nodes){
-    p.x+=p.vx;
-    p.y+=p.vy;
-
-    if(p.x<0||p.x>W)p.vx*=-1;
-    if(p.y<0||p.y>H)p.vy*=-1;
-
-    ctx.fillStyle="rgba(0,229,255,.55)";
-    ctx.beginPath();
-    ctx.arc(p.x,p.y,2.1*devicePixelRatio,0,Math.PI*2);
-    ctx.fill();
-  }
-
-  for(let i=0;i<nodes.length;i++){
-    for(let j=i+1;j<nodes.length;j++){
-      const dx=nodes[i].x-nodes[j].x;
-      const dy=nodes[i].y-nodes[j].y;
-      const d=Math.sqrt(dx*dx+dy*dy);
-
-      if(d<170*devicePixelRatio){
-        ctx.strokeStyle=`rgba(0,124,255,${.15*(1-d/(170*devicePixelRatio))})`;
-        ctx.lineWidth=devicePixelRatio;
-        ctx.beginPath();
-        ctx.moveTo(nodes[i].x,nodes[i].y);
-        ctx.lineTo(nodes[j].x,nodes[j].y);
-        ctx.stroke();
-      }
-    }
-  }
-
-  requestAnimationFrame(animateNetwork);
-}
-animateNetwork();
-
-/* SEARCH */
-function globalSearch(e){
-  if(e.key==="Enter"){
-    const q=e.target.value.toLowerCase();
-
-    if(q.includes("scan")||q.includes("url")) go("scanner");
-    else if(q.includes("copilot")||q.includes("ai")) go("copilot");
-    else if(q.includes("news")||q.includes("cve")) go("news");
-    else if(q.includes("alert")) go("alerts");
-    else if(q.includes("admin")) go("admin");
-    else if(q.includes("fraud")) go("fraud");
-    else if(q.includes("founder")) go("about");
-    else toast("Search completed — try scanner, news, alerts or Copilot.");
-  }
-}
-
-document.addEventListener("keydown",e=>{
-  if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==="k"){
-    e.preventDefault();
-    $("globalSearch").focus();
-  }
-});
-
-/* THEME */
-function toggleTheme(){
-  document.body.classList.toggle("lightMode");
-
-  if(document.body.classList.contains("lightMode")){
-    document.documentElement.style.setProperty("--bg","#eef5ff");
-    document.documentElement.style.setProperty("--bg2","#fff");
-    document.documentElement.style.setProperty("--text","#08142e");
-    document.documentElement.style.setProperty("--muted","#536783");
-    document.documentElement.style.setProperty("--panel","#fff");
-    document.documentElement.style.setProperty("--panel2","#fff");
-  }else{
-    document.documentElement.style.setProperty("--bg","#030719");
-    document.documentElement.style.setProperty("--bg2","#071027");
-    document.documentElement.style.setProperty("--text","#f5f8ff");
-    document.documentElement.style.setProperty("--muted","#91a3c1");
-    document.documentElement.style.setProperty("--panel","#08142e");
-    document.documentElement.style.setProperty("--panel2","#0b1a3b");
-  }
-
-  localStorage.setItem("aurexaTheme",
-    document.body.classList.contains("lightMode")?"light":"dark");
-}
-
-if(localStorage.getItem("aurexaTheme")==="light") toggleTheme();
-
-/* SCANNER */
-let scanType="url";
-let latestScan=null;
-
-function setScanType(btn,type){
-  scanType=type;
-
-  document.querySelectorAll(".tab").forEach(x=>{
-    if(x.parentElement===btn.parentElement)x.classList.remove("active");
-  });
-  btn.classList.add("active");
-
-  const input=$("scanInput");
-
-  const placeholders={
-    url:"https://example.com/login",
-    domain:"example.com",
-    ip:"8.8.8.8",
-    apk:"APK / file name"
-  };
-
-  input.placeholder=placeholders[type];
-  input.value="";
-}
-
-function runScan(){
-  const value=$("scanInput").value.trim();
-
-  if(!value){
-    toast("Enter a target first.");
-    return;
-  }
-
-  let score=0;
-  let indicators=[];
-
-  const lower=value.toLowerCase();
-
-  if(scanType==="url"){
-    if(!/^https?:\/\//i.test(value)){
-      score+=8;
-      indicators.push("URL does not explicitly specify HTTP/HTTPS.");
-    }
-
-    if(/^https:\/\//i.test(value)){
-      indicators.push("HTTPS transport detected.");
-    }
-
-    if(lower.includes("@")){
-      score+=28;
-      indicators.push("Suspicious @ character found in URL.");
-    }
-
-    if(lower.includes("xn--")){
-      score+=35;
-      indicators.push("Punycode domain indicator detected.");
-    }
-
-    const suspiciousWords=[
-      "login","verify","secure","account","wallet",
-      "password","update","claim","bonus","bank"
-    ];
-
-    const matches=suspiciousWords.filter(x=>lower.includes(x));
-
-    if(matches.length>=2){
-      score+=22;
-      indicators.push("Multiple credential/payment themed keywords detected.");
-    }
-
-    const hyphens=(value.match(/-/g)||[]).length;
-    if(hyphens>=4){
-      score+=12;
-      indicators.push("Unusually high number of hyphens.");
-    }
-  }
-
-  if(scanType==="domain"){
-    if(lower.includes("xn--")){
-      score+=35;
-      indicators.push("Punycode domain detected.");
-    }
-    if((lower.match(/-/g)||[]).length>=4){
-      score+=15;
-      indicators.push("Complex domain structure detected.");
-    }
-    indicators.push("Domain structural analysis completed.");
-  }
-
-  if(scanType==="ip"){
-    const parts=value.split(".");
-    if(parts.length!==4||parts.some(x=>isNaN(x)||Number(x)<0||Number(x)>255)){
-      score=55;
-      indicators.push("Input does not appear to be a standard IPv4 address.");
-    }else{
-      indicators.push("Valid IPv4 structure detected.");
-    }
-  }
-
-  if(scanType==="apk"){
-    const risky=["crack","mod","hack","premium","free","cheat","unknown"];
-    if(risky.some(x=>lower.includes(x))){
-      score+=40;
-      indicators.push("Filename contains suspicious distribution keywords.");
-    }
-    indicators.push("File name analysis completed.");
-  }
-
-  score=Math.min(100,score);
-
-  let label="LOW RISK";
-  let color="var(--green)";
-
-  if(score>=70){
-    label="CRITICAL RISK";
-    color="var(--red)";
-  }else if(score>=45){
-    label="HIGH RISK";
-    color="var(--red)";
-  }else if(score>=25){
-    label="MEDIUM RISK";
-    color="var(--orange)";
-  }
-
-  if(indicators.length===0)
-    indicators.push("No obvious structural anomalies detected.");
-
-  $("scanResult").classList.add("show");
-  $("targetOutput").textContent="Target: "+value;
-
-  $("riskCircle").textContent=score;
-  $("riskCircle").style.borderColor=color;
-  $("riskLabel").textContent=label;
-  $("riskLabel").style.color=color;
-
-  $("indicators").innerHTML=`
-    <div class="indicator"><b>Analysis type:</b> ${scanType.toUpperCase()}</div>
-    ${indicators.map(x=>`<div class="indicator">✓ ${escapeHTML(x)}</div>`).join("")}
-    <div class="indicator" style="color:var(--muted)">
-      Note: This is local heuristic analysis. External reputation,
-      malware sandboxing and DNS intelligence require configured APIs.
-    </div>
-  `;
-
-  latestScan={
-    target:value,
-    type:scanType,
-    score,
-    label,
-    indicators,
-    time:new Date().toISOString()
-  };
-
-  const reports=JSON.parse(localStorage.getItem("aurexaReports")||"[]");
-  reports.unshift(latestScan);
-  localStorage.setItem("aurexaReports",JSON.stringify(reports.slice(0,50)));
-
-  updateAdmin();
-  renderReports();
-
-  $("checks").textContent=(124582+reports.length).toLocaleString();
-
-  toast("Security analysis completed.");
-}
-
-function saveReport(){
-  if(!latestScan){
-    toast("Run a scan first.");
-    return;
-  }
-  toast("Security report saved locally.");
-}
-
-/* COPILOT */
-function sendChat(){
-  const input=$("chatInput");
-  const text=input.value.trim();
-
-  if(!text)return;
-
-  addMessage(text,"user");
-  input.value="";
-
-  setTimeout(()=>{
-    const q=text.toLowerCase();
-    let answer="";
-
-    if(q.includes("phishing")){
-      answer="Phishing attempts commonly use urgency, fake login pages and suspicious links. Verify the sender and domain independently, and never submit credentials through an unexpected link.";
-    }else if(q.includes("malware")){
-      answer="For suspected malware, disconnect the affected device from untrusted networks, avoid executing unknown files, preserve evidence and use trusted security software for analysis.";
-    }else if(q.includes("password")){
-      answer="Use unique long passwords and enable MFA. If you believe an account is compromised, change credentials from a trusted device and revoke unknown sessions.";
-    }else if(q.includes("url")||q.includes("link")){
-      answer="Paste the suspicious URL into the AUREXA Security Scanner. Remember that HTTPS alone does not prove that a website is trustworthy.";
-    }else if(q.includes("fraud")){
-      answer="If you experience cyber fraud, contact your bank/payment provider quickly, preserve transaction evidence and report the incident through the appropriate official authorities.";
-    }else{
-      answer="I can help with phishing, suspicious URLs, malware awareness, passwords, account compromise, incident response and defensive cybersecurity practices.";
-    }
-
-    addMessage(answer,"bot");
-  },650);
-}
-
-function addMessage(text,type){
-  const box=document.createElement("div");
-  box.className="msg "+type;
-  box.innerHTML=escapeHTML(text);
-  $("messages").appendChild(box);
-  $("messages").scrollTop=$("messages").scrollHeight;
-}
-
-/* NEWS */
-const defaultNews=[
- {
-  category:"Vulnerability",
-  severity:"HIGH",
-  title:"Critical vulnerabilities require rapid patch management",
-  time:"Security intelligence"
- },
- {
-  category:"Phishing",
-  severity:"HIGH",
-  title:"Phishing campaigns continue targeting online credentials",
-  time:"Threat awareness"
- },
- {
-  category:"AI Security",
-  severity:"MEDIUM",
-  title:"AI-assisted social engineering increases defensive challenges",
-  time:"Security research"
- },
- {
-  category:"Vulnerability",
-  severity:"MEDIUM",
-  title:"Organizations urged to review exposed internet-facing services",
-  time:"Security advisory"
- },
- {
-  category:"Phishing",
-  severity:"HIGH",
-  title:"Fake mobile applications remain a common credential threat",
-  time:"Threat intelligence"
- },
- {
-  category:"AI Security",
-  severity:"LOW",
-  title:"Security teams adopt AI copilots for faster triage",
-  time:"Industry update"
- }
-];
-
-function renderNews(filter="all"){
-  const grid=$("newsGrid");
-  const data=defaultNews.filter(n=>
-    filter==="all"||n.category===filter
-  );
-
-  grid.innerHTML=data.map(n=>`
-    <article class="card newsCard">
-      <span class="badge ${n.severity.toLowerCase()}">${n.severity}</span>
-      <small class="eyebrow">${n.category}</small>
-      <h3>${escapeHTML(n.title)}</h3>
-      <div class="newsMeta">${n.time} · AUREXA Security Intelligence</div>
-    </article>
-  `).join("");
-}
-
-function filterNews(filter,btn){
-  document.querySelectorAll("#news .tab").forEach(x=>x.classList.remove("active"));
-  btn.classList.add("active");
-  renderNews(filter);
-}
-renderNews();
-
-/* ALERTS */
-let alerts=[
- {
-  level:"HIGH",
-  title:"External threat intelligence not configured",
-  text:"Connect a legitimate threat-intelligence service for reputation analysis.",
-  read:false
- },
- {
-  level:"MEDIUM",
-  title:"Security scanner operational",
-  text:"Local heuristic analysis is available.",
-  read:false
- },
- {
-  level:"LOW",
-  title:"Platform status nominal",
-  text:"AUREXA frontend services are operational.",
-  read:true
- }
-];
-
-function renderAlerts(){
-  $("alertsList").innerHTML=alerts.map((a,i)=>`
-    <div class="alert" style="opacity:${a.read?.55:1}">
-      <div class="alertDot ${a.level==='HIGH'?'red':''}"></div>
-      <div>
-        <b>${a.level} · ${escapeHTML(a.title)}</b>
-        <p style="color:var(--muted);margin-top:5px">${escapeHTML(a.text)}</p>
-      </div>
-    </div>
-  `).join("");
-}
-renderAlerts();
-
-function markAlertsRead(){
-  alerts.forEach(x=>x.read=true);
-  renderAlerts();
-  toast("All alerts marked as read.");
-}
-
-/* REPORTS */
-function renderReports(){
-  const reports=JSON.parse(localStorage.getItem("aurexaReports")||"[]");
-
-  if(!reports.length){
-    $("reportsList").innerHTML=`
-      <div style="padding:40px;text-align:center;color:var(--muted)">
-        No security reports yet. Run a scan to create your first report.
-      </div>`;
-    return;
-  }
-
-  $("reportsList").innerHTML=reports.map((r,i)=>`
-    <div class="indicator">
-      <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap">
-        <b>${escapeHTML(r.target)}</b>
-        <span style="color:${r.score>=45?'var(--red)':'var(--green)'}">
-          ${r.score}/100 · ${r.label}
-        </span>
-      </div>
-      <small style="color:var(--muted)">
-        ${new Date(r.time).toLocaleString()} · ${r.type.toUpperCase()}
-      </small>
-    </div>
-  `).join("");
-}
-renderReports();
-
-/* ADMIN */
-function adminLogin(){
-  const user=$("adminUser").value.trim();
-  const pass=$("adminPass").value;
-
-  if(!user||!pass){
-    toast("Enter administrator credentials.");
-    return;
-  }
-
-  /*
-    Standalone mode:
-    We intentionally do NOT hard-code a real production password.
-    A backend must validate credentials in production.
-  */
-  localStorage.setItem("aurexaAdmin","true");
-
-  $("adminLogin").classList.add("hidden");
-  $("adminDashboard").classList.remove("hidden");
-
-  updateAdmin();
-  toast("Administrator session started.");
-}
-
-function adminLogout(){
-  localStorage.removeItem("aurexaAdmin");
-  $("adminLogin").classList.remove("hidden");
-  $("adminDashboard").classList.add("hidden");
-  toast("Administrator session ended.");
-}
-
-function updateAdmin(){
-  const reports=JSON.parse(localStorage.getItem("aurexaReports")||"[]");
-
-  $("aScans").textContent=reports.length;
-  $("aReports").textContent=reports.length;
-  $("aAlerts").textContent=alerts.filter(x=>!x.read).length;
-
-  $("adminActivity").innerHTML=reports.length
-    ? `<table class="adminTable">
-        <tr><th>Target</th><th>Risk</th><th>Time</th></tr>
-        ${reports.slice(0,8).map(r=>`
-          <tr>
-            <td>${escapeHTML(r.target)}</td>
-            <td>${r.score}/100</td>
-            <td>${new Date(r.time).toLocaleString()}</td>
-          </tr>
-        `).join("")}
-       </table>`
-    : `<p style="color:var(--muted);margin-top:20px">No scan activity.</p>`;
-}
-
-if(localStorage.getItem("aurexaAdmin")==="true"){
-  $("adminLogin").classList.add("hidden");
-  $("adminDashboard").classList.remove("hidden");
-}
-updateAdmin();
-
-function clearReports(){
-  if(confirm("Delete all locally stored scan records?")){
-    localStorage.removeItem("aurexaReports");
-    renderReports();
-    updateAdmin();
-    toast("Local records cleared.");
-  }
-}
-
-/* FOUNDER */
-function openFounderUpload(){
-  $("founderModal").classList.add("show");
-
-  const saved=JSON.parse(localStorage.getItem("aurexaFounder")||"null");
-
-  if(saved){
-    $("founderNameInput").value=saved.name||"";
-  }
-}
-
-function closeFounder(){
-  $("founderModal").classList.remove("show");
-}
-
-function saveFounder(){
-  const name=$("founderNameInput").value.trim()||"AUREXA Founder";
-  const file=$("founderFile").files[0];
-
-  if(file){
-    const reader=new FileReader();
-
-    reader.onload=()=>{
-      localStorage.setItem("aurexaFounder",
-        JSON.stringify({name,photo:reader.result})
-      );
-      applyFounder();
-      closeFounder();
-      toast("Founder profile updated.");
-    };
-
-    reader.readAsDataURL(file);
-  }else{
-    const old=JSON.parse(localStorage.getItem("aurexaFounder")||"{}");
-
-    localStorage.setItem("aurexaFounder",
-      JSON.stringify({name,photo:old.photo||""})
-    );
-
-    applyFounder();
-    closeFounder();
-    toast("Founder profile updated.");
-  }
-}
-
-function applyFounder(){
-  const saved=JSON.parse(localStorage.getItem("aurexaFounder")||"null");
-
-  if(!saved)return;
-
-  $("founderName").textContent=saved.name||"AUREXA Founder";
-
-  if(saved.photo){
-    $("founderContainer").innerHTML=
-      `<img class="founderPhoto" src="${saved.photo}" alt="AUREXA Founder">`;
-  }
-}
-applyFounder();
-
-/* CONTACT */
-function sendContact(){
-  const name=$("contactName").value.trim();
-  const email=$("contactEmail").value.trim();
-  const msg=$("contactMsg").value.trim();
-
-  if(!name||!email||!msg){
-    toast("Please complete all fields.");
-    return;
-  }
-
-  toast("Message prepared successfully.");
-  $("contactName").value="";
-  $("contactEmail").value="";
-  $("contactMsg").value="";
-}
-
-/* UTIL */
-function escapeHTML(str){
-  return String(str).replace(/[&<>"']/g,m=>({
-    "&":"&amp;",
-    "<":"&lt;",
-    ">":"&gt;",
-    '"':"&quot;",
-    "'":"&#039;"
-  }[m]));
-}
-
-/* CLOSE DRAWER WHEN CLICKING OUTSIDE */
-document.addEventListener("click",e=>{
-  const drawer=$("drawer");
-  const menu=document.querySelector(".menuBtn");
-
-  if(drawer.classList.contains("open") &&
-     !drawer.contains(e.target) &&
-     !menu.contains(e.target)){
-    drawer.classList.remove("open");
-  }
-});
-
-/* INITIAL COUNTER ANIMATION */
-function countUp(id,target){
-  const el=$(id);
-  let n=0;
-  const step=Math.ceil(target/40);
-
-  const timer=setInterval(()=>{
-    n+=step;
-    if(n>=target){
-      n=target;
-      clearInterval(timer);
-    }
-    el.textContent=n.toLocaleString();
-  },25);
-}
-
-countUp("checks",124582);
-countUp("threats",8421);
-</script>
-
+    <div id="toast-container"></div>
+
+    <script>
+        const app = {
+            // State
+            theme: 'dark',
+            isAdmin: false,
+            currentView: 'home',
+            reports: JSON.parse(localStorage.getItem('cyberguard_reports')) || [],
+            charts: {},
+            
+            // Data
+            alerts: [
+                { id: 'AL-01', title: 'New SBI Phishing Campaign', type: 'critical', desc: 'Fraudsters sending SMS asking users to update PAN via malicious link: sbi-kyc-update.com.', date: 'Today' },
+                { id: 'AL-02', title: 'FedEx Package Scam', type: 'high', desc: 'Fake delivery notifications requesting small customs fee via UPI.', date: 'Today' },
+                { id: 'AL-03', title: 'Telegram Task Fraud', type: 'critical', desc: 'Users added to groups promising money for liking YouTube videos, later asked to "invest".', date: 'Yesterday' },
+                { id: 'AL-04', title: 'TRAI Disconnection Threat', type: 'high', desc: 'Robocalls claiming mobile number will be blocked in 2 hours unless user presses 9.', date: 'Yesterday' },
+                { id: 'AL-05', title: 'WhatsApp Wedding Invite APK', type: 'critical', desc: 'Malicious APK files disguised as wedding invitations stealing OTPs.', date: '2 days ago' },
+                { id: 'AL-06', title: 'Zero-day Browser Vulnerability', type: 'info', desc: 'Update Chrome to latest version to patch CVE-2026-XXXX.', date: '3 days ago' }
+            ],
+
+            awarenessData: {
+                phishing: { title: '<i class="fa-solid fa-fish-fins text-primary"></i> Phishing Defence', content: '<p>Phishing is a method where attackers deceive you into revealing sensitive information by pretending to be a trustworthy entity.</p><br><b>Red Flags:</b><ul><li>Urgent or threatening language ("Account suspended!").</li><li>Generic greetings ("Dear Customer").</li><li>Mismatched URLs (looks like bank.com but is actually b4nk-security.com).</li><li>Requests for passwords, PINs, or OTPs.</li></ul><br><b>Action:</b> Never click links in unexpected emails/SMS. Navigate to the official website manually.' },
+                upi: { title: '<i class="fa-solid fa-mobile-screen text-primary"></i> UPI & Banking Safety', content: '<p>UPI fraud often tricks victims into approving a payment instead of receiving one.</p><br><b>Golden Rule:</b> You NEVER need to enter your UPI PIN to <i>receive</i> money. PIN is only for deducting money from your account.<br><br><b>Common Scams:</b><ul><li>OLX/Marketplace buyer sending a "Receive Money" QR code.</li><li>Customer care numbers found on Google search (often manipulated by scammers).</li><li>Screen sharing apps (AnyDesk) used to read your OTPs.</li></ul>' },
+                social: { title: '<i class="fa-solid fa-users-viewfinder text-primary"></i> Social Engineering', content: '<p>Social engineering manipulates human psychology rather than technical hacking.</p><br><b>Tactics:</b><ul><li><b>Authority:</b> Pretending to be Police, Customs, or Telecom regulator (TRAI).</li><li><b>Panic:</b> "Your child is in police custody, send money for bail."</li><li><b>Greed:</b> "You won a lottery, pay tax to claim."</li></ul><br><b>Defence:</b> Pause and verify. Scammers want you to act fast without thinking. Hang up and call the official entity.' },
+                jobs: { title: '<i class="fa-solid fa-briefcase text-primary"></i> Fake Job & Task Scams', content: '<p>Preying on job seekers with fake offers that require upfront payment.</p><br><b>How it works:</b><ul><li>Receive WhatsApp message offering part-time work (e.g., liking videos, reviewing hotels).</li><li>Initial small tasks actually pay out, building trust.</li><li>Suddenly, you must "upgrade" or pay a "security deposit" for premium tasks.</li><li>Once large sums are paid, the scammers disappear.</li></ul><br><b>Rule:</b> Legitimate employers never ask YOU to pay for a job.' }
+            },
+
+            quizQuestions: [
+                { q: "You receive an SMS saying your bank account is blocked. It has a link to 'verify PAN'. What do you do?", opts: ["Click it quickly to avoid block", "Reply with PAN details", "Ignore and check official app directly", "Forward to friends"], ans: 2, exp: "Banks never send SMS links for KYC/PAN updates. Always use the official app." },
+                { q: "Someone buying your item on OLX sends a QR code and says 'scan to receive money'.", opts: ["Scan it to get paid", "Decline, scanning QR/entering PIN is only for sending money", "Ask them to send double", "Give them your card details instead"], ans: 1, exp: "UPI PIN is NEVER required to receive money." },
+                { q: "A 'police officer' video calls you in uniform saying your Aadhaar is linked to money laundering.", opts: ["Transfer money to 'safe account' as instructed", "Give them your OTPs to clear your name", "Disconnect immediately and report to 1930", "Stay on call for 4 hours"], ans: 2, exp: "This is Digital Arrest fraud. Real police don't interrogate via Skype/WhatsApp." },
+                { q: "What does 'HTTPS' in a website address indicate?", opts: ["The site is 100% safe from scams", "Data sent between you and site is encrypted", "It's a government website", "It has no viruses"], ans: 1, exp: "HTTPS means encrypted connection, but scammers can easily get HTTPS certificates for fake sites." },
+                { q: "You want to call customer care. Where should you find the number?", opts: ["First Google Search result", "Comments on YouTube", "The official app or back of your debit card", "Twitter random replies"], ans: 2, exp: "Scammers manipulate Google Search results using Ads and SEO. Always use official apps/cards." },
+                { q: "Which of these is a strong password?", opts: ["Password@123", "Rohan1990", "Tr33!Blk$9Qw", "qwerty"], ans: 2, exp: "Long, mix of cases, numbers, and symbols without personal info like names/birthyears." },
+                { q: "A WhatsApp message offers ₹5000/day just to like YouTube videos.", opts: ["Accept immediately", "It's a Task Fraud scam. Ignore/Block.", "Ask them for advance", "Share bank details"], ans: 1, exp: "Classic task scam. They pay ₹150 first to build trust, then steal lakhs." },
+                { q: "You realize you've been scammed and lost money. What is the immediate first step?", opts: ["Cry and do nothing", "Call 1930 or visit cybercrime.gov.in immediately", "Hire a 'hacker' on Instagram to recover it", "Delete your bank account"], ans: 1, exp: "Reporting immediately to 1930 increases chances of freezing the scammer's accounts. Never trust 'recovery hackers'." }
+            ],
+            quizState: { index: 0, score: 0 },
+
+            // --- INITIALIZATION ---
+            init() {
+                this.updateClock();
+                setInterval(() => this.updateClock(), 1000);
+                
+                this.setupNavigation();
+                this.setupTabs();
+                this.renderAlerts();
+                this.generateMapDots();
+                
+                // Initialize admin state from storage
+                if(localStorage.getItem('cyberguard_admin') === 'true') {
+                    this.isAdmin = true;
+                    document.getElementById('nav-login').innerHTML = '<i class="fa-solid fa-shield"></i> SOC';
+                }
+
+                // Initial theme setup
+                const savedTheme = localStorage.getItem('cyberguard_theme') || 'dark';
+                if(savedTheme === 'light') {
+                    this.theme = 'dark'; // will toggle to light
+                    this.toggleTheme();
+                }
+
+                // Increment demo counters
+                let count = parseInt(localStorage.getItem('cyberguard_counter') || '14032');
+                document.getElementById('counter-threats').innerText = count.toLocaleString();
+            },
+
+            // --- NAVIGATION ---
+            setupNavigation() {
+                const links = document.querySelectorAll('.nav-link[data-target]');
+                const sections = document.querySelectorAll('.view-section');
+                const menuBtn = document.getElementById('mobile-menu-btn');
+                const navLinksContainer = document.getElementById('nav-links');
+
+                links.forEach(link => {
+                    link.addEventListener('click', (e) => {
+                        const target = e.target.closest('.nav-link').dataset.target;
+                        
+                        // Auth check for dashboard
+                        if (target === 'dashboard' && !this.isAdmin) {
+                            this.toggleLoginModal();
+                            return;
+                        }
+
+                        this.navigate(target);
+                        if(window.innerWidth <= 768) navLinksContainer.classList.remove('active');
+                    });
+                });
+
+                menuBtn.addEventListener('click', () => {
+                    navLinksContainer.classList.toggle('active');
+                });
+            },
+
+            navigate(targetId) {
+                document.querySelectorAll('.view-section').forEach(s => s.classList.remove('active'));
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                
+                document.getElementById(targetId).classList.add('active');
+                
+                const link = document.querySelector(`.nav-link[data-target="${targetId}"]`);
+                if(link) link.classList.add('active');
+
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+
+                if(targetId === 'dashboard') this.initDashboard();
+            },
+
+            setupTabs() {
+                const tabBtns = document.querySelectorAll('.tab-btn');
+                tabBtns.forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                        
+                        btn.classList.add('active');
+                        document.getElementById(btn.dataset.tab).classList.add('active');
+                        
+                        // Reset analysis area
+                        document.getElementById('analysis-result').style.display = 'none';
+                        document.getElementById('analysis-idle').style.display = 'block';
+                    });
+                });
+            },
+
+            // --- SCANNER LOGIC (Simulated AI) ---
+            async runScan(type) {
+                let input = "";
+                let score = 0;
+                let indicators = [];
+                let rec = "";
+                
+                if (type === 'url') {
+                    input = document.getElementById('scan-url-input').value.toLowerCase();
+                    if(!input) return this.showToast('Please enter a URL', 'error');
+                    
+                    if(!input.startsWith('https://')) { score += 40; indicators.push('Missing secure HTTPS protocol'); }
+                    if(input.includes('.xyz') || input.includes('.top') || input.includes('.tk')) { score += 50; indicators.push('Suspicious Top-Level Domain (TLD)'); }
+                    if((input.match(/-/g) || []).length > 2) { score += 30; indicators.push('Excessive hyphens (phishing tactic)'); }
+                    if(/\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/.test(input)) { score += 80; indicators.push('Raw IP address used instead of domain'); }
+                    if(/login|update|verify|secure|auth|account|kyc/.test(input)) { score += 40; indicators.push('Suspicious keywords in domain'); }
+                    
+                } else if (type === 'message') {
+                    input = document.getElementById('scan-msg-input').value.toLowerCase();
+                    if(!input) return this.showToast('Please enter a message', 'error');
+                    
+                    if(/urgent|immediate|suspend|block|limit/.test(input)) { score += 40; indicators.push('Urgency / Panic language detected'); }
+                    if(/otp|pin|password|cvv/.test(input)) { score += 60; indicators.push('Request for sensitive credentials'); }
+                    if(/win|lottery|prize|reward|gift/.test(input)) { score += 50; indicators.push('Too-good-to-be-true claims (Greed hook)'); }
+                    if(/http[s]?:\/\//.test(input)) { score += 30; indicators.push('Contains embedded hyperlink'); }
+                    if(/apk|download|install/.test(input)) { score += 60; indicators.push('Prompts software installation (Malware risk)'); }
+                    if(/task|youtube|like|subscribe|part time/.test(input)) { score += 70; indicators.push('Matches Fake Task / Job Scam patterns'); }
+                } else if (type === 'email') {
+                    input = document.getElementById('scan-email-subj').value + " " + document.getElementById('scan-email-body').value;
+                    input = input.toLowerCase();
+                    if(input.trim() === "") return this.showToast('Please enter email content', 'error');
+                    
+                    if(/dear customer|dear user/.test(input)) { score += 20; indicators.push('Generic non-personalized greeting'); }
+                    if(/invoice|payment|receipt/.test(input) && /attached|attachment/.test(input)) { score += 40; indicators.push('High-risk attachment context (Malware/Ransomware)'); }
+                    if(/kindly click|verify account/.test(input)) { score += 40; indicators.push('Call-to-action leading to potential phishing'); }
+                    if(/hacked|compromised|video/.test(input)) { score += 50; indicators.push('Extortion / Sextortion language patterns'); }
+                }
+
+                // Base risk adjustment
+                if (score === 0) {
+                    if(input.length > 5) { indicators.push('No obvious threat signatures found in local DB.'); score = 5; }
+                }
+                if (score > 100) score = 99;
+
+                // UI Processing Animation
+                const panelIdle = document.getElementById('analysis-idle');
+                const panelRes = document.getElementById('analysis-result');
+                const overlay = document.getElementById('analysis-loading');
+                const stepsText = document.getElementById('scan-steps');
+                
+                panelIdle.style.display = 'none';
+                panelRes.style.display = 'none';
+                overlay.style.display = 'flex';
+
+                const steps = ["Extracting text features...", "Running NLP pattern matching...", "Checking static signatures...", "Calculating final risk score..."];
+                for(let i=0; i<steps.length; i++) {
+                    stepsText.innerText = steps[i];
+                    await new Promise(r => setTimeout(r, 600));
+                }
+
+                overlay.style.display = 'none';
+                panelRes.style.display = 'block';
+
+                // Render Results
+                this.renderScanResult(score, indicators);
+                
+                // Update Counter
+                let count = parseInt(localStorage.getItem('cyberguard_counter') || '14032');
+                count++;
+                localStorage.setItem('cyberguard_counter', count);
+                document.getElementById('counter-threats').innerText = count.toLocaleString();
+            },
+
+            renderScanResult(score, indicators) {
+                const gaugeFill = document.getElementById('risk-gauge');
+                const scoreText = document.getElementById('risk-score-text');
+                const badge = document.getElementById('risk-badge');
+                const indList = document.getElementById('indicator-list');
+                const rec = document.getElementById('ai-recommendation');
+
+                // Animate gauge
+                setTimeout(() => {
+                    const rotation = -45 + (score * 1.8); // 0 score = -45deg, 100 score = 135deg
+                    gaugeFill.style.transform = `rotate(${rotation}deg)`;
+                }, 100);
+
+                let color = 'var(--success)';
+                let level = 'SAFE';
+                let bClass = 'badge-success';
+                let action = "No immediate threat detected. Still, remain vigilant and do not share personal info.";
+
+                if(score > 30) { color = 'var(--info)'; level = 'LOW RISK'; bClass = 'badge-info'; action = "Proceed with caution. Verify the sender/source independently before clicking any links."; }
+                if(score > 60) { color = 'var(--warning)'; level = 'HIGH RISK'; bClass = 'badge-warning'; action = "Highly suspicious. Do not click links, reply, or download attachments. Delete message."; }
+                if(score > 80) { color = 'var(--danger)'; level = 'CRITICAL'; bClass = 'badge-danger'; action = "MALICIOUS CONTENT DETECTED. Block the sender immediately. Do not interact. Report to authorities if data was shared."; }
+
+                gaugeFill.style.borderTopColor = color;
+                gaugeFill.style.borderRightColor = color;
+                scoreText.innerText = score;
+                scoreText.style.color = color;
+                
+                badge.className = `badge ${bClass}`;
+                badge.innerText = level;
+
+                indList.innerHTML = indicators.map(ind => 
+                    `<div class="indicator-item">
+                        <i class="fa-solid ${score > 60 ? 'fa-triangle-exclamation text-danger' : 'fa-check text-success'}"></i>
+                        ${ind}
+                    </div>`
+                ).join('');
+
+                rec.innerText = action;
+            },
+
+            // --- REPORTING ---
+            submitReport(e) {
+                e.preventDefault();
+                
+                const report = {
+                    id: 'INC-' + Math.floor(Math.random() * 100000),
+                    name: document.getElementById('rep-name').value,
+                    email: document.getElementById('rep-email').value,
+                    type: document.getElementById('rep-type').value,
+                    amount: document.getElementById('rep-amount').value || 0,
+                    source: document.getElementById('rep-source').value,
+                    desc: document.getElementById('rep-desc').value,
+                    date: new Date().toLocaleDateString(),
+                    status: 'Open'
+                };
+
+                this.reports.unshift(report);
+                localStorage.setItem('cyberguard_reports', JSON.stringify(this.reports));
+                
+                document.getElementById('fraud-form').reset();
+                this.showToast('Fraud report logged to local SOC successfully!', 'success');
+            },
+
+            // --- DASHBOARD (ADMIN) ---
+            initDashboard() {
+                document.getElementById('dash-total').innerText = this.reports.length;
+                
+                const totalAmount = this.reports.reduce((sum, r) => sum + Number(r.amount), 0);
+                document.getElementById('dash-loss').innerText = '₹' + totalAmount.toLocaleString();
+                
+                let resolved = this.reports.filter(r => r.status === 'Resolved').length;
+                document.getElementById('dash-resolved').innerText = resolved;
+                document.getElementById('dash-critical').innerText = this.reports.filter(r => r.type.includes('Fraud') || r.type.includes('Phishing')).length;
+
+                this.renderDashboardTable();
+                this.renderCharts();
+            },
+
+            renderDashboardTable() {
+                const tbody = document.getElementById('dash-table-body');
+                const empty = document.getElementById('empty-dash');
+                
+                if(this.reports.length === 0) {
+                    tbody.innerHTML = '';
+                    empty.style.display = 'block';
+                    return;
+                }
+                
+                empty.style.display = 'none';
+                tbody.innerHTML = this.reports.map((r, i) => `
+                    <tr>
+                        <td style="font-family: var(--font-mono); color: var(--primary);">${r.id}</td>
+                        <td>${r.date}</td>
+                        <td><span class="badge badge-info">${r.type}</span></td>
+                        <td>${r.name}</td>
+                        <td><span class="badge ${r.status==='Resolved'?'badge-success':'badge-warning'}">${r.status}</span></td>
+                        <td>
+                            ${r.status !== 'Resolved' ? `<button class="btn btn-outline" style="padding: 0.25rem 0.5rem; font-size: 0.8rem;" onclick="app.resolveIncident(${i})">Resolve</button>` : '<i class="fa-solid fa-check text-success"></i>'}
+                        </td>
+                    </tr>
+                `).join('');
+            },
+
+            resolveIncident(index) {
+                this.reports[index].status = 'Resolved';
+                localStorage.setItem('cyberguard_reports', JSON.stringify(this.reports));
+                this.initDashboard();
+                this.showToast(`Incident ${this.reports[index].id} marked as resolved.`, 'success');
+            },
+
+            renderCharts() {
+                // Destroy old charts to prevent overlapping in SPA
+                if(this.charts.trends) this.charts.trends.destroy();
+                if(this.charts.cats) this.charts.cats.destroy();
+
+                const isLight = this.theme === 'light';
+                const textColor = isLight ? '#4b5563' : '#9ca3af';
+                const gridColor = isLight ? 'rgba(0,0,0,0.1)' : 'rgba(255,255,255,0.1)';
+
+                Chart.defaults.color = textColor;
+                Chart.defaults.font.family = "'Inter', sans-serif";
+
+                const ctxTrends = document.getElementById('chart-trends').getContext('2d');
+                this.charts.trends = new Chart(ctxTrends, {
+                    type: 'line',
+                    data: {
+                        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                        datasets: [{
+                            label: 'Incidents Logged',
+                            data: [12, 19, 15, 25, 22, 30, this.reports.length],
+                            borderColor: '#3b82f6',
+                            backgroundColor: 'rgba(59, 130, 246, 0.2)',
+                            tension: 0.4,
+                            fill: true
+                        }]
+                    },
+                    options: { responsive: true, maintainAspectRatio: false, scales: { x: { grid: { color: gridColor } }, y: { grid: { color: gridColor } } } }
+                });
+
+                // Calculate category stats from reports
+                const catCounts = {};
+                this.reports.forEach(r => { catCounts[r.type] = (catCounts[r.type] || 0) + 1; });
+                const catLabels = Object.keys(catCounts).length > 0 ? Object.keys(catCounts) : ['Phishing', 'UPI', 'OTP'];
+                const catData = Object.keys(catCounts).length > 0 ? Object.values(catCounts) : [10, 15, 5];
+
+                const ctxCats = document.getElementById('chart-categories').getContext('2d');
+                this.charts.cats = new Chart(ctxCats, {
+                    type: 'doughnut',
+                    data: {
+                        labels: catLabels,
+                        datasets: [{
+                            data: catData,
+                            backgroundColor: ['#3b82f6', '#8b5cf6', '#f59e0b', '#ef4444', '#10b981', '#06b6d4'],
+                            borderWidth: 0
+                        }]
+                    },
+                    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'right' } } }
+                });
+            },
+
+            // --- ALERTS & MAP ---
+            renderAlerts(filter = 'all', search = '') {
+                const container = document.getElementById('alerts-container');
+                let filtered = this.alerts;
+                
+                if (filter !== 'all') filtered = filtered.filter(a => a.type === filter);
+                if (search) filtered = filtered.filter(a => a.title.toLowerCase().includes(search.toLowerCase()) || a.desc.toLowerCase().includes(search.toLowerCase()));
+
+                container.innerHTML = filtered.map(a => `
+                    <div class="glass-card alert-card alert-${a.type}">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 style="margin:0; font-size: 1.05rem;">${a.title}</h4>
+                            <span class="badge badge-${a.type === 'critical' ? 'danger' : a.type === 'high' ? 'warning' : a.type === 'medium' ? 'info' : 'success'}" style="font-size: 0.65rem;">${a.type}</span>
+                        </div>
+                        <p class="text-muted" style="font-size: 0.85rem; margin-bottom: 1rem;">${a.desc}</p>
+                        <div style="font-size: 0.75rem; color: var(--text-muted);"><i class="fa-solid fa-clock"></i> ${a.date}</div>
+                    </div>
+                `).join('');
+            },
+
+            filterAlerts(type) { this.renderAlerts(type, document.getElementById('alert-search').value); },
+            searchAlerts() { this.renderAlerts('all', document.getElementById('alert-search').value); },
+
+            generateMapDots() {
+                const map = document.getElementById('threat-map');
+                for(let i=0; i<15; i++) {
+                    const dot = document.createElement('div');
+                    dot.className = 'map-dot';
+                    dot.style.top = Math.floor(Math.random() * 80 + 10) + '%';
+                    dot.style.left = Math.floor(Math.random() * 80 + 10) + '%';
+                    
+                    const types = ['Phishing', 'Malware', 'DDoS', 'Scan'];
+                    const locs = ['Mumbai', 'Delhi', 'Bengaluru', 'Chennai', 'Hyderabad'];
+                    
+                    dot.innerHTML = `<div class="map-tooltip">${types[Math.floor(Math.random()*types.length)]} vector<br>${locs[Math.floor(Math.random()*locs.length)]} Server</div>`;
+                    map.appendChild(dot);
+                }
+            },
+
+            // --- AWARENESS, QUIZ & PASSWORD ---
+            openAwareness(key) {
+                const data = this.awarenessData[key];
+                document.getElementById('aw-modal-title').innerHTML = data.title;
+                document.getElementById('aw-modal-content').innerHTML = data.content;
+                document.getElementById('modal-awareness').classList.add('active');
+            },
+
+            startQuiz() {
+                this.quizState.index = 0;
+                this.quizState.score = 0;
+                document.getElementById('quiz-result-ui').style.display = 'none';
+                document.getElementById('quiz-ui').style.display = 'block';
+                document.getElementById('modal-quiz').classList.add('active');
+                this.renderQuizQuestion();
+            },
+
+            renderQuizQuestion() {
+                const q = this.quizQuestions[this.quizState.index];
+                document.getElementById('quiz-progress').innerText = `${this.quizState.index + 1} / ${this.quizQuestions.length}`;
+                document.getElementById('quiz-question').innerText = q.q;
+                
+                const optsContainer = document.getElementById('quiz-options');
+                optsContainer.innerHTML = q.opts.map((opt, i) => 
+                    `<button class="quiz-option" onclick="app.selectQuizOption(${i})">${opt}</button>`
+                ).join('');
+                
+                document.getElementById('quiz-feedback').style.display = 'none';
+                document.getElementById('quiz-next-btn').style.display = 'none';
+            },
+
+            selectQuizOption(selectedIndex) {
+                const q = this.quizQuestions[this.quizState.index];
+                const btns = document.querySelectorAll('.quiz-option');
+                btns.forEach(b => b.onclick = null); // disable clicks
+                
+                const feedback = document.getElementById('quiz-feedback');
+                feedback.style.display = 'block';
+
+                if(selectedIndex === q.ans) {
+                    btns[selectedIndex].classList.add('correct');
+                    feedback.innerHTML = `<i class="fa-solid fa-circle-check text-success"></i> <b>Correct!</b><br><span style="font-size:0.9rem">${q.exp}</span>`;
+                    feedback.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
+                    this.quizState.score++;
+                } else {
+                    btns[selectedIndex].classList.add('wrong');
+                    btns[q.ans].classList.add('correct');
+                    feedback.innerHTML = `<i class="fa-solid fa-circle-xmark text-danger"></i> <b>Incorrect.</b><br><span style="font-size:0.9rem">${q.exp}</span>`;
+                    feedback.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+                }
+
+                document.getElementById('quiz-next-btn').style.display = 'block';
+            },
+
+            quizNext() {
+                this.quizState.index++;
+                if(this.quizState.index < this.quizQuestions.length) {
+                    this.renderQuizQuestion();
+                } else {
+                    document.getElementById('quiz-ui').style.display = 'none';
+                    document.getElementById('quiz-result-ui').style.display = 'block';
+                    document.getElementById('quiz-final-score').innerText = this.quizState.score;
+                    if(this.quizState.score === 8) this.showToast('Perfect Score! Cybersecurity Expert!', 'success');
+                }
+            },
+
+            checkPassword() {
+                const pwd = document.getElementById('pwd-check').value;
+                let strength = 0;
+                
+                const hasLen = pwd.length >= 8;
+                const hasUp = /[A-Z]/.test(pwd);
+                const hasNum = /[0-9]/.test(pwd);
+                const hasSpec = /[!@#$%^&*_=+-]/.test(pwd);
+
+                const updateReq = (id, valid) => {
+                    const el = document.getElementById(id);
+                    if(valid) { el.innerHTML = `<i class="fa-solid fa-check text-success"></i> ` + el.innerText.trim(); el.style.color = 'var(--success)'; strength+=25; }
+                    else { el.innerHTML = `<i class="fa-solid fa-xmark text-danger"></i> ` + el.innerText.trim(); el.style.color = 'var(--text-muted)'; }
+                };
+
+                updateReq('req-len', hasLen);
+                updateReq('req-up', hasUp);
+                updateReq('req-num', hasNum);
+                updateReq('req-spec', hasSpec);
+
+                const fill = document.getElementById('pwd-fill');
+                const lbl = document.getElementById('pwd-label');
+                fill.style.width = strength + '%';
+                
+                if(strength <= 25) { fill.style.backgroundColor = 'var(--danger)'; lbl.innerText = 'Weak'; lbl.style.color = 'var(--danger)'; }
+                else if(strength <= 50) { fill.style.backgroundColor = 'var(--warning)'; lbl.innerText = 'Fair'; lbl.style.color = 'var(--warning)'; }
+                else if(strength <= 75) { fill.style.backgroundColor = 'var(--info)'; lbl.innerText = 'Good'; lbl.style.color = 'var(--info)'; }
+                else { fill.style.backgroundColor = 'var(--success)'; lbl.innerText = 'Strong'; lbl.style.color = 'var(--success)'; }
+            },
+
+            // --- AUTHENTICATION & MODALS ---
+            toggleLoginModal() { document.getElementById('modal-login').classList.toggle('active'); },
+            closeModal(id) { document.getElementById(id).classList.remove('active'); },
+            
+            handleLogin(e) {
+                e.preventDefault();
+                const u = document.getElementById('login-user').value;
+                const p = document.getElementById('login-pwd').value;
+                
+                if(u === 'admin' && p === 'cyberguard@2026') {
+                    this.isAdmin = true;
+                    localStorage.setItem('cyberguard_admin', 'true');
+                    this.closeModal('modal-login');
+                    document.getElementById('nav-login').innerHTML = '<i class="fa-solid fa-shield"></i> SOC';
+                    this.navigate('dashboard');
+                    this.showToast('SOC Access Granted', 'success');
+                } else {
+                    this.showToast('Invalid demo credentials', 'error');
+                }
+                e.target.reset();
+            },
+            
+            logout() {
+                this.isAdmin = false;
+                localStorage.removeItem('cyberguard_admin');
+                document.getElementById('nav-login').innerHTML = '<i class="fa-solid fa-user-lock"></i> Admin';
+                this.navigate('home');
+                this.showToast('Logged out securely', 'success');
+            },
+
+            // --- UTILITIES ---
+            updateClock() {
+                const now = new Date();
+                const el = document.getElementById('live-time');
+                if(el) el.innerText = now.toLocaleTimeString();
+            },
+
+            toggleTheme() {
+                const body = document.body;
+                const icon = document.getElementById('theme-icon');
+                if(this.theme === 'dark') {
+                    body.setAttribute('data-theme', 'light');
+                    this.theme = 'light';
+                    icon.className = 'fa-solid fa-sun';
+                } else {
+                    body.removeAttribute('data-theme');
+                    this.theme = 'dark';
+                    icon.className = 'fa-solid fa-moon';
+                }
+                localStorage.setItem('cyberguard_theme', this.theme);
+                if(this.currentView === 'dashboard') this.renderCharts();
+            },
+
+            showToast(msg, type='info') {
+                const container = document.getElementById('toast-container');
+                const toast = document.createElement('div');
+                toast.className = `toast ${type}`;
+                
+                let icon = 'fa-info-circle text-info';
+                if(type==='success') icon = 'fa-check-circle text-success';
+                if(type==='error') icon = 'fa-triangle-exclamation text-danger';
+
+                toast.innerHTML = `<i class="fa-solid ${icon} style="font-size:1.2rem;"></i> <div>${msg}</div>`;
+                container.appendChild(toast);
+                
+                setTimeout(() => {
+                    toast.classList.add('fade-out');
+                    setTimeout(() => toast.remove(), 300);
+                }, 4000);
+            },
+
+            // --- HACKATHON DEMO PRESENTATION SEQUENCE ---
+            async runDemoMode() {
+                this.showToast('Initializing automated demo presentation...', 'info');
+                
+                // 1. Go to Scanner
+                this.navigate('scanner');
+                await this.delay(1000);
+                
+                // 2. Select Message Tab
+                document.querySelector('.tab-btn[data-tab="tab-msg"]').click();
+                await this.delay(500);
+
+                // 3. Type simulated threat
+                const msgInput = document.getElementById('scan-msg-input');
+                const demoText = "URGENT: Your HDFC bank account will be suspended in 10 mins. Update KYC via APK to avoid block. Download here: http://secure-kyc-hdfc-update.apk";
+                msgInput.value = "";
+                
+                for(let i=0; i<demoText.length; i++) {
+                    msgInput.value += demoText[i];
+                    await this.delay(30);
+                }
+                await this.delay(800);
+
+                // 4. Click Analyze
+                this.runScan('message');
+                await this.delay(4000); // Wait for analysis animation
+
+                // 5. Scroll down to show results
+                window.scrollBy({ top: 300, behavior: 'smooth' });
+                await this.delay(4000);
+
+                // 6. Go to Alerts to show live map
+                this.navigate('alerts');
+                this.showToast('Displaying simulated Threat Intelligence...', 'info');
+                await this.delay(3000);
+
+                // 7. Auto login to Dashboard to finish
+                this.isAdmin = true;
+                document.getElementById('nav-login').innerHTML = '<i class="fa-solid fa-shield"></i> SOC';
+                this.navigate('dashboard');
+                this.showToast('Presentation Complete. Ready for Q&A.', 'success');
+            },
+            
+            delay(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
+        };
+
+        // Boot up
+        document.addEventListener('DOMContentLoaded', () => app.init());
+    </script>
 </body>
 </html>
