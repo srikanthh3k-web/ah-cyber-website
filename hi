@@ -1,1 +1,25 @@
-hi
+export default async function handler(req, res) {
+    const NEWS_API_KEY = process.env.NEWS_API_KEY;
+    const { category } = req.query;
+    
+    // Process Category Filter
+    let qTerm = 'cybersecurity';
+    if (category && category !== 'ALL') {
+        qTerm = `cybersecurity AND "${category.toLowerCase()}"`;
+    } else {
+        qTerm = 'cybersecurity OR ransomware OR "data breach" OR malware';
+    }
+
+    // Call GNews API securely
+    const url = `https://gnews.io/api/v4/search?q=${encodeURIComponent(qTerm)}&lang=en&max=9&apikey=${NEWS_API_KEY}`;
+    
+    try {
+        const response = await fetch(url);
+        if (!response.ok) return res.status(response.status).json({ error: `API Error ${response.status}` });
+        
+        const data = await response.json();
+        res.status(200).json(data);
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to fetch news' });
+    }
+}
