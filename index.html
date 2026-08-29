@@ -334,7 +334,7 @@
                     <p class="section-desc">Stay updated with the latest cybersecurity threats, data breaches, and industry news.</p>
                 </div>
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 2rem; flex-wrap:wrap; gap:1rem;">
-                    <div class="status-pill" style="margin:0; background:rgba(14, 165, 233, 0.1); border-color:var(--info); color:var(--info);">
+                    <div class="status-pill" style="margin:0; background:rgba(14, 165, 233, 0.1); border-color:var(--info); color:var(--info);" id="news-status-pill">
                         <i class="fa-solid fa-satellite-dish"></i> <span id="news-status-text">Fetching Intelligence...</span>
                     </div>
                     <button class="btn btn-outline" onclick="app.fetchNews()"><i class="fa-solid fa-rotate-right"></i> Refresh</button>
@@ -638,7 +638,7 @@
             course: "B.Tech CSE — Cyber Security",
             website: "https://aurexa.space",
             
-            // APIs (Leave empty to use local simulated fallback)
+            // APIs
             apiKey: "1927297bd8838e5315576e7fce880ff6", // Added API Key
             backendEndpoint: "", 
             threatIntelEndpoint: "",
@@ -892,11 +892,47 @@
             async fetchNews() {
                 const grid = document.getElementById('news-grid');
                 const status = document.getElementById('news-status-text');
+                const statusPill = document.getElementById('news-status-pill');
                 
-                if(CONFIG.newsEndpoint) {
+                if(CONFIG.apiKey) {
                     status.innerText = "Fetching Live Data...";
-                    // Simulate fetch
-                    setTimeout(() => { this.renderNewsFallback(grid); status.innerText = "Live API Connected"; }, 1000);
+                    grid.innerHTML = '<div style="text-align:center; width:100%; grid-column: 1 / -1;"><i class="fa-solid fa-circle-notch fa-spin text-primary" style="font-size:2rem;"></i></div>';
+                    
+                    try {
+                        const url = `https://gnews.io/api/v4/search?q=cybersecurity OR phishing OR ransomware&lang=en&max=6&apikey=${CONFIG.apiKey}`;
+                        const response = await fetch(url);
+                        const data = await response.json();
+                        
+                        if(data.articles && data.articles.length > 0) {
+                            grid.innerHTML = data.articles.map(n => `
+                                <div class="glass-panel news-card">
+                                    <div class="news-meta">
+                                        <span><i class="fa-solid fa-globe text-primary"></i> ${n.source.name}</span>
+                                        <span>${new Date(n.publishedAt).toLocaleDateString()}</span>
+                                    </div>
+                                    <h3 class="news-title">
+                                        <a href="${n.url}" target="_blank" style="color: var(--text-main); text-decoration: none;">${n.title}</a>
+                                    </h3>
+                                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">
+                                        ${n.description || ''}
+                                    </p>
+                                    <span class="badge badge-info" style="align-self:flex-start; margin-top:auto;">Cyber Intel</span>
+                                </div>
+                            `).join('');
+                            status.innerText = "Live API Connected";
+                            statusPill.style.borderColor = "var(--success)";
+                            statusPill.style.color = "var(--success)";
+                            statusPill.style.background = "rgba(16, 185, 129, 0.1)";
+                        } else {
+                            throw new Error("No articles returned or invalid key limit.");
+                        }
+                    } catch (error) {
+                        console.error("API Fetch Error:", error);
+                        status.innerText = "API Error - Showing Fallback Data";
+                        statusPill.style.borderColor = "var(--warning)";
+                        statusPill.style.color = "var(--warning)";
+                        this.renderNewsFallback(grid);
+                    }
                 } else {
                     status.innerText = "API Not Configured - Showing Fallback Data";
                     this.renderNewsFallback(grid);
