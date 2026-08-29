@@ -11,6 +11,7 @@
     <style>
         /* --- CSS VARIABLES & THEMING --- */
         :root {
+            /* Deep Space/Cyber Theme */
             --bg-base: #060913;
             --bg-surface: #0f1629;
             --bg-glass: rgba(15, 22, 41, 0.65);
@@ -37,36 +38,43 @@
             --font-mono: 'Fira Code', monospace;
             --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        
+        [data-theme="light"] {
+            --bg-base: #f1f5f9;
+            --bg-surface: #ffffff;
+            --bg-glass: rgba(255, 255, 255, 0.7);
+            --bg-glass-hover: rgba(248, 250, 252, 0.9);
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --border-light: rgba(0, 0, 0, 0.08);
+            --border-accent: rgba(59, 130, 246, 0.3);
+            --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
+        }
         /* --- RESET & GLOBAL --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: var(--font-main); background-color: var(--bg-base); color: var(--text-main); line-height: 1.6; overflow-x: hidden; transition: var(--transition); }
+        /* Animated Background Canvas */
         #cyber-bg { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; opacity: 0.6; pointer-events: none; }
         .container { width: 100%; max-width: 1300px; margin: 0 auto; padding: 0 1.5rem; }
         h1, h2, h3, h4, h5 { font-family: var(--font-display); line-height: 1.2; }
         a { color: var(--secondary); text-decoration: none; transition: var(--transition); }
         a:hover { color: var(--primary); }
-        
         /* --- GLASSMORPHISM COMPONENTS --- */
         .glass-panel { background: var(--bg-glass); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid var(--border-light); border-radius: var(--radius-lg); box-shadow: var(--shadow-glass); transition: var(--transition); position: relative; overflow: hidden; }
         .glass-panel::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); }
         .glass-panel:hover { border-color: var(--border-accent); box-shadow: 0 8px 32px 0 rgba(0,0,0,0.4), 0 0 15px rgba(56, 189, 248, 0.1); }
-        
         /* --- BUTTONS --- */
         .btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.8rem 1.5rem; border-radius: var(--radius-md); font-family: var(--font-display); font-weight: 600; font-size: 0.95rem; letter-spacing: 0.5px; cursor: pointer; border: none; transition: var(--transition); position: relative; overflow: hidden; }
         .btn-primary { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; box-shadow: var(--shadow-neon); }
         .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 25px rgba(6, 182, 212, 0.6); }
-        .btn-primary:disabled { opacity: 0.6; cursor: not-allowed; transform: none; box-shadow: none; }
         .btn-outline { background: rgba(255,255,255,0.03); border: 1px solid var(--border-light); color: var(--text-main); backdrop-filter: blur(5px); }
         .btn-outline:hover { background: rgba(255,255,255,0.1); border-color: var(--text-main); transform: translateY(-2px); }
-        .btn-outline:disabled { opacity: 0.5; cursor: not-allowed; }
         .btn-danger { background: rgba(239, 68, 68, 0.1); color: var(--danger); border: 1px solid var(--danger); }
         .btn-danger:hover { background: var(--danger); color: white; }
-        
         /* --- FORMS --- */
         .form-group { margin-bottom: 1.5rem; }
         .form-label { display: block; margin-bottom: 0.5rem; font-size: 0.85rem; color: var(--text-muted); font-weight: 500; }
         .form-control { width: 100%; padding: 1rem; background: rgba(0, 0, 0, 0.3); border: 1px solid var(--border-light); border-radius: var(--radius-md); color: var(--text-main); font-family: var(--font-main); transition: var(--transition); }
+        [data-theme="light"] .form-control { background: rgba(255,255,255,0.8); }
         .form-control:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(59,130,246,0.2); background: rgba(0,0,0,0.5); }
         textarea.form-control { resize: vertical; min-height: 120px; }
         .badge { padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
@@ -74,9 +82,8 @@
         .badge-warning { background: rgba(245, 158, 11, 0.15); color: #fcd34d; border: 1px solid var(--warning); }
         .badge-success { background: rgba(16, 185, 129, 0.15); color: #6ee7b7; border: 1px solid var(--success); }
         .badge-info { background: rgba(14, 165, 233, 0.15); color: #7dd3fc; border: 1px solid var(--info); }
-        
         /* --- NAVBAR --- */
-        nav { position: fixed; top: 0; width: 100%; z-index: 1000; background: rgba(6, 9, 19, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-light); padding: 1rem 0; transition: var(--transition); }
+        nav { position: fixed; top: 0; width: 100%; z-index: 1000; background: rgba(6, 9, 19, 0.8); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-light); padding: 1rem 0; transition: var(--transition); }
         .nav-container { display: flex; justify-content: space-between; align-items: center; }
         .logo { display: flex; align-items: center; gap: 0.75rem; font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; color: var(--text-main); cursor: pointer; letter-spacing: -0.5px; }
         .logo-shield { width: 36px; height: 36px; background: linear-gradient(135deg, var(--primary), var(--secondary)); border-radius: 10px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; box-shadow: var(--shadow-neon); }
@@ -84,15 +91,13 @@
         .nav-link { color: var(--text-muted); font-size: 0.9rem; font-weight: 500; cursor: pointer; padding: 0.5rem; transition: var(--transition); }
         .nav-link:hover, .nav-link.active { color: var(--primary); }
         .mobile-menu-btn { display: none; font-size: 1.5rem; background: none; border: none; color: var(--text-main); cursor: pointer; }
-        
         /* --- SPA VIEW LOGIC --- */
         .view-section { display: none; padding-top: 100px; padding-bottom: 4rem; min-height: calc(100vh - 100px); animation: fadeUp 0.5s ease forwards; }
         .view-section.active { display: block; }
         @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        .section-header { text-align: center; margin-bottom: 3.5rem; }
+        .section-header { text-align: center; margin-bottom: 4rem; }
         .section-title { font-size: 3rem; background: linear-gradient(to right, #fff, var(--text-muted)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1rem; }
         .section-desc { color: var(--text-muted); max-width: 600px; margin: 0 auto; font-size: 1.1rem; }
-        
         /* --- HERO SECTION --- */
         .hero { position: relative; min-height: 100vh; display: flex; align-items: center; overflow: hidden; padding-top: 80px; }
         .hero-content { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
@@ -102,7 +107,6 @@
         .status-pill { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 50px; font-family: var(--font-mono); font-size: 0.85rem; color: var(--success); margin-bottom: 2rem; }
         .status-dot { width: 8px; height: 8px; background: var(--success); border-radius: 50%; box-shadow: 0 0 10px var(--success); animation: pulse 2s infinite; }
         @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); } 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); } }
-        
         /* 3D Visual Area */
         .hero-visual { position: relative; height: 500px; display: flex; align-items: center; justify-content: center; perspective: 1000px; }
         .shield-container { width: 300px; height: 350px; position: relative; transform-style: preserve-3d; transition: transform 0.1s ease-out; }
@@ -116,7 +120,6 @@
         .ind-1 { top: 10%; right: -10%; transform: translateZ(40px); animation: float 6s ease-in-out infinite; }
         .ind-2 { bottom: 20%; left: -20%; transform: translateZ(50px); animation: float 5s ease-in-out infinite reverse; }
         @keyframes float { 0%, 100% { transform: translateY(0) translateZ(40px); } 50% { transform: translateY(-20px) translateZ(40px); } }
-        
         /* --- SCANNER SECTION --- */
         .scanner-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
         .scanner-tabs { display: flex; gap: 1rem; border-bottom: 1px solid var(--border-light); padding-bottom: 1rem; margin-bottom: 2rem; overflow-x: auto; }
@@ -124,28 +127,14 @@
         .scan-tab-btn.active { background: rgba(59, 130, 246, 0.15); color: var(--primary); }
         .scan-content { display: none; }
         .scan-content.active { display: block; animation: fadeUp 0.3s ease forwards; }
-        .analysis-box { background: rgba(0,0,0,0.4); border-radius: var(--radius-md); padding: 2rem; min-height: 450px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; border: 1px solid var(--border-light); position: relative; }
-        
-        /* Gauge & Stats */
-        .risk-meter { width: 200px; height: 100px; position: relative; overflow: hidden; margin: 0 auto 1.5rem; }
+        .analysis-box { background: rgba(0,0,0,0.4); border-radius: var(--radius-md); padding: 2rem; min-height: 400px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; border: 1px solid var(--border-light); position: relative; }
+        .risk-meter { width: 200px; height: 100px; position: relative; overflow: hidden; margin: 0 auto 2rem; }
         .risk-meter-bg { position: absolute; top: 0; left: 0; width: 200px; height: 200px; border-radius: 50%; border: 20px solid rgba(255,255,255,0.05); }
         .risk-meter-fill { position: absolute; top: 0; left: 0; width: 200px; height: 200px; border-radius: 50%; border: 20px solid transparent; border-top-color: var(--success); border-right-color: var(--success); transform: rotate(-45deg); transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1); }
         .risk-score-display { position: absolute; bottom: 0; width: 100%; text-align: center; font-size: 2rem; font-family: var(--font-display); font-weight: 700; }
-        
-        .vt-stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem; margin: 1.5rem 0; width: 100%; }
-        .vt-stat-card { background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border-light); border-radius: 8px; padding: 0.75rem 0.5rem; text-align: center; }
-        .vt-stat-val { font-size: 1.3rem; font-family: var(--font-mono); font-weight: 700; }
-        .vt-stat-label { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; margin-top: 0.25rem; }
-        
-        .indicators-list { width: 100%; text-align: left; margin-top: 1rem; max-height: 200px; overflow-y: auto; }
-        .ind-item { background: rgba(255,255,255,0.03); padding: 0.75rem 1rem; border-radius: 8px; margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; border-left: 3px solid var(--text-muted); font-size: 0.85rem; }
-        
-        /* --- NEWS & ALERTS SECTION --- */
-        .news-filters { display: flex; gap: 0.5rem; overflow-x: auto; padding-bottom: 0.5rem; margin-bottom: 1.5rem; white-space: nowrap; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
-        .news-filters::-webkit-scrollbar { display: none; }
-        .filter-btn { flex-shrink: 0; }
-        .filter-btn.active { background: var(--primary); color: white; border-color: var(--primary); box-shadow: var(--shadow-neon); }
-        
+        .indicators-list { width: 100%; text-align: left; margin-top: 2rem; }
+        .ind-item { background: rgba(255,255,255,0.03); padding: 1rem; border-radius: 8px; margin-bottom: 0.5rem; display: flex; align-items: flex-start; gap: 1rem; border-left: 3px solid var(--text-muted); }
+        /* --- DASHBOARD --- */
         .dash-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
         .stat-card { padding: 1.5rem; display: flex; align-items: center; gap: 1.5rem; }
         .stat-icon { width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
@@ -156,15 +145,14 @@
         table { width: 100%; border-collapse: collapse; text-align: left; }
         th, td { padding: 1rem; border-bottom: 1px solid var(--border-light); font-size: 0.9rem; }
         th { color: var(--text-muted); font-weight: 600; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px; }
-        
         /* --- CARDS & GRIDS --- */
         .grid-3 { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; }
-        .news-card { transition: var(--transition); }
-        .news-card:hover { transform: translateY(-5px); border-color: var(--border-accent); }
+        .news-card { display: flex; flex-direction: column; padding: 1.5rem; }
+        .news-meta { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.5rem; display: flex; justify-content: space-between; }
+        .news-title { font-size: 1.1rem; margin-bottom: 1rem; line-height: 1.4; }
         .alert-card { border-left: 4px solid var(--primary); }
         .feature-card { padding: 2rem; text-align: center; cursor: pointer; }
         .feature-icon { font-size: 3rem; color: var(--primary); margin-bottom: 1.5rem; }
-        
         /* --- MODALS & TOASTS --- */
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); backdrop-filter: blur(8px); display: none; align-items: center; justify-content: center; z-index: 2000; opacity: 0; transition: opacity 0.3s; }
         .modal-overlay.active { display: flex; opacity: 1; }
@@ -175,14 +163,8 @@
         #toast-container { position: fixed; bottom: 2rem; right: 2rem; z-index: 3000; display: flex; flex-direction: column; gap: 1rem; }
         .toast { background: var(--bg-surface); border: 1px solid var(--border-light); padding: 1rem 1.5rem; border-radius: var(--radius-md); display: flex; align-items: center; gap: 1rem; box-shadow: var(--shadow-glass); animation: slideIn 0.3s forwards; border-left: 4px solid var(--primary); }
         .toast.fade-out { animation: fadeOut 0.3s forwards; }
-        
-        /* Skeleton Animations */
-        @keyframes pulse-sk { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
-        .sk-box { background: rgba(255,255,255,0.05); animation: pulse-sk 1.5s infinite; border-radius: 4px; }
-        
         @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
         @keyframes fadeOut { from { transform: translateX(0); opacity: 1; } to { transform: translateX(100%); opacity: 0; } }
-        
         /* --- FOOTER --- */
         footer { border-top: 1px solid var(--border-light); padding: 4rem 0 2rem; margin-top: 4rem; background: rgba(0,0,0,0.3); }
         .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-bottom: 3rem; }
@@ -190,7 +172,6 @@
         .footer-links li { margin-bottom: 0.75rem; }
         .footer-links a { color: var(--text-muted); font-size: 0.9rem; }
         .footer-bottom { border-top: 1px solid var(--border-light); padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; font-size: 0.85rem; color: var(--text-muted); }
-        
         /* --- RESPONSIVE --- */
         @media (max-width: 1024px) {
             .hero-content { grid-template-columns: 1fr; text-align: center; }
@@ -201,7 +182,6 @@
         }
         @media (max-width: 768px) {
             .scanner-grid { grid-template-columns: 1fr; }
-            .vt-stats-grid { grid-template-columns: repeat(2, 1fr); }
             .nav-links {
                 position: fixed; top: 70px; left: 0; width: 100%; height: calc(100vh - 70px);
                 background: var(--bg-surface); flex-direction: column; padding: 2rem;
@@ -211,11 +191,24 @@
             .mobile-menu-btn { display: block; }
             .section-title { font-size: 2.2rem; }
         }
+        .filter-btn-container {
+            display: flex;
+            overflow-x: auto;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none; /* Firefox */
+        }
+        .filter-btn-container::-webkit-scrollbar {
+            display: none; /* Safari and Chrome */
+        }
+        .filter-btn {
+            flex-shrink: 0;
+            margin-right: 8px;
+        }
     </style>
 </head>
 <body>
     <canvas id="cyber-bg"></canvas>
-    
     <nav id="navbar">
         <div class="container nav-container">
             <div class="logo" onclick="app.navigate('home')">
@@ -236,7 +229,6 @@
             <button class="mobile-menu-btn" id="mobile-menu-btn"><i class="fa-solid fa-bars"></i></button>
         </div>
     </nav>
-    
     <main id="app-content">
         <section id="home" class="view-section active">
             <div class="container hero">
@@ -272,32 +264,26 @@
                 </div>
             </div>
         </section>
-        
         <section id="scanner" class="view-section">
             <div class="container">
                 <div class="section-header">
                     <h2 class="section-title">Threat Intelligence Scanner</h2>
-                    <p class="section-desc">Analyze URLs via VirusTotal v3 reputation engines, plus local heuristic scans for suspicious SMS and email attacks.</p>
+                    <p class="section-desc">Analyze URLs, messages, and emails for potential fraud indicators using local pattern analysis and configured APIs.</p>
                 </div>
                 <div class="scanner-grid">
                     <div class="glass-panel" style="padding: 2rem;">
                         <div class="scanner-tabs">
-                            <button class="scan-tab-btn active" data-tab="scan-url"><i class="fa-solid fa-link"></i> URL SCANNER</button>
+                            <button class="scan-tab-btn active" data-tab="scan-url"><i class="fa-solid fa-link"></i> URL</button>
                             <button class="scan-tab-btn" data-tab="scan-msg"><i class="fa-solid fa-comment-sms"></i> MESSAGE</button>
                             <button class="scan-tab-btn" data-tab="scan-email"><i class="fa-solid fa-envelope"></i> EMAIL</button>
                         </div>
-                        
                         <div id="scan-url" class="scan-content active">
                             <div class="form-group">
-                                <label class="form-label">Enter Target URL to Inspect</label>
-                                <input type="url" id="inp-url" class="form-control" placeholder="https://example-domain.com/login" autocomplete="off">
+                                <label class="form-label">Enter Suspicious URL</label>
+                                <input type="url" id="inp-url" class="form-control" placeholder="https://example.com/login">
                             </div>
-                            <div style="font-size:0.8rem; color:var(--text-muted); margin-bottom:1.5rem; display:flex; align-items:center; gap:0.5rem;">
-                                <i class="fa-solid fa-shield-virus text-info"></i> Engine: <span style="color:var(--text-main); font-weight:600;">VirusTotal v3 Global Intelligence</span>
-                            </div>
-                            <button class="btn btn-primary w-full" id="btn-scan-url" style="width:100%" onclick="app.scanUrlVirusTotal()"><i class="fa-solid fa-radar"></i> SCAN WITH VIRUSTOTAL</button>
+                            <button class="btn btn-primary w-full" style="width:100%" onclick="app.analyze('url')">ANALYZE THREAT</button>
                         </div>
-                        
                         <div id="scan-msg" class="scan-content">
                             <div class="form-group">
                                 <label class="form-label">Paste SMS/WhatsApp Message</label>
@@ -305,7 +291,6 @@
                             </div>
                             <button class="btn btn-primary w-full" style="width:100%" onclick="app.analyze('msg')">ANALYZE MESSAGE</button>
                         </div>
-                        
                         <div id="scan-email" class="scan-content">
                             <div class="form-group">
                                 <label class="form-label">Email Subject</label>
@@ -317,53 +302,38 @@
                             </div>
                             <button class="btn btn-primary w-full" style="width:100%" onclick="app.analyze('email')">ANALYZE EMAIL</button>
                         </div>
-                        
                         <div style="margin-top: 1.5rem; font-size: 0.8rem; color: var(--text-muted); text-align: center;">
-                            <i class="fa-solid fa-circle-info"></i> Real-time URL reputation queries are powered by VirusTotal API v3 multi-engine analysis.
+                            <i class="fa-solid fa-circle-info"></i> Analysis uses rule-based pattern matching. Do not submit highly sensitive personal data.
                         </div>
                     </div>
-                    
                     <div class="glass-panel analysis-box" id="analysis-output">
                         <div id="analysis-idle" style="color: var(--text-muted);">
                             <i class="fa-solid fa-shield-virus" style="font-size: 4rem; opacity: 0.3; margin-bottom: 1rem; display: block;"></i>
-                            Awaiting input. Submit a URL or message for real-time security analysis.
+                            Awaiting input. Submit a threat for analysis.
                         </div>
-                        
-                        <div id="analysis-loading" style="display: none; flex-direction: column; align-items: center; justify-content: center;">
-                            <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 3rem; color: var(--primary); margin-bottom: 1rem;"></i>
-                            <h3 id="analysis-loading-text" style="font-family: var(--font-mono); font-size: 1rem; color: var(--text-main);">Querying VirusTotal v3 Engine...</h3>
-                            <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem;">Validating signature reputation across 70+ security vendors</p>
+                        <div id="analysis-loading" style="display: none; color: var(--primary);">
+                            <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                            <h3 style="font-family: var(--font-mono); font-size: 1rem;">Running Security Heuristics...</h3>
                         </div>
-                        
                         <div id="analysis-result" style="display: none; width: 100%;">
-                            <div class="flex justify-between items-center mb-4" style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 1rem;">
-                                <h3 style="font-size:1.2rem; margin:0;" id="res-title">Threat Assessment</h3>
+                            <div class="flex justify-between items-center mb-4" style="display:flex; justify-content:space-between; margin-bottom: 1rem;">
+                                <h3 style="font-size:1.2rem;">Analysis Report</h3>
                                 <span class="badge" id="res-badge">STATUS</span>
                             </div>
-                            
                             <div class="risk-meter">
                                 <div class="risk-meter-bg"></div>
                                 <div class="risk-meter-fill" id="res-gauge"></div>
                                 <div class="risk-score-display" id="res-score">0</div>
                             </div>
-                            <div style="text-align:center; font-size:0.8rem; color:var(--text-muted); text-transform:uppercase; margin-bottom:1rem;" id="res-score-label">Risk Severity Score</div>
-                            
-                            <div class="vt-stats-grid" id="vt-stats-container" style="display:none;">
-                                <div class="vt-stat-card"><div class="vt-stat-val" style="color:var(--danger)" id="vt-malicious">0</div><div class="vt-stat-label">Malicious</div></div>
-                                <div class="vt-stat-card"><div class="vt-stat-val" style="color:var(--warning)" id="vt-suspicious">0</div><div class="vt-stat-label">Suspicious</div></div>
-                                <div class="vt-stat-card"><div class="vt-stat-val" style="color:var(--success)" id="vt-harmless">0</div><div class="vt-stat-label">Harmless</div></div>
-                                <div class="vt-stat-card"><div class="vt-stat-val" style="color:var(--text-muted)" id="vt-undetected">0</div><div class="vt-stat-label">Undetected</div></div>
+                            <div style="text-align:center; font-size:0.8rem; color:var(--text-muted); text-transform:uppercase; margin-bottom:2rem;">Risk Score</div>
+                            <div style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; text-align: left; margin-bottom: 1rem;">
+                                <div style="font-size:0.8rem; color:var(--text-muted); margin-bottom:0.25rem;">Threat Category</div>
+                                <div style="font-weight:600; color:var(--info);" id="res-category">Phishing</div>
                             </div>
-
-                            <div style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; text-align: left; margin-bottom: 1rem; font-size:0.85rem;">
-                                <div style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase;">Target Inspected</div>
-                                <div style="font-family:var(--font-mono); color:var(--info); word-break:break-all;" id="res-target-url"></div>
+                            <div class="indicators-list" id="res-indicators">
                             </div>
-
-                            <div class="indicators-list" id="res-indicators"></div>
-                            
-                            <div style="margin-top: 1.5rem; padding: 1rem; border-left: 4px solid var(--primary); background: rgba(59,130,246,0.1); text-align: left;">
-                                <h4 style="font-size:0.9rem; margin-bottom:0.3rem;"><i class="fa-solid fa-lightbulb"></i> Recommended SOC Action</h4>
+                            <div style="margin-top: 2rem; padding: 1rem; border-left: 4px solid var(--primary); background: rgba(59,130,246,0.1); text-align: left;">
+                                <h4 style="font-size:0.9rem; margin-bottom:0.5rem;"><i class="fa-solid fa-lightbulb"></i> Recommended Action</h4>
                                 <p id="res-action" style="font-size:0.85rem; color:var(--text-muted);"></p>
                             </div>
                         </div>
@@ -371,49 +341,40 @@
                 </div>
             </div>
         </section>
-        
         <section id="news" class="view-section">
             <div class="container">
-                <div class="section-header" style="margin-bottom: 2rem;">
+                <div class="section-header">
                     <h2 class="section-title">Cyber News & Intelligence</h2>
-                    <p class="section-desc">Live cybersecurity intelligence, threat advisories, and data breach updates.</p>
+                    <p class="section-desc">Stay updated with the latest cybersecurity threats, data breaches, and industry news.</p>
                 </div>
-                
-                <div id="news-status-container" class="glass-panel" style="margin-bottom: 2rem; padding: 1rem 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; border-left: 4px solid var(--primary);">
-                    <div style="display: flex; align-items: center; gap: 1rem;">
-                        <div id="news-status-icon"><i class="fa-solid fa-circle-notch fa-spin text-primary" style="font-size: 1.5rem;"></i></div>
-                        <div>
-                            <h4 id="news-status-title" style="margin: 0; font-size: 1rem; color: var(--primary);">CONNECTING TO CYBER INTELLIGENCE</h4>
-                            <div id="news-status-desc" style="font-size: 0.8rem; color: var(--text-muted);">Fetching latest security news...</div>
-                        </div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 2rem; flex-wrap:wrap; gap:1rem;">
+                    <div class="status-pill" style="margin:0; background:rgba(14, 165, 233, 0.1); border-color:var(--info); color:var(--info);" id="news-status-container">
+                        <i class="fa-solid fa-satellite-dish" id="news-status-icon"></i> <span id="news-status-text">Fetching Intelligence...</span>
                     </div>
-                    <div style="display:flex; gap: 1rem; align-items:center;">
-                        <button class="btn btn-outline" id="btn-news-retry" onclick="app.refreshNews()" style="display:none; border-color:var(--warning); color:var(--warning);">Retry API</button>
-                        <button class="btn btn-outline" id="btn-news-refresh" onclick="app.refreshNews()"><i class="fa-solid fa-rotate-right"></i> Refresh</button>
-                    </div>
+                    <button class="btn btn-outline" id="btn-news-refresh" onclick="app.refreshNews()"><i class="fa-solid fa-rotate-right"></i> Refresh</button>
                 </div>
-
-                <div class="news-filters" id="news-filters-container"></div>
-
-                <div class="grid-3" id="news-grid"></div>
+                <div class="filter-btn-container" id="news-filters-container">
+                </div>
+                <div class="grid-3" id="news-grid">
+                </div>
             </div>
         </section>
-        
         <section id="alerts" class="view-section">
             <div class="container">
                 <div class="section-header">
                     <h2 class="section-title">Live Cyber Alerts</h2>
                     <p class="section-desc">Active campaigns, vulnerability warnings, and regional threat advisories.</p>
                 </div>
-                <div class="grid-3" id="alerts-grid"></div>
+                <div class="grid-3" id="alerts-grid">
+                </div>
                 <div class="glass-panel" style="margin-top: 4rem; padding: 2rem; position: relative; overflow:hidden;">
                     <h3 style="margin-bottom: 1rem;"><i class="fa-solid fa-map-location-dot text-primary"></i> Regional Threat Visualization</h3>
                     <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 2rem;">* Threat visualization based on available reports / sample visualization.</p>
-                    <div id="map-container" style="height: 400px; background: rgba(0,0,0,0.5); border-radius: 12px; border: 1px solid var(--border-light); position: relative; background-image: radial-gradient(var(--border-light) 1px, transparent 1px); background-size: 20px 20px;"></div>
+                    <div id="map-container" style="height: 400px; background: rgba(0,0,0,0.5); border-radius: 12px; border: 1px solid var(--border-light); position: relative; background-image: radial-gradient(var(--border-light) 1px, transparent 1px); background-size: 20px 20px;">
+                    </div>
                 </div>
             </div>
         </section>
-        
         <section id="report" class="view-section">
             <div class="container" style="max-width: 800px;">
                 <div class="section-header">
@@ -466,7 +427,6 @@
                 </div>
             </div>
         </section>
-        
         <section id="security" class="view-section">
             <div class="container">
                 <div class="section-header">
@@ -517,7 +477,6 @@
                 </div>
             </div>
         </section>
-        
         <section id="dashboard" class="view-section">
             <div class="container">
                 <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border-light); padding-bottom:1rem; margin-bottom:2rem;">
@@ -554,6 +513,7 @@
                 <div class="glass-panel" style="padding:1.5rem;">
                     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem;">
                         <h4 style="margin:0;">Recent Incident Log</h4>
+                        <div style="font-size:0.8rem; color:var(--text-muted);">Storage: <span id="storage-mode" style="color:var(--info);"></span></div>
                     </div>
                     <div class="table-responsive">
                         <table>
@@ -567,14 +527,14 @@
                                     <th>Action</th>
                                 </tr>
                             </thead>
-                            <tbody id="dash-table"></tbody>
+                            <tbody id="dash-table">
+                            </tbody>
                         </table>
                         <div id="dash-empty" style="text-align:center; padding: 2rem; color:var(--text-muted); display:none;">No incidents reported yet.</div>
                     </div>
                 </div>
             </div>
         </section>
-        
         <section id="about" class="view-section">
             <div class="container" style="max-width: 900px;">
                 <div class="section-header">
@@ -607,7 +567,6 @@
             </div>
         </section>
     </main>
-    
     <footer>
         <div class="container">
             <div class="footer-grid">
@@ -640,7 +599,6 @@
             </div>
         </div>
     </footer>
-    
     <div class="modal-overlay" id="modal-login">
         <div class="modal-content">
             <button class="close-modal" onclick="app.closeModal('modal-login')"><i class="fa-solid fa-xmark"></i></button>
@@ -683,10 +641,9 @@
         </div>
     </div>
     <div id="toast-container"></div>
-    
     <script>
         // ==================================================
-        // CONFIGURATION & ARCHITECTURE
+        // CONFIGURATION
         // ==================================================
         const CONFIG = {
             siteName: "CYBERGUARD AI",
@@ -695,38 +652,29 @@
             founderRole: "Founder & CEO",
             college: "GNITC",
             course: "B.Tech CSE — Cyber Security",
+            website: "https://aurexa.space",
             
-            // ----------------------------------------------------
-            // SECURE BACKEND ENDPOINTS (Recommended for Production)
-            // ----------------------------------------------------
-            vtEndpoint: "/api/scan-url", 
-            newsEndpoint: "/api/news",
-
-            // ----------------------------------------------------
-            // HACKATHON DIRECT MODE (Local Testing Only)
-            // ----------------------------------------------------
-            // Set to true to allow browser to directly call APIs. 
-            useDirectHackathonMode: true,
-            vtApiKey: "5c16e6849caa831b7ee656848c99f0b9a5e75031e10cc3954a8e14bc46823160",
-            newsApiKey: "1927297bd8838e5315576e7fce880ff6",
+            // APIs (Leave empty to use local simulated fallback)
+            apiKey: "1927297bd8838e5315576e7fce880ff6", // Added API Key
+            backendEndpoint: "", 
+            threatIntelEndpoint: "",
+            newsEndpoint: "",
+            supabaseUrl: "",
+            supabaseAnonKey: "",
             
             newsRefreshMinutes: 15,
+            
+            // Dev Admin credentials
             devUser: "admin",
             devPass: "admin"
         };
-
+        // ==================================================
+        // DATA & STATE
+        // ==================================================
         const appState = {
             isAdmin: localStorage.getItem('cg_admin') === 'true',
             incidents: JSON.parse(localStorage.getItem('cg_incidents')) || [],
             charts: { trend: null, dist: null },
-            
-            news: {
-                cacheKey: 'cyberguard_news_cache',
-                activeCategory: 'ALL',
-                timer: null,
-                categories: ['ALL', 'SECURITY', 'CYBER ATTACKS', 'VULNERABILITIES', 'BREACHES', 'MALWARE', 'RANSOMWARE', 'AI SECURITY']
-            },
-
             quiz: {
                 current: 0, score: 0,
                 questions: [
@@ -743,7 +691,9 @@
                 'info-job': { title: '<i class="fa-solid fa-briefcase"></i> Fake Job Scams', body: 'Scammers offer easy part-time work (like liking YouTube videos).<br><br>- They pay a small amount first to build trust.<br>- Then they ask for a "security deposit" or "upgrade fee".<br><br><b>Rule:</b> Real jobs pay you, you don\'t pay them.' }
             }
         };
-
+        // ==================================================
+        // CORE APPLICATION CONTROLLER
+        // ==================================================
         const app = {
             init() {
                 this.applyConfig();
@@ -753,22 +703,24 @@
                 this.init3DShield();
                 this.renderAlerts();
                 this.generateMap();
-                this.setupNewsSystem();
                 
                 if (appState.isAdmin) this.enableAdminUI();
                 
+                // Route to hash if exists
                 const hash = window.location.hash.replace('#', '') || 'home';
                 this.navigate(hash);
             },
-
             applyConfig() {
                 document.getElementById('brand-name').innerText = CONFIG.siteName;
                 document.getElementById('about-founder').innerText = CONFIG.founderName;
                 document.getElementById('about-role').innerText = `${CONFIG.founderRole}, ${CONFIG.parentBrand}`;
                 document.getElementById('about-edu').innerText = CONFIG.course + ", " + CONFIG.college;
                 document.getElementById('footer-founder').innerText = CONFIG.founderName;
+                
+                const storageMode = CONFIG.backendEndpoint ? 'Cloud Backend API' : (CONFIG.supabaseUrl ? 'Supabase DB' : 'Local Browser Storage');
+                document.getElementById('storage-mode').innerText = storageMode;
             },
-
+            // --- NAVIGATION ---
             setupNavigation() {
                 document.querySelectorAll('.nav-link').forEach(link => {
                     link.addEventListener('click', (e) => {
@@ -785,7 +737,6 @@
                     document.getElementById('nav-links').classList.toggle('active');
                 });
             },
-
             navigate(target) {
                 document.querySelectorAll('.view-section').forEach(s => s.classList.remove('active'));
                 document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
@@ -797,16 +748,10 @@
                 if(link) link.classList.add('active');
                 window.scrollTo({top: 0, behavior: 'smooth'});
                 window.location.hash = target;
-                
-                if(target === 'news' && document.getElementById('news-grid').children.length === 0) {
-                    this.fetchNews(false);
-                }
+                if(target === 'news') this.fetchNews();
                 if(target === 'dashboard') this.initDashboard();
             },
-
-            // ==================================================
-            // FEATURE 1: VIRUSTOTAL SCANNER WORKFLOW
-            // ==================================================
+            // --- SCANNER ---
             setupScannerTabs() {
                 document.querySelectorAll('.scan-tab-btn').forEach(btn => {
                     btn.addEventListener('click', (e) => {
@@ -817,539 +762,63 @@
                         
                         document.getElementById('analysis-idle').style.display = 'block';
                         document.getElementById('analysis-result').style.display = 'none';
-                        document.getElementById('analysis-loading').style.display = 'none';
                     });
                 });
             },
-
-            toUrlSafeBase64(string) {
-                const utf8Bytes = encodeURIComponent(string).replace(/%([0-9A-F]{2})/g, function(match, p1) {
-                    return String.fromCharCode('0x' + p1);
-                });
-                return btoa(utf8Bytes).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
-            },
-
-            async scanUrlVirusTotal() {
-                let rawUrl = document.getElementById('inp-url').value.trim();
-                if (!rawUrl) return this.showToast('Please enter a target URL to scan.', 'error');
-                if (!/^https?:\/\//i.test(rawUrl)) rawUrl = 'http://' + rawUrl;
-                document.getElementById('inp-url').value = rawUrl;
-
-                const btn = document.getElementById('btn-scan-url');
-                btn.disabled = true;
-                btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> SCANNING...';
-
-                document.getElementById('analysis-idle').style.display = 'none';
-                document.getElementById('analysis-result').style.display = 'none';
-                const loadBox = document.getElementById('analysis-loading');
-                loadBox.style.display = 'flex';
-                const loadText = document.getElementById('analysis-loading-text');
-                loadText.innerText = 'Submitting URL to VirusTotal...';
-
-                try {
-                    let reportData = null;
-
-                    if (!CONFIG.useDirectHackathonMode) {
-                        const scanRes = await fetch(CONFIG.vtEndpoint, {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({ action: 'scan', url: rawUrl })
-                        });
-                        if (!scanRes.ok) throw new Error('API Error during submission');
-                        const scanData = await scanRes.json();
-                        
-                        reportData = await this.pollVtAnalysisBackend(scanData.id);
-
-                    } else {
-                        if(!CONFIG.vtApiKey) throw new Error("Missing VirusTotal API Key in Configuration.");
-                        
-                        const urlId = this.toUrlSafeBase64(rawUrl);
-                        let res = await fetch(`https://www.virustotal.com/api/v3/urls/${urlId}`, {
-                            headers: { 'x-apikey': CONFIG.vtApiKey }
-                        });
-
-                        if (res.status === 404) {
-                            loadText.innerText = 'Analyzing across 70+ engines...';
-                            const formBody = new URLSearchParams();
-                            formBody.append('url', rawUrl);
-                            
-                            const scanSub = await fetch('https://www.virustotal.com/api/v3/urls', {
-                                method: 'POST',
-                                headers: {
-                                    'x-apikey': CONFIG.vtApiKey,
-                                    'Content-Type': 'application/x-www-form-urlencoded'
-                                },
-                                body: formBody.toString()
-                            });
-
-                            if (!scanSub.ok) {
-                                if (scanSub.status === 401) throw new Error("Invalid VirusTotal API Key");
-                                if (scanSub.status === 429) throw new Error("VirusTotal Rate Limit Exceeded");
-                                throw new Error(`Submission failed: ${scanSub.status}`);
-                            }
-
-                            const subData = await scanSub.json();
-                            reportData = await this.pollVtAnalysisDirect(subData.data.id);
-
-                        } else if (res.ok) {
-                            reportData = await res.json();
-                        } else {
-                            if (res.status === 401) throw new Error("Invalid VirusTotal API Key");
-                            if (res.status === 429) throw new Error("VirusTotal Rate Limit Exceeded");
-                            throw new Error(`API Error: ${res.status}`);
-                        }
-                    }
-
-                    if (!reportData || !reportData.data || !reportData.data.attributes) {
-                        throw new Error('Incomplete scan report returned.');
-                    }
-                    this.renderVirusTotalResults(rawUrl, reportData.data.attributes);
-
-                } catch (error) {
-                    console.error("VT Scanner Error:", error);
-                    loadBox.style.display = 'none';
-                    document.getElementById('analysis-idle').style.display = 'block';
-                    this.showToast(error.message || 'VirusTotal Scan Failed', 'error');
-                } finally {
-                    btn.disabled = false;
-                    btn.innerHTML = '<i class="fa-solid fa-radar"></i> SCAN AGAIN';
-                }
-            },
-
-            async pollVtAnalysisDirect(analysisId) {
-                const maxAttempts = 12;
-                for (let i = 1; i <= maxAttempts; i++) {
-                    await new Promise(r => setTimeout(r, 4000));
-                    document.getElementById('analysis-loading-text').innerText = `Waiting for engine consensus... (${i}/${maxAttempts})`;
-                    const res = await fetch(`https://www.virustotal.com/api/v3/analyses/${analysisId}`, {
-                        headers: { 'x-apikey': CONFIG.vtApiKey }
-                    });
-                    if (!res.ok) continue;
-                    const data = await res.json();
-                    if (data.data.attributes.status === 'completed') return data;
-                }
-                throw new Error('Analysis timed out. Engines took too long.');
-            },
-
-            async pollVtAnalysisBackend(analysisId) {
-                const maxAttempts = 12;
-                for (let i = 1; i <= maxAttempts; i++) {
-                    await new Promise(r => setTimeout(r, 4000));
-                    document.getElementById('analysis-loading-text').innerText = `Waiting for engine consensus... (${i}/${maxAttempts})`;
-                    const res = await fetch(CONFIG.vtEndpoint, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ action: 'poll', id: analysisId })
-                    });
-                    if (!res.ok) continue;
-                    const data = await res.json();
-                    if (data.data.attributes.status === 'completed') return data;
-                }
-                throw new Error('Analysis timed out.');
-            },
-
-            renderVirusTotalResults(url, attributes) {
-                const loadBox = document.getElementById('analysis-loading');
-                const resultBox = document.getElementById('analysis-result');
-                loadBox.style.display = 'none';
-                resultBox.style.display = 'block';
-
-                const stats = attributes.last_analysis_stats || attributes.stats || { malicious: 0, suspicious: 0, harmless: 0, undetected: 0 };
-                const totalEngines = (stats.malicious || 0) + (stats.suspicious || 0) + (stats.harmless || 0) + (stats.undetected || 0);
-
-                document.getElementById('res-title').innerText = "VirusTotal v3 Report";
-                document.getElementById('res-target-url').innerText = url;
-                document.getElementById('vt-stats-container').style.display = 'grid';
-
-                document.getElementById('vt-malicious').innerText = stats.malicious || 0;
-                document.getElementById('vt-suspicious').innerText = stats.suspicious || 0;
-                document.getElementById('vt-harmless').innerText = stats.harmless || 0;
-                document.getElementById('vt-undetected').innerText = stats.undetected || 0;
-
-                const mal = stats.malicious || 0;
-                const susp = stats.suspicious || 0;
-
-                let riskScore = 0;
-                let verdict = "SAFE";
-                let bClass = "badge-success";
-                let color = "var(--success)";
-                let action = "No security vendors flagged this URL as malicious. Connection appears safe, but maintain standard browsing precautions.";
-
-                if (mal === 0 && susp === 0) {
-                    riskScore = 5;
-                    verdict = "NO THREATS DETECTED";
-                } else if (mal === 0 && susp > 0) {
-                    riskScore = 55;
-                    verdict = "SUSPICIOUS";
-                    bClass = "badge-warning";
-                    color = "var(--warning)";
-                    action = "Low to moderate suspicion detected. Caution advised: do not submit banking or confidential credentials on this domain.";
-                } else if (mal > 0) {
-                    riskScore = Math.min(99, 65 + (mal * 5));
-                    verdict = "MALICIOUS";
-                    bClass = "badge-danger";
-                    color = "var(--danger)";
-                    action = "CRITICAL ALERT: Multi-engine consensus confirms malicious or phishing signatures. Block domain and terminate session immediately.";
-                }
-
-                const gauge = document.getElementById('res-gauge');
-                const txt = document.getElementById('res-score');
-                const badge = document.getElementById('res-badge');
-
-                setTimeout(() => { gauge.style.transform = `rotate(${-45 + (riskScore * 1.8)}deg)`; }, 100);
-                gauge.style.borderTopColor = color;
-                gauge.style.borderRightColor = color;
-                txt.innerText = riskScore;
-                txt.style.color = color;
-                badge.className = `badge ${bClass}`;
-                badge.innerText = verdict;
-                document.getElementById('res-action').innerText = action;
-
-                const results = attributes.last_analysis_results || attributes.results || {};
-                const indList = document.getElementById('res-indicators');
-                const flaggedVendors = [];
-
-                for (const [vendor, vData] of Object.entries(results)) {
-                    if (vData.category === 'malicious' || vData.category === 'suspicious') {
-                        flaggedVendors.push({ vendor, result: vData.result || vData.category, cat: vData.category });
-                    }
-                }
-
-                if (flaggedVendors.length > 0) {
-                    indList.innerHTML = flaggedVendors.slice(0, 10).map(v => `
-                        <div class="ind-item" style="border-left-color:${v.cat === 'malicious' ? 'var(--danger)' : 'var(--warning)'}">
-                            <div><strong>${v.vendor}</strong>: <span style="color:${v.cat === 'malicious' ? 'var(--danger)' : 'var(--warning)'}">${v.result}</span></div>
-                            <span class="badge ${v.cat === 'malicious' ? 'badge-danger' : 'badge-warning'}">${v.cat}</span>
-                        </div>
-                    `).join('');
-                } else {
-                    indList.innerHTML = `
-                        <div class="ind-item" style="border-left-color:var(--success)">
-                            <div><i class="fa-solid fa-circle-check text-success"></i> 0/${totalEngines} engines detected security threats.</div>
-                            <span class="badge badge-success">Clean</span>
-                        </div>
-                    `;
-                }
-            },
-
             analyze(type) {
                 let text = "";
                 let score = 0;
                 let inds = [];
                 
-                if (type === 'msg') text = document.getElementById('inp-msg').value.toLowerCase();
-                if (type === 'email') text = document.getElementById('inp-email-sub').value.toLowerCase() + " " + document.getElementById('inp-email-body').value.toLowerCase();
-
-                if (!text.trim()) return this.showToast('Please enter text content to analyze.', 'error');
-
-                if (/urgent|suspend|block|immediate|action required/.test(text)) { score += 40; inds.push("Urgency & coercive panic tactics detected."); }
-                if (/otp|password|pin|cvv|secret code/.test(text)) { score += 50; inds.push("Request for confidential credentials."); }
-                if (/win|lottery|prize|reward|claim free/.test(text)) { score += 40; inds.push("Deceptive greed hooks / unreal claims."); }
-                if (/apk|download link|install app/.test(text)) { score += 50; inds.push("Potential unauthorized APK / malware vector."); }
-                if (/task|youtube|like|subscribe|part-time|daily income/.test(text)) { score += 60; inds.push("Matches known Fake Task/Part-Time Job Scam signature."); }
-
-                if (score === 0 && text.length > 5) { score = 10; inds.push("No obvious malicious patterns found in local rules."); }
-                if (score > 99) score = 99;
-
-                document.getElementById('vt-stats-container').style.display = 'none';
-                document.getElementById('res-title').innerText = "Content Heuristic Report";
-                document.getElementById('res-target-url').innerText = type === 'msg' ? 'SMS / Chat Message' : 'Email Content Stream';
+                if(type === 'url') text = document.getElementById('inp-url').value.toLowerCase();
+                if(type === 'msg') text = document.getElementById('inp-msg').value.toLowerCase();
+                if(type === 'email') text = document.getElementById('inp-email-sub').value.toLowerCase() + " " + document.getElementById('inp-email-body').value.toLowerCase();
+                if(!text.trim()) return this.showToast('Please enter content to analyze.', 'error');
+                // Local Heuristics
+                if(type === 'url') {
+                    if(!text.startsWith('https')) { score += 40; inds.push("Missing secure HTTPS connection."); }
+                    if(/\d+\.\d+\.\d+\.\d+/.test(text)) { score += 60; inds.push("Uses raw IP address instead of domain."); }
+                    if(/login|update|verify|secure|auth/.test(text)) { score += 30; inds.push("Suspicious keywords aiming to steal credentials."); }
+                    if(text.split('.').length > 4) { score += 30; inds.push("Excessive subdomains masking real domain."); }
+                } else {
+                    if(/urgent|suspend|block|immediate/.test(text)) { score += 40; inds.push("Urgency/Panic tactics detected."); }
+                    if(/otp|password|pin/.test(text)) { score += 50; inds.push("Request for sensitive credentials."); }
+                    if(/win|lottery|prize|reward/.test(text)) { score += 40; inds.push("Greed hooks / Too good to be true."); }
+                    if(/apk|download link/.test(text)) { score += 50; inds.push("Malware distribution risk."); }
+                    if(/task|youtube|like|subscribe/.test(text)) { score += 60; inds.push("Matches Fake Task/Job scam signature."); }
+                }
+                if(score === 0 && text.length > 5) { score = 10; inds.push("No obvious malicious patterns found locally."); }
+                if(score > 99) score = 99;
                 this.processAnalysisUI(score, inds);
             },
-
             processAnalysisUI(score, inds) {
                 document.getElementById('analysis-idle').style.display = 'none';
                 document.getElementById('analysis-result').style.display = 'none';
                 document.getElementById('analysis-loading').style.display = 'flex';
-                document.getElementById('analysis-loading-text').innerText = 'Running NLP Pattern Heuristics...';
-
                 setTimeout(() => {
                     document.getElementById('analysis-loading').style.display = 'none';
                     document.getElementById('analysis-result').style.display = 'block';
-
                     const gauge = document.getElementById('res-gauge');
                     const txt = document.getElementById('res-score');
                     const badge = document.getElementById('res-badge');
+                    const cat = document.getElementById('res-category');
                     const act = document.getElementById('res-action');
                     const indList = document.getElementById('res-indicators');
-
                     let color = 'var(--success)';
-                    let level = 'SAFE / LOW RISK';
+                    let level = 'Unable to Verify / Low Risk';
                     let bClass = 'badge-success';
-                    let action = "No high-confidence threat signatures found. Always verify unexpected senders independently.";
-
-                    if (score > 30 && score <= 60) {
-                        color = 'var(--warning)';
-                        level = 'POTENTIALLY SUSPICIOUS';
-                        bClass = 'badge-warning';
-                        action = "Exercise caution. Do not click embedded hyperlinks or share financial info without manual verification.";
-                    } else if (score > 60) {
-                        color = 'var(--danger)';
-                        level = 'HIGH RISK / CRITICAL';
-                        bClass = 'badge-danger';
-                        action = "Social engineering indicators detected. Block sender immediately and report incident to authorities.";
-                    }
-
+                    let action = "No immediate threat signatures detected by local engine. Still, do not share personal info.";
+                    if(score > 30) { color = 'var(--warning)'; level = 'Potentially Suspicious'; bClass = 'badge-warning'; action = "Exercise caution. Do not click links unless you independently verify the source."; }
+                    if(score > 70) { color = 'var(--danger)'; level = 'High Risk / Critical'; bClass = 'badge-danger'; action = "Malicious patterns detected. Do not interact. Delete and block sender."; cat.innerText = "Social Engineering / Phishing"; }
+                    if(score <= 30) cat.innerText = "Unknown / Benign";
                     setTimeout(() => { gauge.style.transform = `rotate(${-45 + (score * 1.8)}deg)`; }, 100);
-                    gauge.style.borderTopColor = color;
-                    gauge.style.borderRightColor = color;
-                    txt.innerText = score;
-                    txt.style.color = color;
-                    badge.className = `badge ${bClass}`;
-                    badge.innerText = level;
+                    gauge.style.borderTopColor = color; gauge.style.borderRightColor = color;
+                    txt.innerText = score; txt.style.color = color;
+                    badge.className = `badge ${bClass}`; badge.innerText = level;
                     act.innerText = action;
-
-                    indList.innerHTML = inds.map(i => `
-                        <div class="ind-item" style="border-left-color:${score > 50 ? 'var(--danger)' : 'var(--info)'}">
-                            <div><i class="fa-solid ${score > 50 ? 'fa-triangle-exclamation text-danger' : 'fa-info-circle text-info'}"></i> ${i}</div>
-                        </div>
-                    `).join('');
-
-                }, 1000);
+                    indList.innerHTML = inds.map(i => `<div class="ind-item"><i class="fa-solid ${score>50?'fa-triangle-exclamation text-danger':'fa-info-circle text-info'}"></i> ${i}</div>`).join('');
+                }, 1500);
             },
-
-            // ==================================================
-            // FEATURE 2: LIVE CYBER NEWS
-            // ==================================================
-            setupNewsSystem() {
-                const filtersContainer = document.getElementById('news-filters-container');
-                if (filtersContainer) {
-                    filtersContainer.innerHTML = appState.news.categories.map(c => 
-                        `<button class="btn btn-outline filter-btn ${c === appState.news.activeCategory ? 'active' : ''}" style="white-space:nowrap; padding: 0.4rem 1rem; font-size:0.8rem; border-radius: 20px;" onclick="app.filterNews('${c}')">${c}</button>`
-                    ).join('');
-                }
-
-                document.addEventListener("visibilitychange", () => {
-                    if (document.visibilityState === "visible") {
-                        this.initAutoRefresh();
-                        if (document.getElementById('news').classList.contains('active')) {
-                            this.fetchNews(true);
-                        }
-                    } else {
-                        clearInterval(appState.news.timer);
-                    }
-                });
-                this.initAutoRefresh();
-            },
-
-            initAutoRefresh() {
-                clearInterval(appState.news.timer);
-                if (CONFIG.newsRefreshMinutes && CONFIG.newsRefreshMinutes > 0) {
-                    appState.news.timer = setInterval(() => {
-                        if (document.visibilityState === "visible" && document.getElementById('news').classList.contains('active')) {
-                            this.fetchNews(true);
-                        }
-                    }, CONFIG.newsRefreshMinutes * 60 * 1000);
-                }
-            },
-
-            filterNews(category) {
-                appState.news.activeCategory = category;
-                document.querySelectorAll('.filter-btn').forEach(btn => {
-                    btn.classList.remove('active');
-                    if (btn.innerText === category) btn.classList.add('active');
-                });
-                this.fetchNews(false);
-            },
-
-            async refreshNews() {
-                const btn = document.getElementById('btn-news-refresh');
-                if (btn) {
-                    btn.disabled = true;
-                    btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Refreshing...';
-                }
-                await this.fetchNews(false);
-                if (btn) {
-                    btn.disabled = false;
-                    btn.innerHTML = '<i class="fa-solid fa-rotate-right"></i> Refresh';
-                }
-            },
-
-            showNewsSkeletonLoader() {
-                const grid = document.getElementById('news-grid');
-                const skeletonHTML = Array(6).fill(`
-                    <div class="glass-panel news-card sk-box" style="padding:0; height: 350px; display:flex; flex-direction:column; border:none; box-shadow:none;">
-                        <div style="width:100%; height:180px; background:rgba(255,255,255,0.02);"></div>
-                        <div style="padding:1.5rem; flex-grow:1; display:flex; flex-direction:column; gap:1rem;">
-                            <div style="height:12px; width:30%; background:rgba(255,255,255,0.05); border-radius:4px;"></div>
-                            <div style="height:20px; width:90%; background:rgba(255,255,255,0.05); border-radius:4px;"></div>
-                            <div style="height:12px; width:100%; background:rgba(255,255,255,0.02); border-radius:4px;"></div>
-                            <div style="height:12px; width:70%; background:rgba(255,255,255,0.02); border-radius:4px;"></div>
-                        </div>
-                    </div>
-                `).join('');
-                grid.innerHTML = skeletonHTML;
-            },
-
-            async fetchNews(isAutoUpdate = false) {
-                this.updateNewsStatusUI('loading');
-                if (!isAutoUpdate) this.showNewsSkeletonLoader();
-
-                try {
-                    let articles = [];
-
-                    if (!CONFIG.useDirectHackathonMode) {
-                        const url = `${CONFIG.newsEndpoint}?category=${encodeURIComponent(appState.news.activeCategory)}`;
-                        const response = await fetch(url);
-                        if (!response.ok) throw new Error(`HTTP Error ${response.status}`);
-                        const data = await response.json();
-                        articles = data.articles;
-                    } else {
-                        if (!CONFIG.newsApiKey) throw new Error("API Key Missing");
-                        
-                        let qTerm = 'cybersecurity';
-                        if (appState.news.activeCategory !== 'ALL') {
-                            qTerm = `cybersecurity AND "${appState.news.activeCategory.toLowerCase()}"`;
-                        } else {
-                            qTerm = 'cybersecurity OR ransomware OR "data breach" OR malware';
-                        }
-
-                        const url = `https://gnews.io/api/v4/search?q=${encodeURIComponent(qTerm)}&lang=en&max=9&apikey=${CONFIG.newsApiKey}`;
-                        
-                        const controller = new AbortController();
-                        const timeoutId = setTimeout(() => controller.abort(), 10000);
-                        const response = await fetch(url, { signal: controller.signal });
-                        clearTimeout(timeoutId);
-                        
-                        if (!response.ok) {
-                            if (response.status === 401 || response.status === 403) throw new Error("API Authentication failed.");
-                            if (response.status === 429) throw new Error("News API Rate limit exceeded.");
-                            throw new Error(`HTTP Error ${response.status}`);
-                        }
-                        
-                        const data = await response.json();
-                        articles = data.articles;
-                    }
-
-                    if (articles && articles.length > 0) {
-                        const uniqueArticlesMap = new Map();
-                        articles.forEach(a => {
-                            if (!uniqueArticlesMap.has(a.url)) {
-                                uniqueArticlesMap.set(a.url, {
-                                    title: a.title,
-                                    description: a.description,
-                                    url: a.url,
-                                    source: a.source?.name || a.source,
-                                    publishedAt: a.publishedAt,
-                                    image: a.image,
-                                    category: appState.news.activeCategory === 'ALL' ? 'CYBER NEWS' : appState.news.activeCategory
-                                });
-                            }
-                        });
-                        
-                        const cleanArticles = Array.from(uniqueArticlesMap.values())
-                            .sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
-                        
-                        localStorage.setItem(appState.news.cacheKey, JSON.stringify({ timestamp: Date.now(), articles: cleanArticles }));
-                        this.renderNewsGrid(cleanArticles);
-                        this.updateNewsStatusUI('success');
-                        
-                        if (!isAutoUpdate) this.showToast('News feed updated successfully.', 'success');
-                    } else {
-                        throw new Error("No live articles returned for this category.");
-                    }
-                } catch (error) {
-                    console.error("Cyber News Error:", error);
-                    this.handleNewsError();
-                }
-            },
-
-            handleNewsError() {
-                const cached = localStorage.getItem(appState.news.cacheKey);
-                if (cached) {
-                    try {
-                        const parsedCache = JSON.parse(cached);
-                        this.renderNewsGrid(parsedCache.articles);
-                        this.updateNewsStatusUI('cached', parsedCache.timestamp);
-                    } catch(e) {
-                        this.updateNewsStatusUI('failure');
-                        document.getElementById('news-grid').innerHTML = '';
-                    }
-                } else {
-                    this.updateNewsStatusUI('failure');
-                    document.getElementById('news-grid').innerHTML = '';
-                }
-            },
-
-            updateNewsStatusUI(state, timestamp = Date.now()) {
-                const icon = document.getElementById('news-status-icon');
-                const title = document.getElementById('news-status-title');
-                const desc = document.getElementById('news-status-desc');
-                const container = document.getElementById('news-status-container');
-                const btnRetry = document.getElementById('btn-news-retry');
-
-                btnRetry.style.display = 'none';
-
-                if (state === 'loading') {
-                    icon.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin text-primary" style="font-size: 1.5rem;"></i>';
-                    title.innerText = 'CONNECTING TO CYBER INTELLIGENCE';
-                    title.style.color = 'var(--primary)';
-                    desc.innerText = 'Fetching latest security news...';
-                    container.style.borderLeftColor = 'var(--primary)';
-                } else if (state === 'success') {
-                    icon.innerHTML = '<i class="fa-solid fa-check-circle text-success" style="font-size: 1.5rem;"></i>';
-                    title.innerText = '🟢 LIVE CYBER INTELLIGENCE CONNECTED';
-                    title.style.color = 'var(--success)';
-                    desc.innerText = 'Live cybersecurity news • Last updated: Just now';
-                    container.style.borderLeftColor = 'var(--success)';
-                } else if (state === 'cached') {
-                    icon.innerHTML = '<i class="fa-solid fa-database text-warning" style="font-size: 1.5rem;"></i>';
-                    title.innerText = '🟠 CYBER INTELLIGENCE TEMPORARILY UNAVAILABLE';
-                    title.style.color = 'var(--warning)';
-                    const diffMins = Math.floor((Date.now() - timestamp) / 60000);
-                    let timeText = diffMins < 60 ? `${diffMins} minutes ago` : new Date(timestamp).toLocaleTimeString();
-                    desc.innerText = `Showing last successfully loaded articles. Cached intelligence • Last successfully updated: ${timeText}`;
-                    container.style.borderLeftColor = 'var(--warning)';
-                    btnRetry.style.display = 'block';
-                } else if (state === 'failure') {
-                    icon.innerHTML = '<i class="fa-solid fa-triangle-exclamation text-danger" style="font-size: 1.5rem;"></i>';
-                    title.innerText = '🟠 CYBER INTELLIGENCE OFFLINE';
-                    title.style.color = 'var(--danger)';
-                    desc.innerText = 'Unable to retrieve live news. Please check connection and try again.';
-                    container.style.borderLeftColor = 'var(--danger)';
-                    btnRetry.style.display = 'block';
-                } else if (state === 'unconfigured') {
-                    icon.innerHTML = '<i class="fa-solid fa-circle-info text-info" style="font-size: 1.5rem;"></i>';
-                    title.innerText = 'CYBER NEWS API NOT CONFIGURED';
-                    title.style.color = 'var(--text-muted)';
-                    desc.innerText = 'Cyber news API is not configured.';
-                    container.style.borderLeftColor = 'var(--text-muted)';
-                    document.getElementById('news-grid').innerHTML = '';
-                }
-            },
-
-            renderNewsGrid(articles) {
-                const grid = document.getElementById('news-grid');
-                grid.innerHTML = articles.map(a => {
-                    const timeString = new Date(a.publishedAt).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
-                    const placeholderSVG = `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'><rect width='400' height='200' fill='%230f1629'/><path d='M200 60c-22.1 0-40 17.9-40 40s17.9 40 40 40 40-17.9 40-40-17.9-40-40-40zm0 65c-13.8 0-25-11.2-25-25s11.2-25 25-25 25 11.2 25 25-11.2 25-25 25z' fill='%233b82f6' opacity='0.3'/><path d='M200 45c-30.3 0-55 24.7-55 55s24.7 55 55 55 55-24.7 55-55-24.7-55-55-55zm0 95c-22.1 0-40-17.9-40-40s17.9-40 40-40 40 17.9 40 40-17.9 40-40 40z' fill='%2306b6d4' opacity='0.5'/></svg>`;
-                    const imgHTML = a.image 
-                        ? `<img src="${a.image}" alt="${a.title}" style="width:100%; height:180px; object-fit:cover; border-bottom:1px solid var(--border-light);" onerror="this.src='${placeholderSVG}'">` 
-                        : `<img src="${placeholderSVG}" style="width:100%; height:180px; object-fit:cover; border-bottom:1px solid var(--border-light);">`;
-                    
-                    return `
-                    <div class="glass-panel news-card" style="padding: 0; display: flex; flex-direction: column; overflow: hidden; height: 100%;">
-                        ${imgHTML}
-                        <div style="padding: 1.5rem; display: flex; flex-direction: column; flex-grow: 1;">
-                            <div class="news-meta" style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.75rem; display: flex; justify-content: space-between;">
-                                <span><i class="fa-solid fa-globe text-primary"></i> ${a.source}</span>
-                                <span>${timeString}</span>
-                            </div>
-                            <h3 class="news-title" style="font-size: 1.1rem; margin-bottom: 0.75rem; line-height: 1.4; color: var(--text-main);">
-                                ${a.title}
-                            </h3>
-                            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; flex-grow: 1;">
-                                ${a.description || 'Read the complete threat analysis on the source website.'}
-                            </p>
-                            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto;">
-                                <span class="badge badge-info">${a.category}</span>
-                                <a href="${a.url}" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="padding: 0.4rem 1rem; font-size: 0.75rem;">Read Article</a>
-                            </div>
-                        </div>
-                    </div>`;
-                }).join('');
-            },
-
             // --- REPORT FRAUD ---
             submitIncident(e) {
                 e.preventDefault();
@@ -1363,35 +832,44 @@
                 };
                 
                 appState.incidents.unshift(inc);
-                localStorage.setItem('cg_incidents', JSON.stringify(appState.incidents));
-                e.target.reset();
-                this.showToast(`Incident #${inc.id} logged securely.`, 'success');
+                
+                // Logic based on CONFIG
+                if(CONFIG.backendEndpoint || CONFIG.supabaseUrl) {
+                    // Simulate API call
+                    this.showToast('Sending to secure backend...', 'info');
+                    setTimeout(() => { this.finalizeReport(inc, e.target); }, 1000);
+                } else {
+                    localStorage.setItem('cg_incidents', JSON.stringify(appState.incidents));
+                    this.finalizeReport(inc, e.target);
+                }
             },
-
+            finalizeReport(inc, form) {
+                form.reset();
+                this.showToast(`Incident ${inc.id} submitted successfully.`, 'success');
+            },
             // --- DASHBOARD (ADMIN) ---
             initDashboard() {
-                if (!appState.isAdmin) return;
+                if(!appState.isAdmin) return;
                 
                 document.getElementById('dash-total').innerText = appState.incidents.length;
-                document.getElementById('dash-critical').innerText = appState.incidents.filter(i => i.type.includes('Fraud') || i.type.includes('Phishing')).length;
-                document.getElementById('dash-resolved').innerText = appState.incidents.filter(i => i.status === 'RESOLVED').length;
-
+                document.getElementById('dash-critical').innerText = appState.incidents.filter(i=>i.type.includes('Fraud')||i.type.includes('Phishing')).length;
+                document.getElementById('dash-resolved').innerText = appState.incidents.filter(i=>i.status==='RESOLVED').length;
                 this.renderTable();
                 this.renderCharts();
             },
-
             renderTable() {
                 const tbody = document.getElementById('dash-table');
                 const empty = document.getElementById('dash-empty');
-                if (appState.incidents.length === 0) {
+                if(appState.incidents.length === 0) {
                     tbody.innerHTML = '';
                     empty.style.display = 'block';
                     return;
                 }
                 empty.style.display = 'none';
+                
                 tbody.innerHTML = appState.incidents.map((inc, idx) => `
                     <tr>
-                        <td style="font-family:var(--font-mono); color:var(--primary); font-weight:600;">${inc.id}</td>
+                        <td style="font-family:var(--font-mono); color:var(--primary);">${inc.id}</td>
                         <td>${inc.date}</td>
                         <td><span class="badge badge-info">${inc.type}</span></td>
                         <td>${inc.name}</td>
@@ -1402,34 +880,122 @@
                     </tr>
                 `).join('');
             },
-
             resolveIncident(idx) {
                 appState.incidents[idx].status = 'RESOLVED';
                 localStorage.setItem('cg_incidents', JSON.stringify(appState.incidents));
                 this.initDashboard();
                 this.showToast('Incident marked as resolved.', 'success');
             },
-
             renderCharts() {
-                if (appState.charts.trend) appState.charts.trend.destroy();
-                if (appState.charts.dist) appState.charts.dist.destroy();
+                if(appState.charts.trend) appState.charts.trend.destroy();
+                if(appState.charts.dist) appState.charts.dist.destroy();
                 Chart.defaults.color = '#94a3b8';
                 Chart.defaults.font.family = "'Inter', sans-serif";
                 const ctxT = document.getElementById('chart-trend').getContext('2d');
                 appState.charts.trend = new Chart(ctxT, {
                     type: 'line',
-                    data: { labels: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'], datasets: [{ label: 'Incidents Logged', data: [5,8,12,7,15,10,appState.incidents.length], borderColor: '#3b82f6', backgroundColor: 'rgba(59,130,246,0.1)', fill: true, tension: 0.4 }] },
+                    data: { labels: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'], datasets: [{ label: 'Incidents', data: [5,8,12,7,15,10,appState.incidents.length], borderColor: '#3b82f6', backgroundColor: 'rgba(59,130,246,0.1)', fill: true, tension: 0.4 }] },
                     options: { responsive: true, maintainAspectRatio: false, scales: { x: { grid: { color: 'rgba(255,255,255,0.05)' } }, y: { grid: { color: 'rgba(255,255,255,0.05)' } } } }
                 });
                 const ctxD = document.getElementById('chart-dist').getContext('2d');
                 appState.charts.dist = new Chart(ctxD, {
                     type: 'doughnut',
-                    data: { labels: ['Phishing', 'UPI Scams', 'Job Frauds'], datasets: [{ data: [40, 35, 25], backgroundColor: ['#ef4444', '#f59e0b', '#3b82f6'], borderWidth: 0 }] },
+                    data: { labels: ['Phishing', 'UPI', 'Jobs'], datasets: [{ data: [40, 35, 25], backgroundColor: ['#ef4444', '#f59e0b', '#3b82f6'], borderWidth: 0 }] },
                     options: { responsive: true, maintainAspectRatio: false }
                 });
             },
+            // --- NEWS & ALERTS ---
+            async fetchNews() {
+                const grid = document.getElementById('news-grid');
+                const statusIcon = document.getElementById('news-status-icon');
+                const statusText = document.getElementById('news-status-text');
+                const statusContainer = document.getElementById('news-status-container');
+                const categoriesContainer = document.getElementById('news-filters-container');
+                
+                // Set Loading State
+                statusIcon.className = "fa-solid fa-circle-notch fa-spin";
+                statusText.innerText = "Connecting to Cyber Intelligence...";
+                statusContainer.style.borderColor = "var(--primary)";
+                statusContainer.style.color = "var(--primary)";
 
-            // --- ALERTS & MAP ---
+                try {
+                    // Using a reliable, free RSS to JSON API for hackathon context as requested, avoiding CORS issues.
+                    // A public feed (The Hacker News) is used to ensure real, live data.
+                    const response = await fetch('https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Ffeeds.feedburner.com%2FTheHackersNews');
+                    
+                    if (!response.ok) throw new Error('Network response was not ok');
+                    const data = await response.json();
+                    
+                    if (data.status === 'ok' && data.items.length > 0) {
+                        grid.innerHTML = data.items.map(n => {
+                            // Extract a short description, removing HTML tags
+                            let shortDesc = n.description.replace(/<[^>]*>?/gm, '');
+                            shortDesc = shortDesc.substring(0, 100) + '...';
+                            
+                            // Determine category (basic heuristic)
+                            let cat = "CYBERSECURITY";
+                            const titleLower = n.title.toLowerCase();
+                            if(titleLower.includes('ransomware')) cat = "RANSOMWARE";
+                            else if(titleLower.includes('phishing') || titleLower.includes('scam')) cat = "PHISHING";
+                            else if(titleLower.includes('breach') || titleLower.includes('leak')) cat = "DATA BREACH";
+                            else if(titleLower.includes('vulnerability') || titleLower.includes('flaw') || titleLower.includes('bug')) cat = "VULNERABILITY";
+                            else if(titleLower.includes('malware') || titleLower.includes('trojan')) cat = "MALWARE";
+                            else if(titleLower.includes('ai') || titleLower.includes('artificial intelligence')) cat = "AI SECURITY";
+
+                            // Format Date
+                            const pubDate = new Date(n.pubDate).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
+
+                            return `
+                                <div class="glass-panel news-card" style="display:flex; flex-direction:column; height: 100%;">
+                                    <div class="news-meta"><span><i class="fa-solid fa-globe text-primary"></i> ${data.feed.title || 'The Hacker News'}</span><span>${pubDate}</span></div>
+                                    <h3 class="news-title" style="flex-grow:0;">${n.title}</h3>
+                                    <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1rem; flex-grow:1;">${shortDesc}</p>
+                                    <div style="display:flex; justify-content:space-between; align-items:center; margin-top:auto;">
+                                        <span class="badge badge-info">${cat}</span>
+                                        <a href="${n.link}" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="padding: 0.4rem 1rem; font-size:0.75rem;">Read Article</a>
+                                    </div>
+                                </div>
+                            `;
+                        }).join('');
+
+                        // Set Success State
+                        statusIcon.className = "fa-solid fa-check-circle";
+                        const timeNow = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+                        statusText.innerHTML = `<b>LIVE</b> &bull; Last updated: ${timeNow}`;
+                        statusContainer.style.borderColor = "var(--success)";
+                        statusContainer.style.color = "var(--success)";
+                        
+                        // Render categories based on fetched data
+                        if(categoriesContainer) {
+                             const cats = ['ALL', 'CYBERSECURITY', 'RANSOMWARE', 'PHISHING', 'DATA BREACH', 'VULNERABILITY', 'MALWARE', 'AI SECURITY'];
+                             categoriesContainer.innerHTML = cats.map(c => 
+                                 `<button class="btn btn-outline filter-btn ${c === 'ALL' ? 'active' : ''}">${c}</button>`
+                             ).join('');
+                        }
+
+                    } else {
+                        throw new Error('No articles returned from feed.');
+                    }
+                } catch (error) {
+                    console.error('Error fetching news:', error);
+                    // Set Error State
+                    statusIcon.className = "fa-solid fa-triangle-exclamation";
+                    statusText.innerText = "Live feed temporarily unavailable (Network/API Error)";
+                    statusContainer.style.borderColor = "var(--danger)";
+                    statusContainer.style.color = "var(--danger)";
+                    grid.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; color: var(--text-muted); padding: 2rem;">Unable to retrieve live news at this time. Please check your connection or try refreshing.</div>`;
+                }
+            },
+
+            async refreshNews() {
+                const btn = document.getElementById('btn-news-refresh');
+                btn.disabled = true;
+                btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Refreshing...';
+                await this.fetchNews();
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fa-solid fa-rotate-right"></i> Refresh';
+            },
+
             renderAlerts() {
                 const alerts = [
                     { title: "TRAI Impersonation Calls", level: "CRITICAL", desc: "Scammers claiming mobile numbers will be blocked." },
@@ -1446,7 +1012,6 @@
                     </div>
                 `).join('');
             },
-
             generateMap() {
                 const map = document.getElementById('map-container');
                 for(let i=0; i<8; i++) {
@@ -1455,7 +1020,6 @@
                     map.appendChild(dot);
                 }
             },
-
             // --- SECURITY CENTER & QUIZ ---
             checkPassword() {
                 const p = document.getElementById('pwd-input').value;
@@ -1482,7 +1046,6 @@
                 else if(s <= 75) { bar.style.background = 'var(--info)'; lbl.innerText = 'Good'; lbl.style.color = 'var(--info)'; }
                 else { bar.style.background = 'var(--success)'; lbl.innerText = 'Strong'; lbl.style.color = 'var(--success)'; }
             },
-
             openQuiz() {
                 appState.quiz.current = 0; appState.quiz.score = 0;
                 document.getElementById('quiz-result').style.display = 'none';
@@ -1490,7 +1053,6 @@
                 this.renderQuizQ();
                 this.openModal('modal-quiz');
             },
-
             renderQuizQ() {
                 const q = appState.quiz.questions[appState.quiz.current];
                 document.getElementById('quiz-progress').innerText = `${appState.quiz.current + 1}/${appState.quiz.questions.length}`;
@@ -1501,7 +1063,6 @@
                 document.getElementById('quiz-feedback').style.display = 'none';
                 document.getElementById('quiz-next').style.display = 'none';
             },
-
             answerQuiz(idx) {
                 const q = appState.quiz.questions[appState.quiz.current];
                 const btns = document.getElementById('quiz-opts').querySelectorAll('button');
@@ -1521,7 +1082,6 @@
                 }
                 document.getElementById('quiz-next').style.display = 'block';
             },
-
             nextQuiz() {
                 appState.quiz.current++;
                 if(appState.quiz.current < appState.quiz.questions.length) this.renderQuizQ();
@@ -1531,8 +1091,7 @@
                     document.getElementById('quiz-score').innerText = appState.quiz.score;
                 }
             },
-
-            // --- AUTH & MODALS ---
+            // --- AUTH, MODALS, UTILS ---
             toggleLogin() { this.openModal('modal-login'); },
             
             handleLogin(e) {
@@ -1549,12 +1108,10 @@
                 } else this.showToast('Invalid Credentials', 'error');
                 e.target.reset();
             },
-
             enableAdminUI() {
                 document.getElementById('btn-login').style.display = 'none';
                 document.getElementById('nav-dash').style.display = 'block';
             },
-
             logout() {
                 appState.isAdmin = false;
                 localStorage.removeItem('cg_admin');
@@ -1563,7 +1120,6 @@
                 this.navigate('home');
                 this.showToast('Logged out.', 'info');
             },
-
             openModal(id) {
                 if(appState.info[id]) {
                     document.getElementById('info-title').innerHTML = appState.info[id].title;
@@ -1574,7 +1130,6 @@
                 }
             },
             closeModal(id) { document.getElementById(id).classList.remove('active'); },
-
             showToast(msg, type='info') {
                 const c = document.getElementById('toast-container');
                 const t = document.createElement('div');
@@ -1585,8 +1140,7 @@
                 c.appendChild(t);
                 setTimeout(() => { t.classList.add('fade-out'); setTimeout(() => t.remove(), 300); }, 3000);
             },
-
-            // --- 3D EFFECTS & CANVAS ---
+            // --- 3D & CANVAS EFFECTS ---
             initCanvasBackground() {
                 const canvas = document.getElementById('cyber-bg');
                 const ctx = canvas.getContext('2d');
@@ -1624,7 +1178,6 @@
                 };
                 animate();
             },
-
             init3DShield() {
                 const visualArea = document.getElementById('hero-3d');
                 const shieldObj = document.getElementById('shield-obj');
@@ -1641,8 +1194,7 @@
                 });
             }
         };
-
-        // Initialize App on DOM Load
+        // Initialize App
         document.addEventListener('DOMContentLoaded', () => app.init());
     </script>
 </body>
