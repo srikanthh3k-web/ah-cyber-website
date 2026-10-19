@@ -1,2084 +1,831 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-
-<title>AUREXA | Cybersecurity • AI • Innovation</title>
-
-<meta name="description" content="AUREXA — Cybersecurity, Artificial Intelligence, Education and Digital Innovation. Founded by Srikanth Paka.">
-<meta name="keywords" content="AUREXA, cybersecurity, artificial intelligence, ethical hacking, cyber awareness, AUREXA Academy, Srikanth Paka">
-<meta name="author" content="Srikanth Paka">
-<meta name="robots" content="index, follow">
-
-<meta property="og:title" content="AUREXA | Cybersecurity • AI • Innovation">
-<meta property="og:description" content="Building a safer and smarter digital future.">
-<meta property="og:type" content="website">
-
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop stop-color='%231264f5'/%3E%3Cstop offset='1' stop-color='%2300c9ff'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath fill='url(%23g)' d='M50 5L91 20v29c0 25-17 39-41 46C26 88 9 74 9 49V20z'/%3E%3Cpath fill='white' d='M50 22L31 65h11l4-10h17l4 10h11zm0 15l7 10H43z'/%3E%3C/svg%3E">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#10243a">
+<meta name="description" content="AUREXA VerifyAI - AI-assisted document validation, application verification and compliance review platform.">
+<title>AUREXA VerifyAI | Smart Document Verification</title>
 
 <style>
 :root{
- --blue:#1769ff;
- --blue2:#008fe8;
- --cyan:#00cfff;
- --navy:#0b1d38;
- --ink:#233654;
- --muted:#72829a;
- --bg:#f5f9ff;
- --white:#fff;
- --line:#dfe9f5;
- --green:#13b978;
- --orange:#f59d25;
- --red:#ef5968;
- --shadow:0 25px 80px rgba(35,82,145,.13);
- --soft:0 12px 35px rgba(35,82,145,.09);
+  --navy:#10243a;
+  --blue:#176b87;
+  --teal:#16a085;
+  --cyan:#3fb8c8;
+  --bg:#f3f7fa;
+  --white:#fff;
+  --text:#182735;
+  --muted:#718096;
+  --border:#e0e8ee;
+  --red:#d94c4c;
+  --orange:#e58a2b;
+  --green:#238b62;
+  --shadow:0 8px 28px rgba(16,36,58,.07);
 }
-
-*{margin:0;padding:0;box-sizing:border-box}
-
-html{scroll-behavior:smooth}
-
+*{box-sizing:border-box}
 body{
- font-family:Inter,"Segoe UI",Arial,sans-serif;
- color:var(--ink);
- background:
- radial-gradient(circle at 0% 0%,rgba(0,207,255,.10),transparent 27%),
- radial-gradient(circle at 100% 10%,rgba(23,105,255,.09),transparent 28%),
- var(--bg);
- overflow-x:hidden;
+  margin:0;
+  font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
 }
-
-body:before{
- content:"";
- position:fixed;
- inset:0;
- pointer-events:none;
- z-index:-5;
- opacity:.6;
- background-image:
- linear-gradient(rgba(23,105,255,.025) 1px,transparent 1px),
- linear-gradient(90deg,rgba(23,105,255,.025) 1px,transparent 1px);
- background-size:55px 55px;
+button,input,select{font:inherit}
+button{cursor:pointer}
+button:focus-visible,input:focus-visible,select:focus-visible{
+  outline:3px solid #83d9d0;
+  outline-offset:2px;
 }
-
-a{text-decoration:none;color:inherit}
-
-button{font:inherit}
-
-.container{
- width:min(1200px,92%);
- margin:auto;
+.app{min-height:100vh}
+.sidebar{
+  position:fixed;
+  inset:0 auto 0 0;
+  width:245px;
+  padding:24px 15px;
+  background:var(--navy);
+  color:white;
+  display:flex;
+  flex-direction:column;
+  z-index:20;
 }
-
-section{
- padding:110px 0;
- position:relative;
-}
-
-.gradient{
- background:linear-gradient(90deg,#1769ff,#008fe8,#00cfff);
- -webkit-background-clip:text;
- color:transparent;
-}
-
-/* =========================
-   NAVBAR
-========================= */
-
-header{
- position:fixed;
- top:0;
- left:0;
- right:0;
- height:80px;
- z-index:9999;
- background:rgba(255,255,255,.82);
- backdrop-filter:blur(20px);
- border-bottom:1px solid rgba(220,232,245,.75);
- transition:.3s;
-}
-
-header.scrolled{
- box-shadow:0 10px 40px rgba(28,70,125,.10);
-}
-
-.nav{
- height:80px;
- display:flex;
- align-items:center;
- justify-content:space-between;
-}
-
+.brand{display:flex;align-items:center;gap:11px;padding:3px 8px 27px}
 .logo{
- display:flex;
- align-items:center;
- gap:11px;
- font-size:23px;
- font-weight:950;
- letter-spacing:1.5px;
+  width:43px;height:43px;border-radius:13px;
+  display:grid;place-items:center;
+  background:linear-gradient(135deg,var(--teal),var(--cyan));
+  font-weight:900;font-size:22px;
 }
-
-.logo-mark{
- width:45px;
- height:45px;
- border-radius:14px;
- display:grid;
- place-items:center;
- background:linear-gradient(145deg,#1769ff,#00cfff);
- box-shadow:
- 0 13px 30px rgba(23,105,255,.27),
- inset 0 2px 5px rgba(255,255,255,.7);
+.brand strong{font-size:18px;letter-spacing:1px}
+.brand small{display:block;color:#a9c6d5;font-size:10px;letter-spacing:1.5px;margin-top:3px}
+.nav-label{font-size:10px;color:#8faaba;letter-spacing:1.5px;padding:12px 12px 8px}
+.nav{display:grid;gap:5px}
+.nav button{
+  border:0;background:transparent;color:#c8d9e3;
+  text-align:left;padding:12px;border-radius:9px;font-weight:600;
 }
-
-.logo-mark svg{
- width:30px;
- height:30px;
+.nav button:hover,.nav button.active{background:#214158;color:white}
+.sidebar-bottom{
+  margin-top:auto;border:1px solid #355269;border-radius:12px;
+  padding:13px;font-size:12px;color:#bfd1dd;line-height:1.6;
 }
-
-.logo span{color:var(--blue)}
-
-.nav-links{
- display:flex;
- align-items:center;
- gap:26px;
+.sidebar-bottom strong{color:white;display:block;margin-bottom:5px}
+.main{margin-left:245px;min-width:0}
+.topbar{
+  background:white;border-bottom:1px solid var(--border);
+  height:68px;padding:0 30px;display:flex;align-items:center;
+  justify-content:space-between;gap:12px;
 }
-
-.nav-links a{
- font-size:13px;
- font-weight:750;
- color:#61718a;
- transition:.25s;
+.menu-btn{display:none}
+.breadcrumb{font-size:13px;color:var(--muted)}
+.profile{display:flex;align-items:center;gap:10px}
+.profile small{display:block;color:var(--muted);font-size:11px}
+.avatar{
+  width:38px;height:38px;border-radius:50%;background:#d9f3ee;
+  color:#137965;display:grid;place-items:center;font-weight:800;
 }
-
-.nav-links a:hover{color:var(--blue)}
-
-.nav-button{
- color:#fff!important;
- padding:11px 18px;
- border-radius:12px;
- background:linear-gradient(135deg,#1769ff,#00aef3);
- box-shadow:0 10px 25px rgba(23,105,255,.20);
+.content{padding:28px;max-width:1500px;margin:auto}
+.eyebrow{font-size:11px;color:var(--blue);font-weight:800;letter-spacing:1.5px}
+.heading{
+  display:flex;align-items:flex-start;justify-content:space-between;
+  gap:18px;margin:8px 0 24px;
 }
-
-.menu{
- display:none;
- font-size:28px;
- cursor:pointer;
-}
-
-/* =========================
-   HERO
-========================= */
-
-.hero{
- min-height:100vh;
- padding-top:145px;
- display:flex;
- align-items:center;
- overflow:hidden;
-}
-
-.hero-grid{
- display:grid;
- grid-template-columns:1.02fr .98fr;
- align-items:center;
- gap:60px;
-}
-
-.pill{
- display:inline-flex;
- align-items:center;
- gap:9px;
- padding:9px 15px;
- border:1px solid #d9e7f6;
- border-radius:999px;
- background:rgba(255,255,255,.88);
- box-shadow:var(--soft);
- color:var(--blue);
- font-size:11px;
- font-weight:900;
- letter-spacing:.8px;
-}
-
-.dot{
- width:8px;
- height:8px;
- border-radius:50%;
- background:var(--green);
- box-shadow:0 0 14px rgba(19,185,120,.65);
-}
-
-.hero h1{
- margin:25px 0 22px;
- font-size:clamp(53px,7vw,86px);
- line-height:.94;
- letter-spacing:-4px;
- color:var(--navy);
-}
-
-.hero-text{
- max-width:650px;
- color:var(--muted);
- font-size:17px;
- line-height:1.8;
-}
-
-.actions{
- display:flex;
- flex-wrap:wrap;
- gap:13px;
- margin-top:30px;
-}
-
+h1{font-size:clamp(25px,3vw,35px);color:var(--navy);margin:0 0 9px}
+h2{font-size:17px;color:var(--navy);margin:0}
+p{line-height:1.65}
+.subtitle{color:var(--muted);margin:0;max-width:760px;font-size:14px}
+.actions{display:flex;flex-wrap:wrap;gap:9px}
 .btn{
- display:inline-flex;
- align-items:center;
- justify-content:center;
- gap:9px;
- padding:14px 21px;
- border-radius:13px;
- font-size:13px;
- font-weight:900;
- border:0;
- cursor:pointer;
- transition:.3s;
-}
-
-.btn:hover{
- transform:translateY(-4px);
-}
-
-.primary{
- color:#fff;
- background:linear-gradient(135deg,#1769ff,#00aef3);
- box-shadow:0 15px 35px rgba(23,105,255,.22);
-}
-
-.light{
- color:var(--navy);
- background:#fff;
- border:1px solid var(--line);
- box-shadow:var(--soft);
-}
-
-.stats{
- display:flex;
- flex-wrap:wrap;
- gap:38px;
- margin-top:43px;
-}
-
-.stat strong{
- display:block;
- color:var(--navy);
- font-size:25px;
-}
-
-.stat span{
- color:var(--muted);
- font-size:11px;
-}
-
-/* =========================
-   3D HERO
-========================= */
-
-.visual{
- height:560px;
- position:relative;
- display:grid;
- place-items:center;
- perspective:1400px;
-}
-
-.glow{
- position:absolute;
- width:330px;
- height:330px;
- border-radius:50%;
- background:rgba(0,207,255,.17);
- filter:blur(65px);
-}
-
-.ring{
- position:absolute;
- border:1px solid rgba(23,105,255,.18);
- border-radius:50%;
- transform-style:preserve-3d;
-}
-
-.ring.a{
- width:430px;
- height:430px;
- transform:rotateX(66deg);
- animation:rotateA 18s linear infinite;
-}
-
-.ring.b{
- width:520px;
- height:520px;
- transform:rotateX(66deg) rotateY(30deg);
- animation:rotateB 24s linear infinite reverse;
-}
-
-.ring.c{
- width:335px;
- height:335px;
- transform:rotateX(66deg) rotateY(-35deg);
- animation:rotateC 13s linear infinite;
-}
-
-@keyframes rotateA{
- to{transform:rotateX(66deg) rotateZ(360deg)}
-}
-
-@keyframes rotateB{
- to{transform:rotateX(66deg) rotateY(30deg) rotateZ(360deg)}
-}
-
-@keyframes rotateC{
- to{transform:rotateX(66deg) rotateY(-35deg) rotateZ(360deg)}
-}
-
-.base{
- position:absolute;
- width:385px;
- height:385px;
- border-radius:50%;
- transform:rotateX(65deg);
- background:
- radial-gradient(circle at center,#fff 0 35%,#e8faff 36%,#fff 63%,#deebf8 64%,transparent 65%);
- box-shadow:
- 0 50px 100px rgba(28,75,135,.14),
- inset 0 0 45px rgba(0,174,243,.10);
-}
-
-.core{
- position:relative;
- width:210px;
- height:255px;
- z-index:5;
- transform-style:preserve-3d;
- animation:floatCore 4s ease-in-out infinite;
-}
-
-@keyframes floatCore{
- 0%,100%{transform:translateY(0) rotateY(-7deg)}
- 50%{transform:translateY(-17px) rotateY(7deg)}
-}
-
-.core-front{
- position:absolute;
- inset:0;
- clip-path:polygon(50% 0,90% 15%,84% 68%,50% 100%,16% 68%,10% 15%);
- background:linear-gradient(145deg,#fff 5%,#bdf3ff 37%,#31c7f5 59%,#1769ff 100%);
- box-shadow:0 40px 70px rgba(23,105,255,.27);
-}
-
-.core-inner{
- position:absolute;
- inset:15px;
- clip-path:inherit;
- background:linear-gradient(145deg,#00d5ff,#1769ff);
- display:grid;
- place-items:center;
- color:#fff;
- font-size:65px;
- filter:drop-shadow(0 7px 8px rgba(0,50,110,.25));
-}
-
-.holo{
- position:absolute;
- z-index:8;
- padding:13px 16px;
- background:rgba(255,255,255,.91);
- border:1px solid #fff;
- border-radius:15px;
- box-shadow:var(--shadow);
- backdrop-filter:blur(15px);
- animation:holoFloat 4s ease-in-out infinite;
-}
-
-.holo strong{
- display:block;
- color:var(--navy);
- font-size:12px;
-}
-
-.holo small{
- color:var(--muted);
- font-size:10px;
-}
-
-.holo.one{top:70px;right:0}
-.holo.two{bottom:72px;left:0;animation-delay:1s}
-.holo.three{top:260px;right:-25px;animation-delay:2s}
-
-@keyframes holoFloat{
- 50%{transform:translateY(-9px)}
-}
-
-/* =========================
-   SECTION HEAD
-========================= */
-
-.head{
- max-width:760px;
- text-align:center;
- margin:0 auto 55px;
-}
-
-.eyebrow{
- color:var(--blue);
- font-size:11px;
- font-weight:950;
- letter-spacing:2px;
-}
-
-.head h2{
- margin:12px 0 15px;
- color:var(--navy);
- font-size:clamp(38px,5vw,58px);
- line-height:1;
- letter-spacing:-2px;
-}
-
-.head p{
- color:var(--muted);
- font-size:15px;
- line-height:1.7;
-}
-
-/* =========================
-   COURSES
-========================= */
-
-.course-grid{
- display:grid;
- grid-template-columns:repeat(3,1fr);
- gap:20px;
-}
-
-.card{
- background:rgba(255,255,255,.9);
- border:1px solid var(--line);
- border-radius:24px;
- box-shadow:var(--soft);
- transition:.35s;
-}
-
-.card:hover{
- transform:translateY(-9px);
- box-shadow:var(--shadow);
- border-color:#c8ddf3;
-}
-
-.course{
- padding:27px;
- position:relative;
- overflow:hidden;
-}
-
-.course:after{
- content:"";
- position:absolute;
- width:150px;
- height:150px;
- right:-75px;
- top:-75px;
- border-radius:50%;
- background:rgba(0,207,255,.08);
-}
-
-.course-top{
- display:flex;
- justify-content:space-between;
-}
-
-.number{
- color:var(--blue);
- font-size:10px;
- font-weight:950;
- letter-spacing:1px;
-}
-
-.level{
- font-size:9px;
- color:#7b899c;
- padding:5px 9px;
- border:1px solid var(--line);
- border-radius:99px;
-}
-
-.course h3{
- color:var(--navy);
- font-size:20px;
- margin:22px 0 9px;
-}
-
-.course p{
- color:var(--muted);
- font-size:13px;
- line-height:1.6;
-}
-
-.course ul{
- list-style:none;
- margin:18px 0 21px;
-}
-
-.course li{
- color:#66778f;
- font-size:12px;
- padding:6px 0;
-}
-
-.course li:before{
- content:"✓";
- color:var(--green);
- font-weight:900;
- margin-right:8px;
-}
-
-.course-link{
- display:block;
- text-align:center;
- color:var(--blue);
- background:#edf6ff;
- border-radius:11px;
- padding:11px;
- font-size:11px;
- font-weight:950;
-}
-
-/* =========================
-   NEWS
-========================= */
-
-.news-section{
- background:
- linear-gradient(135deg,rgba(234,247,255,.82),rgba(255,255,255,.85));
-}
-
-.news-bar{
- display:flex;
- justify-content:space-between;
- align-items:center;
- margin-bottom:20px;
-}
-
-.live{
- color:var(--green);
- font-size:11px;
- font-weight:950;
-}
-
-.news-grid{
- display:grid;
- grid-template-columns:repeat(3,1fr);
- gap:20px;
-}
-
-.news{
- min-height:265px;
- padding:25px;
- display:flex;
- flex-direction:column;
- justify-content:space-between;
-}
-
-.news-category{
- color:var(--blue);
- font-size:9px;
- font-weight:950;
- letter-spacing:1.4px;
-}
-
-.news h3{
- margin:13px 0;
- color:var(--navy);
- font-size:18px;
- line-height:1.35;
-}
-
-.news p{
- color:var(--muted);
- font-size:13px;
- line-height:1.7;
-}
-
-.news-bottom{
- color:#8190a3;
- font-size:10px;
- font-weight:800;
-}
-
-/* =========================
-   ALERTS
-========================= */
-
-.alert-list{
- display:grid;
- gap:13px;
- max-width:1000px;
- margin:auto;
-}
-
-.alert{
- display:grid;
- grid-template-columns:auto 1fr auto;
- align-items:center;
- gap:17px;
- padding:17px 20px;
- background:#fff;
- border:1px solid var(--line);
- border-radius:18px;
- box-shadow:var(--soft);
- transition:.3s;
-}
-
-.alert:hover{
- transform:translateX(5px);
- box-shadow:var(--shadow);
-}
-
-.alert-icon{
- width:48px;
- height:48px;
- display:grid;
- place-items:center;
- border-radius:14px;
- background:#fff4e5;
- font-size:21px;
-}
-
-.alert h3{
- color:var(--navy);
- font-size:14px;
-}
-
-.alert p{
- margin-top:4px;
- color:var(--muted);
- font-size:12px;
-}
-
-.alert-status{
- color:#8996a8;
- font-size:9px;
- font-weight:900;
-}
-
-/* =========================
-   FOUNDER
-========================= */
-
-.founder-section{
- background:linear-gradient(135deg,#edf9ff,#fff);
-}
-
-.founder{
- display:grid;
- grid-template-columns:.85fr 1.15fr;
- align-items:center;
- gap:70px;
-}
-
-.founder-art{
- min-height:520px;
- position:relative;
- display:grid;
- place-items:center;
- border-radius:35px;
- overflow:hidden;
- border:1px solid #dceaf7;
- background:
- radial-gradient(circle,rgba(0,207,255,.16),transparent 48%),
- linear-gradient(145deg,#effaff,#fff);
- box-shadow:var(--shadow);
-}
-
-.founder-ring{
- position:absolute;
- width:410px;
- height:410px;
- border:1px dashed rgba(23,105,255,.20);
- border-radius:50%;
- animation:founderSpin 18s linear infinite;
-}
-
-@keyframes founderSpin{
- to{transform:rotate(360deg)}
-}
-
-.founder-photo{
- width:270px;
- height:350px;
- position:relative;
- z-index:2;
- border-radius:30px;
- overflow:hidden;
- display:grid;
- place-items:center;
- background:linear-gradient(145deg,#fff,#dcf7ff);
- border:1px solid #d0e4f5;
- box-shadow:0 35px 70px rgba(20,70,130,.17);
- color:var(--blue);
- font-size:72px;
- font-weight:950;
-}
-
-.founder-photo img{
- width:100%;
- height:100%;
- object-fit:cover;
-}
-
-.role{
- color:var(--blue);
- font-size:11px;
- font-weight:950;
- letter-spacing:2px;
-}
-
-.founder-content h2{
- color:var(--navy);
- font-size:clamp(43px,5vw,62px);
- line-height:1;
- letter-spacing:-2px;
- margin:12px 0 20px;
-}
-
-.founder-content p{
- color:var(--muted);
- font-size:14px;
- line-height:1.85;
- margin-bottom:13px;
-}
-
-.tags{
- display:flex;
- flex-wrap:wrap;
- gap:8px;
- margin:20px 0 25px;
-}
-
-.tag{
- color:#68798f;
- font-size:10px;
- font-weight:800;
- padding:8px 11px;
- background:#fff;
- border:1px solid var(--line);
- border-radius:99px;
-}
-
-/* =========================
-   ECOSYSTEM
-========================= */
-
-.platforms{
- display:grid;
- grid-template-columns:repeat(3,1fr);
- gap:20px;
-}
-
-.platform{
- padding:30px;
- text-align:center;
-}
-
-.platform-icon{
- width:68px;
- height:68px;
- margin:0 auto 20px;
- display:grid;
- place-items:center;
- border-radius:20px;
- background:linear-gradient(145deg,#eefaff,#eaf2ff);
- font-size:29px;
- box-shadow:inset 0 1px 2px #fff;
-}
-
-.platform h3{
- color:var(--navy);
- font-size:18px;
-}
-
-.platform p{
- color:var(--muted);
- font-size:12px;
- line-height:1.7;
- margin:10px 0 20px;
-}
-
-/* =========================
-   CONTACT
-========================= */
-
-.contact{
- display:grid;
- grid-template-columns:repeat(3,1fr);
- gap:20px;
-}
-
-.contact-card{
- padding:27px;
- text-align:center;
-}
-
-.contact-icon{
- width:56px;
- height:56px;
- margin:0 auto 15px;
- display:grid;
- place-items:center;
- border-radius:17px;
- background:#edf6ff;
- font-size:23px;
-}
-
-.contact-card h3{
- color:var(--navy);
- font-size:16px;
-}
-
-.contact-card p{
- color:var(--muted);
- font-size:12px;
- margin-top:6px;
-}
-
-/* =========================
-   FOOTER
-========================= */
-
-footer{
- background:#edf5ff;
- border-top:1px solid var(--line);
- padding:60px 0 25px;
-}
-
-.footer{
- display:grid;
- grid-template-columns:1.5fr 1fr 1fr 1fr;
- gap:30px;
-}
-
-.footer h3{
- color:var(--navy);
- font-size:15px;
- margin-bottom:14px;
-}
-
-.footer p,
-.footer a{
- color:#718197;
- font-size:12px;
- line-height:1.8;
- display:block;
-}
-
-.footer a:hover{color:var(--blue)}
-
-.copy{
- margin-top:35px;
- padding-top:22px;
- border-top:1px solid #d9e5f2;
- display:flex;
- justify-content:space-between;
- color:#8795a8;
- font-size:10px;
-}
-
-/* =========================
-   SCROLL REVEAL
-========================= */
-
-.reveal{
- opacity:0;
- transform:translateY(35px);
- transition:opacity .8s ease,transform .8s ease;
-}
-
-.reveal.show{
- opacity:1;
- transform:translateY(0);
-}
-
-/* =========================
-   MOBILE
-========================= */
-
-@media(max-width:950px){
-
- .menu{display:block}
-
- .nav-links{
-  display:none;
-  position:absolute;
-  top:80px;
-  left:0;
-  right:0;
-  flex-direction:column;
-  padding:25px;
-  background:#fff;
-  border-bottom:1px solid var(--line);
-  box-shadow:0 20px 40px rgba(20,60,110,.10);
- }
-
- .nav-links.open{display:flex}
-
- .hero-grid,
- .founder{
-  grid-template-columns:1fr;
- }
-
- .hero{
-  padding-top:125px;
- }
-
- .visual{
-  height:470px;
- }
-
- .course-grid,
- .news-grid,
- .platforms{
-  grid-template-columns:repeat(2,1fr);
- }
-
- .contact{
-  grid-template-columns:repeat(2,1fr);
- }
-
- .footer{
-  grid-template-columns:1fr 1fr;
- }
-}
-
-@media(max-width:600px){
-
- section{padding:78px 0}
-
- .hero h1{
-  font-size:51px;
-  letter-spacing:-2.5px;
- }
-
- .hero-text{
-  font-size:15px;
- }
-
- .stats{
-  gap:22px;
- }
-
- .visual{
-  height:390px;
-  transform:scale(.76);
-  margin:-35px 0;
- }
-
- .holo{display:none}
-
- .course-grid,
- .news-grid,
- .platforms,
- .contact{
-  grid-template-columns:1fr;
- }
-
- .alert{
-  grid-template-columns:auto 1fr;
- }
-
- .alert-status{
-  display:none;
- }
-
- .founder-art{
-  min-height:420px;
- }
-
- .founder-photo{
-  width:220px;
-  height:290px;
- }
-
- .footer{
-  grid-template-columns:1fr;
- }
-
- .copy{
-  flex-direction:column;
-  gap:8px;
- }
-
+  border:0;border-radius:9px;padding:11px 15px;font-weight:700;
+  transition:transform .15s,opacity .15s;
+}
+.btn:hover{transform:translateY(-1px)}
+.primary{background:var(--teal);color:white}
+.secondary{background:#e5f3f5;color:var(--blue)}
+.outline{background:white;color:var(--navy);border:1px solid var(--border)}
+.danger{background:#fff0ef;color:var(--red)}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px;margin-bottom:20px}
+.card,.panel{
+  background:white;border:1px solid var(--border);
+  border-radius:15px;box-shadow:var(--shadow);
+}
+.card{padding:19px}
+.stat-top{display:flex;justify-content:space-between;align-items:center}
+.stat-label{font-size:12px;color:var(--muted);font-weight:700}
+.stat-icon{
+  width:36px;height:36px;display:grid;place-items:center;
+  background:#e4f5f1;color:var(--teal);border-radius:10px;font-size:18px;
+}
+.stat-number{font-size:30px;color:var(--navy);font-weight:850;margin:8px 0 3px}
+.stat-note{font-size:11px;color:var(--muted)}
+.columns{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(280px,.8fr);gap:18px}
+.panel{padding:21px;margin-bottom:18px;min-width:0}
+.panel-head{
+  display:flex;justify-content:space-between;align-items:center;
+  gap:12px;margin-bottom:17px;
+}
+.muted{color:var(--muted)}
+.small{font-size:12px}
+.badge{
+  display:inline-block;border-radius:30px;padding:5px 9px;
+  font-size:10px;font-weight:800;white-space:nowrap;
+  background:#e4f5ef;color:#197557;
+}
+.badge.warn{background:#fff1dd;color:#995d0b}
+.badge.bad{background:#ffebea;color:#b63838}
+.badge.neutral{background:#edf2f5;color:#536273}
+.table-wrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:530px}
+th{
+  text-align:left;background:#f5f8fa;padding:12px;
+  font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;
+}
+td{padding:13px 12px;border-bottom:1px solid #edf1f4;font-size:12px}
+tr:last-child td{border-bottom:0}
+.progress-row{display:flex;justify-content:space-between;font-size:12px;margin:15px 0 7px}
+.bar{height:8px;background:#e8eef2;border-radius:20px;overflow:hidden}
+.bar span{display:block;height:100%;border-radius:20px;background:linear-gradient(90deg,var(--teal),var(--cyan))}
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:9px}
+.step{padding:13px 8px;border:1px solid var(--border);border-radius:11px;text-align:center}
+.step-number{
+  display:grid;place-items:center;margin:0 auto 8px;
+  width:29px;height:29px;border-radius:50%;background:#e5f4f1;
+  color:var(--teal);font-weight:800;
+}
+.step strong{display:block;font-size:11px;color:var(--navy)}
+.step small{font-size:10px;color:var(--muted)}
+.page{display:none}
+.page.active{display:block}
+.field{display:grid;gap:7px;margin-bottom:15px}
+.field label{font-size:12px;font-weight:750;color:#526477}
+.field input,.field select{
+  width:100%;padding:12px;border:1px solid var(--border);
+  border-radius:9px;background:white;color:var(--text);
+}
+.dropzone{
+  padding:23px;border:2px dashed #b9d1dc;background:#f7fbfc;
+  border-radius:13px;text-align:center;
+}
+.drop-icon{font-size:32px;color:var(--blue)}
+.dropzone input{max-width:100%;margin-top:12px;font-size:12px}
+.check-list{display:grid;gap:10px}
+.check-item{
+  display:flex;gap:11px;padding:12px;border:1px solid var(--border);
+  border-radius:10px;
+}
+.check-icon{
+  flex:none;width:28px;height:28px;display:grid;place-items:center;
+  border-radius:8px;background:#e4f5ef;color:var(--green);font-weight:800;
+}
+.check-item strong{display:block;font-size:13px}
+.check-item small{display:block;color:var(--muted);margin-top:3px;font-size:11px}
+.finding{
+  display:grid;grid-template-columns:1fr 100px 1.7fr auto;
+  gap:12px;align-items:center;padding:14px 0;border-bottom:1px solid #edf1f4;
+  font-size:12px;
+}
+.finding:last-child{border-bottom:0}
+.finding strong{color:var(--navy)}
+.notice{
+  background:#fff7e9;border:1px solid #f4d7a9;color:#875a15;
+  padding:12px;border-radius:10px;font-size:12px;line-height:1.6;
+}
+.info{
+  background:#edf7fa;border:1px solid #d2e8ef;color:#285a70;
+  padding:12px;border-radius:10px;font-size:12px;line-height:1.6;
+}
+.footnote{font-size:11px;color:var(--muted);line-height:1.6;margin-top:13px}
+.hidden{display:none!important}
+.toast{
+  position:fixed;right:20px;bottom:20px;background:var(--navy);color:white;
+  border-radius:11px;padding:14px 17px;box-shadow:var(--shadow);
+  max-width:340px;z-index:100;font-size:13px;
+}
+.rule-list{display:grid;gap:10px}
+.rule{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:13px;border:1px solid var(--border);border-radius:10px}
+.rule strong{font-size:12px;display:block}
+.rule small{font-size:11px;color:var(--muted)}
+.mobile-nav{display:none}
+@media(max-width:1100px){
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .columns{grid-template-columns:1fr}
+  .content{padding:22px}
+}
+@media(max-width:720px){
+  .sidebar{display:none;width:255px;box-shadow:0 10px 35px #0003}
+  .sidebar.open{display:flex}
+  .main{margin-left:0}
+  .topbar{height:60px;padding:0 13px}
+  .menu-btn{display:inline-block;border:0;background:#e9f4f6;color:var(--navy);border-radius:8px;padding:8px 11px}
+  .content{padding:19px 12px}
+  .heading{display:block}
+  .heading .actions{margin-top:15px}
+  .stats{gap:10px}
+  .card{padding:13px}
+  .stat-number{font-size:25px}
+  .panel{padding:15px}
+  .steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .finding{grid-template-columns:1fr 1fr;gap:8px}
+  .finding .reason{grid-column:1/-1}
+  .profile .meta{display:none}
+  .rule{align-items:flex-start}
+}
+@media(max-width:360px){
+  .stats{grid-template-columns:1fr}
+  .content{padding:15px 9px}
+}
+@media print{
+  .sidebar,.topbar,.actions,.btn{display:none!important}
+  .main{margin:0}
+  .content{padding:0}
+  body{background:white}
+  .panel,.card{box-shadow:none;break-inside:avoid}
 }
 </style>
 </head>
 
 <body>
+<div class="app">
 
-<!-- =========================
-     HEADER
-========================= -->
+<aside class="sidebar" id="sidebar">
+  <div class="brand">
+    <div class="logo">A</div>
+    <div><strong>AUREXA</strong><small>VERIFYAI · DEMO</small></div>
+  </div>
 
-<header id="header">
+  <div class="nav-label">WORKSPACE</div>
+  <nav class="nav">
+    <button class="active" data-page="dashboard">▦ &nbsp; Dashboard</button>
+    <button data-page="applications">▤ &nbsp; Applications</button>
+    <button data-page="upload">⇧ &nbsp; Upload & Validate</button>
+    <button data-page="findings">⌕ &nbsp; Findings & Evidence</button>
+    <button data-page="rules">☷ &nbsp; Compliance Rules</button>
+    <button data-page="audit">◷ &nbsp; Audit Trail</button>
+  </nav>
 
-<div class="container nav">
+  <div class="sidebar-bottom">
+    <strong>Prototype environment</strong>
+    This demo uses sample data in your browser. No official AICTE system is connected.
+  </div>
+</aside>
 
-<a class="logo" href="#home">
-
-<div class="logo-mark">
-
-<svg viewBox="0 0 100 100" fill="none">
-<path d="M50 7L89 21V49C89 72 74 87 50 94C26 87 11 72 11 49V21L50 7Z"
-fill="white" opacity=".18"/>
-
-<path d="M50 16L81 27V49C81 67 69 78 50 85C31 78 19 67 19 49V27L50 16Z"
-stroke="white" stroke-width="5"/>
-
-<path d="M50 29L34 66H43L47 56H56L60 66H69L50 29Z"
-fill="white"/>
-
-<path d="M48 50H55L51.5 42L48 50Z"
-fill="#1769ff"/>
-</svg>
-
-</div>
-
-<div>AURE<span>XA</span></div>
-
-</a>
-
-<div class="menu" onclick="toggleMenu()">☰</div>
-
-<nav class="nav-links" id="navLinks">
-
-<a href="#home">Home</a>
-<a href="#courses">Courses</a>
-<a href="#news">Daily News</a>
-<a href="#alerts">Alerts</a>
-<a href="#founder">Founder</a>
-<a href="#platforms">Platforms</a>
-<a class="nav-button" href="#contact">Connect</a>
-
-</nav>
-
-</div>
-
+<main class="main">
+<header class="topbar">
+  <div style="display:flex;align-items:center;gap:10px">
+    <button class="menu-btn" id="menuBtn" aria-label="Open navigation">☰</button>
+    <div class="breadcrumb">Workspace / <strong id="breadcrumb">Dashboard</strong></div>
+  </div>
+  <div class="profile">
+    <div class="meta"><strong style="font-size:12px">Demo Reviewer</strong><small>Prototype workspace</small></div>
+    <div class="avatar">DR</div>
+  </div>
 </header>
 
-
-<!-- =========================
-     HERO
-========================= -->
-
-<section class="hero" id="home">
-
-<div class="container hero-grid">
-
-<div class="reveal">
-
-<div class="pill">
-<span class="dot"></span>
-AUREXA • DIGITAL INNOVATION
-</div>
-
-<h1>
-Build the
-<span class="gradient">Future.</span>
-</h1>
-
-<p class="hero-text">
-AUREXA is a technology and cybersecurity innovation
-brand focused on practical education, artificial intelligence,
-cyber awareness and responsible digital innovation.
-</p>
-
-<div class="actions">
-
-<a class="btn primary" href="#courses">
-Explore AUREXA Academy →
-</a>
-
-<a class="btn light" href="#news">
-Latest Intelligence
-</a>
-
-</div>
-
-<div class="stats">
-
-<div class="stat">
-<strong>06+</strong>
-<span>Technology Courses</span>
-</div>
-
-<div class="stat">
-<strong>24/7</strong>
-<span>Cyber Awareness</span>
-</div>
-
-<div class="stat">
-<strong>AI</strong>
-<span>Innovation</span>
-</div>
-
-</div>
-
-</div>
-
-
-<div class="visual reveal">
-
-<div class="glow"></div>
-
-<div class="base"></div>
-
-<div class="ring a"></div>
-<div class="ring b"></div>
-<div class="ring c"></div>
-
-<div class="core">
-
-<div class="core-front"></div>
-
-<div class="core-inner">
-🛡
-</div>
-
-</div>
-
-<div class="holo one">
-<strong>CYBER + AI</strong>
-<small>Future technology</small>
-</div>
-
-<div class="holo two">
-<strong>LEARN • BUILD • PROTECT</strong>
-<small>AUREXA Academy</small>
-</div>
-
-<div class="holo three">
-<strong>LIVE INTELLIGENCE</strong>
-<small>News & alerts</small>
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- =========================
-     COURSES
-========================= -->
-
-<section id="courses">
-
-<div class="container">
-
-<div class="head reveal">
-
-<div class="eyebrow">AUREXA ACADEMY</div>
-
-<h2>
-Learn. Build.
-<span class="gradient">Protect.</span>
-</h2>
-
-<p>
-Future-ready cybersecurity and technology education
-designed to develop practical knowledge.
-</p>
-
-</div>
-
-<div class="course-grid">
-
-
-<div class="card course reveal">
-
-<div class="course-top">
-<span class="number">01 • FOUNDATION</span>
-<span class="level">BEGINNER</span>
-</div>
-
-<h3>Cybersecurity Fundamentals</h3>
-
-<p>
-Understand the foundations of cybersecurity,
-digital threats and security principles.
-</p>
-
-<ul>
-<li>Cybersecurity fundamentals</li>
-<li>Threat landscape</li>
-<li>Network fundamentals</li>
-<li>Security awareness</li>
-</ul>
-
-<a href="#contact" class="course-link">VIEW COURSE →</a>
-
-</div>
-
-
-<div class="card course reveal">
-
-<div class="course-top">
-<span class="number">02 • OFFENSIVE</span>
-<span class="level">INTERMEDIATE</span>
-</div>
-
-<h3>Ethical Hacking</h3>
-
-<p>
-Learn ethical security testing methodologies
-in controlled and authorized environments.
-</p>
-
-<ul>
-<li>Reconnaissance concepts</li>
-<li>Security testing</li>
-<li>Vulnerability assessment</li>
-<li>Web security</li>
-</ul>
-
-<a href="#contact" class="course-link">VIEW COURSE →</a>
-
-</div>
-
-
-<div class="card course reveal">
-
-<div class="course-top">
-<span class="number">03 • WEB</span>
-<span class="level">INTERMEDIATE</span>
-</div>
-
-<h3>Web Application Security</h3>
-
-<p>
-Explore the principles behind secure modern
-web applications.
-</p>
-
-<ul>
-<li>OWASP concepts</li>
-<li>Authentication</li>
-<li>Input validation</li>
-<li>Secure development</li>
-</ul>
-
-<a href="#contact" class="course-link">VIEW COURSE →</a>
-
-</div>
-
-
-<div class="card course reveal">
-
-<div class="course-top">
-<span class="number">04 • NETWORK</span>
-<span class="level">INTERMEDIATE</span>
-</div>
-
-<h3>Network Security</h3>
-
-<p>
-Understand network architecture, protocols,
-monitoring and defensive security.
-</p>
-
-<ul>
-<li>TCP/IP concepts</li>
-<li>Firewalls</li>
-<li>Network monitoring</li>
-<li>Threat detection</li>
-</ul>
-
-<a href="#contact" class="course-link">VIEW COURSE →</a>
-
-</div>
-
-
-<div class="card course reveal">
-
-<div class="course-top">
-<span class="number">05 • DIGITAL</span>
-<span class="level">INTERMEDIATE</span>
-</div>
-
-<h3>Digital Forensics</h3>
-
-<p>
-Learn the fundamentals of digital evidence
-and incident investigation.
-</p>
-
-<ul>
-<li>Digital evidence</li>
-<li>Incident investigation</li>
-<li>Forensic concepts</li>
-<li>Evidence preservation</li>
-</ul>
-
-<a href="#contact" class="course-link">VIEW COURSE →</a>
-
-</div>
-
-
-<div class="card course reveal">
-
-<div class="course-top">
-<span class="number">06 • FUTURE</span>
-<span class="level">ADVANCED</span>
-</div>
-
-<h3>AI & Cybersecurity</h3>
-
-<p>
-Explore how artificial intelligence can support
-modern cybersecurity operations.
-</p>
-
-<ul>
-<li>AI security concepts</li>
-<li>Threat intelligence</li>
-<li>Security automation</li>
-<li>Security analytics</li>
-</ul>
-
-<a href="#contact" class="course-link">VIEW COURSE →</a>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- =========================
-     DAILY NEWS
-========================= -->
-
-<section class="news-section" id="news">
-
-<div class="container">
-
-<div class="head reveal">
-
-<div class="eyebrow">AUREXA INTELLIGENCE</div>
-
-<h2>
-Daily Cyber
-<span class="gradient">News.</span>
-</h2>
-
-<p>
-Stay aware of cybersecurity, AI and digital-security
-developments. The section is structured for live API integration.
-</p>
-
-</div>
-
-<div class="news-bar">
-
-<strong>Latest security intelligence</strong>
-
-<span class="live">● LIVE FEED READY</span>
-
-</div>
-
-<div class="news-grid" id="newsGrid"></div>
-
-</div>
-
-</section>
-
-
-<!-- =========================
-     ALERTS
-========================= -->
-
-<section id="alerts">
-
-<div class="container">
-
-<div class="head reveal">
-
-<div class="eyebrow">AUREXA SECURITY AWARENESS</div>
-
-<h2>
-Daily Cyber
-<span class="gradient">Alerts.</span>
-</h2>
-
-<p>
-Practical awareness alerts covering common digital
-security risks and safe online behaviour.
-</p>
-
-</div>
-
-<div class="alert-list" id="alertList"></div>
-
-</div>
-
-</section>
-
-
-<!-- =========================
-     FOUNDER
-========================= -->
-
-<section class="founder-section" id="founder">
-
-<div class="container founder">
-
-<div class="founder-art reveal">
-
-<div class="founder-ring"></div>
-
-<div class="founder-photo">
-
-<!--
-TO ADD YOUR REAL PHOTO:
-Replace this text with:
-
-<img src="founder.png"
-     alt="Srikanth Paka Founder and CEO">
--->
-
-SP
-
-</div>
-
-</div>
-
-
-<div class="founder-content reveal">
-
-<div class="role">
-FOUNDER & CEO • AUREXA
-</div>
-
-<h2>
-Srikanth
-<span class="gradient">Paka</span>
-</h2>
-
-<p>
-Founder & CEO of AUREXA, focused on cybersecurity,
-artificial intelligence, ethical hacking and digital innovation.
-</p>
-
-<p>
-AUREXA's vision is to encourage practical cybersecurity
-education, digital awareness and responsible technology
-innovation for the next generation.
-</p>
-
-<div class="tags">
-
-<span class="tag">Cybersecurity</span>
-<span class="tag">Artificial Intelligence</span>
-<span class="tag">Ethical Hacking</span>
-<span class="tag">Cyber Awareness</span>
-<span class="tag">Security Research</span>
-<span class="tag">Innovation</span>
-
-</div>
-
-<p>
-<strong>Education:</strong>
-B.Tech CSE — Cyber Security, GNITC
-</p>
-
-<a class="btn primary" href="#contact">
-Connect With AUREXA →
-</a>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- =========================
-     AUREXA PLATFORMS
-========================= -->
-
-<section id="platforms">
-
-<div class="container">
-
-<div class="head reveal">
-
-<div class="eyebrow">AUREXA ECOSYSTEM</div>
-
-<h2>
-Explore AUREXA
-<span class="gradient">Platforms.</span>
-</h2>
-
-<p>
-Access dedicated AUREXA platforms without duplicating
-their functionality on this corporate website.
-</p>
-
-</div>
-
-<div class="platforms">
-
-
-<div class="card platform reveal">
-
-<div class="platform-icon">🛡️</div>
-
-<h3>AUREXA CyberGuard</h3>
-
-<p>
-Visit the dedicated CyberGuard platform for its
-cybersecurity and fraud-protection capabilities.
-</p>
-
-<a
-href="https://aurexacyberguard.online"
-target="_blank"
-rel="noopener noreferrer"
-class="btn primary">
-OPEN PLATFORM →
-</a>
-
-</div>
-
-
-<div class="card platform reveal">
-
-<div class="platform-icon">🎓</div>
-
-<h3>AUREXA Academy</h3>
-
-<p>
-Explore cybersecurity and technology learning
-through the AUREXA education ecosystem.
-</p>
-
-<a href="#courses" class="btn light">
-EXPLORE COURSES →
-</a>
-
-</div>
-
-
-<div class="card platform reveal">
-
-<div class="platform-icon">🚀</div>
-
-<h3>AUREXA Innovation</h3>
-
-<p>
-A future-focused ecosystem connecting cybersecurity,
-AI and responsible digital innovation.
-</p>
-
-<a href="#contact" class="btn light">
-CONNECT →
-</a>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- =========================
-     CONTACT
-========================= -->
-
-<section id="contact">
-
-<div class="container">
-
-<div class="head reveal">
-
-<div class="eyebrow">CONNECT</div>
-
-<h2>
-Let's build a safer
-<span class="gradient">future.</span>
-</h2>
-
-<p>
-For courses, collaborations, technology initiatives
-and AUREXA opportunities.
-</p>
-
-</div>
-
-<div class="contact">
-
-
-<div class="card contact-card reveal">
-
-<div class="contact-icon">📧</div>
-
-<h3>Email</h3>
-
-<p>
-AUREXA enquiries & collaborations
-</p>
-
-<!-- Replace with your real email -->
-<a href="mailto:your-email@example.com"
-style="color:var(--blue);font-size:11px;font-weight:900">
-EMAIL AUREXA →
-</a>
-
-</div>
-
-
-<div class="card contact-card reveal">
-
-<div class="contact-icon">💼</div>
-
-<h3>LinkedIn</h3>
-
-<p>
-Professional updates and networking
-</p>
-
-<!-- Replace # with your LinkedIn URL -->
-<a href="#"
-style="color:var(--blue);font-size:11px;font-weight:900">
-VISIT LINKEDIN →
-</a>
-
-</div>
-
-
-<div class="card contact-card reveal">
-
-<div class="contact-icon">📸</div>
-
-<h3>Instagram</h3>
-
-<p>
-AUREXA technology and cybersecurity updates
-</p>
-
-<!-- Replace # with your Instagram URL -->
-<a href="#"
-style="color:var(--blue);font-size:11px;font-weight:900">
-VISIT INSTAGRAM →
-</a>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- =========================
-     FOOTER
-========================= -->
-
-<footer>
-
-<div class="container">
-
-<div class="footer">
-
-<div>
-
-<h3>
-AURE<span style="color:var(--blue)">XA</span>
-</h3>
-
-<p>
-Cybersecurity • AI • Innovation
-</p>
-
-<p>
-Building a safer and smarter digital future.
-</p>
-
-</div>
-
-<div>
-
-<h3>Explore</h3>
-
-<a href="#home">Home</a>
-<a href="#courses">Courses</a>
-<a href="#news">Daily News</a>
-<a href="#alerts">Alerts</a>
-
-</div>
-
-<div>
-
-<h3>AUREXA</h3>
-
-<a href="#founder">Founder & CEO</a>
-<a href="#platforms">Platforms</a>
-<a href="#contact">Contact</a>
-
-</div>
-
-<div>
-
-<h3>External</h3>
-
-<a href="https://aurexacyberguard.online"
-target="_blank"
-rel="noopener">
-CyberGuard
-</a>
-
-<a href="#courses">AUREXA Academy</a>
-<a href="#news">Cyber Intelligence</a>
-
-</div>
-
-</div>
-
-<div class="copy">
-
-<span>© 2026 AUREXA. All rights reserved.</span>
-
-<span>Founded & Led by Srikanth Paka</span>
-
-</div>
-
-</div>
-
-</footer>
-
-
-<script>
-
-/* =========================
-   MOBILE MENU
-========================= */
-
-function toggleMenu(){
-
- document
- .getElementById("navLinks")
- .classList
- .toggle("open");
-
-}
-
-document
-.querySelectorAll(".nav-links a")
-.forEach(link=>{
-
- link.addEventListener("click",()=>{
-  document
-  .getElementById("navLinks")
-  .classList
-  .remove("open");
- });
-
-});
-
-
-/* =========================
-   HEADER
-========================= */
-
-window.addEventListener("scroll",()=>{
-
- const header=
- document.getElementById("header");
-
- if(window.scrollY>30){
-  header.classList.add("scrolled");
- }else{
-  header.classList.remove("scrolled");
- }
-
-});
-
-
-/* =========================
-   DAILY NEWS
-========================= */
-
-const newsData=[
-
-{
- category:"CYBERSECURITY",
- title:"Phishing attacks continue to target digital users",
- text:"Verify unexpected links, domains and account requests before sharing credentials or personal information."
-},
-
-{
- category:"AI SECURITY",
- title:"AI is changing the modern cybersecurity landscape",
- text:"Artificial intelligence is increasingly being used for analysis, automation, threat detection and security operations."
-},
-
-{
- category:"PRIVACY",
- title:"Digital identity protection remains essential",
- text:"Use strong unique passwords, multi-factor authentication and careful privacy controls across important accounts."
-},
-
-{
- category:"MOBILE SECURITY",
- title:"Keep devices and applications updated",
- text:"Security updates can address vulnerabilities and improve the protection of your devices and applications."
-},
-
-{
- category:"SOCIAL ENGINEERING",
- title:"Attackers continue to exploit urgency and trust",
- text:"Pause before responding to unexpected requests involving payments, credentials or sensitive information."
-},
-
-{
- category:"CYBER AWARENESS",
- title:"Think before you click",
- text:"Verify suspicious messages, downloads, websites and payment requests before taking action."
-}
-
-];
-
-const newsGrid=
-document.getElementById("newsGrid");
-
-function renderNews(){
-
- newsGrid.innerHTML="";
-
- newsData.forEach((item,index)=>{
-
-  newsGrid.innerHTML+=`
-
-  <article class="card news reveal">
-
-   <div>
-
-    <div class="news-category">
-     ${item.category}
+<div class="content">
+
+<!-- DASHBOARD -->
+<section class="page active" id="page-dashboard">
+  <div class="eyebrow">SMART INDIA HACKATHON 2026 · SIH26261</div>
+  <div class="heading">
+    <div>
+      <h1>Application Verification</h1>
+      <p class="subtitle">An intelligent workspace for application completeness, document consistency and configurable compliance checks.</p>
+    </div>
+    <div class="actions">
+      <button class="btn outline" onclick="navigate('applications')">View cases</button>
+      <button class="btn primary" onclick="navigate('upload')">+ New validation</button>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="card">
+      <div class="stat-top"><span class="stat-label">Applications reviewed</span><span class="stat-icon">▤</span></div>
+      <div class="stat-number" id="statApps">24</div>
+      <div class="stat-note">Illustrative demo data</div>
+    </div>
+    <div class="card">
+      <div class="stat-top"><span class="stat-label">Checks completed</span><span class="stat-icon">✓</span></div>
+      <div class="stat-number" id="statChecks">118</div>
+      <div class="stat-note">Sample workspace count</div>
+    </div>
+    <div class="card">
+      <div class="stat-top"><span class="stat-label">Needs review</span><span class="stat-icon" style="background:#fff1dd;color:var(--orange)">!</span></div>
+      <div class="stat-number" id="statReview">6</div>
+      <div class="stat-note">Human attention required</div>
+    </div>
+    <div class="card">
+      <div class="stat-top"><span class="stat-label">Missing items</span><span class="stat-icon" style="background:#ffebea;color:var(--red)">⌁</span></div>
+      <div class="stat-number" id="statMissing">3</div>
+      <div class="stat-note">Sample findings</div>
+    </div>
+  </div>
+
+  <div class="columns">
+    <div class="panel">
+      <div class="panel-head"><h2>Recent applications</h2><button class="btn outline" onclick="navigate('applications')">View all →</button></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Application</th><th>Institution</th><th>Status</th></tr></thead>
+          <tbody id="recentRows"></tbody>
+        </table>
+      </div>
     </div>
 
-    <h3>
-     ${item.title}
-    </h3>
+    <div class="panel">
+      <div class="panel-head"><h2>Validation overview</h2><span class="badge">Demo</span></div>
+      <div class="progress-row"><span>Document extraction</span><strong>92%</strong></div>
+      <div class="bar"><span style="width:92%"></span></div>
+      <div class="progress-row"><span>Completeness checks</span><strong>100%</strong></div>
+      <div class="bar"><span style="width:100%"></span></div>
+      <div class="progress-row"><span>Consistency checks</span><strong>78%</strong></div>
+      <div class="bar"><span style="width:78%"></span></div>
+      <p class="footnote">Illustrative metrics only, not measured production performance.</p>
+    </div>
+  </div>
 
-    <p>
-     ${item.text}
-    </p>
+  <div class="panel">
+    <div class="panel-head"><h2>How VerifyAI works</h2><span class="muted small">Workflow</span></div>
+    <div class="steps">
+      <div class="step"><div class="step-number">1</div><strong>Upload</strong><small>Documents</small></div>
+      <div class="step"><div class="step-number">2</div><strong>Extract</strong><small>Read fields</small></div>
+      <div class="step"><div class="step-number">3</div><strong>Validate</strong><small>Run checks</small></div>
+      <div class="step"><div class="step-number">4</div><strong>Explain</strong><small>Show evidence</small></div>
+      <div class="step"><div class="step-number">5</div><strong>Review</strong><small>Human decision</small></div>
+    </div>
+  </div>
+</section>
 
-   </div>
+<!-- APPLICATIONS -->
+<section class="page" id="page-applications">
+  <div class="eyebrow">CASE MANAGEMENT</div>
+  <div class="heading">
+    <div><h1>Applications</h1><p class="subtitle">Search sample cases and inspect preliminary validation status.</p></div>
+    <button class="btn primary" onclick="navigate('upload')">+ New validation</button>
+  </div>
 
-   <div class="news-bottom">
-    AUREXA INTELLIGENCE • UPDATE ${index+1}
-   </div>
+  <div class="panel">
+    <div class="panel-head">
+      <h2>Application register</h2>
+      <input id="searchCases" placeholder="Search applications..." aria-label="Search applications" style="max-width:250px;width:100%;padding:10px;border:1px solid var(--border);border-radius:8px">
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Application ID</th><th>Institution</th><th>Documents</th><th>Findings</th><th>Status</th><th>Action</th></tr></thead>
+        <tbody id="allRows"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
 
-  </article>
+<!-- UPLOAD -->
+<section class="page" id="page-upload">
+  <div class="eyebrow">DOCUMENT INTAKE & VALIDATION</div>
+  <div class="heading">
+    <div><h1>Upload & Validate</h1><p class="subtitle">Select files and run the local prototype checks.</p></div>
+    <span class="badge warn">Demo mode</span>
+  </div>
 
-  `;
+  <div class="columns">
+    <div class="panel">
+      <div class="panel-head"><h2>1. Application details</h2></div>
 
- });
+      <div class="field">
+        <label for="appName">Institution / applicant name</label>
+        <input id="appName" value="Sunrise Technical Institute" placeholder="Enter institution name">
+      </div>
 
-}
+      <div class="field">
+        <label for="appId">Application ID</label>
+        <input id="appId" value="INST-2026-014" placeholder="Enter application ID">
+      </div>
 
-renderNews();
+      <div class="field">
+        <label for="requiredDocs">Required document checklist</label>
+        <select id="requiredDocs">
+          <option value="declaration">Application form + institution record + declaration</option>
+          <option value="two">Application form + institution record</option>
+          <option value="custom">Custom checklist / manual review</option>
+        </select>
+      </div>
 
+      <div class="dropzone">
+        <div class="drop-icon">⇧</div>
+        <strong>Choose supporting files</strong>
+        <p class="muted small">PDF, TXT and images · local demo</p>
+        <input type="file" id="fileInput" multiple accept=".pdf,.txt,.png,.jpg,.jpeg,.webp">
+      </div>
 
-/* =========================
-   ALERTS
-========================= */
+      <div id="selectedFiles" class="footnote">No files selected. You can run the built-in sample demo.</div>
 
-const alerts=[
+      <div class="actions" style="margin-top:18px">
+        <button class="btn primary" id="runValidation">Run demo validation</button>
+        <button class="btn outline" id="loadSample">Load sample case</button>
+      </div>
+    </div>
 
-{
- icon:"⚠️",
- title:"Phishing Warning",
- text:"Never enter passwords or OTPs after following an unexpected link.",
- status:"HIGH AWARENESS"
-},
+    <div class="panel">
+      <div class="panel-head"><h2>2. Validation checks</h2></div>
+      <div class="check-list">
+        <div class="check-item"><div class="check-icon">✓</div><div><strong>Completeness</strong><small>Check required document names and checklist entries.</small></div></div>
+        <div class="check-item"><div class="check-icon">≋</div><div><strong>Consistency</strong><small>Compare basic available file information.</small></div></div>
+        <div class="check-item"><div class="check-icon">⌁</div><div><strong>Duplicate screening</strong><small>Flag repeated filenames and sizes.</small></div></div>
+        <div class="check-item"><div class="check-icon" style="background:#fff1dd;color:var(--orange)">!</div><div><strong>Human review</strong><small>Confirm all flags against original documents.</small></div></div>
+      </div>
+      <p class="footnote">This HTML demo does not perform full PDF OCR, digital-signature verification or official regulatory verification. Those features require a tested backend.</p>
+    </div>
+  </div>
 
-{
- icon:"💳",
- title:"UPI Safety Alert",
- text:"A UPI PIN is not required to receive money. Never share your PIN.",
- status:"IMPORTANT"
-},
+  <div class="panel hidden" id="validationResults">
+    <div class="panel-head"><h2>Validation results</h2><span class="badge warn" id="resultStatus">Needs review</span></div>
+    <p class="muted small" id="resultSummary"></p>
+    <div id="resultList"></div>
+    <div class="actions" style="margin-top:16px">
+      <button class="btn primary" id="saveCase">Save case</button>
+      <button class="btn outline" onclick="navigate('findings')">View findings</button>
+      <button class="btn outline" onclick="window.print()">Print report</button>
+    </div>
+  </div>
+</section>
 
-{
- icon:"📱",
- title:"Mobile Security",
- text:"Install operating-system and application updates from trusted sources.",
- status:"SECURITY"
-},
+<!-- FINDINGS -->
+<section class="page" id="page-findings">
+  <div class="eyebrow">EXPLAINABILITY & EVIDENCE</div>
+  <div class="heading"><div><h1>Findings & Evidence</h1><p class="subtitle">Every finding should have a reason, source and next action.</p></div><span class="badge warn">Human review required</span></div>
 
-{
- icon:"💼",
- title:"Fake Job Scam Alert",
- text:"Be cautious of offers requesting registration, processing or security fees.",
- status:"AWARENESS"
-},
+  <div class="panel">
+    <div class="panel-head"><h2>Sample findings register</h2><span class="muted small">Illustrative case</span></div>
 
-{
- icon:"🔐",
- title:"Password Alert",
- text:"Use unique passwords and enable multi-factor authentication.",
- status:"BEST PRACTICE"
-},
+    <div class="finding">
+      <strong>Required declaration</strong><span class="badge bad">Missing</span>
+      <span class="reason muted">Required declaration not detected in sample file list.</span>
+      <button class="btn outline" onclick="explain('Required declaration','Missing','Upload the required declaration and rerun validation.')">Details</button>
+    </div>
+    <div class="finding">
+      <strong>Institution name</strong><span class="badge warn">Mismatch</span>
+      <span class="reason muted">Sample records contain different institution names.</span>
+      <button class="btn outline" onclick="explain('Institution name','Mismatch','Compare the original records and confirm the correct legal name.')">Details</button>
+    </div>
+    <div class="finding">
+      <strong>Document readability</strong><span class="badge">Pass</span>
+      <span class="reason muted">Illustrative sample field is available for review.</span>
+      <button class="btn outline" onclick="explain('Document readability','Pass','No action required for this sample check.')">Details</button>
+    </div>
 
-{
- icon:"🎣",
- title:"Social Engineering Alert",
- text:"Verify urgent requests involving money, credentials or confidential data.",
- status:"HIGH AWARENESS"
-}
+    <div id="findingDetail" class="info hidden" style="margin-top:15px"></div>
+  </div>
 
+  <div class="notice">A mismatch or anomaly is not proof of fraud. Review the original evidence before making any decision.</div>
+</section>
+
+<!-- RULES -->
+<section class="page" id="page-rules">
+  <div class="eyebrow">CONFIGURABLE VALIDATION</div>
+  <div class="heading"><div><h1>Compliance Rules</h1><p class="subtitle">Example rules for the prototype. Verify all real requirements with authorized sources.</p></div><span class="badge neutral">Sample rules v0.1</span></div>
+
+  <div class="panel">
+    <div class="panel-head"><h2>Rule catalogue</h2><button class="btn outline" id="addRule">+ Add sample rule</button></div>
+    <div class="rule-list" id="ruleList">
+      <div class="rule"><div><strong>DOC-001 · Application form present</strong><small>Completeness check</small></div><span class="badge">Enabled</span></div>
+      <div class="rule"><div><strong>DOC-002 · Required declaration present</strong><small>Completeness check</small></div><span class="badge">Enabled</span></div>
+      <div class="rule"><div><strong>CONS-001 · Institution names consistent</strong><small>Consistency check</small></div><span class="badge">Enabled</span></div>
+      <div class="rule"><div><strong>DUP-001 · Duplicate filename screening</strong><small>Duplicate screening</small></div><span class="badge">Enabled</span></div>
+    </div>
+    <p class="footnote">These are demonstration rules, not official AICTE compliance rules. Real deployment requires approved rule text, versioning and testing.</p>
+  </div>
+</section>
+
+<!-- AUDIT -->
+<section class="page" id="page-audit">
+  <div class="eyebrow">TRACEABILITY</div>
+  <div class="heading"><div><h1>Audit Trail</h1><p class="subtitle">Actions recorded in this browser session.</p></div><button class="btn outline" id="clearAudit">Clear session log</button></div>
+  <div class="panel">
+    <div class="panel-head"><h2>Recent events</h2><span class="badge neutral">Local session</span></div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Time</th><th>Event</th><th>Details</th><th>Actor</th></tr></thead>
+        <tbody id="auditRows"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+</div>
+</main>
+</div>
+
+<div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+
+<script>
+"use strict";
+
+const initialCases = [
+  {id:"INST-2026-014",name:"Sunrise Technical Institute",docs:2,findings:2,status:"Needs review",updated:"Today"},
+  {id:"INST-2026-013",name:"Greenfield College of Technology",docs:3,findings:0,status:"Ready for review",updated:"Yesterday"},
+  {id:"INST-2026-012",name:"Eastern Valley Institute",docs:3,findings:1,status:"Needs review",updated:"18 Oct"},
+  {id:"INST-2026-011",name:"Metro Skills Academy",docs:2,findings:1,status:"Incomplete",updated:"17 Oct"}
 ];
 
-const alertList=
-document.getElementById("alertList");
+let cases = [...initialCases];
+let selectedFiles = [];
+let currentResult = null;
+let audit = [];
 
-alerts.forEach(item=>{
+const $ = id => document.getElementById(id);
 
- alertList.innerHTML+=`
+function escapeHTML(value){
+  return String(value).replace(/[&<>"']/g, char => ({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+  }[char]));
+}
 
- <div class="alert reveal">
+function badge(status){
+  let cls = "";
+  if(status === "Missing" || status === "Incomplete") cls = "bad";
+  else if(status === "Needs review" || status === "Mismatch") cls = "warn";
+  else if(status === "Ready for review") cls = "neutral";
+  return `<span class="badge ${cls}">${escapeHTML(status)}</span>`;
+}
 
-  <div class="alert-icon">
-   ${item.icon}
-  </div>
+function notify(message){
+  const el = $("toast");
+  el.textContent = message;
+  el.classList.remove("hidden");
+  clearTimeout(notify.timer);
+  notify.timer = setTimeout(() => el.classList.add("hidden"), 3000);
+}
 
-  <div>
-   <h3>${item.title}</h3>
-   <p>${item.text}</p>
-  </div>
+function logEvent(event, details){
+  audit.push({time:new Date().toLocaleTimeString(),event,details});
+  renderAudit();
+}
 
-  <div class="alert-status">
-   ${item.status}
-  </div>
+function navigate(page){
+  document.querySelectorAll(".page").forEach(section => section.classList.remove("active"));
+  $("page-" + page).classList.add("active");
 
- </div>
-
- `;
-
-});
-
-
-/* =========================
-   SCROLL REVEAL
-========================= */
-
-const observer=
-new IntersectionObserver(
- entries=>{
-
-  entries.forEach(entry=>{
-
-   if(entry.isIntersecting){
-
-    entry.target
-    .classList
-    .add("show");
-
-   }
-
+  document.querySelectorAll(".nav button").forEach(button => {
+    button.classList.toggle("active", button.dataset.page === page);
   });
 
- },
- {
-  threshold:.12
- }
-);
+  const names = {
+    dashboard:"Dashboard",
+    applications:"Applications",
+    upload:"Upload & Validate",
+    findings:"Findings & Evidence",
+    rules:"Compliance Rules",
+    audit:"Audit Trail"
+  };
 
-document
-.querySelectorAll(".reveal")
-.forEach(el=>observer.observe(el));
-
-
-/* =========================
-   LIVE DATE
-========================= */
-
-const today=
-new Date();
-
-const dateString=
-today.toLocaleDateString(
-"en-IN",
-{
- day:"2-digit",
- month:"short",
- year:"numeric"
-}
-);
-
-document
-.querySelector(".live")
-.title=
-"Page updated: "+dateString;
-
-
-/* =========================
-   3D MOUSE PARALLAX
-========================= */
-
-const visual=
-document.querySelector(".visual");
-
-if(window.innerWidth>900){
-
- document.addEventListener("mousemove",(e)=>{
-
-  const x=
-  (e.clientX/window.innerWidth-.5)*10;
-
-  const y=
-  (e.clientY/window.innerHeight-.5)*10;
-
-  visual.style.transform=
-  `rotateY(${x}deg) rotateX(${-y}deg)`;
-
- });
-
+  $("breadcrumb").textContent = names[page] || "Dashboard";
+  $("sidebar").classList.remove("open");
+  window.scrollTo({top:0,behavior:"smooth"});
 }
 
+document.querySelectorAll(".nav button").forEach(button => {
+  button.addEventListener("click", () => navigate(button.dataset.page));
+});
 
-/* =========================
-   CONSOLE BRAND
-========================= */
+$("menuBtn").addEventListener("click", () => {
+  $("sidebar").classList.toggle("open");
+});
 
-console.log(
-"%cAUREXA",
-"font-size:30px;font-weight:900;color:#1769ff;"
-);
+function renderCases(filter = ""){
+  const filtered = cases.filter(item =>
+    (item.id + " " + item.name).toLowerCase().includes(filter.toLowerCase())
+  );
 
-console.log(
-"Cybersecurity • AI • Innovation"
-);
+  $("allRows").innerHTML = filtered.map(item => `
+    <tr>
+      <td><strong>${escapeHTML(item.id)}</strong></td>
+      <td>${escapeHTML(item.name)}</td>
+      <td>${item.docs} files</td>
+      <td>${item.findings}</td>
+      <td>${badge(item.status)}</td>
+      <td><button class="btn outline" onclick="inspectCase('${escapeHTML(item.id)}')">Inspect</button></td>
+    </tr>
+  `).join("") || `<tr><td colspan="6">No matching cases.</td></tr>`;
 
+  $("recentRows").innerHTML = cases.slice(0,4).map(item => `
+    <tr>
+      <td><strong>${escapeHTML(item.id)}</strong></td>
+      <td>${escapeHTML(item.name)}</td>
+      <td>${badge(item.status)}</td>
+    </tr>
+  `).join("");
+}
+
+function renderAudit(){
+  $("auditRows").innerHTML = audit.slice().reverse().map(item => `
+    <tr>
+      <td>${escapeHTML(item.time)}</td>
+      <td><strong>${escapeHTML(item.event)}</strong></td>
+      <td>${escapeHTML(item.details)}</td>
+      <td>Demo Reviewer</td>
+    </tr>
+  `).join("") || `<tr><td colspan="4" class="muted">No events yet.</td></tr>`;
+}
+
+$("searchCases").addEventListener("input", event => renderCases(event.target.value));
+
+$("fileInput").addEventListener("change", event => {
+  selectedFiles = Array.from(event.target.files || []);
+
+  $("selectedFiles").innerHTML = selectedFiles.length
+    ? selectedFiles.map(file => `
+      <div>${escapeHTML(file.name)}
+      <span class="muted">(${Math.round(file.size / 1024)} KB)</span></div>
+    `).join("")
+    : "No files selected.";
+
+  logEvent("Files selected", selectedFiles.length + " local file(s)");
+});
+
+$("loadSample").addEventListener("click", () => {
+  $("appName").value = "Sunrise Technical Institute";
+  $("appId").value = "INST-2026-014";
+  $("requiredDocs").value = "declaration";
+  selectedFiles = [];
+  $("fileInput").value = "";
+  $("selectedFiles").textContent =
+    "Sample case loaded: application form + institution record; declaration intentionally missing.";
+
+  $("validationResults").classList.add("hidden");
+  logEvent("Sample case loaded","Declaration intentionally missing");
+  notify("Sample case loaded. Run validation to see results.");
+});
+
+$("runValidation").addEventListener("click", () => {
+  const name = $("appName").value.trim() || "Unnamed applicant";
+  const id = $("appId").value.trim() || "DEMO-" + Date.now();
+  const requirement = $("requiredDocs").value;
+  const findings = [];
+  const filenames = selectedFiles.map(file => file.name.toLowerCase());
+
+  if(selectedFiles.length === 0){
+    findings.push({
+      check:"Document intake",
+      status:"Needs review",
+      reason:"No files selected. Load the sample case or choose documents to run basic checks."
+    });
+  } else {
+    if(!filenames.some(name => name.includes("application") || name.includes("form"))){
+      findings.push({
+        check:"Application form",
+        status:"Missing",
+        reason:"No filename clearly identifies an application form. Confirm manually."
+      });
+    }
+
+    if(!filenames.some(name => name.includes("institution") || name.includes("record"))){
+      findings.push({
+        check:"Institution record",
+        status:"Missing",
+        reason:"No filename clearly identifies an institution record. Confirm the checklist."
+      });
+    }
+
+    if(requirement === "declaration" && !filenames.some(name => name.includes("declaration"))){
+      findings.push({
+        check:"Required declaration",
+        status:"Missing",
+        reason:"No filename clearly identifies the declaration. Confirm the official checklist."
+      });
+    }
+
+    const seen = new Set();
+    for(const file of selectedFiles){
+      const key = file.name.toLowerCase() + "|" + file.size;
+      if(seen.has(key)){
+        findings.push({
+          check:"Duplicate screening",
+          status:"Needs review",
+          reason:"Repeated filename and file size detected: " + file.name
+        });
+        break;
+      }
+      seen.add(key);
+    }
+
+    if(findings.length === 0){
+      findings.push({
+        check:"Basic document intake",
+        status:"Needs review",
+        reason:"Files are present. Full OCR and official compliance verification are not enabled in this standalone demo."
+      });
+    }
+  }
+
+  if(requirement === "custom"){
+    findings.push({
+      check:"Compliance checklist",
+      status:"Needs review",
+      reason:"Custom requirements need an authorized checklist before validation."
+    });
+  }
+
+  currentResult = {
+    id,name,docs:selectedFiles.length,findings:findings.length,
+    status:findings.some(item => item.status === "Missing") ? "Incomplete" : "Needs review",
+    updated:"Just now",
+    details:findings
+  };
+
+  $("validationResults").classList.remove("hidden");
+  $("resultStatus").textContent = currentResult.status;
+  $("resultStatus").className = "badge " +
+    (currentResult.status === "Incomplete" ? "bad" : "warn");
+
+  $("resultSummary").textContent =
+    `${id} · ${name} · ${selectedFiles.length} file(s). Preliminary demo checks only.`;
+
+  $("resultList").innerHTML = findings.map(item => `
+    <div class="finding">
+      <strong>${escapeHTML(item.check)}</strong>
+      ${badge(item.status)}
+      <span class="reason muted">${escapeHTML(item.reason)}</span>
+      <span class="muted small">Review</span>
+    </div>
+  `).join("");
+
+  logEvent("Validation run",`${id}: ${findings.length} finding(s)`);
+  notify("Validation complete. Review each finding.");
+  $("validationResults").scrollIntoView({behavior:"smooth",block:"start"});
+});
+
+$("saveCase").addEventListener("click", () => {
+  if(!currentResult){
+    notify("Run validation first.");
+    return;
+  }
+
+  cases = cases.filter(item => item.id !== currentResult.id);
+  cases.unshift({
+    id:currentResult.id,
+    name:currentResult.name,
+    docs:currentResult.docs,
+    findings:currentResult.findings,
+    status:currentResult.status,
+    updated:"Just now"
+  });
+
+  renderCases($("searchCases").value);
+  $("statApps").textContent = Number($("statApps").textContent) + 1;
+  $("statReview").textContent = Number($("statReview").textContent) + currentResult.findings;
+  logEvent("Case saved",currentResult.id);
+  notify("Case saved to the current browser session.");
+});
+
+function inspectCase(id){
+  const item = cases.find(entry => entry.id === id);
+  if(!item) return;
+
+  navigate("findings");
+  logEvent("Case inspected",id);
+  notify(item.id + " · " + item.status + " · " + item.findings + " finding(s)");
+}
+
+function explain(title,status,reason){
+  const el = $("findingDetail");
+  el.classList.remove("hidden");
+  el.innerHTML = `
+    <strong>${escapeHTML(title)} — ${escapeHTML(status)}</strong>
+    <p>${escapeHTML(reason)}</p>
+    <div class="actions">
+      <button class="btn primary" id="markReviewed">Mark reviewed</button>
+      <button class="btn outline" id="closeDetail">Close</button>
+    </div>
+  `;
+
+  $("markReviewed").addEventListener("click", () => {
+    logEvent("Reviewer action","Reviewed " + title);
+    notify("Review action recorded in this session.");
+    el.classList.add("hidden");
+  });
+
+  $("closeDetail").addEventListener("click", () => el.classList.add("hidden"));
+  logEvent("Finding opened",title + " / " + status);
+}
+
+$("addRule").addEventListener("click", () => {
+  const rule = document.createElement("div");
+  rule.className = "rule";
+  rule.innerHTML = `
+    <div><strong>DEMO-${$("ruleList").children.length + 1} · Manual reviewer confirmation</strong>
+    <small>Human review · sample rule</small></div>
+    <span class="badge">Enabled</span>
+  `;
+  $("ruleList").appendChild(rule);
+  logEvent("Sample rule added","Manual reviewer confirmation");
+  notify("Sample rule added.");
+});
+
+$("clearAudit").addEventListener("click", () => {
+  audit = [];
+  renderAudit();
+  notify("Session audit log cleared.");
+});
+
+renderCases();
+renderAudit();
 </script>
-
 </body>
 </html>
-```
