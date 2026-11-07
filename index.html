@@ -1,831 +1,1028 @@
-<!DOCTYPE html>
+
+ <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#10243a">
-<meta name="description" content="AUREXA VerifyAI - AI-assisted document validation, application verification and compliance review platform.">
-<title>AUREXA VerifyAI | Smart Document Verification</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-:root{
-  --navy:#10243a;
-  --blue:#176b87;
-  --teal:#16a085;
-  --cyan:#3fb8c8;
-  --bg:#f3f7fa;
-  --white:#fff;
-  --text:#182735;
-  --muted:#718096;
-  --border:#e0e8ee;
-  --red:#d94c4c;
-  --orange:#e58a2b;
-  --green:#238b62;
-  --shadow:0 8px 28px rgba(16,36,58,.07);
-}
-*{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
-  background:var(--bg);
-  color:var(--text);
-}
-button,input,select{font:inherit}
-button{cursor:pointer}
-button:focus-visible,input:focus-visible,select:focus-visible{
-  outline:3px solid #83d9d0;
-  outline-offset:2px;
-}
-.app{min-height:100vh}
-.sidebar{
-  position:fixed;
-  inset:0 auto 0 0;
-  width:245px;
-  padding:24px 15px;
-  background:var(--navy);
-  color:white;
-  display:flex;
-  flex-direction:column;
-  z-index:20;
-}
-.brand{display:flex;align-items:center;gap:11px;padding:3px 8px 27px}
-.logo{
-  width:43px;height:43px;border-radius:13px;
-  display:grid;place-items:center;
-  background:linear-gradient(135deg,var(--teal),var(--cyan));
-  font-weight:900;font-size:22px;
-}
-.brand strong{font-size:18px;letter-spacing:1px}
-.brand small{display:block;color:#a9c6d5;font-size:10px;letter-spacing:1.5px;margin-top:3px}
-.nav-label{font-size:10px;color:#8faaba;letter-spacing:1.5px;padding:12px 12px 8px}
-.nav{display:grid;gap:5px}
-.nav button{
-  border:0;background:transparent;color:#c8d9e3;
-  text-align:left;padding:12px;border-radius:9px;font-weight:600;
-}
-.nav button:hover,.nav button.active{background:#214158;color:white}
-.sidebar-bottom{
-  margin-top:auto;border:1px solid #355269;border-radius:12px;
-  padding:13px;font-size:12px;color:#bfd1dd;line-height:1.6;
-}
-.sidebar-bottom strong{color:white;display:block;margin-bottom:5px}
-.main{margin-left:245px;min-width:0}
-.topbar{
-  background:white;border-bottom:1px solid var(--border);
-  height:68px;padding:0 30px;display:flex;align-items:center;
-  justify-content:space-between;gap:12px;
-}
-.menu-btn{display:none}
-.breadcrumb{font-size:13px;color:var(--muted)}
-.profile{display:flex;align-items:center;gap:10px}
-.profile small{display:block;color:var(--muted);font-size:11px}
-.avatar{
-  width:38px;height:38px;border-radius:50%;background:#d9f3ee;
-  color:#137965;display:grid;place-items:center;font-weight:800;
-}
-.content{padding:28px;max-width:1500px;margin:auto}
-.eyebrow{font-size:11px;color:var(--blue);font-weight:800;letter-spacing:1.5px}
-.heading{
-  display:flex;align-items:flex-start;justify-content:space-between;
-  gap:18px;margin:8px 0 24px;
-}
-h1{font-size:clamp(25px,3vw,35px);color:var(--navy);margin:0 0 9px}
-h2{font-size:17px;color:var(--navy);margin:0}
-p{line-height:1.65}
-.subtitle{color:var(--muted);margin:0;max-width:760px;font-size:14px}
-.actions{display:flex;flex-wrap:wrap;gap:9px}
-.btn{
-  border:0;border-radius:9px;padding:11px 15px;font-weight:700;
-  transition:transform .15s,opacity .15s;
-}
-.btn:hover{transform:translateY(-1px)}
-.primary{background:var(--teal);color:white}
-.secondary{background:#e5f3f5;color:var(--blue)}
-.outline{background:white;color:var(--navy);border:1px solid var(--border)}
-.danger{background:#fff0ef;color:var(--red)}
-.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px;margin-bottom:20px}
-.card,.panel{
-  background:white;border:1px solid var(--border);
-  border-radius:15px;box-shadow:var(--shadow);
-}
-.card{padding:19px}
-.stat-top{display:flex;justify-content:space-between;align-items:center}
-.stat-label{font-size:12px;color:var(--muted);font-weight:700}
-.stat-icon{
-  width:36px;height:36px;display:grid;place-items:center;
-  background:#e4f5f1;color:var(--teal);border-radius:10px;font-size:18px;
-}
-.stat-number{font-size:30px;color:var(--navy);font-weight:850;margin:8px 0 3px}
-.stat-note{font-size:11px;color:var(--muted)}
-.columns{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(280px,.8fr);gap:18px}
-.panel{padding:21px;margin-bottom:18px;min-width:0}
-.panel-head{
-  display:flex;justify-content:space-between;align-items:center;
-  gap:12px;margin-bottom:17px;
-}
-.muted{color:var(--muted)}
-.small{font-size:12px}
-.badge{
-  display:inline-block;border-radius:30px;padding:5px 9px;
-  font-size:10px;font-weight:800;white-space:nowrap;
-  background:#e4f5ef;color:#197557;
-}
-.badge.warn{background:#fff1dd;color:#995d0b}
-.badge.bad{background:#ffebea;color:#b63838}
-.badge.neutral{background:#edf2f5;color:#536273}
-.table-wrap{overflow-x:auto}
-table{border-collapse:collapse;width:100%;min-width:530px}
-th{
-  text-align:left;background:#f5f8fa;padding:12px;
-  font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;
-}
-td{padding:13px 12px;border-bottom:1px solid #edf1f4;font-size:12px}
-tr:last-child td{border-bottom:0}
-.progress-row{display:flex;justify-content:space-between;font-size:12px;margin:15px 0 7px}
-.bar{height:8px;background:#e8eef2;border-radius:20px;overflow:hidden}
-.bar span{display:block;height:100%;border-radius:20px;background:linear-gradient(90deg,var(--teal),var(--cyan))}
-.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:9px}
-.step{padding:13px 8px;border:1px solid var(--border);border-radius:11px;text-align:center}
-.step-number{
-  display:grid;place-items:center;margin:0 auto 8px;
-  width:29px;height:29px;border-radius:50%;background:#e5f4f1;
-  color:var(--teal);font-weight:800;
-}
-.step strong{display:block;font-size:11px;color:var(--navy)}
-.step small{font-size:10px;color:var(--muted)}
-.page{display:none}
-.page.active{display:block}
-.field{display:grid;gap:7px;margin-bottom:15px}
-.field label{font-size:12px;font-weight:750;color:#526477}
-.field input,.field select{
-  width:100%;padding:12px;border:1px solid var(--border);
-  border-radius:9px;background:white;color:var(--text);
-}
-.dropzone{
-  padding:23px;border:2px dashed #b9d1dc;background:#f7fbfc;
-  border-radius:13px;text-align:center;
-}
-.drop-icon{font-size:32px;color:var(--blue)}
-.dropzone input{max-width:100%;margin-top:12px;font-size:12px}
-.check-list{display:grid;gap:10px}
-.check-item{
-  display:flex;gap:11px;padding:12px;border:1px solid var(--border);
-  border-radius:10px;
-}
-.check-icon{
-  flex:none;width:28px;height:28px;display:grid;place-items:center;
-  border-radius:8px;background:#e4f5ef;color:var(--green);font-weight:800;
-}
-.check-item strong{display:block;font-size:13px}
-.check-item small{display:block;color:var(--muted);margin-top:3px;font-size:11px}
-.finding{
-  display:grid;grid-template-columns:1fr 100px 1.7fr auto;
-  gap:12px;align-items:center;padding:14px 0;border-bottom:1px solid #edf1f4;
-  font-size:12px;
-}
-.finding:last-child{border-bottom:0}
-.finding strong{color:var(--navy)}
-.notice{
-  background:#fff7e9;border:1px solid #f4d7a9;color:#875a15;
-  padding:12px;border-radius:10px;font-size:12px;line-height:1.6;
-}
-.info{
-  background:#edf7fa;border:1px solid #d2e8ef;color:#285a70;
-  padding:12px;border-radius:10px;font-size:12px;line-height:1.6;
-}
-.footnote{font-size:11px;color:var(--muted);line-height:1.6;margin-top:13px}
-.hidden{display:none!important}
-.toast{
-  position:fixed;right:20px;bottom:20px;background:var(--navy);color:white;
-  border-radius:11px;padding:14px 17px;box-shadow:var(--shadow);
-  max-width:340px;z-index:100;font-size:13px;
-}
-.rule-list{display:grid;gap:10px}
-.rule{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:13px;border:1px solid var(--border);border-radius:10px}
-.rule strong{font-size:12px;display:block}
-.rule small{font-size:11px;color:var(--muted)}
-.mobile-nav{display:none}
-@media(max-width:1100px){
-  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .columns{grid-template-columns:1fr}
-  .content{padding:22px}
-}
-@media(max-width:720px){
-  .sidebar{display:none;width:255px;box-shadow:0 10px 35px #0003}
-  .sidebar.open{display:flex}
-  .main{margin-left:0}
-  .topbar{height:60px;padding:0 13px}
-  .menu-btn{display:inline-block;border:0;background:#e9f4f6;color:var(--navy);border-radius:8px;padding:8px 11px}
-  .content{padding:19px 12px}
-  .heading{display:block}
-  .heading .actions{margin-top:15px}
-  .stats{gap:10px}
-  .card{padding:13px}
-  .stat-number{font-size:25px}
-  .panel{padding:15px}
-  .steps{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .finding{grid-template-columns:1fr 1fr;gap:8px}
-  .finding .reason{grid-column:1/-1}
-  .profile .meta{display:none}
-  .rule{align-items:flex-start}
-}
-@media(max-width:360px){
-  .stats{grid-template-columns:1fr}
-  .content{padding:15px 9px}
-}
-@media print{
-  .sidebar,.topbar,.actions,.btn{display:none!important}
-  .main{margin:0}
-  .content{padding:0}
-  body{background:white}
-  .panel,.card{box-shadow:none;break-inside:avoid}
-}
-</style>
+  <!-- PRIMARY SEO -->
+  <title>AUREXA | Cybersecurity & AI Innovation</title>
+  <meta name="description" content="AUREXA is a cybersecurity and technology innovation brand focused on ethical hacking, AI-powered security, digital protection and cybersecurity education.">
+  <meta name="keywords" content="AUREXA, Cybersecurity, Ethical Hacking, AI Cybersecurity, CyberGuard, Cybersecurity India, Digital Security, Deepfake Detection">
+  <meta name="author" content="Paka Srikanth">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="theme-color" content="#080b12">
+
+  <link rel="canonical" href="https://aurexa.space/">
+
+  <!-- OPEN GRAPH SEO -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="AUREXA | Detect. Verify. Protect.">
+  <meta property="og:description" content="Building a safer digital future through cybersecurity and AI innovation.">
+  <meta property="og:url" content="https://aurexa.space/">
+  <meta property="og:site_name" content="AUREXA">
+  <meta property="og:image" content="https://aurexa.space/og-image.jpg">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AUREXA | Cybersecurity & AI">
+  <meta name="twitter:description" content="Detect. Verify. Protect.">
+  <meta name="twitter:image" content="https://aurexa.space/og-image.jpg">
+
+  <link rel="icon" href="/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- ORGANIZATION STRUCTURED DATA -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "AUREXA",
+    "url": "https://aurexa.space/",
+    "description": "Cybersecurity and technology innovation brand.",
+    "founder": {
+      "@type": "Person",
+      "name": "Paka Srikanth"
+    },
+    "slogan": "Detect. Verify. Protect."
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg: #080b12;
+      --surface: #101622;
+      --blue: #3985ff;
+      --cyan: #55c8ff;
+      --white: #f5f7fb;
+      --muted: #929db0;
+      --border: rgba(255,255,255,.09);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+    }
+
+    .container {
+      width: min(1160px, 90%);
+      margin: auto;
+    }
+
+    /* NAVBAR */
+
+    header {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      background: rgba(8,11,18,.86);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav {
+      height: 76px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: 900;
+      letter-spacing: 3px;
+    }
+
+    .logo span {
+      color: var(--blue);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      color: #c1c9d6;
+      transition: .3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--cyan);
+    }
+
+    .nav-btn, .primary-btn {
+      padding: 12px 22px;
+      background: var(--blue);
+      color: white;
+      border-radius: 7px;
+      font-weight: 700;
+      border: none;
+      display: inline-block;
+      transition: .3s;
+    }
+
+    .nav-btn:hover, .primary-btn:hover {
+      background: #2468db;
+      transform: translateY(-2px);
+    }
+
+    .menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 27px;
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 780px;
+      padding: 180px 0 120px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      background:
+        radial-gradient(ellipse at 75% 40%, rgba(35,105,255,.18), transparent 42%),
+        linear-gradient(135deg,#080b12,#0b1220);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: .13;
+      background-image:
+        linear-gradient(rgba(255,255,255,.1) 1px, transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.1) 1px, transparent 1px);
+      background-size: 55px 55px;
+      mask-image: linear-gradient(to bottom,black,transparent);
+    }
+
+    .hero-content {
+      max-width: 780px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .eyebrow {
+      color: var(--cyan);
+      font-size: 12px;
+      letter-spacing: 3px;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 25px;
+    }
+
+    h1 {
+      font-size: clamp(44px,7vw,82px);
+      line-height: 1.08;
+      letter-spacing: -4px;
+      font-weight: 900;
+      margin-bottom: 28px;
+    }
+
+    h1 span {
+      background: linear-gradient(90deg,#3985ff,#63d4ff);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      color: var(--muted);
+      max-width: 600px;
+      font-size: 17px;
+      margin-bottom: 35px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .secondary-btn {
+      padding: 12px 22px;
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      color: white;
+      font-weight: 600;
+      transition: .3s;
+    }
+
+    .secondary-btn:hover {
+      border-color: var(--blue);
+      background: rgba(57,133,255,.1);
+    }
+
+    .hero-bottom {
+      margin-top: 85px;
+      display: flex;
+      gap: 55px;
+      flex-wrap: wrap;
+    }
+
+    .hero-bottom strong {
+      display: block;
+      font-size: 14px;
+    }
+
+    .hero-bottom small {
+      color: var(--muted);
+    }
+
+    /* GENERAL SECTIONS */
+
+    section {
+      padding: 105px 0;
+      scroll-margin-top: 75px;
+    }
+
+    .section-label {
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 3px;
+      margin-bottom: 15px;
+    }
+
+    .section-title {
+      font-size: clamp(30px,4vw,48px);
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      margin-bottom: 18px;
+      line-height: 1.2;
+    }
+
+    .section-desc {
+      color: var(--muted);
+      max-width: 650px;
+      margin-bottom: 45px;
+    }
+
+    /* ABOUT */
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 65px;
+      align-items: center;
+    }
+
+    .about-box {
+      min-height: 330px;
+      background:
+        radial-gradient(circle at center,rgba(57,133,255,.2),transparent 65%),
+        var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 30px;
+    }
+
+    .about-symbol {
+      font-size: 75px;
+      color: var(--blue);
+      font-weight: 900;
+    }
+
+    .about-text p {
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    /* CARDS */
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 20px;
+    }
+
+    .card {
+      padding: 30px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      transition: .3s;
+    }
+
+    .card:hover {
+      transform: translateY(-7px);
+      border-color: rgba(57,133,255,.6);
+    }
+
+    .card-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 10px;
+      background: rgba(57,133,255,.13);
+      color: var(--cyan);
+      display: grid;
+      place-items: center;
+      font-size: 23px;
+      margin-bottom: 23px;
+    }
+
+    .card h3 {
+      font-size: 18px;
+      margin-bottom: 12px;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 18px;
+    }
+
+    .card a {
+      color: var(--cyan);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    /* FEATURED PRODUCT */
+
+    .product-section {
+      background: linear-gradient(135deg,#0c1424,#101d34);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .product-box {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 50px;
+    }
+
+    .product-visual {
+      min-height: 350px;
+      border-radius: 15px;
+      background: radial-gradient(circle,rgba(57,133,255,.3),transparent 65%),#101a2b;
+      border: 1px solid var(--border);
+      display: grid;
+      place-items: center;
+      font-size: 90px;
+    }
+
+    .feature-list {
+      list-style: none;
+      margin: 25px 0;
+    }
+
+    .feature-list li {
+      margin: 12px 0;
+      color: #c4cede;
+    }
+
+    .feature-list li::before {
+      content: "✓";
+      color: var(--cyan);
+      margin-right: 12px;
+    }
+
+    /* BLOG */
+
+    .blog-card {
+      overflow: hidden;
+      padding: 0;
+    }
+
+    .blog-image {
+      height: 175px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg,#14284a,#0b1220);
+      color: var(--cyan);
+      font-size: 50px;
+    }
+
+    .blog-content {
+      padding: 25px;
+    }
+
+    .blog-tag {
+      color: var(--cyan);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    /* FOUNDER */
+
+    .founder-box {
+      text-align: center;
+      max-width: 700px;
+      margin: auto;
+    }
+
+    .founder-avatar {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      background: linear-gradient(135deg,#3985ff,#13294d);
+      margin: 0 auto 25px;
+      display: grid;
+      place-items: center;
+      font-size: 40px;
+      font-weight: 900;
+    }
+
+    .founder-box p {
+      color: var(--muted);
+      margin: 18px 0;
+    }
+
+    /* CONTACT */
+
+    .contact-section {
+      background: #0c121e;
+    }
+
+    .contact-box {
+      text-align: center;
+      max-width: 700px;
+      margin: auto;
+    }
+
+    .contact-box p {
+      color: var(--muted);
+      margin-bottom: 30px;
+    }
+
+    /* FOOTER */
+
+    footer {
+      padding: 55px 0 25px;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 50px;
+      margin-bottom: 45px;
+    }
+
+    .footer-grid p {
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: 15px;
+      max-width: 330px;
+    }
+
+    .footer-grid h4 {
+      margin-bottom: 18px;
+    }
+
+    .footer-grid ul {
+      list-style: none;
+    }
+
+    .footer-grid li {
+      margin: 10px 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .footer-grid a:hover {
+      color: var(--cyan);
+    }
+
+    .copyright {
+      border-top: 1px solid var(--border);
+      padding-top: 22px;
+      color: var(--muted);
+      font-size: 12px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    /* ANIMATIONS */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(25px);
+      transition: opacity .7s ease,transform .7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* MOBILE */
+
+    @media(max-width:850px) {
+      .menu-btn {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 76px;
+        left: 0;
+        width: 100%;
+        background: #0b111d;
+        flex-direction: column;
+        padding: 25px;
+        gap: 22px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .about-grid,
+      .product-box {
+        grid-template-columns: 1fr;
+      }
+
+      .cards {
+        grid-template-columns: repeat(2,1fr);
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hero {
+        min-height: 700px;
+      }
+    }
+
+    @media(max-width:550px) {
+      h1 {
+        letter-spacing: -2px;
+      }
+
+      section {
+        padding: 75px 0;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .hero-bottom {
+        gap: 25px;
+      }
+
+      .product-visual {
+        min-height: 250px;
+      }
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+      *,*::before,*::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
 </head>
 
 <body>
-<div class="app">
 
-<aside class="sidebar" id="sidebar">
-  <div class="brand">
-    <div class="logo">A</div>
-    <div><strong>AUREXA</strong><small>VERIFYAI · DEMO</small></div>
-  </div>
+<!-- NAVIGATION -->
+<header>
+  <div class="container">
+    <nav>
+      <a href="#home" class="logo">AUREXA<span>.</span></a>
 
-  <div class="nav-label">WORKSPACE</div>
-  <nav class="nav">
-    <button class="active" data-page="dashboard">▦ &nbsp; Dashboard</button>
-    <button data-page="applications">▤ &nbsp; Applications</button>
-    <button data-page="upload">⇧ &nbsp; Upload & Validate</button>
-    <button data-page="findings">⌕ &nbsp; Findings & Evidence</button>
-    <button data-page="rules">☷ &nbsp; Compliance Rules</button>
-    <button data-page="audit">◷ &nbsp; Audit Trail</button>
-  </nav>
+      <button class="menu-btn" id="menuBtn" aria-label="Toggle navigation" aria-expanded="false">☰</button>
 
-  <div class="sidebar-bottom">
-    <strong>Prototype environment</strong>
-    This demo uses sample data in your browser. No official AICTE system is connected.
-  </div>
-</aside>
-
-<main class="main">
-<header class="topbar">
-  <div style="display:flex;align-items:center;gap:10px">
-    <button class="menu-btn" id="menuBtn" aria-label="Open navigation">☰</button>
-    <div class="breadcrumb">Workspace / <strong id="breadcrumb">Dashboard</strong></div>
-  </div>
-  <div class="profile">
-    <div class="meta"><strong style="font-size:12px">Demo Reviewer</strong><small>Prototype workspace</small></div>
-    <div class="avatar">DR</div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#products">Solutions</a></li>
+        <li><a href="#academy">Academy</a></li>
+        <li><a href="#insights">Insights</a></li>
+        <li><a href="#contact" class="nav-btn">Contact Us ↗</a></li>
+      </ul>
+    </nav>
   </div>
 </header>
 
-<div class="content">
+<main>
 
-<!-- DASHBOARD -->
-<section class="page active" id="page-dashboard">
-  <div class="eyebrow">SMART INDIA HACKATHON 2026 · SIH26261</div>
-  <div class="heading">
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="container">
+    <div class="hero-content">
+      <div class="eyebrow">CYBERSECURITY • AI • INNOVATION</div>
+
+      <h1>
+        Building a<br>
+        Safer Digital<br>
+        <span>Future.</span>
+      </h1>
+
+      <p>
+        Empowering the digital world through cybersecurity,
+        intelligent technology and next-generation security innovation.
+      </p>
+
+      <div class="hero-buttons">
+        <a href="#products" class="primary-btn">Explore Solutions ↗</a>
+        <a href="#about" class="secondary-btn">Discover AUREXA</a>
+      </div>
+
+      <div class="hero-bottom">
+        <div>
+          <strong>Cybersecurity</strong>
+          <small>Digital Protection</small>
+        </div>
+        <div>
+          <strong>Artificial Intelligence</strong>
+          <small>Intelligent Innovation</small>
+        </div>
+        <div>
+          <strong>Education</strong>
+          <small>Knowledge & Awareness</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container about-grid reveal">
+    <div class="about-box">
+      <div>
+        <div class="about-symbol">A.</div>
+        <h2>DETECT. VERIFY. PROTECT.</h2>
+        <p style="color:#929db0;margin-top:10px">The AUREXA Vision</p>
+      </div>
+    </div>
+
+    <div class="about-text">
+      <div class="section-label">ABOUT AUREXA</div>
+      <h2 class="section-title">Technology with a purpose.</h2>
+
+      <p>
+        AUREXA is a cybersecurity and technology innovation brand
+        dedicated to creating a safer digital environment.
+      </p>
+
+      <p>
+        Our focus includes cybersecurity education, digital
+        protection, artificial intelligence and innovative
+        security solutions.
+      </p>
+
+      <p>
+        We believe technology should empower people while
+        protecting their digital identities.
+      </p>
+
+      <a href="#contact" class="primary-btn">Connect With Us ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" style="background:#0c111b">
+  <div class="container">
+    <div class="section-label">WHAT WE DO</div>
+    <h2 class="section-title">Our Capabilities</h2>
+    <p class="section-desc">
+      Security-focused services and technology solutions
+      designed for a connected world.
+    </p>
+
+    <div class="cards">
+
+      <article class="card reveal">
+        <div class="card-icon">⌘</div>
+        <h3>Ethical Hacking</h3>
+        <p>Learn security testing and identify vulnerabilities in authorized environments.</p>
+        <a href="#contact">Explore Service ↗</a>
+      </article>
+
+      <article class="card reveal">
+        <div class="card-icon">◈</div>
+        <h3>Web Security</h3>
+        <p>Web application security assessment and vulnerability research.</p>
+        <a href="#contact">Explore Service ↗</a>
+      </article>
+
+      <article class="card reveal">
+        <div class="card-icon">⌁</div>
+        <h3>Network Security</h3>
+        <p>Understand network threats, security controls and digital infrastructure.</p>
+        <a href="#contact">Explore Service ↗</a>
+      </article>
+
+      <article class="card reveal">
+        <div class="card-icon">◎</div>
+        <h3>OSINT Research</h3>
+        <p>Open-source intelligence research for authorized security investigations.</p>
+        <a href="#contact">Explore Service ↗</a>
+      </article>
+
+      <article class="card reveal">
+        <div class="card-icon">⌬</div>
+        <h3>Security Awareness</h3>
+        <p>Promoting safe digital practices and cybersecurity awareness.</p>
+        <a href="#contact">Explore Service ↗</a>
+      </article>
+
+      <article class="card reveal">
+        <div class="card-icon">✧</div>
+        <h3>AI Security</h3>
+        <p>Exploring AI-powered security, digital identity and fraud prevention.</p>
+        <a href="#products">Explore Solutions ↗</a>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="product-section" id="products">
+  <div class="container product-box reveal">
+
     <div>
-      <h1>Application Verification</h1>
-      <p class="subtitle">An intelligent workspace for application completeness, document consistency and configurable compliance checks.</p>
-    </div>
-    <div class="actions">
-      <button class="btn outline" onclick="navigate('applications')">View cases</button>
-      <button class="btn primary" onclick="navigate('upload')">+ New validation</button>
-    </div>
-  </div>
+      <div class="section-label">OUR INNOVATION</div>
+      <h2 class="section-title">Introducing AUREXA</h2>
 
-  <div class="stats">
-    <div class="card">
-      <div class="stat-top"><span class="stat-label">Applications reviewed</span><span class="stat-icon">▤</span></div>
-      <div class="stat-number" id="statApps">24</div>
-      <div class="stat-note">Illustrative demo data</div>
-    </div>
-    <div class="card">
-      <div class="stat-top"><span class="stat-label">Checks completed</span><span class="stat-icon">✓</span></div>
-      <div class="stat-number" id="statChecks">118</div>
-      <div class="stat-note">Sample workspace count</div>
-    </div>
-    <div class="card">
-      <div class="stat-top"><span class="stat-label">Needs review</span><span class="stat-icon" style="background:#fff1dd;color:var(--orange)">!</span></div>
-      <div class="stat-number" id="statReview">6</div>
-      <div class="stat-note">Human attention required</div>
-    </div>
-    <div class="card">
-      <div class="stat-top"><span class="stat-label">Missing items</span><span class="stat-icon" style="background:#ffebea;color:var(--red)">⌁</span></div>
-      <div class="stat-number" id="statMissing">3</div>
-      <div class="stat-note">Sample findings</div>
-    </div>
-  </div>
+      <p class="section-desc">
+        An evolving technology ecosystem focused on intelligent
+        digital security and next-generation cyber protection.
+      </p>
 
-  <div class="columns">
-    <div class="panel">
-      <div class="panel-head"><h2>Recent applications</h2><button class="btn outline" onclick="navigate('applications')">View all →</button></div>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>Application</th><th>Institution</th><th>Status</th></tr></thead>
-          <tbody id="recentRows"></tbody>
-        </table>
+      <ul class="feature-list">
+        <li>AI Voice Scam Detection</li>
+        <li>Deepfake & Impersonation Detection</li>
+        <li>Suspicious URL Analysis</li>
+        <li>Message Threat Analysis</li>
+        <li>Digital Fraud Awareness</li>
+        <li>Threat Intelligence</li>
+      </ul>
+
+      <a href="#contact" class="primary-btn">Request a Demo ↗</a>
+    </div>
+
+    <div class="product-visual">
+      <div style="text-align:center">
+        <div style="font-weight:900;letter-spacing:5px">AUREXA</div>
+        <div style="font-size:13px;color:#55c8ff">INTELLIGENT SECURITY</div>
       </div>
     </div>
 
-    <div class="panel">
-      <div class="panel-head"><h2>Validation overview</h2><span class="badge">Demo</span></div>
-      <div class="progress-row"><span>Document extraction</span><strong>92%</strong></div>
-      <div class="bar"><span style="width:92%"></span></div>
-      <div class="progress-row"><span>Completeness checks</span><strong>100%</strong></div>
-      <div class="bar"><span style="width:100%"></span></div>
-      <div class="progress-row"><span>Consistency checks</span><strong>78%</strong></div>
-      <div class="bar"><span style="width:78%"></span></div>
-      <p class="footnote">Illustrative metrics only, not measured production performance.</p>
-    </div>
   </div>
+</section>
 
-  <div class="panel">
-    <div class="panel-head"><h2>How VerifyAI works</h2><span class="muted small">Workflow</span></div>
-    <div class="steps">
-      <div class="step"><div class="step-number">1</div><strong>Upload</strong><small>Documents</small></div>
-      <div class="step"><div class="step-number">2</div><strong>Extract</strong><small>Read fields</small></div>
-      <div class="step"><div class="step-number">3</div><strong>Validate</strong><small>Run checks</small></div>
-      <div class="step"><div class="step-number">4</div><strong>Explain</strong><small>Show evidence</small></div>
-      <div class="step"><div class="step-number">5</div><strong>Review</strong><small>Human decision</small></div>
+<!-- ACADEMY -->
+<section id="academy">
+  <div class="container">
+    <div class="section-label">AUREXA ACADEMY</div>
+    <h2 class="section-title">Learn. Explore. Secure.</h2>
+    <p class="section-desc">
+      Building cybersecurity knowledge through practical
+      learning and digital awareness.
+    </p>
+
+    <div class="cards">
+
+      <article class="card reveal">
+        <div class="card-icon">01</div>
+        <h3>Cybersecurity Fundamentals</h3>
+        <p>Understand the foundations of information security and digital safety.</p>
+        <a href="#contact">Course Enquiry ↗</a>
+      </article>
+
+      <article class="card reveal">
+        <div class="card-icon">02</div>
+        <h3>Ethical Hacking</h3>
+        <p>Explore ethical hacking concepts and authorized security testing.</p>
+        <a href="#contact">Course Enquiry ↗</a>
+      </article>
+
+      <article class="card reveal">
+        <div class="card-icon">03</div>
+        <h3>Kali Linux</h3>
+        <p>Learn Linux fundamentals and cybersecurity tools.</p>
+        <a href="#contact">Course Enquiry ↗</a>
+      </article>
+
     </div>
   </div>
 </section>
 
-<!-- APPLICATIONS -->
-<section class="page" id="page-applications">
-  <div class="eyebrow">CASE MANAGEMENT</div>
-  <div class="heading">
-    <div><h1>Applications</h1><p class="subtitle">Search sample cases and inspect preliminary validation status.</p></div>
-    <button class="btn primary" onclick="navigate('upload')">+ New validation</button>
-  </div>
+<!-- INSIGHTS -->
+<section id="insights" style="background:#0c111b">
+  <div class="container">
+    <div class="section-label">KNOWLEDGE CENTER</div>
+    <h2 class="section-title">Cybersecurity Insights</h2>
+    <p class="section-desc">
+      Explore digital security, emerging threats and technology awareness.
+    </p>
 
-  <div class="panel">
-    <div class="panel-head">
-      <h2>Application register</h2>
-      <input id="searchCases" placeholder="Search applications..." aria-label="Search applications" style="max-width:250px;width:100%;padding:10px;border:1px solid var(--border);border-radius:8px">
-    </div>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Application ID</th><th>Institution</th><th>Documents</th><th>Findings</th><th>Status</th><th>Action</th></tr></thead>
-        <tbody id="allRows"></tbody>
-      </table>
-    </div>
-  </div>
-</section>
+    <div class="cards">
 
-<!-- UPLOAD -->
-<section class="page" id="page-upload">
-  <div class="eyebrow">DOCUMENT INTAKE & VALIDATION</div>
-  <div class="heading">
-    <div><h1>Upload & Validate</h1><p class="subtitle">Select files and run the local prototype checks.</p></div>
-    <span class="badge warn">Demo mode</span>
-  </div>
+      <article class="card blog-card reveal">
+        <div class="blog-image">⌘</div>
+        <div class="blog-content">
+          <div class="blog-tag">CYBERSECURITY</div>
+          <h3>Understanding Digital Security</h3>
+          <p>Learn why cybersecurity matters in today's connected world.</p>
+          <a href="#contact">Read More ↗</a>
+        </div>
+      </article>
 
-  <div class="columns">
-    <div class="panel">
-      <div class="panel-head"><h2>1. Application details</h2></div>
+      <article class="card blog-card reveal">
+        <div class="blog-image">◈</div>
+        <div class="blog-content">
+          <div class="blog-tag">AI SECURITY</div>
+          <h3>The Rise of AI Voice Scams</h3>
+          <p>Understand voice cloning, impersonation and digital fraud risks.</p>
+          <a href="#contact">Read More ↗</a>
+        </div>
+      </article>
 
-      <div class="field">
-        <label for="appName">Institution / applicant name</label>
-        <input id="appName" value="Sunrise Technical Institute" placeholder="Enter institution name">
-      </div>
+      <article class="card blog-card reveal">
+        <div class="blog-image">◎</div>
+        <div class="blog-content">
+          <div class="blog-tag">DIGITAL SAFETY</div>
+          <h3>Protecting Your Digital Identity</h3>
+          <p>Explore practical ways to stay safer online.</p>
+          <a href="#contact">Read More ↗</a>
+        </div>
+      </article>
 
-      <div class="field">
-        <label for="appId">Application ID</label>
-        <input id="appId" value="INST-2026-014" placeholder="Enter application ID">
-      </div>
-
-      <div class="field">
-        <label for="requiredDocs">Required document checklist</label>
-        <select id="requiredDocs">
-          <option value="declaration">Application form + institution record + declaration</option>
-          <option value="two">Application form + institution record</option>
-          <option value="custom">Custom checklist / manual review</option>
-        </select>
-      </div>
-
-      <div class="dropzone">
-        <div class="drop-icon">⇧</div>
-        <strong>Choose supporting files</strong>
-        <p class="muted small">PDF, TXT and images · local demo</p>
-        <input type="file" id="fileInput" multiple accept=".pdf,.txt,.png,.jpg,.jpeg,.webp">
-      </div>
-
-      <div id="selectedFiles" class="footnote">No files selected. You can run the built-in sample demo.</div>
-
-      <div class="actions" style="margin-top:18px">
-        <button class="btn primary" id="runValidation">Run demo validation</button>
-        <button class="btn outline" id="loadSample">Load sample case</button>
-      </div>
-    </div>
-
-    <div class="panel">
-      <div class="panel-head"><h2>2. Validation checks</h2></div>
-      <div class="check-list">
-        <div class="check-item"><div class="check-icon">✓</div><div><strong>Completeness</strong><small>Check required document names and checklist entries.</small></div></div>
-        <div class="check-item"><div class="check-icon">≋</div><div><strong>Consistency</strong><small>Compare basic available file information.</small></div></div>
-        <div class="check-item"><div class="check-icon">⌁</div><div><strong>Duplicate screening</strong><small>Flag repeated filenames and sizes.</small></div></div>
-        <div class="check-item"><div class="check-icon" style="background:#fff1dd;color:var(--orange)">!</div><div><strong>Human review</strong><small>Confirm all flags against original documents.</small></div></div>
-      </div>
-      <p class="footnote">This HTML demo does not perform full PDF OCR, digital-signature verification or official regulatory verification. Those features require a tested backend.</p>
-    </div>
-  </div>
-
-  <div class="panel hidden" id="validationResults">
-    <div class="panel-head"><h2>Validation results</h2><span class="badge warn" id="resultStatus">Needs review</span></div>
-    <p class="muted small" id="resultSummary"></p>
-    <div id="resultList"></div>
-    <div class="actions" style="margin-top:16px">
-      <button class="btn primary" id="saveCase">Save case</button>
-      <button class="btn outline" onclick="navigate('findings')">View findings</button>
-      <button class="btn outline" onclick="window.print()">Print report</button>
     </div>
   </div>
 </section>
 
-<!-- FINDINGS -->
-<section class="page" id="page-findings">
-  <div class="eyebrow">EXPLAINABILITY & EVIDENCE</div>
-  <div class="heading"><div><h1>Findings & Evidence</h1><p class="subtitle">Every finding should have a reason, source and next action.</p></div><span class="badge warn">Human review required</span></div>
+<!-- FOUNDER -->
+<section id="founder">
+  <div class="container founder-box reveal">
+    <div class="section-label">LEADERSHIP</div>
+    <div class="founder-avatar">PS</div>
+    <h2 class="section-title">Paka Srikanth</h2>
+    <h3 style="color:#55c8ff;font-size:14px">Founder — AUREXA</h3>
 
-  <div class="panel">
-    <div class="panel-head"><h2>Sample findings register</h2><span class="muted small">Illustrative case</span></div>
+    <p>
+      Building AUREXA with a vision to make cybersecurity
+      knowledge accessible and develop innovative technology
+      solutions for a safer digital future.
+    </p>
 
-    <div class="finding">
-      <strong>Required declaration</strong><span class="badge bad">Missing</span>
-      <span class="reason muted">Required declaration not detected in sample file list.</span>
-      <button class="btn outline" onclick="explain('Required declaration','Missing','Upload the required declaration and rerun validation.')">Details</button>
-    </div>
-    <div class="finding">
-      <strong>Institution name</strong><span class="badge warn">Mismatch</span>
-      <span class="reason muted">Sample records contain different institution names.</span>
-      <button class="btn outline" onclick="explain('Institution name','Mismatch','Compare the original records and confirm the correct legal name.')">Details</button>
-    </div>
-    <div class="finding">
-      <strong>Document readability</strong><span class="badge">Pass</span>
-      <span class="reason muted">Illustrative sample field is available for review.</span>
-      <button class="btn outline" onclick="explain('Document readability','Pass','No action required for this sample check.')">Details</button>
-    </div>
-
-    <div id="findingDetail" class="info hidden" style="margin-top:15px"></div>
-  </div>
-
-  <div class="notice">A mismatch or anomaly is not proof of fraud. Review the original evidence before making any decision.</div>
-</section>
-
-<!-- RULES -->
-<section class="page" id="page-rules">
-  <div class="eyebrow">CONFIGURABLE VALIDATION</div>
-  <div class="heading"><div><h1>Compliance Rules</h1><p class="subtitle">Example rules for the prototype. Verify all real requirements with authorized sources.</p></div><span class="badge neutral">Sample rules v0.1</span></div>
-
-  <div class="panel">
-    <div class="panel-head"><h2>Rule catalogue</h2><button class="btn outline" id="addRule">+ Add sample rule</button></div>
-    <div class="rule-list" id="ruleList">
-      <div class="rule"><div><strong>DOC-001 · Application form present</strong><small>Completeness check</small></div><span class="badge">Enabled</span></div>
-      <div class="rule"><div><strong>DOC-002 · Required declaration present</strong><small>Completeness check</small></div><span class="badge">Enabled</span></div>
-      <div class="rule"><div><strong>CONS-001 · Institution names consistent</strong><small>Consistency check</small></div><span class="badge">Enabled</span></div>
-      <div class="rule"><div><strong>DUP-001 · Duplicate filename screening</strong><small>Duplicate screening</small></div><span class="badge">Enabled</span></div>
-    </div>
-    <p class="footnote">These are demonstration rules, not official AICTE compliance rules. Real deployment requires approved rule text, versioning and testing.</p>
+    <a href="#contact" class="secondary-btn">Connect With Founder ↗</a>
   </div>
 </section>
 
-<!-- AUDIT -->
-<section class="page" id="page-audit">
-  <div class="eyebrow">TRACEABILITY</div>
-  <div class="heading"><div><h1>Audit Trail</h1><p class="subtitle">Actions recorded in this browser session.</p></div><button class="btn outline" id="clearAudit">Clear session log</button></div>
-  <div class="panel">
-    <div class="panel-head"><h2>Recent events</h2><span class="badge neutral">Local session</span></div>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Time</th><th>Event</th><th>Details</th><th>Actor</th></tr></thead>
-        <tbody id="auditRows"></tbody>
-      </table>
-    </div>
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="container contact-box reveal">
+    <div class="section-label">GET IN TOUCH</div>
+    <h2 class="section-title">Let's Build a Safer Future.</h2>
+
+    <p>
+      Have a project, collaboration idea or cybersecurity enquiry?
+      Connect with the AUREXA team.
+    </p>
+
+    <a href="https://www.instagram.com/" class="primary-btn" target="_blank" rel="noopener noreferrer">
+      Connect With AUREXA ↗
+    </a>
   </div>
 </section>
 
-</div>
 </main>
-</div>
 
-<div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+
+    <div class="footer-grid">
+
+      <div>
+        <a href="#home" class="logo">AUREXA<span>.</span></a>
+        <p>
+          Building a safer digital future through cybersecurity,
+          artificial intelligence and technology innovation.
+        </p>
+      </div>
+
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#products">Solutions</a></li>
+          <li><a href="#academy">Academy</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Discover</h4>
+        <ul>
+          <li><a href="#insights">Insights</a></li>
+          <li><a href="#founder">Founder</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="/privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="/terms.html">Terms & Conditions</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="copyright">
+      <span>© <span id="year"></span> AUREXA. All rights reserved.</span>
+      <span>DETECT. VERIFY. PROTECT.</span>
+    </div>
+
+  </div>
+</footer>
 
 <script>
-"use strict";
+  // MOBILE MENU
+  const menuBtn = document.getElementById("menuBtn");
+  const navLinks = document.getElementById("navLinks");
 
-const initialCases = [
-  {id:"INST-2026-014",name:"Sunrise Technical Institute",docs:2,findings:2,status:"Needs review",updated:"Today"},
-  {id:"INST-2026-013",name:"Greenfield College of Technology",docs:3,findings:0,status:"Ready for review",updated:"Yesterday"},
-  {id:"INST-2026-012",name:"Eastern Valley Institute",docs:3,findings:1,status:"Needs review",updated:"18 Oct"},
-  {id:"INST-2026-011",name:"Metro Skills Academy",docs:2,findings:1,status:"Incomplete",updated:"17 Oct"}
-];
-
-let cases = [...initialCases];
-let selectedFiles = [];
-let currentResult = null;
-let audit = [];
-
-const $ = id => document.getElementById(id);
-
-function escapeHTML(value){
-  return String(value).replace(/[&<>"']/g, char => ({
-    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
-  }[char]));
-}
-
-function badge(status){
-  let cls = "";
-  if(status === "Missing" || status === "Incomplete") cls = "bad";
-  else if(status === "Needs review" || status === "Mismatch") cls = "warn";
-  else if(status === "Ready for review") cls = "neutral";
-  return `<span class="badge ${cls}">${escapeHTML(status)}</span>`;
-}
-
-function notify(message){
-  const el = $("toast");
-  el.textContent = message;
-  el.classList.remove("hidden");
-  clearTimeout(notify.timer);
-  notify.timer = setTimeout(() => el.classList.add("hidden"), 3000);
-}
-
-function logEvent(event, details){
-  audit.push({time:new Date().toLocaleTimeString(),event,details});
-  renderAudit();
-}
-
-function navigate(page){
-  document.querySelectorAll(".page").forEach(section => section.classList.remove("active"));
-  $("page-" + page).classList.add("active");
-
-  document.querySelectorAll(".nav button").forEach(button => {
-    button.classList.toggle("active", button.dataset.page === page);
+  menuBtn.addEventListener("click", () => {
+    const isOpen = navLinks.classList.toggle("active");
+    menuBtn.setAttribute("aria-expanded", isOpen);
+    menuBtn.textContent = isOpen ? "✕" : "☰";
   });
 
-  const names = {
-    dashboard:"Dashboard",
-    applications:"Applications",
-    upload:"Upload & Validate",
-    findings:"Findings & Evidence",
-    rules:"Compliance Rules",
-    audit:"Audit Trail"
-  };
-
-  $("breadcrumb").textContent = names[page] || "Dashboard";
-  $("sidebar").classList.remove("open");
-  window.scrollTo({top:0,behavior:"smooth"});
-}
-
-document.querySelectorAll(".nav button").forEach(button => {
-  button.addEventListener("click", () => navigate(button.dataset.page));
-});
-
-$("menuBtn").addEventListener("click", () => {
-  $("sidebar").classList.toggle("open");
-});
-
-function renderCases(filter = ""){
-  const filtered = cases.filter(item =>
-    (item.id + " " + item.name).toLowerCase().includes(filter.toLowerCase())
-  );
-
-  $("allRows").innerHTML = filtered.map(item => `
-    <tr>
-      <td><strong>${escapeHTML(item.id)}</strong></td>
-      <td>${escapeHTML(item.name)}</td>
-      <td>${item.docs} files</td>
-      <td>${item.findings}</td>
-      <td>${badge(item.status)}</td>
-      <td><button class="btn outline" onclick="inspectCase('${escapeHTML(item.id)}')">Inspect</button></td>
-    </tr>
-  `).join("") || `<tr><td colspan="6">No matching cases.</td></tr>`;
-
-  $("recentRows").innerHTML = cases.slice(0,4).map(item => `
-    <tr>
-      <td><strong>${escapeHTML(item.id)}</strong></td>
-      <td>${escapeHTML(item.name)}</td>
-      <td>${badge(item.status)}</td>
-    </tr>
-  `).join("");
-}
-
-function renderAudit(){
-  $("auditRows").innerHTML = audit.slice().reverse().map(item => `
-    <tr>
-      <td>${escapeHTML(item.time)}</td>
-      <td><strong>${escapeHTML(item.event)}</strong></td>
-      <td>${escapeHTML(item.details)}</td>
-      <td>Demo Reviewer</td>
-    </tr>
-  `).join("") || `<tr><td colspan="4" class="muted">No events yet.</td></tr>`;
-}
-
-$("searchCases").addEventListener("input", event => renderCases(event.target.value));
-
-$("fileInput").addEventListener("change", event => {
-  selectedFiles = Array.from(event.target.files || []);
-
-  $("selectedFiles").innerHTML = selectedFiles.length
-    ? selectedFiles.map(file => `
-      <div>${escapeHTML(file.name)}
-      <span class="muted">(${Math.round(file.size / 1024)} KB)</span></div>
-    `).join("")
-    : "No files selected.";
-
-  logEvent("Files selected", selectedFiles.length + " local file(s)");
-});
-
-$("loadSample").addEventListener("click", () => {
-  $("appName").value = "Sunrise Technical Institute";
-  $("appId").value = "INST-2026-014";
-  $("requiredDocs").value = "declaration";
-  selectedFiles = [];
-  $("fileInput").value = "";
-  $("selectedFiles").textContent =
-    "Sample case loaded: application form + institution record; declaration intentionally missing.";
-
-  $("validationResults").classList.add("hidden");
-  logEvent("Sample case loaded","Declaration intentionally missing");
-  notify("Sample case loaded. Run validation to see results.");
-});
-
-$("runValidation").addEventListener("click", () => {
-  const name = $("appName").value.trim() || "Unnamed applicant";
-  const id = $("appId").value.trim() || "DEMO-" + Date.now();
-  const requirement = $("requiredDocs").value;
-  const findings = [];
-  const filenames = selectedFiles.map(file => file.name.toLowerCase());
-
-  if(selectedFiles.length === 0){
-    findings.push({
-      check:"Document intake",
-      status:"Needs review",
-      reason:"No files selected. Load the sample case or choose documents to run basic checks."
+  // CLOSE MENU AFTER CLICK
+  document.querySelectorAll(".nav-links a").forEach(link => {
+    link.addEventListener("click", () => {
+      navLinks.classList.remove("active");
+      menuBtn.setAttribute("aria-expanded", "false");
+      menuBtn.textContent = "☰";
     });
-  } else {
-    if(!filenames.some(name => name.includes("application") || name.includes("form"))){
-      findings.push({
-        check:"Application form",
-        status:"Missing",
-        reason:"No filename clearly identifies an application form. Confirm manually."
-      });
-    }
+  });
 
-    if(!filenames.some(name => name.includes("institution") || name.includes("record"))){
-      findings.push({
-        check:"Institution record",
-        status:"Missing",
-        reason:"No filename clearly identifies an institution record. Confirm the checklist."
-      });
-    }
-
-    if(requirement === "declaration" && !filenames.some(name => name.includes("declaration"))){
-      findings.push({
-        check:"Required declaration",
-        status:"Missing",
-        reason:"No filename clearly identifies the declaration. Confirm the official checklist."
-      });
-    }
-
-    const seen = new Set();
-    for(const file of selectedFiles){
-      const key = file.name.toLowerCase() + "|" + file.size;
-      if(seen.has(key)){
-        findings.push({
-          check:"Duplicate screening",
-          status:"Needs review",
-          reason:"Repeated filename and file size detected: " + file.name
-        });
-        break;
+  // REVEAL ANIMATION
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
       }
-      seen.add(key);
-    }
-
-    if(findings.length === 0){
-      findings.push({
-        check:"Basic document intake",
-        status:"Needs review",
-        reason:"Files are present. Full OCR and official compliance verification are not enabled in this standalone demo."
-      });
-    }
-  }
-
-  if(requirement === "custom"){
-    findings.push({
-      check:"Compliance checklist",
-      status:"Needs review",
-      reason:"Custom requirements need an authorized checklist before validation."
     });
-  }
+  }, { threshold: 0.12 });
 
-  currentResult = {
-    id,name,docs:selectedFiles.length,findings:findings.length,
-    status:findings.some(item => item.status === "Missing") ? "Incomplete" : "Needs review",
-    updated:"Just now",
-    details:findings
-  };
-
-  $("validationResults").classList.remove("hidden");
-  $("resultStatus").textContent = currentResult.status;
-  $("resultStatus").className = "badge " +
-    (currentResult.status === "Incomplete" ? "bad" : "warn");
-
-  $("resultSummary").textContent =
-    `${id} · ${name} · ${selectedFiles.length} file(s). Preliminary demo checks only.`;
-
-  $("resultList").innerHTML = findings.map(item => `
-    <div class="finding">
-      <strong>${escapeHTML(item.check)}</strong>
-      ${badge(item.status)}
-      <span class="reason muted">${escapeHTML(item.reason)}</span>
-      <span class="muted small">Review</span>
-    </div>
-  `).join("");
-
-  logEvent("Validation run",`${id}: ${findings.length} finding(s)`);
-  notify("Validation complete. Review each finding.");
-  $("validationResults").scrollIntoView({behavior:"smooth",block:"start"});
-});
-
-$("saveCase").addEventListener("click", () => {
-  if(!currentResult){
-    notify("Run validation first.");
-    return;
-  }
-
-  cases = cases.filter(item => item.id !== currentResult.id);
-  cases.unshift({
-    id:currentResult.id,
-    name:currentResult.name,
-    docs:currentResult.docs,
-    findings:currentResult.findings,
-    status:currentResult.status,
-    updated:"Just now"
+  document.querySelectorAll(".reveal").forEach(element => {
+    observer.observe(element);
   });
 
-  renderCases($("searchCases").value);
-  $("statApps").textContent = Number($("statApps").textContent) + 1;
-  $("statReview").textContent = Number($("statReview").textContent) + currentResult.findings;
-  logEvent("Case saved",currentResult.id);
-  notify("Case saved to the current browser session.");
-});
-
-function inspectCase(id){
-  const item = cases.find(entry => entry.id === id);
-  if(!item) return;
-
-  navigate("findings");
-  logEvent("Case inspected",id);
-  notify(item.id + " · " + item.status + " · " + item.findings + " finding(s)");
-}
-
-function explain(title,status,reason){
-  const el = $("findingDetail");
-  el.classList.remove("hidden");
-  el.innerHTML = `
-    <strong>${escapeHTML(title)} — ${escapeHTML(status)}</strong>
-    <p>${escapeHTML(reason)}</p>
-    <div class="actions">
-      <button class="btn primary" id="markReviewed">Mark reviewed</button>
-      <button class="btn outline" id="closeDetail">Close</button>
-    </div>
-  `;
-
-  $("markReviewed").addEventListener("click", () => {
-    logEvent("Reviewer action","Reviewed " + title);
-    notify("Review action recorded in this session.");
-    el.classList.add("hidden");
-  });
-
-  $("closeDetail").addEventListener("click", () => el.classList.add("hidden"));
-  logEvent("Finding opened",title + " / " + status);
-}
-
-$("addRule").addEventListener("click", () => {
-  const rule = document.createElement("div");
-  rule.className = "rule";
-  rule.innerHTML = `
-    <div><strong>DEMO-${$("ruleList").children.length + 1} · Manual reviewer confirmation</strong>
-    <small>Human review · sample rule</small></div>
-    <span class="badge">Enabled</span>
-  `;
-  $("ruleList").appendChild(rule);
-  logEvent("Sample rule added","Manual reviewer confirmation");
-  notify("Sample rule added.");
-});
-
-$("clearAudit").addEventListener("click", () => {
-  audit = [];
-  renderAudit();
-  notify("Session audit log cleared.");
-});
-
-renderCases();
-renderAudit();
+  // AUTOMATIC COPYRIGHT YEAR
+  document.getElementById("year").textContent =
+    new Date().getFullYear();
 </script>
+
 </body>
 </html>
